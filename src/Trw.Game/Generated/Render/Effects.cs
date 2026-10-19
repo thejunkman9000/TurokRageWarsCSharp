@@ -251,12 +251,12 @@ public static partial class Actor
                 }
                 if (!((new CcObj(o).Flags & (uint)(196608)) != 0u))
                 {
-                    if (((((((int)(new CcObj(o).TypeId) == 1007) && (Mem.U32(0x801315F8u) != 0u)) && (new CcPar(par).unkB8_ != 0u)) && ((int)(new CcObj(Mem.U32(0x801315F8u)).TypeId) == 1054)) && (st != 9)))
+                    if (((((((int)(new CcObj(o).TypeId) == 1007) && (Mem.U32(Gv.Effects_HitTargetPtr_801315F8) != 0u)) && (new CcPar(par).unkB8_ != 0u)) && ((int)(new CcObj(Mem.U32(Gv.Effects_HitTargetPtr_801315F8)).TypeId) == 1054)) && (st != 9)))
                     {
                         uint R = 0u;
                         uint R2 = 0u;
                         int rt = 0;
-                        Mem.Copy(new CcObj(Mem.U32(0x801315F8u)).SpriteOffsetX_180.P, new CcQ(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.P, 12);
+                        Mem.Copy(new CcObj(Mem.U32(Gv.Effects_HitTargetPtr_801315F8)).SpriteOffsetX_180.P, new CcQ(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.P, 12);
                         if ((sp110 == 0))
                         {
                             MathUtil.MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
@@ -273,7 +273,7 @@ public static partial class Actor
                             R2 = new CcQ(Mem.U32(Gv.Collision_ContactPtr)).unk0_;
                             if ((((int)(new CcRoot(R2).type) == rt) && (((new CcRoot(R2).flags100 & (uint)(3145728)) != 0u) || (Mem.S32(new CcRoot(R2).tab18_) == 2))))
                             {
-                                uint tgt = Mem.U32(0x801315F8u);
+                                uint tgt = Mem.U32(Gv.Effects_HitTargetPtr_801315F8);
                                 func_0027CCD0_attach_actor(tgt, st, (_fp + 16u));
                             }
                         }
@@ -4477,7 +4477,7 @@ public static partial class Effects
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6670", (uint)a);
-            Mem.Set(0x800D2E58u, 0);
+            Mem.Set(Gv.Decals_SpawnedThisFrame, 0);
             if ((Mem.S32(Gv.GamePaused) == 0))
             {
                 Trail.UpdateAll((uint)(a));
@@ -6600,7 +6600,7 @@ public static partial class Particle
                 s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
-                    Event.Send(o, o, (int)((ushort)(v1)), (-1), 0x80104290u, _fp);
+                    Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_WallHitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
@@ -6613,11 +6613,11 @@ public static partial class Particle
                         Mem.Copy((_fp + 24u), new B18Fx(o).Velocity.P, 12);
                     }
                     Quat.FromDirection((_fp + 8u), (_fp + 24u));
-                    Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).OwnerPtr), (uint)(new B18Fx(o).RefCountPtr), new B18Fx(o).TargetPtr, s2, (_fp + 24u), (_fp + 8u), 0x80104290u, 0, Mem.S32(0x8010429Cu), (int)(((new B18Fx(o).Flags & (uint)(2097158)) | (uint)(1))));
+                    Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).OwnerPtr), (uint)(new B18Fx(o).RefCountPtr), new B18Fx(o).TargetPtr, s2, (_fp + 24u), (_fp + 8u), Gv.Particle_WallHitResult, 0, Mem.S32(Gv.Particle_WallHitResult_Key), (int)(((new B18Fx(o).Flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
-                    Audio.PlaySound((int)((short)(s3)), 0x80104290u, 0, (-1));
+                    Audio.PlaySound((int)((short)(s3)), Gv.Particle_WallHitResult, 0, (-1));
                 }
                 L_tail: ;
                 Vec.Scale(new B18Fx(o).SpinVelocity_18C.P, new B18Fx(o).SpinVelocity_18C.P, Cpu.U2F((uint)(new B18Fx(o).HitDamping_1C4)));
@@ -6646,12 +6646,12 @@ public static partial class Particle
                 int s3 = 0;
                 int v1 = 0;
                 uint c = 0u;
-                if ((Mem.S32(0x801042C4u) != 7))
+                if ((Mem.S32(Gv.Particle_LiquidHitResult_Kind) != 7))
                 {
                     idx = 1;
-                    if ((Mem.S32(0x801042C4u) >= 8))
+                    if ((Mem.S32(Gv.Particle_LiquidHitResult_Kind) >= 8))
                     {
-                        if ((Mem.S32(0x801042C4u) == 8))
+                        if ((Mem.S32(Gv.Particle_LiquidHitResult_Kind) == 8))
                         {
                             if (((o != 0u) || (new B18Fx(o).RefCountPtr != 0)))
                             {
@@ -6675,7 +6675,7 @@ public static partial class Particle
                 s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
-                    Event.Send(o, o, (int)((ushort)(v1)), (-1), 0x801042B8u, _fp);
+                    Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_LiquidHitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
@@ -6688,11 +6688,11 @@ public static partial class Particle
                         Mem.Copy((_fp + 24u), new B18Fx(o).Velocity.P, 12);
                     }
                     Quat.FromDirection((_fp + 8u), (_fp + 24u));
-                    Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).OwnerPtr), (uint)(new B18Fx(o).RefCountPtr), new B18Fx(o).TargetPtr, s2, (_fp + 24u), (_fp + 8u), 0x801042B8u, 0, (-5), (int)(((new B18Fx(o).Flags & (uint)(2097158)) | (uint)(1))));
+                    Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).OwnerPtr), (uint)(new B18Fx(o).RefCountPtr), new B18Fx(o).TargetPtr, s2, (_fp + 24u), (_fp + 8u), Gv.Particle_LiquidHitResult, 0, (-5), (int)(((new B18Fx(o).Flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
-                    Audio.PlaySound((int)((short)(s3)), 0x801042B8u, 0, (-1));
+                    Audio.PlaySound((int)((short)(s3)), Gv.Particle_LiquidHitResult, 0, (-1));
                 }
                 new B18Fx(o).Flags_Set((uint)((uint)(new B18Fx(o).Flags) | (uint)(512)));
                 if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(131072)) != 0u))
@@ -6888,7 +6888,7 @@ public static partial class Particle
                 goto _f7;
                 _f7: ;
                 if (!((((int)(new B18Fy(o).WallHitMode_1B9) == 8) || ((int)(new B18Fy(o).FloorHitMode_1BA) == 8)))) goto _f12;
-                if (!(((Mem.U32(0x801042F0u) & (uint)(16777216)) != 0u))) goto _f13;
+                if (!(((Mem.U32(Gv.Collision_HitSurfaceFlags_801042F0) & (uint)(16777216)) != 0u))) goto _f13;
                 p = new B18Fy(o).unk12C_;
                 if (!((((p != 0u) && ((int)(new B18Par(p).type) == 1)) && ((new B18Par(p).flags100 & (uint)(3145728)) != 0u)))) goto _f14;
                 new B18Fy(o).Flags_Set((uint)((uint)(new B18Fy(o).Flags) | (uint)(131072)));
@@ -8125,7 +8125,7 @@ public static partial class Particle
                 }
                 else
                 {
-                    s3 = (int)(MtxStack.Alloc(0x8011FFB0u, 1));
+                    s3 = (int)(MtxStack.Alloc(Gv.Gfx_MtxStack, 1));
                     if ((s3 == 0))
                     {
                         return;
@@ -10457,7 +10457,7 @@ public static partial class Particle
                     if ((Mem.S32(Gv.Debug_Freeze_8013B29C) == 0))
                     {
                         Mem.Set(Gv.FrameTime, old);
-                        Mem.Set(Gv.FrameTime, (old * Mem.F32(0x800D2990u)));
+                        Mem.Set(Gv.FrameTime, (old * Mem.F32(Gv.Effects_TimeScale)));
                         {
                             i = 0;
                             n2 = 0;
@@ -11467,7 +11467,7 @@ public static partial class Particle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002833F8", (uint)o);
-            new B19Obj(o).DefPtr_Set(0x8011EE70u);
+            new B19Obj(o).DefPtr_Set(Gv.ObjectPool_QuadDef);
             new B19Obj(o).Type_Set((sbyte)(2));
             new B19Obj(o).Flags_Set((uint)(0));
             new B19Obj(o).unk1DC__Set(0u);
@@ -11504,7 +11504,7 @@ public static partial class Particle
                     Mem.Copy((_fp + 16u), new B19Obj(o).Velocity.P, 12);
                 }
                 Quat.FromDirection(_fp, (_fp + 16u));
-                Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).OwnerPtr), new B19Obj(o).unk130_, (int)(new B19Obj(o).TargetPtr), arg, (_fp + 16u), _fp, new B19Q(0x80104290u).v.P, 0, new B19Q(0x80104290u).k, (int)(((new B19Obj(o).Flags & (uint)(2097158)) | (uint)(1))));
+                Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).OwnerPtr), new B19Obj(o).unk130_, (int)(new B19Obj(o).TargetPtr), arg, (_fp + 16u), _fp, new B19Q(Gv.Particle_WallHitResult).v.P, 0, new B19Q(Gv.Particle_WallHitResult).k, (int)(((new B19Obj(o).Flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }
@@ -11576,7 +11576,7 @@ public static partial class Particle
                     Mem.Copy((_fp + 16u), new B19Obj(o).Velocity.P, 12);
                 }
                 Quat.FromDirection(_fp, (_fp + 16u));
-                Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).OwnerPtr), new B19Obj(o).unk130_, (int)(new B19Obj(o).TargetPtr), arg, (_fp + 16u), _fp, new B19Q(0x801042B8u).v.P, 0, (-5), (int)(((new B19Obj(o).Flags & (uint)(2097158)) | (uint)(1))));
+                Effects.SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).OwnerPtr), new B19Obj(o).unk130_, (int)(new B19Obj(o).TargetPtr), arg, (_fp + 16u), _fp, new B19Q(Gv.Particle_LiquidHitResult).v.P, 0, (-5), (int)(((new B19Obj(o).Flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }

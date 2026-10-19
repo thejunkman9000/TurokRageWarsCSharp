@@ -51,8 +51,8 @@ public static partial class PauseMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435D14", (uint)cfg);
-            Mem.Set(0x800E5550u, ResourcePool.Malloc((uint)(20)));
-            Mem.Set(Mem.U32(0x800E5550u), 0);
+            Mem.Set(Gv.PauseMenu_StatePtr, ResourcePool.Malloc((uint)(20)));
+            Mem.Set(Mem.U32(Gv.PauseMenu_StatePtr), 0);
             Audio.StopAllExcept((-1));
             Rumble.Suspend();
             if ((Video.GetResolution() == 1))
@@ -83,8 +83,8 @@ public static partial class PauseMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435DE0");
-            ResourcePool.MallocFree(Mem.U32(0x800E5550u));
-            Mem.Set(0x800E5550u, 0u);
+            ResourcePool.MallocFree(Mem.U32(Gv.PauseMenu_StatePtr));
+            Mem.Set(Gv.PauseMenu_StatePtr, 0u);
             Menu.SetFixedFov(2);
             Rumble.Resume();
             return 0;

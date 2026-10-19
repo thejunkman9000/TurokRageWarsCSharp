@@ -467,10 +467,10 @@ public static partial class Ui
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2870", (uint)a, (uint)b, (uint)c, (uint)d);
-            Mem.Set(0x800D2C00u, a);
-            Mem.Set(0x800D2C04u, b);
-            Mem.Set(0x800D2C08u, c);
-            Mem.Set(0x800D2C0Cu, d);
+            Mem.Set(Gv.Widgets_ClipX, a);
+            Mem.Set(Gv.Widgets_ClipY, b);
+            Mem.Set(Gv.Widgets_ClipW, c);
+            Mem.Set(Gv.Widgets_ClipH, d);
         }
     }
 
@@ -480,10 +480,10 @@ public static partial class Ui
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2898", (uint)a, (uint)b, (uint)c, (uint)d);
-            Mem.Set(a, Mem.S32(0x800D2C00u));
-            Mem.Set(b, Mem.S32(0x800D2C04u));
-            Mem.Set(c, Mem.S32(0x800D2C08u));
-            Mem.Set(d, Mem.S32(0x800D2C0Cu));
+            Mem.Set(a, Mem.S32(Gv.Widgets_ClipX));
+            Mem.Set(b, Mem.S32(Gv.Widgets_ClipY));
+            Mem.Set(c, Mem.S32(Gv.Widgets_ClipW));
+            Mem.Set(d, Mem.S32(Gv.Widgets_ClipH));
         }
     }
 
@@ -563,8 +563,8 @@ public static partial class Ui
             if (Dbg.On) Dbg.Enter("func_0040F5B4", (uint)a, (uint)b);
             --a;
             --b;
-            Mem.Set(0x800E2AB0u, a);
-            Mem.Set(0x800E2AB4u, b);
+            Mem.Set(Gv.Ui_ScreenMaxX, a);
+            Mem.Set(Gv.Ui_ScreenMaxY, b);
             new O02Q(Gv.UiText_BatchClip).a_Set(new O02Q(Gv.UiText_BatchClip).c_Set(0));
             new O02Q(Gv.UiText_BatchClip).b_Set(a);
             new O02Q(Gv.UiText_BatchClip).d_Set(b);
@@ -720,7 +720,7 @@ public static partial class Ui
                 func_00415D10_put_vertex(1, (int)(x), (int)(bottom), Mem.U32((_fp + 8u)));
                 func_00415D10_put_vertex(2, (int)(right), (int)(bottom), Mem.U32((_fp + 12u)));
                 func_00415D10_put_vertex(3, (int)(right), (int)(y), Mem.U32((_fp + 4u)));
-                if ((new Triple(0x80153F60u).y == 0))
+                if ((new Triple(Gv.RenderMode_State).y == 0))
                 {
                     {
                         uint _gbi = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2100,7 +2100,7 @@ public static partial class UiNode
             }
             else
             {
-                if ((Mem.S32(0x800E2AB0u) < new O02Rect(r1).w[(int)(0)]))
+                if ((Mem.S32(Gv.Ui_ScreenMaxX) < new O02Rect(r1).w[(int)(0)]))
                 {
                     return 0;
                 }
@@ -2109,9 +2109,9 @@ public static partial class UiNode
             {
                 return 0;
             }
-            if ((Mem.S32(0x800E2AB0u) < new O02Rect(r1).w[(int)(1)]))
+            if ((Mem.S32(Gv.Ui_ScreenMaxX) < new O02Rect(r1).w[(int)(1)]))
             {
-                new O02Rect(r1).w.Set((int)(1), Mem.S32(0x800E2AB0u));
+                new O02Rect(r1).w.Set((int)(1), Mem.S32(Gv.Ui_ScreenMaxX));
             }
             if ((new O02Rect(r1).w[(int)(2)] < 0))
             {
@@ -2119,7 +2119,7 @@ public static partial class UiNode
             }
             else
             {
-                if ((Mem.S32(0x800E2AB4u) < new O02Rect(r1).w[(int)(2)]))
+                if ((Mem.S32(Gv.Ui_ScreenMaxY) < new O02Rect(r1).w[(int)(2)]))
                 {
                     return 0;
                 }
@@ -2128,9 +2128,9 @@ public static partial class UiNode
             {
                 return 0;
             }
-            if ((Mem.S32(0x800E2AB4u) < new O02Rect(r1).w[(int)(3)]))
+            if ((Mem.S32(Gv.Ui_ScreenMaxY) < new O02Rect(r1).w[(int)(3)]))
             {
-                new O02Rect(r1).w.Set((int)(3), Mem.S32(0x800E2AB4u));
+                new O02Rect(r1).w.Set((int)(3), Mem.S32(Gv.Ui_ScreenMaxY));
             }
             if ((new O02Rect(r1).w[(int)(1)] <= new O02Rect(r1).w[(int)(0)]))
             {

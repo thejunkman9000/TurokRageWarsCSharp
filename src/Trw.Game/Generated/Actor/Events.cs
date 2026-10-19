@@ -1006,7 +1006,7 @@ public static partial class Event
                     new Vec3f((_fp + 40u)).y_Set((float)(0));
                     new Vec3f((_fp + 40u)).z_Set((float)(0));
                 }
-                fx = Effects.SpawnItemVariant(0x80135210u, new B15PairF((_fp + 16u)).a, new B15Spawner(src).unk14, _fp, 0, (_fp + 40u), (_fp + 24u), 0);
+                fx = Effects.SpawnItemVariant(Gv.ActorPool, new B15PairF((_fp + 16u)).a, new B15Spawner(src).unk14, _fp, 0, (_fp + 40u), (_fp + 24u), 0);
                 if ((fx != 0u))
                 {
                     if ((new B15PairF((_fp + 16u)).a == 1036))
@@ -1058,7 +1058,7 @@ public static partial class Event
                 new Vec3f((_fp + 24u)).x_Set(new B15PairF((_fp + 16u)).b);
                 new Vec3f((_fp + 24u)).y_Set(new B15PairF((_fp + 16u)).b);
                 new Vec3f((_fp + 24u)).z_Set(new B15PairF((_fp + 16u)).b);
-                PickupPool.Spawn(0x80131600u, (uint)(0), new B15PairF((_fp + 16u)).a, (_fp + 40u), new B15Src(src).pos.P, 0, 0.0f);
+                PickupPool.Spawn(Gv.PickupPool, (uint)(0), new B15PairF((_fp + 16u)).a, (_fp + 40u), new B15Src(src).pos.P, 0, 0.0f);
             }
         }
         finally { Stack.Free(52); }

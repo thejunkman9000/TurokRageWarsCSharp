@@ -213,7 +213,7 @@ public static partial class Tint
                 Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(2 * 4)))) + new Obj6A54(o).Blue));
                 Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(3 * 4)))) + new Obj6A54(o).Alpha));
             }
-            Mem.Set((0x800D15F4u + (uint)(0 * 4)), (float)((float)(Mem.F32((0x800D15F4u + (uint)(0 * 4)))) + new Obj6A54(o).TintValue_14));
+            Mem.Set((Gv.Draw_TintColor_A + (uint)(0 * 4)), (float)((float)(Mem.F32((Gv.Draw_TintColor_A + (uint)(0 * 4)))) + new Obj6A54(o).TintValue_14));
         }
     }
 }

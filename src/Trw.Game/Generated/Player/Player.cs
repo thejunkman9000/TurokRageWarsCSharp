@@ -619,7 +619,7 @@ public static partial class Player
             uint new_var2 = 0u;
             if ((Mem.S32((a + (uint)5200)) != 0))
             {
-                Pad.InitPlayerInput((a + (uint)1672), (int)(0x8010EEB8u));
+                Pad.InitPlayerInput((a + (uint)1672), (int)(Gv.Pad_DummySlot));
             }
             else
             {
@@ -831,7 +831,7 @@ public static partial class Player
                 if ((0 != 0)) goto _f3;
                 _f5: ;
                 _f2: ;
-                if (!((Mem.S32(0x8014693Cu) < 3))) goto _f17;
+                if (!((Mem.S32(Gv.MatchRules_TrialCounter) < 3))) goto _f17;
                 new Shared_ActorView(arg0).IsGibbed_Set(0);
                 Player.SetState(arg0, (int)(arg1), 46);
                 return;
@@ -910,7 +910,7 @@ public static partial class Player
                 _f43: ;
                 if (!((var_a0 != 0))) goto _f46;
                 var_s3_2 = 1;
-                temp_v0_4 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
+                temp_v0_4 = (Gv.Ammo_PackTable + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).Ammo0Amount_Set((short)(var_a0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).Ammo1Amount_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).Ammo2Amount_Set((short)(0));
@@ -930,7 +930,7 @@ public static partial class Player
                 _f47: ;
                 if (!((var_a0_2 != 0))) goto _f50;
                 var_s3_2 = 1;
-                temp_v0_7 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
+                temp_v0_7 = (Gv.Ammo_PackTable + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).Ammo1Amount_Set((short)(var_a0_2));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).Ammo0Amount_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).Ammo2Amount_Set((short)(0));
@@ -950,7 +950,7 @@ public static partial class Player
                 _f51: ;
                 if (!((var_a0_3 != 0))) goto _f54;
                 var_s3_2 = 1;
-                temp_v0_10 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
+                temp_v0_10 = (Gv.Ammo_PackTable + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).Ammo2Amount_Set((short)(var_a0_3));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).Ammo0Amount_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).Ammo1Amount_Set((short)(0));
@@ -968,9 +968,9 @@ public static partial class Player
                 new Vec3((_fp + 32u)).x_Set((float)(0));
                 new Vec3((_fp + 32u)).y_Set(0.0f);
                 new Vec3((_fp + 32u)).z_Set((float)(0));
-                temp_v0_11 = PickupPool.Spawn(0x80131600u, 0u, var_s1_2, (_fp + 32u), (_fp + 16u), 0, (float)(0));
+                temp_v0_11 = PickupPool.Spawn(Gv.PickupPool, 0u, var_s1_2, (_fp + 32u), (_fp + 16u), 0, (float)(0));
                 if (!((temp_v0_11 != 0u))) goto _f57;
-                new Vec3((_fp + 16u)).y_Set((float)((float)(new Vec3((_fp + 16u)).y) + new Shared_HeightBonuses(0x800C7458u).spawn));
+                new Vec3((_fp + 16u)).y_Set((float)((float)(new Vec3((_fp + 16u)).y) + new Shared_HeightBonuses(Gv.Player_HeightOffsets).spawn));
                 new Shared_ActorView(arg0).DroppedPacks.Set((int)(new Shared_ActorView(arg0).DropPackIndex), temp_v0_11);
                 _f57: ;
                 goto _f58;
@@ -990,7 +990,7 @@ public static partial class Player
                 _f62: ;
                 temp_a1_2 = new Shared_ActorView(var_s0).ViewPtr;
                 if (!((temp_a1_2 != 0u))) goto _f65;
-                View.Hud_PostMessage(Gv.ViewMgr, temp_a1_2, Mem.U32(0x800D70E0u));
+                View.Hud_PostMessage(Gv.ViewMgr, temp_a1_2, Mem.U32(Gv.HudMsg_FlagReturned));
                 _f65: ;
                 var_s0 = new Shared_ActorView(var_s0).next_;
                 _f63: ;
@@ -1009,7 +1009,7 @@ public static partial class Player
                 new Shared_ActorView(var_s0_2).EmbryoTimer_Set(0);
                 new Shared_ActorView(var_s0_2).EmbryoOwnerPtr_Set(0u);
                 if (!((temp_a1_3 != 0u))) goto _f71;
-                Hud.SpawnTextLineC(Gv.ViewMgr, temp_a1_3, Mem.U32(0x800D71E4u), 1.0f);
+                Hud.SpawnTextLineC(Gv.ViewMgr, temp_a1_3, Mem.U32(Gv.HudMsg_EmbryoDestroyed), 1.0f);
                 _f71: ;
                 _f70: ;
                 var_s0_2 = new Shared_ActorView(var_s0_2).next_;
@@ -1039,9 +1039,9 @@ public static partial class Player
                 Audio.PlaySound((int)((short)(2555)), new Shared_ActorView(arg0).Position.P, (int)(new Shared_ActorView(arg0).Position.P), (-1));
                 _f76: ;
                 Audio.PlaySound2D(530);
-                if (!((((new Shared_ActorView(arg0).IsGibbed != 0) || (C.Seq((object?)((temp_v1_5 = new Shared_ActorView(arg0).TypeId)), (((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(0 * 4)))) ? 1 : 0)) != 0)) || ((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(1 * 4))))))) goto _f77;
+                if (!((((new Shared_ActorView(arg0).IsGibbed != 0) || (C.Seq((object?)((temp_v1_5 = new Shared_ActorView(arg0).TypeId)), (((int)(temp_v1_5) == Mem.S32((Gv.Player_GibCheckTypes_800CE478 + (uint)(0 * 4)))) ? 1 : 0)) != 0)) || ((int)(temp_v1_5) == Mem.S32((Gv.Player_GibCheckTypes_800CE478 + (uint)(1 * 4))))))) goto _f77;
                 new Vec3((_fp + 32u)).x_Set(new Vec3(new Shared_ActorView(arg0).Position.P).x);
-                new Vec3((_fp + 32u)).y_Set((new Vec3(new Shared_ActorView(arg0).Position.P).y + new Shared_HeightBonuses(0x800C7458u).projectile));
+                new Vec3((_fp + 32u)).y_Set((new Vec3(new Shared_ActorView(arg0).Position.P).y + new Shared_HeightBonuses(Gv.Player_HeightOffsets).projectile));
                 var_s1_3 = 1;
                 new Vec3((_fp + 32u)).z_Set(new Vec3(new Shared_ActorView(arg0).Position.P).z);
                 var_v0 = RandomGen.NextLcg();
@@ -1162,7 +1162,7 @@ public static partial class Player
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3657433087u);
                 new DlCmd(g).w1_Set((uint)(2097156));
-                v = 0x80102A58u;
+                v = Gv.Player_LaserBeamModelVtx;
                 new B04Vtx((v + (uint)(0 * 16))).x_Set((short)(0));
                 new B04Vtx((v + (uint)(0 * 16))).y_Set((short)(1));
                 new B04Vtx((v + (uint)(0 * 16))).z_Set((short)(0));
@@ -1245,7 +1245,7 @@ public static partial class Player
                 new B04Vtx((v + (uint)(7 * 16))).a_Set((byte)(100));
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set((uint)(16810000));
-                new DlCmd(g).w1_Set((uint)(0x80102A58u));
+                new DlCmd(g).w1_Set((uint)(Gv.Player_LaserBeamModelVtx));
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set((uint)(83886600));
                 new DlCmd(g).w1_Set((uint)(0));
@@ -1302,7 +1302,7 @@ public static partial class Player
                     }
                     else
                     {
-                        a2 = Mem.S32((0x800CE430u + (uint)(new B04O6(o).DefPtr.unkC * 4)));
+                        a2 = Mem.S32((Gv.Player_VariantActorTypeTable + (uint)(new B04O6(o).DefPtr.unkC * 4)));
                         new B04O6(o).ShadeParam_3_Set(new B04O6(o).PlayerEntryPtr.unk81);
                     }
                 }
@@ -1533,8 +1533,8 @@ public static partial class Player
             }
             if ((new B05P14(p).FlashlightTime != 0.0f))
             {
-                func_0021E5D4_fxupd(p, (p + 1660u), 0x800CE410u, 204.799988f, 0.5f, 1.0f);
-                func_0021E5D4_fxupd(p, (p + 1664u), 0x800CE418u, 614.399963f, 0.5f, 1.0f);
+                func_0021E5D4_fxupd(p, (p + 1660u), Gv.Flashlight_LightDef0, 204.799988f, 0.5f, 1.0f);
+                func_0021E5D4_fxupd(p, (p + 1664u), Gv.Flashlight_LightDef1, 614.399963f, 0.5f, 1.0f);
                 if ((new B05P14(p).FlashlightTime < 70.0f))
                 {
                     vis = 1;
@@ -1574,16 +1574,16 @@ public static partial class Player
             }
             if (((Mem.S32(Gv.Settings) & 16384) != 0))
             {
-                func_0021E5D4_fxupd(p, (p + 1668u), 0x800CE420u, 0.0f, 0.5f, 1.0f);
+                func_0021E5D4_fxupd(p, (p + 1668u), Gv.Flashlight_LightDef2, 0.0f, 0.5f, 1.0f);
                 if ((((new B05P14(p).ButtonsPressed & (uint)(32)) != 0u) && (new B05P14(p).FlashlightLight3Ptr != 0u)))
                 {
-                    if ((new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr == 0x800CE420u))
+                    if ((new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr == Gv.Flashlight_LightDef2))
                     {
                         new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr_Set(0x800CE428u);
                     }
                     else
                     {
-                        new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr_Set(0x800CE420u);
+                        new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr_Set(Gv.Flashlight_LightDef2);
                     }
                 }
             }
@@ -4254,7 +4254,7 @@ public static partial class Player
                 if (((5.11999989f < new M2P(p).MoveSpeed) && (11.25f < t)))
                 {
                     new M2P(p).SwimSoundTimer_Set(0.0f);
-                    Audio.PlaySound((int)(Mem.S16(0x800CE84Eu)), new M2Q(q).pos.P, (int)(0u), (-1));
+                    Audio.PlaySound((int)(Mem.S16(Gv.Player_SwimStrokeSoundId)), new M2Q(q).pos.P, (int)(0u), (-1));
                 }
             }
         }
@@ -4335,7 +4335,7 @@ public static partial class Player
             if (((5.11999989f < new Plr(a).MoveSpeed) && (45.0f < t)))
             {
                 new Plr(a).SwimSoundTimer_Set(RandomGen.Float(15.0f));
-                Audio.PlaySound((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                Audio.PlaySound((int)((uint)(Mem.S16(Gv.Player_UnderwaterSoundId))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 Audio.PlaySound((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
             }
         }
@@ -4542,23 +4542,23 @@ public static partial class Player
                         fl = new R2P5(p).GroundFlags;
                         if (((fl & (uint)(512)) != 0u))
                         {
-                            Audio.PlaySound((int)((uint)(Mem.S16(0x800CF21Au))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
+                            Audio.PlaySound((int)((uint)(Mem.S16(Gv.Player_ClimbSoundA))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
                         }
                         else
                         {
                             if (((fl & (uint)(1024)) != 0u))
                             {
-                                Audio.PlaySound((int)((uint)(Mem.S16(0x800CF21Eu))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
+                                Audio.PlaySound((int)((uint)(Mem.S16(Gv.Player_ClimbSoundB))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
                             }
                             else
                             {
                                 if (((fl & (uint)(2048)) != 0u))
                                 {
-                                    Audio.PlaySound((int)((uint)(Mem.S16(0x800CF222u))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
+                                    Audio.PlaySound((int)((uint)(Mem.S16(Gv.Player_ClimbSoundC))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
                                 }
                                 else
                                 {
-                                    Audio.PlaySound((int)((uint)(Mem.S16(((0x800CF1E8u + (uint)6) + (uint)(new R2P5(p).CharacterId * 4))))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
+                                    Audio.PlaySound((int)((uint)(Mem.S16(((Gv.Player_ClimbSoundTable + (uint)6) + (uint)(new R2P5(p).CharacterId * 4))))), C.Tmp((uint)(new R2A5(a).Position), (uint)(new R2A5(a).PositionY), (uint)(new R2A5(a).PositionZ)), (int)((uint)(0)), (int)((uint)((-1))));
                                 }
                             }
                         }
@@ -4817,17 +4817,17 @@ public static partial class Player
             {
                 if ((ev == 50))
                 {
-                    Mem.Set(0x800CF228u, 1);
+                    Mem.Set(Gv.Player_EventFlybyActive, 1);
                     if ((new Plr(a).ViewPtr != 0u))
                     {
                         for (i = 0; (i < 4); ++i)
                         {
-                            Mem.Set((0x80102AD8u + (uint)i), new Pawn(new Plr(a).ViewPtr).OverlayColor[(int)(i)]);
+                            Mem.Set((Gv.Hud_SavedOverlayColor + (uint)i), new Pawn(new Plr(a).ViewPtr).OverlayColor[(int)(i)]);
                         }
                     }
                 }
-                Mem.Set(0x800D2930u, 0);
-                Mem.Set(0x801029F0u, a);
+                Mem.Set(Gv.Level_FlybyActorsActive, 0);
+                Mem.Set(Gv.Player_EventFlybyPlayerPtr, a);
                 Flyby.DeferCallbacks(ev, (uint)(0), 0x0022ECBCu);
             }
             c = Level.FindDefinition(Gv.LevelMgr, (-1), 3141);
@@ -5199,7 +5199,7 @@ public static partial class Player
                                         new Plr(b).Yaw_Set((float)((float)(new Plr(b).Yaw) + 6.2831855f));
                                     }
                                 }
-                                MathUtil.ApproachProportional((b + 108u), Mem.F32((_fp + 48u)), Cpu.U2F((uint)(Mem.S32(0x800CF230u))));
+                                MathUtil.ApproachProportional((b + 108u), Mem.F32((_fp + 48u)), Cpu.U2F((uint)(Mem.S32(Gv.Player_AutoTurnRate))));
                             }
                         }
                     }
@@ -5246,7 +5246,7 @@ public static partial class Player
             float save = 0f;
             uint h = 0u;
             uint gm = 0u;
-            if (!(((new Game2B6(0x8014687Cu).mode == 11) || (new Game2B6(0x8014687Cu).mode == 8)))) goto _f0;
+            if (!(((new Game2B6(Gv.GameState_Next).mode == 11) || (new Game2B6(Gv.GameState_Next).mode == 8)))) goto _f0;
             return;
             _f0: ;
             save = Mem.F32(Gv.FrameTime);
@@ -5255,7 +5255,7 @@ public static partial class Player
             new PlrGroup(g).PulseAngle_40_Set(0);
             _f1: ;
             a = new PlrGroup(g).head_;
-            gm = new Game2B6(0x8014687Cu).game.P;
+            gm = new Game2B6(Gv.GameState_Next).game.P;
             _f2: ;
             if (!((a != 0u))) goto _f4;
             Pad.UpdatePlayerControls(new Plr(a).PadInput.P, a, default(uint), default(uint));
@@ -5321,7 +5321,7 @@ public static partial class Player
             int saved = 0;
             float f = 0f;
             int v = 0;
-            if (((Mem.S32(0x8014687Cu) == 11) || (Mem.S32(0x8014687Cu) == 8)))
+            if (((Mem.S32(Gv.GameState_Next) == 11) || (Mem.S32(Gv.GameState_Next) == 8)))
             {
                 return;
             }
@@ -5574,7 +5574,7 @@ public static partial class Player
             }
             else
             {
-                max = Mem.S32((0x800CE3E8u + (uint)(type * 4)));
+                max = Mem.S32((Gv.Ammo_CapacityTable + (uint)(type * 4)));
                 if ((Mem.S32(new SharedPlayer_func_80229554_de(player).IsComputer.P) == 0))
                 {
                     if ((type == 0))
@@ -5807,7 +5807,7 @@ public static partial class Player
             int off = 0;
             if (((int)(new Plr(a).TypeId) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(2 * 4)))))
             {
-                switch (Mem.S32(0x80146910u))
+                switch (Mem.S32(Gv.MatchRules_MonkeyVoice))
                 {
                 case 1:
                     off = 1500;
@@ -5819,7 +5819,7 @@ public static partial class Player
                     off = 1400;
                     break;
                 default:
-                    Mem.Set(0x80146910u, 0);
+                    Mem.Set(Gv.MatchRules_MonkeyVoice, 0);
                     off = 1300;
                     break;
                 }
@@ -6491,7 +6491,7 @@ public static partial class Player
                 }
                 else
                 {
-                    k = Mem.S32((0x800CE430u + (uint)(new Plr(a).DefPtr.VariantId_C * 4)));
+                    k = Mem.S32((Gv.Player_VariantActorTypeTable + (uint)(new Plr(a).DefPtr.VariantId_C * 4)));
                     new Plr(a).ShadeParam_3_Set(new Plr(a).PlayerEntryPtr.SkinIndex);
                 }
             }
@@ -6592,7 +6592,7 @@ public static partial class Player
                     MathUtil.MtxGetTranslationVec((_fp + 80u), (_fp + 64u));
                 }
                 MathUtil.MtxIdentity(_fp);
-                MathUtil.MtxMakeRotateY(_fp, ((float)(Mem.S32(0x80145080u)) * 0.017453294f));
+                MathUtil.MtxMakeRotateY(_fp, ((float)(Mem.S32(Gv.Player_SpinMarkerAngle)) * 0.017453294f));
                 MathUtil.MtxTranslate(_fp, new Vec3f((_fp + 64u)).x, (new Vec3f((_fp + 64u)).y + 20f), new Vec3f((_fp + 64u)).z);
                 MathUtil.MtxFloatToFixed(_fp, (actor + (uint)((Mem.S32(Gv.FrameParity) * 64) + 5696)));
             }
@@ -6712,13 +6712,13 @@ public static partial class Player
                 float d = 0f;
                 target = 0.0f;
                 if (!(((int)((ushort)(((int)(new Player_v3(p).StateId) - 9))) < 4))) goto _f0;
-                target = Mem.F32((0x800C7EE8u + (uint)(0 * 4)));
+                target = Mem.F32((Gv.Player_SinkParams + (uint)(0 * 4)));
                 _f0: ;
                 Mem.Set(_fp, new Player_v3(p).SwimSinkOffset);
                 MathUtil.ApproachProportional(_fp, target, 0.25f);
                 d = (Mem.F32(_fp) - new Player_v3(p).SwimSinkOffset);
                 if (!((d < (float)(0)))) goto _f1;
-                if (!(((-d) < Mem.F32((0x800C7EE8u + (uint)(1 * 4)))))) goto _f2;
+                if (!(((-d) < Mem.F32((Gv.Player_SinkParams + (uint)(1 * 4)))))) goto _f2;
                 goto L_zero;
                 _f2: ;
                 goto _f3;
@@ -6759,7 +6759,7 @@ public static partial class Player
                     new Vec3f(_fp).x_Set(Mem.F32((o + (uint)8)));
                     new Vec3f(_fp).y_Set((Mem.F32((o + (uint)12)) + d));
                     new Vec3f(_fp).z_Set(Mem.F32((o + (uint)16)));
-                    if ((Collision.CheckActorMove(o, C.Tmp(Cpu.F2U(Mem.F32((o + (uint)8))), Cpu.F2U(Mem.F32((o + (uint)12))), Cpu.F2U(Mem.F32((o + (uint)16)))), C.Tmp(Mem.U32(_fp + 0u), Mem.U32(_fp + 4u), Mem.U32(_fp + 8u)), 0x801040F0u, Cpu.U2F(Cpu.F2U(v1)), Cpu.U2F(Cpu.F2U(v2)), Cpu.U2F(Cpu.F2U(v3)), Cpu.U2F(Cpu.F2U(v4))) != 0))
+                    if ((Collision.CheckActorMove(o, C.Tmp(Cpu.F2U(Mem.F32((o + (uint)8))), Cpu.F2U(Mem.F32((o + (uint)12))), Cpu.F2U(Mem.F32((o + (uint)16)))), C.Tmp(Mem.U32(_fp + 0u), Mem.U32(_fp + 4u), Mem.U32(_fp + 8u)), Gv.Collision_PushCtx_801040F0, Cpu.U2F(Cpu.F2U(v1)), Cpu.U2F(Cpu.F2U(v2)), Cpu.U2F(Cpu.F2U(v3)), Cpu.U2F(Cpu.F2U(v4))) != 0))
                     {
                         t = (Mem.F32((Mem.U32(Gv.Collision_ContactPtr) + (uint)232)) - Mem.F32((o + (uint)12)));
                         Mem.Set((actor + (uint)1772), (float)((float)(Mem.F32((actor + (uint)1772))) - (d - t)));
@@ -6983,7 +6983,7 @@ public static partial class Player
             }
             else
             {
-                if (((Mem.F32(0x8013B184u) - 5120f) > Mem.F32((obj + (uint)12))))
+                if (((Mem.F32(Gv.World_FloorMinY) - 5120f) > Mem.F32((obj + (uint)12))))
                 {
                     Player.PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(0));
                 }
@@ -7682,7 +7682,7 @@ public static partial class Player
                 }
                 MenuPanel.Open((new S11Obj(p).hud_ + (uint)1364), name, (int)(p), (int)(new S11Obj(p).ControllerPtr), new S11Obj(p).PlayerIndex);
             }
-            Mem.Set((0x80102AE0u + (uint)(new S11Obj(p).PlayerIndex * 4)), 0);
+            Mem.Set((Gv.Stats_ShotsHitTable + (uint)(new S11Obj(p).PlayerIndex * 4)), 0);
             Mem.Set((Gv.Stats_ShotsFiredTable + (uint)(new S11Obj(p).PlayerIndex * 4)), 0);
         }
     }
@@ -7754,7 +7754,7 @@ public static partial class Player
                 new func_804499B0_de_S3(@object).CameraMode_Set(0);
                 if ((new func_804499B0_de_S3(@object).IsComputer != 0))
                 {
-                    Pad.InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
+                    Pad.InitPlayerInput((@object + (uint)1672), (int)(Gv.Pad_DummySlot));
                     new func_804499B0_de_S3(@object).PlayerIndex_2_Set((int)(new ObjectState96(entry).PlayerIndex));
                 }
                 else
@@ -7818,7 +7818,7 @@ public static partial class Player
                 new func_804499B0_de_S3(@object).CameraMode_Set(0);
                 if ((new func_804499B0_de_S3(@object).IsComputer != 0))
                 {
-                    Pad.InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
+                    Pad.InitPlayerInput((@object + (uint)1672), (int)(Gv.Pad_DummySlot));
                     new func_804499B0_de_S3(@object).PlayerIndex_2_Set((int)(new ObjectState96(entry).PlayerIndex));
                 }
                 else
@@ -7884,7 +7884,7 @@ public static partial class Player
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsComputer.P, computer);
             if ((computer != 0))
             {
-                Pad.InitPlayerInput((player + (uint)1672), (int)(0x8010EEB8u));
+                Pad.InitPlayerInput((player + (uint)1672), (int)(Gv.Pad_DummySlot));
                 Mem.Set((new SharedPlayer_func_80449EE4_de(player).Velocity.P + 1464u), (int)(new Record_func_80449EE4_de(record).slot));
             }
             else
@@ -7936,7 +7936,7 @@ public static partial class Player
             new Actor_func_8044A020_de(actor).part.active_Set((byte)(1));
             Player.InitSlot(actor, (int)(second), 1);
             Actor.DispatchEvent((actor + 744u), (actor + 1112u), 2);
-            Player.PlaceAtSpawn(actor, (uint)(Mem.S32(0x80146898u)), (uint)(0), (uint)(1));
+            Player.PlaceAtSpawn(actor, (uint)(Mem.S32(Gv.Player_SpawnPointId)), (uint)(0), (uint)(1));
         }
     }
 }

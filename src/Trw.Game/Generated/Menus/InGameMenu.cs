@@ -22,8 +22,8 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443530");
-            Mem.Set(0x801540F4u, LevelIdToWorld(Mem.S32(Gv.Level_StartPointId)));
-            Mem.Set(0x801540F0u, 1);
+            Mem.Set(Gv.InGameMenu_BannerWorld, LevelIdToWorld(Mem.S32(Gv.Level_StartPointId)));
+            Mem.Set(Gv.InGameMenu_BannerOpen, 1);
         }
     }
 
@@ -34,8 +34,8 @@ public static partial class InGameMenu
         {
             if (Dbg.On) Dbg.Enter("func_00443568");
             int v = LevelIdToWorld(Mem.S32(Gv.Level_StartPointId));
-            Mem.Set(0x801540F4u, v);
-            Mem.Set(0x801540F0u, 0);
+            Mem.Set(Gv.InGameMenu_BannerWorld, v);
+            Mem.Set(Gv.InGameMenu_BannerOpen, 0);
         }
     }
 
@@ -117,7 +117,7 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_004435D4", (uint)a, (uint)b, (uint)c);
             Audio.UnduckMusic();
             LoopSound.ResumeAll((uint)((int)(LoopSound.GetPool())));
-            if ((Mem.S32(0x801540F0u) == 0))
+            if ((Mem.S32(Gv.InGameMenu_BannerOpen) == 0))
             {
                 Rumble.Resume();
                 return 1;
@@ -139,7 +139,7 @@ public static partial class InGameMenu
             uint s = new O06P_v6(p).KilledByPtr;
             if ((s == p))
             {
-                sprintf(dst, Mem.U32(0x800D71A4u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                sprintf(dst, Mem.U32(Gv.DeathMsg_FraggedYourself), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             }
             else
             {
@@ -148,25 +148,25 @@ public static partial class InGameMenu
                     switch (new O06P_v6(p).KillMessageIndex_12F0)
                     {
                     case 0:
-                        sprintf(dst, Mem.U32(0x800D71A8u), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_MangledBy), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 1:
-                        sprintf(dst, Mem.U32(0x800D71ACu), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_FraggedBy), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 2:
-                        sprintf(dst, Mem.U32(0x800D71B0u), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_SmackedBy), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 3:
-                        sprintf(dst, Mem.U32(0x800D71B4u), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_ObliteratedYou), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 4:
-                        sprintf(dst, Mem.U32(0x800D71B8u), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_ButcheredYou), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 5:
-                        sprintf(dst, Mem.U32(0x800D71BCu), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_CrushedYou), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 6:
-                        sprintf(dst, Mem.U32(0x800D71C0u), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_PoundedBy), (new O06Q_v3(new O06P_v6(p).KilledByPtr).unk5D8_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     }
                 }
@@ -175,25 +175,25 @@ public static partial class InGameMenu
                     switch (new O06P_v6(p).KillMessageIndex_12F0)
                     {
                     case 0:
-                        sprintf(dst, Mem.U32(0x800D71C4u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_YourOtherLeft), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 1:
-                        sprintf(dst, Mem.U32(0x800D71C8u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_Oops), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 2:
-                        sprintf(dst, Mem.U32(0x800D71CCu), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_BadMove), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 3:
-                        sprintf(dst, Mem.U32(0x800D71D0u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_WatchYourStep), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 4:
-                        sprintf(dst, Mem.U32(0x800D71D4u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_Munch), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 5:
-                        sprintf(dst, Mem.U32(0x800D71D8u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_Oops2), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 6:
-                        sprintf(dst, Mem.U32(0x800D71DCu), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        sprintf(dst, Mem.U32(Gv.DeathMsg_YouWereBested), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     }
                 }
@@ -252,7 +252,7 @@ public static partial class InGameMenu
                     new O06G_v3(Gv.Settings_MatchRules).MonkeyEvent_74_Set((int)(v));
                 }
             }
-            if ((Mem.S32(0x80145070u) == 1))
+            if ((Mem.S32(Gv.PlayerPool_State_80145070) == 1))
             {
                 Decal.Match_Reset(Gv.GameCtx);
             }
@@ -758,7 +758,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444910", (uint)a, (uint)b);
-            Mem.Set((0x801462E7u + (uint)0), (byte)(MenuSpinner.Step((uint)(b), (int)(Mem.U8((0x801462E7u + (uint)0))), 1, 0, 1, 1)));
+            Mem.Set((Gv.Settings_TwoPlayerLayout + (uint)0), (byte)(MenuSpinner.Step((uint)(b), (int)(Mem.U8((Gv.Settings_TwoPlayerLayout + (uint)0))), 1, 0, 1, 1)));
             return 0;
         }
     }
@@ -777,7 +777,7 @@ public static partial class InGameMenu
             {
                 new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
-            switch ((int)(Mem.U8(0x801462E7u)))
+            switch ((int)(Mem.U8(Gv.Settings_TwoPlayerLayout)))
             {
             case 0:
                 new O06A(a).Data_Set(0x800D7610u);
@@ -810,8 +810,8 @@ public static partial class InGameMenu
                 else
                 {
                     int s = 0;
-                    new O06A_v2(a).Data_Set(0x800D7620u);
-                    s = Mem.S32((0x800D7620u + (uint)(0 * 4)));
+                    new O06A_v2(a).Data_Set(Gv.InGameMenu_OpacityLabelTable);
+                    s = Mem.S32((Gv.InGameMenu_OpacityLabelTable + (uint)(0 * 4)));
                     StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), 0x800E2780u, (int)(h), default(int));
                 }
             }
@@ -883,14 +883,14 @@ public static partial class InGameMenu
             {
                 if ((n > 0))
                 {
-                    s = Mem.S32((0x800D7628u + (uint)(0 * 4)));
-                    new O06A_v5(a).ItemLabelPtr_Set(0x800D7628u);
+                    s = Mem.S32((Gv.InGameMenu_StickHorzLabelTable + (uint)(0 * 4)));
+                    new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickHorzLabelTable);
                     StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, n, default(int));
                 }
                 else
                 {
-                    s = Mem.S32((0x800D7628u + (uint)(0 * 4)));
-                    new O06A_v5(a).ItemLabelPtr_Set(0x800D7628u);
+                    s = Mem.S32((Gv.InGameMenu_StickHorzLabelTable + (uint)(0 * 4)));
+                    new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickHorzLabelTable);
                     StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2790u, n, default(int));
                 }
             }
@@ -944,14 +944,14 @@ public static partial class InGameMenu
             {
                 if ((n > 0))
                 {
-                    s = Mem.S32((0x800D7630u + (uint)(0 * 4)));
-                    new O06A_v5(a).ItemLabelPtr_Set(0x800D7630u);
+                    s = Mem.S32((Gv.InGameMenu_StickVertLabelTable + (uint)(0 * 4)));
+                    new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickVertLabelTable);
                     StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, n, default(int));
                 }
                 else
                 {
-                    s = Mem.S32((0x800D7630u + (uint)(0 * 4)));
-                    new O06A_v5(a).ItemLabelPtr_Set(0x800D7630u);
+                    s = Mem.S32((Gv.InGameMenu_StickVertLabelTable + (uint)(0 * 4)));
+                    new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickVertLabelTable);
                     StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2790u, n, default(int));
                 }
             }
@@ -1045,7 +1045,7 @@ public static partial class InGameMenu
             {
                 Video.RequestNextResolution();
                 Mem.Set(Gv.InGameMenu_ResolutionCooldown, 18f);
-                Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(0x800E28DBu));
+                Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(Gv.VideoResolution_Lo8));
             }
             return 0;
         }
@@ -1068,7 +1068,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444F0C", (uint)a);
-            uint h = (Mem.U32(0x801462D8u) >> (int)4);
+            uint h = (Mem.U32(Gv.Settings_Brightness) >> (int)4);
             Resource.SetLoadFlags((Resource.GetLoadFlags() + 2));
             if ((h == (uint)(0)))
             {
@@ -1077,8 +1077,8 @@ public static partial class InGameMenu
             else
             {
                 int s = 0;
-                new O06A_v2(a).Data_Set(0x800D7654u);
-                s = Mem.S32((0x800D7654u + (uint)(0 * 4)));
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_BrightnessLabelTable);
+                s = Mem.S32((Gv.InGameMenu_BrightnessLabelTable + (uint)(0 * 4)));
                 StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, (int)(h), default(int));
             }
             return 0;
@@ -1458,11 +1458,11 @@ public static partial class InGameMenu
                 }
                 s = Mem.U32(new O06A_v2(a).Data);
                 sprintf(((s - (uint)6) + (uint)MenuItem.GetTextLength(a)), 0x800E27D0u, (uint)((int)(((float)(v) / div))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                if ((Mem.S32(0x800E63ACu) == 0))
+                if ((Mem.S32(Gv.InGameMenu_FogAllRegions) == 0))
                 {
                     return 0;
                 }
-                o = Chunk.Get((uint)(Mem.S32(0x8011FEF4u)), 0);
+                o = Chunk.Get((uint)(Mem.S32(Gv.Level_FogChunkId_8011FEF4)), 0);
                 n = new O06O_v2(o).unk4;
                 q = (o + (uint)8);
                 for (k = 0; (k < n); ++k)
@@ -1576,7 +1576,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004453C4");
-            Mem.Set(0x800E63ACu, (int)((int)(Mem.S32(0x800E63ACu)) ^ 1));
+            Mem.Set(Gv.InGameMenu_FogAllRegions, (int)((int)(Mem.S32(Gv.InGameMenu_FogAllRegions)) ^ 1));
             return 0;
         }
     }
@@ -1587,7 +1587,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004453E0", (uint)a);
-            if ((Mem.S32(0x800E63ACu) != 0))
+            if ((Mem.S32(Gv.InGameMenu_FogAllRegions) != 0))
             {
                 new O06A_v2(a).Data_Set(0x800E62DCu);
             }
@@ -1614,7 +1614,7 @@ public static partial class InGameMenu
             {
                 Mem.Set((Gv.Light_AmbientColor + (uint)b), (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set((0x800D0EE4u + (uint)b), Mem.U8((Gv.Light_AmbientColor + (uint)b)));
+            Mem.Set((Gv.Light_AmbientColorCopy + (uint)b), Mem.U8((Gv.Light_AmbientColor + (uint)b)));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1635,7 +1635,7 @@ public static partial class InGameMenu
             {
                 Mem.Set(Gv.Light_AmbientColor, (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EE4u, Mem.U8(Gv.Light_AmbientColor));
+            Mem.Set(Gv.Light_AmbientColorCopy, Mem.U8(Gv.Light_AmbientColor));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1650,13 +1650,13 @@ public static partial class InGameMenu
             uint s = Mem.U32(new O06A_v4(a).Data);
             if ((new O06A_v4(a).Value == (-1)))
             {
-                new O06A_v4(a).Value_Set((int)(Mem.U8(0x800D0EE1u)));
+                new O06A_v4(a).Value_Set((int)(Mem.U8(Gv.Light_AmbientColor_G)));
             }
             else
             {
-                Mem.Set(0x800D0EE1u, (byte)(new O06A_v4(a).Value));
+                Mem.Set(Gv.Light_AmbientColor_G, (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EE5u, Mem.U8(0x800D0EE1u));
+            Mem.Set(Gv.Light_AmbientColorCopy_G, Mem.U8(Gv.Light_AmbientColor_G));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1671,13 +1671,13 @@ public static partial class InGameMenu
             uint s = Mem.U32(new O06A_v4(a).Data);
             if ((new O06A_v4(a).Value == (-1)))
             {
-                new O06A_v4(a).Value_Set((int)(Mem.U8(0x800D0EE2u)));
+                new O06A_v4(a).Value_Set((int)(Mem.U8(Gv.Light_AmbientColor_B)));
             }
             else
             {
-                Mem.Set(0x800D0EE2u, (byte)(new O06A_v4(a).Value));
+                Mem.Set(Gv.Light_AmbientColor_B, (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EE6u, Mem.U8(0x800D0EE2u));
+            Mem.Set(Gv.Light_AmbientColorCopy_B, Mem.U8(Gv.Light_AmbientColor_B));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1698,7 +1698,7 @@ public static partial class InGameMenu
             {
                 Mem.Set((Gv.Light_DirectionalColor + (uint)b), (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set((0x800D0EECu + (uint)b), Mem.U8((Gv.Light_DirectionalColor + (uint)b)));
+            Mem.Set((Gv.Light_DirectionalColorCopy + (uint)b), Mem.U8((Gv.Light_DirectionalColor + (uint)b)));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1719,7 +1719,7 @@ public static partial class InGameMenu
             {
                 Mem.Set(Gv.Light_DirectionalColor, (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EECu, Mem.U8(Gv.Light_DirectionalColor));
+            Mem.Set(Gv.Light_DirectionalColorCopy, Mem.U8(Gv.Light_DirectionalColor));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1740,7 +1740,7 @@ public static partial class InGameMenu
             {
                 Mem.Set((Gv.Light_DirectionalColor + (uint)1), (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EEDu, Mem.U8((Gv.Light_DirectionalColor + (uint)1)));
+            Mem.Set(Gv.Light_DirectionalColorCopy_G, Mem.U8((Gv.Light_DirectionalColor + (uint)1)));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1755,13 +1755,13 @@ public static partial class InGameMenu
             uint s = Mem.U32(new O06A_v4(a).Data);
             if ((new O06A_v4(a).Value == (-1)))
             {
-                new O06A_v4(a).Value_Set((int)(Mem.U8(0x800D0EEAu)));
+                new O06A_v4(a).Value_Set((int)(Mem.U8(Gv.Light_DirectionalColor_B)));
             }
             else
             {
-                Mem.Set(0x800D0EEAu, (byte)(new O06A_v4(a).Value));
+                Mem.Set(Gv.Light_DirectionalColor_B, (byte)(new O06A_v4(a).Value));
             }
-            Mem.Set(0x800D0EEEu, Mem.U8(0x800D0EEAu));
+            Mem.Set(Gv.Light_DirectionalColorCopy_B, Mem.U8(Gv.Light_DirectionalColor_B));
             sprintf(((s - (uint)3) + (uint)MenuItem.GetTextLength(a)), Gv.Str_Fmt03d, (uint)(new O06A_v4(a).Value), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
@@ -1853,11 +1853,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_004459D0", (uint)a, (uint)b, (uint)c);
             Audio.StopAllExcept((-1));
             Audio.SetPosFlag_0025E2BC(0);
-            if ((Mem.S32(0x800E63B4u) != 0))
+            if ((Mem.S32(Gv.InGameMenu_ReduckOnBack) != 0))
             {
                 Audio.DuckMusic();
             }
-            Audio.PlayCue(Mem.S32(0x800E63B0u));
+            Audio.PlayCue(Mem.S32(Gv.InGameMenu_SavedCue));
             Pad.SetFlag800D0E60_00264A2C();
             return MenuPanel.OnGoBack(a, b, c);
         }
@@ -1869,13 +1869,13 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00445A58", (uint)a, (uint)b);
-            int v = (int)(Mem.U8((0x801462E2u + (uint)0)));
+            int v = (int)(Mem.U8((Gv.Settings_SpeechVolume + (uint)0)));
             v = MenuSpinner.Step((uint)(b), v, 8, 0, 255, 0);
             if ((v == 247))
             {
                 v = 248;
             }
-            Mem.Set((0x801462E2u + (uint)0), (byte)(v));
+            Mem.Set((Gv.Settings_SpeechVolume + (uint)0), (byte)(v));
             return 0;
         }
     }
@@ -1888,7 +1888,7 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_00445AB8", (uint)a);
             int n = 0;
             int s = 0;
-            n = (((int)(Mem.U8(0x801462E2u)) - 128) / 8);
+            n = (((int)(Mem.U8(Gv.Settings_SpeechVolume)) - 128) / 8);
             if ((n == 0))
             {
                 new O06A_v2(a).Data_Set(0x800D7DE0u);
@@ -1909,14 +1909,14 @@ public static partial class InGameMenu
                     {
                         if ((n > 0))
                         {
-                            s = Mem.S32((0x800D7DE4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DE4u);
+                            s = Mem.S32((Gv.InGameMenu_SpeechVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
                         }
                         else
                         {
-                            s = Mem.S32((0x800D7DE4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DE4u);
+                            s = Mem.S32((Gv.InGameMenu_SpeechVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
                         }
                     }
@@ -1976,14 +1976,14 @@ public static partial class InGameMenu
                     {
                         if ((n > 0))
                         {
-                            s = Mem.S32((0x800D7DC4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DC4u);
+                            s = Mem.S32((Gv.InGameMenu_MusicVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
                         }
                         else
                         {
-                            s = Mem.S32((0x800D7DC4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DC4u);
+                            s = Mem.S32((Gv.InGameMenu_MusicVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
                         }
                     }
@@ -2039,14 +2039,14 @@ public static partial class InGameMenu
                     {
                         if ((n > 0))
                         {
-                            s = Mem.S32((0x800D7DD4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DD4u);
+                            s = Mem.S32((Gv.InGameMenu_SfxVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
                         }
                         else
                         {
-                            s = Mem.S32((0x800D7DD4u + (uint)(0 * 4)));
-                            new O06A_v2(a).Data_Set(0x800D7DD4u);
+                            s = Mem.S32((Gv.InGameMenu_SfxVolumeLabelTable + (uint)(0 * 4)));
+                            new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelTable);
                             StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
                         }
                     }
@@ -2112,8 +2112,8 @@ public static partial class InGameMenu
             else
             {
                 int s = 0;
-                new O06A_v2(a).Data_Set(0x800D7DECu);
-                s = Mem.S32((0x800D7DECu + (uint)(0 * 4)));
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicTrackLabelTable);
+                s = Mem.S32((Gv.InGameMenu_MusicTrackLabelTable + (uint)(0 * 4)));
                 StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), 0x800E27F0u, Mem.S32(Gv.InGameMenu_MusicTrack), default(int));
             }
             return 0;
@@ -2127,11 +2127,11 @@ public static partial class InGameMenu
         {
             if (Dbg.On) Dbg.Enter("func_00445F3C", (uint)a, (uint)b, (uint)c);
             Audio.DisableAmbient();
-            Mem.Set(0x800E63B0u, Audio.IsSoundOn());
+            Mem.Set(Gv.InGameMenu_SavedCue, Audio.IsSoundOn());
             Audio.PlayCue(Mem.S32(Gv.InGameMenu_MusicTrack));
             Audio.UnduckMusic();
             Audio.SetPosFlag_0025E2BC(1);
-            Mem.Set(0x800E63B4u, 1);
+            Mem.Set(Gv.InGameMenu_ReduckOnBack, 1);
             Pad.ClearFlag800D0E60_00264A1C(default(uint), default(uint), default(uint), default(uint));
             MenuPanel.OpenChild((uint)(c), (uint)(b), 0x00451F58u);
             return 1;
@@ -2221,7 +2221,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004460C4", (uint)a, (uint)b);
-            Mem.Set(0x800E63BCu, MenuSpinner.Step((uint)(b), Mem.S32(0x800E63BCu), 1, 0, 1, 1));
+            Mem.Set(Gv.InGameMenu_ShadowsEnabled, MenuSpinner.Step((uint)(b), Mem.S32(Gv.InGameMenu_ShadowsEnabled), 1, 0, 1, 1));
             return 0;
         }
     }
@@ -2232,7 +2232,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044610C", (uint)a);
-            if ((Mem.S32(0x800E63BCu) != 0))
+            if ((Mem.S32(Gv.InGameMenu_ShadowsEnabled) != 0))
             {
                 new O06A_v2(a).Data_Set(0x800E6100u);
             }

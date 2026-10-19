@@ -25,8 +25,8 @@ public static partial class Game
             new OSPiHandle(Gv.__DriveRomHandle).speed_Set((uint)(0));
             memset(new OSPiHandle(Gv.__DriveRomHandle).transferInfo.P, 0, 96u);
             saveMask = __osDisableInt();
-            new OSPiHandle(Gv.__DriveRomHandle).next__Set(Mem.U32(0x800D83ACu));
-            Mem.Set(0x800D83ACu, Gv.__DriveRomHandle);
+            new OSPiHandle(Gv.__DriveRomHandle).next__Set(Mem.U32(Gv.__osPiTable));
+            Mem.Set(Gv.__osPiTable, Gv.__DriveRomHandle);
             Mem.Set(Gv.__osDiskHandle, Gv.__DriveRomHandle);
             __osRestoreInt(saveMask);
             return Gv.__DriveRomHandle;

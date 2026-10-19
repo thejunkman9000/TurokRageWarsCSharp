@@ -3019,7 +3019,7 @@ public static partial class Model
             i = 0;
             arr = Chunk.Get(root, 2);
             g3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
-            t = (uint)(Mem.S32(0x800D15D4u));
+            t = (uint)(Mem.S32(Gv.Model_FogOtherModeH));
             Mem.Set(Gv.Gfx_CachedCombineMode, (-1));
             Mem.Set(Gv.Gfx_CachedOtherModeL, (-1));
             t = (uint)((uint)(t) | (uint)(1024));
@@ -3162,7 +3162,7 @@ public static partial class Model
             uint fp = 0u;
             uint space = 0u;
             RandomGen.NextLcg();
-            fp = 0x8013B348u;
+            fp = Gv.Model_PlayerDrawGroups;
             do
             {
                 Mem.Set(fp, (int)((int)(Mem.S32(fp)) | 32));
@@ -3716,7 +3716,7 @@ public static partial class Model
                 if (Dbg.On) Dbg.Enter("func_0026D844");
                 Model.ResetStateCache();
                 MathUtil.MtxMakeScale(_fp, 2.0f, 2.0f, 2.0f);
-                MathUtil.MtxFloatToFixedFull(_fp, 0x801105E0u);
+                MathUtil.MtxFloatToFixedFull(_fp, Gv.Model_DoubleScaleMtx);
             }
         }
         finally { Stack.Free(64); }
@@ -3728,16 +3728,16 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026D88C");
-            if (((Mem.S32(Gv.Render_FogEnabled) != 0) || (Mem.S32(0x80110620u) != 0)))
+            if (((Mem.S32(Gv.Render_FogEnabled) != 0) || (Mem.S32(Gv.Model_ViewFlag) != 0)))
             {
-                Mem.Set(0x800D15D4u, (uint)(65536));
-                Mem.Set(0x800D15D8u, 3288334336u);
+                Mem.Set(Gv.Model_FogOtherModeH, (uint)(65536));
+                Mem.Set(Gv.Model_FogRenderModeL, 3288334336u);
                 Mem.Set(Gv.Model_FogBlendMode, 3355443200u);
             }
             else
             {
-                Mem.Set(0x800D15D4u, (uint)(0));
-                Mem.Set(0x800D15D8u, (uint)(201850880));
+                Mem.Set(Gv.Model_FogOtherModeH, (uint)(0));
+                Mem.Set(Gv.Model_FogRenderModeL, (uint)(201850880));
                 Mem.Set(Gv.Model_FogBlendMode, (uint)(201850880));
             }
         }
@@ -3762,13 +3762,13 @@ public static partial class Model
             if (Dbg.On) Dbg.Enter("func_0026D980");
             Mem.Set(Gv.ModelBatch_CurrentModelPtr, 0);
             Mem.Set(Gv.ModelBatch_QueueCount, 0);
-            Mem.Set(0x80110638u, 0);
-            Mem.Set(0x80110630u, 0);
+            Mem.Set(Gv.ModelBatch_NodeCount, 0);
+            Mem.Set(Gv.ModelBatch_InstanceCount, 0);
             Mem.Set(Gv.ModelBatch_Count, 0);
             Mem.Set(Gv.ModelBatch_ListTail, 0);
-            Mem.Set(0x80110628u, 0);
+            Mem.Set(Gv.ModelBatch_ListHead, 0);
             Mem.Set(Gv.ModelBatch_FlaggedListTail, 0);
-            Mem.Set(0x8011063Cu, 0);
+            Mem.Set(Gv.ModelBatch_FlaggedListHead, 0);
         }
     }
 
@@ -3784,7 +3784,7 @@ public static partial class Model
             ModelBatch.Flush();
             for (i = 0; (i < Mem.S32(Gv.ModelBatch_Count)); ++i)
             {
-                v = Mem.S32((0x801153D8u + (uint)(i * 4)));
+                v = Mem.S32((Gv.ModelBatch_Models + (uint)(i * 4)));
                 Resource.MarkUsedInFrame(0, (uint)(v));
                 ResourcePool.Unref(0, (uint)(v));
             }
@@ -3803,7 +3803,7 @@ public static partial class Model
             {
                 node = Chunk.Get(root, 0);
             }
-            if ((((Mem.U32(Gv.ModelBatch_CurrentModelPtr) != p) || (Mem.S32(0x80110624u) != key)) || (Mem.S32(Gv.ModelBatch_QueueCount) == 32)))
+            if ((((Mem.U32(Gv.ModelBatch_CurrentModelPtr) != p) || (Mem.S32(Gv.ModelBatch_CurrentKey) != key)) || (Mem.S32(Gv.ModelBatch_QueueCount) == 32)))
             {
                 ModelBatch.CollectParts();
                 if ((Mem.S32(Gv.ModelBatch_Count) == 256))
@@ -3811,11 +3811,11 @@ public static partial class Model
                     return;
                 }
                 ResourcePool.TouchAndRef(0, p);
-                Mem.Set((0x801153D8u + (uint)((Mem.Set(Gv.ModelBatch_Count, (int)(Mem.S32(Gv.ModelBatch_Count) + 1)) - 1) * 4)), p);
+                Mem.Set((Gv.ModelBatch_Models + (uint)((Mem.Set(Gv.ModelBatch_Count, (int)(Mem.S32(Gv.ModelBatch_Count) + 1)) - 1) * 4)), p);
             }
             Mem.Set(Gv.ModelBatch_CurrentModelPtr, p);
-            Mem.Set(0x80110624u, key);
-            e = (0x801157D8u + (uint)((Mem.Set(Gv.ModelBatch_QueueCount, (int)(Mem.S32(Gv.ModelBatch_QueueCount) + 1)) - 1) * 16));
+            Mem.Set(Gv.ModelBatch_CurrentKey, key);
+            e = (Gv.ModelBatch_QueueEntries + (uint)((Mem.Set(Gv.ModelBatch_QueueCount, (int)(Mem.S32(Gv.ModelBatch_QueueCount) + 1)) - 1) * 16));
             new B16QEntry(e).a_Set(b);
             new B16QEntry(e).d_Set(c);
             new B16QEntry(e).b_Set(d);
@@ -4055,7 +4055,7 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026E330", (uint)a);
-            Mem.Set(0x80110620u, a);
+            Mem.Set(Gv.Model_ViewFlag, a);
         }
     }
 
@@ -4065,7 +4065,7 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026E340");
-            return Mem.S32(0x80110620u);
+            return Mem.S32(Gv.Model_ViewFlag);
         }
     }
 
@@ -4075,10 +4075,10 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026E350", (uint)a, (uint)b, (uint)c, (uint)d);
-            Mem.Set(0x800D15F8u, a);
-            Mem.Set(0x800D15F9u, b);
-            Mem.Set(0x800D15FAu, d);
-            Mem.Set(0x800D15FBu, c);
+            Mem.Set(Gv.Model_PrimColorOverride, a);
+            Mem.Set(Gv.Model_PrimColorOverride_G, b);
+            Mem.Set(Gv.Model_PrimColorOverride_B, d);
+            Mem.Set(Gv.Model_PrimColorOverride_A, c);
         }
     }
 
@@ -4088,8 +4088,8 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026E378", (uint)a, (uint)b);
-            Mem.Set(0x800D15FCu, a);
-            Mem.Set(0x800D15FDu, b);
+            Mem.Set(Gv.Model_PrimAlphaOverride, a);
+            Mem.Set(Gv.Model_PrimAlphaOverride_B, b);
         }
     }
 
@@ -4111,9 +4111,9 @@ public static partial class Model
         {
             if (Dbg.On) Dbg.Enter("func_0026E4D0");
             Mem.Set(Gv.ModelBatch_ListTail, 0);
-            Mem.Set(0x80110628u, 0);
+            Mem.Set(Gv.ModelBatch_ListHead, 0);
             Mem.Set(Gv.ModelBatch_FlaggedListTail, 0);
-            Mem.Set(0x8011063Cu, 0);
+            Mem.Set(Gv.ModelBatch_FlaggedListHead, 0);
         }
     }
 
@@ -4321,7 +4321,7 @@ public static partial class ObjectPool
             uint v = 0u;
             for (i = 0; (i < 128); ++i)
             {
-                new S5QuadPool(p).obj[(int)(i)].info_Set(0x8011EE70u);
+                new S5QuadPool(p).obj[(int)(i)].info_Set(Gv.ObjectPool_QuadDef);
                 new S5QuadPool(p).obj[(int)(i)].type_Set((byte)(2));
                 new S5QuadPool(p).obj[(int)(i)].f5C_Set(0);
                 new S5QuadPool(p).obj[(int)(i)].f1DC_Set(0);
@@ -4337,10 +4337,10 @@ public static partial class ObjectPool
             {
                 ListUtil.Init((new S5QuadPool(p).listC.P + (uint)(i * 20)), 488, 492);
             }
-            ObjectRec.Init_00219460(0x8011EE70u);
+            ObjectRec.Init_00219460(Gv.ObjectPool_QuadDef);
             for (j = 0; (j < 4); ++j)
             {
-                v = (0x8011F038u + (uint)(j * 16));
+                v = (Gv.ObjectPool_QuadVtx + (uint)(j * 16));
                 switch (j)
                 {
                 case 0:
@@ -4375,7 +4375,7 @@ public static partial class ObjectPool
                 new S5Vtx(v).c.Set((int)(2), (byte)(255));
                 new S5Vtx(v).c.Set((int)(3), (byte)(255));
             }
-            MathUtil.MtxMakeRotateX(0x8011EFF8u, 1.57079637f);
+            MathUtil.MtxMakeRotateX(Gv.ObjectPool_QuadRotMtx, 1.57079637f);
             new S5QuadPool(p).fFC64_Set(arg);
             new S5QuadPool(p).fFC68_Set(0);
         }
@@ -4794,7 +4794,7 @@ public static partial class Shadow
                 uint dl2 = 0u;
                 if ((new Actor_v2(a).fB4 != 0))
                 {
-                    node = (int)(MtxStack.Alloc(0x8011FFB0u, 1));
+                    node = (int)(MtxStack.Alloc(Gv.Gfx_MtxStack, 1));
                     if ((node != 0))
                     {
                         @base = new M03BaVec(b).p8_;
@@ -5008,7 +5008,7 @@ public static partial class Shadow
             uint h = 0u;
             h = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(h).words.P, 4254072832u);
-            Mem.Set((new P4Gfx(h).words.P + 4u), (uint)(0x800D14B0u));
+            Mem.Set((new P4Gfx(h).words.P + 4u), (uint)(Gv.Shadow_BlobTexture));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 4119855104u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(117965312));
@@ -5035,7 +5035,7 @@ public static partial class Shadow
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(a0));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3724541952u);
-            Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(((a1 != 0) ? 0x800D12F0u : 0x800D1268u)));
+            Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(((a1 != 0) ? Gv.Shadow_BlobDLAlt : Gv.Shadow_BlobDL)));
             Mem.Set(Gv.Gfx_CachedOtherModeL, (-1));
             Mem.Set(Gv.Gfx_CachedCombineMode, (-1));
             Texture.InvalidateLoadCache();

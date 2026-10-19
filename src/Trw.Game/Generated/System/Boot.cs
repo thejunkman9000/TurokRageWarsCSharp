@@ -71,7 +71,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002567F0");
             uint end = 2151677952u;
-            uint @base = 0x8016E000u;
+            uint @base = Gv.Heap_Start;
             uint size = 0u;
             if ((MemUtil.GetRamSize() != (uint)(4194304)))
             {
@@ -99,15 +99,15 @@ public static partial class Game
             uint b = 0u;
             uint dm1 = 0u;
             uint dp1 = 0u;
-            osCreateMesgQueue(0x80146980u, 0x80146D78u, 4096);
-            memset(0x800F3C80u, 7, (uint)(8192));
-            Sched.Create(Gv.Sched_Main, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
-            Sched.AddClient(Gv.Sched_Main, 0x8014AD80u, (int)(0x80146980u));
+            osCreateMesgQueue(Gv.Gfx_DoneQueue, Gv.Gfx_DoneMsgBuf, 4096);
+            memset(Gv.Sched_ThreadStack, 7, (uint)(8192));
+            Sched.Create(Gv.Sched_Main, (Gv.Sched_ThreadStack + (uint)8192), (uint)(Mem.S32(Gv.Thread_SchedPri)), (uint)(0), (uint)((byte)(1)));
+            Sched.AddClient(Gv.Sched_Main, Gv.Gfx_SchedClient, (int)(Gv.Gfx_DoneQueue));
             new LevelView(lv).unk26DB4_Set((-1));
             Game_StartFadeIn(lv);
             Mem.Set(Gv.DisplayListPtr, 0);
-            guMtxIdent(0x80146D20u);
-            if ((Mem.S32(0x8014D330u) != 0))
+            guMtxIdent(Gv.Gfx_IdentityMtx);
+            if ((Mem.S32(Gv.Boot_IsColdBoot) != 0))
             {
                 Level.InitRestartState();
                 Settings.InitDefaults(Gv.Settings);
@@ -130,7 +130,7 @@ public static partial class Game
                 dp1 = (Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1));
                 b = ((i + dp1) % Mem.U32(Gv.Video_FrameSlotCount));
                 new Slot_v2((sl + (uint)(i * 320))).unkF0_Set((short)(2));
-                new Slot_v2((sl + (uint)(i * 320))).unk110_Set(Mem.S32((0x801536F8u + (uint)(i * 4))));
+                new Slot_v2((sl + (uint)(i * 320))).unk110_Set(Mem.S32((Gv.Gfx_FramebufferArray + (uint)(i * 4))));
                 new Slot_v2((sl + (uint)(i * 320))).prev__Set((lv + (uint)(a * 320)));
                 new Slot_v2((sl + (uint)(i * 320))).next__Set((lv + (uint)(b * 320)));
                 Obj.ClearFields14And18_002909E0((sl + (uint)(i * 320)));
@@ -380,7 +380,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293518");
-            sprintf(0x8014ADA8u, 0x800CA4F0u, 0x800CA4F8u, 0x800CA504u, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            sprintf(Gv.Boot_BuildDateString, 0x800CA4F0u, 0x800CA4F8u, 0x800CA504u, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             __osSetFpcCsr((uint)(((int)(__osGetFpcCsr()) | 1024)));
             Game_Init(Gv.GameCtx, default(uint), default(uint), default(uint));
         }
@@ -655,9 +655,9 @@ public static partial class Boot
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00292F2C", (uint)g);
-            memset(0x800EBC00u, 0, (uint)(128));
-            osCreateThread(0x8011F650u, 0, 0x002934F0u, 0u, (0x800EBC00u + (uint)128), Mem.S32(0x800D2B14u));
-            osStartThread(0x8011F650u);
+            memset(Gv.Boot_IdleThreadStack, 0, (uint)(128));
+            osCreateThread(Gv.Boot_IdleThread, 0, 0x002934F0u, 0u, (Gv.Boot_IdleThreadStack + (uint)128), Mem.S32(Gv.Thread_IdlePri));
+            osStartThread(Gv.Boot_IdleThread);
         }
     }
 
@@ -667,11 +667,11 @@ public static partial class Boot
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00292FA4", (uint)a, (uint)arg);
-            memset(0x800EBC80u, 1, (uint)(32768));
-            osCreateThread(0x8011F880u, 1, 0x00293518u, arg, 0x800F3C80u, Mem.S32(0x800D2B24u));
-            osStartThread(0x8011F880u);
+            memset(Gv.Boot_MainThreadStack, 1, (uint)(32768));
+            osCreateThread(Gv.Boot_MainThread, 1, 0x00293518u, arg, Gv.Sched_ThreadStack, Mem.S32(Gv.Thread_MainPri));
+            osStartThread(Gv.Boot_MainThread);
             new P4ThrOwner(a).BootFlag_26DC8_Set(0);
-            osSetThreadPri(0u, Mem.S32(0x800D2B10u));
+            osSetThreadPri(0u, Mem.S32(Gv.Thread_GamePri));
             for (; ; )
             {
             }

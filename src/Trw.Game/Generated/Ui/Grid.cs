@@ -195,13 +195,13 @@ public static partial class UiGrid
         {
             if (Dbg.On) Dbg.Enter("func_00412624", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new Q01Disp((0x800E2AD0u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new Q01Disp((Gv.Grid_MessageDispatchTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new Q01Disp((0x800E2AD0u + (uint)(i * 12))).id == id))
+                if ((new Q01Disp((Gv.Grid_MessageDispatchTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new Q01Disp((0x800E2AD0u + (uint)(i * 12))).key == (int)(new Q01Obj_v3(o).key)) || (new Q01Disp((0x800E2AD0u + (uint)(i * 12))).key == 30000)))
+                    if (((new Q01Disp((Gv.Grid_MessageDispatchTable + (uint)(i * 12))).key == (int)(new Q01Obj_v3(o).key)) || (new Q01Disp((Gv.Grid_MessageDispatchTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new Q01Disp((0x800E2AD0u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new Q01Disp((Gv.Grid_MessageDispatchTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

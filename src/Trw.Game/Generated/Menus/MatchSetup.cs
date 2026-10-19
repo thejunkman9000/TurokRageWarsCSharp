@@ -18,8 +18,8 @@ public static partial class Arena
             {
                 return 0u;
             }
-            memcpy(0x80153FE0u, ((new O04Grid(g).tbl.P + (uint)(b * 840)) + (uint)(c * 42)), (uint)(42));
-            return 0x80153FE0u;
+            memcpy(Gv.MatchSetup_TreeRecordBuf, ((new O04Grid(g).tbl.P + (uint)(b * 840)) + (uint)(c * 42)), (uint)(42));
+            return Gv.MatchSetup_TreeRecordBuf;
         }
     }
 
@@ -65,16 +65,16 @@ public static partial class Arena
             switch (a)
             {
             case 0:
-                tbl = 0x800E51E4u;
+                tbl = Gv.ArenaSelect_CtfArenaKeys;
                 break;
             case 1:
-                tbl = 0x800E51F8u;
+                tbl = Gv.ArenaSelect_FragTagArenaKeys;
                 break;
             case 3:
-                tbl = 0x800E5214u;
+                tbl = Gv.ArenaSelect_TeamArenaKeys;
                 break;
             case 2:
-                tbl = 0x800E5240u;
+                tbl = Gv.ArenaSelect_BloodlustArenaKeys;
                 break;
             default:
                 return 0;
@@ -169,7 +169,7 @@ public static partial class AttractDemo
                     new Q03Ent(e).IsBot_Set((byte)(0));
                     new Q03Ent(e).BotSkill_Set((byte)(2));
                     new Q03Ent(e).SkinIndex_Set((sbyte)((RandomGen.Next() % 3)));
-                    LibC.StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).SkinIndex) * 17) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
+                    LibC.StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((Gv.BotSetup_NameTable_NamePtrs + (uint)((((int)(new Q03Ent(e).SkinIndex) * 17) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
                 }
                 for (i = 0; (i < (s6 - s4)); ++i)
                 {
@@ -180,7 +180,7 @@ public static partial class AttractDemo
                     new Q03Ent(e).IsBot_Set((byte)(1));
                     new Q03Ent(e).BotSkill_Set((byte)(2));
                     new Q03Ent(e).SkinIndex_Set((sbyte)((RandomGen.Next() % 3)));
-                    LibC.StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).SkinIndex) * (a = 17)) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
+                    LibC.StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((Gv.BotSetup_NameTable_NamePtrs + (uint)((((int)(new Q03Ent(e).SkinIndex) * (a = 17)) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
                 }
                 for (i = 0; (i < 8); ++i)
                 {
@@ -247,16 +247,16 @@ public static partial class MatchSetup
             switch (a)
             {
             case 0:
-                tbl = 0x800E51E4u;
+                tbl = Gv.ArenaSelect_CtfArenaKeys;
                 break;
             case 1:
-                tbl = 0x800E51F8u;
+                tbl = Gv.ArenaSelect_FragTagArenaKeys;
                 break;
             case 3:
-                tbl = 0x800E5214u;
+                tbl = Gv.ArenaSelect_TeamArenaKeys;
                 break;
             case 2:
-                tbl = 0x800E5240u;
+                tbl = Gv.ArenaSelect_BloodlustArenaKeys;
                 break;
             default:
                 return 0;
@@ -300,10 +300,10 @@ public static partial class MatchSetup
                     do
                     {
                         s1 = ((RandomGen.Next() % s2) + 1);
-                        if ((Bits.Test(0x80154018u, s1) == 0))
+                        if ((Bits.Test(Gv.Gauntlet_PlayedArenaBits, s1) == 0))
                         {
                             s0 = 1;
-                            Bits.Assign(0x80154018u, s1, s0);
+                            Bits.Assign(Gv.Gauntlet_PlayedArenaBits, s1, s0);
                         }
                         ++s3;
                         if ((s3 >= 15001))
@@ -313,7 +313,7 @@ public static partial class MatchSetup
                     }
                     while ((s0 == 0));
                 }
-                Mem.Set((0x80154014u + (uint)(0 * 4)), (Mem.S32((0x80154014u + (uint)(0 * 4))) + 1));
+                Mem.Set((Gv.Gauntlet_Index + (uint)(0 * 4)), (Mem.S32((Gv.Gauntlet_Index + (uint)(0 * 4))) + 1));
                 Arena.Set(Mem.S32(Gv.Gauntlet_GameType), func_0042AEB8_o04_look(Mem.S32(Gv.Gauntlet_GameType), s1));
             }
             return s5;
@@ -664,13 +664,13 @@ public static partial class MatchSetup
                 switch ((int)(new Q03Ent(e).CharacterId))
                 {
                 case 15:
-                    s = Mem.U32(0x800D7330u);
+                    s = Mem.U32(Gv.BotName_Warclubs);
                     break;
                 case 16:
-                    s = Mem.U32(0x800D72F0u);
+                    s = Mem.U32(Gv.BotName_Symbiont);
                     break;
                 default:
-                    s = Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).BotSkill) * 17) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p);
+                    s = Mem.U32(new Q03StrTbl((Gv.BotSetup_NameTable_NamePtrs + (uint)((((int)(new Q03Ent(e).BotSkill) * 17) + CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p);
                     break;
                 }
                 LibC.StrCopy(new Q03Ent(e).Name.P, s);
@@ -1174,25 +1174,25 @@ public static partial class Settings
             case 0:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(Gv.MatchSetup_DefaultPlayerName1) + (uint)i)));
                 }
                 break;
             case 1:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(Gv.MatchSetup_DefaultPlayerName2) + (uint)i)));
                 }
                 break;
             case 2:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(Gv.MatchSetup_DefaultPlayerName3) + (uint)i)));
                 }
                 break;
             case 3:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(Gv.MatchSetup_DefaultPlayerName4) + (uint)i)));
                 }
                 break;
             case 4:

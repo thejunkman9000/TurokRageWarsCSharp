@@ -1808,10 +1808,10 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023BC64");
-            short idx = (short)((new B09SlotCtl(0x80103FA0u).cur_Set((ushort)(new B09SlotCtl(0x80103FA0u).cur + 1)) - 1));
-            if (((int)((short)(new B09SlotCtl(0x80103FA0u).cur)) >= 24))
+            short idx = (short)((new B09SlotCtl(Gv.Pager_TlbAllocCursor).cur_Set((ushort)(new B09SlotCtl(Gv.Pager_TlbAllocCursor).cur + 1)) - 1));
+            if (((int)((short)(new B09SlotCtl(Gv.Pager_TlbAllocCursor).cur)) >= 24))
             {
-                new B09SlotCtl(0x80103FA0u).cur_Set(new B09SlotCtl(0x80103FA0u).start);
+                new B09SlotCtl(Gv.Pager_TlbAllocCursor).cur_Set(new B09SlotCtl(Gv.Pager_TlbAllocCursor).start);
             }
             if (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).a) != 255))
             {
@@ -2108,7 +2108,7 @@ public static partial class Resource
                 osWritebackDCacheAll();
                 osSetIntMask((uint)(1));
                 Funcs.CallReg((uint)(2147484672u), 0u, 0u, 0u, 0u);
-                Mem.Set(0x800D0638u, (-1));
+                Mem.Set(Gv.Resource_TlbFaultState_800D0638, (-1));
                 new OSThread(t).flags_Set((ushort)(2));
                 osStartThread(t);
             }
@@ -2129,7 +2129,7 @@ public static partial class Resource
             uint n = 0u;
             for (i = 0; (i < 24); ++i)
             {
-                uint v = new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt;
+                uint v = new SlotCnt((Gv.Resource_PageTable_UseCount + (uint)(i * 16))).cnt;
                 if ((v > max))
                 {
                     max = v;
@@ -2138,17 +2138,17 @@ public static partial class Resource
                 {
                     min = v;
                 }
-                new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt_Set((v + (uint)(1)));
+                new SlotCnt((Gv.Resource_PageTable_UseCount + (uint)(i * 16))).cnt_Set((v + (uint)(1)));
             }
             total = (uint)(0);
-            for (n = 0x80103F88u; (n != 0u); n = new BlkNode(n).next_)
+            for (n = Gv.Pager_RegionList; (n != 0u); n = new BlkNode(n).next_)
             {
                 total = (uint)((uint)(total) + (uint)(((int)(new BlkNode(n).pages) << (int)12)));
             }
-            new BlkStats(0x80103240u).total_Set(total);
-            new BlkStats(0x80103240u).max_Set(max);
-            new BlkStats(0x80103240u).min_Set(min);
-            new BlkStats(0x80103240u).f8_Set(new Obj0C(Mem.U32(Gv.Pager_PageLru)).fC);
+            new BlkStats(Gv.Pager_Stats).total_Set(total);
+            new BlkStats(Gv.Pager_Stats).max_Set(max);
+            new BlkStats(Gv.Pager_Stats).min_Set(min);
+            new BlkStats(Gv.Pager_Stats).f8_Set(new Obj0C(Mem.U32(Gv.Pager_PageLru)).fC);
         }
     }
 
@@ -2212,7 +2212,7 @@ public static partial class Resource
                 new AllocMsg((_fp + 24u)).hdr__Set(new MemBlk(blk).data);
                 new AllocMsg((_fp + 24u)).hdr.blk__Set(blk);
                 new AllocMsg((_fp + 24u)).hdr.f8_Set(a2);
-                osSendMesg(0x80103254u, (_fp + 24u), 1);
+                osSendMesg(Gv.Pager_IoQueues, (_fp + 24u), 1);
                 osRecvMesg(_fp, (_fp + 44u), 1);
                 return Mem.U32((_fp + 44u));
             }
@@ -2233,7 +2233,7 @@ public static partial class Resource
                 new B09Req((_fp + 32u)).arg_Set(arg);
                 new B09Req((_fp + 32u)).type_Set((short)(2));
                 new B09Req((_fp + 32u)).reply__Set(_fp);
-                osSendMesg(0x80103254u, (_fp + 32u), 1);
+                osSendMesg(Gv.Pager_IoQueues, (_fp + 32u), 1);
                 osRecvMesg(_fp, (_fp + 44u), 1);
                 ResourcePool.Release(0, (uint)(new B09Reply(Mem.U32((_fp + 44u))).unkC));
             }
@@ -2335,7 +2335,7 @@ public static partial class Resource
                 osCreateMesgQueue(_fp, (_fp + 24u), 1);
                 for (; ; )
                 {
-                    osRecvMesg(new B09IoQ(0x80103254u).dmaq.P, (_fp + 28u), 1);
+                    osRecvMesg(new B09IoQ(Gv.Pager_IoQueues).dmaq.P, (_fp + 28u), 1);
                     if (((int)(Mem.U8(new B09LoadReq(Mem.U32((_fp + 28u))).data_)) == 255))
                     {
                         RomDma.ReadSync(Gv.RomDma_Ctl, (uint)(new B09LoadReq(Mem.U32((_fp + 28u))).src), (uint)(((new B09LoadReq(Mem.U32((_fp + 28u))).len + 1) & (~1))), (Gv.Resource_PageFrames + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)));
@@ -2343,7 +2343,7 @@ public static partial class Resource
                         osInvalICache((Gv.Resource_PageFrames + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
                     }
                     new B09LoadReq(Mem.U32((_fp + 28u))).type_Set((short)(1));
-                    osSendMesg(new B09IoQ(0x80103254u).loadq.P, Mem.U32((_fp + 28u)), 1);
+                    osSendMesg(new B09IoQ(Gv.Pager_IoQueues).loadq.P, Mem.U32((_fp + 28u)), 1);
                 }
             }
         }
@@ -2357,7 +2357,7 @@ public static partial class Resource
         {
             if (Dbg.On) Dbg.Enter("func_0023CBB0", (uint)addr);
             uint r = 0u;
-            for (r = 0x80103F88u; (r != 0u); r = new B09Region(r).next_)
+            for (r = Gv.Pager_RegionList; (r != 0u); r = new B09Region(r).next_)
             {
                 if (((addr >= (uint)(new B09Region(r).@base)) && (addr < (uint)(((int)(new B09Region(r).@base) + (int)(new B09Region(r).size))))))
                 {
@@ -2417,7 +2417,7 @@ public static partial class Resource
             uint p = 0u;
             int i = 0;
             uint page = 0u;
-            r = 0x80103F88u;
+            r = Gv.Pager_RegionList;
             page = ((uint)(new B09FreeReq(req).addr) >> (int)12);
             prev = 0u;
             for (; (r != 0u); r = new B09Region(r).next_)
@@ -2569,7 +2569,7 @@ public static partial class Resource
             }
             new B09LoadReq(r).task.state_Set((ushort)(2));
             osStartThread(new B09LoadReq(r).task_);
-            osSendMesg(0x80103CD0u, r, 1);
+            osSendMesg(Gv.Pager_DoneQueue, r, 1);
         }
     }
 
@@ -2744,7 +2744,7 @@ public static partial class Resource
                 __osRestoreInt(m2);
             }
             memset(new B12Mgr(Gv.ResourceMgr).LoaderStack.P, id, (uint)(2048));
-            osCreateThread(new B12Mgr(Gv.ResourceMgr).LoaderThread.P, id, 0x00252450u, 0u, (new B12Mgr(Gv.ResourceMgr).LoaderStack.P + (uint)2048), Mem.S32(0x800D2B2Cu));
+            osCreateThread(new B12Mgr(Gv.ResourceMgr).LoaderThread.P, id, 0x00252450u, 0u, (new B12Mgr(Gv.ResourceMgr).LoaderStack.P + (uint)2048), Mem.S32(Gv.Thread_ResourceLoaderPri));
             osStartThread(new B12Mgr(Gv.ResourceMgr).LoaderThread.P);
         }
     }
@@ -2755,7 +2755,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00251754_hashFind", (uint)key, (uint)@out);
-            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(Gv.AddrHash_Mask)) * 16));
             if ((new B12Bucket(b).Key == key))
             {
                 Mem.Set(@out, (uint)(new B12Bucket(b).Value));
@@ -2801,7 +2801,7 @@ public static partial class Resource
                     n = Mem.U32(Mem.U32(_fp));
                     new B12Node(n).RefCount_Set((int)(new B12Node(n).RefCount + 1));
                     new B12Node(n).Flags_Set((uint)((uint)(new B12Node(n).Flags) | (uint)(256)));
-                    new B12Node(n).FrameStamp_Set(Mem.U32((0x80105180u + (uint)(0 * 4))));
+                    new B12Node(n).FrameStamp_Set(Mem.U32((Gv.Resource_FrameStamp + (uint)(0 * 4))));
                     ListUtil.MoveToHead(Gv.Resource_LruList, n, default(uint), default(uint));
                 }
                 m2 = __osDisableInt();
@@ -2836,7 +2836,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00251F0C_stamp", (uint)node);
-            new Node_func_80251F6C_de(node).stamp_Set(Mem.S32(0x80105180u));
+            new Node_func_80251F6C_de(node).stamp_Set(Mem.S32(Gv.Resource_FrameStamp));
             ListUtil.MoveToHead(Gv.Resource_LruList, node, default(uint), default(uint));
         }
     }
@@ -2864,7 +2864,7 @@ public static partial class Resource
             if ((counter != 1))
             {
                 __osRestoreInt(token);
-                osRecvMesg(new Manager(0x801047E0u).@lock.P, (uint)(0), 1);
+                osRecvMesg(new Manager(Gv.Resource_LoaderQueue).@lock.P, (uint)(0), 1);
             }
             else
             {
@@ -2884,7 +2884,7 @@ public static partial class Resource
             if ((counter != 0))
             {
                 __osRestoreInt(token);
-                osSendMesg(new Manager(0x801047E0u).@lock.P, (uint)(0), 1);
+                osSendMesg(new Manager(Gv.Resource_LoaderQueue).@lock.P, (uint)(0), 1);
             }
             else
             {
@@ -3332,7 +3332,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00252714_find", (uint)key, (uint)@out);
-            uint node = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((uint)((key << (int)5)) ^ ((uint)(key) >> (int)1)) ^ ((uint)(key) >> (int)9)) ^ ((uint)(key) >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint node = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((uint)((key << (int)5)) ^ ((uint)(key) >> (int)1)) ^ ((uint)(key) >> (int)9)) ^ ((uint)(key) >> (int)17)) & Mem.U32(Gv.AddrHash_Mask)) * 16));
             if ((new HashNode_func_80252774_de(node).key == key))
             {
                 Mem.Set(@out, new HashNode_func_80252774_de(node).value_);
@@ -3366,7 +3366,7 @@ public static partial class Resource
                 Mem.Set((Gv.Resource_LruList - (uint)(2 * 4)), 0);
             }
             new Node_func_80252774_de((uint)(node)).flags_Set(0);
-            Mem.Set((Mem.U32(0x80104564u) + (uint)(Mem.S32(Gv.Resource_NodePool) * 4)), (uint)(node));
+            Mem.Set((Mem.U32(Gv.Resource_FreeNodeStackPtr) + (uint)(Mem.S32(Gv.Resource_NodePool) * 4)), (uint)(node));
             Mem.Set((Gv.Resource_LruList + (uint)(755 * 4)), (int)((int)(Mem.S32((Gv.Resource_LruList + (uint)(755 * 4)))) + 1));
         }
     }
@@ -3717,7 +3717,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00253C8C", (uint)unused, (uint)msg);
-            osSendMesg(0x801047E0u, msg, 1);
+            osSendMesg(Gv.Resource_LoaderQueue, msg, 1);
         }
     }
 
@@ -4047,7 +4047,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025470C", (uint)v);
-            Mem.Set(0x8010517Cu, v);
+            Mem.Set(Gv.Resource_LoadFlags, v);
         }
     }
 
@@ -4057,7 +4057,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025471C");
-            return Mem.S32(0x8010517Cu);
+            return Mem.S32(Gv.Resource_LoadFlags);
         }
     }
 
@@ -4067,7 +4067,7 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025472C");
-            return Mem.S32(0x80105108u);
+            return Mem.S32(Gv.Resource_FreeRequestCount);
         }
     }
 
@@ -4081,7 +4081,7 @@ public static partial class Resource
             {
                 AddrHash.Remove((uint)(new B12Node(n).LinkPtr_14.RefCount));
                 n = new B12Node(n).link_;
-                ListUtil.Remove(0x8010510Cu, n, default(uint), default(uint));
+                ListUtil.Remove(Gv.Resource_RequestLists_InUse, n, default(uint), default(uint));
                 new B12Node(n).FrameStamp_Set((uint)(0));
                 ListUtil.Add(Gv.Resource_RequestLists, n);
             }
@@ -4111,9 +4111,9 @@ public static partial class Resource
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254E28", (uint)unused, (uint)n);
-            ListUtil.Remove(0x8010510Cu, n, default(uint), default(uint));
+            ListUtil.Remove(Gv.Resource_RequestLists_InUse, n, default(uint), default(uint));
             new PNode(n).FrameStamp_Set(0);
-            ListUtil.Add((0x8010510Cu - (uint)20), n);
+            ListUtil.Add((Gv.Resource_RequestLists_InUse - (uint)20), n);
         }
     }
 
@@ -4128,7 +4128,7 @@ public static partial class Resource
             {
                 ListUtil.Remove(Gv.Resource_RequestLists, n, default(uint), default(uint));
                 new B12Node(n).FrameStamp_Set((uint)(v));
-                ListUtil.Add(0x8010510Cu, n);
+                ListUtil.Add(Gv.Resource_RequestLists_InUse, n);
             }
             return n;
         }
@@ -4188,7 +4188,7 @@ public static partial class Resource
             {
                 new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).Flags_Set((uint)((uint)(new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).Flags) & mask));
             }
-            Mem.Set((0x80105134u + (uint)(type * 4)), 0);
+            Mem.Set((Gv.Resource_FrameSlotMarked + (uint)(type * 4)), 0);
         }
     }
 
@@ -4989,7 +4989,7 @@ public static partial class ResourceCache
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002518DC_hashFind", (uint)key, (uint)@out);
-            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(Gv.AddrHash_Mask)) * 16));
             if ((new B12Bucket(b).Key == key))
             {
                 Mem.Set(@out, (uint)(new B12Bucket(b).Value));
@@ -5051,7 +5051,7 @@ public static partial class ResourceCache
                     new B12Node(n).RefCount_Set((int)(new B12Node(n).RefCount + 1));
                     new B12Node(n).Flags_Set((uint)((uint)(new B12Node(n).Flags) | (uint)(256)));
                     n = new B12Ent(Mem.U32(_fp)).node_;
-                    new B12Node(n).FrameStamp_Set(Mem.U32(0x80105180u));
+                    new B12Node(n).FrameStamp_Set(Mem.U32(Gv.Resource_FrameStamp));
                     ListUtil.MoveToHead(Gv.Resource_LruList, n, default(uint), default(uint));
                     m2 = __osDisableInt();
                     if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
@@ -5211,7 +5211,7 @@ public static partial class ResourceCache
                         {
                             __osRestoreInt(m6);
                         }
-                        RomDma.ReadAsync(Gv.RomDma_Ctl, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.Key)), 0x801047E0u, Mem.U32(_fp), 0);
+                        RomDma.ReadAsync(Gv.RomDma_Ctl, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.Key)), Gv.Resource_LoaderQueue, Mem.U32(_fp), 0);
                         return 0u;
                     }
                     Resource.FreeRequest((uint)(0), Mem.U32(_fp));
@@ -5308,17 +5308,17 @@ public static partial class ResourcePool
             uint m2 = 0u;
             for (i = 0; (i < 2); ++i)
             {
-                if ((Mem.S32((0x80105134u + (uint)(i * 4))) != 0))
+                if ((Mem.S32((Gv.Resource_FrameSlotMarked + (uint)(i * 4))) != 0))
                 {
-                    if ((Mem.S32(0x801045A8u) == i))
+                    if ((Mem.S32(Gv.Resource_CurrentFrameSlot) == i))
                     {
-                        Mem.Set((0x80104598u + (uint)(i * 4)), 0);
+                        Mem.Set((Gv.Resource_FrameMarkFlags + (uint)(i * 4)), 0);
                         ResourcePool.ClearFrameMarks(0, i);
                     }
                     else
                     {
                         ++cnt;
-                        Mem.Set((0x801045A0u + (uint)(i * 4)), 1);
+                        Mem.Set((Gv.Resource_FrameMarkPending_801045A0 + (uint)(i * 4)), 1);
                     }
                 }
             }
@@ -5336,7 +5336,7 @@ public static partial class ResourcePool
                 }
                 for (j = 0; (j < cnt); ++j)
                 {
-                    osRecvMesg(0x80105160u, 0u, 1);
+                    osRecvMesg(Gv.Resource_FrameReleaseQueue, 0u, 1);
                 }
                 mask = __osDisableInt();
                 if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
@@ -5359,11 +5359,11 @@ public static partial class ResourcePool
         {
             if (Dbg.On) Dbg.Enter("func_002512C8_find_stale", (uint)recent);
             uint node = 0u;
-            for (node = Mem.U32(0x80104574u); (node != 0u); node = new Node_func_80251328_de(node).next_)
+            for (node = Mem.U32(Gv.Resource_LruList_Head); (node != 0u); node = new Node_func_80251328_de(node).next_)
             {
                 if (!((new Node_func_80251328_de(node).flags & 1794) != 0))
                 {
-                    if (((uint)((Mem.S32(0x80105180u) - new Node_func_80251328_de(node).lastUsed)) >= (uint)(5)))
+                    if (((uint)((Mem.S32(Gv.Resource_FrameStamp) - new Node_func_80251328_de(node).lastUsed)) >= (uint)(5)))
                     {
                         return node;
                     }
@@ -5373,7 +5373,7 @@ public static partial class ResourcePool
             }
             for (; (node != 0u); node = new Node_func_80251328_de(node).next_)
             {
-                if ((!((new Node_func_80251328_de(node).flags & 1794) != 0) && ((uint)((Mem.S32(0x80105180u) - new Node_func_80251328_de(node).lastUsed)) >= (uint)(5))))
+                if ((!((new Node_func_80251328_de(node).flags & 1794) != 0) && ((uint)((Mem.S32(Gv.Resource_FrameStamp) - new Node_func_80251328_de(node).lastUsed)) >= (uint)(5))))
                 {
                     return node;
                 }
@@ -5504,7 +5504,7 @@ public static partial class ResourcePool
                 return 0u;
             }
             new PoolView(Gv.Resource_NodePool).count_Set((int)((int)(new PoolView(Gv.Resource_NodePool).count) - 1));
-            temp_s0 = Mem.U32((Mem.U32(0x80104564u) + (uint)(new PoolView(Gv.Resource_NodePool).count * 4)));
+            temp_s0 = Mem.U32((Mem.U32(Gv.Resource_FreeNodeStackPtr) + (uint)(new PoolView(Gv.Resource_NodePool).count * 4)));
             new func_80251448_S1(temp_s0).unkC_Set(2048);
             new func_80251448_S1(temp_s0).unk8_Set(0);
             new func_80251448_S1(temp_s0).unk0_Set(0);
@@ -5633,7 +5633,7 @@ public static partial class ResourcePool
                 if ((((flag == 0) && (new B12Mgr(Gv.ResourceMgr).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(Gv.ResourceMgr).cur__Set(new B12Mgr(Gv.ResourceMgr).NodeLists[(int)(1)].head_)), ((new B12Mgr(Gv.ResourceMgr).NodeLists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
                 {
                     uint c = (Gv.ResourceMgr + 1528u);
-                    uint firstp = 0x801051A8u;
+                    uint firstp = Gv.Resource_Heap_FirstBlock;
                     uint heap = (firstp - (uint)8);
                     do
                     {
@@ -6270,7 +6270,7 @@ public static partial class ResourcePool
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025474C");
-            return Mem.S32(0x80104580u);
+            return Mem.S32(Gv.Resource_LruList_Count);
         }
     }
 
@@ -6280,7 +6280,7 @@ public static partial class ResourcePool
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025475C");
-            return Mem.S32(0x80104580u);
+            return Mem.S32(Gv.Resource_LruList_Count);
         }
     }
 
@@ -6290,7 +6290,7 @@ public static partial class ResourcePool
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025476C");
-            return Mem.S32(0x80104580u);
+            return Mem.S32(Gv.Resource_LruList_Count);
         }
     }
 
@@ -6435,7 +6435,7 @@ public static partial class ResourcePool
                 return 0u;
             }
             new PoolMgr(Gv.ResourceMgr).cnt_Set((int)(new PoolMgr(Gv.ResourceMgr).cnt - 1));
-            n = Mem.U32((Mem.U32(0x80104564u) + (uint)(new PoolMgr(Gv.ResourceMgr).cnt * 4)));
+            n = Mem.U32((Mem.U32(Gv.Resource_FreeNodeStackPtr) + (uint)(new PoolMgr(Gv.ResourceMgr).cnt * 4)));
             new PNode(n).Flags_Set((uint)(2048));
             new PNode(n).RefCount_Set(0);
             new PNode(n).Key_Set((uint)(0));
@@ -6532,17 +6532,17 @@ public static partial class ResourcePool
         {
             if (Dbg.On) Dbg.Enter("func_00254C10", (uint)unused, (uint)n);
             uint c = 0u;
-            for (c = new List_v2(0x80104584u).head_; (c != 0u); c = new PNode(c).Next)
+            for (c = new List_v2(Gv.Resource_AddrSortedList).head_; (c != 0u); c = new PNode(c).Next)
             {
                 if ((new PNode(c).Key > new PNode(n).Key))
                 {
-                    ListUtil.InsertBefore(0x80104584u, c, n, default(uint));
+                    ListUtil.InsertBefore(Gv.Resource_AddrSortedList, c, n, default(uint));
                     break;
                 }
             }
             if ((c == 0u))
             {
-                ListUtil.Append_00255CB4(0x80104584u, n, default(uint), default(uint));
+                ListUtil.Append_00255CB4(Gv.Resource_AddrSortedList, n, default(uint), default(uint));
             }
             new PNode(n).Flags_Set((uint)((uint)(new PNode(n).Flags) | (uint)(4096)));
         }
@@ -6554,8 +6554,8 @@ public static partial class ResourcePool
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254CA0");
-            ResourcePool.ClearFrameMarks(0, Mem.S32((0x801045A8u + (uint)(0 * 4))));
-            Mem.Set((0x80104598u + (uint)(Mem.S32((0x801045A8u + (uint)(0 * 4))) * 4)), 0);
+            ResourcePool.ClearFrameMarks(0, Mem.S32((Gv.Resource_CurrentFrameSlot + (uint)(0 * 4))));
+            Mem.Set((Gv.Resource_FrameMarkFlags + (uint)(Mem.S32((Gv.Resource_CurrentFrameSlot + (uint)(0 * 4))) * 4)), 0);
         }
     }
 

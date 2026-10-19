@@ -550,7 +550,7 @@ public static partial class Quat
                 float sn = 0f;
                 float zero = 0f;
                 float y = 0f;
-                Mem.Copy((_fp + 16u), 0x800C6AE0u, 12);
+                Mem.Copy((_fp + 16u), Gv.Vec_UnitY, 12);
                 Vec.Normalize(v);
                 y = new Vec3f(v).y;
                 if ((0.99999f < y))

@@ -1266,7 +1266,7 @@ public static partial class Menu
                 }
                 if ((mode != 0))
                 {
-                    Mem.Set(0x8014D098u, new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(i * 28))).id);
+                    Mem.Set(Gv.Menu_CurrentScreenId, new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(i * 28))).id);
                     saved = Mem.S32(flag);
                     Mem.Set(flag, 0);
                     if ((ctx != 0u))
@@ -1288,7 +1288,7 @@ public static partial class Menu
                         }
                         Mem.Set(lk2, save2);
                     }
-                    Mem.Set(0x8014D098u, (-1));
+                    Mem.Set(Gv.Menu_CurrentScreenId, (-1));
                     if ((Mem.S32(flag) == 1))
                     {
                         Mem.Set(flag, saved);
@@ -1691,12 +1691,12 @@ public static partial class Menu
             int i = 0;
             uint m = 0u;
             uint s = 0u;
-            Mem.Set(0x8014D098u, (-1));
-            Video.GetScreenSize(0x8014D088u, 0x8014D08Cu);
+            Mem.Set(Gv.Menu_CurrentScreenId, (-1));
+            Video.GetScreenSize(Gv.Menu_ScreenWidth, Gv.Menu_ScreenHeight);
             Image.InitArchives();
-            Ui.SetScreenSize(Mem.S32(0x8014D088u), Mem.S32(0x8014D08Cu));
+            Ui.SetScreenSize(Mem.S32(Gv.Menu_ScreenWidth), Mem.S32(Gv.Menu_ScreenHeight));
             MenuInput.Init();
-            Mem.Set(0x8014D084u, 0);
+            Mem.Set(Gv.Menu_Word_8014D084, 0);
             Mem.Set(Gv.MenuMgrPtr, ResourcePool.Malloc((uint)(1348)));
             MemUtil.Fill(Mem.U32(Gv.MenuMgrPtr), 0, (uint)(1348));
             m = Mem.U32(Gv.MenuMgrPtr);
@@ -1716,7 +1716,7 @@ public static partial class Menu
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set((int)((Time.GetSecondsSinceStart() * 1000.0d)));
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).StackCapacity_Set(n);
             MemUtil.Fill(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk__Set(ResourcePool.Malloc((uint)((n * 28)))), 0, (uint)((n * 28)));
-            Mem.Set(0x8014D094u, 0);
+            Mem.Set(Gv.Menu_Value_8014D094, 0);
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set((-1));
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId_Set((-1));
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetX_Set(0);
@@ -1747,11 +1747,11 @@ public static partial class Menu
                 }
             }
             ctx = UiTree.FindNode((uint)(x), (uint)((id & 65535)), default(uint), default(uint));
-            t = (Mem.S32(0x8014D0A0u) + 1);
-            Mem.Set(0x8014D0A0u, t);
-            if ((Mem.S32(0x8014D09Cu) < t))
+            t = (Mem.S32(Gv.Menu_NodeLookups) + 1);
+            Mem.Set(Gv.Menu_NodeLookups, t);
+            if ((Mem.S32(Gv.Menu_NodeLookupsPeak) < t))
             {
-                Mem.Set(0x8014D09Cu, t);
+                Mem.Set(Gv.Menu_NodeLookupsPeak, t);
             }
             if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount < 75))
             {
@@ -2281,18 +2281,18 @@ public static partial class Menu
                 new B22Viewport(_fp).unk8_Set(0);
                 new B22Viewport(_fp).sx_Set(1.0f);
                 new B22Viewport(_fp).sy_Set(1.0f);
-                Mem.Set(0x8014D084u, 0);
+                Mem.Set(Gv.Menu_Word_8014D084, 0);
                 new B22Viewport(_fp).x2_Set(new SndMgr_v2(m).DrawOffsetX);
                 new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).DrawOffsetY);
-                new B22Viewport(_fp).w_Set((Mem.S32(0x8014D088u) - 1));
-                new B22Viewport(_fp).h_Set((Mem.S32(0x8014D08Cu) - 1));
+                new B22Viewport(_fp).w_Set((Mem.S32(Gv.Menu_ScreenWidth) - 1));
+                new B22Viewport(_fp).h_Set((Mem.S32(Gv.Menu_ScreenHeight) - 1));
                 now = (int)((Time.GetSecondsSinceStart() * 1000.0d));
-                if ((Mem.S32(0x800D2B50u) == 0))
+                if ((Mem.S32(Gv.Menu_LastDrawTimeMs) == 0))
                 {
-                    Mem.Set(0x800D2B50u, now);
+                    Mem.Set(Gv.Menu_LastDrawTimeMs, now);
                 }
-                dt = (now - Mem.S32(0x800D2B50u));
-                Mem.Set(0x800D2B50u, now);
+                dt = (now - Mem.S32(Gv.Menu_LastDrawTimeMs));
+                Mem.Set(Gv.Menu_LastDrawTimeMs, now);
                 Menu.BroadcastToStack(0, 3594, 0, (int)(_fp), dt);
                 for (i = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).BaseIndex; (i <= new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex); ++i)
                 {
@@ -2303,7 +2303,7 @@ public static partial class Menu
                     UiNode.ComputeRect((_fp + 40u), (_fp + 56u), new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(i * 28))).ctx_, _fp);
                 }
                 Menu.BroadcastToStack(0, 3594, 1, (int)(0u), dt);
-                Mem.Set(0x8014D0A0u, 0);
+                Mem.Set(Gv.Menu_NodeLookups, 0);
             }
         }
         finally { Stack.Free(72); }
@@ -2590,7 +2590,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A5C4", (uint)a);
-            Mem.Set(0x8014D094u, a);
+            Mem.Set(Gv.Menu_Value_8014D094, a);
         }
     }
 
@@ -2847,7 +2847,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A958");
-            int v = Mem.S32(0x8014D098u);
+            int v = Mem.S32(Gv.Menu_CurrentScreenId);
             if ((v < 0))
             {
                 if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex < 0))
@@ -3155,7 +3155,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2934");
-            return Mem.S32(0x800D2C18u);
+            return Mem.S32(Gv.Menu_FrameCounter);
         }
     }
 
@@ -3165,7 +3165,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2944");
-            Mem.Set(0x800D2C18u, (int)((int)(Mem.S32(0x800D2C18u)) + 1));
+            Mem.Set(Gv.Menu_FrameCounter, (int)((int)(Mem.S32(Gv.Menu_FrameCounter)) + 1));
         }
     }
 
@@ -3273,7 +3273,7 @@ public static partial class Menu
             int a0 = 0;
             int a1 = 0;
             int fl = 0;
-            if ((Mem.S32(0x800D2C98u) == 1))
+            if ((Mem.S32(Gv.Menu_FrontendActive) == 1))
             {
                 ScratchHeap.Flip();
                 Menu.SendEvent((uint)(Menu.GetCurrentScreenId()), (uint)(3592), (uint)(0), (uint)(0), (uint)(0));
@@ -3328,7 +3328,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A31F4");
-            if ((Mem.S32(0x800D2C98u) == 0))
+            if ((Mem.S32(Gv.Menu_FrontendActive) == 0))
             {
                 BotSetup.Reset();
                 Menu.InitFrontend();
@@ -3395,9 +3395,9 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A3358");
-            if ((Mem.S32((0x800D2C94u + (uint)(0 * 4))) != 1))
+            if ((Mem.S32((Gv.Menu_InputEnabled + (uint)(0 * 4))) != 1))
             {
-                Mem.Set((0x800D2C94u + (uint)(0 * 4)), 1);
+                Mem.Set((Gv.Menu_InputEnabled + (uint)(0 * 4)), 1);
                 MenuInput.ClearButtonStates();
             }
         }
@@ -3409,7 +3409,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A338C");
-            Mem.Set(0x800D2C94u, 0);
+            Mem.Set(Gv.Menu_InputEnabled, 0);
         }
     }
 
@@ -3419,7 +3419,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A339C");
-            return Mem.S32(0x800D2C94u);
+            return Mem.S32(Gv.Menu_InputEnabled);
         }
     }
 
@@ -3429,7 +3429,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A33AC");
-            return Mem.S32(0x800D2C98u);
+            return Mem.S32(Gv.Menu_FrontendActive);
         }
     }
 
@@ -3441,10 +3441,10 @@ public static partial class Menu
             if (Dbg.On) Dbg.Enter("func_002A33BC", (uint)v);
             if ((v == 1))
             {
-                Mem.Set(0x800D2C9Cu, v);
+                Mem.Set(Gv.Menu_FixedFov, v);
                 return;
             }
-            Mem.Set(0x800D2C9Cu, 0);
+            Mem.Set(Gv.Menu_FixedFov, 0);
         }
     }
 
@@ -3454,7 +3454,7 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A33E8");
-            return Mem.S32(0x800D2C9Cu);
+            return Mem.S32(Gv.Menu_FixedFov);
         }
     }
 
@@ -3465,7 +3465,7 @@ public static partial class Menu
         {
             if (Dbg.On) Dbg.Enter("func_002A33F8");
             Mem.Set(Gv.Menu_IdleTimer, v);
-            Mem.Set(0x80146870u, 0);
+            Mem.Set(Gv.Menu_IdleTime, 0);
         }
     }
 
@@ -4091,7 +4091,7 @@ public static partial class MenuPage
             new O06Cam(Gv.Model_ColorOverride).Green_Set(0);
             new O06Cam(Gv.Model_ColorOverride).Blue_Set(0);
             new O06Cam(Gv.Model_ColorOverride).TintValue_10_Set(0);
-            new O06Cam(Gv.Model_ColorOverride).Alpha_Set((float)((Mem.S32(0x801540E0u) / 2)));
+            new O06Cam(Gv.Model_ColorOverride).Alpha_Set((float)((Mem.S32(Gv.Menu_HighlightAlpha) / 2)));
             Actor.DrawModelLit(a, b, (uint)(c));
             Mem.Set(Gv.Model_ColorOverrideMode, 0);
         }

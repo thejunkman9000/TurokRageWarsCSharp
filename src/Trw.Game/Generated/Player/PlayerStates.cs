@@ -309,7 +309,7 @@ public static partial class Player
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022ECBC");
-            uint actor = Mem.U32(0x801029F0u);
+            uint actor = Mem.U32(Gv.Player_EventFlybyPlayerPtr);
             if (((int)(Mem.S16((actor + (uint)1514))) == 1))
             {
                 Player.Respawn(actor);
@@ -318,8 +318,8 @@ public static partial class Player
             {
                 Player.SetState(actor, (int)(actor), 34);
             }
-            Mem.Set(0x800D2930u, 1);
-            Mem.Set(0x800CF228u, 0);
+            Mem.Set(Gv.Level_FlybyActorsActive, 1);
+            Mem.Set(Gv.Player_EventFlybyActive, 0);
         }
     }
 
@@ -329,7 +329,7 @@ public static partial class Player
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022ED14");
-            Player.Respawn(Mem.U32(0x80102A48u));
+            Player.Respawn(Mem.U32(Gv.Player_RespawnFlybyPlayerPtr));
         }
     }
 }
@@ -1143,7 +1143,7 @@ public static partial class PlayerState
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022D53C", (uint)actor);
-            Mem.Set(0x80102A48u, actor);
+            Mem.Set(Gv.Player_RespawnFlybyPlayerPtr, actor);
             Flyby.DeferCallbacks(80, (uint)(0), 0x0022ED14u);
         }
     }

@@ -2112,7 +2112,7 @@ public static partial class View
                     c = ((uint)((int)((a - 2.14748365E+9f))) | hi);
                     L_end1: ;
                     Mem.Set((w1 + (uint)0), (byte)(c));
-                    Mem.Set((0x800D0EE2u + (uint)idx), (byte)(c));
+                    Mem.Set((Gv.Light_AmbientColor_B + (uint)idx), (byte)(c));
                     b = ((((sinf((((one * (float)(Mem.U32(Gv.LevelFrameCount))) * ((float)(idx) * 4.0f)) * 0.0174532942f)) * 64.0f) + 255.0f) - 64.0f) - 1.0f);
                     w2 = p;
                     if ((b >= 2.14748365E+9f))
@@ -2126,9 +2126,9 @@ public static partial class View
                     L_end2: ;
                     p += 1u;
                     Mem.Set((w2 + (uint)8), (byte)(c));
-                    Mem.Set((0x800D0EEAu + (uint)idx), (byte)(c));
+                    Mem.Set((Gv.Light_DirectionalColor_B + (uint)idx), (byte)(c));
                     ++idx;
-                    q = 0x800D0EECu;
+                    q = Gv.Light_DirectionalColorCopy;
                 }
                 new Vec3f(_fp).x_Set(sinf(((float)((Mem.U32(Gv.LevelFrameCount) * (uint)(6))) * 0.0174532942f)));
                 new Vec3f(_fp).y_Set(sinf(((float)((Mem.U32(Gv.LevelFrameCount) << (int)3)) * 0.0174532942f)));
@@ -2139,8 +2139,8 @@ public static partial class View
                 new Vec3f(_fp).z_Set((new Vec3f(_fp).z * 120.0f));
                 t = (q + (uint)4);
                 Mem.Set(t, (byte)(Cpu.TruncU32(new Vec3f(_fp).x)));
-                Mem.Set(0x800D0EF1u, (byte)(Cpu.TruncU32(new Vec3f(_fp).y)));
-                Mem.Set(0x800D0EF2u, (byte)(Cpu.TruncU32(new Vec3f(_fp).z)));
+                Mem.Set(Gv.Light_Direction_Y, (byte)(Cpu.TruncU32(new Vec3f(_fp).y)));
+                Mem.Set(Gv.Light_Direction_Z, (byte)(Cpu.TruncU32(new Vec3f(_fp).z)));
                 new LightFx(o).old.Set((int)(0), new LightFx(o).rgb.Set((int)(0), (byte)((Cpu.TruncU32(((sinf((((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 2.0f) * 0.069813177f)) * 64.0f) + 128.0f)) & (uint)(248)))));
                 new LightFx(o).old.Set((int)(1), new LightFx(o).rgb.Set((int)(1), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 0.209439531f)) * 64.0f) + 128.0f)) & (uint)(248)))));
                 new LightFx(o).old.Set((int)(2), new LightFx(o).rgb.Set((int)(2), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 0.279252708f)) * 64.0f) + 128.0f)) & (uint)(248)))));
@@ -3190,7 +3190,7 @@ public static partial class View
             sx = (ax - by);
             tx = (sx * 0.5f);
             sy = (ay - bx);
-            n = Mem.U32(0x80146274u);
+            n = Mem.U32(Gv.View_LayoutList_80146274);
             ty = (sy * 0.5f);
             if ((n != 0u))
             {
@@ -3231,7 +3231,7 @@ public static partial class View
                     new S6Nd(p).r3_Set((float)(0));
                     break;
                 case (uint)(2):
-                    if (((int)(Mem.U8(0x801462E7u)) == 0))
+                    if (((int)(Mem.U8(Gv.Settings_TwoPlayerLayout)) == 0))
                     {
                         new S6Nd(p).r0_Set(sx);
                         new S6Nd(p).r1_Set(ty);
@@ -3336,7 +3336,7 @@ public static partial class View
             }
             Mem.Copy(Gv.View_BoundsA_80103208, new S6World(w).nd.bbA.P, 24);
             Mem.Copy(Gv.View_UpdateBounds, new S6World(w).nd.bbB.P, 24);
-            Mem.Set(0x80103220u, (uint)(Mem.S32(Gv.NoRegionId)));
+            Mem.Set(Gv.View_UnionFlags, (uint)(Mem.S32(Gv.NoRegionId)));
             Camera.SetupProjection(new S6World(w).nd.P, default(uint), default(uint), default(uint));
             p = new S6World(w).first_;
             if ((p != 0u))
@@ -3351,7 +3351,7 @@ public static partial class View
                 }
                 Mem.Copy(Gv.View_BoundsA_80103208, new S6Nd(p).bbA.P, 24);
                 Mem.Copy(Gv.View_UpdateBounds, new S6Nd(p).bbB.P, 24);
-                Mem.Set(0x80103220u, new S6Nd(p).flags);
+                Mem.Set(Gv.View_UnionFlags, new S6Nd(p).flags);
                 p = Mem.U32((p + (uint)4));
                 if ((p != 0u))
                 {
@@ -3434,7 +3434,7 @@ public static partial class View
                             v = new S6BB(Gv.View_UpdateBounds).f[(int)(5)];
                         }
                         new S6BB(Gv.View_UpdateBounds).f.Set((int)(5), v);
-                        new S6F(0x80103220u).fl_Set((uint)((uint)(new S6F(0x80103220u).fl) | new S6Nd(p).flags));
+                        new S6F(Gv.View_UnionFlags).fl_Set((uint)((uint)(new S6F(Gv.View_UnionFlags).fl) | new S6Nd(p).flags));
                         p = new S6Nd(p).next_;
                     }
                     while ((p != 0u));
@@ -3492,12 +3492,12 @@ public static partial class View
                     {
                         uint _gbi_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_2).words.P, ((((uint)(222) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)16)));
-                        Mem.Set((new Gfx_s(_gbi_2).words.P + 4u), (uint)(0x800D0F10u));
+                        Mem.Set((new Gfx_s(_gbi_2).words.P + 4u), (uint)(Gv.Gfx_RspInitDL));
                     }
                     {
                         uint _gbi_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_3).words.P, ((((uint)(222) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)16)));
-                        Mem.Set((new Gfx_s(_gbi_3).words.P + 4u), (uint)(0x800D0F40u));
+                        Mem.Set((new Gfx_s(_gbi_3).words.P + 4u), (uint)(Gv.Gfx_RdpInitDL));
                     }
                     new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vscale.Set((int)(0), (short)(Mem.S32(Gv.ScreenWidth)));
                     new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vscale.Set((int)(1), (short)(Mem.S32(Gv.ScreenHeight)));
@@ -3724,9 +3724,9 @@ public static partial class View
             {
                 return message;
             }
-            if ((text == new func_80237E70_G1(0x800D7034u).unk0_))
+            if ((text == new func_80237E70_G1(Gv.Hud_CinemaFadeMarker_800D7034).unk0_))
             {
-                text = new func_80237E70_G1(0x800D7028u).unk0_;
+                text = new func_80237E70_G1(Gv.Hud_CinemaTextBlank_800D7028).unk0_;
             }
             p = text;
             line = p;

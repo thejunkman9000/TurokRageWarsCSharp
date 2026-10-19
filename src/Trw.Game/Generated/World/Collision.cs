@@ -2518,7 +2518,7 @@ public static partial class Collision
                 uint e = 0u;
                 int n = 0;
                 int i = 0;
-                if ((((int)(new B09BodyDef(d).b4) != 0) && (d != 0x80104170u)))
+                if ((((int)(new B09BodyDef(d).b4) != 0) && (d != Gv.Collision_SweepSkipProfile_80104170)))
                 {
                     self = Mem.U32(b);
                     n = new B09World(Gv.LevelMgr).AlwaysActiveActorCount;
@@ -4554,7 +4554,7 @@ public static partial class Collision
                         new Vec3f((_fp + 264u)).x_Set(Mem.F32((o + 8u)));
                         new Vec3f((_fp + 264u)).y_Set(h);
                         new Vec3f((_fp + 264u)).z_Set(Mem.F32((o + 16u)));
-                        if ((Collision.CheckActorMove(o, (o + 8u), (_fp + 264u), 0x801040F0u, fa, fb, fc, fd) != 0))
+                        if ((Collision.CheckActorMove(o, (o + 8u), (_fp + 264u), Gv.Collision_PushCtx_801040F0, fa, fb, fc, fd) != 0))
                         {
                             Mem.Copy(new B10A(a).LastContact.P, ctx, 220);
                             new B10A(a).ContactFlags_Set((uint)((uint)(new B10A(a).ContactFlags) | (uint)(8)));
@@ -4648,7 +4648,7 @@ public static partial class Collision
                         new Vec3f((_fp + 264u)).x_Set(Mem.F32((o + 8u)));
                         new Vec3f((_fp + 264u)).y_Set(h2);
                         new Vec3f((_fp + 264u)).z_Set(Mem.F32((o + 16u)));
-                        if ((Collision.CheckActorMove(o, (o + 8u), (_fp + 264u), 0x801040F0u, fa, fb, fc, fd) != 0))
+                        if ((Collision.CheckActorMove(o, (o + 8u), (_fp + 264u), Gv.Collision_PushCtx_801040F0, fa, fb, fc, fd) != 0))
                         {
                             Mem.Copy(new B10A(a).LastContact.P, ctx, 220);
                             new B10A(a).ContactFlags_Set((uint)((uint)(new B10A(a).ContactFlags) | (uint)(8)));
@@ -7981,14 +7981,14 @@ public static partial class Collision
             }
             else
             {
-                if ((t != Mem.U32(0x800D2634u)))
+                if ((t != Mem.U32(Gv.Collision_CeilingUnitNormalTriPtr)))
                 {
                     func_00275120_tri4_normal(Gv.Collision_CeilingUnitNormal, t);
                     Vec.Normalize(Gv.Collision_CeilingUnitNormal);
                 }
             }
             Mem.Copy(@out, Gv.Collision_CeilingUnitNormal, 12);
-            Mem.Set(0x800D2634u, t);
+            Mem.Set(Gv.Collision_CeilingUnitNormalTriPtr, t);
             return @out;
         }
     }

@@ -273,13 +273,13 @@ public static partial class BotSetup
             new O3Obj(o).TextPtr_Set(((Gv.BotSetup_Slots + (uint)off) + (uint)16));
             o = UiTree.FindNode((uint)(w), (uint)(910), default(uint), default(uint));
             new O3Obj(o).Alpha_Set((byte)(125));
-            new O3Obj(o).TextPtr_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 4))))));
+            new O3Obj(o).TextPtr_Set((uint)(Mem.S32(Mem.U32((Gv.BotSetup_SkillNameTable + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 4))))));
             o = UiTree.FindNode((uint)(w), (uint)(912), default(uint), default(uint));
             new O3Obj(o).Alpha_Set((byte)(125));
-            new O3Obj(o).ImageOrColor_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).a);
+            new O3Obj(o).ImageOrColor_Set(new O3P2((Gv.BotSetup_TeamImagePairs + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).a);
             o = UiTree.FindNode((uint)(w), (uint)(913), default(uint), default(uint));
             new O3Obj(o).Alpha_Set((byte)(125));
-            new O3Obj(o).ImageOrColor_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).b);
+            new O3Obj(o).ImageOrColor_Set(new O3P2((Gv.BotSetup_TeamImagePairs + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).b);
         }
     }
 
@@ -397,7 +397,7 @@ public static partial class BotSetup
             }
             for (k = 0; (k < 5); ++k)
             {
-                if ((Mem.S32(((0x800E37B8u + (uint)(k * 20)) + (uint)((n - 1) * 4))) >= total))
+                if ((Mem.S32(((Gv.BotSetup_StrengthBudgetTable + (uint)(k * 20)) + (uint)((n - 1) * 4))) >= total))
                 {
                     res = k;
                     break;
@@ -436,7 +436,7 @@ public static partial class BotSetup
                     }
                     else
                     {
-                        total = Mem.S32(((0x800E37B8u + (uint)(diff * 20)) + (uint)(k * 4)));
+                        total = Mem.S32(((Gv.BotSetup_StrengthBudgetTable + (uint)(diff * 20)) + (uint)(k * 4)));
                     }
                     for (i = 0; (i < n); ++i)
                     {
@@ -562,7 +562,7 @@ public static partial class BotSetup
             {
                 return 0;
             }
-            return Mem.S32(((0x800E37B8u + (uint)(b * 20)) + (uint)(i * 4)));
+            return Mem.S32(((Gv.BotSetup_StrengthBudgetTable + (uint)(b * 20)) + (uint)(i * 4)));
         }
     }
 

@@ -52,7 +52,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DCE4", (uint)a, (uint)b);
-            if ((Mem.S32(0x80145070u) == 1))
+            if ((Mem.S32(Gv.PlayerPool_State_80145070) == 1))
             {
                 Decal.Match_Reset(Gv.GameCtx);
             }
@@ -74,7 +74,7 @@ public static partial class LegacyMenu
             {
             default:
             case 2:
-                if ((Mem.U8(0x801462F5u) != 0))
+                if ((Mem.U8(Gv.Settings_ChargeDartRifleOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D40u);
                 }
@@ -84,7 +84,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 3:
-                if ((Mem.U8(0x801462F6u) != 0))
+                if ((Mem.U8(Gv.Settings_FirestormOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D48u);
                 }
@@ -94,7 +94,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 4:
-                if ((Mem.U8(0x801462F7u) != 0))
+                if ((Mem.U8(Gv.Settings_AssaultRifleOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D50u);
                 }
@@ -104,7 +104,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 5:
-                if ((Mem.U8(0x801462F8u) != 0))
+                if ((Mem.U8(Gv.Settings_PlasmaRifleOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D58u);
                 }
@@ -114,7 +114,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 6:
-                if ((Mem.U8(0x801462F9u) != 0))
+                if ((Mem.U8(Gv.Settings_CerebralBoreOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D60u);
                 }
@@ -124,7 +124,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 7:
-                if ((Mem.U8(0x801462FAu) != 0))
+                if ((Mem.U8(Gv.Settings_GrenadeLauncherOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D68u);
                 }
@@ -134,7 +134,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 8:
-                if ((Mem.U8(0x801462FBu) != 0))
+                if ((Mem.U8(Gv.Settings_ScorpionLauncherOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D70u);
                 }
@@ -144,7 +144,7 @@ public static partial class LegacyMenu
                 }
                 break;
             case 9:
-                if ((Mem.U8(0x801462FDu) != 0))
+                if ((Mem.U8(Gv.Settings_TorpedoLauncherOn) != 0))
                 {
                     new O06A_v28(a).Data_Set(0x800D7D78u);
                 }
@@ -456,7 +456,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E1B0");
-            Mem.Set(0x8015404Cu, 0.0f);
+            Mem.Set(Gv.LegacyMenus_FinalScoreTimer, 0.0f);
         }
     }
 
@@ -466,8 +466,8 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E1C0");
-            Mem.Set(0x8015404Cu, (float)((float)(Mem.F32(0x8015404Cu)) + Mem.F32(Gv.FrameTime)));
-            if ((Mem.F32(0x8015404Cu) >= 120.0f))
+            Mem.Set(Gv.LegacyMenus_FinalScoreTimer, (float)((float)(Mem.F32(Gv.LegacyMenus_FinalScoreTimer)) + Mem.F32(Gv.FrameTime)));
+            if ((Mem.F32(Gv.LegacyMenus_FinalScoreTimer) >= 120.0f))
             {
                 new S10Game(Gv.Settings_MatchRules).IsTeamPlay_Set(0);
                 Match.EndForAllPlayers((Gv.Settings_MatchRules - (uint)6240));
@@ -530,7 +530,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E284", (uint)a, (uint)m);
-            Mem.Set((0x80146914u + (uint)(0 * 4)), 0);
+            Mem.Set((Gv.MatchRules_MonkeyEvent + (uint)(0 * 4)), 0);
             Pad.DisableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             Rumble.Reset(new S10Menu(m).ctrl_);
             Rumble.SetEnabled(new S10Menu(m).ctrl_, 1);
@@ -639,7 +639,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E4D0", (uint)a, (uint)m);
-            new S10Item(a).Data_Set(Mem.U32((0x800E5D10u + (uint)(new S10Menu(m).PadPtr.Port * 4))));
+            new S10Item(a).Data_Set(Mem.U32((Gv.LegacyMenu_PlayerNamePtrs + (uint)(new S10Menu(m).PadPtr.Port * 4))));
             return 0;
         }
     }
@@ -745,7 +745,7 @@ public static partial class LegacyMenu
             if (((int)(Pad.IsConfirm(new S10Menu(m).ctrl_)) != 0))
             {
                 ObjectUtil.Player_SetCharacter(ctx, (int)(new S10Sub(sub).b80));
-                Audio.PlaySound2D((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).CharacterId * 4))).v));
+                Audio.PlaySound2D((int)(new S10Pair((Gv.LegacyMenu_CharacterSoundIds + (uint)(new S10Ctx(ctx).CharacterId * 4))).v));
                 MenuPanel.OpenChild((uint)((int)(y)), (uint)((int)(m)), 0x00450698u);
                 return 1;
             }
@@ -830,7 +830,7 @@ public static partial class LegacyMenu
             }
             v = (Mem.F32((0x00450854u + (uint)(Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) * 4))) + 1.0f);
             v = ((2.0f < ((v < 0.5f) ? 0.5f : v)) ? 2.0f : ((v < 0.5f) ? 0.5f : v));
-            Mem.Set(0x801462E8u, v);
+            Mem.Set(Gv.Settings_GameSpeed, v);
             return 0;
         }
     }
@@ -841,7 +841,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E924", (uint)a, (uint)m);
-            if ((Mem.F32(0x801462E8u) == 1.0f))
+            if ((Mem.F32(Gv.Settings_GameSpeed) == 1.0f))
             {
                 new S10Item(a).Data_Set(0x800D7E08u);
             }
@@ -958,7 +958,7 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043EBC4", (uint)a, (uint)m);
             Game_FadeOutToState(Gv.GameCtx, 8);
-            Mem.Set(0x80154048u, 0);
+            Mem.Set(Gv.LegacyMenu_SingleSelected, 0);
             Pad.DisableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             return 1;
         }
@@ -982,14 +982,14 @@ public static partial class LegacyMenu
                 if (((int)(Pad.IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
                     new S10Row(Gv.Settings_DefaultPlayerRecord).IsActive_Set((byte)(1));
-                    Mem.Set(0x80146381u, (byte)(i));
+                    Mem.Set(Gv.Settings_SinglePlayerPad, (byte)(i));
                     new S10Menu(m).ctrl__Set((Gv.Pad_Slots + (uint)(i * 548)));
                     break;
                 }
             }
             Audio.UnduckMusic();
             Game_StartMatchLevel(Gv.GameCtx, (-1));
-            Mem.Set(0x80154048u, 1);
+            Mem.Set(Gv.LegacyMenu_SingleSelected, 1);
             return 1;
         }
     }
@@ -1074,10 +1074,10 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043EE3C", (uint)a, (uint)b, (uint)c);
             Audio.StopAllExcept((-1));
-            Mem.Set(0x800E63B0u, Audio.IsSoundOn());
+            Mem.Set(Gv.InGameMenu_SavedCue, Audio.IsSoundOn());
             Audio.PlayCue(Mem.S32(Gv.InGameMenu_MusicTrack));
             Audio.SetPosFlag_0025E2BC(1);
-            Mem.Set(0x800E63B4u, 0);
+            Mem.Set(Gv.InGameMenu_ReduckOnBack, 0);
             Pad.ClearFlag800D0E60_00264A1C(default(uint), default(uint), default(uint), default(uint));
             MenuPanel.OpenChild((uint)(c), (uint)(b), 0x00451F58u);
             return 1;
@@ -1122,7 +1122,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EF1C", (uint)a);
-            Mem.Set((0x801468B0u + (uint)(0 * 4)), 120f);
+            Mem.Set((Gv.MatchRules_MessageTimer + (uint)(0 * 4)), 120f);
             new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags) & (uint)((~67108864))));
         }
     }
@@ -1164,7 +1164,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EF4C");
-            if ((Mem.F32(0x801468B0u) <= 0.0f))
+            if ((Mem.F32(Gv.MatchRules_MessageTimer) <= 0.0f))
             {
                 Decal.Match_Reset(Gv.GameCtx);
                 return 1;

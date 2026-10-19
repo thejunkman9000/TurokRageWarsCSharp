@@ -105,7 +105,7 @@ public static partial class RomDma
                 ListUtil.Append_00255CB4(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
             }
             memset(new B12Ctx(c).stack.P, id, (uint)(1024));
-            osCreateThread(new B12Ctx(c).thread.P, id, 0x0025651Cu, c, new B12Ctx(c).nodes.P, Mem.S32(0x800D2B34u));
+            osCreateThread(new B12Ctx(c).thread.P, id, 0x0025651Cu, c, new B12Ctx(c).nodes.P, Mem.S32(Gv.Thread_RomDmaPri));
             osStartThread(new B12Ctx(c).thread.P);
         }
     }

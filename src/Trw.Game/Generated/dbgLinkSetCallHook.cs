@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgLinkSetCallHook", (uint)fn);
-            Mem.Set(0x800D364Cu, fn);
+            Mem.Set(Gv.DbgLink_CallHook, fn);
         }
     }
 

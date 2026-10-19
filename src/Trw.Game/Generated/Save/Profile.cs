@@ -88,7 +88,7 @@ public static partial class Profile
             new B07Row((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex_Set((byte)(i));
             new B07Row((Gv.ProfileTable + (uint)(i * 400))).PakRecordIndex_Set((byte)(0));
             new B07Row((Gv.ProfileTable + (uint)(i * 400))).IsDefaultProfile_Set((byte)(1));
-            StrUtil.FormatInto((Gv.ProfileTable + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto((Gv.ProfileTable + (uint)(i * 400)), (uint)(Mem.S32((Gv.Profile_DefaultNameFmt + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             r = (Gv.Settings_PlayerRecords + (uint)(i * 150));
             new B07Row((Gv.ProfileTable + (uint)(i * 400))).ControlType_Set(new B07Rec96(r).ControlType);
             new B07Row((Gv.ProfileTable + (uint)(i * 400))).LookSpring_Set(new B07Rec96(r).LookSpring);
@@ -495,7 +495,7 @@ public static partial class Profile
                     Mem.Set(p, (-1));
                     return;
                 }
-                if (((int)(Mem.S8((0x80102B0Du + (uint)(Mem.S32(p) * 400)))) >= 0))
+                if (((int)(Mem.S8((Gv.ProfileTable_OwnerPadIndex + (uint)(Mem.S32(p) * 400)))) >= 0))
                 {
                     return;
                 }
@@ -535,7 +535,7 @@ public static partial class Profile
             }
             for (i = 0; (i < 36); ++i)
             {
-                if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
+                if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((Gv.ProfileTable_ArenaWinCounts + (uint)(i + (p * 400))))) >= 2)))
                 {
                     Bits.Assign((Gv.Profile_AwardBits + (uint)(p * 400)), i, 1);
                     if ((n < 2))
@@ -548,7 +548,7 @@ public static partial class Profile
             if ((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 36) == 0))
             {
                 met = 0;
-                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).Frags) >= 15)))
+                if ((((uint)(((int)(Mem.U8(Gv.Settings_Byte24_801462EC)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).Frags) >= 15)))
                 {
                     met = 1;
                 }
@@ -579,7 +579,7 @@ public static partial class Profile
             if ((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 37) == 0))
             {
                 met = 0;
-                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).Frags) >= 25)))
+                if ((((uint)(((int)(Mem.U8(Gv.Settings_Byte24_801462EC)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).Frags) >= 25)))
                 {
                     met = 1;
                 }
@@ -653,7 +653,7 @@ public static partial class Profile
                     }
                 }
             }
-            if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
+            if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 41) == 0) && (Mem.S32((Gv.ProfileTable_TotalFrags + (uint)(p * 400))) >= 1001)))
             {
                 Bits.Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 41, 1);
                 if ((n < 2))
@@ -662,7 +662,7 @@ public static partial class Profile
                     ++n;
                 }
             }
-            if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
+            if (((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 42) == 0) && (Mem.S32((Gv.ProfileTable_TotalDeaths + (uint)(p * 400))) >= 1001)))
             {
                 Bits.Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 42, 1);
                 if ((n < 2))
@@ -791,14 +791,14 @@ public static partial class Profile
             {
                 if ((((int)(new O04P(Gv.Settings).TimeLimit) >= 10) || ((int)(new O04P(Gv.Settings).FragLimit) >= 10)))
                 {
-                    v = ((int)(Mem.U8((0x80102B26u + (uint)(b + (idx * 400))))) + 1);
+                    v = ((int)(Mem.U8((Gv.ProfileTable_ArenaWinCounts + (uint)(b + (idx * 400))))) + 1);
                     if ((v >= 6))
                     {
-                        Mem.Set((0x80102B26u + (uint)(b + (idx * 400))), (byte)(5));
+                        Mem.Set((Gv.ProfileTable_ArenaWinCounts + (uint)(b + (idx * 400))), (byte)(5));
                     }
                     else
                     {
-                        Mem.Set((0x80102B26u + (uint)(b + (idx * 400))), (byte)(v));
+                        Mem.Set((Gv.ProfileTable_ArenaWinCounts + (uint)(b + (idx * 400))), (byte)(v));
                     }
                 }
             }
@@ -817,7 +817,7 @@ public static partial class Profile
             uint s = 0u;
             if ((a >= 4))
             {
-                return Mem.U32(0x800D722Cu);
+                return Mem.U32(Gv.RankName_Novice);
             }
             n = 0;
             for (i = 0; (i < 50); ++i)
@@ -832,93 +832,93 @@ public static partial class Profile
             case 0:
             case 1:
                 lv = 0;
-                s = Mem.U32(0x800D722Cu);
+                s = Mem.U32(Gv.RankName_Novice);
                 break;
             case 2:
             case 3:
                 lv = 1;
-                s = Mem.U32(0x800D7230u);
+                s = Mem.U32(Gv.RankName_Newcomer);
                 break;
             case 4:
             case 5:
                 lv = 2;
-                s = Mem.U32(0x800D7234u);
+                s = Mem.U32(Gv.RankName_Grunt);
                 break;
             case 6:
             case 7:
                 lv = 3;
-                s = Mem.U32(0x800D7238u);
+                s = Mem.U32(Gv.RankName_Scout);
                 break;
             case 8:
             case 9:
                 lv = 4;
-                s = Mem.U32(0x800D723Cu);
+                s = Mem.U32(Gv.RankName_Brave);
                 break;
             case 10:
             case 11:
                 lv = 5;
-                s = Mem.U32(0x800D7240u);
+                s = Mem.U32(Gv.RankName_Tracker);
                 break;
             case 12:
             case 13:
                 lv = 6;
-                s = Mem.U32(0x800D7244u);
+                s = Mem.U32(Gv.RankName_Hunter);
                 break;
             case 14:
             case 15:
                 lv = 7;
-                s = Mem.U32(0x800D7248u);
+                s = Mem.U32(Gv.RankName_Warrior);
                 break;
             case 16:
             case 17:
                 lv = 8;
-                s = Mem.U32(0x800D724Cu);
+                s = Mem.U32(Gv.RankName_Darkling);
                 break;
             case 18:
             case 19:
                 lv = 9;
-                s = Mem.U32(0x800D7250u);
+                s = Mem.U32(Gv.RankName_Seeker);
                 break;
             case 20:
             case 21:
                 lv = 10;
-                s = Mem.U32(0x800D7254u);
+                s = Mem.U32(Gv.RankName_Assassin);
                 break;
             case 22:
             case 23:
             case 24:
                 lv = 11;
-                s = Mem.U32(0x800D7258u);
+                s = Mem.U32(Gv.RankName_Bane);
                 break;
             case 25:
             case 26:
             case 27:
                 lv = 12;
-                s = Mem.U32(0x800D725Cu);
+                s = Mem.U32(Gv.RankName_Warlord);
                 break;
             case 28:
             case 29:
             case 30:
                 lv = 13;
-                s = Mem.U32(0x800D7260u);
+                s = Mem.U32(Gv.RankName_Deathwind);
                 break;
             case 31:
             case 32:
             case 33:
                 lv = 14;
-                s = Mem.U32(0x800D7264u);
+                s = Mem.U32(Gv.RankName_Conqueror);
                 break;
             case 34:
             case 35:
             case 36:
                 lv = 15;
-                s = Mem.U32(0x800D7268u);
+                s = Mem.U32(Gv.RankName_Master);
                 break;
             case 37:
             case 38:
             case 39:
                 lv = 16;
-                s = Mem.U32(0x800D726Cu);
+                s = Mem.U32(Gv.RankName_Tyrant);
                 break;
             case 40:
             case 41:
@@ -926,7 +926,7 @@ public static partial class Profile
             case 43:
             case 44:
                 lv = 17;
-                s = Mem.U32(0x800D7270u);
+                s = Mem.U32(Gv.RankName_Warslave);
                 break;
             case 45:
             case 46:
@@ -934,11 +934,11 @@ public static partial class Profile
             case 48:
             case 49:
                 lv = 18;
-                s = Mem.U32(0x800D7274u);
+                s = Mem.U32(Gv.RankName_Godhand);
                 break;
             default:
                 lv = 19;
-                s = Mem.U32(0x800D7278u);
+                s = Mem.U32(Gv.RankName_Chieftain);
                 break;
             }
             new O04Row190t((Gv.ProfileTable_Plus10 + (uint)(a * 400))).unk15_Set((byte)(lv));

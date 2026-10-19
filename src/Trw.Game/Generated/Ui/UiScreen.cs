@@ -13,7 +13,7 @@ public static partial class UiScreen
         {
             if (Dbg.On) Dbg.Enter("func_0041174C", (uint)i);
             Mem.Set((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)), (ushort)(Mem.U16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2))) + 1));
-            if ((Mem.S32(0x80153C54u) == 1))
+            if ((Mem.S32(Gv.UiScreen_LoadMode_80153C54) == 1))
             {
                 if ((new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p != 0u))
                 {
@@ -28,7 +28,7 @@ public static partial class UiScreen
                 new S_G_v2(Gv.Image_ArchiveCtx).h_Set((int)(FileIo.Open(new S_G_v2(Gv.Image_ArchiveCtx).b4.P, 0x800E10E0u, default(uint), default(uint))));
                 FileIo.Seek((uint)(new S_G_v2(Gv.Image_ArchiveCtx).h), (uint)((new S_G_v2(Gv.Image_ArchiveCtx).f240 + new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off)), (uint)(0), default(uint));
                 FileIo.Read(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(Gv.Image_ArchiveCtx).h));
-                if ((Mem.S32(0x800E2AC4u) != 0))
+                if ((Mem.S32(Gv.UiScreen_KeepPristineCopies) != 0))
                 {
                     Mem.Set(((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12)) + 8u), (int)(ResourcePool.Malloc((uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt))));
                     MemUtil.Copy(new S12_v2((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p, new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt));
@@ -48,7 +48,7 @@ public static partial class UiScreen
         {
             if (Dbg.On) Dbg.Enter("func_00411964", (uint)force);
             int i = 0;
-            for (i = 0; (i < (int)(Mem.S16(0x80153C40u))); ++i)
+            for (i = 0; (i < (int)(Mem.S16(Gv.UiScreen_Count))); ++i)
             {
                 if ((new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p == 0u))
                 {
@@ -69,7 +69,7 @@ public static partial class UiScreen
                     continue;
                 }
                 ResourcePool.MallocFree(new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p);
-                if ((Mem.S32(0x800E2AC4u) != 0))
+                if ((Mem.S32(Gv.UiScreen_KeepPristineCopies) != 0))
                 {
                     if ((Mem.U32(Gv.UiScreen_PristineCopiesPtr) != 0u))
                     {
@@ -99,7 +99,7 @@ public static partial class UiScreen
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411AC4");
-            return (int)(Mem.S16(0x80153C40u));
+            return (int)(Mem.S16(Gv.UiScreen_Count));
         }
     }
 
@@ -121,7 +121,7 @@ public static partial class UiScreen
             if (Dbg.On) Dbg.Enter("func_00411E70", (uint)i);
             if ((i >= 0))
             {
-                if ((i < (int)(Mem.S16(0x80153C40u))))
+                if ((i < (int)(Mem.S16(Gv.UiScreen_Count))))
                 {
                     return 1;
                 }
@@ -140,7 +140,7 @@ public static partial class UiScreen
             if (((new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p != 0u) && ((int)(Mem.S16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)))) == 0)))
             {
                 ResourcePool.MallocFree(new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p);
-                if ((Mem.S32(0x800E2AC4u) != 0))
+                if ((Mem.S32(Gv.UiScreen_KeepPristineCopies) != 0))
                 {
                     if ((Mem.U32(Gv.UiScreen_PristineCopiesPtr) != 0u))
                     {
@@ -161,7 +161,7 @@ public static partial class UiScreen
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411FB8", (uint)v);
-            Mem.Set(0x800E2AC4u, v);
+            Mem.Set(Gv.UiScreen_KeepPristineCopies, v);
         }
     }
 }

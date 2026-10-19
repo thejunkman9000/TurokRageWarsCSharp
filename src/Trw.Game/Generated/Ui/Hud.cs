@@ -70,7 +70,7 @@ public static partial class Hud
                     MathUtil.MtxCopy(mp, _fp);
                     if ((Mem.S32(Gv.VideoResolution) == 2))
                     {
-                        MathUtil.MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), 1f, 1f);
+                        MathUtil.MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(Gv.Hud_Model3DScaleX))), 1f, 1f);
                     }
                     MathUtil.MtxFloatToFixed(mp, (o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 16)));
                     MathUtil.MtxTransformPoint(_fp, new B04O5(o).Position.P, (_fp + 128u));
@@ -98,14 +98,14 @@ public static partial class Hud
             T = new B04G2(G).sub.P;
             if (!(((int)(new B04St(new B04Pm(a).stats_).unk8F) != 0))) goto _f2;
             if (!((new B04Gs(T).unk54 != 0))) goto _f3;
-            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A6Cu + (uint)(0 * 4))));
+            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_TaggedBy + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
             if (!((new B04Pm(a).cam != 0u))) goto _f4;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
             _f4: ;
             new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
             new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
-            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A70u + (uint)(0 * 4))));
+            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_YouTagged + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(b).idx * 25)) + (uint)(b)) + (uint)(5111))), (new B04Pm(a).stats_ + (uint)132));
             if (!((new B04Pm(b).cam != 0u))) goto _f5;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
@@ -113,27 +113,27 @@ public static partial class Hud
             goto L_blk25;
             _f3: ;
             if (!((new B04Gs(T).unk78 != 0))) goto _f6;
-            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A74u + (uint)(0 * 4))));
+            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_KilledBy + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
             if (!((new B04Pm(a).cam != 0u))) goto _f7;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
             _f7: ;
             new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
             new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
-            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A80u + (uint)(0 * 4))));
+            StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_YouLostFlag + (uint)(0 * 4))));
             if (!((new B04Pm(a).cam != 0u))) goto _f8;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
             _f8: ;
             new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
             new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
-            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A70u + (uint)(0 * 4))));
+            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_YouTagged + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(b).idx * 25)) + (uint)(b)) + (uint)(5111))), (new B04Pm(a).stats_ + (uint)132));
             if (!((new B04Pm(b).cam != 0u))) goto _f9;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
             _f9: ;
             new B04Pm(b).idx_Set((new B04Pm(b).idx + 1));
             new B04Pm(b).idx_Set((new B04Pm(b).idx % 4));
-            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A84u + (uint)(0 * 4))));
+            StrUtil.Copy((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_HeDroppedFlag + (uint)(0 * 4))));
             if (!((new B04Pm(b).cam != 0u))) goto _f10;
             Hud.SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
             _f10: ;
@@ -405,7 +405,7 @@ public static partial class Hud
             flag = 1;
             if (((id == 730) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0)))
             {
-                flag = (int)(Mem.U8(0x801462F3u));
+                flag = (int)(Mem.U8(Gv.Settings_ShowCrosshair));
             }
             if ((id != (-1)))
             {
@@ -441,7 +441,7 @@ public static partial class Hud
             flag = 1;
             if (((id == 730) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0)))
             {
-                flag = (int)(Mem.U8(0x801462F3u));
+                flag = (int)(Mem.U8(Gv.Settings_ShowCrosshair));
             }
             if ((id != (-1)))
             {
@@ -450,7 +450,7 @@ public static partial class Hud
                 case 730:
                 case 751:
                 case 752:
-                    val = Mem.F32(0x800C767Cu);
+                    val = Mem.F32(Gv.Hud_CrosshairScaleA);
                     break;
                 case 700:
                 case 740:
@@ -458,17 +458,17 @@ public static partial class Hud
                 case 754:
                 case 770:
                 case 800:
-                    val = Mem.F32(0x800C7680u);
+                    val = Mem.F32(Gv.Hud_CrosshairScaleB);
                     break;
                 case 704:
                 case 705:
                 default:
-                    val = Mem.F32(0x800C7684u);
+                    val = Mem.F32(Gv.Hud_CrosshairScaleC);
                     break;
                 }
                 if ((flag != 0))
                 {
-                    Hud.DrawIconSprite(s, new B05P13(p).CrosshairPos.P, id, new B05P13(p).CrosshairAnimTime, val, Mem.F32(0x800C7688u));
+                    Hud.DrawIconSprite(s, new B05P13(p).CrosshairPos.P, id, new B05P13(p).CrosshairAnimTime, val, Mem.F32(Gv.Hud_CrosshairSize));
                 }
             }
         }
@@ -2430,8 +2430,8 @@ public static partial class Hud
             float ft0 = 0f;
             if (((Flyby.IsActive() == 0) && (Flyby.IsInWindow() == 0)))
             {
-                Gfx.BeginFlatColorPass((uint)(Mem.U8((0x801462DEu + (uint)0))), default(uint), default(uint), default(uint));
-                if ((!(Mem.F32((0x801462DEu + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((0x801462DEu + (uint)1494)) * 0.06666667f))), (fs0 = (new HudInB6(b).unk29C / (float)(Mem.S32(Gv.ScreenWidth)))))), (ft0 = (float)((int)((fs2 * 0.016666668f)))))), (fs1f = (new HudInB6(b).unk2A0 / (float)(Mem.S32(Gv.ScreenHeight)))))), (fs2 = (fs2 - (ft0 * 60f))))), ((ft0 < 1f) ? 0 : 1)) != 0) || !(fs2 < 30f)) || ((Mem.U32(Gv.LevelFrameCount) % (uint)(15)) >= (uint)(5)))))
+                Gfx.BeginFlatColorPass((uint)(Mem.U8((Gv.Settings_HudAlpha + (uint)0))), default(uint), default(uint), default(uint));
+                if ((!(Mem.F32((Gv.Settings_HudAlpha + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((Gv.Settings_HudAlpha + (uint)1494)) * 0.06666667f))), (fs0 = (new HudInB6(b).unk29C / (float)(Mem.S32(Gv.ScreenWidth)))))), (ft0 = (float)((int)((fs2 * 0.016666668f)))))), (fs1f = (new HudInB6(b).unk2A0 / (float)(Mem.S32(Gv.ScreenHeight)))))), (fs2 = (fs2 - (ft0 * 60f))))), ((ft0 < 1f) ? 0 : 1)) != 0) || !(fs2 < 30f)) || ((Mem.U32(Gv.LevelFrameCount) % (uint)(15)) >= (uint)(5)))))
                 {
                     if ((Mem.S32(Gv.ViewCount) == 1))
                     {
@@ -2748,11 +2748,11 @@ public static partial class Hud
                         Mem.Set((_fp + (uint)1), new PawnFx(a).OverlayColor[(int)(1)]);
                         Mem.Set((_fp + (uint)2), new PawnFx(a).OverlayColor[(int)(2)]);
                         Mem.Set((_fp + (uint)3), new PawnFx(a).OverlayColor[(int)(3)]);
-                        if ((Mem.S32(0x800CF228u) != 0))
+                        if ((Mem.S32(Gv.Player_EventFlybyActive) != 0))
                         {
                             for (i = 0; (i < 4); ++i)
                             {
-                                Mem.Set((_fp + (uint)i), Mem.U8((0x80102AD8u + (uint)i)));
+                                Mem.Set((_fp + (uint)i), Mem.U8((Gv.Hud_SavedOverlayColor + (uint)i)));
                             }
                         }
                         if (((Mem.S32(Gv.Settings) & 16384) != 0))
@@ -3135,9 +3135,9 @@ public static partial class Hud
                 return n;
             }
             {
-                if ((str == Mem.U32(0x800D7034u)))
+                if ((str == Mem.U32(Gv.Hud_CinemaFadeMarker_800D7034)))
                 {
-                    str = Mem.U32(0x800D7028u);
+                    str = Mem.U32(Gv.Hud_CinemaTextBlank_800D7028);
                 }
                 p = str;
                 start = p;
@@ -3218,9 +3218,9 @@ public static partial class Hud
             n = 0u;
             if ((b != 0u))
             {
-                if ((str == Mem.U32(0x800D7034u)))
+                if ((str == Mem.U32(Gv.Hud_CinemaFadeMarker_800D7034)))
                 {
-                    str = Mem.U32(0x800D7028u);
+                    str = Mem.U32(Gv.Hud_CinemaTextBlank_800D7028);
                 }
                 p = str;
                 start = p;
@@ -3448,9 +3448,9 @@ public static partial class Hud
                 return n;
             }
             {
-                if ((str == Mem.U32(0x800D7034u)))
+                if ((str == Mem.U32(Gv.Hud_CinemaFadeMarker_800D7034)))
                 {
-                    str = Mem.U32(0x800D7028u);
+                    str = Mem.U32(Gv.Hud_CinemaTextBlank_800D7028);
                 }
                 p = str;
                 start = p;

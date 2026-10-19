@@ -68,13 +68,13 @@ public static partial class MenuButton
         {
             if (Dbg.On) Dbg.Enter("func_0041B3C0", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E3460u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.MenuButton_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E3460u + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.MenuButton_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3460u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3460u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.MenuButton_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((Gv.MenuButton_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E3460u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.MenuButton_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

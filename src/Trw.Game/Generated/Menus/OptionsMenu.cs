@@ -20,19 +20,19 @@ public static partial class OptionsMenu
             MenuButton.Create(88);
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(3), (int)(OptionList.Create(89, 90)));
             OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((Gv.OptionText_Red + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((Gv.OptionText_Green + (uint)(0 * 4))));
             OptionList.SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), (int)(new O3Cfg(Gv.Settings).BloodColor));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(4), (int)(OptionList.Create(85, 86)));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((Gv.OptionText_Horizontal + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((Gv.OptionText_Vertical + (uint)(0 * 4))));
             OptionList.SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), (int)(new O3Cfg(Gv.Settings).SplitScreenLayout));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(5), (int)(OptionList.Create(81, 82)));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((Gv.OptionText_LoRez + (uint)(0 * 4))));
             if (((int)(MemUtil.GetRamSize()) != 4194304))
             {
-                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
-                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
+                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((Gv.OptionText_HiRez + (uint)(0 * 4))));
+                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((Gv.OptionText_Letterbox + (uint)(0 * 4))));
             }
             OptionList.SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), (int)(new O3Cfg(Gv.Settings).ResolutionMode));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(2), (int)(Slider.Create(83, 84, 128)));

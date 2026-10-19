@@ -17,13 +17,13 @@ public static partial class Game
                 int ret = 0;
                 uint ptr = 0u;
                 ptr = Gv.OsPfsPifRam;
-                if (!(Mem.S32((0x800D8380u + (uint)(new OSPfs(pfs).channel * 4))) != 0))
+                if (!(Mem.S32((Gv.__osMotorInitialized + (uint)(new OSPfs(pfs).channel * 4))) != 0))
                 {
                     return 5;
                 }
                 __osSiGetAccess();
                 Mem.Set(Gv.__osContLastCmd, (byte)(3));
-                __osSiRawStartDma(1, (0x8014D5E0u + (uint)(new OSPfs(pfs).channel * 64)));
+                __osSiRawStartDma(1, (Gv.__osMotorStopData + (uint)(new OSPfs(pfs).channel * 64)));
                 osRecvMesg(new OSPfs(pfs).queue_, 0u, 1);
                 __osSiRawStartDma(0, Gv.OsPfsPifRam);
                 osRecvMesg(new OSPfs(pfs).queue_, 0u, 1);
@@ -38,7 +38,7 @@ public static partial class Game
                 ret = (((int)(new __OSContRamReadFormat(_fp).rxsize) & 192) >> (int)4);
                 if ((ret == 0))
                 {
-                    if (((int)(__osContDataCrc(0x8014D6E0u)) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
+                    if (((int)(__osContDataCrc(Gv.__osMotorStopBuf)) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
                     {
                         ret = 4;
                     }

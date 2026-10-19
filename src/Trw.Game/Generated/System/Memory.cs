@@ -161,7 +161,7 @@ public static partial class AddrHash
             uint b = 0u;
             uint prev = 0u;
             uint idx = 0u;
-            b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(Gv.AddrHash_Mask)) * 16));
             if ((new B12Bucket(b).Value == (uint)(0)))
             {
                 new B12Bucket(b).Key_Set(key);
@@ -185,7 +185,7 @@ public static partial class AddrHash
                 for (; ; )
                 {
                     idx = (uint)((uint)(idx) + (uint)(2));
-                    idx = (uint)((uint)(idx) & Mem.U32(0x80105198u));
+                    idx = (uint)((uint)(idx) & Mem.U32(Gv.AddrHash_SlotMask));
                     if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).Value == (uint)(0)))
                     {
                         break;
@@ -207,7 +207,7 @@ public static partial class AddrHash
             uint p = 0u;
             uint prev = 0u;
             uint nx = 0u;
-            p = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            p = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(Gv.AddrHash_Mask)) * 16));
             prev = 0u;
             if ((new B12Bucket(p).Key != key))
             {
@@ -260,10 +260,10 @@ public static partial class AddrHash
             uint i = 0u;
             int len = 0;
             uint p = 0u;
-            for (i = (uint)(0); (i < Mem.U32(0x800D0930u)); ++i)
+            for (i = (uint)(0); (i < Mem.U32(Gv.Memory_ChainCount_800D0930)); ++i)
             {
             }
-            for (i = (uint)(0); (i < Mem.U32(0x800D0930u)); ++i)
+            for (i = (uint)(0); (i < Mem.U32(Gv.Memory_ChainCount_800D0930)); ++i)
             {
                 len = 0;
                 for (p = (new B12Mgr(Gv.ResourceMgr).buckets_ + (uint)(i * 16)); (p != 0u); p = new B12Bucket(p).next_)
@@ -276,9 +276,9 @@ public static partial class AddrHash
                 }
                 max = len;
             }
-            if ((Mem.U32(0x800D0938u) != 0u))
+            if ((Mem.U32(Gv.Memory_ChainStat_800D0938) != 0u))
             {
-                Mem.Set(0x800D0938u, (uint)(0));
+                Mem.Set(Gv.Memory_ChainStat_800D0938, (uint)(0));
             }
         }
     }
@@ -405,10 +405,10 @@ public static partial class FramePool
                 memset((uint)(new Q01Mem(a).addr), 0, (uint)(345600));
                 new Q01Pool(arg0).unk18__Set(a);
                 new Q01Pool(arg0).FrameBufferHandles.Set((int)(0), b);
-                Mem.Set(0x801536E8u, new Q01Pool(arg0).ZBufferHandle.addr);
+                Mem.Set(Gv.Gfx_ZBufferPtr, new Q01Pool(arg0).ZBufferHandle.addr);
                 for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
-                    Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b).addr) + (i * sz))));
+                    Mem.Set((Gv.Gfx_FramebufferArray + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b).addr) + (i * sz))));
                 }
             }
             else
@@ -419,26 +419,26 @@ public static partial class FramePool
                 new Q01Pool(arg0).FrameBufferHandles.Set((int)(0), b2);
                 for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
-                    Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b2).addr) + (i * sz))));
+                    Mem.Set((Gv.Gfx_FramebufferArray + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b2).addr) + (i * sz))));
                 }
-                Mem.Set(0x801536E8u, (int)(((uint)(new Q01Mem(b2).addr) + (sz * i))));
+                Mem.Set(Gv.Gfx_ZBufferPtr, (int)(((uint)(new Q01Mem(b2).addr) + (sz * i))));
             }
             for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
             {
-                memset((uint)(Mem.S32((0x801536F8u + (uint)(i * 4)))), 0, sz);
+                memset((uint)(Mem.S32((Gv.Gfx_FramebufferArray + (uint)(i * 4)))), 0, sz);
             }
-            memset((uint)(Mem.S32(0x801536E8u)), 0, sz);
-            new Q01Pool(arg0).unk4__Set(ResourcePool.Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(0x800E28A8u)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
+            memset((uint)(Mem.S32(Gv.Gfx_ZBufferPtr)), 0, sz);
+            new Q01Pool(arg0).unk4__Set(ResourcePool.Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(Gv.Gfx_AuxDisplayListCapacity)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
             new Q01Pool(arg0).unk8__Set(ResourcePool.Alloc(0, 32768, (uint)(35), (int)(0x800E0D7Cu)));
             new Q01Pool(arg0).unk1C__Set(ResourcePool.Alloc(0, 139264, (uint)(35), (int)(0x800E0D84u)));
-            Mem.Set(0x801536F0u, new Q01Pool(arg0).DisplayListHandle.addr);
-            Mem.Set(0x801536BCu, (Mem.S32(0x801536F0u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
-            Mem.Set(0x801536F4u, (Mem.S32(0x801536BCu) + (Mem.S32(0x800E28A8u) * 8)));
-            Mem.Set(0x801536C0u, (Mem.S32(0x801536F4u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
-            Mem.Set(0x801536B4u, 32768);
-            Mem.Set(0x801536ECu, 139264);
-            Mem.Set(0x801536B8u, new Q01Pool(arg0).RdpOutputBufferHandle.addr);
-            Mem.Set(0x801536B0u, new Q01Pool(arg0).Buffer136K_1C.addr);
+            Mem.Set(Gv.Gfx_DisplayListBuf0Ptr, new Q01Pool(arg0).DisplayListHandle.addr);
+            Mem.Set(Gv.Gfx_DisplayList2Buf1Ptr, (Mem.S32(Gv.Gfx_DisplayListBuf0Ptr) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
+            Mem.Set(Gv.Gfx_DisplayListBuf1Ptr, (Mem.S32(Gv.Gfx_DisplayList2Buf1Ptr) + (Mem.S32(Gv.Gfx_AuxDisplayListCapacity) * 8)));
+            Mem.Set(Gv.Gfx_DisplayList2Buf0Ptr, (Mem.S32(Gv.Gfx_DisplayListBuf1Ptr) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
+            Mem.Set(Gv.Gfx_RdpOutputBufferSize, 32768);
+            Mem.Set(Gv.Sound_HeapSize, 139264);
+            Mem.Set(Gv.Gfx_RdpOutputBufferPtr, new Q01Pool(arg0).RdpOutputBufferHandle.addr);
+            Mem.Set(Gv.Sound_HeapPtr, new Q01Pool(arg0).Buffer136K_1C.addr);
             for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
             {
             }

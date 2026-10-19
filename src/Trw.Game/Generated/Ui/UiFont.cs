@@ -147,7 +147,7 @@ public static partial class UiFont
                 }
                 if ((new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).loaded == 0))
                 {
-                    g = 0x80153BD0u;
+                    g = Gv.Image_ArchiveCtx_220_80153BD0;
                     o2 = ((uint)(Mem.S32((g + (uint)(22 * 4)))) + (uint)(idx * 1180));
                     Mem.Set((g + (uint)((-136) * 4)), (int)(FileIo.Open((g - (uint)(135 * 4)), 0x800E10E0u, default(uint), default(uint))));
                     sz = new S705Obj(o2).meta.size;

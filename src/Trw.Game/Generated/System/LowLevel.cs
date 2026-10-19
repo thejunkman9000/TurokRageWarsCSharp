@@ -15538,7 +15538,7 @@ public static partial class Bus
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002005DC", (uint)n);
-            for (Mem.Set(0x800F5C80u, 0); (Mem.S32(0x800F5C80u) < n); Mem.Set(0x800F5C80u, (int)(Mem.S32(0x800F5C80u) + 1)))
+            for (Mem.Set(Gv.Bus_SpinCounter, 0); (Mem.S32(Gv.Bus_SpinCounter) < n); Mem.Set(Gv.Bus_SpinCounter, (int)(Mem.S32(Gv.Bus_SpinCounter) + 1)))
             {
             }
         }
@@ -15615,7 +15615,7 @@ public static partial class Bus
             {
                 if (((n >= (uint)(16)) && ((((((uint)(dst) & (uint)(15)) == (uint)(0)) ? 1 : 0) & ((dmaOk != (-1)) ? 1 : 0)) != 0)))
                 {
-                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 0, src, dst, n, Gv.DevLink_PiDmaMesgQueue);
+                    dmaOk = osPiStartDma(Gv.DevLink_PiDmaIoMesg, 1, 0, src, dst, n, Gv.DevLink_PiDmaMesgQueue);
                     if ((dmaOk != (-1)))
                     {
                         osRecvMesg(Gv.DevLink_PiDmaMesgQueue, 0u, 1);
@@ -15776,7 +15776,7 @@ public static partial class Bus
             {
                 if (((n >= (uint)(16)) && ((((((uint)(src) & (uint)(15)) == (uint)(0)) ? 1 : 0) & ((dmaOk != (-1)) ? 1 : 0)) != 0)))
                 {
-                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 1, dst, src, n, Gv.DevLink_PiDmaMesgQueue);
+                    dmaOk = osPiStartDma(Gv.DevLink_PiDmaIoMesg, 1, 1, dst, src, n, Gv.DevLink_PiDmaMesgQueue);
                     if ((dmaOk != (-1)))
                     {
                         osRecvMesg(Gv.DevLink_PiDmaMesgQueue, 0u, 1);

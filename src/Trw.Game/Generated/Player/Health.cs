@@ -817,7 +817,7 @@ public static partial class Player
                             {
                                 if ((((cur >= 3841) && (Mem.S32((p + (uint)1508)) < 3841)) && ((int)(new B04Glob(Gv.ViewMgr).menuInput) == 0)))
                                 {
-                                    View.Hud_PostMessage(Gv.ViewMgr, (uint)(Mem.S32((p + (uint)1500))), (uint)(Mem.S32(0x800D7E10u)));
+                                    View.Hud_PostMessage(Gv.ViewMgr, (uint)(Mem.S32((p + (uint)1500))), (uint)(Mem.S32(Gv.HudMsg_LowHealth)));
                                 }
                             }
                             v5 = (dmg >> (int)8);
@@ -1613,7 +1613,7 @@ public static partial class Player
             if (Dbg.On) Dbg.Enter("func_0022B5B0", (uint)a, _a1);
             if ((new Plr(a).Health != 0))
             {
-                new Plr(a).BodyScale_Set(MathUtil.ApproachLinear(new Plr(a).BodyScale, 1f, Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
+                new Plr(a).BodyScale_Set(MathUtil.ApproachLinear(new Plr(a).BodyScale, 1f, Cpu.U2F((uint)(Mem.S32(Gv.Health_BodyScaleRecoverRate)))));
             }
         }
     }
@@ -1684,15 +1684,15 @@ public static partial class Player
                 new Plr(a).EmbryoTimer_Set(105f);
                 if ((new Plr(a).ViewPtr != 0u))
                 {
-                    View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, Mem.U32(0x800D71E0u));
+                    View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, Mem.U32(Gv.HudMsg_EmbryoImplanted));
                     if (((b != 0u) && ((int)(new Plr(b).Type) == 1)))
                     {
                         if (((new Plr(b).Flags & (uint)(3145728)) != 0u))
                         {
                             name = new Plr(a).EmbryoMessageText.P;
-                            sprintf(name, Mem.U32(0x800D71E8u), (new Plr(b).stats_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            sprintf(name, Mem.U32(Gv.HudMsg_SmackFmt), (new Plr(b).stats_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                             View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, name);
-                            View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, Mem.U32(0x800D71ECu));
+                            View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, Mem.U32(Gv.HudMsg_OrFindPowerCore));
                         }
                     }
                 }
@@ -1873,26 +1873,26 @@ public static partial class Player
             new S11Obj(p).FlashlightLight2Ptr_Set(0);
             new S11Obj(p).FlashlightLight3Ptr_Set(0);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(0 * 60)), (short)(120), (short)(96));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(0 * 60)), 0x800CE4BCu);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(0 * 60)), Gv.Hud_MoverPathSlot0);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(1 * 60)), (short)(190), (short)(96));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(1 * 60)), 0x800CE52Cu);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(1 * 60)), Gv.Hud_MoverPathSlot1);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(2 * 60)), (short)(260), (short)(96));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(2 * 60)), 0x800CE59Cu);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(2 * 60)), Gv.Hud_MoverPathSlot2);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(3 * 60)), (short)(28), (short)(96));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(3 * 60)), 0x800CE480u);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(3 * 60)), Gv.Hud_MoverPathSlot3);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(4 * 60)), (short)((-64)), (short)(16));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(4 * 60)), 0x800CE60Cu);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(4 * 60)), Gv.Hud_MoverPathSlot4);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(5 * 60)), (short)(40), (short)(16));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(5 * 60)), 0x800CE630u);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(5 * 60)), Gv.Hud_MoverPathSlot5);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(9 * 60)), (short)((-82)), (short)(16));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(9 * 60)), 0x800CE670u);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(9 * 60)), Gv.Hud_MoverPathSlot9);
             new S11Obj(p).Ammo0Mover[(int)(9)].f34_Set(255.0f);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(10 * 60)), (short)((-82)), (short)(68));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(10 * 60)), 0x800CE69Cu);
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(10 * 60)), Gv.Hud_MoverPathSlot10);
             ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(11 * 60)), (short)((-82)), (short)(68));
-            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(11 * 60)), 0x800CE6D8u);
-            ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
-            ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
+            ScreenMover.Start((new S11Obj(p).Ammo0Mover.P + (uint)(11 * 60)), Gv.Hud_MoverPathSlot11);
+            ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((Gv.ScreenHeight_Lo16 + (uint)(0 * 2)))) + 96)));
+            ScreenMover.Init((new S11Obj(p).Ammo0Mover.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((Gv.ScreenHeight_Lo16 + (uint)(0 * 2)))) + 96)));
             ScreenMover.Init(new S11Obj(p).HealthFlashMover_10FC.P, (short)(100), (short)(100));
             new S11Obj(p).SwimSoundTimer_Set(0);
             new S11Obj(p).CrosshairAnimTime_Set(0);
@@ -2041,7 +2041,7 @@ public static partial class Player
             new RespawnPlayer(player).ToggleFlag_13D4_Set(0);
             if (((((Game_IsInState13() != 0) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0)) && (Mem.U32(Gv.LevelFrameCount) > (uint)(10))) && ((int)(new RespawnPlayer(player).Lives) < 11)))
             {
-                Audio.PlaySndFx((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).Lives * 2)))));
+                Audio.PlaySndFx((int)(Mem.S16((Gv.Health_LivesSoundTable + (uint)(new RespawnPlayer(player).Lives * 2)))));
             }
             if ((func_0044A17C_isOnline() != 0))
             {
@@ -2101,7 +2101,7 @@ public static partial class Player
             Mem.Set(new SharedPlayer_func_8044972C_de(player).IsGibbed.P, 0);
             Player.ResetForNewLife(player);
             Mem.Set((new SharedPlayer_func_8044972C_de(player).LifeForce.P + 628u), 0);
-            if ((((Mem.S32((new SharedPlayer_func_8044972C_de(player).ViewPtr.P + 4u)) == 12) && (Mem.S32(new SharedPlayer_func_8044972C_de(player).IsComputer.P) != 0)) && (Mem.S32(0x8013B294u) == 9)))
+            if ((((Mem.S32((new SharedPlayer_func_8044972C_de(player).ViewPtr.P + 4u)) == 12) && (Mem.S32(new SharedPlayer_func_8044972C_de(player).IsComputer.P) != 0)) && (Mem.S32(Gv.Level_CurrentId) == 9)))
             {
                 Player.PlaceAtSpawn(player, (uint)(3101), (uint)(scale), (uint)(1));
             }

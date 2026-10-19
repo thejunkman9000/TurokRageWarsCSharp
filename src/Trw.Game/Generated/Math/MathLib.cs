@@ -389,8 +389,8 @@ public static partial class MathUtil
             fi = (float)(i);
             if ((fi < 1023f))
             {
-                a = Mem.F32((0x800D162Cu + (uint)(i * 4)));
-                r = (a + ((fx - fi) * (Mem.F32((0x800D1630u + (uint)(i * 4))) - a)));
+                a = Mem.F32((Gv.Acos_Table + (uint)(i * 4)));
+                r = (a + ((fx - fi) * (Mem.F32((Gv.Acos_TableNext + (uint)(i * 4))) - a)));
                 if ((neg != 0))
                 {
                     return (3.1415927f - r);
@@ -426,7 +426,7 @@ public static partial class MathUtil
             }
             if ((((x < 0.0f) && (v > 0.0f)) || ((x > 0.0f) && (v < 0.0f))))
             {
-                v = (float)((float)(v) * Mem.F32(0x800C9A50u));
+                v = (float)((float)(v) * Mem.F32(Gv.MathLib_ApproachConsts));
             }
             x = (float)((float)(x) + (v * Mem.F32(Gv.FrameTime)));
             if ((v < 0.0f))
@@ -515,7 +515,7 @@ public static partial class MathUtil
             float x = Mem.F32(p);
             float d = (((t - x) * r) * Mem.F32(Gv.FrameTime));
             float n = 0f;
-            if ((r == Mem.F32((0x800C9A50u + (uint)(1 * 4)))))
+            if ((r == Mem.F32((Gv.MathLib_ApproachConsts + (uint)(1 * 4)))))
             {
                 Mem.Set(p, t);
             }
@@ -697,7 +697,7 @@ public static partial class MathUtil
                 t = Mem.U32((p + (uint)(0 * 4)));
                 s = t;
                 t = (t & (uint)(2147483647));
-                h = Mem.F64(0x800CA850u);
+                h = Mem.F64(Gv.MathLib_LdexpConsts);
                 Mem.Set(_fp, h);
                 Mem.Set((p + (uint)(0 * 4)), (t | ((s >> (int)31) << (int)31)));
                 return h;
@@ -1427,9 +1427,9 @@ public static partial class MathUtil
             }
             if ((r < 9.99999997E-7f))
             {
-                return Mem.F32((0x800D2B60u + (uint)(q * 4)));
+                return Mem.F32((Gv.Atan2_QuadrantOffsets + (uint)(q * 4)));
             }
-            return (func_0029D044_Atan(t) + Mem.F32((0x800D2B60u + (uint)(q * 4))));
+            return (func_0029D044_Atan(t) + Mem.F32((Gv.Atan2_QuadrantOffsets + (uint)(q * 4))));
         }
     }
 
@@ -2194,9 +2194,9 @@ public static partial class MathUtil
                 }
                 else
                 {
-                    if ((Mem.F32((0x800CAE28u + (uint)(0 * 4))) < value))
+                    if ((Mem.F32((Gv.MathLib_AngleWrapConsts + (uint)(0 * 4))) < value))
                     {
-                        new_var3 = Mem.F32((0x800CAE28u + (uint)(0 * 4)));
+                        new_var3 = Mem.F32((Gv.MathLib_AngleWrapConsts + (uint)(0 * 4)));
                         do
                         {
                             value = (float)((float)(value) - new_var3);
@@ -2210,7 +2210,7 @@ public static partial class MathUtil
                     {
                         do
                         {
-                            new_var = 0x800CAE28u;
+                            new_var = Gv.MathLib_AngleWrapConsts;
                             value = (float)((float)(value) + Mem.F32((new_var + (uint)(1 * 4))));
                         }
                         while ((value < (new_var3 = 0.0f)));
@@ -2521,7 +2521,7 @@ public static partial class RandomGen
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A11D8", (uint)v);
-            Mem.Set(0x800D2B70u, v);
+            Mem.Set(Gv.Lcg_Seed, v);
         }
     }
 
@@ -2531,8 +2531,8 @@ public static partial class RandomGen
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A11E8");
-            Mem.Set(0x800D2B70u, ((Mem.S32(0x800D2B70u) * 214013) + 2531011));
-            return ((Mem.S32(0x800D2B70u) >> (int)16) & 32767);
+            Mem.Set(Gv.Lcg_Seed, ((Mem.S32(Gv.Lcg_Seed) * 214013) + 2531011));
+            return ((Mem.S32(Gv.Lcg_Seed) >> (int)16) & 32767);
         }
     }
 }

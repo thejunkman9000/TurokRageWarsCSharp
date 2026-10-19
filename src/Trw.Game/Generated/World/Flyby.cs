@@ -98,14 +98,14 @@ public static partial class Flyby
                     if ((id != (-1)))
                     {
                         snd = Gv.LevelMgr;
-                        if ((Mem.S32(0x8013B294u) != id))
+                        if ((Mem.S32(Gv.Level_CurrentId) != id))
                         {
                             Mem.Set((_fp + (uint)(0 * 4)), 0);
                             Mem.Set((_fp + (uint)(1 * 4)), 0);
                             Mem.Set((_fp + (uint)(2 * 4)), 0);
-                            r = Level.FindNearestPlacedObject(snd, _fp, id, 0x8013B2A8u);
+                            r = Level.FindNearestPlacedObject(snd, _fp, id, Gv.Level_StartPointPos);
                             Mem.Set(Gv.Level_StartPointId, r);
-                            Mem.Set(0x8013B2A4u, ((r != 0) ? 1 : 0));
+                            Mem.Set(Gv.Level_HasStartPoint, ((r != 0) ? 1 : 0));
                             Level.Load(snd, (uint)(id), (uint)(((r != 0) ? 1 : 0)), default(uint));
                         }
                     }
@@ -184,9 +184,9 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002450BC");
-            if ((Mem.S32(0x800D0660u) != Mem.S32(Gv.Video_FrameCount)))
+            if ((Mem.S32(Gv.Flyby_LastUpdateFrame) != Mem.S32(Gv.Video_FrameCount)))
             {
-                Mem.Set(0x800D0660u, Mem.S32(Gv.Video_FrameCount));
+                Mem.Set(Gv.Flyby_LastUpdateFrame, Mem.S32(Gv.Video_FrameCount));
                 if ((Flyby.RunPending() == 0))
                 {
                     if ((Flyby.IsActive() != 0))
@@ -249,7 +249,7 @@ public static partial class Flyby
                     }
                 }
                 Flyby.RunPending();
-                if ((((((Flyby.IsActive() != 0) && !(Flyby.IsHolding() != 0)) && (Mem.S32((0x80145074u + (uint)(0 * 4))) == 0)) && (Mem.S32((0x80145074u + (uint)(1581 * 4))) == 0)) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 0)))
+                if ((((((Flyby.IsActive() != 0) && !(Flyby.IsHolding() != 0)) && (Mem.S32((Gv.PlayerPool_FlybyBlock_80145074 + (uint)(0 * 4))) == 0)) && (Mem.S32((Gv.PlayerPool_FlybyBlock_80145074 + (uint)(1581 * 4))) == 0)) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 0)))
                 {
                     if (((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowEnd) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowEndDone == 0)))
                     {
@@ -624,7 +624,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245980", (uint)a);
-            Mem.Set(0x800E2844u, a);
+            Mem.Set(Gv.Flyby_LetterboxEnabled, a);
         }
     }
 
@@ -2533,8 +2533,8 @@ public static partial class Flyby
                     }
                 }
             }
-            res = (float)((float)(res) * ((Mem.F32(0x800E2848u) + Mem.F32(0x800E2848u)) + 1f));
-            res = (float)((float)(res) - Mem.F32(0x800E2848u));
+            res = (float)((float)(res) * ((Mem.F32(Gv.Flyby_FadeAlphaMargin) + Mem.F32(Gv.Flyby_FadeAlphaMargin)) + 1f));
+            res = (float)((float)(res) - Mem.F32(Gv.Flyby_FadeAlphaMargin));
             if ((1f < res))
             {
                 res = 1f;
@@ -2986,7 +2986,7 @@ public static partial class Flyby
                     Mem.Set(((_fp + 32u) + (uint)3), (sbyte)(Cpu.TruncU32(v)));
                     Gfx.FillRectBlended(Gv.GameCtx, (_fp + 32u), (int)(s1), (int)(s0), (int)(s3), (int)(s2));
                 }
-                if ((Mem.S32(0x800E2844u) != 0))
+                if ((Mem.S32(Gv.Flyby_LetterboxEnabled) != 0))
                 {
                     Flyby.DrawLetterbox(default(uint), default(uint), default(uint), default(uint));
                 }
@@ -3016,7 +3016,7 @@ public static partial class Flyby
                 {
                     k4 = (int)(new O01Sel_v2(sel).unk4);
                     k0 = (int)(new O01Sel_v2(sel).unkA);
-                    p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(0x8011FEBCu), 0, _fp);
+                    p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(Gv.Flyby_IndexKey), 0, _fp);
                     if ((p == 0u))
                     {
                         r = 0u;
@@ -3070,7 +3070,7 @@ public static partial class Flyby
                 {
                     return 0;
                 }
-                p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(0x8011FEBCu), 0, _fp);
+                p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(Gv.Flyby_IndexKey), 0, _fp);
                 if ((p == 0u))
                 {
                     r = 0u;
@@ -3122,7 +3122,7 @@ public static partial class Flyby
                 uint ents = 0u;
                 if ((Mem.S32(Gv.Flyby_QueueEnabled) != 0))
                 {
-                    p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(0x8011FEBCu), 0, _fp);
+                    p = Resource.GetCartridgeKey(Mem.U32(Gv.Flyby_IndexTablePtr), Mem.U32(Gv.Flyby_IndexKey), 0, _fp);
                     if ((p == 0u))
                     {
                         r = 0u;

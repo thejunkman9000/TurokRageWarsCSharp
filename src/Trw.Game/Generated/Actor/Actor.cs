@@ -79,7 +79,7 @@ public static partial class Actor
                     Vec.Sub((_fp + 32u), (_fp + 32u), (_fp + 16u));
                     new ActorB(a).Yaw_Set((new ActorB(a).Yaw + ang));
                     Vec.Add((_fp + 16u), (_fp + 16u), (_fp + 32u));
-                    Collision.MoveActor((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
+                    Collision.MoveActor((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(Gv.Collision_PlatformRideCtx));
                     Mem.Copy(new ActorB(a).Velocity.P, _fp, 12);
                     if ((((int)(new ActorB(t).Type) == 1) && (new ActorDef(new ActorB(t).DefPtr).Kind == 2)))
                     {
@@ -1381,18 +1381,18 @@ public static partial class Actor
                         ctx = Gv.Collision_MoveCtx;
                         if ((r != 0))
                         {
-                            ctx = 0x80104050u;
+                            ctx = Gv.Collision_MoveCtxDefFlag01;
                         }
                     }
                     else
                     {
                         if ((Actor.HasDefFlag4Cx08_0024DF90(o) == 0))
                         {
-                            ctx = 0x80104070u;
+                            ctx = Gv.Collision_MoveCtxDead;
                         }
                         else
                         {
-                            ctx = 0x80103FF0u;
+                            ctx = Gv.Collision_MoveCtxDeadAlt;
                         }
                     }
                 }
@@ -1542,7 +1542,7 @@ public static partial class Actor
                 if (!((s1 < Mem.S32(Gv.PlayerCount)))) goto _f5;
                 j = 0;
                 n = Mem.S32(Gv.PlayerCount);
-                pl = (uint)(Mem.S32(0x80145044u));
+                pl = (uint)(Mem.S32(Gv.PlayerPool_PlayersPtr));
                 _f6: ;
                 if (!((j < n))) goto _f8;
                 if (!((pl == o))) goto _f9;
@@ -1559,7 +1559,7 @@ public static partial class Actor
                 _f8: ;
                 _f5: ;
                 _f4: ;
-                tab = Mem.U32((0x800D0680u + (uint)(k * 4)));
+                tab = Mem.U32((Gv.Actor_ClassTable + (uint)(k * 4)));
                 L_call: ;
                 ActorState.Init(o, (o + 368u), tab, default(uint));
                 if (!((new B10Obj(o).p1A0_ != 0u))) goto _f11;
@@ -1958,7 +1958,7 @@ public static partial class Actor
                 c = new B10Z(z).pC_;
                 if ((c == 0u))
                 {
-                    c = 0x801043D8u;
+                    c = Gv.Collision_DefaultRegionCtx;
                 }
                 save = new B10C(c).f8;
                 if (((int)((ushort)(((int)(new B10Obj(o).StateCode_238) - 11020))) < 8))
@@ -2241,10 +2241,10 @@ public static partial class Actor
                 MathUtil.MtxTransformPoint((_fp + 160u), (_fp + 32u), (_fp + 48u));
                 best = 0u;
                 thr = cosf((new_var2 * 0.008726647f));
-                n = Mem.S32(0x80120CD8u);
+                n = Mem.S32(Gv.AutoAim_ActorCount);
                 for (i = 0; (i < n); ++i)
                 {
-                    obj = Mem.U32((0x80120AD8u + (uint)(i * 4)));
+                    obj = Mem.U32((Gv.AutoAim_ActorList + (uint)(i * 4)));
                     if ((obj == self))
                     {
                         continue;
@@ -2917,7 +2917,7 @@ public static partial class Actor
                 {
                     for (i = 0; (i < Mem.S32(Gv.PlayerCount)); ++i)
                     {
-                        p = (Mem.U32(0x80145044u) + (uint)(i * 5864));
+                        p = (Mem.U32(Gv.PlayerPool_PlayersPtr) + (uint)(i * 5864));
                         if ((p == a))
                         {
                             d = 0u;
@@ -2930,7 +2930,7 @@ public static partial class Actor
                         }
                     }
                 }
-                d = Mem.U32((0x800D0680u + (uint)(t * 4)));
+                d = Mem.U32((Gv.Actor_ClassTable + (uint)(t * 4)));
             }
             L_have: ;
             if (((d != 0u) && (new B11Desc(d).cb != 0u)))
@@ -3536,7 +3536,7 @@ public static partial class Actor
                     }
                 }
             }
-            return Mem.U32((0x800D0680u + (uint)(t * 4)));
+            return Mem.U32((Gv.Actor_ClassTable + (uint)(t * 4)));
         }
     }
 
@@ -6482,7 +6482,7 @@ public static partial class ObjectUtil
                 }
                 else
                 {
-                    var_a2 = Mem.S32((0x800CE430u + (uint)(new func_8021C9B4_S3(new func_8044AD14_S1(arg0).DefPtr).unkC * 4)));
+                    var_a2 = Mem.S32((Gv.Player_VariantActorTypeTable + (uint)(new func_8021C9B4_S3(new func_8044AD14_S1(arg0).DefPtr).unkC * 4)));
                     new func_8044AD14_S1(arg0).ShadeParam_3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).unk81);
                 }
             }

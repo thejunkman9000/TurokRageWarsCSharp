@@ -37,9 +37,9 @@ public static partial class Game
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                                 Mem.Set(p, v);
-                                if ((Mem.U32(0x800D364Cu) != 0u))
+                                if ((Mem.U32(Gv.DbgLink_CallHook) != 0u))
                                 {
-                                    res = (uint)((int)(Funcs.CallReg(Mem.U32(0x800D364Cu), Mem.U32(_fp), 0u, 0u, 0u)));
+                                    res = (uint)((int)(Funcs.CallReg(Mem.U32(Gv.DbgLink_CallHook), Mem.U32(_fp), 0u, 0u, 0u)));
                                 }
                                 dbgLinkSendByte((byte)((res >> (int)24)));
                                 if ((Mem.S32(Gv.DbgLink_Error) == 0))

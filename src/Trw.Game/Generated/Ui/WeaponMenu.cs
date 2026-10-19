@@ -353,19 +353,19 @@ public static partial class TeamMenu
             Mem.Set((p + (uint)4536), 0);
             switch ((int)(new B04Act(p).PlayerEntryPtr.TeamId)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
             _f19: ;
-            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
+            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(Gv.HudMsg_JoinedTeamCoyote)));
             a0 = 742;
             goto L_blk38;
             _f20: ;
-            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
+            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(Gv.HudMsg_JoinedTeamBear)));
             a0 = 740;
             goto L_blk38;
             _f21: ;
-            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
+            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(Gv.HudMsg_JoinedTeamCougar)));
             a0 = 744;
             goto L_blk38;
             _f22: ;
-            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
+            View.Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(Gv.HudMsg_JoinedTeamViper)));
             a0 = 748;
             L_blk38: ;
             Audio.PlaySound2D(a0);
@@ -881,7 +881,7 @@ public static partial class WeaponMenu
                 int gg = 0;
                 float new_var = 0f;
                 int bl = 0;
-                t = ((int)(Mem.U8(0x801462DEu)) + 64);
+                t = ((int)(Mem.U8(Gv.Settings_HudAlpha)) + 64);
                 new_var4 = new B04Menu(o).OpenScale;
                 do
                 {

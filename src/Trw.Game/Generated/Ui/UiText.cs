@@ -217,7 +217,7 @@ public static partial class UiText
                         Mem.Set(Gv.Ui_DrawModeValid, 1);
                     }
                     Ui.GetClipRect((new O02Rect(_fp).w.P + (uint)(0 * 4)), (new O02Rect(_fp).w.P + (uint)(2 * 4)), (new O02Rect(_fp).w.P + (uint)(1 * 4)), (new O02Rect(_fp).w.P + (uint)(3 * 4)));
-                    Ui.SetClipRect(Mem.S32(Gv.UiText_BatchClip), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
+                    Ui.SetClipRect(Mem.S32(Gv.UiText_BatchClip), Mem.S32(Gv.UiText_BatchClip2), Mem.S32(Gv.UiText_BatchClip1), Mem.S32(Gv.UiText_BatchClip3));
                     for (i = 0; (i < Mem.S32(Gv.UiText_BatchCount)); ++i)
                     {
                         it = new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).items_;
@@ -235,7 +235,7 @@ public static partial class UiText
                                 it = new O02Ent(e).items_;
                                 if (!(started != 0))
                                 {
-                                    int r2 = (int)(UiFont.GetGlyphTexture((byte)((i & 255)), Mem.S32(0x801539A0u), Mem.S32(0x801539A4u)));
+                                    int r2 = (int)(UiFont.GetGlyphTexture((byte)((i & 255)), Mem.S32(Gv.UiText_BatchFontIdx), Mem.S32(Gv.UiText_BatchFontWhich)));
                                     if (!(r2 != 0))
                                     {
                                         j = Mem.S32(Gv.UiText_BatchCount);
@@ -267,8 +267,8 @@ public static partial class UiText
             if (Dbg.On) Dbg.Enter("func_0040E914");
             UiText.FlushGlyphBatches();
             new O02Q(Gv.UiText_BatchClip).a_Set(new O02Q(Gv.UiText_BatchClip).c_Set(0));
-            new O02Q(Gv.UiText_BatchClip).b_Set(Mem.S32(0x800E2AB0u));
-            new O02Q(Gv.UiText_BatchClip).d_Set(Mem.S32(0x800E2AB4u));
+            new O02Q(Gv.UiText_BatchClip).b_Set(Mem.S32(Gv.Ui_ScreenMaxX));
+            new O02Q(Gv.UiText_BatchClip).d_Set(Mem.S32(Gv.Ui_ScreenMaxY));
         }
     }
 

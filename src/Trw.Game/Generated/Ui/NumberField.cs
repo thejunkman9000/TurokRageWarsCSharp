@@ -76,13 +76,13 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2B50", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new DispEnt((0x800D2C20u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new DispEnt((Gv.NumberField_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new DispEnt((0x800D2C20u + (uint)(i * 12))).key == a1))
+                if ((new DispEnt((Gv.NumberField_MsgTable + (uint)(i * 12))).key == a1))
                 {
-                    if (((new DispEnt((0x800D2C20u + (uint)(i * 12))).val == (int)(new ObjC(o).unkC)) || (new DispEnt((0x800D2C20u + (uint)(i * 12))).val == 30000)))
+                    if (((new DispEnt((Gv.NumberField_MsgTable + (uint)(i * 12))).val == (int)(new ObjC(o).unkC)) || (new DispEnt((Gv.NumberField_MsgTable + (uint)(i * 12))).val == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new DispEnt((0x800D2C20u + (uint)(i * 12))).fn, o, (uint)(a1), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new DispEnt((Gv.NumberField_MsgTable + (uint)(i * 12))).fn, o, (uint)(a1), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

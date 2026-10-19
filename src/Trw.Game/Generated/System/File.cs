@@ -101,16 +101,16 @@ public static partial class FileIo
         {
             if (Dbg.On) Dbg.Enter("func_002A1D38");
             uint p = 0u;
-            if (((Mem.Set(0x800D2B80u, (int)(Mem.S32(0x800D2B80u) + 1)) - 1) == 0))
+            if (((Mem.Set(Gv.File_InitRefCount, (int)(Mem.S32(Gv.File_InitRefCount) + 1)) - 1) == 0))
             {
-                Mem.Set(0x800D2B84u, 305419896);
-                if ((Mem.S32(0x800D2BC0u) != 1))
+                Mem.Set(Gv.File_Magic, 305419896);
+                if ((Mem.S32(Gv.RomFile_ArchiveLoaded) != 1))
                 {
-                    p = 0x800D2BB8u;
+                    p = Gv.RomFile_ArchiveSize;
                     Mem.Set(p, 569925);
-                    Mem.Set(Gv.RomFile_ArchiveBuffer, (int)(ResourcePool.Malloc((uint)(Mem.S32(0x800D2BB8u)))));
-                    RomDma.ReadSync(Gv.RomDma_Ctl, (uint)(2097152), (uint)(Mem.S32(0x800D2BB8u)), (uint)(Mem.S32(Gv.RomFile_ArchiveBuffer)));
-                    Mem.Set(0x800D2BBCu, 0);
+                    Mem.Set(Gv.RomFile_ArchiveBuffer, (int)(ResourcePool.Malloc((uint)(Mem.S32(Gv.RomFile_ArchiveSize)))));
+                    RomDma.ReadSync(Gv.RomDma_Ctl, (uint)(2097152), (uint)(Mem.S32(Gv.RomFile_ArchiveSize)), (uint)(Mem.S32(Gv.RomFile_ArchiveBuffer)));
+                    Mem.Set(Gv.RomFile_State_800D2BBC, 0);
                     Mem.Set((p + (uint)(2 * 4)), 1);
                 }
                 FileIo.SetCallbacks((int)(0x002A2158u), (int)(0x002A2188u), (int)(0x002A2198u), (int)(0x002A21ECu), (int)(0x002A21F4u), (int)(0x002A2220u), (int)(0x002A2230u));
@@ -124,14 +124,14 @@ public static partial class FileIo
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A1E34");
-            Mem.Set(0x800D2B80u, (Mem.S32(0x800D2B80u) - 1));
+            Mem.Set(Gv.File_InitRefCount, (Mem.S32(Gv.File_InitRefCount) - 1));
             if ((Mem.S32(Gv.RomFile_ArchiveBuffer) != 0))
             {
                 ResourcePool.MallocFree((uint)(Mem.S32(Gv.RomFile_ArchiveBuffer)));
             }
             Mem.Set(Gv.RomFile_ArchiveBuffer, 0);
-            Mem.Set(0x800D2BBCu, 0);
-            Mem.Set(0x800D2BC0u, 0);
+            Mem.Set(Gv.RomFile_State_800D2BBC, 0);
+            Mem.Set(Gv.RomFile_ArchiveLoaded, 0);
         }
     }
 
@@ -393,13 +393,13 @@ public static partial class FileIo
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2050", (uint)a, (uint)b, (uint)c, (uint)d);
-            Mem.Set(0x800D2B94u, a);
-            Mem.Set(0x800D2B98u, b);
-            Mem.Set(0x800D2B9Cu, c);
-            Mem.Set(0x800D2BA0u, d);
-            Mem.Set(0x800D2BA4u, e);
-            Mem.Set(0x800D2BA8u, f);
-            Mem.Set(0x800D2BACu, g);
+            Mem.Set(Gv.File_CallbackA_800D2B94, a);
+            Mem.Set(Gv.File_CallbackB_800D2B98, b);
+            Mem.Set(Gv.File_ReadCallback, c);
+            Mem.Set(Gv.File_CallbackD_800D2BA0, d);
+            Mem.Set(Gv.File_CallbackE_800D2BA4, e);
+            Mem.Set(Gv.File_CallbackF_800D2BA8, f);
+            Mem.Set(Gv.File_CallbackG_800D2BAC, g);
         }
     }
 }

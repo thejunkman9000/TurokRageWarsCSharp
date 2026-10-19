@@ -12,7 +12,7 @@ public static partial class PauseControllerMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436AD8", (uint)i);
-            Mem.Set((0x80146410u + (uint)((i * 150) + 7)), (byte)(i));
+            Mem.Set((Gv.Settings_PlayerRecords_Active + (uint)((i * 150) + 7)), (byte)(i));
             OptionList.SetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).ControlTypeOption, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).ControlType));
             OptionList.SetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).LookSpringOption, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).LookSpring));
             Slider.SetValue(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).HorzSensitivitySlider, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickHorzSensitivity));
@@ -49,15 +49,15 @@ public static partial class PauseControllerMenu
             if (Dbg.On) Dbg.Enter("func_00437074", (uint)cfg);
             Mem.Set(Gv.PauseControllerMenu_PagePtr, ResourcePool.Malloc((uint)(80)));
             MenuButton.Create(454);
-            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).ControlTypeOption_Set(OptionList.Create(457, 458)), Mem.U32((0x800D74D0u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).ControlTypeOption, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).ControlTypeOption_Set(OptionList.Create(457, 458)), Mem.U32((Gv.OptionText_Normal + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).ControlTypeOption, Mem.U32((Gv.OptionText_Arcade + (uint)(0 * 4))));
             OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).LookSpringOption_Set(OptionList.Create(465, 466)), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
             OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).LookSpringOption, Mem.U32((Gv.Str_OnPtr + (uint)(0 * 4))));
             new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).HorzSensitivitySlider_Set(Slider.Create(463, 464, 255));
             new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).VertSensitivitySlider_Set(Slider.Create(461, 462, 255));
-            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption_Set(OptionList.Create(459, 460)), Mem.U32((0x800D74E0u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption_Set(OptionList.Create(459, 460)), Mem.U32((Gv.OptionText_Wheel + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((Gv.OptionText_Tap + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((Gv.OptionText_Mixed + (uint)(0 * 4))));
             MenuButton.Create(456);
             new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleNodePtr_Set(UiTree.FindNode(cfg, (uint)(455), default(uint), default(uint)));
             new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex_Set(0);
@@ -146,7 +146,7 @@ public static partial class PauseControllerMenu
                 new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex_Set(0);
             }
             PauseControllerMenu.LoadSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex);
-            StrUtil.FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(Gv.ControllerMenu_TitleFmt)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleNodePtr).TextPtr_Set(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P);
             return 0;
         }
@@ -170,7 +170,7 @@ public static partial class PauseControllerMenu
                 new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex_Set(3);
             }
             PauseControllerMenu.LoadSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex);
-            StrUtil.FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(Gv.ControllerMenu_TitleFmt)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleNodePtr).TextPtr_Set(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).TitleText.P);
             return 0;
         }

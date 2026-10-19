@@ -228,7 +228,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osLeoResume");
-            uint es = (0x8014FDA0u + (uint)(8 * 8));
+            uint es = (Gv.__osEventStateTab + (uint)(8 * 8));
             uint mq = new __OSEventState(es).messageQueue_;
             int last = 0;
             if (((mq == 0u) || (new OSMesgQueue(mq).validCount >= new OSMesgQueue(mq).msgCount)))

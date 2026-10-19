@@ -734,15 +734,15 @@ public static partial class Inventory
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A7F58_is_restorable", (uint)address);
-            if (((address >= (uint)(0x800D2F80u)) && (address < ((uint)(0x800D2F80u) + (uint)(16)))))
+            if (((address >= (uint)(Gv.Restore_ExcludedBuffer_800D2F80)) && (address < ((uint)(Gv.Restore_ExcludedBuffer_800D2F80) + (uint)(16)))))
             {
                 return 0;
             }
-            if ((address == (uint)(0x8014D330u)))
+            if ((address == (uint)(Gv.Boot_IsColdBoot)))
             {
                 return 0;
             }
-            if ((Mem.S32(0x8014D330u) != 0))
+            if ((Mem.S32(Gv.Boot_IsColdBoot) != 0))
             {
                 return 1;
             }
@@ -758,7 +758,7 @@ public static partial class Inventory
             {
                 return 0;
             }
-            if (((address >= (uint)(0x800F81F0u)) && (address < ((uint)(0x800F81F0u) + (uint)(20480)))))
+            if (((address >= (uint)(Gv.Level_EntityFlagData)) && (address < ((uint)(Gv.Level_EntityFlagData) + (uint)(20480)))))
             {
                 return 0;
             }
@@ -1354,7 +1354,7 @@ public static partial class Pickup
                     new M03Dl(d2).w1_Set((uint)(0));
                     if ((Mem.S32(new ObjView(a).DefPtr) == 8))
                     {
-                        MathUtil.MtxMakeRotateY(_fp, Mem.F32(0x8013B190u));
+                        MathUtil.MtxMakeRotateY(_fp, Mem.F32(Gv.Items_SpinAngle));
                     }
                     else
                     {
@@ -1637,7 +1637,7 @@ public static partial class Pickup
                 if (Dbg.On) Dbg.Enter("func_0024F624", (uint)a);
                 if ((new ActorInfo_v2(new Actor_v2(a).info_).Kind == 8))
                 {
-                    MathUtil.MtxMakeRotateY(_fp, Cpu.U2F((uint)(Mem.S32(0x8013B190u))));
+                    MathUtil.MtxMakeRotateY(_fp, Cpu.U2F((uint)(Mem.S32(Gv.Items_SpinAngle))));
                 }
                 else
                 {
@@ -2454,7 +2454,7 @@ public static partial class Pickup
                         new Plr24d(o).PlayerEntryPtr.IsMonkey_Set((byte)(0));
                         new Plr24d(o).PlayerEntryPtr.IsIt_Set(t);
                         new Glob24b(Gv.Settings_MatchRules).MonkeyEvent_74_Set(2);
-                        Mem.Set(0x800CE408u, Audio.IsSoundOn());
+                        Mem.Set(Gv.Monkey_SavedSoundOn_800CE408, Audio.IsSoundOn());
                         if ((Audio.IsSoundOn() != 0))
                         {
                             Audio.PlayCue(61);
@@ -2474,7 +2474,7 @@ public static partial class Pickup
                         {
                             if (((q != o) && (new Plr24d(q).ViewPtr != 0)))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(q).ViewPtr), (uint)(Mem.S32(0x800D70D8u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(q).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_FlagClaimed)));
                             }
                             q = new Plr24d(q).unk16E0_;
                         }
@@ -2499,7 +2499,7 @@ public static partial class Pickup
                         new Plr24d(o).EmbryoOwnerPtr_Set(0);
                         if ((new Plr24d(o).ViewPtr != 0))
                         {
-                            View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D71E4u)));
+                            View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_EmbryoDestroyed)));
                         }
                     }
                     else
@@ -2536,7 +2536,7 @@ public static partial class Pickup
                                     }
                                     if ((new Plr24d(q).ViewPtr != 0))
                                     {
-                                        View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(q).ViewPtr), (uint)(Mem.S32(0x800D7154u)));
+                                        View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(q).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_SlowTime)));
                                     }
                                     ++i;
                                 }
@@ -2548,7 +2548,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(356);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7158u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_BlastShield)));
                             }
                             new Plr24d(o).PowerupTintR_Set((byte)(255));
                             new Plr24d(o).PowerupTintAlpha_Set(255.0f);
@@ -2559,7 +2559,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(351);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D715Cu)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_Regeneration)));
                             }
                             break;
                         case 8:
@@ -2567,7 +2567,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(357);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7160u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_Petrify)));
                             }
                             new Plr24d(o).PowerupTintR_Set((byte)(255));
                             new Plr24d(o).PowerupTintG_Set((byte)(255));
@@ -2579,7 +2579,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(352);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7164u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupDamageReversal)));
                             }
                             new Plr24d(o).PowerupTintR_Set((byte)(255));
                             new Plr24d(o).PowerupTintB_Set((byte)(255));
@@ -2591,7 +2591,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(358);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7168u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupInvisibility)));
                             }
                             break;
                         case 64:
@@ -2599,7 +2599,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(353);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D716Cu)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupLifeForceVampire)));
                             }
                             break;
                         case 128:
@@ -2607,7 +2607,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(361);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7170u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupSpeedBurst)));
                             }
                             break;
                         case 256:
@@ -2615,7 +2615,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(354);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7174u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupTeleportation)));
                             }
                             break;
                         case 512:
@@ -2624,7 +2624,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(362);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D717Cu)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupMassiveDamage)));
                             }
                             new Plr24d(o).PowerupTintAlpha_Set(255.0f);
                             new Plr24d(o).PowerupTintFadeRate_Set((new Plr24d(o).PowerupTintAlpha / new Plr24d(o).PowerupTime));
@@ -2634,7 +2634,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(355);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7180u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupInvulnerability)));
                             }
                             new Plr24d(o).PowerupTintR_Set((byte)(255));
                             new Plr24d(o).PowerupTintG_Set((byte)(255));
@@ -2647,7 +2647,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(360);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7184u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupBulletShield)));
                             }
                             new Plr24d(o).PowerupTintB_Set((byte)(255));
                             new Plr24d(o).PowerupTintAlpha_Set(255.0f);
@@ -2658,7 +2658,7 @@ public static partial class Pickup
                             Audio.PlaySndFx(351);
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D7188u)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupEnergyAbsorption)));
                             }
                             new Plr24d(o).PowerupTintG_Set((byte)(255));
                             new Plr24d(o).PowerupTintAlpha_Set(255.0f);
@@ -2667,7 +2667,7 @@ public static partial class Pickup
                         default:
                             if ((new Plr24d(o).ViewPtr != 0))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(0x800D718Cu)));
+                                View.Hud_PostMessage(Gv.ViewMgr, (uint)(new Plr24d(o).ViewPtr), (uint)(Mem.S32(Gv.HudMsg_PowerupSomethingElse)));
                             }
                             break;
                         }
@@ -2676,19 +2676,19 @@ public static partial class Pickup
                     break;
                 case 5016:
                     ok = 1;
-                    Mem.Set((0x80102B14u + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((0x80102B14u + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 10));
+                    Mem.Set((Gv.ProfileTable_AmmoCapBonus2 + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_AmmoCapBonus2 + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 10));
                     new Plr24d(o).unk5F8_Set((ushort)((int)(new Plr24d(o).unk5F8) + 10));
                     Flyby.QueueById(501);
                     break;
                 case 5024:
                     ok = 1;
-                    Mem.Set((0x80102B15u + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((0x80102B15u + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 50));
+                    Mem.Set((Gv.ProfileTable_AmmoCapBonus0 + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_AmmoCapBonus0 + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 50));
                     new Plr24d(o).Ammo_Set((ushort)((int)(new Plr24d(o).Ammo) + 50));
                     Flyby.QueueById(503);
                     break;
                 case 5023:
                     ok = 1;
-                    Mem.Set((0x80102B16u + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((0x80102B16u + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 50));
+                    Mem.Set((Gv.ProfileTable_AmmoCapBonus1 + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_AmmoCapBonus1 + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 50));
                     new Plr24d(o).unk5F6_Set((ushort)((int)(new Plr24d(o).unk5F6) + 50));
                     Flyby.QueueById(502);
                     break;
@@ -2708,7 +2708,7 @@ public static partial class Pickup
                     break;
                 case 5053:
                     ok = 1;
-                    Mem.Set((0x80102B17u + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((0x80102B17u + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 1));
+                    Mem.Set((Gv.ProfileTable_RewardCount + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_RewardCount + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 1));
                     break;
                 case 5000:
                 case 5003:
@@ -3382,7 +3382,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AE0A0", (uint)id);
             int i = 0;
-            uint p = 0x800D34C0u;
+            uint p = Gv.Ammo_PackTable;
             for (i = 15; (i != (-1)); --i)
             {
                 if (((int)(new Row18(p).id) == id))
@@ -3774,13 +3774,13 @@ public static partial class Player
                             while ((t != 0u));
                         }
                     }
-                    n = Mem.S32(0x80120CD8u);
+                    n = Mem.S32(Gv.AutoAim_ActorCount);
                     i = 0;
                     if ((n > 0))
                     {
                         do
                         {
-                            t = Mem.U32((0x80120AD8u + (uint)(i * 4)));
+                            t = Mem.U32((Gv.AutoAim_ActorList + (uint)(i * 4)));
                             if ((Player.IsAutoAimTarget(p, t) != 0))
                             {
                                 if (((int)(new M2Tgt(p).WeaponIndex) == 18))
@@ -3901,7 +3901,7 @@ public static partial class Player
                 MathUtil.MtxTransformPoint((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((new B05P19(p).IsInWeaponStance != 0))
                 {
-                    if (((((Collision.RayCast(p, (_fp + 128u), (_fp + 48u), 0x801040F0u) != 0) && ((h = new B05Hit(Mem.U32(Gv.Collision_ContactPtr)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
+                    if (((((Collision.RayCast(p, (_fp + 128u), (_fp + 48u), Gv.Collision_PushCtx_801040F0) != 0) && ((h = new B05Hit(Mem.U32(Gv.Collision_ContactPtr)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
                         Vec.Sub((_fp + 144u), new B05Tgt(h).pos.P, new B05P19(p).Position.P);
                         len = sqrtf((((new B05Quat((_fp + 144u)).x * new B05Quat((_fp + 144u)).x) + (new B05Quat((_fp + 144u)).y * new B05Quat((_fp + 144u)).y)) + (new B05Quat((_fp + 144u)).z * new B05Quat((_fp + 144u)).z)));
@@ -4138,7 +4138,7 @@ public static partial class Player
                 }
                 else
                 {
-                    lim = Mem.S32((0x800CE3E8u + (uint)(idx * 4)));
+                    lim = Mem.S32((Gv.Ammo_CapacityTable + (uint)(idx * 4)));
                     if ((new B05P3(p).IsComputer == 0))
                     {
                         if ((idx == 0))
@@ -4213,7 +4213,7 @@ public static partial class Player
             }
             else
             {
-                r = Mem.S32((0x800CE3E8u + (uint)(idx * 4)));
+                r = Mem.S32((Gv.Ammo_CapacityTable + (uint)(idx * 4)));
                 if ((new B05P3_v2(p).IsComputer == 0))
                 {
                     if ((idx == 0))
@@ -4500,7 +4500,7 @@ public static partial class Player
             }
             else
             {
-                v = Mem.S32((0x800CE3E8u + (uint)(i * 4)));
+                v = Mem.S32((Gv.Ammo_CapacityTable + (uint)(i * 4)));
                 if ((new Plr(a).IsComputer == 0))
                 {
                     if ((i == 0))
@@ -4601,15 +4601,15 @@ public static partial class Player
                 uint m = 0u;
                 o = new Plr(c).unk1D8_;
                 Mem.Copy((_fp + 96u), new M2Row38(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(o).WeaponIndex * 4)))).ViewModelOffset_38.P, 12);
-                if ((Mem.S32(0x800CF280u) != 0))
+                if ((Mem.S32(Gv.Weapon_MirrorViewX) != 0))
                 {
                     new Vec3f((_fp + 96u)).x_Set((-new Vec3f((_fp + 96u)).x));
                 }
-                if ((Mem.S32(0x800CF284u) != 0))
+                if ((Mem.S32(Gv.Weapon_MirrorViewY) != 0))
                 {
                     new Vec3f((_fp + 96u)).y_Set((-new Vec3f((_fp + 96u)).y));
                 }
-                if ((Mem.S32(0x800CF288u) != 0))
+                if ((Mem.S32(Gv.Weapon_MirrorViewZ) != 0))
                 {
                     new Vec3f((_fp + 96u)).z_Set((-new Vec3f((_fp + 96u)).z));
                 }
@@ -5241,7 +5241,7 @@ public static partial class Weapon
             }
             if ((idx != (-1)))
             {
-                return (int)(Mem.S16((0x800D0588u + (uint)(idx * 2))));
+                return (int)(Mem.S16((Gv.Weapon_AmmoTypeTable + (uint)(idx * 2))));
             }
             return (-1);
         }
@@ -6045,10 +6045,10 @@ public static partial class Weapon
                 Player.StopLoopSound1(o);
                 Player.StopLoopSound2(o);
                 Audio.PlaySound(1940, pv, (int)(pv), (-1));
-                MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(0x800CF518u)) * 0.0174532942f), 0.400000006f);
+                MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(Gv.Minigun_SpinDegrees)) * 0.0174532942f), 0.400000006f);
                 return;
             }
-            MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(0x800CF518u)) * 0.0174532942f), 0.400000006f);
+            MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(Gv.Minigun_SpinDegrees)) * 0.0174532942f), 0.400000006f);
             tm = (new M2St(s).FireSoundTimer_64 - Mem.F32(Gv.FrameTime));
             new M2St(s).FireSoundTimer_64_Set(tm);
             if ((tm <= 0.0f))
@@ -6347,7 +6347,7 @@ public static partial class Weapon
                 Audio.PlaySound(2424, pv, (int)(pv), (-1));
                 return;
             }
-            MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(0x800CF5BCu)) * 0.0174532942f), 0.400000006f);
+            MathUtil.ApproachProportional((s + 296u), ((float)(Mem.S32(Gv.Emaciator_SpinDegrees)) * 0.0174532942f), 0.400000006f);
             new M2St(s).FireSoundTimer_64_Set((new M2St(s).FireSoundTimer_64 - Mem.F32(Gv.FrameTime)));
             if ((new M2St(s).FireSoundTimer_64 <= 0.0f))
             {
@@ -7215,7 +7215,7 @@ public static partial class Weapon
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232754", (uint)i);
-            return Mem.S32(Mem.U32((0x800D0598u + (uint)(i * 4))));
+            return Mem.S32(Mem.U32((Gv.Ammo_NameTable + (uint)(i * 4))));
         }
     }
 
@@ -7848,7 +7848,7 @@ public static partial class Weapon
             p = new ActorView(actor).OwnerPtr;
             if (((int)(Mem.S8((state + 52u))) == 5))
             {
-                MathUtil.ApproachProportional(new ActorStateView(state).ClassVar_128.P, ((float)(Mem.S32(0x800CF518u)) * 0.017453294f), 0.400000006f);
+                MathUtil.ApproachProportional(new ActorStateView(state).ClassVar_128.P, ((float)(Mem.S32(Gv.Minigun_SpinDegrees)) * 0.017453294f), 0.400000006f);
             }
             else
             {
@@ -7882,7 +7882,7 @@ public static partial class Weapon
             float lim = 0f;
             float v = 0f;
             lim = 600f;
-            v = MathUtil.ApproachLinear(Mem.F32((state + 292u)), lim, Cpu.U2F((uint)(Mem.S32(0x800CF9E0u))));
+            v = MathUtil.ApproachLinear(Mem.F32((state + 292u)), lim, Cpu.U2F((uint)(Mem.S32(Gv.ChestBurster_AltStep))));
             Mem.Set((state + 292u), v);
             if ((lim <= v))
             {

@@ -554,7 +554,7 @@ public static partial class TrialResults
             a = 0;
             if ((Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(sel * 4))) > 0))
             {
-                a = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(sel * 4))));
+                a = ((Mem.S32((Gv.Stats_ShotsHitTable + (uint)(sel * 4))) * 100) / Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(sel * 4))));
             }
             StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).PercentText.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).PercentText.P);
@@ -580,7 +580,7 @@ public static partial class TrialResults
                 w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(640), default(uint), default(uint));
                 new O05Wd2(w).Alpha_Set((byte)(150));
                 UiNode.SetVisible(w, 1);
-                new O05Wd2(w).f2C_Set((uint)(Mem.S32((0x800E4200u + (uint)(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RankIndex * 4)))));
+                new O05Wd2(w).f2C_Set((uint)(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RankIndex * 4)))));
             }
         }
     }
@@ -841,7 +841,7 @@ public static partial class TrialResults
                     Menu.ConsumeEvent();
                     Mem.Set(Gv.Match_MonkeyTagMode, 0);
                     Mem.Set(Gv.Settings_MonkeyTagMode, 0);
-                    if ((Mem.S32(0x80146948u) == t))
+                    if ((Mem.S32(Gv.MatchRules_IsHumanWinner) == t))
                     {
                         if ((Mem.S32(Gv.ArenaLevel) >= 35))
                         {
@@ -904,7 +904,7 @@ public static partial class TrialResults
                 {
                     Menu.MoveFocus((uint)(626), default(uint), default(uint), default(uint));
                 }
-                if ((Mem.S32(0x80146948u) == 0))
+                if ((Mem.S32(Gv.MatchRules_IsHumanWinner) == 0))
                 {
                     Menu.MoveFocus((uint)(626), default(uint), default(uint), default(uint));
                 }

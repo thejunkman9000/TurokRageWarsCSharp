@@ -60,7 +60,7 @@ public static partial class RomFile
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2188");
-            Mem.Set(0x800D2BBCu, 0);
+            Mem.Set(Gv.RomFile_State_800D2BBC, 0);
         }
     }
 

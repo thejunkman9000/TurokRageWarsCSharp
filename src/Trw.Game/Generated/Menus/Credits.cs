@@ -22,7 +22,7 @@ public static partial class Credits
             TextUtil.SetScale(1.0f, 1.0f);
             do
             {
-                p = (uint)(Mem.S32((Mem.U32(0x800D7E40u) + (uint)(idx * 4))));
+                p = (uint)(Mem.S32((Mem.U32(Gv.Credits_TextTablePtr) + (uint)(idx * 4))));
                 if ((p != 0u))
                 {
                     if ((t < 0.0f))

@@ -113,7 +113,7 @@ public static partial class TrialResetConfirm
                 break;
             case 976:
                 new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId_Set(7);
-                memset(0x80102B7Eu, 0, (uint)(5));
+                memset(Gv.ProfileTable_ArenaPlayedBitsMode1, 0, (uint)(5));
                 break;
             }
             PopupPanel.SetState(new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).PopupPanelPtr, 2);

@@ -2104,7 +2104,7 @@ public static partial class LegacyCheats
             _f0: ;
             if (!(((int)(Pad.IsConfirm((uint)(new Q4O(o).PadPtr))) != 0))) goto _f13;
             if (!((code == 8000))) goto _f14;
-            Mem.Set(0x801462E6u, (byte)(1));
+            Mem.Set(Gv.Settings_MaxPlayers, (byte)(1));
             LegacyMenu.ClaimConfirmingPad(o);
             Game_FadeOutToState(Gv.GameCtx, 17);
             return 1;
@@ -2256,7 +2256,7 @@ public static partial class LegacyCheats
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043CB78");
-            Mem.Set(0x80154030u, (-1));
+            Mem.Set(Gv.LegacyCheats_CursorPos, (-1));
         }
     }
 
@@ -2343,7 +2343,7 @@ public static partial class LegacyCheats
         {
             if (Dbg.On) Dbg.Enter("func_0043CDF0", (uint)p);
             int i = 0;
-            Mem.Set(0x80154030u, (-1));
+            Mem.Set(Gv.LegacyCheats_CursorPos, (-1));
             Mem.Set((Gv.LegacyCheats_CodeCursor + 4u), 0);
             if ((new Q4T(Gv.LegacyCheats_CodeCursor).len == 22))
             {
@@ -2374,7 +2374,7 @@ public static partial class LegacyCheats
             if (Dbg.On) Dbg.Enter("func_0043CEB0");
             int i = 0;
             int v = 0;
-            Mem.Set(0x80154030u, (-1));
+            Mem.Set(Gv.LegacyCheats_CursorPos, (-1));
             Mem.Set((Gv.LegacyCheats_CodeCursor + 4u), 0);
             if ((new Q4T(Gv.LegacyCheats_CodeCursor).len == 0))
             {
@@ -2409,13 +2409,13 @@ public static partial class LegacyCheats
             int len = 0;
             i = 0;
             len = (int)(strlen(s));
-            if (((uint)(len) != strlen(0x800E5CACu)))
+            if (((uint)(len) != strlen(Gv.LegacyCheats_EncodedCode)))
             {
                 return 0;
             }
             while (((uint)(i) < strlen(s)))
             {
-                if ((((int)(Mem.U8((s + (uint)i))) ^ i) != (int)(Mem.U8((0x800E5CACu + (uint)i)))))
+                if ((((int)(Mem.U8((s + (uint)i))) ^ i) != (int)(Mem.U8((Gv.LegacyCheats_EncodedCode + (uint)i)))))
                 {
                     return 0;
                 }
@@ -2430,7 +2430,7 @@ public static partial class LegacyCheats
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043D124", (uint)o);
-            uint k = (uint)(Mem.S32(0x80154030u));
+            uint k = (uint)(Mem.S32(Gv.LegacyCheats_CursorPos));
             if ((k < (uint)(12)))
             {
                 new Q4Z(o).Data_Set(new Q4RowT((0x0044FB94u + (uint)(k * 16))).text);

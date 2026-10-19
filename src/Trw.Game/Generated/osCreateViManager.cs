@@ -44,18 +44,18 @@ public static partial class Game
                             }
                             Mem.Set(Gv.ViMgr_Retrace, new OSViContext(vc).retraceCount);
                         }
-                        Mem.Set(0x8014FE24u, (uint)(Mem.U32(0x8014FE24u) + 1));
+                        Mem.Set(Gv.__osViIntrCount, (uint)(Mem.U32(Gv.__osViIntrCount) + 1));
                         if ((first != 0u))
                         {
                             count = osGetCount();
-                            Mem.Set(0x8014FE28u, (ulong)(count));
+                            Mem.Set(Gv.__osCurrentTime, (ulong)(count));
                             first = (uint)(0);
                         }
-                        count = Mem.U32(0x8014FE20u);
+                        count = Mem.U32(Gv.__osBaseCounter);
                         now = osGetCount();
-                        Mem.Set(0x8014FE20u, now);
+                        Mem.Set(Gv.__osBaseCounter, now);
                         count = (now - count);
-                        Mem.Set(0x8014FE28u, (Mem.U64(0x8014FE28u) + (ulong)(count)));
+                        Mem.Set(Gv.__osCurrentTime, (Mem.U64(Gv.__osCurrentTime) + (ulong)(count)));
                         break;
                     case 14:
                         __osTimerInterrupt();

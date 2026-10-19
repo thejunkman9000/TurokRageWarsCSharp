@@ -415,7 +415,7 @@ public static partial class NameEntry
             dst = new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Text.P;
             do
             {
-                src = new O06N_v2((0x8014641Cu + (uint)(n * 150))).b.P;
+                src = new O06N_v2((Gv.Settings_PlayerRecords_Name + (uint)(n * 150))).b.P;
                 i = 8;
                 cnt = 0;
                 while ((i > 0))
@@ -428,7 +428,7 @@ public static partial class NameEntry
                     ++cnt;
                 }
                 p = src;
-                if ((NameEntry.NameEntry_ComparePrefixTwin(p, Mem.U32(0x800D7C70u), 6) != 0))
+                if ((NameEntry.NameEntry_ComparePrefixTwin(p, Mem.U32(Gv.MatchSetup_DefaultPlayerName1), 6) != 0))
                 {
                     cnt = 8;
                 }
@@ -551,7 +551,7 @@ public static partial class NameEntry
             uint temp_s1 = 0u;
             temp_s1 = new Entry_func_80445E04_de(arg1).unk1C_;
             temp_v0 = Player.GetIndex(Gv.PlayerPool, (int)(temp_s1));
-            var_a2 = (0x800E63CCu + (uint)(temp_v0 * 24));
+            var_a2 = (Gv.NameEntry_EditFields_Text + (uint)(temp_v0 * 24));
             var_v1 = ((Gv.PlayerPool + (uint)5084) + (uint)(temp_v0 * 150));
             var_a1 = 0;
             var_a0 = 0;
@@ -655,7 +655,7 @@ public static partial class PlayerMenu
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(1)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(675), default(uint), default(uint)));
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(2)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(765), default(uint), default(uint)));
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(3)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(762), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54_Set((int)(Mem.U32(0x800E54A0u)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54_Set((int)(Mem.U32(Gv.PlayerMenu_EntryMode)));
             for (i = 0; (i < 4); ++i)
             {
                 new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(i)].a_Set((-1));
@@ -796,7 +796,7 @@ public static partial class PlayerMenu
                 while ((i < 4));
                 break;
             case 6:
-                if ((Mem.S32(0x800E3514u) == 0))
+                if ((Mem.S32(Gv.PlayerMenu_SkipPakDetect) == 0))
                 {
                     for (i = 0; (i < 4); ++i)
                     {
@@ -7818,7 +7818,7 @@ public static partial class PlayerMenu
                     {
                         if ((CPak.HasInvalidChar(_fp, 16) == ok))
                         {
-                            LibC.StrCopy(_fp, Mem.U32(0x800D7784u));
+                            LibC.StrCopy(_fp, Mem.U32(Gv.PakMenu_OtherGameLabel));
                         }
                         LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), _fp);
                         StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
@@ -7834,7 +7834,7 @@ public static partial class PlayerMenu
                         {
                             found = 1;
                         }
-                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
+                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), Mem.U32(Gv.PakNote_EmptyName));
                         StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
                     StrUtil.FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
@@ -8244,7 +8244,7 @@ public static partial class PlayerMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435190", (uint)a);
-            Mem.Set(0x800E54A0u, a);
+            Mem.Set(Gv.PlayerMenu_EntryMode, a);
         }
     }
 
@@ -8269,7 +8269,7 @@ public static partial class PlayerMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004352A8", (uint)i);
-            new O05R150((0x80146410u + (uint)(i * 150))).b0_Set((byte)(1));
+            new O05R150((Gv.Settings_PlayerRecords_Active + (uint)(i * 150))).b0_Set((byte)(1));
             new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set(2);
             new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State_Set(2);
         }
@@ -9080,7 +9080,7 @@ public static partial class ProfileStats
             i = 0;
             do
             {
-                if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.Id)))
+                if ((new O3Tbl((Gv.ProfileStats_AwardTextTable + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.Id)))
                 {
                     snd = 0;
                     if ((Bits.Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
@@ -9208,11 +9208,11 @@ public static partial class ProfileStats
             {
                 for (; (i < 50); ++i)
                 {
-                    if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.Id)))
+                    if ((new O3Tbl((Gv.ProfileStats_AwardTextTable + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.Id)))
                     {
                         if ((Bits.Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
                         {
-                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((0x800E3594u + (uint)(i * 8))).val_)));
+                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((Gv.ProfileStats_AwardTextTable + (uint)(i * 8))).val_)));
                         }
                         else
                         {
@@ -9236,7 +9236,7 @@ public static partial class ProfileStats
             i = 0;
             do
             {
-                it = UiTree.FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
+                it = UiTree.FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)((int)((ushort)(new O3Tbl((Gv.ProfileStats_AwardTextTable + (uint)(i * 8))).key))), default(uint), default(uint));
                 if ((Bits.Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
                 {
                     UiNode.SetVisible(it, 1);

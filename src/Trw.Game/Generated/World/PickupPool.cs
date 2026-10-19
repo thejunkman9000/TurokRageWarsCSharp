@@ -184,10 +184,10 @@ public static partial class PickupPool
             {
                 if (Dbg.On) Dbg.Enter("func_00290404", (uint)o);
                 uint t = 0u;
-                t = 0x80104438u;
+                t = Gv.Collision_PickupCtxFlag4;
                 if (!((new Def_v2(new Obj_v12(o).DefPtr).flags & (uint)(4)) != 0u))
                 {
-                    t = 0x801043F8u;
+                    t = Gv.Collision_PickupCtx;
                 }
                 if ((0.0f < new Obj_v12(o).SpawnDelay_1CC))
                 {
@@ -238,20 +238,20 @@ public static partial class PickupPool
                     {
                         new Node(new Node(n).next_).prev__Set(new Node(n).prev_);
                     }
-                    if ((Mem.U32(0x80135204u) == n))
+                    if ((Mem.U32(Gv.PickupPool_ActiveHead) == n))
                     {
-                        Mem.Set(0x80135204u, new Node(n).next_);
+                        Mem.Set(Gv.PickupPool_ActiveHead, new Node(n).next_);
                     }
-                    if ((Mem.U32(0x80135208u) == n))
+                    if ((Mem.U32(Gv.PickupPool_ActiveTail) == n))
                     {
-                        Mem.Set(0x80135208u, new Node(n).prev_);
+                        Mem.Set(Gv.PickupPool_ActiveTail, new Node(n).prev_);
                     }
-                    h = Mem.U32(0x80135200u);
+                    h = Mem.U32(Gv.PickupPool_FreeList);
                 }
                 while ((0 != 0));
                 new Node(n).prev__Set(0u);
                 new Node(n).next__Set(h);
-                Mem.Set(0x80135200u, n);
+                Mem.Set(Gv.PickupPool_FreeList, n);
             }
         }
     }

@@ -32,9 +32,9 @@ public static partial class Game
             if ((new ALEnvMixerFull(e).first != 0))
             {
                 new ALEnvMixerFull(e).first_Set(0);
-                new ALEnvMixerFull(e).ltgt_Set((short)((((int)(new ALEnvMixerFull(e).volume) * (int)(Mem.S16((0x800D8240u + (uint)(new ALEnvMixerFull(e).pan * 2))))) >> (int)15)));
+                new ALEnvMixerFull(e).ltgt_Set((short)((((int)(new ALEnvMixerFull(e).volume) * (int)(Mem.S16((Gv.eqpower + (uint)(new ALEnvMixerFull(e).pan * 2))))) >> (int)15)));
                 new ALEnvMixerFull(e).lratm_Set(_getRate((double)(new ALEnvMixerFull(e).cvolL), (double)(new ALEnvMixerFull(e).ltgt), new ALEnvMixerFull(e).segEnd, (e + 36u)));
-                new ALEnvMixerFull(e).rtgt_Set((short)((((int)(new ALEnvMixerFull(e).volume) * (int)(Mem.S16((0x800D8240u + (uint)(((128 - (int)(new ALEnvMixerFull(e).pan)) - 1) * 2))))) >> (int)15)));
+                new ALEnvMixerFull(e).rtgt_Set((short)((((int)(new ALEnvMixerFull(e).volume) * (int)(Mem.S16((Gv.eqpower + (uint)(((128 - (int)(new ALEnvMixerFull(e).pan)) - 1) * 2))))) >> (int)15)));
                 new ALEnvMixerFull(e).rratm_Set(_getRate((double)(new ALEnvMixerFull(e).cvolR), (double)(new ALEnvMixerFull(e).rtgt), new ALEnvMixerFull(e).segEnd, (e + 42u)));
                 {
                     uint _a_3 = ((ptr += 8u) - 8u);

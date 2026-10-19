@@ -13,7 +13,7 @@ public static partial class Game
             int ret = 0;
             byte data = 0;
             dbgLinkSendByte_dbgPortSetLineFormat_i((byte)(3));
-            Mem.Set(0x8014D3E0u, b);
+            Mem.Set(Gv.DbgPort_ThrShadow, b);
             data = b;
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {

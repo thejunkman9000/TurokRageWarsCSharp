@@ -19382,10 +19382,10 @@ public static partial class Audio
             }
             if (!(free != 0u))
             {
-                free = alHeapDBAlloc(0u, 0, Mem.U32(0x8010BEA0u), 1, 144);
+                free = alHeapDBAlloc(0u, 0, Mem.U32(Gv.AudioMgr_HeapPtr), 1, 144);
                 new B12DbEnt(free).next__Set(Mem.U32(Gv.AudioMgr_DmaCacheList));
                 Mem.Set(Gv.AudioMgr_DmaCacheList, free);
-                Mem.Set(0x800D0954u, (uint)(Mem.U32(0x800D0954u) + 1));
+                Mem.Set(Gv.Sound_DmaCacheLoadCount, (uint)(Mem.U32(Gv.Sound_DmaCacheLoadCount) + 1));
             }
             d = new B12DbEnt(free).data.P;
             new B12DbEnt(free).key__Set(src);
@@ -19860,7 +19860,7 @@ public static partial class Audio
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025E280", (uint)on);
-            Mem.Set(0x8010C1B4u, on);
+            Mem.Set(Gv.Sound_AmbientZone, on);
             if ((on != 0))
             {
                 Audio.EnableAmbient();
@@ -19888,7 +19888,7 @@ public static partial class Audio
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025E2E4");
-            return Mem.S32(0x8010DE0Cu);
+            return Mem.S32(Gv.Audio_CurrentCue);
         }
     }
 
@@ -19898,9 +19898,9 @@ public static partial class Audio
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025E2F4", (uint)v);
-            if (((Mem.S32(Gv.Audio_SoundDisabled) == 0) && (Mem.S32((0x8010DE0Cu + (uint)(0 * 4))) != v)))
+            if (((Mem.S32(Gv.Audio_SoundDisabled) == 0) && (Mem.S32((Gv.Audio_CurrentCue + (uint)(0 * 4))) != v)))
             {
-                Mem.Set((0x8010DE0Cu + (uint)(0 * 4)), v);
+                Mem.Set((Gv.Audio_CurrentCue + (uint)(0 * 4)), v);
                 if ((v == 0))
                 {
                     Audio.FadeOutMusic();
@@ -20429,8 +20429,8 @@ public static partial class Audio
             sh = (bitpos & 7);
             Mem.Set(Gv.Audio_AdpcmWord, (uint)((uint)(Mem.U32(Gv.Audio_AdpcmWord)) | (uint)(((int)(Mem.U8((q + (uint)2))) << (int)16))));
             b3 = Mem.U8((q + (uint)3));
-            Mem.Set(0x80110080u, (32 - sh));
-            Mem.Set(0x80110084u, (q + (uint)4));
+            Mem.Set(Gv.Audio_AdpcmBitCount, (32 - sh));
+            Mem.Set(Gv.Audio_AdpcmReadPtr, (q + (uint)4));
             Mem.Set(Gv.Audio_AdpcmWord, (uint)((uint)(Mem.U32(Gv.Audio_AdpcmWord)) | (uint)(((int)(b3) << (int)24))));
             Mem.Set(Gv.Audio_AdpcmWord, (uint)((uint)(Mem.U32(Gv.Audio_AdpcmWord)) >> (int)sh));
             for (i = 0; (i < n); ++i)
@@ -20440,9 +20440,9 @@ public static partial class Audio
                 Mem.Set(Gv.Adpcm_BitBuf, (uint)((uint)(Mem.U32(Gv.Adpcm_BitBuf)) | (uint)(((int)(Mem.U8(((p += 1u) - 1u))) << (int)8))));
                 Mem.Set(Gv.Adpcm_BitBuf, (uint)((uint)(Mem.U32(Gv.Adpcm_BitBuf)) | (uint)(((int)(Mem.U8(((p += 1u) - 1u))) << (int)16))));
                 c3 = Mem.U8(((p += 1u) - 1u));
-                Mem.Set(0x80110074u, 32);
+                Mem.Set(Gv.Adpcm_BitCount, 32);
                 Mem.Set(Gv.Adpcm_BitBuf, (uint)((uint)(Mem.U32(Gv.Adpcm_BitBuf)) | (uint)(((int)(c3) << (int)24))));
-                Mem.Set(0x80110078u, p);
+                Mem.Set(Gv.Adpcm_ReadPtr, p);
                 Audio.DecodeAdpcm_00264F80((uint)(Mem.S32((tbl + (uint)(i * 4)))), (uint)(hdr), default(uint), default(uint));
             }
             return hdr;
@@ -20846,8 +20846,8 @@ public static partial class Seq
             new SndSeq(s).Flags_Set(0);
             return;
             _f9: ;
-            Mem.Set(0x800D0D94u, (Mem.S32(0x800D0D94u) + 1));
-            if (!((Mem.S32(0x800D0D94u) >= 10))) goto _f10;
+            Mem.Set(Gv.Sound_UpdateTick, (Mem.S32(Gv.Sound_UpdateTick) + 1));
+            if (!((Mem.S32(Gv.Sound_UpdateTick) >= 10))) goto _f10;
             Mem.Set(Gv.Seq_PlayingSongId, (-1));
             new SndSeq(s).State_Set(64);
             return;
@@ -20857,7 +20857,7 @@ public static partial class Seq
             if (!((new SndSeq(s).SongId != (-1)))) goto _f11;
             if (!(!(func_0025D470_SeqLoad_(s, new SndSeq(s).SongId) != 0))) goto _f12;
             new SndSeq(s).State_Set(256);
-            Mem.Set(0x800D0D94u, 0);
+            Mem.Set(Gv.Sound_UpdateTick, 0);
             new SndSeq(s).Flags_Set(0);
             return;
             _f12: ;
@@ -22462,9 +22462,9 @@ public static partial class SndVoice
             {
                 for (i = 0; (i < 31); ++i)
                 {
-                    if ((new M04Emitter(o).SoundId == (int)(new M04Tab((0x800D0A30u + (uint)(i * 8))).key)))
+                    if ((new M04Emitter(o).SoundId == (int)(new M04Tab((Gv.Sound_VolumeTable + (uint)(i * 8))).key)))
                     {
-                        new M04Emitter(o).VolumeScale_Set(new M04Tab((0x800D0A30u + (uint)(i * 8))).val);
+                        new M04Emitter(o).VolumeScale_Set(new M04Tab((Gv.Sound_VolumeTable + (uint)(i * 8))).val);
                         break;
                     }
                 }
@@ -22563,7 +22563,7 @@ public static partial class SndVoice
                 {
                     t = (n * 2);
                 }
-                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * new M04Emitter(o).VolumeLevel))) * vf)));
+                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * new M04Emitter(o).VolumeLevel))) * vf)));
                 if (((float)(n) < 0.0f))
                 {
                     t = ((-n) * 2);
@@ -22572,7 +22572,7 @@ public static partial class SndVoice
                 {
                     t = (n * 2);
                 }
-                new M04Rec12(env).w0_Set(F32ToTrunc16(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf)));
+                new M04Rec12(env).w0_Set(F32ToTrunc16(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * vf)));
                 new M04VP(vp).wC_Set((int)(Trunc16ToF32((ushort)(((int)(new M04Rec12(env).w0) & 65535)))));
                 return;
             }
@@ -22585,7 +22585,7 @@ public static partial class SndVoice
             {
                 t = (n * 2);
             }
-            t = (int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf));
+            t = (int)(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * vf));
             new M04VP(vp).vol_Set(t);
             new M04VP(vp).wC_Set(t);
         }
@@ -23401,8 +23401,8 @@ public static partial class Sound
                 int y = 0;
                 LockUtil.Init(new SndMgr(m).@lock.P);
                 func_00257380_SndMgr_Lock(m);
-                x = Mem.S32(0x801536B0u);
-                y = Mem.S32(0x801536ECu);
+                x = Mem.S32(Gv.Sound_HeapPtr);
+                y = Mem.S32(Gv.Sound_HeapSize);
                 Mem.Set((m + (uint)216), 0);
                 alHeapInit(new SndMgr(m).Heap.P, (uint)(x), y);
                 new M04SynCfg(_fp).v0_Set(37);
@@ -23415,8 +23415,8 @@ public static partial class Sound
                 new M04SynCfg(_fp).v4_Set(0);
                 new M04SynCfg(_fp).heap_Set(new SndMgr(m).Heap.P);
                 new M04AiCfg((_fp + 40u)).size_Set(2048);
-                AudioMgr.Init(_fp, Mem.S32(0x800D2B30u), (_fp + 40u));
-                Mem.Set(0x8010B6A0u, Resource.ReadRomTableWord(8));
+                AudioMgr.Init(_fp, Mem.S32(Gv.Thread_AudioPri), (_fp + 40u));
+                Mem.Set(Gv.AudioMgr_SampleRomBase, Resource.ReadRomTableWord(8));
                 r = Resource.AllocVirtualRegion((uint)((Resource.ReadRomTableWord(4) - Resource.ReadRomTableWord(0))), 0, Resource.ReadRomTableWord(0));
                 new SndMgr(m).SeqPlayer.unk8__Set((uint)(new M04Res(r).f4));
                 bk = new M04Res(r).fC;
@@ -23470,7 +23470,7 @@ public static partial class Sound
                 new SndMgr(m).IsAmbientEnabled_Set(1);
                 Mem.Set((m + (uint)11196), 1f);
                 SndFx.Init(new SndMgr(m).SndFxPlayer.P, m);
-                Mem.Set(0x800D0960u, 1);
+                Mem.Set(Gv.Sound_Initialized, 1);
                 func_00257380_SndMgr_Unlock(m);
             }
         }
@@ -24239,7 +24239,7 @@ public static partial class Sound
                 SndFx.Update(new SndMgr(m).SndFxPlayer.P, default(uint), default(uint), default(uint));
                 Seq.UpdateFade(new SndMgr(m).SeqPlayer.P);
                 Seq.Update(new SndMgr(m).SeqPlayer.P);
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
+                if (((((Mem.S32(Gv.Sound_Initialized) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
                 {
                     new Vec3f(_fp).z_Set(0.0f);
                     new Vec3f(_fp).y_Set(0.0f);
@@ -24621,7 +24621,7 @@ public static partial class Sound
                 if (Dbg.On) Dbg.Enter("func_00258B00", (uint)m);
                 uint o = 0u;
                 uint p = 0u;
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
+                if (((((Mem.S32(Gv.Sound_Initialized) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
                 {
                     new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                     o = CameraManager.FindNearestCamera(Gv.ViewMgr, _fp);

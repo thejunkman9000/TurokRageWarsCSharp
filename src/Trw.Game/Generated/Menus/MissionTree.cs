@@ -1525,7 +1525,7 @@ public static partial class MissionTree
                     UiNode.SetVisible(h, 1);
                     new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P));
                     idx = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena;
-                    v = Mem.S32(((0x80102B94u + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400)));
+                    v = Mem.S32(((Gv.ProfileTable_ArenaBestTimes + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400)));
                     if ((v > 0))
                     {
                         StrUtil.FormatInto(_fp, 0x800E19F8u, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
@@ -1536,10 +1536,10 @@ public static partial class MissionTree
                         StrUtil.FormatInto(_fp, 0x800E19F8u, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
                     StrUtil.ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, 0x800E1A00u, _fp);
-                    LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(0x800D7508u));
+                    LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(Gv.ModeName_TimeTrial));
                     break;
                 case 4:
-                    LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(0x800D7504u));
+                    LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(Gv.ModeName_FragFest));
                     break;
                 }
             }

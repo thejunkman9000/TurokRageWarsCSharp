@@ -103,7 +103,7 @@ public static partial class Objective
                         {
                             if ((new M1Actor(pl).ViewPtr != 0u))
                             {
-                                View.Hud_PostMessage(Gv.ViewMgr, new M1Actor(pl).ViewPtr, (uint)(Mem.S32(0x800D70DCu)));
+                                View.Hud_PostMessage(Gv.ViewMgr, new M1Actor(pl).ViewPtr, (uint)(Mem.S32(Gv.HudMsg_FlagCaptured)));
                             }
                         }
                     }
@@ -264,9 +264,9 @@ public static partial class Objective
             }
             else
             {
-                Mem.Set(0x800CD4C0u, 1);
+                Mem.Set(Gv.Objective_RestoringFlag, 1);
                 Actor.DispatchEvent(actor, state, 0);
-                Mem.Set(0x800CD4C0u, 0);
+                Mem.Set(Gv.Objective_RestoringFlag, 0);
             }
         }
     }
@@ -330,7 +330,7 @@ public static partial class Objective
             if (Dbg.On) Dbg.Enter("func_00204658", (uint)actor);
             uint def = new B01Actor(actor).def_;
             Level.SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
-            if ((Mem.S32(0x800CD4C0u) == 0))
+            if ((Mem.S32(Gv.Objective_RestoringFlag) == 0))
             {
                 Level.FireEntityTriggers(actor, 524288, (int)(actor));
             }

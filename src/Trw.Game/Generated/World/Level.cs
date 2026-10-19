@@ -79,7 +79,7 @@ public static partial class Entity
             uint a1 = 0u;
             int v = 0;
             uint e = 0u;
-            tab = Mem.U32((0x800D28B8u + (uint)(new Rec14(r).b11 * 4)));
+            tab = Mem.U32((Gv.Level_SpawnClassTable + (uint)(new Rec14(r).b11 * 4)));
             if ((tab != 0u))
             {
                 if ((((int)(new GBlk(Gv.ViewMgr).f125D) != 0) || ((a1 = new GBlk(Gv.ViewMgr).u20) == 0u)))
@@ -104,9 +104,9 @@ public static partial class Entity
                 }
                 tab = (uint)(tab + (uint)((int)(new Rec14(r).b12) * 8));
                 ent = tab;
-                if (((int)(new Rec14(r).wA) == Mem.S32(0x8013B294u)))
+                if (((int)(new Rec14(r).wA) == Mem.S32(Gv.Level_CurrentId)))
                 {
-                    e = (Mem.U32(0x8011FFC0u) + (uint)(new Rec14(r).w4 * 744));
+                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).w4 * 744));
                     if ((new FnEnt(ent).fn0 != 0u))
                     {
                         Funcs.CallReg(new FnEnt(ent).fn0, e, (e + 368u), r, 0u);
@@ -169,7 +169,7 @@ public static partial class Level
             uint p = 0u;
             uint m = Gv.Level_RestartState;
             ok = ((Game_IsInState13() != 0) ? 1 : 0);
-            if ((Mem.S32(0x80145070u) == 0))
+            if ((Mem.S32(Gv.PlayerPool_State_80145070) == 0))
             {
                 ok = 0;
             }
@@ -253,7 +253,7 @@ public static partial class Level
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264B7C");
-            return Mem.S32(0x8010FC4Cu);
+            return Mem.S32(Gv.Level_RestartLevelId);
         }
     }
 
@@ -522,11 +522,11 @@ public static partial class Level
         {
             if (Dbg.On) Dbg.Enter("func_00279490", (uint)r, (uint)flag);
             uint e = 0u;
-            if (((int)(new Rec14(r).wA) == Mem.S32(0x8013B294u)))
+            if (((int)(new Rec14(r).wA) == Mem.S32(Gv.Level_CurrentId)))
             {
                 if ((flag != 0))
                 {
-                    e = (Mem.U32(0x8011FFC0u) + (uint)(new Rec14(r).w4 * 744));
+                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).w4 * 744));
                     if (((int)(new Rec14(r).b11) == 10))
                     {
                         if (((int)(new Rec14(r).b12) == 1))
@@ -759,12 +759,12 @@ public static partial class Level
             }
             if ((old != Mem.S32(Gv.Model_VariantKeyBits)))
             {
-                Mem.Set(0x800D2644u, 1);
+                Mem.Set(Gv.Level_ModelKeysChanged, 1);
                 Resource.SetLoadFlags(8);
             }
             else
             {
-                Mem.Set(0x800D2644u, 0);
+                Mem.Set(Gv.Level_ModelKeysChanged, 0);
             }
             Level.UpdateTransitionFade(ow);
             Level.ResetActorLists(ow);
@@ -2318,8 +2318,8 @@ public static partial class Level
             lim = new B19bWorld(w).EntityCount;
             objs = new B19bWorld(w).objs_;
             if (!((i < lim))) goto _f2;
-            bB = 0x80103214u;
-            bA = (0x801031F8u + (uint)(1 * 4));
+            bB = Gv.View_BoundsA_Max;
+            bA = (Gv.View_UpdateBounds_MinZ + (uint)(1 * 4));
             _f3: ;
             o = (objs + (uint)(i * 744));
             fl = new B19bObj(o).Flags;
@@ -2351,7 +2351,7 @@ public static partial class Level
             L_L4: ;
             if (!((new B19bInfo(info).Kind == 14))) goto _f17;
             L_L5: ;
-            if (!((Camera.GetDistanceTo((uint)(s5), (int)((o + (uint)8))) < Mem.F32((0x800CA2F8u + (uint)(1 * 4)))))) goto _f18;
+            if (!((Camera.GetDistanceTo((uint)(s5), (int)((o + (uint)8))) < Mem.F32((Gv.Level_ActivateDistConsts + (uint)(1 * 4)))))) goto _f18;
             s2 = 1;
             _f18: ;
             goto _f19;
@@ -2364,7 +2364,7 @@ public static partial class Level
             _f19: ;
             _f16: ;
             _f7: ;
-            if (!(((Flyby.IsInWindow() != 0) && (Mem.S32(0x800D2930u) != 0)))) goto _f21;
+            if (!(((Flyby.IsInWindow() != 0) && (Mem.S32(Gv.Level_FlybyActorsActive) != 0)))) goto _f21;
             if (!(!((new B19bInfo(info).Flags & (uint)(512)) != 0u))) goto _f22;
             s2 = 0;
             _f22: ;
@@ -2522,15 +2522,15 @@ public static partial class Level
                 {
                     ++i0;
                 }
-                while (((s7 >= 0) && (Mem.F32(0x801031FCu) < Mem.F32((A + (uint)(s7 * 4))))))
+                while (((s7 >= 0) && (Mem.F32(Gv.View_UpdateBounds_Max) < Mem.F32((A + (uint)(s7 * 4))))))
                 {
                     --s7;
                 }
-                while (((j0 < rows) && (Mem.F32((D + (uint)(j0 * 4))) < Mem.F32(0x801031F8u))))
+                while (((j0 < rows) && (Mem.F32((D + (uint)(j0 * 4))) < Mem.F32(Gv.View_UpdateBounds_MinZ))))
                 {
                     ++j0;
                 }
-                while (((fp >= 0) && (Mem.F32(0x80103204u) < Mem.F32((C + (uint)(fp * 4))))))
+                while (((fp >= 0) && (Mem.F32(Gv.View_UpdateBounds_MaxZ) < Mem.F32((C + (uint)(fp * 4))))))
                 {
                     --fp;
                 }
@@ -3749,7 +3749,7 @@ public static partial class Level
             float t = 0f;
             int v = 0;
             int a1 = 0;
-            p = (0x800D2934u + (uint)(new LevelView(lv).FadeType * 8));
+            p = (Gv.Level_FadeColorTable + (uint)(new LevelView(lv).FadeType * 8));
             switch (new LevelView(lv).FadeState)
             {
             case 1:
@@ -3791,7 +3791,7 @@ public static partial class Level
                     g = Gv.Settings;
                     if (((new LevelView(lv).KnownCheatMask != new G462(g).unk4) && (Game_IsInState13() != 0)))
                     {
-                        Hud.SpawnTextLineC((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(0x800D7AC8u)), 4.0f);
+                        Hud.SpawnTextLineC((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(Gv.HudMsg_NewCheatEnabled)), 4.0f);
                         new LevelView(lv).KnownCheatMask_Set(new G462(g).unk4);
                         return;
                     }
@@ -5169,7 +5169,7 @@ public static partial class Level
                     {
                         if ((a < 3))
                         {
-                            p = (0x800D2934u + (uint)(new LevelView(lv).FadeType * 8));
+                            p = (Gv.Level_FadeColorTable + (uint)(new LevelView(lv).FadeType * 8));
                             if ((new Pal(p).div != 0.0f))
                             {
                                 Mem.Set((_fp + (uint)0), new Pal(p).r);
@@ -5588,7 +5588,7 @@ public static partial class Level
             Mem.Set(Gv.Level_TagObjectiveEntityPtr, 0u);
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set((0x800F7CF8u + (uint)(i * 4)), 0u);
+                Mem.Set((Gv.Level_TagObjectives + (uint)(i * 4)), 0u);
             }
             for (i = 0; (i < new LevelView(lv).EntityCount); ++i)
             {
@@ -5607,16 +5607,16 @@ public static partial class Level
                         switch ((int)(new EntityView(e).TypeId))
                         {
                         case 1619:
-                            Mem.Set((0x800F7CF8u + (uint)(0 * 4)), e);
+                            Mem.Set((Gv.Level_TagObjectives + (uint)(0 * 4)), e);
                             break;
                         case 1620:
-                            Mem.Set((0x800F7CF8u + (uint)(1 * 4)), e);
+                            Mem.Set((Gv.Level_TagObjectives + (uint)(1 * 4)), e);
                             break;
                         case 1621:
-                            Mem.Set((0x800F7CF8u + (uint)(2 * 4)), e);
+                            Mem.Set((Gv.Level_TagObjectives + (uint)(2 * 4)), e);
                             break;
                         case 1622:
-                            Mem.Set((0x800F7CF8u + (uint)(3 * 4)), e);
+                            Mem.Set((Gv.Level_TagObjectives + (uint)(3 * 4)), e);
                             break;
                         }
                     }
@@ -5635,10 +5635,10 @@ public static partial class Level
             int n = 0;
             int i = 0;
             uint e = new LevelView(lv).Entities;
-            Mem.Set(0x800F7D0Cu, 0u);
+            Mem.Set(Gv.Level_EscapeSpawnerPtr, 0u);
             for (i = 0; (i < 10); ++i)
             {
-                Mem.Set((0x800F7CD0u + (uint)(i * 4)), 0u);
+                Mem.Set((Gv.Level_EscapePoints + (uint)(i * 4)), 0u);
             }
             for (i = 0; (i < new LevelView(lv).EntityCount); ++i)
             {
@@ -5646,7 +5646,7 @@ public static partial class Level
                 {
                     if (((int)(Mem.S16((new EntityView(e).DefPtr + (uint)40))) == 3030))
                     {
-                        Mem.Set(0x800F7D0Cu, e);
+                        Mem.Set(Gv.Level_EscapeSpawnerPtr, e);
                     }
                 }
                 else
@@ -5655,7 +5655,7 @@ public static partial class Level
                     {
                         if (((int)(new EntityView(e).TypeId) == 1614))
                         {
-                            Mem.Set((0x800F7CD0u + (uint)(n * 4)), e);
+                            Mem.Set((Gv.Level_EscapePoints + (uint)(n * 4)), e);
                             ++n;
                         }
                     }
@@ -5666,7 +5666,7 @@ public static partial class Level
                 }
                 e += 744u;
             }
-            Mem.Set(0x80146910u, (RandomGen.NextLcg() % 3));
+            Mem.Set(Gv.MatchRules_MonkeyVoice, (RandomGen.NextLcg() % 3));
         }
     }
 
@@ -6023,12 +6023,12 @@ public static partial class Level
                             if (((Mem.S32(Level.GetDefinition(world, (int)(new S6Rec(rec).id))) == 11) || (i == 0)))
                             {
                                 new S6World_v2(world).PlayerEntityCount_Set((int)(new S6World_v2(world).PlayerEntityCount + 1));
-                                Mem.Copy(0x80145100u, new S6Rec(rec).pos.P, 12);
-                                new S6V3(0x80145100u).y_Set((float)((float)(new S6V3(0x80145100u).y) + 204.799988f));
-                                Mem.Set(0x80145120u, (int)(Collision.FindFloorTriangle(world, new S6Rec(rec).pos.P)));
+                                Mem.Copy(Gv.Camera_MainView_Pos, new S6Rec(rec).pos.P, 12);
+                                new S6V3(Gv.Camera_MainView_Pos).y_Set((float)((float)(new S6V3(Gv.Camera_MainView_Pos).y) + 204.799988f));
+                                Mem.Set(Gv.Camera_MainView_FloorTri, (int)(Collision.FindFloorTriangle(world, new S6Rec(rec).pos.P)));
                                 for (p = 0; (p < Mem.S32(Gv.PlayerCount)); ++p)
                                 {
-                                    pl = (Mem.U32(0x80145044u) + (uint)(p * 5864));
+                                    pl = (Mem.U32(Gv.PlayerPool_PlayersPtr) + (uint)(p * 5864));
                                     cfg = (cfg0 + (uint)(p * 150));
                                     if ((nobj != 0))
                                     {
@@ -6233,7 +6233,7 @@ public static partial class Level
             if ((Level.IsRestartPending() == 0))
             {
                 resource = ResourceCache.Hash(0, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataKey), new State_func_8044D0F0_de(state).EntityFlagDataKey, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataSize), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
-                memcpy_Recompiled(0x800F81F0u, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
+                memcpy_Recompiled(Gv.Level_EntityFlagData, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
                 ResourcePool.Release(0, resource);
             }
         }
@@ -7914,7 +7914,7 @@ public static partial class Scene
                 new S5Scene(lv).SaveDataPtr_Set(Gv.LevelPersistBuffer);
                 v = (int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(data), 6, (lv + 68u)));
                 new S5Scene(lv).SaveDataKey_Set(v);
-                new S5Scene(lv).EntityFlagDataPtr_Set(0x800F81F0u);
+                new S5Scene(lv).EntityFlagDataPtr_Set(Gv.Level_EntityFlagData);
                 v = (int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(data), 7, (lv + 72u)));
                 new S5Scene(lv).EntityFlagDataKey_Set(v);
                 p = Resource.LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(8), (uint)(data), lv, 0x00285130u, Str.Lit("warp dests"));

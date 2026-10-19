@@ -62,17 +62,17 @@ public static partial class PauseOptions
             firstListHandle = OptionList.Create(885, 886);
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList__Set(firstListHandle);
             OptionList.AddOption(firstListHandle, (uint)(Mem.S32((Gv.Option_OffOnStrings + (uint)(0 * 4)))));
-            OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList_, Mem.U32(0x800D74A4u));
-            OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList_, Mem.U32(0x800D74A8u));
+            OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList_, Mem.U32(Gv.OptionText_Red));
+            OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList_, Mem.U32(Gv.OptionText_Green));
             settings = Gv.Settings;
             OptionList.SetSelection(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).firstList_, (int)(new Shared_Game(settings).firstListMode));
             secondListHandle = OptionList.Create(888, 889);
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList__Set(secondListHandle);
-            OptionList.AddOption(secondListHandle, Mem.U32((0x800D74B4u + (uint)(0 * 4))));
+            OptionList.AddOption(secondListHandle, Mem.U32((Gv.OptionText_LoRez + (uint)(0 * 4))));
             if (((int)(MemUtil.GetRamSize()) != 4194304))
             {
-                OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, Mem.U32(0x800D74B8u));
-                OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, Mem.U32(0x800D74BCu));
+                OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, Mem.U32(Gv.OptionText_HiRez));
+                OptionList.AddOption(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, Mem.U32(Gv.OptionText_Letterbox));
             }
             OptionList.SetSelection(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, (int)(new Shared_GameSlot((((settings + 31u) + 297u) + (uint)(7 * 150))).secondListMode));
             slider = (int)(Slider.Create(890, 891, 128));

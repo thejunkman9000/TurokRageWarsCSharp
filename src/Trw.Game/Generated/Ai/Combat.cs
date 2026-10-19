@@ -222,7 +222,7 @@ public static partial class Ai
                 slot = new B2Actor(o).FireMode;
                 slot = (int)((int)(slot) - 1);
                 w = (int)(new B2Actor(o).WeaponIndex);
-                switch (Mem.U32(((0x800CDA40u + (uint)(w * 8)) + (uint)(slot * 4))))
+                switch (Mem.U32(((Gv.Combat_FireModeTable + (uint)(w * 8)) + (uint)(slot * 4))))
                 {
                 case (uint)(0):
                 case (uint)(1):
@@ -1761,7 +1761,7 @@ public static partial class Ai
                 }
                 if ((new S1Ctl(c).LobSolveStep < 21))
                 {
-                    p = Mem.U32(0x801315F4u);
+                    p = Mem.U32(Gv.Ai_ProjectileTablePtr_801315F4);
                     t = Chunk.Get(p, 1);
                     n = (int)(Mem.U32((t + (uint)(1 * 4))));
                     if ((Sort.FindEqualRange((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 28u), (_fp + 32u)) == 0))

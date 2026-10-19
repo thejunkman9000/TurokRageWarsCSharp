@@ -15,10 +15,10 @@ public static partial class ScratchHeap
             int n = ((size + 7) & (~7));
             Mem.Set((Gv.ScratchHeap_Buffers + (uint)(0 * 4)), (int)(ResourcePool.Malloc((uint)(n))));
             Mem.Set((Gv.ScratchHeap_Buffers + (uint)(1 * 4)), (int)(ResourcePool.Malloc((uint)(n))));
-            Mem.Set(0x8014D2D4u, n);
-            Mem.Set(0x8014D2D0u, 0);
+            Mem.Set(Gv.ScratchHeap_Size, n);
+            Mem.Set(Gv.ScratchHeap_Side, 0);
             FrameAlloc.ResetBuffer(default(uint), default(uint), default(uint), default(uint));
-            Mem.Set(0x800D2BD0u, 1);
+            Mem.Set(Gv.ScratchHeap_Initialized, 1);
         }
     }
 
@@ -28,13 +28,13 @@ public static partial class ScratchHeap
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A276C");
-            if ((Mem.S32(0x800D2BD0u) != 0))
+            if ((Mem.S32(Gv.ScratchHeap_Initialized) != 0))
             {
                 ResourcePool.MallocFree((uint)(Mem.S32((Gv.ScratchHeap_Buffers + (uint)(0 * 4)))));
                 ResourcePool.MallocFree((uint)(Mem.S32((Gv.ScratchHeap_Buffers + (uint)(1 * 4)))));
                 Mem.Set((Gv.ScratchHeap_Buffers + (uint)(0 * 4)), 0);
                 Mem.Set((Gv.ScratchHeap_Buffers + (uint)(1 * 4)), 0);
-                Mem.Set(0x800D2BD0u, 0);
+                Mem.Set(Gv.ScratchHeap_Initialized, 0);
             }
         }
     }
@@ -45,7 +45,7 @@ public static partial class ScratchHeap
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A27C4");
-            Mem.Set(0x8014D2D0u, (1 - Mem.S32(0x8014D2D0u)));
+            Mem.Set(Gv.ScratchHeap_Side, (1 - Mem.S32(Gv.ScratchHeap_Side)));
             FrameAlloc.ResetBuffer(default(uint), default(uint), default(uint), default(uint));
         }
     }
@@ -57,7 +57,7 @@ public static partial class ScratchHeap
         {
             if (Dbg.On) Dbg.Enter("func_002A27F8");
             Mem.Set(Gv.ScratchHeap_MarkDepth, (Mem.S32(Gv.ScratchHeap_MarkDepth) + 1));
-            Mem.Set((0x8014D2E0u + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)), Mem.S32(0x8014D328u));
+            Mem.Set((Gv.ScratchHeap_MarkStack + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)), Mem.S32(Gv.ScratchHeap_LowTop));
         }
     }
 

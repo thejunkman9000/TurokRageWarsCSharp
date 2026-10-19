@@ -662,8 +662,8 @@ public static partial class Image
             pal = 0u;
             s6 = (int)(pal);
             s2 = (int)(pal);
-            Mem.Set((0x801539B4u - (uint)4), (int)(FileIo.Open(0x801539B4u, 0x800E10E0u, default(uint), default(uint))));
-            r = (Mem.U32((0x801539B4u + (uint)604)) + (uint)(idx * 28));
+            Mem.Set((Gv.Image_ArchivePath - (uint)4), (int)(FileIo.Open(Gv.Image_ArchivePath, 0x800E10E0u, default(uint), default(uint))));
+            r = (Mem.U32((Gv.Image_ArchivePath + (uint)604)) + (uint)(idx * 28));
             s3 = (int)(pal);
             if (!(((int)(new Q01Rec(r).bits) == 8))) goto _f1;
             s2 = (((int)(new Q01Rec(r).w) + 7) & (-8));
@@ -676,7 +676,7 @@ public static partial class Image
             if (!((0 != 0))) goto _f5;
             L_found: ;
             s3 = 1;
-            Mem.Set((Mem.U32(0x80153C14u) + (uint)(idx * 4)), a1);
+            Mem.Set((Mem.U32(Gv.Image_KeyColorTablePtr) + (uint)(idx * 4)), a1);
             goto L_L84;
             goto _f6;
             _f5: ;
@@ -713,7 +713,7 @@ public static partial class Image
             L_L84: ;
             if (!((a0 == (int)(new Q01Rec(r).n)))) goto _f14;
             s3 = 0;
-            Mem.Set((Mem.U32(0x80153C14u) + (uint)(idx * 4)), (int)(4278190080u));
+            Mem.Set((Mem.U32(Gv.Image_KeyColorTablePtr) + (uint)(idx * 4)), (int)(4278190080u));
             _f14: ;
             _f8: ;
             a1 = (-1);
@@ -808,7 +808,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411AF4");
-            return Mem.S32(0x80153C08u);
+            return Mem.S32(Gv.Image_ArchiveHeaderWord);
         }
     }
 
@@ -838,7 +838,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411B4C", (uint)i);
-            return Mem.S32((Mem.U32(0x80153C14u) + (uint)(i * 4)));
+            return Mem.S32((Mem.U32(Gv.Image_KeyColorTablePtr) + (uint)(i * 4)));
         }
     }
 
@@ -885,8 +885,8 @@ public static partial class Image
         {
             if (Dbg.On) Dbg.Enter("func_00411F6C");
             MemUtil.Fill(Gv.Image_ArchiveCtx, 0, (uint)(680));
-            Mem.Set(0x800E2AC0u, 1);
-            Mem.Set(0x800E2AC4u, 0);
+            Mem.Set(Gv.Image_ArchivesInitialized, 1);
+            Mem.Set(Gv.UiScreen_KeepPristineCopies, 0);
         }
     }
 
@@ -896,7 +896,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411FA8");
-            Mem.Set(0x800E2AC0u, 0);
+            Mem.Set(Gv.Image_ArchivesInitialized, 0);
         }
     }
 
@@ -907,8 +907,8 @@ public static partial class Image
         {
             if (Dbg.On) Dbg.Enter("func_00411FC8");
             int i = 0;
-            new S_vars(0x80153C40u).mode_Set(1);
-            for (i = 0; (i < (int)(new S_vars(0x80153C40u).n)); ++i)
+            new S_vars(Gv.UiScreen_Count).mode_Set(1);
+            for (i = 0; (i < (int)(new S_vars(Gv.UiScreen_Count).n)); ++i)
             {
                 UiScreen.Load(i);
             }
@@ -1011,25 +1011,25 @@ public static partial class Image
             {
                 if (Dbg.On) Dbg.Enter("func_00412FD4", (uint)a, (uint)b);
                 int v = 0;
-                Mem.Set(0x80153CDCu, 0u);
+                Mem.Set(Gv.Image_WriteIndexFn, 0u);
                 Mem.Set(Gv.Image_ReadPixelFn, 0u);
-                Mem.Set(0x80153CD4u, 0u);
-                Mem.Set(0x80153CD0u, 0u);
+                Mem.Set(Gv.Image_WriteColorFn, 0u);
+                Mem.Set(Gv.Image_ReadColorFn, 0u);
                 Mem.Set(Gv.Image_DstIndexPixelsPtr, 0);
                 Mem.Set(Gv.Image_SrcIndexPixelsPtr, 0);
                 Mem.Set(Gv.Image_DstPixelsPtr, 0);
                 Mem.Set(Gv.Image_SrcPixelsPtr, 0);
-                Mem.Set(0x80153C84u, 0);
+                Mem.Set(Gv.Image_DstIndexPos, 0);
                 Mem.Set(Gv.Image_ReadPos, 0);
                 Mem.Set(Gv.Image_DstIndex, 0);
                 Mem.Set(Gv.Image_ReadPixelIndex, 0);
-                Mem.Set(0x80153D58u, 0u);
-                Mem.Set(0x80153D54u, 0u);
+                Mem.Set(Gv.Image_DstSurfacePtr, 0u);
+                Mem.Set(Gv.Image_SrcSurfacePtr, 0u);
                 if ((a != 0u))
                 {
-                    Mem.Set(0x80153D58u, a);
+                    Mem.Set(Gv.Image_DstSurfacePtr, a);
                     Mem.Copy(_fp, (Gv.Image_PixelFormatTable + (uint)(new S_fmt(a).PixelFormat * 52)), 52);
-                    Mem.Copy(0x80153D20u, _fp, 52);
+                    Mem.Copy(Gv.Image_DstFormat, _fp, 52);
                     if ((new S_row(_fp).w[(int)(1)] != 0))
                     {
                         Mem.Set(Gv.Image_DstPixelsPtr, new S_fmt(a).PalettePtr);
@@ -1048,47 +1048,47 @@ public static partial class Image
                     }
                     if ((new S_row(_fp).w[(int)(3)] == 16))
                     {
-                        Mem.Set(0x80153CD4u, 0x004140ECu);
+                        Mem.Set(Gv.Image_WriteColorFn, 0x004140ECu);
                     }
                     else
                     {
                         if ((new S_row(_fp).w[(int)(3)] == 24))
                         {
-                            Mem.Set(0x80153CD4u, 0x0041413Cu);
+                            Mem.Set(Gv.Image_WriteColorFn, 0x0041413Cu);
                         }
                         else
                         {
                             if ((new S_row(_fp).w[(int)(3)] == 32))
                             {
-                                Mem.Set(0x80153CD4u, 0x00414114u);
+                                Mem.Set(Gv.Image_WriteColorFn, 0x00414114u);
                             }
                         }
                     }
                     if ((new S_row(_fp).w[(int)(2)] == 4))
                     {
-                        Mem.Set(0x80153CDCu, 0x004142C4u);
+                        Mem.Set(Gv.Image_WriteIndexFn, 0x004142C4u);
                     }
                     else
                     {
                         if ((new S_row(_fp).w[(int)(2)] == 8))
                         {
-                            Mem.Set(0x80153CDCu, 0x004142A0u);
+                            Mem.Set(Gv.Image_WriteIndexFn, 0x004142A0u);
                         }
                     }
-                    Mem.Set(0x80153CA0u, new S_row(_fp).w[(int)(5)]);
-                    Mem.Set(0x80153CA4u, new S_row(_fp).w[(int)(6)]);
-                    Mem.Set(0x80153CA8u, new S_row(_fp).w[(int)(7)]);
-                    Mem.Set(0x80153CACu, new S_row(_fp).w[(int)(8)]);
-                    Mem.Set(0x80153CC0u, new S_row(_fp).w[(int)(9)]);
-                    Mem.Set(0x80153CC4u, new S_row(_fp).w[(int)(10)]);
-                    Mem.Set(0x80153CC8u, new S_row(_fp).w[(int)(11)]);
-                    Mem.Set(0x80153CCCu, new S_row(_fp).w[(int)(12)]);
+                    Mem.Set(Gv.Image_DstMaskR, new S_row(_fp).w[(int)(5)]);
+                    Mem.Set(Gv.Image_DstMaskG, new S_row(_fp).w[(int)(6)]);
+                    Mem.Set(Gv.Image_DstMaskB, new S_row(_fp).w[(int)(7)]);
+                    Mem.Set(Gv.Image_DstMaskA, new S_row(_fp).w[(int)(8)]);
+                    Mem.Set(Gv.Image_DstShiftR, new S_row(_fp).w[(int)(9)]);
+                    Mem.Set(Gv.Image_DstShiftG, new S_row(_fp).w[(int)(10)]);
+                    Mem.Set(Gv.Image_DstShiftB, new S_row(_fp).w[(int)(11)]);
+                    Mem.Set(Gv.Image_DstShiftA, new S_row(_fp).w[(int)(12)]);
                 }
                 if ((b != 0u))
                 {
-                    Mem.Set(0x80153D54u, b);
+                    Mem.Set(Gv.Image_SrcSurfacePtr, b);
                     Mem.Copy((_fp + 56u), (Gv.Image_PixelFormatTable + (uint)(new S_fmt(b).PixelFormat * 52)), 52);
-                    Mem.Copy(0x80153CE0u, (_fp + 56u), 52);
+                    Mem.Copy(Gv.Image_SrcFormat, (_fp + 56u), 52);
                     if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
                     {
                         Mem.Set(Gv.Image_SrcPixelsPtr, new S_fmt(b).PalettePtr);
@@ -1107,19 +1107,19 @@ public static partial class Image
                     }
                     if ((new S_row((_fp + 56u)).w[(int)(3)] == 16))
                     {
-                        Mem.Set(0x80153CD0u, 0x0041404Cu);
+                        Mem.Set(Gv.Image_ReadColorFn, 0x0041404Cu);
                     }
                     else
                     {
                         if ((new S_row((_fp + 56u)).w[(int)(3)] == 24))
                         {
-                            Mem.Set(0x80153CD0u, 0x004140A4u);
+                            Mem.Set(Gv.Image_ReadColorFn, 0x004140A4u);
                         }
                         else
                         {
                             if ((new S_row((_fp + 56u)).w[(int)(3)] == 32))
                             {
-                                Mem.Set(0x80153CD0u, 0x00414078u);
+                                Mem.Set(Gv.Image_ReadColorFn, 0x00414078u);
                             }
                         }
                     }
@@ -1155,14 +1155,14 @@ public static partial class Image
                             }
                         }
                     }
-                    Mem.Set(0x80153C90u, new S_row((_fp + 56u)).w[(int)(5)]);
-                    Mem.Set(0x80153C94u, new S_row((_fp + 56u)).w[(int)(6)]);
-                    Mem.Set(0x80153C98u, new S_row((_fp + 56u)).w[(int)(7)]);
-                    Mem.Set(0x80153C9Cu, new S_row((_fp + 56u)).w[(int)(8)]);
-                    Mem.Set(0x80153CB0u, new S_row((_fp + 56u)).w[(int)(9)]);
-                    Mem.Set(0x80153CB4u, new S_row((_fp + 56u)).w[(int)(10)]);
-                    Mem.Set(0x80153CB8u, new S_row((_fp + 56u)).w[(int)(11)]);
-                    Mem.Set(0x80153CBCu, new S_row((_fp + 56u)).w[(int)(12)]);
+                    Mem.Set(Gv.Image_SrcMaskR, new S_row((_fp + 56u)).w[(int)(5)]);
+                    Mem.Set(Gv.Image_SrcMaskG, new S_row((_fp + 56u)).w[(int)(6)]);
+                    Mem.Set(Gv.Image_SrcMaskB, new S_row((_fp + 56u)).w[(int)(7)]);
+                    Mem.Set(Gv.Image_SrcMaskA, new S_row((_fp + 56u)).w[(int)(8)]);
+                    Mem.Set(Gv.Image_SrcShiftR, new S_row((_fp + 56u)).w[(int)(9)]);
+                    Mem.Set(Gv.Image_SrcShiftG, new S_row((_fp + 56u)).w[(int)(10)]);
+                    Mem.Set(Gv.Image_SrcShiftB, new S_row((_fp + 56u)).w[(int)(11)]);
+                    Mem.Set(Gv.Image_SrcShiftA, new S_row((_fp + 56u)).w[(int)(12)]);
                 }
             }
         }
@@ -1286,7 +1286,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00413688", (uint)p);
-            return new S_func_00413688((0x800E2B28u + (uint)(Mem.U8(p) * 52))).v;
+            return new S_func_00413688((Gv.Image_FormatTable + (uint)(Mem.U8(p) * 52))).v;
         }
     }
 
@@ -1296,7 +1296,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004136B4", (uint)p);
-            return new S_func_004136B4((0x800E2B2Cu + (uint)(Mem.U8(p) * 52))).v;
+            return new S_func_004136B4((Gv.Image_FormatTable_PaletteBits + (uint)(Mem.U8(p) * 52))).v;
         }
     }
 
@@ -1406,7 +1406,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00413758", (uint)p);
-            return ((new S_func_00413758((0x800E2B40u + (uint)(Mem.U8(p) * 52))).v != 0) ? 1 : 0);
+            return ((new S_func_00413758((Gv.Image_FormatTable_HasAlpha + (uint)(Mem.U8(p) * 52))).v != 0) ? 1 : 0);
         }
     }
 
@@ -1888,22 +1888,22 @@ public static partial class Image
             uint a = (argb >> (int)24);
             uint fn = 0u;
             uint v = 0u;
-            if ((Mem.S32(0x80153CACu) == 0))
+            if ((Mem.S32(Gv.Image_DstMaskA) == 0))
             {
                 a = (uint)(255);
             }
             do
             {
-                r = ((Mem.S32(0x80153CC0u) < 0) ? ((r >> (int)(-Mem.S32(0x80153CC0u))) & (uint)(Mem.S32(0x80153CA0u))) : ((r << (int)Mem.S32(0x80153CC0u)) & (uint)(Mem.S32(0x80153CA0u))));
-                g = ((Mem.S32(0x80153CC4u) < 0) ? ((g >> (int)(-Mem.S32(0x80153CC4u))) & (uint)(Mem.S32(0x80153CA4u))) : ((g << (int)Mem.S32(0x80153CC4u)) & (uint)(Mem.S32(0x80153CA4u))));
-                b = ((Mem.S32(0x80153CC8u) < 0) ? ((b >> (int)(-Mem.S32(0x80153CC8u))) & (uint)(Mem.S32(0x80153CA8u))) : ((b << (int)Mem.S32(0x80153CC8u)) & (uint)(Mem.S32(0x80153CA8u))));
-                a = ((Mem.S32(0x80153CCCu) < 0) ? ((a >> (int)(-Mem.S32(0x80153CCCu))) & (uint)(Mem.S32(0x80153CACu))) : ((a << (int)Mem.S32(0x80153CCCu)) & (uint)(Mem.S32(0x80153CACu))));
+                r = ((Mem.S32(Gv.Image_DstShiftR) < 0) ? ((r >> (int)(-Mem.S32(Gv.Image_DstShiftR))) & (uint)(Mem.S32(Gv.Image_DstMaskR))) : ((r << (int)Mem.S32(Gv.Image_DstShiftR)) & (uint)(Mem.S32(Gv.Image_DstMaskR))));
+                g = ((Mem.S32(Gv.Image_DstShiftG) < 0) ? ((g >> (int)(-Mem.S32(Gv.Image_DstShiftG))) & (uint)(Mem.S32(Gv.Image_DstMaskG))) : ((g << (int)Mem.S32(Gv.Image_DstShiftG)) & (uint)(Mem.S32(Gv.Image_DstMaskG))));
+                b = ((Mem.S32(Gv.Image_DstShiftB) < 0) ? ((b >> (int)(-Mem.S32(Gv.Image_DstShiftB))) & (uint)(Mem.S32(Gv.Image_DstMaskB))) : ((b << (int)Mem.S32(Gv.Image_DstShiftB)) & (uint)(Mem.S32(Gv.Image_DstMaskB))));
+                a = ((Mem.S32(Gv.Image_DstShiftA) < 0) ? ((a >> (int)(-Mem.S32(Gv.Image_DstShiftA))) & (uint)(Mem.S32(Gv.Image_DstMaskA))) : ((a << (int)Mem.S32(Gv.Image_DstShiftA)) & (uint)(Mem.S32(Gv.Image_DstMaskA))));
                 v = (((r | g) | b) | a);
-                fn = Mem.U32(0x80153CD4u);
+                fn = Mem.U32(Gv.Image_WriteColorFn);
             }
             while ((0 != 0));
             Mem.Set(Gv.Image_DstIndex, idx);
-            Mem.Set(0x80153C74u, (int)(v));
+            Mem.Set(Gv.Image_WriteColor, (int)(v));
             Funcs.CallReg(fn, (uint)(idx), 0u, 0u, 0u);
         }
     }
@@ -1952,7 +1952,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041404C");
-            Mem.Set(0x80153C68u, (int)(Mem.U16((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 2)))));
+            Mem.Set(Gv.Image_ReadColor, (int)(Mem.U16((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 2)))));
         }
     }
 
@@ -1962,7 +1962,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414078");
-            Mem.Set(0x80153C68u, Mem.S32((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 4))));
+            Mem.Set(Gv.Image_ReadColor, Mem.S32((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 4))));
         }
     }
 
@@ -1972,7 +1972,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004140A4");
-            Mem.Set(0x80153C68u, ((((int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 3)))) << (int)16) | ((int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)((Mem.S32(Gv.Image_ReadPixelIndex) * 3) + 1)))) << (int)8)) | (int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)((Mem.S32(Gv.Image_ReadPixelIndex) * 3) + 2))))));
+            Mem.Set(Gv.Image_ReadColor, ((((int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)(Mem.S32(Gv.Image_ReadPixelIndex) * 3)))) << (int)16) | ((int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)((Mem.S32(Gv.Image_ReadPixelIndex) * 3) + 1)))) << (int)8)) | (int)(Mem.U8((Mem.U32(Gv.Image_SrcPixelsPtr) + (uint)((Mem.S32(Gv.Image_ReadPixelIndex) * 3) + 2))))));
         }
     }
 
@@ -1982,7 +1982,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004140EC");
-            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 2)), Mem.U16(0x80153C76u));
+            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 2)), Mem.U16(Gv.Image_WriteColor_B2));
         }
     }
 
@@ -1992,7 +1992,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414114");
-            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 4)), Mem.S32(0x80153C74u));
+            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 4)), Mem.S32(Gv.Image_WriteColor));
         }
     }
 
@@ -2002,9 +2002,9 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041413C");
-            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 3)), Mem.U8(0x80153C75u));
-            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)((Mem.S32(Gv.Image_DstIndex) * 3) + 1)), Mem.U8(0x80153C76u));
-            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)((Mem.S32(Gv.Image_DstIndex) * 3) + 2)), Mem.U8(0x80153C77u));
+            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)(Mem.S32(Gv.Image_DstIndex) * 3)), Mem.U8(Gv.Image_WriteColor_B1));
+            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)((Mem.S32(Gv.Image_DstIndex) * 3) + 1)), Mem.U8(Gv.Image_WriteColor_B2));
+            Mem.Set((Mem.U32(Gv.Image_DstPixelsPtr) + (uint)((Mem.S32(Gv.Image_DstIndex) * 3) + 2)), Mem.U8(Gv.Image_WriteColor_B3));
         }
     }
 
@@ -2014,7 +2014,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004141B8");
-            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(0x80153C80u, (int)(Mem.U8((Mem.U32(Gv.Image_SrcIndexPixelsPtr) + (uint)Mem.S32(Gv.Image_ReadPos))))));
+            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(Gv.Image_ReadIndex, (int)(Mem.U8((Mem.U32(Gv.Image_SrcIndexPixelsPtr) + (uint)Mem.S32(Gv.Image_ReadPos))))));
         }
     }
 
@@ -2034,7 +2034,7 @@ public static partial class Image
             {
                 v = ((int)(Mem.U8((Mem.U32(Gv.Image_SrcIndexPixelsPtr) + (uint)(i >> (int)1)))) >> (int)4);
             }
-            Mem.Set(0x80153C80u, v);
+            Mem.Set(Gv.Image_ReadIndex, v);
             Mem.Set(Gv.Image_ReadPixelIndex, v);
         }
     }
@@ -2045,7 +2045,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414240");
-            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(0x80153C80u, Mem.S32(Gv.Image_ReadPos)));
+            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(Gv.Image_ReadIndex, Mem.S32(Gv.Image_ReadPos)));
         }
     }
 
@@ -2055,7 +2055,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414260");
-            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(0x80153C80u, Mem.S32(Gv.Image_ReadPos)));
+            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(Gv.Image_ReadIndex, Mem.S32(Gv.Image_ReadPos)));
         }
     }
 
@@ -2065,7 +2065,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414280");
-            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(0x80153C80u, Mem.S32(Gv.Image_ReadPos)));
+            Mem.Set(Gv.Image_ReadPixelIndex, Mem.Set(Gv.Image_ReadIndex, Mem.S32(Gv.Image_ReadPos)));
         }
     }
 
@@ -2075,7 +2075,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004142A0");
-            Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)Mem.S32(0x80153C84u)), Mem.U8(0x80153C8Fu));
+            Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)Mem.S32(Gv.Image_DstIndexPos)), Mem.U8(Gv.Image_WriteIndexValue));
         }
     }
 
@@ -2085,14 +2085,14 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004142C4");
-            int i = Mem.S32(0x80153C84u);
+            int i = Mem.S32(Gv.Image_DstIndexPos);
             if (((i & 1) != 0))
             {
-                Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)))) & 240) | ((int)(Mem.U8(0x80153C8Fu)) & 15))));
+                Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)))) & 240) | ((int)(Mem.U8(Gv.Image_WriteIndexValue)) & 15))));
             }
             else
             {
-                Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)))) & 15) | (((int)(Mem.U8(0x80153C8Fu)) & 15) << (int)4))));
+                Mem.Set((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(Gv.Image_DstIndexPixelsPtr) + (uint)(i >> (int)1)))) & 15) | (((int)(Mem.U8(Gv.Image_WriteIndexValue)) & 15) << (int)4))));
             }
         }
     }
@@ -2111,7 +2111,7 @@ public static partial class Image
             uint s1 = 0u;
             uint a = 0u;
             uint b = 0u;
-            if ((((Mem.S32(0x800E32F0u) != 0) && ((row = (((int)(new O3TexB(t).w) != 0) ? 1 : 0)) != 0)) && ((int)(new O3TexB(t).h) != 0)))
+            if ((((Mem.S32(Gv.Image_RowSwapEnabled) != 0) && ((row = (((int)(new O3TexB(t).w) != 0) ? 1 : 0)) != 0)) && ((int)(new O3TexB(t).h) != 0)))
             {
                 fmt = Image.GetBitsPerPixel((uint)(t));
                 switch (fmt)
@@ -2242,7 +2242,7 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419748", (uint)v);
-            Mem.Set(0x800E32F0u, v);
+            Mem.Set(Gv.Image_RowSwapEnabled, v);
         }
     }
 
@@ -2452,7 +2452,7 @@ public static partial class Material
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00297008", (uint)a);
-            Mem.Set(0x800D2B04u, a);
+            Mem.Set(Gv.Texture_ColorMode, a);
         }
     }
 }
@@ -2992,7 +2992,7 @@ public static partial class Texture
                 {
                     Mem.Set((_fp + 4u), Chunk.Get(entries, secondary));
                     paletteChanged = 0;
-                    if (((Mem.S32(0x800D2B00u) != (int)(resource)) || (Mem.S32(0x8014D074u) != secondary)))
+                    if (((Mem.S32(Gv.Texture_LoadedResource) != (int)(resource)) || (Mem.S32(Gv.Texture_LastSecondary) != secondary)))
                     {
                         paletteChanged = 1;
                     }
@@ -3003,17 +3003,17 @@ public static partial class Texture
                     Mem.Set((_fp + 4u), 0u);
                 }
                 changed = 0;
-                if (((((Mem.S32(0x800D2B00u) != (int)(resource)) || (Mem.S32(0x8014D070u) != frame)) || (Mem.S32(0x8014D078u) != wrapS)) || (Mem.S32(0x8014D07Cu) != wrapT)))
+                if (((((Mem.S32(Gv.Texture_LoadedResource) != (int)(resource)) || (Mem.S32(Gv.Texture_LastFrame) != frame)) || (Mem.S32(Gv.Texture_LastWrapS) != wrapS)) || (Mem.S32(Gv.Texture_LastWrapT) != wrapT)))
                 {
                     changed = 1;
                 }
                 if (((changed != 0) || (paletteChanged != 0)))
                 {
-                    Mem.Set(0x800D2B00u, (int)(resource));
-                    Mem.Set(0x8014D070u, frame);
-                    Mem.Set(0x8014D074u, secondary);
-                    Mem.Set(0x8014D078u, wrapS);
-                    Mem.Set(0x8014D07Cu, wrapT);
+                    Mem.Set(Gv.Texture_LoadedResource, (int)(resource));
+                    Mem.Set(Gv.Texture_LastFrame, frame);
+                    Mem.Set(Gv.Texture_LastSecondary, secondary);
+                    Mem.Set(Gv.Texture_LastWrapS, wrapS);
+                    Mem.Set(Gv.Texture_LastWrapT, wrapT);
                     maskS = (byte)(0);
                     if (!(((uint)(wrapS) & ((uint)(1) << (int)1)) != 0u))
                     {
@@ -3385,7 +3385,7 @@ public static partial class Texture
                             {
                                 uint _gbi_58 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 Mem.Set(new Gfx_s(_gbi_58).words.P, ((((uint)(222) & (uint)(((1 << (int)8) - 1))) << (int)24) | (((uint)(0) & (uint)(((1 << (int)8) - 1))) << (int)16)));
-                                Mem.Set((new Gfx_s(_gbi_58).words.P + 4u), (uint)(0x800D11D0u));
+                                Mem.Set((new Gfx_s(_gbi_58).words.P + 4u), (uint)(Gv.Texture_LoadBlockDL));
                             }
                         }
                         break;
@@ -3430,7 +3430,7 @@ public static partial class Texture
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00296FF8");
-            Mem.Set(0x800D2B00u, 0);
+            Mem.Set(Gv.Texture_LoadedResource, 0);
         }
     }
 

@@ -212,9 +212,9 @@ public static partial class AiNav
                 }
                 i = 0;
                 nlist = 0;
-                for (; (i < Mem.S32(0x8011FFC8u)); ++i)
+                for (; (i < Mem.S32(Gv.Level_EntityCount)); ++i)
                 {
-                    a0 = (Mem.U32(0x8011FFC0u) + (uint)(i * 744));
+                    a0 = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(i * 744));
                     if (((int)(new B2Obj(a0).TypeId) == 1602))
                     {
                         lp = (_fp + (uint)(nlist * 4));
@@ -384,7 +384,7 @@ public static partial class AiNav
                     {
                         if ((s0 != 0))
                         {
-                            Mem.Copy((_fp + 16u), 0x80104050u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDefFlag01, 28);
                         }
                         else
                         {
@@ -395,11 +395,11 @@ public static partial class AiNav
                     {
                         if ((Actor.HasDefFlag4Cx08_0024DF90(a) == 0))
                         {
-                            Mem.Copy((_fp + 16u), 0x80104070u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDead, 28);
                         }
                         else
                         {
-                            Mem.Copy((_fp + 16u), 0x80103FF0u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDeadAlt, 28);
                         }
                     }
                 }
@@ -1496,7 +1496,7 @@ public static partial class AiNav
                     {
                         if ((s0 != 0))
                         {
-                            Mem.Copy((_fp + 16u), 0x80104050u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDefFlag01, 28);
                         }
                         else
                         {
@@ -1507,11 +1507,11 @@ public static partial class AiNav
                     {
                         if ((Actor.HasDefFlag4Cx08_0024DF90(a) == 0))
                         {
-                            Mem.Copy((_fp + 16u), 0x80104070u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDead, 28);
                         }
                         else
                         {
-                            Mem.Copy((_fp + 16u), 0x80103FF0u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtxDeadAlt, 28);
                         }
                     }
                 }
@@ -1909,7 +1909,7 @@ public static partial class AiNav
         {
             if (Dbg.On) Dbg.Enter("func_0020EE50", (uint)ctl);
             uint n = 0u;
-            for (n = Mem.U32(0x8013B388u); (n != 0u); n = new B2Node(n).next_)
+            for (n = Mem.U32(Gv.AiNav_TimerNodeList); (n != 0u); n = new B2Node(n).next_)
             {
                 new B2Node(n).ExtraCost_Set((new B2Node(n).ExtraCost + ((float)((new B2Node(n).TimerCost * 30)) * 10.24f)));
             }

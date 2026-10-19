@@ -1469,8 +1469,8 @@ public static partial class TextUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002ABB58");
-            Mem.Set((0x8013B870u + (uint)(0 * 4)), a);
-            Mem.Set((0x8013B870u + (uint)(1 * 4)), b);
+            Mem.Set((Gv.Text_Scale + (uint)(0 * 4)), a);
+            Mem.Set((Gv.Text_Scale + (uint)(1 * 4)), b);
         }
     }
 
@@ -1553,7 +1553,7 @@ public static partial class TextUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002ABDAC");
-            return Mem.S32(0x800D2F90u);
+            return Mem.S32(Gv.Text_FontTexturePtr);
         }
     }
 

@@ -366,11 +366,11 @@ public static partial class Trail
             saved = Mem.F32(Gv.FrameTime);
             if (((new SSlot(s).Flags & (uint)(2)) != 0u))
             {
-                Mem.Set(Gv.FrameTime, (saved * Mem.F32(0x800D2990u)));
+                Mem.Set(Gv.FrameTime, (saved * Mem.F32(Gv.Effects_TimeScale)));
             }
             if (((new SSlot(s).Flags & (uint)(1)) != 0u))
             {
-                Mem.Set(Gv.FrameTime, (Mem.F32(Gv.FrameTime) * Mem.F32(0x800D298Cu)));
+                Mem.Set(Gv.FrameTime, (Mem.F32(Gv.FrameTime) * Mem.F32(Gv.Trails_TimeScale)));
             }
             if (((new SSlot(s).Flags & (uint)(8)) != 0u))
             {

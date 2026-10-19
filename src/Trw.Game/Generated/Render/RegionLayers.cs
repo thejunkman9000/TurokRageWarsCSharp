@@ -1659,7 +1659,7 @@ public static partial class RegionLayer
                     {
                         uint p_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_2).w0_Set(3661103107u);
-                        new DlCmd(p_2).w1_Set((uint)(0x80146D20u));
+                        new DlCmd(p_2).w1_Set((uint)(Gv.Gfx_IdentityMtx));
                     }
                     {
                         uint p_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -1805,7 +1805,7 @@ public static partial class RegionLayer
                 new B09Emitter(e).FadeAlpha_Set(dn);
             }
             new B09Emitter(e).AnimTime_Set((new B09Emitter(e).AnimTime + ((Mem.F32(Gv.FrameTime) * new B09EDef(def).AnimRate) * new B09Emitter(e).SpeedScale)));
-            step = ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800D2994u)) * new B09EDef(def).ScrollSpeed);
+            step = ((Mem.F32(Gv.FrameTime) * Mem.F32(Gv.RegionLayers_TimeScale)) * new B09EDef(def).ScrollSpeed);
             t = (new B09Emitter(e).ScrollU + (step * 1.536f));
             new B09Emitter(e).ScrollU_Set(t);
             if ((20480f < t))

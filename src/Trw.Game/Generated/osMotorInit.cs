@@ -112,16 +112,16 @@ public static partial class Game
                 {
                     return 11;
                 }
-                if (!(Mem.S32((0x800D8380u + (uint)(channel * 4))) != 0))
+                if (!(Mem.S32((Gv.__osMotorInitialized + (uint)(channel * 4))) != 0))
                 {
                     for (i = 0; (i < 32); ++i)
                     {
-                        Mem.Set((0x8014D5C0u + (uint)i), (byte)(1));
-                        Mem.Set((0x8014D6E0u + (uint)i), (byte)(0));
+                        Mem.Set((Gv.__osMotorStartBuf + (uint)i), (byte)(1));
+                        Mem.Set((Gv.__osMotorStopBuf + (uint)i), (byte)(0));
                     }
-                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), 0x8014D5C0u, (0x8014D4C0u + (uint)(channel * 64)));
-                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), 0x8014D6E0u, (0x8014D5E0u + (uint)(channel * 64)));
-                    Mem.Set((0x800D8380u + (uint)(channel * 4)), 1);
+                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), Gv.__osMotorStartBuf, (Gv.__osMotorStartData + (uint)(channel * 64)));
+                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), Gv.__osMotorStopBuf, (Gv.__osMotorStopData + (uint)(channel * 64)));
+                    Mem.Set((Gv.__osMotorInitialized + (uint)(channel * 4)), 1);
                 }
                 return 0;
             }

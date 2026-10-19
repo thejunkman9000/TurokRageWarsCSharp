@@ -47,7 +47,7 @@ public static partial class Gauntlet
             int r = 1;
             if ((Mem.S32((Gv.Gauntlet_GameType + (uint)(0 * 4))) >= 0))
             {
-                int t = (((Mem.S32(0x80154014u) + 1) == func_0042B11C_sub_B334(Mem.S32((Gv.Gauntlet_GameType + (uint)(0 * 4))))) ? 1 : 0);
+                int t = (((Mem.S32(Gv.Gauntlet_Index) + 1) == func_0042B11C_sub_B334(Mem.S32((Gv.Gauntlet_GameType + (uint)(0 * 4))))) ? 1 : 0);
                 r = t;
             }
             return r;
@@ -80,7 +80,7 @@ public static partial class Gauntlet
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B1B0", (uint)a);
-            Mem.Set(0x80154014u, a);
+            Mem.Set(Gv.Gauntlet_Index, a);
         }
     }
 
@@ -93,7 +93,7 @@ public static partial class Gauntlet
             int i = 0;
             for (i = 0; (i < 40); ++i)
             {
-                Bits.Assign(0x80154018u, i, 0);
+                Bits.Assign(Gv.Gauntlet_PlayedArenaBits, i, 0);
             }
         }
     }

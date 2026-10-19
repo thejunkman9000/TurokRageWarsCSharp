@@ -58,7 +58,7 @@ public static partial class LoopSound
                 new P3SNode(n).id_Set((-1));
                 new P3SNode(n).handle_Set((-1));
                 new P3SNode(n).handle_Set(Audio.PlaySound((int)((short)(id)), pos, a, b));
-                Mem.Set(0x800D0D50u, new P3SNode(n).handle);
+                Mem.Set(Gv.LoopSound_LastStartHandle, new P3SNode(n).handle);
                 new P3SNode(n).id_Set(id);
                 Mem.Copy(new P3SNode(n).pos.P, pos, 12);
                 new P3SNode(n).arg_Set(a);
@@ -83,7 +83,7 @@ public static partial class LoopSound
                 if ((n == target))
                 {
                     Audio.StopByHandle(new SndListNode(n).id);
-                    Mem.Set(0x800D0D54u, new SndListNode(n).id);
+                    Mem.Set(Gv.LoopSound_LastStopId, new SndListNode(n).id);
                     ListUtil.Remove((l + 20u), n, default(uint), default(uint));
                     ListUtil.Append_00255CB4(l, n, default(uint), default(uint));
                     return 1;
@@ -103,7 +103,7 @@ public static partial class LoopSound
             for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
             {
                 Audio.StopByHandle(new SndListNode(n).id);
-                Mem.Set(0x800D0D58u, new SndListNode(n).id);
+                Mem.Set(Gv.LoopSound_LastPauseId, new SndListNode(n).id);
             }
             new SndPlaylist(l).unk28_Set(1);
         }
@@ -119,7 +119,7 @@ public static partial class LoopSound
             for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode_v2(n).next_)
             {
                 new SndListNode_v2(n).id_Set(Audio.PlaySound((int)(new SndListNode_v2(n).sndId), new SndListNode_v2(n).pos.P, new SndListNode_v2(n).unk1C, (-1)));
-                Mem.Set(0x800D0D5Cu, new SndListNode_v2(n).id);
+                Mem.Set(Gv.LoopSound_LastResumeId, new SndListNode_v2(n).id);
             }
             new SndPlaylist(l).unk28_Set(0);
         }
@@ -172,7 +172,7 @@ public static partial class LoopSound
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025CC8C");
-            return 0x8011F260u;
+            return Gv.LoopSound_Pool;
         }
     }
 

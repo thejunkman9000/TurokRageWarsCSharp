@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osTimerServicesInit");
-            Mem.Set(0x8014FE28u, (ulong)(0));
-            Mem.Set(0x8014FE20u, (uint)(0));
-            Mem.Set(0x8014FE24u, (uint)(0));
+            Mem.Set(Gv.__osCurrentTime, (ulong)(0));
+            Mem.Set(Gv.__osBaseCounter, (uint)(0));
+            Mem.Set(Gv.__osViIntrCount, (uint)(0));
             new OSTimer(Mem.U32(Gv.__osTimerList)).prev__Set(Mem.U32(Gv.__osTimerList));
             new OSTimer(Mem.U32(Gv.__osTimerList)).next__Set(new OSTimer(Mem.U32(Gv.__osTimerList)).prev_);
             new OSTimer(Mem.U32(Gv.__osTimerList)).remaining_Set((ulong)(0));

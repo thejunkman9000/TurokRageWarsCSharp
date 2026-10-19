@@ -1003,9 +1003,9 @@ public static partial class Damage
                         goto L_have;
                     }
                 }
-                if ((Actor.FindNearestHitBox(a, _fp, 0x80110570u) != 0))
+                if ((Actor.FindNearestHitBox(a, _fp, Gv.Damage_NearestHitBox) != 0))
                 {
-                    e = 0x80110570u;
+                    e = Gv.Damage_NearestHitBox;
                 }
                 else
                 {

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osGetCurrFaultedThread");
-            return Mem.U32(0x800D92A4u);
+            return Mem.U32(Gv.__osFaultedThread);
         }
     }
 

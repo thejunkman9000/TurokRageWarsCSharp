@@ -417,7 +417,7 @@ public static partial class DebugUtil
             {
                 return 1;
             }
-            if (((a >= (uint)(0x800C6AB0u)) && (a < ((uint)(0x800C6AB0u) + (uint)(0x0000655Cu)))))
+            if (((a >= (uint)(Gv.RodataSegment)) && (a < ((uint)(Gv.RodataSegment) + (uint)(0x0000655Cu)))))
             {
                 return 1;
             }
@@ -435,11 +435,11 @@ public static partial class DebugUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026583C", (uint)a);
-            if (((a >= (uint)(0x800E8000u)) && (a < (uint)(0x8016E000u))))
+            if (((a >= (uint)(Gv.Rsp_YieldBuffer)) && (a < (uint)(Gv.Heap_Start))))
             {
                 return 1;
             }
-            if (((a >= (uint)(0x80153140u)) && (a < (uint)(0x801540CAu))))
+            if (((a >= (uint)(Gv.Debug_HeapRangeStart_80153140)) && (a < (uint)(Gv.Debug_HeapRangeEnd_801540CA))))
             {
                 return 1;
             }
@@ -683,8 +683,8 @@ public static partial class DebugUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A224C", (uint)a, (uint)b);
-            Mem.Set(0x800D2B8Cu, a);
-            Mem.Set(0x800D2B90u, b);
+            Mem.Set(Gv.Debug_PrintHook, a);
+            Mem.Set(Gv.Debug_PrintfHook, b);
         }
     }
 
@@ -857,7 +857,7 @@ public static partial class DebugUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004143C8");
-            return 0x80153D60u;
+            return Gv.Debug_AssertMessage;
         }
     }
 

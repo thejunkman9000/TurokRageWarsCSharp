@@ -19,7 +19,7 @@ public static partial class UiString
             int flag = 0;
             uint p = 0u;
             flag = 0;
-            cnt = new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).cnt;
+            cnt = new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).cnt;
             if ((new S_G_v3(Gv.Image_ArchiveCtx).buf0_ != 0u))
             {
                 ResourcePool.MallocFree(new S_G_v3(Gv.Image_ArchiveCtx).buf0_);
@@ -32,14 +32,14 @@ public static partial class UiString
             new S_G_v3(Gv.Image_ArchiveCtx).buf1_Set(0u);
             if ((idx < ((int)(new S_G_v3(Gv.Image_ArchiveCtx).n) - 1)))
             {
-                size = (new S_ent_v2((Mem.U32(0x80153C30u) + (uint)((idx + 1) * 8))).off - new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off);
+                size = (new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)((idx + 1) * 8))).off - new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off);
             }
             else
             {
-                size = (new S_G_v3(Gv.Image_ArchiveCtx).f234 - new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off);
+                size = (new S_G_v3(Gv.Image_ArchiveCtx).f234 - new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off);
             }
             new S_G_v3(Gv.Image_ArchiveCtx).buf0__Set(ResourcePool.Malloc((uint)(size)));
-            FileIo.Seek((uint)(new S_G_v3(Gv.Image_ArchiveCtx).h), (uint)((new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off + new S_G_v3(Gv.Image_ArchiveCtx).f230)), (uint)(0), default(uint));
+            FileIo.Seek((uint)(new S_G_v3(Gv.Image_ArchiveCtx).h), (uint)((new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off + new S_G_v3(Gv.Image_ArchiveCtx).f230)), (uint)(0), default(uint));
             FileIo.Read((uint)((int)(new S_G_v3(Gv.Image_ArchiveCtx).buf0_)), (uint)(size), (uint)(1), (uint)(new S_G_v3(Gv.Image_ArchiveCtx).h));
             if ((flag != 0))
             {
@@ -65,7 +65,7 @@ public static partial class UiString
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411DF8", (uint)i);
-            return Mem.S32((Mem.U32(0x80153C3Cu) + (uint)(i * 4)));
+            return Mem.S32((Mem.U32(Gv.UiStrings_TablePtr) + (uint)(i * 4)));
         }
     }
 
@@ -75,7 +75,7 @@ public static partial class UiString
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411E14");
-            return (int)(Mem.S16(0x80153C2Cu));
+            return (int)(Mem.S16(Gv.UiStrings_BankCount));
         }
     }
 
@@ -85,7 +85,7 @@ public static partial class UiString
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411E24", _a0);
-            if ((Mem.S16(0x80153C2Cu) != 0))
+            if ((Mem.S16(Gv.UiStrings_BankCount) != 0))
             {
                 UiString.LoadBank((int)(uint)(_a0));
             }

@@ -837,9 +837,9 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00417BA0_Q2_SetColor", (uint)color);
-            if ((color != Mem.U32(0x800E32DCu)))
+            if ((color != Mem.U32(Gv.Gfx_CachedEnvPrimColor)))
             {
-                Mem.Set(0x800E32DCu, color);
+                Mem.Set(Gv.Gfx_CachedEnvPrimColor, color);
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(_g).w0_Set(4211081216u);
@@ -1326,7 +1326,7 @@ public static partial class Gfx
                     dsdx = ((int)((((s1 - s0) * (float)(w)) * 1024f)) / ((x1 - x0) + 1));
                     mode = Mem.S32(Gv.Gfx_TexBitsPerPixel);
                     tw = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth);
-                    Mem.Set(0x800E32B4u, 0);
+                    Mem.Set(Gv.Gfx_TexState_800E32B4, 0);
                     dtdy = ((int)((srcH * 1024f)) / dy);
                     if ((srcHi == 0))
                     {
@@ -1339,7 +1339,7 @@ public static partial class Gfx
                     y0 = (int)((int)(y0) << (int)10);
                     x0 = (int)((int)(x0) << (int)10);
                     x1 = (int)((int)(x1) << (int)10);
-                    tStart = (int)(((t0 * (float)(hCopy)) * Mem.F32((0x800E1438u + (uint)(0 * 4)))));
+                    tStart = (int)(((t0 * (float)(hCopy)) * Mem.F32((Gv.Sprites_TexCoordScale + (uint)(0 * 4)))));
                     y1 = (int)((int)(y1) << (int)10);
                     switch (mode)
                     {
@@ -1374,7 +1374,7 @@ public static partial class Gfx
                     }
                     rowPos = 0;
                     texRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Height);
-                    sStart = (int)(((s0 * (float)(wCopy)) * Mem.F32((0x800E1438u + (uint)(1 * 4)))));
+                    sStart = (int)(((s0 * (float)(wCopy)) * Mem.F32((Gv.Sprites_TexCoordScale + (uint)(1 * 4)))));
                     if ((texRows >= 0))
                     {
                         do
@@ -1684,14 +1684,14 @@ public static partial class Gfx
             float bb = 0f;
             float dd = 0f;
             dd = d;
-            Mem.Set(0x800E32E0u, 0);
+            Mem.Set(Gv.Gfx_RectMode_800E32E0, 0);
             Mem.Set(Gv.Gfx_PipeSyncDone, 0);
             Gfx.SelectRenderMode(12);
             aa = a;
             Gfx.SetUiCombineMode(5);
             func_00418E60_O3_SetModeA(7);
             func_00418E60_O3_SetModeB(14);
-            if ((Mem.S32(0x80153F60u) == 0))
+            if ((Mem.S32(Gv.RenderMode_State) == 0))
             {
                 Gfx.SetUiVertexMode_00416F4C(9);
                 Ui.DrawClippedQuad(aa, b, dd, Cpu.U2F((uint)(e)), (uint)(f), (uint)(g), (uint)(h), (uint)(i));
@@ -1704,9 +1704,9 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00418E60_O3_SetModeA", (uint)mode);
-            if ((mode != Mem.S32(0x800E32C4u)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedModeA)))
             {
-                Mem.Set(0x800E32C4u, mode);
+                Mem.Set(Gv.Gfx_CachedModeA, mode);
                 func_00418E60_O3_Sync();
                 if ((mode == 6))
                 {
@@ -1736,13 +1736,13 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00418E60_O3_SetModeB", (uint)mode);
-            if ((Mem.S32(0x80153F68u) == 0))
+            if ((Mem.S32(Gv.RenderMode_State_8_80153F68) == 0))
             {
                 mode = 14;
             }
-            if ((mode != Mem.S32(0x800E32D0u)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedModeB)))
             {
-                Mem.Set(0x800E32D0u, mode);
+                Mem.Set(Gv.Gfx_CachedModeB, mode);
                 func_00418E60_O3_Sync();
                 if ((mode == 13))
                 {
@@ -2053,7 +2053,7 @@ public static partial class Sprite
             if (Dbg.On) Dbg.Enter("func_0028E480", (uint)unused, (uint)obj);
             if ((Resource.UnpackRnc(obj, 0) != 0))
             {
-                func_0028E480_remap(Mem.S32((obj + (uint)(0 * 4))), 0x800D2910u);
+                func_0028E480_remap(Mem.S32((obj + (uint)(0 * 4))), Gv.Sprites_BrightenRemap1);
             }
         }
     }
@@ -2123,7 +2123,7 @@ public static partial class Sprite
             if (Dbg.On) Dbg.Enter("func_0028E5AC", (uint)unused, (uint)obj);
             if ((Resource.UnpackRnc(obj, 0) != 0))
             {
-                func_0028E5AC_remap(Mem.S32((obj + (uint)(0 * 4))), 0x800D2920u);
+                func_0028E5AC_remap(Mem.S32((obj + (uint)(0 * 4))), Gv.Sprites_BrightenRemap2);
             }
         }
     }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgPortWriteData", (uint)data);
-            Mem.Set(0x8014D3E0u, data);
+            Mem.Set(Gv.DbgPort_ThrShadow, data);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

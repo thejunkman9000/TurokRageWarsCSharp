@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("_VirtualToPhysicalTask", (uint)intp);
             uint tp = 0u;
-            tp = 0x8014EA90u;
+            tp = Gv.__osTmpTask;
             memcpy(tp, intp, 64u);
             if ((new OSTask(tp).t.ucode_ != 0u))
             {

@@ -119,7 +119,7 @@ public static partial class TitleScreen
             Video.RequestResolution(0);
             Menu.DisableInput();
             Mem.Set(Gv.PakMenu_BootPad, (-1));
-            Mem.Set(0x80146D70u, 0);
+            Mem.Set(Gv.Boot_Flag_80146D70, 0);
             Game_InitCameras(Gv.GameCtx, 0, 0);
             Level.Load((Gv.GameCtx + (uint)968), (uint)(0), (uint)(0), default(uint));
             new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(0);
@@ -210,7 +210,7 @@ public static partial class TitleScreen
                 Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
                 Mem.Set(Gv.PakMenu_BootCheckDone, 1);
                 Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
-                Mem.Set(0x800E3514u, 1);
+                Mem.Set(Gv.PlayerMenu_SkipPakDetect, 1);
                 PlayerMenu.SetMode(6);
                 Menu.GotoScreen(19);
                 break;

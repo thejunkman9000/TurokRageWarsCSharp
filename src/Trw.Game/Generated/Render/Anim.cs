@@ -41,7 +41,7 @@ public static partial class Actor
                     new Vec3(_fp).y_Set(Mem.F32(((cur + (uint)(3 * 16)) + (uint)(1 * 4))));
                     new Vec3(_fp).z_Set(Mem.F32(((cur + (uint)(3 * 16)) + (uint)(2 * 4))));
                     Mem.Copy((_fp + 16u), new Shared_PosePart(part).unk_18.P, 12);
-                    angle = (Mem.F32((0x800D06C0u + (uint)((25 - (int)(new Shared_PosePart(part).unk_12)) * 4))) * 0.5f);
+                    angle = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)(new Shared_PosePart(part).unk_12)) * 4))) * 0.5f);
                     angle = (float)((float)(angle) * 0.300000012f);
                     angle = (float)((float)(angle) * ((n == 5) ? (-2.0f) : (float)(n)));
                     MathUtil.MtxCopy((_fp + 96u), cur);
@@ -1874,7 +1874,7 @@ public static partial class Anim
                             if ((s1 != 0))
                             {
                                 Event.Send(o, o, (int)(new B10Le(e).h2), (-1), _fp, new B10Le(e).pr.P);
-                                Mem.Set(0x800D06BCu, (int)(Mem.S32(0x800D06BCu) + 1));
+                                Mem.Set(Gv.Anim_EventSendCount, (int)(Mem.S32(Gv.Anim_EventSendCount) + 1));
                             }
                         }
                     }
@@ -2205,7 +2205,7 @@ public static partial class Anim
                     new Vec3f(_fp).y_Set(Mem.F32((m + (uint)(13 * 4))));
                     new Vec3f(_fp).z_Set(Mem.F32((m + (uint)(14 * 4))));
                     Mem.Copy((_fp + 16u), new B11P(p).v18.P, 12);
-                    k = (Mem.F32((0x800D06C0u + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * 0.5f);
+                    k = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * 0.5f);
                     f = 0.3f;
                     k = (k * f);
                     f = (-2f);

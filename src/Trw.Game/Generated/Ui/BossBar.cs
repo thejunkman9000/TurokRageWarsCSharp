@@ -614,7 +614,7 @@ public static partial class BossBar
                 Gfx.LoadTexImage16();
                 TextUtil.SetScale(0.7f, 0.7f);
                 TextUtil.SetColors(255, 255, 255, 200, 200, 200);
-                Gfx.BeginFlatColorPass((uint)((int)(Mem.U8(0x801462DEu))), default(uint), default(uint), default(uint));
+                Gfx.BeginFlatColorPass((uint)((int)(Mem.U8(Gv.Settings_HudAlpha))), default(uint), default(uint), default(uint));
                 if ((new Scn(s).unk40 != 0))
                 {
                     BossBar.Draw(s, (uint)(1), default(uint), default(uint));

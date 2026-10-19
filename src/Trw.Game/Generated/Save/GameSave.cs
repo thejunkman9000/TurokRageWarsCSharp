@@ -321,7 +321,7 @@ public static partial class GameSave
             }
             Mem.Set(Gv.GameSave_BufferA, 0);
             Mem.Set(Gv.GameSave_BufferB, 0);
-            Mem.Set(0x800E28B8u, 0);
+            Mem.Set(Gv.GameSave_NoteDataPtr, 0);
             Mem.Set(Gv.GameSave_DataPtr, 0);
         }
     }
@@ -344,7 +344,7 @@ public static partial class GameSave
             new O01Save(Gv.PakSave_PlayerRecord).b3_Set((byte)(0));
             for (i = 0; (i < 8); ++i)
             {
-                Mem.Set((0x80153744u + (uint)i), new O01SaveSrc(p).tail[(int)(i)]);
+                Mem.Set((Gv.PakSave_PlayerRecordTail + (uint)i), new O01SaveSrc(p).tail[(int)(i)]);
             }
         }
     }
@@ -364,7 +364,7 @@ public static partial class GameSave
             new O01SaveSrc(p).w.Set((int)(3), new O01Save(Gv.PakSave_PlayerRecord).w[(int)(3)]);
             for (i = 0; (i < 8); ++i)
             {
-                new O01SaveSrc(p).tail.Set((int)(i), Mem.U8((0x80153744u + (uint)i)));
+                new O01SaveSrc(p).tail.Set((int)(i), Mem.U8((Gv.PakSave_PlayerRecordTail + (uint)i)));
             }
         }
     }
@@ -393,7 +393,7 @@ public static partial class GameSave
             c3 = c2;
             Mem.Set((Gv.Settings_MatchRules + (uint)(3 * 4)), new O01Cfg2(c3).MatchRulesWord3);
             zero = 0;
-            Mem.Set((0x8013B2D4u + (uint)(zero * 4)), Mem.S32((Gv.Settings_MatchRules - (uint)1492)));
+            Mem.Set((Gv.Cheats_ActiveMask + (uint)(zero * 4)), Mem.S32((Gv.Settings_MatchRules - (uint)1492)));
             Mem.Set((Gv.Settings_MatchRules + (uint)(-88)), save);
             src = new O01Cfg2(c3).LevelPersistData.P;
             {

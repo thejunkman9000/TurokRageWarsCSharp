@@ -144,7 +144,7 @@ public static partial class CPak
             Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             for (i = 0; (i < 4); ++i)
             {
-                r = (0x80153330u + (uint)(i * 112));
+                r = (Gv.Rumble_PakStates + (uint)(i * 112));
                 if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(i * 4))).Errno) != 0))
                 {
                     new O01Rumble(r).ok_Set((byte)(0));
@@ -188,7 +188,7 @@ public static partial class CPak
                 Mem.Set((src + (uint)i), (byte)(StrUtil.CharToUpper((int)(Mem.U8((src + (uint)i))))));
                 for (j = 0; (j < 66); ++j)
                 {
-                    if (((int)(Mem.U8((src + (uint)i))) == (int)(Mem.U8((0x800E285Cu + (uint)j)))))
+                    if (((int)(Mem.U8((src + (uint)i))) == (int)(Mem.U8((Gv.CPak_CharMap + (uint)j)))))
                     {
                         Mem.Set((dst + (uint)i), (byte)(j));
                         break;
@@ -279,7 +279,7 @@ public static partial class CPak
                     }
                     else
                     {
-                        Mem.Set((dst + (uint)i), Mem.U8((0x800E285Cu + (uint)Mem.U8((src + (uint)i)))));
+                        Mem.Set((dst + (uint)i), Mem.U8((Gv.CPak_CharMap + (uint)Mem.U8((src + (uint)i)))));
                         seen = 1;
                     }
                 }
@@ -482,7 +482,7 @@ public static partial class CPak
                     }
                     else
                     {
-                        Mem.Set((dst + (uint)i), Mem.U8((0x800E285Cu + (uint)Mem.U8((src + (uint)i)))));
+                        Mem.Set((dst + (uint)i), Mem.U8((Gv.CPak_CharMap + (uint)Mem.U8((src + (uint)i)))));
                         seen = 1;
                     }
                 }
@@ -545,10 +545,10 @@ public static partial class CPak
             uint p = 0u;
             h = ResourcePool.Alloc(0, 2064, (uint)(35), (int)(0x800E0CF0u));
             p = (uint)(Mem.S32(h));
-            Mem.Set(0x800E2858u, (int)(h));
+            Mem.Set(Gv.CPak_DirectoryHandle, (int)(h));
             Mem.Set(Gv.CPak_DirectoryPtr, p);
             memset(p, 0, (uint)(2064));
-            Mem.Set(0x800E2850u, 1);
+            Mem.Set(Gv.CPak_DirectoryAllocated, 1);
         }
     }
 
@@ -558,13 +558,13 @@ public static partial class CPak
         {
             if (Dbg.On) Dbg.Enter("func_00404DDC");
             ResourcePool.Purge();
-            if ((Mem.S32(0x800E2858u) != 0))
+            if ((Mem.S32(Gv.CPak_DirectoryHandle) != 0))
             {
-                ResourcePool.Release(0, (uint)(Mem.S32(0x800E2858u)));
-                Mem.Set(0x800E2858u, 0);
+                ResourcePool.Release(0, (uint)(Mem.S32(Gv.CPak_DirectoryHandle)));
+                Mem.Set(Gv.CPak_DirectoryHandle, 0);
                 Mem.Set(Gv.CPak_DirectoryPtr, 0u);
             }
-            Mem.Set(0x800E2850u, 0);
+            Mem.Set(Gv.CPak_DirectoryAllocated, 0);
         }
     }
 
@@ -579,7 +579,7 @@ public static partial class CPak
             Pad.TryAcquire(1);
             Pad.ReadController_00263760();
             Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
-            r = (0x80153330u + (uint)(ch * 112));
+            r = (Gv.Rumble_PakStates + (uint)(ch * 112));
             if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).Errno) != 0))
             {
                 new O01Rumble(r).ok_Set((byte)(0));
@@ -958,7 +958,7 @@ public static partial class CPak
                     }
                     else
                     {
-                        Mem.Set((dst + (uint)i), Mem.U8((0x800E285Cu + (uint)Mem.U8((src + (uint)i)))));
+                        Mem.Set((dst + (uint)i), Mem.U8((Gv.CPak_CharMap + (uint)Mem.U8((src + (uint)i)))));
                         seen = 1;
                     }
                 }
@@ -992,7 +992,7 @@ public static partial class CPak
                 Mem.Set((src + (uint)i), (byte)(StrUtil.CharToUpper((int)(Mem.U8((src + (uint)i))))));
                 for (j = 0; (j < 66); ++j)
                 {
-                    if (((int)(Mem.U8((src + (uint)i))) == (int)(Mem.U8((0x800E285Cu + (uint)j)))))
+                    if (((int)(Mem.U8((src + (uint)i))) == (int)(Mem.U8((Gv.CPak_CharMap + (uint)j)))))
                     {
                         Mem.Set((dst + (uint)i), (byte)(j));
                         break;
@@ -1074,7 +1074,7 @@ public static partial class CPak
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004058A0");
-            return Mem.S32(0x800E2850u);
+            return Mem.S32(Gv.CPak_DirectoryAllocated);
         }
     }
 

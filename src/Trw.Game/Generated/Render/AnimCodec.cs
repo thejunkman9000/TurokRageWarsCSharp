@@ -20,7 +20,7 @@ public static partial class AnimCodec
                 float hi = 0f;
                 int i = 0;
                 Mem.Set(_fp, Mem.U32(pcur));
-                if ((Mem.S32(0x8010EC78u) != 0))
+                if ((Mem.S32(Gv.AnimCodec_ReadRangePerTrack) != 0))
                 {
                     Mem.Set((_fp + 4u), BitStream.ReadBits(_fp, (uint)(32)));
                     Mem.Set((_fp + 8u), BitStream.ReadBits(_fp, (uint)(32)));
@@ -99,7 +99,7 @@ public static partial class AnimCodec
                 i = 0;
                 if ((n > 0))
                 {
-                    int t = (Mem.S32(0x8010EC88u) << (int)4);
+                    int t = (Mem.S32(Gv.AnimCodec_FrameCount_8010EC88) << (int)4);
                     do
                     {
                         for (a1 = 0; (a1 <= new R05Tab(tab).n); ++a1)
@@ -129,7 +129,7 @@ public static partial class AnimCodec
                             do
                             {
                                 BitStream.ReadBits(_fp, (uint)(31));
-                                Funcs.CallReg(fn, _fp, q, (uint)(Mem.S32(0x8010EC84u)), 0u);
+                                Funcs.CallReg(fn, _fp, q, (uint)(Mem.S32(Gv.AnimCodec_DecoderArg_8010EC84)), 0u);
                                 q += 4u;
                                 ++j;
                             }
@@ -149,7 +149,7 @@ public static partial class AnimCodec
                         {
                             int D = 0;
                             k = 0;
-                            D = Mem.S32(0x8010EC88u);
+                            D = Mem.S32(Gv.AnimCodec_FrameCount_8010EC88);
                             do
                             {
                                 for (j = 0; (j < D); ++j)
@@ -180,7 +180,7 @@ public static partial class AnimCodec
                         do
                         {
                             r5 = Chunk.Get(tab, j);
-                            for (i = 0; (i < Mem.S32(0x8010EC88u)); ++i)
+                            for (i = 0; (i < Mem.S32(Gv.AnimCodec_FrameCount_8010EC88)); ++i)
                             {
                                 Quat.Normalize((r5 + (uint)(i * 16)), default(uint), default(uint), default(uint));
                             }
@@ -362,7 +362,7 @@ public static partial class AnimCodec
                 float hi = 0f;
                 Mem.Set(_fp, Mem.U32(pcur));
                 new B14Trk(t).f2C_Set((int)(BitStream.ReadBits(_fp, (uint)(6))));
-                if ((Mem.S32(0x8010EC78u) != 0))
+                if ((Mem.S32(Gv.AnimCodec_ReadRangePerTrack) != 0))
                 {
                     Mem.Set((_fp + 4u), BitStream.ReadBits(_fp, (uint)(32)));
                     Mem.Set((_fp + 8u), BitStream.ReadBits(_fp, (uint)(32)));
@@ -600,18 +600,18 @@ public static partial class AnimCodec
             uint a2 = Chunk.Get(a, 2);
             uint b1 = Chunk.Get(b, 1);
             uint b2 = Chunk.Get(b, 2);
-            Mem.Set(0x8010EC78u, 1);
-            Mem.Set(0x8010EC74u, 0);
+            Mem.Set(Gv.AnimCodec_ReadRangePerTrack, 1);
+            Mem.Set(Gv.AnimCodec_IsRotationPass, 0);
             Mem.Set(Gv.AnimCodec_QuantRangeMin, (-2000f));
             Mem.Set(Gv.AnimCodec_QuantRangeMax, 2000f);
-            Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
+            Mem.Set(Gv.AnimCodec_QuantScale, new B14Hdr(h).QuantScale);
             if ((AnimCodec.DecodeTracks((int)(a1), b1, new B14Hdr(h).PositionTrackCount, 3, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0))
             {
-                Mem.Set(0x8010EC78u, 0);
-                Mem.Set(0x8010EC74u, 1);
+                Mem.Set(Gv.AnimCodec_ReadRangePerTrack, 0);
+                Mem.Set(Gv.AnimCodec_IsRotationPass, 1);
                 Mem.Set(Gv.AnimCodec_QuantRangeMin, (-1f));
                 Mem.Set(Gv.AnimCodec_QuantRangeMax, 1f);
-                Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
+                Mem.Set(Gv.AnimCodec_QuantScale, new B14Hdr(h).QuantScale);
                 r = ((AnimCodec.DecodeTracks((int)(a2), b2, new B14Hdr(h).RotationTrackCount, 4, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0) ? 1 : 0);
             }
             else

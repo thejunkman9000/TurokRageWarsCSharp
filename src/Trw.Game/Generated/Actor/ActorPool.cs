@@ -18,8 +18,8 @@ public static partial class ActorPool
             {
                 Mem.Set(p, (int)((int)(Mem.S32(p)) - 1));
             }
-            ListUtil.Remove(0x8013B124u, o, default(uint), default(uint));
-            ListUtil.Append_00255CB4(0x8013B110u, o, default(uint), default(uint));
+            ListUtil.Remove(Gv.ActorPool_UsedList, o, default(uint), default(uint));
+            ListUtil.Append_00255CB4(Gv.ActorPool_FreeList, o, default(uint), default(uint));
         }
     }
 

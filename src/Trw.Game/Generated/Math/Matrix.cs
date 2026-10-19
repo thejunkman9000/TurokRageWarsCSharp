@@ -1110,7 +1110,7 @@ public static partial class MathUtil
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00273208", (uint)m, (uint)dir);
-                Mem.Copy(_fp, (0x800C97B0u + (uint)(1 * 4)), 12);
+                Mem.Copy(_fp, (Gv.Matrix_AxisConsts_800C97B0 + (uint)(1 * 4)), 12);
                 if (!((new Vec3f(dir).y < 0.0f))) goto _f0;
                 if (!(((-new Vec3f(dir).y) >= 0.999998986f))) goto _f1;
                 goto L_parallel;

@@ -8687,7 +8687,7 @@ public static partial class Sort
             do
             {
                 mid = (i = (@base + (uint)((uint)(Mem.S32(Gv.Qsort_ElemSize)) * ((uint)((lo / Mem.S32(Gv.Qsort_ElemSize))) >> (int)1))));
-                if ((lo >= Mem.S32(0x8014D0C8u)))
+                if ((lo >= Mem.S32(Gv.Sort_QuickMedThresholdBytes)))
                 {
                     j = (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), (jj = @base), i, 0u, 0u)) > 0) ? jj : i);
                     if (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), j, (tmp = (max - (uint)Mem.S32(Gv.Qsort_ElemSize))), 0u, 0u)) > 0))
@@ -8799,7 +8799,7 @@ public static partial class Sort
             Mem.Set(Gv.Qsort_ElemSize, size);
             Mem.Set(Gv.Sort_CompareFn, compar);
             Mem.Set(Gv.Sort_QuickThresholdBytes, (Mem.S32(Gv.Qsort_ElemSize) * 4));
-            Mem.Set(0x8014D0C8u, (Mem.S32(Gv.Qsort_ElemSize) * 6));
+            Mem.Set(Gv.Sort_QuickMedThresholdBytes, (Mem.S32(Gv.Qsort_ElemSize) * 6));
             max = (@base + (uint)(n * Mem.S32(Gv.Qsort_ElemSize)));
             if ((n >= 4))
             {
@@ -9629,8 +9629,8 @@ public static partial class StrUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A200C", (uint)fmt, (uint)ap);
-            Mem.Set(0x800D2B88u, (int)(Printf.VFormat(0x8014D0D0u, fmt, ap, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint))));
-            return 0x8014D0D0u;
+            Mem.Set(Gv.Printf_TempLength, (int)(Printf.VFormat(Gv.Printf_TempBuffer, fmt, ap, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint))));
+            return Gv.Printf_TempBuffer;
         }
     }
 

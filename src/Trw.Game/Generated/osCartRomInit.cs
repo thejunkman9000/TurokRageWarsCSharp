@@ -28,8 +28,8 @@ public static partial class Game
                     new OSPiHandle(Gv.__CartRomHandle).speed_Set((uint)(0));
                     memset(new OSPiHandle(Gv.__CartRomHandle).transferInfo.P, 0, 96u);
                     saveMask = __osDisableInt();
-                    new OSPiHandle(Gv.__CartRomHandle).next__Set(Mem.U32(0x800D83ACu));
-                    Mem.Set(0x800D83ACu, Gv.__CartRomHandle);
+                    new OSPiHandle(Gv.__CartRomHandle).next__Set(Mem.U32(Gv.__osPiTable));
+                    Mem.Set(Gv.__osPiTable, Gv.__CartRomHandle);
                     __osRestoreInt(saveMask);
                 }
                 return Gv.__CartRomHandle;

@@ -15,7 +15,7 @@ public static partial class ItemSpawner
             uint w = 0u;
             if ((id == 2127))
             {
-                w = Mem.U32(0x8013B124u);
+                w = Mem.U32(Gv.ActorPool_UsedList);
                 if ((w != 0u))
                 {
                     do
@@ -44,7 +44,7 @@ public static partial class ItemSpawner
             {
                 return 1;
             }
-            w = Mem.U32(0x8013B124u);
+            w = Mem.U32(Gv.ActorPool_UsedList);
             while ((w != 0u))
             {
                 if ((Mem.S32(new S5Walk(w).kindp_) == 4))
@@ -70,7 +70,7 @@ public static partial class ItemSpawner
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00205720_spawnObj", (uint)sp, (uint)own, (uint)pos_in);
                 uint o = 0u;
-                if ((((id == 3031) && (Mem.S32(Gv.Match_MonkeyTagMode) != 0)) && (Mem.S32(0x80146920u) != 0)))
+                if ((((id == 3031) && (Mem.S32(Gv.Match_MonkeyTagMode) != 0)) && (Mem.S32(Gv.MatchRules_80_80146920) != 0)))
                 {
                     return;
                 }
@@ -82,7 +82,7 @@ public static partial class ItemSpawner
                         return;
                     }
                 }
-                o = PickupPool.Spawn(0x80131600u, (own + 292u), id, new S5Spawn(sp).v1C.P, _fp, t0, Cpu.U2F((uint)(0)));
+                o = PickupPool.Spawn(Gv.PickupPool, (own + 292u), id, new S5Spawn(sp).v1C.P, _fp, t0, Cpu.U2F((uint)(0)));
                 if ((o != 0u))
                 {
                     new S5Obj(o).unk1A0_Set(0);
@@ -104,7 +104,7 @@ public static partial class ItemSpawner
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00205720_callA", (uint)sp, (uint)own, (uint)v1_in);
-                if (((int)(ActorPool.Spawn(0x80135210u, p6C, 0, (int)(p70), p68, _fp, new S5Spawn(sp).ang, new S5Spawn(sp).v1C.P, (_fp + 16u), (own + 292u))) != 0))
+                if (((int)(ActorPool.Spawn(Gv.ActorPool, p6C, 0, (int)(p70), p68, _fp, new S5Spawn(sp).ang, new S5Spawn(sp).v1C.P, (_fp + 16u), (own + 292u))) != 0))
                 {
                     new S5Own(own).count_Set((int)(new S5Own(own).count - 1));
                 }
@@ -228,7 +228,7 @@ public static partial class ItemSpawner
                         if (((new S5Info(info).Flags & (uint)(32)) != 0u))
                         {
                             RandomGen.WeightedClear((_fp + 32u));
-                            for (e2 = 0x800CD760u; ((int)(Mem.S16(e2)) != (-1)); e2 = (uint)(e2 + (uint)(2 * 2)))
+                            for (e2 = Gv.ItemSpawner_ItemGroupTable; ((int)(Mem.S16(e2)) != (-1)); e2 = (uint)(e2 + (uint)(2 * 2)))
                             {
                                 if ((Player.CanTakeAmmoItem((uint)(v), (int)(Mem.S16(e2))) != 0))
                                 {
@@ -328,7 +328,7 @@ public static partial class ItemSpawner
             new B01Actor(a2).Flags_Set((uint)((uint)(new B01Actor(a2).Flags) & (uint)((~8192))));
             _f3: ;
             Actor.DispatchEvent(a2, state, 0);
-            if (!((((new B01Info(info).Flags & (uint)(16)) != 0u) && ((int)(Mem.U8(0x801462E6u)) != 1)))) goto _f4;
+            if (!((((new B01Info(info).Flags & (uint)(16)) != 0u) && ((int)(Mem.U8(Gv.Settings_MaxPlayers)) != 1)))) goto _f4;
             goto L_clear;
             _f4: ;
             goto _f5;
@@ -505,7 +505,7 @@ public static partial class ItemSpawner
                         return;
                     }
                 }
-                p = PickupPool.Spawn(0x80131600u, new B01State(state).ClassVar_124.P, id, new B01Actor(actor).Velocity.P, _fp, p4C, Cpu.U2F((uint)(0)));
+                p = PickupPool.Spawn(Gv.PickupPool, new B01State(state).ClassVar_124.P, id, new B01Actor(actor).Velocity.P, _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
                     new B01Actor(p).CollisionProfilePtr_Set(0);
@@ -528,7 +528,7 @@ public static partial class ItemSpawner
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002063EC", (uint)actor, (uint)state, (uint)v1_in);
-                if (((int)(ActorPool.Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).Yaw, new B01Actor(actor).Velocity.P, (_fp + 16u), new B01State(state).ClassVar_124.P)) != 0))
+                if (((int)(ActorPool.Spawn(Gv.ActorPool, p6C, 0, p70, p68, _fp, new B01Actor(actor).Yaw, new B01Actor(actor).Velocity.P, (_fp + 16u), new B01State(state).ClassVar_124.P)) != 0))
                 {
                     new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - 1));
                 }
@@ -562,7 +562,7 @@ public static partial class ItemSpawner
             uint a = 0u;
             if ((id == 2127))
             {
-                for (a = Mem.U32(0x8013B124u); (a != 0u); a = new ActorView(a).next2EC_)
+                for (a = Mem.U32(Gv.ActorPool_UsedList); (a != 0u); a = new ActorView(a).next2EC_)
                 {
                     if ((new ActorDef(new ActorView(a).DefPtr).Kind == 4))
                     {

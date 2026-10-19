@@ -183,7 +183,7 @@ public static partial class TrialMenu
                     return 0;
                 }
                 new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).IsFocusSet_Set(t);
-                if ((Bits.Test(0x80102B7Eu, 0) != 0))
+                if ((Bits.Test(Gv.ProfileTable_ArenaPlayedBitsMode1, 0) != 0))
                 {
                     return 0;
                 }
@@ -245,7 +245,7 @@ public static partial class TrialMenu
                 new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set((-1));
                 break;
             case 315:
-                if ((Bits.Test(0x80102B7Eu, 0) == 0))
+                if ((Bits.Test(Gv.ProfileTable_ArenaPlayedBitsMode1, 0) == 0))
                 {
                     new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set(7);
                 }
@@ -255,7 +255,7 @@ public static partial class TrialMenu
                 }
                 break;
             case 314:
-                Mem.Set(0x80146418u, Mem.U8(0x80102B0Fu));
+                Mem.Set(Gv.Settings_PlayerRecords_80_80146418, Mem.U8(Gv.ProfileTable_SelectedCharacter));
                 new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set(10);
                 break;
             }

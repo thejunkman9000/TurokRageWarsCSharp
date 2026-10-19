@@ -407,11 +407,11 @@ public static partial class Ai
             fs = (((float)(s0) / (float)(v)) * 100f);
             if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId) == 14))) goto _f14;
             if (!((fs == 0.0f))) goto _f15;
-            fs = (float)(((3 - Mem.S32(0x8014693Cu)) * 33));
+            fs = (float)(((3 - Mem.S32(Gv.MatchRules_TrialCounter)) * 33));
             goto _f16;
             _f15: ;
             fs = (float)((float)(fs) * 0.33333334f);
-            fs = (float)((float)(fs) + (float)(((2 - Mem.S32(0x8014693Cu)) * 33)));
+            fs = (float)((float)(fs) + (float)(((2 - Mem.S32(Gv.MatchRules_TrialCounter)) * 33)));
             _f16: ;
             if (!((fs < 0.0f))) goto _f17;
             fs = 0.0f;
@@ -420,7 +420,7 @@ public static partial class Ai
             g = Gv.Settings_MatchRules;
             if (!((new B2GameFlags(g).IsBossMode != 0))) goto _f18;
             if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId) == 11))) goto _f19;
-            BossBar.SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).BossShieldPercent)));
+            BossBar.SetPercent1(Gv.BossBar_State, (int)((float)(new B2GameFlags(g).BossShieldPercent)));
             if (!((new B2GameFlags(g).BossShieldRegenTimer > 0))) goto _f20;
             new B2GameFlags(g).BossShieldRegenTimer_Set((int)(new B2GameFlags(g).BossShieldRegenTimer - 1));
             Pad.ClearPlayerInput((new B2Ctl(ctl).owner_ + (uint)1672));
@@ -434,10 +434,10 @@ public static partial class Ai
             _f21: ;
             _f19: ;
             if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsBoss) == 1))) goto _f22;
-            BossBar.SetPercent1(0x8013B7B8u, (int)(fs));
+            BossBar.SetPercent1(Gv.BossBar_State, (int)(fs));
             goto _f23;
             _f22: ;
-            BossBar.SetPercent2(0x8013B7B8u, (int)(fs));
+            BossBar.SetPercent2(Gv.BossBar_State, (int)(fs));
             _f23: ;
             _f18: ;
             _f6: ;
@@ -2600,7 +2600,7 @@ public static partial class Ai
             AiNav.ResetSearch(L);
             AiNav.ClearGoals(L);
             count = 0;
-            for (n = Mem.U32(0x8013B388u); (n != 0u); n = new EntNode(n).next_)
+            for (n = Mem.U32(Gv.AiNav_TimerNodeList); (n != 0u); n = new EntNode(n).next_)
             {
                 r = AiNav.GetNode(L2, new EntNode(n).key);
                 if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.unk1A4) == 0)))
@@ -4989,7 +4989,7 @@ public static partial class Ai
                 {
                     L = Gv.AiNavGraph;
                     k = 0;
-                    if ((Mem.S32(0x8013B368u) >= 2))
+                    if ((Mem.S32(Gv.AiNavGraph_NodeCount) >= 2))
                     {
                         id = new BrainB(b).RoamGoalNode;
                         while ((1 != 0))
@@ -5044,7 +5044,7 @@ public static partial class Ai
             int busy = 0;
             int busy2 = 0;
             int t = 0;
-            if (((new BrainB(b).CurrentNode == new BrainB(b).RoamGoalNode) || (new BrainB(b).RoamGoalNode >= Mem.S32(0x8013B368u))))
+            if (((new BrainB(b).CurrentNode == new BrainB(b).RoamGoalNode) || (new BrainB(b).RoamGoalNode >= Mem.S32(Gv.AiNavGraph_NodeCount))))
             {
                 st = new BrainB(b).OwnerPtr.stats_;
                 if ((((int)(new ActorStats(st).IsBoss) != 0) && ((int)(new ActorStats(st).CharacterId) == 12)))
@@ -5055,7 +5055,7 @@ public static partial class Ai
                 {
                     i = 0;
                     L = Gv.AiNavGraph;
-                    if ((Mem.S32(0x8013B368u) >= 2))
+                    if ((Mem.S32(Gv.AiNavGraph_NodeCount) >= 2))
                     {
                         id = new BrainB(b).RoamGoalNode;
                         while ((1 != 0))
@@ -5129,7 +5129,7 @@ public static partial class Ai
             {
                 i = 0;
                 L = Gv.AiNavGraph;
-                if ((Mem.S32(0x8013B368u) >= 2))
+                if ((Mem.S32(Gv.AiNavGraph_NodeCount) >= 2))
                 {
                     id = new BrainB(b).RoamGoalNode;
                     while ((1 != 0))
@@ -5283,10 +5283,10 @@ public static partial class Ai
                 new Plan(arg1).AimHeight_Set(new Vec3((_fp + 16u)).y);
                 goto _f22;
                 _f21: ;
-                new Plan(arg1).AimHeight_Set((new Vec3((_fp + 16u)).y + Mem.F32((0x800C7250u + (uint)(0 * 4)))));
+                new Plan(arg1).AimHeight_Set((new Vec3((_fp + 16u)).y + Mem.F32((Gv.Brain_AimOffsets + (uint)(0 * 4)))));
                 _f22: ;
                 Vec.Sub((_fp + 16u), (_fp + 16u), new Actor_func_80214624_de(arg0).Position.P);
-                new Plan(arg1).AimYaw_Set((Vec.GetYaw((_fp + 16u)) + Mem.F32((0x800C7250u + (uint)(1 * 4)))));
+                new Plan(arg1).AimYaw_Set((Vec.GetYaw((_fp + 16u)) + Mem.F32((Gv.Brain_AimOffsets + (uint)(1 * 4)))));
                 return 1;
                 _f20: ;
                 if (!((var_s1 == 1))) goto _f23;
@@ -6919,11 +6919,11 @@ public static partial class Ai
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + new B04Obj2(t).BottomOffset));
                 Collision.RayCast(o, new B04Obj2(o).Position.P, (_fp + 80u), Gv.Collision_LosResult);
                 Mem.Copy(o, _fp, 80);
-                if (((Mem.U32(0x8010428Cu) != 0u) && (((int)(new B04Flg(Mem.U32(0x8010428Cu)).flags) & 2) != 0)))
+                if (((Mem.U32(Gv.Collision_LosHitFlagsPtrA_8010428C) != 0u) && (((int)(new B04Flg(Mem.U32(Gv.Collision_LosHitFlagsPtrA_8010428C)).flags) & 2) != 0)))
                 {
                     return 1;
                 }
-                if (((Mem.U32(0x801042A4u) != 0u) && (((int)(new B04Flg(Mem.U32(0x801042A4u)).flags) & 2) != 0)))
+                if (((Mem.U32(Gv.Collision_LosHitFlagsPtrB_801042A4) != 0u) && (((int)(new B04Flg(Mem.U32(Gv.Collision_LosHitFlagsPtrB_801042A4)).flags) & 2) != 0)))
                 {
                     return 1;
                 }

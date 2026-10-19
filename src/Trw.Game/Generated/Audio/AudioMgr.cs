@@ -36,7 +36,7 @@ public static partial class AudioMgr
             {
                 Mem.Set(Gv.AudioMgr_FrameSamples, ((Mem.S32(Gv.AudioMgr_FrameSamples) & (~15)) + 16));
             }
-            alInit(0x8010BE34u, cfg);
+            alInit(Gv.AudioMgr_AlGlobals, cfg);
             new B12DbEnt2((Gv.AudioMgr_DmaBuffers + (uint)(0 * 20))).link.prev__Set(0u);
             new B12DbEnt2((Gv.AudioMgr_DmaBuffers + (uint)(0 * 20))).link.next__Set(0u);
             for (i = (uint)(0); (i < (uint)(59)); ++i)
@@ -49,20 +49,20 @@ public static partial class AudioMgr
             new B12DbEnt2((Gv.AudioMgr_DmaBuffers + (uint)(i * 20))).data_Set(alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, 768));
             for (i = (uint)(0); (i < (uint)(2)); ++i)
             {
-                Mem.Set((0x8010BE20u + (uint)(i * 4)), alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, (new B12AiCfg(c2).MaxAcmdSize * 8)));
+                Mem.Set((Gv.AudioMgr_CmdLists + (uint)(i * 4)), alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, (new B12AiCfg(c2).MaxAcmdSize * 8)));
             }
-            Mem.Set(0x8010BE9Cu, new B12AiCfg(c2).MaxAcmdSize);
+            Mem.Set(Gv.AudioMgr_MaxAcmdSize, new B12AiCfg(c2).MaxAcmdSize);
             i = (uint)(0);
             a20 = Gv.Rsp_BootUcode;
             a24 = ((int)(0x800DCD10u - Gv.Rsp_BootUcode));
-            tp = 0x8010BE28u;
+            tp = Gv.AudioMgr_Tasks;
             for (; (i < (uint)(3)); ++i)
             {
                 tk = alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, 112);
                 n4 = (Mem.S32(Gv.AudioMgr_FrameSamples) * 4);
                 Mem.Set(tp, tk);
                 new B12AiTask(Mem.U32(tp)).cmd__Set(alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, n4));
-                new B12AiTask(Mem.U32(tp)).f58__Set(0x8010BE80u);
+                new B12AiTask(Mem.U32(tp)).f58__Set(Gv.AudioMgr_FrameMesgQueue);
                 new B12AiTask(Mem.U32(tp)).f5C__Set(Mem.U32(tp));
                 new B12AiTask(Mem.U32(tp)).TaskType_Set(2);
                 new B12AiTask(Mem.U32(tp)).f20__Set(a20);
@@ -80,15 +80,15 @@ public static partial class AudioMgr
                 new B12AiTask(Mem.U32(tp)).OutputBuffSize_Set(0);
                 tp += 4u;
             }
-            osCreateMesgQueue(0x8010BE80u, 0x8010B6D0u, 10);
-            osCreateMesgQueue(Gv.AudioMgr_MesgQueue, 0x8010B6A8u, 10);
-            osCreateMesgQueue(0x8010BDD8u, 0x8010BEA8u, 60);
+            osCreateMesgQueue(Gv.AudioMgr_FrameMesgQueue, Gv.AudioMgr_FrameMesgBuf, 10);
+            osCreateMesgQueue(Gv.AudioMgr_MesgQueue, Gv.AudioMgr_MesgBuf, 10);
+            osCreateMesgQueue(Gv.AudioMgr_DmaMesgQueue, Gv.AudioMgr_DmaMesgBuf, 60);
             osSetEventMesg((uint)(6), Gv.AudioMgr_MesgQueue, (uint)(7));
             Mem.Set(Gv.AudioMgr_DmaCacheList, 0);
-            Mem.Set(0x8010BEA0u, (int)(new ALSynConfig(cfg).heap));
-            memset(0x800E9400u, 8, (uint)(10240));
-            osCreateThread(0x8010B6F8u, 8, 0x00256CB0u, 0u, (0x800E9400u + (uint)10240), pri);
-            osStartThread(0x8010B6F8u);
+            Mem.Set(Gv.AudioMgr_HeapPtr, (int)(new ALSynConfig(cfg).heap));
+            memset(Gv.AudioMgr_ThreadStack, 8, (uint)(10240));
+            osCreateThread(Gv.AudioMgr_Thread, 8, 0x00256CB0u, 0u, (Gv.AudioMgr_ThreadStack + (uint)10240), pri);
+            osStartThread(Gv.AudioMgr_Thread);
             osSendMesg(Gv.AudioMgr_MesgQueue, (uint)(7), 0);
         }
     }
@@ -113,7 +113,7 @@ public static partial class AudioMgr
                 Sched.AddClient(Gv.Sched_Main, _fp, (int)(Gv.AudioMgr_MesgQueue));
                 _f0: ;
                 now = osGetTime();
-                Mem.Set(0x800D0950u, (uint)((((now - last) << (int)6) / (ulong)(3000))));
+                Mem.Set(Gv.AudioMgr_FrameTimeUs, (uint)((((now - last) << (int)6) / (ulong)(3000))));
                 osRecvMesg(Gv.AudioMgr_MesgQueue, (_fp + 8u), 1);
                 last = osGetTime();
                 switch (Mem.U32((_fp + 8u))) { case (uint)(4): goto _f4; case (uint)(1): goto _f5; case (uint)(7): goto _f6; default: goto _f3; }
@@ -124,10 +124,10 @@ public static partial class AudioMgr
                 if (!((cnt >= (uint)(21)))) goto _f7;
                 cnt = (uint)(0);
                 _f6: ;
-                Mem.Set(0x800D094Cu, (int)(Mem.S32(0x800D094Cu) + 1));
+                Mem.Set(Gv.AudioMgr_StatCounter_800D094C, (int)(Mem.S32(Gv.AudioMgr_StatCounter_800D094C) + 1));
                 _f8: ;
                 if (!(!((osAiGetStatus() & 2147483648u) != 0u))) goto _f9;
-                AudioMgr.HandleFrame((uint)(Mem.S32((0x8010BE28u + (uint)((Mem.U32(Gv.AudioMgr_FrameCount) % (uint)(3)) * 4)))));
+                AudioMgr.HandleFrame((uint)(Mem.S32((Gv.AudioMgr_Tasks + (uint)((Mem.U32(Gv.AudioMgr_FrameCount) % (uint)(3)) * 4)))));
                 goto _f8;
                 _f9: ;
                 p = Mem.U32(Gv.AudioMgr_DmaCacheList);
@@ -146,7 +146,7 @@ public static partial class AudioMgr
                 _f1: ;
                 if ((done == 0)) goto _f0;
                 _f2: ;
-                alClose(0x8010BE34u);
+                alClose(Gv.AudioMgr_AlGlobals);
             }
         }
         finally { Stack.Free(12); }
@@ -182,21 +182,21 @@ public static partial class AudioMgr
                 int end = 0;
                 AudioMgr.ClearDma();
                 phys = osVirtualToPhysical(new B12AiCtx(t).buf);
-                new B12AiCtx(t).frames_Set((short)(Mem.U16(0x8010BE9Au)));
+                new B12AiCtx(t).frames_Set((short)(Mem.U16(Gv.AudioMgr_FrameSamples_Lo)));
                 Audio.Lock();
-                end = (int)(alAudioFrame((uint)(Mem.S32((0x8010BE20u + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4)))), _fp, phys, (int)(new B12AiCtx(t).frames)));
+                end = (int)(alAudioFrame((uint)(Mem.S32((Gv.AudioMgr_CmdLists + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4)))), _fp, phys, (int)(new B12AiCtx(t).frames)));
                 Audio.Unlock();
                 if ((Mem.S32(_fp) == 0))
                 {
                     return 0;
                 }
-                new B12AiCtx(t).cmdList_Set(Mem.S32((0x8010BE20u + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4))));
-                new B12AiCtx(t).cmdLen_Set((((end - Mem.S32((0x8010BE20u + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4)))) >> (int)3) * 8));
+                new B12AiCtx(t).cmdList_Set(Mem.S32((Gv.AudioMgr_CmdLists + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4))));
+                new B12AiCtx(t).cmdLen_Set((((end - Mem.S32((Gv.AudioMgr_CmdLists + (uint)(Mem.S32(Gv.AudioMgr_CmdListIndex) * 4)))) >> (int)3) * 8));
                 osWritebackDCacheAll();
                 Sched.SubmitTask(Gv.Sched_Main, new B12AiCtx(t).msg.P);
                 Mem.Set(Gv.AudioMgr_CmdListIndex, (int)((int)(Mem.S32(Gv.AudioMgr_CmdListIndex)) ^ 1));
                 Audio.UpdateFrame();
-                osRecvMesg(0x8010BE80u, (_fp + 4u), 1);
+                osRecvMesg(Gv.AudioMgr_FrameMesgQueue, (_fp + 4u), 1);
                 osAiSetNextBuffer(new B12AiCtx(t).buf, (uint)(((int)(new B12AiCtx(t).frames) * 4)));
                 return 1;
             }
@@ -221,7 +221,7 @@ public static partial class AudioMgr
                 {
                     do
                     {
-                        osRecvMesg(0x8010BDD8u, _fp, 1);
+                        osRecvMesg(Gv.AudioMgr_DmaMesgQueue, _fp, 1);
                         ++i;
                     }
                     while ((i < Mem.U32(Gv.AudioMgr_PendingDmaCount)));
@@ -275,7 +275,7 @@ public static partial class AudioMgr
             int delta = 0;
             int freeBuffer = 0;
             lastDmaPtr = 0u;
-            addr = (addr0 + Mem.S32(0x8010B6A0u));
+            addr = (addr0 + Mem.S32(Gv.AudioMgr_SampleRomBase));
             dmaPtr = new B12DbList(Gv.AudioMgr_DmaList).first_;
             addrEnd = (addr + len);
             while ((dmaPtr != 0u))
@@ -330,7 +330,7 @@ public static partial class AudioMgr
             new B12DbBlk(dmaPtr).stamp_Set(Mem.S32(Gv.AudioMgr_FrameCount));
             freeBuffer = new B12DbBlk(dmaPtr).data;
             Mem.Set(Gv.AudioMgr_PendingDmaCount, (int)(Mem.S32(Gv.AudioMgr_PendingDmaCount) + 1));
-            RomDma.ReadAsync(Gv.RomDma_Ctl, (uint)(addr), (uint)(768), (uint)(freeBuffer), 0x8010BDD8u, 0u, 1);
+            RomDma.ReadAsync(Gv.RomDma_Ctl, (uint)(addr), (uint)(768), (uint)(freeBuffer), Gv.AudioMgr_DmaMesgQueue, 0u, 1);
             return (osVirtualToPhysical((uint)(freeBuffer)) + (uint)(delta));
         }
     }

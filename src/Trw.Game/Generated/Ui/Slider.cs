@@ -74,13 +74,13 @@ public static partial class Slider
         {
             if (Dbg.On) Dbg.Enter("func_0041A7A4", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E3390u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.Slider_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E3390u + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.Slider_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3390u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3390u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.Slider_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((Gv.Slider_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E3390u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.Slider_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

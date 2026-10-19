@@ -992,19 +992,19 @@ public static partial class ArenaSelect
                 switch (s5)
                 {
                 case 3:
-                    tbl = 0x800E51E4u;
+                    tbl = Gv.ArenaSelect_CtfArenaKeys;
                     kind = 3;
                     break;
                 case 2:
-                    tbl = 0x800E51F8u;
+                    tbl = Gv.ArenaSelect_FragTagArenaKeys;
                     kind = 2;
                     break;
                 case 0:
-                    tbl = 0x800E5240u;
+                    tbl = Gv.ArenaSelect_BloodlustArenaKeys;
                     kind = 0;
                     break;
                 case 1:
-                    tbl = 0x800E5214u;
+                    tbl = Gv.ArenaSelect_TeamArenaKeys;
                     kind = 1;
                     break;
                 default:
@@ -1057,16 +1057,16 @@ public static partial class ArenaSelect
                 switch (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).Category)
                 {
                 case 3:
-                    tbl = 0x800E51E4u;
+                    tbl = Gv.ArenaSelect_CtfArenaKeys;
                     break;
                 case 2:
-                    tbl = 0x800E51F8u;
+                    tbl = Gv.ArenaSelect_FragTagArenaKeys;
                     break;
                 case 1:
-                    tbl = 0x800E5214u;
+                    tbl = Gv.ArenaSelect_TeamArenaKeys;
                     break;
                 case 0:
-                    tbl = 0x800E5240u;
+                    tbl = Gv.ArenaSelect_BloodlustArenaKeys;
                     break;
                 default:
                     return;
@@ -1074,7 +1074,7 @@ public static partial class ArenaSelect
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk43C__Set(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(new O04HW((tbl + (uint)(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex * 4))).b)), default(uint), default(uint)));
                 if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex == 0))
                 {
-                    LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, Mem.U32(0x800D7500u));
+                    LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, Mem.U32(Gv.ModeName_Gauntlet));
                 }
                 else
                 {
@@ -1183,7 +1183,7 @@ public static partial class ArenaSelect
                 if (Dbg.On) Dbg.Enter("func_0042B1C0");
                 if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex == 0))
                 {
-                    LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, Mem.U32(0x800D7500u));
+                    LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, Mem.U32(Gv.ModeName_Gauntlet));
                 }
                 else
                 {

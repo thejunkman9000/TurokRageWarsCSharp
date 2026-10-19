@@ -5305,7 +5305,7 @@ public static partial class DevLink
             while ((n != (uint)(0)))
             {
                 i = (uint)(0);
-                while (((src < new R1Map((0x800F6D00u + (uint)(i * 12))).lo) || (new R1Map((0x800F6D00u + (uint)(i * 12))).hi < src)))
+                while (((src < new R1Map((Gv.DevLink_TlbMapTable + (uint)(i * 12))).lo) || (new R1Map((Gv.DevLink_TlbMapTable + (uint)(i * 12))).hi < src)))
                 {
                     ++i;
                 }
@@ -5316,10 +5316,10 @@ public static partial class DevLink
                 }
                 else
                 {
-                    fl = new R1Map((0x800F6D00u + (uint)(i * 12))).flags;
+                    fl = new R1Map((Gv.DevLink_TlbMapTable + (uint)(i * 12))).flags;
                     {
                         uint e = (src - (uint)(1));
-                        len = (new R1Map((0x800F6D00u + (uint)(i * 12))).hi - e);
+                        len = (new R1Map((Gv.DevLink_TlbMapTable + (uint)(i * 12))).hi - e);
                     }
                 }
                 if ((n < len))
@@ -5412,15 +5412,15 @@ public static partial class DevLink
             Bus.WriteWord(2986344432u, (uint)(0));
             Bus.WriteWord(2986344444u, (uint)(0));
             mem = Mem.U32((uint)(2147484440u));
-            Mem.Set(0x800F7450u, (byte)(1));
+            Mem.Set(Gv.DevLink_MonitorActive_800F7450, (byte)(1));
             Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(255));
             if ((mem > (uint)(4194303)))
             {
                 if ((((((mem & (uint)(131071)) == (uint)(0)) ? 1 : 0) & ((mem <= (uint)(33554432)) ? 1 : 0)) != 0))
                 {
                     --mem;
-                    Mem.Set((0x800D05E0u + (uint)(2 * 4)), (mem - k));
-                    Mem.Set((0x800D05E0u + (uint)(6 * 4)), (mem + 2684354560u));
+                    Mem.Set((Gv.DevLink_TlbSegments_800D05E0 + (uint)(2 * 4)), (mem - k));
+                    Mem.Set((Gv.DevLink_TlbSegments_800D05E0 + (uint)(6 * 4)), (mem + 2684354560u));
                 }
             }
             IntUtil.RestoreMask(mask);
@@ -5468,14 +5468,14 @@ public static partial class DevLink
                             cont = 0;
                             break;
                         case (uint)(18):
-                            Mem.Set(0x800F72A8u, (uint)((uint)(Mem.U32(0x800F72A8u)) & (uint)((~1))));
-                            Mem.Set(0x800F7450u, (byte)(0));
+                            Mem.Set(Gv.DevLink_SavedStatusReg_800F72A8, (uint)((uint)(Mem.U32(Gv.DevLink_SavedStatusReg_800F72A8)) & (uint)((~1))));
+                            Mem.Set(Gv.DevLink_MonitorActive_800F7450, (byte)(0));
                             Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
                             CpuReg.SetStatusReg((CpuReg.GetStatusReg(default(uint), default(uint), default(uint), default(uint)) & (uint)((~1))), default(uint), default(uint), default(uint));
                             break;
                         case (uint)(19):
                             Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
-                            Mem.Set(0x800F7450u, (byte)(0));
+                            Mem.Set(Gv.DevLink_MonitorActive_800F7450, (byte)(0));
                             break;
                         case (uint)(20):
                             Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(255));
@@ -5484,7 +5484,7 @@ public static partial class DevLink
                             Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
                             break;
                         case (uint)(22):
-                            Bus.WriteWord(2986213376u, (uint)((((int)(Mem.U8(Gv.DevLink_Flag_800F7452)) << (int)24) | ((int)(Mem.U8(0x800F7450u)) << (int)16))));
+                            Bus.WriteWord(2986213376u, (uint)((((int)(Mem.U8(Gv.DevLink_Flag_800F7452)) << (int)24) | ((int)(Mem.U8(Gv.DevLink_MonitorActive_800F7450)) << (int)16))));
                             break;
                         case (uint)(23):
                             DevLink.TransferMemory(2);
@@ -5518,13 +5518,13 @@ public static partial class DevLink
             if ((Mem.S32(Gv.DevLink_IoThreadActive) == 0))
             {
                 Mem.Set(Gv.DevLink_IoThreadActive, 1);
-                osCreateMesgQueue(Gv.DevLink_PiDmaMesgQueue, 0x800F6CB4u, 1);
-                osCreateMesgQueue(Gv.DevLink_RequestQueue, 0x800F6CB0u, 1);
-                osCreateMesgQueue(Gv.DevLink_ReplyQueue, 0x800F6F58u, 1);
-                osCreateMesgQueue(0x800F5C90u, 0x800F5C84u, 1);
-                osSetEventMesg((uint)(0), 0x800F5C90u, (uint)(1));
-                osCreateThread(0x800F6F60u, 18003, 0x002018A0u, 0u, (0x800F6CACu + (uint)4), pri);
-                osStartThread(0x800F6F60u);
+                osCreateMesgQueue(Gv.DevLink_PiDmaMesgQueue, Gv.DevLink_PiDmaMesgBuf, 1);
+                osCreateMesgQueue(Gv.DevLink_RequestQueue, Gv.DevLink_RequestMesgBuf, 1);
+                osCreateMesgQueue(Gv.DevLink_ReplyQueue, Gv.DevLink_ReplyMesgBuf, 1);
+                osCreateMesgQueue(Gv.DevLink_IoEventQueue, Gv.DevLink_IoEventMesgBuf, 1);
+                osSetEventMesg((uint)(0), Gv.DevLink_IoEventQueue, (uint)(1));
+                osCreateThread(Gv.DevLink_IoThreadObj, 18003, 0x002018A0u, 0u, (Gv.DevLink_IoThreadStackTopWord + (uint)4), pri);
+                osStartThread(Gv.DevLink_IoThreadObj);
             }
         }
     }
@@ -5612,13 +5612,13 @@ public static partial class DevLink
                             Mem.Set(Gv.DevLink_IoThreadActive, 1);
                         }
                     }
-                    osRecvMesg(0x800F5C90u, 0u, 0);
+                    osRecvMesg(Gv.DevLink_IoEventQueue, 0u, 0);
                     Bus.WriteWord(2986344420u, (uint)(new B01IoReq(Mem.U32(_fp)).w10));
                     Bus.WriteWord(2986344424u, (uint)(new B01IoReq(Mem.U32(_fp)).w14));
                     Bus.WriteWord(2986344428u, (uint)(new B01IoReq(Mem.U32(_fp)).w18));
                     Bus.WriteWord(2986344408u, (uint)(16843009));
                     Bus.WriteWord(2986344416u, (uint)(Mem.U16((new B01IoReq(Mem.U32(_fp)).wC.P + 2u))));
-                    osRecvMesg(0x800F5C90u, 0u, 1);
+                    osRecvMesg(Gv.DevLink_IoEventQueue, 0u, 1);
                     if (((new B01IoReq(Mem.U32(_fp)).w4 != 0) && (new B01IoReq(Mem.U32(_fp)).w8 == 0)))
                     {
                         len = Bus.ReadWord(2986344412u);
@@ -6121,11 +6121,11 @@ public static partial class DevLink
         {
             if (Dbg.On) Dbg.Enter("func_002AE260");
             byte v = 0;
-            Mem.Set(0x8014D3E0u, (sbyte)(0));
+            Mem.Set(Gv.DbgPort_ThrShadow, (sbyte)(0));
             Mem.Set(Gv.DbgPort_IntEnable, (sbyte)(0));
             Mem.Set(Gv.DbgPort_FifoCtlShadow, (byte)(0));
             Mem.Set(Gv.DbgPort_LineCtlShadow, (sbyte)(0));
-            Mem.Set(0x8014D3E4u, (sbyte)(0));
+            Mem.Set(Gv.DbgPort_Shadow_8014D3E4, (sbyte)(0));
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

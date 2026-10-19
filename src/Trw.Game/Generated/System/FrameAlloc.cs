@@ -196,8 +196,8 @@ public static partial class FrameAlloc
         {
             if (Dbg.On) Dbg.Enter("func_002A23A4", (uint)size);
             int n = ((size + 7) & (~7));
-            int old = Mem.S32(0x8014D328u);
-            Mem.Set(0x8014D328u, (old + n));
+            int old = Mem.S32(Gv.ScratchHeap_LowTop);
+            Mem.Set(Gv.ScratchHeap_LowTop, (old + n));
             new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)(n)));
             if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < (-100000000f)))
             {
@@ -242,10 +242,10 @@ public static partial class FrameAlloc
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A24B8");
-            int v = Mem.S32((0x8014D2E0u + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)));
-            int d = (v - Mem.S32(0x8014D328u));
+            int v = Mem.S32((Gv.ScratchHeap_MarkStack + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)));
+            int d = (v - Mem.S32(Gv.ScratchHeap_LowTop));
             Mem.Set(Gv.ScratchHeap_MarkDepth, (Mem.S32(Gv.ScratchHeap_MarkDepth) - 1));
-            Mem.Set(0x8014D328u, v);
+            Mem.Set(Gv.ScratchHeap_LowTop, v);
             new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)((-d))));
             if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < (-100000000f)))
             {
@@ -290,8 +290,8 @@ public static partial class FrameAlloc
         {
             if (Dbg.On) Dbg.Enter("func_002A25E4", (uint)size);
             int n = ((size + 7) & (~7));
-            int left = (Mem.S32(0x8014D324u) - n);
-            Mem.Set(0x8014D324u, left);
+            int left = (Mem.S32(Gv.ScratchHeap_HighTop) - n);
+            Mem.Set(Gv.ScratchHeap_HighTop, left);
             new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set((new MinMaxF(Gv.FrameAlloc_UsageStats).cur + (float)(n)));
             if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < (-100000000f)))
             {

@@ -167,7 +167,7 @@ public static partial class SndPool
             i = 0;
             _f7: ;
             if (!((i < 4))) goto _f9;
-            if (!((new M04Emitter(v).SoundId == Mem.S32((0x800D0D14u + (uint)(i * 4)))))) goto _f10;
+            if (!((new M04Emitter(v).SoundId == Mem.S32((Gv.SndPool_ZoneBoundSoundIds + (uint)(i * 4)))))) goto _f10;
             new M04Emitter(v).IsZoneBound_Set(1);
             goto _f9;
             _f10: ;
@@ -179,7 +179,7 @@ public static partial class SndPool
             i = 0;
             _f11: ;
             if (!((i < 6))) goto _f13;
-            if (!((new M04Emitter(v).SoundId == Mem.S32((0x800D0D24u + (uint)(i * 4)))))) goto _f14;
+            if (!((new M04Emitter(v).SoundId == Mem.S32((Gv.SndPool_NonDuckableSoundIds + (uint)(i * 4)))))) goto _f14;
             new M04Emitter(v).IsDuckable_Set(0);
             goto _f13;
             _f14: ;
@@ -307,7 +307,7 @@ public static partial class SndPool
             {
                 x = ((float)(i) * 0.011111111f);
                 y = (((((x * x) * x) * x) * x) * 32000f);
-                Mem.Set((0x8010BFA0u + (uint)((90 - i) * 2)), (short)((int)(y)));
+                Mem.Set((Gv.Sound_VolumeCurve + (uint)((90 - i) * 2)), (short)((int)(y)));
             }
             for (i = 0; (i < 17); ++i)
             {
@@ -470,10 +470,10 @@ public static partial class SndPool
                 }
                 v += 204u;
             }
-            Mem.Set(0x800D0D3Cu, n);
-            if ((Mem.S32(0x800D0D40u) < n))
+            Mem.Set(Gv.SndPool_ActiveCount, n);
+            if ((Mem.S32(Gv.SndPool_PeakCount) < n))
             {
-                Mem.Set(0x800D0D40u, n);
+                Mem.Set(Gv.SndPool_PeakCount, n);
             }
         }
     }

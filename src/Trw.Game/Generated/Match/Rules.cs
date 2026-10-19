@@ -2539,7 +2539,7 @@ public static partial class Match
                         }
                         while (((int)(Mem.U8((p + (uint)328))) == 0));
                     }
-                    want = (int)(Mem.U8((0x8014642Au + (uint)(k * 150))));
+                    want = (int)(Mem.U8((Gv.Settings_PlayerRecords_Team + (uint)(k * 150))));
                 }
                 i = 0;
                 for (; (i < 5); ++i)
@@ -2683,7 +2683,7 @@ public static partial class Match
                     }
                     while (((int)(Mem.U8((p + (uint)328))) == 0));
                 }
-                want = (int)(Mem.U8((0x8014642Au + (uint)(k * 150))));
+                want = (int)(Mem.U8((Gv.Settings_PlayerRecords_Team + (uint)(k * 150))));
             }
             i = 0;
             s = Gv.Settings_MatchRules;
@@ -2785,7 +2785,7 @@ public static partial class Match
             _f22: ;
             goto _f23;
             _f21: ;
-            Mem.Set(0x80146948u, 1);
+            Mem.Set(Gv.MatchRules_IsHumanWinner, 1);
             L_call: ;
             Match.EndForAllPlayers(g);
             _f23: ;
@@ -3295,7 +3295,7 @@ public static partial class Player
         {
             if (Dbg.On) Dbg.Enter("func_0022EDEC", (uint)actor);
             Mem.Set((new ActorView(actor).stats_ + (uint)143), (byte)(1));
-            switch (Mem.S32(0x80146910u))
+            switch (Mem.S32(Gv.MatchRules_MonkeyVoice))
             {
             case 0:
                 Audio.PlaySound((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));

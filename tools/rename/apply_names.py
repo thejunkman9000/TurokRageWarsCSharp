@@ -496,6 +496,9 @@ def load_globals():
             elif ai in rows: errs.append(f'globals.tsv:{ln}: address {a} listed twice')
             elif c == 'low' and not n.upper().endswith('%08X' % ai): errs.append(f'globals.tsv:{ln}: low name without the address')
             else: rows[ai] = dict(name=n, conf=c, note=note); seen[n] = ai
+    fnames = {l.split('\t')[2] for l in read(NAMES).splitlines() if not l.startswith('#') and l.count('\t') >= 2}
+    for ai, r in rows.items():                     # Gv.Subject_Verb would be rewritten to Gv.Subject.Verb by the function pass on every other run
+        if r['name'] in fnames: errs.append(f'globals.tsv: {r["name"]} ({ai:08X}) is also a function name')
     if errs: print('\n'.join(errs[:50])); sys.exit(f'{len(errs)} problems in {GLOBALS}')
     return rows
 

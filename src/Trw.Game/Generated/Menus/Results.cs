@@ -93,7 +93,7 @@ public static partial class Results
                             w = UiTree.FindNode((uint)(a), (uint)(614), default(uint), default(uint));
                             UiNode.SetVisible(w, 1);
                             new Q03H14(w).Alpha_Set((byte)(115));
-                            Mem.Set((w + (uint)56), Mem.U32(0x800D75A8u));
+                            Mem.Set((w + (uint)56), Mem.U32(Gv.Results_MissionFailedText));
                             UiNode.SetVisible(UiTree.FindNode((uint)(a), (uint)(615), default(uint), default(uint)), 0);
                         }
                         else
@@ -141,24 +141,24 @@ public static partial class Results
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)(570), default(uint), default(uint));
                 if ((Mem.S32(Gv.ArenaType) == 0))
                 {
-                    Mem.Set((w + (uint)56), Mem.U32(0x800D75B0u));
+                    Mem.Set((w + (uint)56), Mem.U32(Gv.Results_TeamHeader));
                 }
                 else
                 {
-                    Mem.Set((w + (uint)56), Mem.U32(0x800D75B4u));
+                    Mem.Set((w + (uint)56), Mem.U32(Gv.Results_HitPctHeader));
                 }
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)(571), default(uint), default(uint));
                 switch (Mem.S32(Gv.ArenaType))
                 {
                 case 3:
-                    Mem.Set((w + (uint)56), Mem.U32(0x800D75B0u));
+                    Mem.Set((w + (uint)56), Mem.U32(Gv.Results_TeamHeader));
                     break;
                 case 0:
-                    Mem.Set((w + (uint)56), Mem.U32(0x800D75BCu));
+                    Mem.Set((w + (uint)56), Mem.U32(Gv.Results_FlagsHeader));
                     break;
                 case 1:
                 default:
-                    Mem.Set((w + (uint)56), Mem.U32(0x800D75B8u));
+                    Mem.Set((w + (uint)56), Mem.U32(Gv.Results_TagsHeader));
                     break;
                 }
                 w = UiTree.FindNode((uint)(a), (uint)(565), default(uint), default(uint));
@@ -227,7 +227,7 @@ public static partial class Results
                 }
                 else
                 {
-                    new Q03Wid(w).unk38_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(new Q03Ent(e).BotSkill * 4))))));
+                    new Q03Wid(w).unk38_Set((uint)(Mem.S32(Mem.U32((Gv.BotSetup_SkillNameTable + (uint)(new Q03Ent(e).BotSkill * 4))))));
                 }
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id10)), default(uint), default(uint));
                 new Q03Wid(w).Alpha_Set((byte)(175));
@@ -253,7 +253,7 @@ public static partial class Results
                     v = 0;
                     if ((cnt > 0))
                     {
-                        v = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / cnt);
+                        v = ((Mem.S32((Gv.Stats_ShotsHitTable + (uint)(sel * 4))) * 100) / cnt);
                     }
                     StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)), 0x800E1B24u, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)));
@@ -295,13 +295,13 @@ public static partial class Results
                     {
                         w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id20)), default(uint), default(uint));
                         UiNode.SetVisible(w, 1);
-                        new Q03Wid(w).unk2C_Set(Mem.S32((0x800E4200u + (uint)(Mem.S32((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8))) * 4))));
+                        new Q03Wid(w).unk2C_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8))) * 4))));
                     }
                     if ((Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) != (-1)))
                     {
                         w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id24)), default(uint), default(uint));
                         UiNode.SetVisible(w, 1);
-                        new Q03Wid(w).unk2C_Set(Mem.S32((0x800E4200u + (uint)(Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) * 4))));
+                        new Q03Wid(w).unk2C_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) * 4))));
                     }
                 }
             }
@@ -723,7 +723,7 @@ public static partial class Results
                     o = UiTree.FindNode((uint)(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)(616), default(uint), default(uint));
                     UiNode.SetVisible(o, 1);
                     new O04Sub2C(o).Alpha_Set((byte)(175));
-                    new O04Sub2C(o).unk38_Set(Mem.S32(0x800D752Cu));
+                    new O04Sub2C(o).unk38_Set(Mem.S32(Gv.TrialReward_CoopTalisman));
                     new O04V3(_fp).x_Set(0.3f);
                     new O04V3(_fp).y_Set(0.3f);
                     new O04V3(_fp).z_Set(0.3f);

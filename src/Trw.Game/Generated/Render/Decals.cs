@@ -37,7 +37,7 @@ public static partial class Decal
                 {
                     uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_3).w0_Set(4254072832u);
-                    new DlCmd(_g_3).w1_Set((uint)(0x800D14B0u));
+                    new DlCmd(_g_3).w1_Set((uint)(Gv.Shadow_BlobTexture));
                 }
                 {
                     uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -104,7 +104,7 @@ public static partial class Decal
                             {
                                 uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new DlCmd(_g_13).w0_Set((uint)(16793608));
-                                new DlCmd(_g_13).w1_Set((uint)(0x801469A0u));
+                                new DlCmd(_g_13).w1_Set((uint)(Gv.Decals_QuadVerts));
                             }
                             {
                                 uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -149,7 +149,7 @@ public static partial class Decal
                 {
                     uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_3).w0_Set(4254072832u);
-                    new DlCmd(_g_3).w1_Set((uint)(0x800D14B0u));
+                    new DlCmd(_g_3).w1_Set((uint)(Gv.Shadow_BlobTexture));
                 }
                 {
                     uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -199,7 +199,7 @@ public static partial class Decal
                 {
                     uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_13).w0_Set((uint)(16793608));
-                    new DlCmd(_g_13).w1_Set((uint)(0x801469A0u));
+                    new DlCmd(_g_13).w1_Set((uint)(Gv.Decals_QuadVerts));
                 }
                 {
                     uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -228,10 +228,10 @@ public static partial class Decal
                 uint list = 0u;
                 uint l = 0u;
                 Quat.FromDirection((_fp + 96u), (_fp + 16u));
-                if (!((Mem.S32(0x800D2E58u) != 0))) goto _f0;
+                if (!((Mem.S32(Gv.Decals_SpawnedThisFrame) != 0))) goto _f0;
                 return 0u;
                 _f0: ;
-                Mem.Set(0x800D2E58u, 1);
+                Mem.Set(Gv.Decals_SpawnedThisFrame, 1);
                 n = new Pool6BD4(o).unk95A8_;
                 list = (new Pool6BD4(o).lists.P + (uint)(idx * 20));
                 if (!((n != 0u))) goto _f1;
@@ -299,7 +299,7 @@ public static partial class Decal
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044E910");
-            uint vertices = 0x801469A0u;
+            uint vertices = Gv.Decals_QuadVerts;
             int i = 0;
             int more = 0;
             new Vtx((vertices + (uint)(0 * 16))).x_Set((short)((-1)));

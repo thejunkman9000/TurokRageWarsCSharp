@@ -831,7 +831,7 @@ public static partial class MenuItem
                 i = 0;
                 break;
             }
-            return (0x800E5E74u + (uint)(i * 28));
+            return (Gv.MenuItem_StyleTable + (uint)(i * 28));
         }
     }
 
@@ -1049,7 +1049,7 @@ public static partial class MenuItem
                 i = 0;
                 break;
             }
-            return (0x800E5E74u + (uint)(i * 28));
+            return (Gv.MenuItem_StyleTable + (uint)(i * 28));
         }
     }
 
@@ -1361,7 +1361,7 @@ public static partial class MenuItem
                         tt = sinf(((float)((uint)((Mem.S32(Gv.LevelFrameCount) * 10))) * 0.0174532942f));
                         ta = new Q4Win(w).f30;
                         tb = new Q4Win(w).f34;
-                        Mem.Set(0x801540E0u, (int)(((ta * tb) * (((tt + 1.0f) * 50.0f) + 50.0f))));
+                        Mem.Set(Gv.Menu_HighlightAlpha, (int)(((ta * tb) * (((tt + 1.0f) * 50.0f) + 50.0f))));
                         if (((int)(new Q4Win(w).id) == new Q4IdS(idp).id))
                         {
                             new Q4Fx(fx).DrawCallback_Set(0x00443298u);
@@ -1376,7 +1376,7 @@ public static partial class MenuItem
                         }
                         if ((new Q4X(x).IntelligenceKey == 11))
                         {
-                            Level.SetActorType(Gv.LevelMgr, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).DefPtr).h0C * 4))), 1);
+                            Level.SetActorType(Gv.LevelMgr, fx, Mem.S32((Gv.Player_VariantActorTypeTable + (uint)(new Q4Sub(new Q4Fx(fx).DefPtr).h0C * 4))), 1);
                         }
                         if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 4))
                         {
@@ -1692,7 +1692,7 @@ public static partial class MenuItem
                 i = 0;
                 break;
             }
-            return (0x800E5E74u + (uint)(i * 28));
+            return (Gv.MenuItem_StyleTable + (uint)(i * 28));
         }
     }
 

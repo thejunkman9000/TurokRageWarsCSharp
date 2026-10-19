@@ -123,7 +123,7 @@ public static partial class CheatsMenu
             n = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(Mem.S8((0x80102B0Du + (uint)(i * 400)))) >= 0))
+                if (((int)(Mem.S8((Gv.ProfileTable_OwnerPadIndex + (uint)(i * 400)))) >= 0))
                 {
                     n = (int)((int)(n) + Profile.CountMedals(i));
                 }
@@ -229,7 +229,7 @@ public static partial class CheatsMenu
             k = new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsTextIndex;
             do
             {
-                txt = Mem.S32((Mem.U32(0x800D7E40u) + (uint)(k * 4)));
+                txt = Mem.S32((Mem.U32(Gv.Credits_TextTablePtr) + (uint)(k * 4)));
                 if ((txt != 0))
                 {
                     ++k;
@@ -272,7 +272,7 @@ public static partial class CheatsMenu
                 ++i;
             }
             while ((i < 10));
-            if ((Mem.S32((Mem.U32(0x800D7E40u) + (uint)(new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsTextIndex * 4))) != 0))
+            if ((Mem.S32((Mem.U32(Gv.Credits_TextTablePtr) + (uint)(new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsTextIndex * 4))) != 0))
             {
                 if ((new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsLinesPending == 0))
                 {
@@ -356,7 +356,7 @@ public static partial class CheatsMenu
                     CheatsMenu.UpdateCredits();
                     return 0;
                 }
-                if ((Mem.S32(0x8010F190u) == 1075))
+                if ((Mem.S32(Gv.Pad_HeldButtons) == 1075))
                 {
                     new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).IsCodeEntered_38_Set(1);
                     CheatsMenu.UpdateUnlocked();

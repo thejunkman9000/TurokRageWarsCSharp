@@ -87,7 +87,7 @@ public static partial class MsgPort
             if (Dbg.On) Dbg.Enter("func_00255090", (uint)p, (uint)id);
             osCreateMesgQueue(new B12Port(p).q.P, (p + (uint)584), 128);
             memset((p + (uint)1096), id, (uint)(4096));
-            osCreateThread(new B12Port(p).thread.P, id, 0x00255220u, p, (p + (uint)5192), Mem.S32(0x800D2B1Cu));
+            osCreateThread(new B12Port(p).thread.P, id, 0x00255220u, p, (p + (uint)5192), Mem.S32(Gv.Thread_LoaderLowPri));
             osStartThread(new B12Port(p).thread.P);
         }
     }
@@ -104,7 +104,7 @@ public static partial class MsgPort
                 osCreateMesgQueue(_fp, (_fp + 24u), 1);
                 new B12Req(m).reply__Set(_fp);
                 Mem.Set(Gv.ResourceLoader_BoostFrames, 2);
-                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B28u));
+                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(Gv.Thread_LoaderHighPri));
                 osJamMesg(new B12Port(p).q.P, m, 1);
                 osRecvMesg(_fp, (_fp + 28u), 1);
                 return 1;
@@ -132,9 +132,9 @@ public static partial class MsgPort
             if (Dbg.On) Dbg.Enter("func_002551C8", (uint)p);
             while ((new B12Port(p).q.validCount != 0))
             {
-                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B28u));
+                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(Gv.Thread_LoaderHighPri));
             }
-            osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B1Cu));
+            osSetThreadPri(new B12Port(p).thread.P, Mem.S32(Gv.Thread_LoaderLowPri));
         }
     }
 
@@ -202,7 +202,7 @@ public static partial class Time
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A28CC");
-            return (Time.GetSeconds() - Mem.F64(0x800D2C10u));
+            return (Time.GetSeconds() - Mem.F64(Gv.Time_StartSeconds));
         }
     }
 
@@ -212,7 +212,7 @@ public static partial class Time
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00414430");
-            return ((double)((long)(osGetTime())) / (double)(Mem.S64(0x8014FD90u)));
+            return ((double)((long)(osGetTime())) / (double)(Mem.S64(Gv.osClockRate)));
         }
     }
 }

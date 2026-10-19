@@ -1089,7 +1089,7 @@ public static partial class CharSelect
             it = UiTree.FindNode((uint)(new O3Pj(Mem.U32(Gv.CharSelect_PagePtr)).RootNodePtr), (uint)((ushort)(new Q2IdRow((Gv.CharSelect_NodeIdTable + (uint)(idx * 36))).b[(int)(cur)].id)), default(uint), default(uint));
             UiNode.SetHighlighted(it, 0);
             new O3Hdr(it).Alpha_Set((byte)(80));
-            n = (int)(Mem.U8((0x80102B57u + (uint)(CharSelect.GetCharacterForNode(new O3Pj(func_00420214_pj(idx)).CharacterNodeId) + (idx * 400)))));
+            n = (int)(Mem.U8((Gv.ProfileTable_CharacterSkinCounts + (uint)(CharSelect.GetCharacterForNode(new O3Pj(func_00420214_pj(idx)).CharacterNodeId) + (idx * 400)))));
             if ((n <= 0))
             {
                 n = 1;
@@ -1158,7 +1158,7 @@ public static partial class CharSelect
             new O3Pj(func_004204A8_pj(idx)).SkinIndex_Set(0);
             if ((a != (-1)))
             {
-                n = (int)(Mem.U8((0x80102B57u + (uint)(CharSelect.GetCharacterForNode(a) + (idx * 400)))));
+                n = (int)(Mem.U8((Gv.ProfileTable_CharacterSkinCounts + (uint)(CharSelect.GetCharacterForNode(a) + (idx * 400)))));
                 if ((n <= 0))
                 {
                     n = 1;
@@ -1240,7 +1240,7 @@ public static partial class CharSelect
                         new Q2Ent96_v2(e).CharacterId_Set((byte)(r));
                         if (((int)(Mem.U8((c + (uint)13))) == 1))
                         {
-                            Mem.Set((0x80102B0Fu + (uint)(i * 400)), (byte)(r));
+                            Mem.Set((Gv.ProfileTable_SelectedCharacter + (uint)(i * 400)), (byte)(r));
                         }
                         new Q2Ent96_v2(e).SkinIndex_Set(Mem.U8((func_00420688_pj(i) + (uint)27)));
                     }
@@ -1306,7 +1306,7 @@ public static partial class CharSelect
                 new O3Vec3(_fp).y_Set(new O3Row((Gv.CharSelect_CharacterTable + (uint)(row * 112))).PortraitScales[(int)(idx)]);
                 new O3Vec3(_fp).z_Set(new O3Row((Gv.CharSelect_CharacterTable + (uint)(row * 112))).PortraitScales[(int)(idx)]);
                 Portrait.CreateActor(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(Gv.CharSelect_PagePtr))))).PortraitBlock.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((Gv.CharSelect_CharacterTable + (uint)(row * 112))).PortraitPositions.P + (uint)(idx * 12)), new O3Row((Gv.CharSelect_CharacterTable + (uint)(row * 112))).PortraitYaws[(int)(idx)], new O3Row((Gv.CharSelect_CharacterTable + (uint)(row * 112))).PortraitRolls[(int)(idx)]);
-                n = (int)(Mem.U8((0x80102B57u + (uint)(ch + (idx * 400)))));
+                n = (int)(Mem.U8((Gv.ProfileTable_CharacterSkinCounts + (uint)(ch + (idx * 400)))));
                 if ((n <= 0))
                 {
                     n = 1;
@@ -1543,11 +1543,11 @@ public static partial class Loadout
                 {
                     new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(i)].State_Set(0);
                     new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(i)].SelectedRow_Set(5);
-                    w = UiTree.FindNode(new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59EAu + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
+                    w = UiTree.FindNode(new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_MarkerNodeIds + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
                     new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(i)].MarkerNodePtr_Set(w);
                     new Q4Wd(w).b10_Set((byte)(100));
                     UiNode.SetVisible(w, 0);
-                    new Q4Wd(UiTree.FindNode(new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59E6u + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint))).b10_Set((byte)(110));
+                    new Q4Wd(UiTree.FindNode(new Q04L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnNodeIdsA_800E59E6 + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint))).b10_Set((byte)(110));
                     e = (Gv.Settings_PlayerRecords + (uint)(i * 150));
                     if (((int)(new Q4Rec(e).IsActive) == 1))
                     {
@@ -1947,7 +1947,7 @@ public static partial class Loadout
                     uint row = (Gv.Settings_PlayerRecords + (uint)(i * 150));
                     if (((int)(new O05Q(row).IsActive) == 1))
                     {
-                        uint w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
+                        uint w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnHeaderNodeIds_800E5A2E + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
                         UiNode.SetHighlighted(w, 0);
                         new O05Wb(w).b10_Set((byte)(35));
                         switch (new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(i)].LoadoutMode)
@@ -2044,7 +2044,7 @@ public static partial class Loadout
                 {
                     for (col = 0; (col < 5); ++col)
                     {
-                        UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
+                        UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_RowCursorNodeIds + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
                     }
                     UiNode.SetVisible(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(row)].MarkerNodePtr, 0);
                 }
@@ -2141,7 +2141,7 @@ public static partial class Loadout
             CursorGroup.SetLocked(new O05L2(l).CursorGroup, idx, 1);
             for (i = 0; (i < 6); ++i)
             {
-                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59EEu + (uint)(idx * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 1);
+                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_SlotAltNodeIds_800E59EE + (uint)(idx * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 1);
             }
             g = Gv.Settings_PlayerRecords;
             CharSelect.FindRowByCharacter((int)(Mem.S8((Gv.Settings_PlayerRecords + (uint)((idx * 150) + 128)))));
@@ -2188,7 +2188,7 @@ public static partial class Loadout
             new O05Wb(w).b10_Set((byte)(35));
             if ((s1 != 5))
             {
-                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint)), 0);
+                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_RowCursorNodeIds + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint)), 0);
             }
             if ((dir == 1))
             {
@@ -2303,7 +2303,7 @@ public static partial class Loadout
                 }
                 if (((s1 == (int)(new_var)) && ((uint)((c - 2)) < (uint)(2))))
                 {
-                    if ((Mem.S32(((0x800E5B4Cu + (uint)(s0 * 16)) + (uint)(0 * 4))) == 15))
+                    if ((Mem.S32(((Gv.Loadout_WeaponChoiceIds + (uint)(s0 * 16)) + (uint)(0 * 4))) == 15))
                     {
                         if (!((Mem.S32(Gv.Settings) & 268435456) != 0))
                         {
@@ -2331,26 +2331,26 @@ public static partial class Loadout
             int i = 0;
             uint w = 0u;
             new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(k)].State_Set(1);
-            UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59E6u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+            UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnNodeIdsA_800E59E6 + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
             switch (new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(k)].LoadoutMode)
             {
             case 0:
-                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
-                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
+                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnNodeIdsB_800E5A02 + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnHeaderNodeIds_800E5A2E + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
                 new O05Wb(w).b10_Set((byte)(35));
                 break;
             case 1:
                 for (i = 0; (i < 3); ++i)
                 {
-                    UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
+                    UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_SlotAltNodeIds_800E59EE + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
                     w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_RowNodeIds + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
                     UiNode.SetVisible(w, 1);
                     new O05Wb(w).b10_Set((byte)(35));
                     Loadout.SetSlotWeapon(k, i, new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(k)].WeaponIds[(int)(i)]);
                 }
-                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
-                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
+                UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnNodeIdsB_800E5A02 + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_ColumnHeaderNodeIds_800E5A2E + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
                 new O05Wb(w).b10_Set((byte)(35));
                 UiNode.SetVisible(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns[(int)(k)].MarkerNodePtr, 0);
@@ -2359,7 +2359,7 @@ public static partial class Loadout
             default:
                 for (i = 0; (i < 6); ++i)
                 {
-                    UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
+                    UiNode.SetVisible(UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_SlotAltNodeIds_800E59EE + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
                     w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_RowNodeIds + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
                     UiNode.SetVisible(w, 1);
                     new O05Wb(w).b10_Set((byte)(35));
@@ -2369,7 +2369,7 @@ public static partial class Loadout
             }
             for (i = 0; (i < 5); ++i)
             {
-                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
+                w = UiTree.FindNode(new O05L2(Mem.U32(Gv.Loadout_PagePtr)).RootNode, (uint)((int)(new O05Row((Gv.Loadout_RowCursorNodeIds + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
                 UiNode.SetVisible(w, 0);
                 new O05Wb(w).b10_Set((byte)(55));
             }
@@ -2725,7 +2725,7 @@ public static partial class Loadout
             uint x = 0u;
             if ((b != 5))
             {
-                x = UiTree.FindNode((uint)(Mem.S32(Mem.U32(Gv.Loadout_PagePtr))), (uint)((int)(new O06Row((0x800E5A06u + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
+                x = UiTree.FindNode((uint)(Mem.S32(Mem.U32(Gv.Loadout_PagePtr))), (uint)((int)(new O06Row((Gv.Loadout_RowCursorNodeIds + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
                 UiNode.SetVisible(x, 1);
             }
             x = UiTree.FindNode((uint)(Mem.S32(Mem.U32(Gv.Loadout_PagePtr))), (uint)((int)(new O06Row((Gv.Loadout_RowNodeIds + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
@@ -3102,8 +3102,8 @@ public static partial class MenuModel
                     Mem.Copy(new O3Body(b).p1C4.P, (_fp + 16u), 12);
                     Model.ClearBatchQueue();
                     Actor.Draw(b, @base, default(uint), default(uint));
-                    Mem.Copy(new O3Body(b).c140.P, 0x800E3570u, 24);
-                    Mem.Copy(new O3Body(b).c158.P, 0x800E3570u, 24);
+                    Mem.Copy(new O3Body(b).c140.P, Gv.CharSelect_ModelLights, 24);
+                    Mem.Copy(new O3Body(b).c158.P, Gv.CharSelect_ModelLights, 24);
                     Model.FlushBatches();
                     Mem.Set(Gv.Render_FogEnabled, save);
                 }

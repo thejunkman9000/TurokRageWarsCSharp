@@ -1290,7 +1290,7 @@ public static partial class Gfx
             case (uint)(30):
                 g42 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new P4Gfx(g42).words.P, 3791650844u);
-                Mem.Set((new P4Gfx(g42).words.P + 4u), (Mem.U32(0x800D15D8u) | (uint)(1068880)));
+                Mem.Set((new P4Gfx(g42).words.P + 4u), (Mem.U32(Gv.Model_FogRenderModeL) | (uint)(1068880)));
                 break;
             }
             return 1;
@@ -1303,7 +1303,7 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026D914", (uint)a);
-            if ((Mem.S32(0x80110620u) == 0))
+            if ((Mem.S32(Gv.Model_ViewFlag) == 0))
             {
                 uint p = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(p).w0_Set(3808434177u);
@@ -1336,10 +1336,10 @@ public static partial class Gfx
             new DlCmd(g).w1_Set((uint)(0x000DE0A0u));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3724541952u);
-            new DlCmd(g).w1_Set((uint)(0x800D0F10u));
+            new DlCmd(g).w1_Set((uint)(Gv.Gfx_RspInitDL));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3724541952u);
-            new DlCmd(g).w1_Set((uint)(0x800D0F40u));
+            new DlCmd(g).w1_Set((uint)(Gv.Gfx_RdpInitDL));
         }
     }
 
@@ -1361,10 +1361,10 @@ public static partial class Gfx
             new DlCmd(g).w1_Set((uint)(0x000DCD10u));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3724541952u);
-            new DlCmd(g).w1_Set((uint)(0x800D0F10u));
+            new DlCmd(g).w1_Set((uint)(Gv.Gfx_RspInitDL));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3724541952u);
-            new DlCmd(g).w1_Set((uint)(0x800D0F40u));
+            new DlCmd(g).w1_Set((uint)(Gv.Gfx_RdpInitDL));
         }
     }
 
@@ -1390,14 +1390,14 @@ public static partial class Gfx
             new DlCmd(d1).w1_Set((uint)(0));
             d2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(d2).w0_Set(3724541952u);
-            new DlCmd(d2).w1_Set((uint)(0x800D0F10u));
+            new DlCmd(d2).w1_Set((uint)(Gv.Gfx_RspInitDL));
             d3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(d3).w0_Set(3724541952u);
-            new DlCmd(d3).w1_Set((uint)(0x800D0F40u));
+            new DlCmd(d3).w1_Set((uint)(Gv.Gfx_RdpInitDL));
             d4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(d4).w0_Set(4261412864u);
-            vp = (0x80146D00u + (uint)(Mem.S32(Gv.FrameParity) * 16));
-            new DlCmd(d4).w1_Set((uint)(Mem.S32(0x801536E8u)));
+            vp = (Gv.Gfx_FrameViewports + (uint)(Mem.S32(Gv.FrameParity) * 16));
+            new DlCmd(d4).w1_Set((uint)(Mem.S32(Gv.Gfx_ZBufferPtr)));
             new B21Vp(vp).vscale.Set((int)(1), (short)((Mem.S32(Gv.ScreenHeight) * 2)));
             new B21Vp(vp).vscale.Set((int)(0), (short)((Mem.S32(Gv.ScreenWidth) * 2)));
             new B21Vp(vp).vscale.Set((int)(2), (short)(1023));
@@ -1435,7 +1435,7 @@ public static partial class Gfx
                 uint pp_2 = Gv.DisplayListPtr;
                 uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
                 new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095)) | 4279238656u));
-                new M5Dl(q_2).w1_Set((uint)(Mem.S32(0x801536E8u)));
+                new M5Dl(q_2).w1_Set((uint)(Mem.S32(Gv.Gfx_ZBufferPtr)));
             }
             {
                 uint pp_3 = Gv.DisplayListPtr;
@@ -1890,9 +1890,9 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00416D74", (uint)mode);
-            if ((mode != Mem.S32(0x800E32C0u)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedUiCombineMode)))
             {
-                Mem.Set(0x800E32C0u, mode);
+                Mem.Set(Gv.Gfx_CachedUiCombineMode, mode);
                 func_00416D74_O3_Sync();
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2016,7 +2016,7 @@ public static partial class Gfx
                 uint vt = 0u;
                 int n = 0;
                 int k = 0;
-                if ((mode != Mem.S32(0x800E32C8u)))
+                if ((mode != Mem.S32(Gv.Gfx_CachedUiVertexMode)))
                 {
                     if ((mode == 9))
                     {
@@ -2026,7 +2026,7 @@ public static partial class Gfx
                         new O02V3(_fp).x_Set((float)(0));
                         new O02V3(_fp).y_Set((float)(0));
                         new O02V3(_fp).z_Set((-100f));
-                        MathUtil.MtxTransformPoint(0x80145228u, _fp, (_fp + 16u));
+                        MathUtil.MtxTransformPoint(Gv.Camera_MainView_Matrix, _fp, (_fp + 16u));
                         n = 4;
                         v = (uint)(FrameAlloc.AllocHigh(64));
                         for (k = 0; (k < n); ++k)
@@ -2055,7 +2055,7 @@ public static partial class Gfx
                             }
                         }
                     }
-                    Mem.Set(0x800E32C8u, mode);
+                    Mem.Set(Gv.Gfx_CachedUiVertexMode, mode);
                 }
             }
         }
@@ -2070,22 +2070,22 @@ public static partial class Gfx
             if (Dbg.On) Dbg.Enter("func_004170B4", (uint)mode);
             int x = 0;
             int y = 0;
-            uint p = 0x80153F64u;
+            uint p = Gv.RenderMode_State_4_80153F64;
             int t = 0;
             if ((Mem.S32((p + (uint)(0 * 4))) == 0))
             {
                 mode = 11;
             }
-            if ((mode != Mem.S32(0x800E32CCu)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedRenderMode)))
             {
-                Mem.Set(0x800E32CCu, mode);
+                Mem.Set(Gv.Gfx_CachedRenderMode, mode);
                 if ((mode == 11))
                 {
                     Gfx.ResetStateCache();
                     x = ((Mem.S32((p + (uint)((-1) * 4))) != 0) ? 85 : 83);
                     x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
                     y = (x | ((Mem.S32(Gv.Gfx_UiModeFlag_80153F6C) != 0) ? 12288 : 20480));
-                    Gfx.ApplyRenderFlags((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
+                    Gfx.ApplyRenderFlags((uint)((y | ((Mem.S32(Gv.RenderMode_State_10_80153F70) != 0) ? 196608 : 327680))));
                 }
                 else
                 {
@@ -2096,7 +2096,7 @@ public static partial class Gfx
                         x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
                         t = (x | ((Mem.S32(Gv.Gfx_UiModeFlag_80153F6C) != 0) ? 12288 : 20480));
                         y = t;
-                        Gfx.ApplyRenderFlags((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
+                        Gfx.ApplyRenderFlags((uint)((y | ((Mem.S32(Gv.RenderMode_State_10_80153F70) != 0) ? 196608 : 327680))));
                     }
                 }
             }
@@ -2139,11 +2139,11 @@ public static partial class Gfx
                 func_004171B8_SyncNC();
                 if ((new O02Fl(_fp).f[(int)(1)] != 0))
                 {
-                    Mem.Set(0x800E32CCu, 12);
+                    Mem.Set(Gv.Gfx_CachedRenderMode, 12);
                 }
                 else
                 {
-                    Mem.Set(0x800E32CCu, 11);
+                    Mem.Set(Gv.Gfx_CachedRenderMode, 11);
                 }
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2194,13 +2194,13 @@ public static partial class Gfx
                     hi = (uint)(1067600);
                     break;
                 }
-                Mem.Set(0x800E32A0u, 1);
+                Mem.Set(Gv.RenderMode_StateCacheValid, 1);
                 {
                     uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(_g_5).w0_Set(3791650844u);
                     new O3Dl(_g_5).w1_Set((lo | hi));
                 }
-                Mem.Copy(0x80153F60u, _fp, 20);
+                Mem.Copy(Gv.RenderMode_State, _fp, 20);
             }
         }
         finally { Stack.Free(20); }
@@ -2213,9 +2213,9 @@ public static partial class Gfx
         {
             if (Dbg.On) Dbg.Enter("func_004173FC", (uint)mode, (uint)tex);
             int ret = 1;
-            if ((Mem.U32(0x800E32D8u) != tex))
+            if ((Mem.U32(Gv.Gfx_CachedPalettePtr) != tex))
             {
-                Mem.Set(0x800E32D8u, tex);
+                Mem.Set(Gv.Gfx_CachedPalettePtr, tex);
                 func_004173FC_O3_Sync();
                 if ((mode == 4))
                 {
@@ -2342,20 +2342,20 @@ public static partial class Gfx
             int b = 0;
             if ((p == 0u))
             {
-                Mem.Set(0x800E32A8u, 0);
-                Mem.Set(0x800E32ACu, 0);
+                Mem.Set(Gv.Gfx_BoundImageWidth, 0);
+                Mem.Set(Gv.Gfx_TexHeight, 0);
                 Mem.Set(Gv.Gfx_BoundImagePtr, 0u);
                 Mem.Set(Gv.Gfx_TexNeedsStrips, 0);
-                Mem.Set(0x800E32B4u, 0);
-                Mem.Set(0x800E32BCu, 0);
+                Mem.Set(Gv.Gfx_TexState_800E32B4, 0);
+                Mem.Set(Gv.Gfx_TexHasAlpha, 0);
                 return;
             }
             Mem.Set(Gv.Gfx_BoundImagePtr, t);
-            Mem.Set(0x800E32B4u, 0);
-            Mem.Set(0x800E32A8u, (int)(new Q2Tex(t).Width));
-            Mem.Set(0x800E32ACu, (int)(new Q2Tex(t).Height));
+            Mem.Set(Gv.Gfx_TexState_800E32B4, 0);
+            Mem.Set(Gv.Gfx_BoundImageWidth, (int)(new Q2Tex(t).Width));
+            Mem.Set(Gv.Gfx_TexHeight, (int)(new Q2Tex(t).Height));
             Mem.Set(Gv.Gfx_TexBitsPerPixel, Image.GetBitsPerPixel(t));
-            Mem.Set(0x800E32BCu, Image.HasAlpha(Mem.U32(Gv.Gfx_BoundImagePtr)));
+            Mem.Set(Gv.Gfx_TexHasAlpha, Image.HasAlpha(Mem.U32(Gv.Gfx_BoundImagePtr)));
             a = new Q2Tex(t).PaletteSize;
             b = new Q2Tex(t).PixelDataSize;
             Mem.Set(Gv.Gfx_TexNeedsStrips, 0);
@@ -2503,18 +2503,18 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041900C");
-            if ((Mem.S32(0x800E32A0u) != 0))
+            if ((Mem.S32(Gv.RenderMode_StateCacheValid) != 0))
             {
-                Mem.Set(0x800E32A0u, 0);
-                Mem.Set(0x800E32C0u, 0);
-                Mem.Set(0x800E32C4u, 0);
-                Mem.Set(0x800E32C8u, 0);
-                Mem.Set(0x800E32CCu, 0);
-                Mem.Set(0x800E32D0u, 0);
-                Mem.Set(0x800E32D4u, 0);
-                Mem.Set(0x800E32D8u, 0);
-                Mem.Set(0x800E32DCu, 0);
-                Mem.Set(0x800E32E0u, 0);
+                Mem.Set(Gv.RenderMode_StateCacheValid, 0);
+                Mem.Set(Gv.Gfx_CachedUiCombineMode, 0);
+                Mem.Set(Gv.Gfx_CachedModeA, 0);
+                Mem.Set(Gv.Gfx_CachedUiVertexMode, 0);
+                Mem.Set(Gv.Gfx_CachedRenderMode, 0);
+                Mem.Set(Gv.Gfx_CachedModeB, 0);
+                Mem.Set(Gv.Gfx_CachedState_800E32D4, 0);
+                Mem.Set(Gv.Gfx_CachedPalettePtr, 0);
+                Mem.Set(Gv.Gfx_CachedEnvPrimColor, 0);
+                Mem.Set(Gv.Gfx_RectMode_800E32E0, 0);
             }
         }
     }
@@ -2525,9 +2525,9 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419074", (uint)mode);
-            if ((mode != Mem.S32(0x800E32C4u)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedModeA)))
             {
-                Mem.Set(0x800E32C4u, mode);
+                Mem.Set(Gv.Gfx_CachedModeA, mode);
                 func_00419074_O3_Sync();
                 switch (mode)
                 {
@@ -2573,13 +2573,13 @@ public static partial class Gfx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419144", (uint)mode);
-            if ((Mem.S32(0x80153F68u) == 0))
+            if ((Mem.S32(Gv.RenderMode_State_8_80153F68) == 0))
             {
                 mode = 14;
             }
-            if ((mode != Mem.S32(0x800E32D0u)))
+            if ((mode != Mem.S32(Gv.Gfx_CachedModeB)))
             {
-                Mem.Set(0x800E32D0u, mode);
+                Mem.Set(Gv.Gfx_CachedModeB, mode);
                 func_00419144_O3_Sync();
                 if ((mode == 13))
                 {
@@ -2656,9 +2656,9 @@ public static partial class Gfx
         {
             if (Dbg.On) Dbg.Enter("func_00419278", (uint)color);
             uint rgb = 0u;
-            if ((color != Mem.U32(0x800E32DCu)))
+            if ((color != Mem.U32(Gv.Gfx_CachedEnvPrimColor)))
             {
-                Mem.Set(0x800E32DCu, color);
+                Mem.Set(Gv.Gfx_CachedEnvPrimColor, color);
                 rgb = ((((color >> (int)16) << (int)24) | ((color & (uint)(65280)) << (int)8)) | ((color & (uint)(255)) << (int)8));
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);

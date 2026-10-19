@@ -63,10 +63,10 @@ public static partial class Game
                                                 {
                                                     if ((Mem.U32((_fp + 8u)) == Mem.U32((_fp + 16u))))
                                                     {
-                                                        Mem.Set(0x800D3640u, (uint)(1));
-                                                        Mem.Set(0x800D3644u, (uint)(dst));
+                                                        Mem.Set(Gv.DbgLink_LoadActive, (uint)(1));
+                                                        Mem.Set(Gv.DbgLink_LoadDest, (uint)(dst));
                                                         ret = 1;
-                                                        Mem.Set(0x800D3648u, Mem.U32(_fp));
+                                                        Mem.Set(Gv.DbgLink_LoadSize_800D3648, Mem.U32(_fp));
                                                     }
                                                 }
                                             }

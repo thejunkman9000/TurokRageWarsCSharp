@@ -242,7 +242,7 @@ public static partial class Artsend
                 {
                     sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, 0x800CA5F8u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
-                Mem.Set(0x8014D068u, 0);
+                Mem.Set(Gv.Artsend_Dirty_8014D068, 0);
             }
         }
         finally { Stack.Free(4); }
@@ -566,23 +566,23 @@ public static partial class Artsend
         {
             if (Dbg.On) Dbg.Enter("func_002954E0");
             Mem.Set(Gv.Artsend_Active, (byte)(0));
-            Mem.Set(0x8014AEB1u, (byte)(0));
+            Mem.Set(Gv.Artsend_Flag_8014AEB1, (byte)(0));
             Mem.Set(Gv.Artsend_TextureIndex, 0);
             Mem.Set(Gv.Artsend_FrameIndex, 0);
             Mem.Set((Gv.Artsend_TextureCount + (uint)(0 * 4)), 1);
-            Mem.Set(0x8014AEB4u, 0);
-            Mem.Set(0x8014AEC4u, 0);
+            Mem.Set(Gv.Artsend_Word_8014AEB4, 0);
+            Mem.Set(Gv.Artsend_Word_8014AEC4, 0);
             Mem.Set(Gv.Artsend_TextureRes, 0);
             Mem.Set(Gv.Artsend_ImagePtr, 0);
             Mem.Set(Gv.Artsend_PalettePtr, 0);
             Mem.Set(Gv.Artsend_TexturePtr, 0);
-            Mem.Set(0x8014CFDCu, 0);
-            Mem.Set(0x8014CFE0u, 0);
-            Mem.Set(0x8014CFE4u, 0);
-            Mem.Set(0x8014D068u, 0);
+            Mem.Set(Gv.Artsend_Chunk3_8014CFDC, 0);
+            Mem.Set(Gv.Artsend_Chunk2_8014CFE0, 0);
+            Mem.Set(Gv.Artsend_Chunk5_8014CFE4, 0);
+            Mem.Set(Gv.Artsend_Dirty_8014D068, 0);
             memset((Gv.Artsend_TextureCount + (uint)36), 0, (uint)(8192));
             memset((Gv.Artsend_TextureCount + (uint)8228), 255, (uint)(256));
-            Mem.Set((Gv.Artsend_TextureCount + (uint)(0 * 4)), Mem.S32(Mem.U32(0x8011FED8u)));
+            Mem.Set((Gv.Artsend_TextureCount + (uint)(0 * 4)), Mem.S32(Mem.U32(Gv.Artsend_SourceCountPtr_8011FED8)));
         }
     }
 
@@ -698,10 +698,10 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029576C");
-            if (((Mem.Set(0x800D2AE8u, (int)(Mem.S32(0x800D2AE8u) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_NextTextureRepeat, (int)(Mem.S32(Gv.Artsend_NextTextureRepeat) + 1)) - 1) >= 3))
             {
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) + 1));
-                Mem.Set(0x800D2AE8u, 0);
+                Mem.Set(Gv.Artsend_NextTextureRepeat, 0);
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
             }
@@ -714,13 +714,13 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002957EC");
-            if (((Mem.Set(0x800D2AE4u, (int)(Mem.S32(0x800D2AE4u) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_PrevTextureRepeat, (int)(Mem.S32(Gv.Artsend_PrevTextureRepeat) + 1)) - 1) >= 3))
             {
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) - 1));
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), ((Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) + Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (((float)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) < 0.0f) ? (-Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) : Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))));
-                Mem.Set(0x800D2AE4u, 0);
+                Mem.Set(Gv.Artsend_PrevTextureRepeat, 0);
             }
         }
     }
@@ -773,11 +773,11 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295924");
-            if (((Mem.Set(0x800D2AECu, (int)(Mem.S32(0x800D2AECu) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_PrevFrameRepeat, (int)(Mem.S32(Gv.Artsend_PrevFrameRepeat) + 1)) - 1) >= 3))
             {
                 int t = new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex;
                 new B21Cnt(Gv.Artsend_FrameIndex).IsDirty_Set(1);
-                Mem.Set(0x800D2AECu, 0);
+                Mem.Set(Gv.Artsend_PrevFrameRepeat, 0);
                 new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex_Set((t - 1));
             }
         }
@@ -789,11 +789,11 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295970");
-            if (((Mem.Set(0x800D2AF0u, (int)(Mem.S32(0x800D2AF0u) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_NextFrameRepeat, (int)(Mem.S32(Gv.Artsend_NextFrameRepeat) + 1)) - 1) >= 3))
             {
                 int t = new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex;
                 new B21Cnt(Gv.Artsend_FrameIndex).IsDirty_Set(1);
-                Mem.Set(0x800D2AF0u, 0);
+                Mem.Set(Gv.Artsend_NextFrameRepeat, 0);
                 new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex_Set((t + 1));
             }
         }
@@ -807,14 +807,14 @@ public static partial class Artsend
             if (Dbg.On) Dbg.Enter("func_002959BC");
             uint p = 0u;
             int r = 0;
-            if (((Mem.Set(0x800D2AF4u, (int)(Mem.S32(0x800D2AF4u) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_Back5Repeat, (int)(Mem.S32(Gv.Artsend_Back5Repeat) + 1)) - 1) >= 3))
             {
                 p = (Gv.Artsend_TextureCount + (uint)(1 * 4));
                 Mem.Set((p + (uint)(0 * 4)), (int)((int)(Mem.S32((p + (uint)(0 * 4)))) - 5));
                 Mem.Set((p + (uint)(0 * 4)), ((Mem.S32((p + (uint)(0 * 4))) + Mem.S32((p + (uint)((-1) * 4)))) % Mem.S32((p + (uint)((-1) * 4)))));
                 Mem.Set((p + (uint)(0 * 4)), (((float)(Mem.S32((p + (uint)(0 * 4)))) < 0.0f) ? (-Mem.S32((p + (uint)(0 * 4)))) : Mem.S32((p + (uint)(0 * 4)))));
                 Mem.Set((p + (uint)(2 * 4)), 1);
-                Mem.Set(0x800D2AF4u, 0);
+                Mem.Set(Gv.Artsend_Back5Repeat, 0);
             }
         }
     }
@@ -825,10 +825,10 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295A60");
-            if (((Mem.Set(0x800D2AF8u, (int)(Mem.S32(0x800D2AF8u) + 1)) - 1) >= 3))
+            if (((Mem.Set(Gv.Artsend_Forward5Repeat, (int)(Mem.S32(Gv.Artsend_Forward5Repeat) + 1)) - 1) >= 3))
             {
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) + 5));
-                Mem.Set(0x800D2AF8u, 0);
+                Mem.Set(Gv.Artsend_Forward5Repeat, 0);
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
                 Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
             }

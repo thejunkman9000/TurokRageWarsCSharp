@@ -163,119 +163,119 @@ public static partial class Trial
                 switch (a)
                 {
                 case 5001:
-                    r = Mem.U32(0x800D7510u);
+                    r = Mem.U32(Gv.TrialReward_EagleTalisman);
                     break;
                 case 5002:
                     if (!((Profile.GetCharacterLives(p, (int)(new O04Row190r(p).SelectedCharacter)) & 1) != 0))
                     {
-                        r = Mem.U32(0x800D7518u);
+                        r = Mem.U32(Gv.TrialReward_OtherEagleTalisman);
                     }
                     else
                     {
-                        r = Mem.U32(0x800D7514u);
+                        r = Mem.U32(Gv.TrialReward_HalfEagleTalisman);
                     }
                     break;
                 case 5004:
-                    r = Mem.U32(0x800D753Cu);
+                    r = Mem.U32(Gv.TrialReward_TekBowSniperScope);
                     break;
                 case 5005:
-                    r = Mem.U32(0x800D757Cu);
+                    r = Mem.U32(Gv.TrialReward_Inflator);
                     break;
                 case 5006:
-                    r = Mem.U32(0x800D7590u);
+                    r = Mem.U32(Gv.TrialReward_MinigunShield);
                     break;
                 case 5007:
-                    r = Mem.U32(0x800D7548u);
+                    r = Mem.U32(Gv.TrialReward_PlasmaRifle);
                     break;
                 case 5008:
-                    r = Mem.U32(0x800D7554u);
+                    r = Mem.U32(Gv.TrialReward_JumpClawAttack);
                     break;
                 case 5009:
-                    r = Mem.U32(0x800D7538u);
+                    r = Mem.U32(Gv.TrialReward_AssaultRifleRapidFire);
                     break;
                 case 5010:
-                    r = Mem.U32(0x800D7550u);
+                    r = Mem.U32(Gv.TrialReward_AcidSpitAttack);
                     break;
                 case 5011:
-                    r = Mem.U32(0x800D758Cu);
+                    r = Mem.U32(Gv.TrialReward_Minigun);
                     break;
                 case 5012:
-                    r = Mem.U32(0x800D7580u);
+                    r = Mem.U32(Gv.TrialReward_InflatorUpgrade);
                     break;
                 case 5013:
-                    r = Mem.U32(0x800D7594u);
+                    r = Mem.U32(Gv.TrialReward_ShotgunStreetsweeper);
                     break;
                 case 5014:
-                    r = Mem.U32(0x800D7570u);
+                    r = Mem.U32(Gv.TrialReward_NapalmGel);
                     break;
                 case 5015:
-                    r = Mem.U32(0x800D7540u);
+                    r = Mem.U32(Gv.TrialReward_GrenadeLauncher);
                     break;
                 case 5016:
-                    r = Mem.U32(0x800D751Cu);
+                    r = Mem.U32(Gv.TrialReward_BearTalisman);
                     break;
                 case 5017:
-                    r = Mem.U32(0x800D756Cu);
+                    r = Mem.U32(Gv.TrialReward_FreezeGunUpgrade);
                     break;
                 case 5018:
-                    r = Mem.U32(0x800D7568u);
+                    r = Mem.U32(Gv.TrialReward_FreezeGun);
                     break;
                 case 5019:
-                    r = Mem.U32(0x800D7578u);
+                    r = Mem.U32(Gv.TrialReward_Chestburster);
                     break;
                 case 5020:
-                    r = Mem.U32(0x800D7564u);
+                    r = Mem.U32(Gv.TrialReward_ScorpionLauncherMagnet);
                     break;
                 case 5021:
-                    r = Mem.U32(0x800D7544u);
+                    r = Mem.U32(Gv.TrialReward_GrenadeLauncherUpgrade);
                     break;
                 case 5022:
-                    r = Mem.U32(0x800D7574u);
+                    r = Mem.U32(Gv.TrialReward_Mag60LaserSight);
                     break;
                 case 5023:
-                    r = Mem.U32(0x800D7524u);
+                    r = Mem.U32(Gv.TrialReward_CougarTalisman);
                     break;
                 case 5024:
-                    r = Mem.U32(0x800D7520u);
+                    r = Mem.U32(Gv.TrialReward_CoyoteTalisman);
                     break;
                 case 5025:
-                    r = Mem.U32(0x800D7598u);
+                    r = Mem.U32(Gv.TrialReward_Emaciator);
                     break;
                 case 5026:
-                    r = Mem.U32(0x800D7558u);
+                    r = Mem.U32(Gv.TrialReward_FlareGun);
                     break;
                 case 5027:
-                    r = Mem.U32(0x800D7588u);
+                    r = Mem.U32(Gv.TrialReward_BoomerangUpgrade);
                     break;
                 case 5028:
-                    r = Mem.U32(0x800D755Cu);
+                    r = Mem.U32(Gv.TrialReward_FlareGunUpgrade);
                     break;
                 case 5029:
-                    r = Mem.U32(0x800D754Cu);
+                    r = Mem.U32(Gv.TrialReward_PlasmaRifleScope);
                     break;
                 case 5030:
-                    r = Mem.U32(0x800D759Cu);
+                    r = Mem.U32(Gv.TrialReward_EmaciatorUpgrade);
                     break;
                 case 5031:
-                    r = Mem.U32(0x800D7534u);
+                    r = Mem.U32(Gv.TrialReward_AssaultRifle);
                     break;
                 case 5033:
-                    r = Mem.U32(0x800D7584u);
+                    r = Mem.U32(Gv.TrialReward_Boomerang);
                     break;
                 case 5034:
-                    r = Mem.U32(0x800D75A0u);
+                    r = Mem.U32(Gv.TrialReward_WarhammerRocketUpgrade);
                     break;
                 case 5037:
-                    r = Mem.U32(0x800D7560u);
+                    r = Mem.U32(Gv.TrialReward_ScorpionLauncher);
                     break;
                 case 5057:
-                    r = Mem.U32(0x800D7528u);
+                    r = Mem.U32(Gv.TrialReward_ViperTalisman);
                     break;
                 case 5052:
-                    r = Mem.U32(0x800D752Cu);
+                    r = Mem.U32(Gv.TrialReward_CoopTalisman);
                     break;
                 case 5053:
-                    r = Mem.U32(0x800D7530u);
+                    r = Mem.U32(Gv.TrialReward_MinigameIcon);
                     break;
                 }
             }
@@ -463,7 +463,7 @@ public static partial class Trial
             }
             if ((s0 != (-1)))
             {
-                p = (0x80102C24u + (uint)(a * 400));
+                p = (Gv.ProfileTable_KeyArenaWonBits + (uint)(a * 400));
                 if ((Bits.Test(p, s0) == 0))
                 {
                     s2 = 5052;

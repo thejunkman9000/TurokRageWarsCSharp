@@ -127,10 +127,10 @@ public static partial class Sched
                     switch (Mem.S32(_fp))
                     {
                     case 666:
-                        if ((Mem.S32(0x800D2958u) != 0))
+                        if ((Mem.S32(Gv.Sched_PreNmiPending) != 0))
                         {
-                            Mem.Set(0x800D295Cu, (Mem.S32(0x800D295Cu) - 1));
-                            if ((Mem.S32(0x800D295Cu) <= 0))
+                            Mem.Set(Gv.Sched_PreNmiCountdown, (Mem.S32(Gv.Sched_PreNmiCountdown) - 1));
+                            if ((Mem.S32(Gv.Sched_PreNmiCountdown) <= 0))
                             {
                                 osViSetYScale(1.0f);
                                 mode = 0x800D87E0u;
@@ -160,8 +160,8 @@ public static partial class Sched
                         Audio.StopAllExcept((-1));
                         LoopSound.StopAll((uint)((int)(LoopSound.GetPool())));
                         n = new Vid_v4(o).unk2E0_;
-                        Mem.Set(0x800D2958u, 1);
-                        Mem.Set(0x800D295Cu, 20);
+                        Mem.Set(Gv.Sched_PreNmiPending, 1);
+                        Mem.Set(Gv.Sched_PreNmiCountdown, 20);
                         while ((n != 0u))
                         {
                             osSendMesg(new Qn(n).q_, (o + 32u), 0);
@@ -202,7 +202,7 @@ public static partial class Sched
                     Mem.Set(Gv.ResourceLoader_BoostFrames, (Mem.S32(Gv.ResourceLoader_BoostFrames) - 1));
                     if ((Mem.S32(Gv.ResourceLoader_BoostFrames) == 0))
                     {
-                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(0x800D2B1Cu));
+                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(Gv.Thread_LoaderLowPri));
                     }
                 }
                 new Vid(o).FrameCount_Set((new Vid(o).FrameCount + 1));
@@ -210,28 +210,28 @@ public static partial class Sched
                 {
                     Sched.EnqueueTask(o, Mem.U32(_fp));
                 }
-                Mem.Set(0x801469E0u, (Mem.S32(0x801469E0u) + 1));
+                Mem.Set(Gv.Sched_RetracesSinceSwap, (Mem.S32(Gv.Sched_RetracesSinceSwap) + 1));
                 if ((Mem.S32(Gv.Sched_FbSwapPending) != 0))
                 {
-                    Mem.Set(0x801469E0u, 0);
+                    Mem.Set(Gv.Sched_RetracesSinceSwap, 0);
                     Mem.Set(Gv.Sched_FbSwapPending, 0);
-                    buf = Mem.S32(0x80146CF0u);
-                    Mem.Set(0x80146CF0u, 0);
-                    Mem.Set(0x80146CF8u, buf);
+                    buf = Mem.S32(Gv.Sched_SwappingFramebuffer);
+                    Mem.Set(Gv.Sched_SwappingFramebuffer, 0);
+                    Mem.Set(Gv.Sched_ShownFramebuffer, buf);
                 }
                 if ((Mem.S32(Gv.Sched_PendingSwapCount) != 0))
                 {
-                    fr = Mem.U32((0x80146970u + (uint)(Mem.S32(0x8011FAB4u) * 4)));
-                    if (!((uint)((Mem.S32(0x801469E0u) + 1)) < new Frm(fr).MinRetraceCount_124))
+                    fr = Mem.U32((Gv.Sched_SwapQueue + (uint)(Mem.S32(Gv.Sched_FrameSlotIndex) * 4)));
+                    if (!((uint)((Mem.S32(Gv.Sched_RetracesSinceSwap) + 1)) < new Frm(fr).MinRetraceCount_124))
                     {
-                        Mem.Set(0x80146CF0u, new Frm(fr).FramebufferPtr);
+                        Mem.Set(Gv.Sched_SwappingFramebuffer, new Frm(fr).FramebufferPtr);
                         osViSwapBuffer((uint)(new Frm(fr).FramebufferPtr));
                         Mem.Set(Gv.Sched_PendingSwapCount, (Mem.S32(Gv.Sched_PendingSwapCount) - 1));
                         Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
-                        Mem.Set(0x8011FAB4u, (Mem.S32(0x8011FAB4u) + 1));
-                        if (!((uint)(Mem.S32(0x8011FAB4u)) < Mem.U32(Gv.Video_FrameSlotCount)))
+                        Mem.Set(Gv.Sched_FrameSlotIndex, (Mem.S32(Gv.Sched_FrameSlotIndex) + 1));
+                        if (!((uint)(Mem.S32(Gv.Sched_FrameSlotIndex)) < Mem.U32(Gv.Video_FrameSlotCount)))
                         {
-                            Mem.Set(0x8011FAB4u, 0);
+                            Mem.Set(Gv.Sched_FrameSlotIndex, 0);
                         }
                     }
                 }
@@ -252,8 +252,8 @@ public static partial class Sched
                         Sched.HandleSpDone(o);
                     }
                 }
-                Mem.Set(0x800D2950u, (Mem.S32(0x800D2950u) + 1));
-                if ((Mem.S32(0x800D2950u) == 1200))
+                Mem.Set(Gv.Sched_GfxWatchdog, (Mem.S32(Gv.Sched_GfxWatchdog) + 1));
+                if ((Mem.S32(Gv.Sched_GfxWatchdog) == 1200))
                 {
                     Mem.Set(0u, (byte)(0));
                 }
@@ -316,7 +316,7 @@ public static partial class Sched
                     }
                     if (((new Job(j).Flags & (uint)(32)) != 0u))
                     {
-                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
+                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(Gv.Sched_SpSegmentStartTime)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
                     }
                 }
                 else
@@ -324,14 +324,14 @@ public static partial class Sched
                     new Job(j).State_Set((uint)((uint)(new Job(j).State) & (uint)((~2))));
                     if ((new Job(j).TaskType == 1))
                     {
-                        Mem.Set(0x800D2950u, 0);
+                        Mem.Set(Gv.Sched_GfxWatchdog, 0);
                         if (!((new Job(j).Flags & (uint)(32)) != 0u))
                         {
                             goto L_done;
                         }
-                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
-                        Mem.Set(0x800D29A0u, Mem.F32(Gv.Sched_SpTaskTimeMs));
-                        Mem.Set(0x800D299Cu, ((float)((((osGetTime() - Mem.U64(0x8011F290u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
+                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(Gv.Sched_SpSegmentStartTime)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
+                        Mem.Set(Gv.Sched_SpTaskTimeMsPrev_800D29A0, Mem.F32(Gv.Sched_SpTaskTimeMs));
+                        Mem.Set(Gv.Sched_SpTaskTimeMsLast, ((float)((((osGetTime() - Mem.U64(Gv.Sched_TaskStartTime_8011F290)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                         @base = Gv.GameCtx;
                         fb = (uint)(new Job(j).FramebufferPtr);
                         if ((fb == new View_v2((@base + (uint)(0 * 320))).FramebufferPtr))
@@ -350,7 +350,7 @@ public static partial class Sched
                             s = (uint)(s + (uint)(2 * 320));
                         }
                         L_sel: ;
-                        Resource.PostFrameDone(0, (uint)(((new View_v2(s).DisplayListPtr == Mem.U32(0x801536F4u)) ? 1 : 0)));
+                        Resource.PostFrameDone(0, (uint)(((new View_v2(s).DisplayListPtr == Mem.U32(Gv.Gfx_DisplayListBuf1Ptr)) ? 1 : 0)));
                         if ((osSendMesg((uint)(Mem.S32((j + (uint)((80 / 4) * 4)))), (uint)(Mem.S32((j + (uint)((84 / 4) * 4)))), 1) == (-1)))
                         {
                             Mem.Set(0u, (byte)(0));
@@ -358,7 +358,7 @@ public static partial class Sched
                     }
                     else
                     {
-                        Mem.Set(0x800D299Cu, ((float)((((osGetTime() - Mem.U64(0x8011F290u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
+                        Mem.Set(Gv.Sched_SpTaskTimeMsLast, ((float)((((osGetTime() - Mem.U64(Gv.Sched_TaskStartTime_8011F290)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                         if ((osSendMesg((uint)(Mem.S32((j + (uint)((80 / 4) * 4)))), (uint)(Mem.S32((j + (uint)((84 / 4) * 4)))), 1) == (-1)))
                         {
                             Mem.Set(0u, (byte)(0));
@@ -403,7 +403,7 @@ public static partial class Sched
                 {
                     if (((new Job(j).Flags & (uint)(32)) != 0u))
                     {
-                        Mem.Set(0x800D29A4u, ((float)((((osGetTime() - Mem.U64(0x8011F2A8u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
+                        Mem.Set(Gv.Sched_DpTaskTimeMs, ((float)((((osGetTime() - Mem.U64(Gv.Sched_DpTaskStartTime)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                     }
                     new Vid(o).CurRdpTask_Set(0u);
                     do
@@ -432,11 +432,11 @@ public static partial class Sched
                                 s = (uint)(s + (uint)(2 * 320));
                             }
                             L_sel: ;
-                            Mem.Set(0x80146CF4u, Mem.S32(0x8014696Cu));
-                            Mem.Set(0x8014696Cu, Mem.S32(0x8011FAB8u));
-                            Mem.Set(0x8011FAB8u, Mem.S32(0x80146D64u));
-                            Mem.Set(0x80146D64u, (Mem.S32(0x801469E0u) + 1));
-                            if (!((uint)(Mem.S32(0x80146D64u)) < new View_v3(s).MinRetraceCount_124))
+                            Mem.Set(Gv.Sched_FrameRetraces3, Mem.S32(Gv.Sched_FrameRetraces2));
+                            Mem.Set(Gv.Sched_FrameRetraces2, Mem.S32(Gv.Sched_PrevFramebuffer_8011FAB8));
+                            Mem.Set(Gv.Sched_PrevFramebuffer_8011FAB8, Mem.S32(Gv.Sched_FrameRetraces0));
+                            Mem.Set(Gv.Sched_FrameRetraces0, (Mem.S32(Gv.Sched_RetracesSinceSwap) + 1));
+                            if (!((uint)(Mem.S32(Gv.Sched_FrameRetraces0)) < new View_v3(s).MinRetraceCount_124))
                             {
                                 t = Mem.S32(Gv.Sched_PendingSwapCount);
                                 if ((t != 0))
@@ -445,7 +445,7 @@ public static partial class Sched
                                 }
                                 if ((Mem.S32(Gv.Sched_FbSwapPending) == 0))
                                 {
-                                    Mem.Set(0x80146CF0u, (int)(new View_v3(s).FramebufferPtr));
+                                    Mem.Set(Gv.Sched_SwappingFramebuffer, (int)(new View_v3(s).FramebufferPtr));
                                     osViSwapBuffer((uint)(new View_v3(s).FramebufferPtr));
                                     Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
                                     goto L_done;
@@ -454,12 +454,12 @@ public static partial class Sched
                             t = Mem.S32(Gv.Sched_PendingSwapCount);
                             L_join: ;
                             Mem.Set(Gv.Sched_PendingSwapCount, (t + 1));
-                            idx = Mem.S32(0x8014AD8Cu);
-                            Mem.Set((0x80146970u + (uint)(idx * 4)), s);
-                            Mem.Set(0x8014AD8Cu, (idx + 1));
+                            idx = Mem.S32(Gv.Sched_SwapQueueWriteIdx);
+                            Mem.Set((Gv.Sched_SwapQueue + (uint)(idx * 4)), s);
+                            Mem.Set(Gv.Sched_SwapQueueWriteIdx, (idx + 1));
                             if (!((uint)((idx + 1)) < Mem.U32(Gv.Video_FrameSlotCount)))
                             {
-                                Mem.Set(0x8014AD8Cu, 0);
+                                Mem.Set(Gv.Sched_SwapQueueWriteIdx, 0);
                             }
                             L_done: ;
                             Sched.StubOnFrameDone_002909EC();
@@ -897,7 +897,7 @@ public static partial class Sched
             if (Dbg.On) Dbg.Enter("func_0028F98C", (uint)s);
             if ((s != 0u))
             {
-                if ((new VSwap(s).buf == Mem.U32(0x80146CF8u)))
+                if ((new VSwap(s).buf == Mem.U32(Gv.Sched_ShownFramebuffer)))
                 {
                     return 0u;
                 }
@@ -905,7 +905,7 @@ public static partial class Sched
                 {
                     return 0u;
                 }
-                if ((new VSwap(s).buf != Mem.U32(0x80146CF0u)))
+                if ((new VSwap(s).buf != Mem.U32(Gv.Sched_SwappingFramebuffer)))
                 {
                     return s;
                 }
@@ -925,7 +925,7 @@ public static partial class Sched
             if ((((next != 0u) && ((new Job_v2(next).flags8 & (uint)(32)) != 0u)) && !((new Job_v2(next).flags4 & (uint)(16)) != 0u)))
             {
                 t = osGetTime();
-                Mem.Set(0x8011F2A8u, t);
+                Mem.Set(Gv.Sched_DpTaskStartTime, t);
             }
             if ((cur != 0u))
             {
@@ -934,19 +934,19 @@ public static partial class Sched
                     osWritebackDCacheAll();
                     tp = (cur + (uint)16);
                     t = osGetTime();
-                    Mem.Set(0x8011F290u, t);
+                    Mem.Set(Gv.Sched_TaskStartTime_8011F290, t);
                     goto L_start;
                 }
                 tp = (cur + (uint)16);
                 if (((new Job_v2(cur).flags8 & (uint)(32)) != 0u))
                 {
                     t = osGetTime();
-                    Mem.Set(0x8011F2A0u, t);
+                    Mem.Set(Gv.Sched_SpSegmentStartTime, t);
                     if (((new Job_v2(cur).flags4 & (uint)(16)) != 0u))
                     {
                         goto L_start;
                     }
-                    Mem.Set(0x8011F2B0u, t);
+                    Mem.Set(Gv.Sched_GfxTaskStartTime_8011F2B0, t);
                     Mem.Set(Gv.Sched_SpTaskTimeMs, 0);
                 }
                 L_start: ;
@@ -962,8 +962,8 @@ public static partial class Sched
             if (((next != 0u) && (next != cur)))
             {
                 osDpSetNextBuffer((uint)(new Job_v2(next).unk38), Mem.U64(new Job_v2(next).unk3C_));
-                Mem.Set(0x800D2960u, 1);
-                Mem.Set(0x800D2964u, 0);
+                Mem.Set(Gv.Sched_RdpBufferQueued_800D2960, 1);
+                Mem.Set(Gv.Sched_RdpBufferDone_800D2964, 0);
                 new Vid_v2(o).CurRdpTask_Set(next);
             }
         }
@@ -1002,7 +1002,7 @@ public static partial class Sched
                     if ((((new Msg(Mem.U32(_fp)).unk10 == 1) && ((new Msg(Mem.U32(_fp)).flags8 & (uint)(32)) != 0u)) && (Mem.S32(Gv.ResourceLoader_BoostFrames) == 0)))
                     {
                         Mem.Set(Gv.ResourceLoader_BoostFrames, 2);
-                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(0x800D2B28u));
+                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(Gv.Thread_LoaderHighPri));
                     }
                     Sched.EnqueueTask(o, Mem.U32(_fp));
                 }

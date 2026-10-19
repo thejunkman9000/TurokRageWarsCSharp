@@ -44,7 +44,7 @@ public static partial class ModelBatch
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(0));
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3657433087u);
-            Mem.Set((new P4Gfx(g).words.P + 4u), (uint)((Mem.S32(0x800D15D4u) | 2491396)));
+            Mem.Set((new P4Gfx(g).words.P + 4u), (uint)((Mem.S32(Gv.Model_FogOtherModeH) | 2491396)));
             Gfx.SetOtherModeL((uint)(29));
         }
     }
@@ -134,30 +134,30 @@ public static partial class ModelBatch
                         uint pc1 = 0u;
                         uint pc2 = 0u;
                         int lim = 0;
-                        pc1 = 0x80110638u;
+                        pc1 = Gv.ModelBatch_NodeCount;
                         i = 0;
                         lim = 500;
-                        pc2 = 0x80110630u;
+                        pc2 = Gv.ModelBatch_InstanceCount;
                         L_top: ;
                         part = Chunk.Get(arr, i);
                         rec = Chunk.Get(part, 0);
-                        key = (uint)((((int)(new R06Rec(rec).id) << (int)8) | (int)(Mem.U8(0x80110627u))));
+                        key = (uint)((((int)(new R06Rec(rec).id) << (int)8) | (int)(Mem.U8(Gv.ModelBatch_CurrentKey_LoByte))));
                         if (((new R06Rec(rec).flags & (uint)(1792)) != 0u))
                         {
-                            near = func_0026BC60_find1(Mem.U32(0x8011063Cu), key);
+                            near = func_0026BC60_find1(Mem.U32(Gv.ModelBatch_FlaggedListHead), key);
                         }
                         else
                         {
-                            near = func_0026BC60_find0(Mem.U32(0x80110628u), key);
+                            near = func_0026BC60_find0(Mem.U32(Gv.ModelBatch_ListHead), key);
                         }
                         if (((near == 0u) || (new R06Node(near).key != key)))
                         {
-                            if ((Mem.S32(0x80110638u) == 120))
+                            if ((Mem.S32(Gv.ModelBatch_NodeCount) == 120))
                             {
                                 goto L_brk;
                             }
                             k1 = Mem.S32(pc1);
-                            nd = (0x801144D0u + (uint)(k1 * 32));
+                            nd = (Gv.ModelBatch_NodePool + (uint)(k1 * 32));
                             new R06Node(nd).key_Set(key);
                             new R06Node(nd).rec_Set(rec);
                             new R06Node(nd).tail__Set(0u);
@@ -200,7 +200,7 @@ public static partial class ModelBatch
                                 }
                                 else
                                 {
-                                    Mem.Set(0x8011063Cu, nd);
+                                    Mem.Set(Gv.ModelBatch_FlaggedListHead, nd);
                                     Mem.Set(Gv.ModelBatch_FlaggedListTail, nd);
                                     new R06Node(nd).r__Set(0u);
                                     new R06Node(nd).l__Set(0u);
@@ -245,7 +245,7 @@ public static partial class ModelBatch
                                 }
                                 else
                                 {
-                                    Mem.Set(0x80110628u, nd);
+                                    Mem.Set(Gv.ModelBatch_ListHead, nd);
                                     Mem.Set(Gv.ModelBatch_ListTail, nd);
                                     new R06Node(nd).r__Set(0u);
                                     new R06Node(nd).l__Set(0u);
@@ -266,11 +266,11 @@ public static partial class ModelBatch
                             uint sr = 0u;
                             uint pool = 0u;
                             int cnt2 = 0;
-                            pool = 0x80110650u;
+                            pool = Gv.ModelBatch_InstancePool;
                             cnt2 = cnt;
-                            sr = 0x801157D8u;
+                            sr = Gv.ModelBatch_QueueEntries;
                             L_inner: ;
-                            if ((Mem.S32(0x80110630u) != lim))
+                            if ((Mem.S32(Gv.ModelBatch_InstanceCount) != lim))
                             {
                                 int k2 = Mem.S32(pc2);
                                 uint p = (uint)(((uint)((k2 * 32)) + (uint)(pool)));
@@ -585,7 +585,7 @@ public static partial class ModelBatch
                         if ((v != 0u))
                         {
                             z = (int)(Chunk.Get((uint)(Mem.S32(v)), 0));
-                            if ((((Mem.U32(Gv.ModelBatch_CurrentModelPtr) != v) || (Mem.S32(0x80110624u) != a4)) || (Mem.S32(Gv.ModelBatch_QueueCount) == 32)))
+                            if ((((Mem.U32(Gv.ModelBatch_CurrentModelPtr) != v) || (Mem.S32(Gv.ModelBatch_CurrentKey) != a4)) || (Mem.S32(Gv.ModelBatch_QueueCount) == 32)))
                             {
                                 ModelBatch.CollectParts();
                                 if ((Mem.S32(Gv.ModelBatch_Count) == 256))
@@ -593,7 +593,7 @@ public static partial class ModelBatch
                                     goto L_done;
                                 }
                                 ResourcePool.TouchAndRef(0, v);
-                                Mem.Set((0x801153D8u + (uint)(Mem.S32(Gv.ModelBatch_Count) * 4)), v);
+                                Mem.Set((Gv.ModelBatch_Models + (uint)(Mem.S32(Gv.ModelBatch_Count) * 4)), v);
                                 Mem.Set(Gv.ModelBatch_Count, (int)(Mem.S32(Gv.ModelBatch_Count) + 1));
                             }
                             k = Mem.S32(Gv.ModelBatch_QueueCount);
@@ -602,10 +602,10 @@ public static partial class ModelBatch
                                 Mem.Set(Gv.ModelBatch_CurrentModelPtr, v);
                             }
                             while ((0 != 0));
-                            Mem.Set(0x80110624u, a4);
+                            Mem.Set(Gv.ModelBatch_CurrentKey, a4);
                             do
                             {
-                                rec = (0x801157D8u + (uint)(k * 16));
+                                rec = (Gv.ModelBatch_QueueEntries + (uint)(k * 16));
                                 Mem.Set(Gv.ModelBatch_QueueCount, (k + 1));
                             }
                             while ((0 != 0));

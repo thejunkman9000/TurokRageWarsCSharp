@@ -20,7 +20,7 @@ public static partial class Game
                 {
                     Mem.Set((Gv.__osContPifRam + (uint)(i * 4)), (uint)(0));
                 }
-                Mem.Set(0x8014D4ACu, (uint)(1));
+                Mem.Set(Gv.__osContPifStatus, (uint)(1));
                 new OSContPackedRead(_fp).Dummy_Set((byte)(255));
                 new OSContPackedRead(_fp).TxSize_Set((byte)(1));
                 new OSContPackedRead(_fp).RxSize_Set((byte)(4));

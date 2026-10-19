@@ -30,15 +30,15 @@ public static partial class TrialPauseMenu
             MenuButton.Create(450);
             new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w.Set((int)(1), (int)(OptionList.Create(443, 444)));
             OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((Gv.OptionText_Red + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((Gv.OptionText_Green + (uint)(0 * 4))));
             OptionList.SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), (int)(new O3Cfg(Gv.Settings).BloodColor));
             new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w.Set((int)(2), (int)(OptionList.Create(446, 447)));
-            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
+            OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((Gv.OptionText_LoRez + (uint)(0 * 4))));
             if (((int)(MemUtil.GetRamSize()) != 4194304))
             {
-                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
-                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
+                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((Gv.OptionText_HiRez + (uint)(0 * 4))));
+                OptionList.AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((Gv.OptionText_Letterbox + (uint)(0 * 4))));
             }
             OptionList.SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), (int)(new O3Cfg(Gv.Settings).ResolutionMode));
             t = (int)(Slider.Create(448, 449, 128));
