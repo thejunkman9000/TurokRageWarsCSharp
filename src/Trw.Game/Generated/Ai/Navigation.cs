@@ -229,7 +229,7 @@ public static partial class AiNav
                     sel = 0u;
                     if ((((int)(Mem.U16((r + (uint)12))) & 512) != 0))
                     {
-                        best = Mem.F32(0x800C6E40u);
+                        best = (-1f);
                         k = 0;
                         if ((nlist > 0))
                         {
@@ -247,7 +247,7 @@ public static partial class AiNav
                                         {
                                             p = LevelPath.GetPoint(Gv.LevelMgr, (int)(new B2Sub(st).unk95), j);
                                             d = Vec.Distance(r, p);
-                                            if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
+                                            if (((d < best) || (best == (-1f))))
                                             {
                                                 sel = Mem.U32((_fp + (uint)(k * 4)));
                                                 best = d;
@@ -267,7 +267,7 @@ public static partial class AiNav
                                         new Vec3f((_fp + 152u)).z_Set((float)((float)(new Vec3f((_fp + 152u)).z) + (new B2Info(info).TravelDistance * cosf(new B2Info(info).TravelYaw))));
                                     }
                                     d = Vec.Distance(r, (_fp + 136u));
-                                    if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
+                                    if (((d < best) || (best == (-1f))))
                                     {
                                         if ((n != 0u))
                                         {
@@ -283,7 +283,7 @@ public static partial class AiNav
                                         }
                                     }
                                     d = Vec.Distance(r, (_fp + 152u));
-                                    if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
+                                    if (((d < best) || (best == (-1f))))
                                     {
                                         sel = Mem.U32((_fp + (uint)(k * 4)));
                                         best = d;
@@ -772,7 +772,7 @@ public static partial class AiNav
                 int i = 0;
                 int cnt = 0;
                 int r = 0;
-                float best = Mem.F32(0x800C6E60u);
+                float best = 1000000000f;
                 uint src = 0u;
                 uint e = 0u;
                 for (i = 0; (i < new B2Mgr(m).EdgeCount); ++i)
@@ -862,7 +862,7 @@ public static partial class AiNav
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020C078", (uint)m, (uint)cur, (uint)goal, (uint)kind);
-                float best = Mem.F32(0x800C6E64u);
+                float best = 10000000f;
                 int res = (-1);
                 int i = 0;
                 int cnt = 0;
@@ -981,14 +981,14 @@ public static partial class AiNav
                 int j = 0;
                 int cnt = 0;
                 int key = 0;
-                best = Mem.F32(0x800C6E68u);
+                best = (-1f);
                 src = func_0020C2E8_getRec0(m, new B2Edge2(obj).id0);
                 for (i = 0; (i < 64); ++i)
                 {
                     if ((new B2Mgr(m).GoalIds[(int)(i)] != (-1)))
                     {
                         d = Vec.Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).GoalIds[(int)(i)]));
-                        if (((d < best) || (best == Mem.F32(0x800C6E68u))))
+                        if (((d < best) || (best == (-1f))))
                         {
                             best = d;
                         }
@@ -1012,7 +1012,7 @@ public static partial class AiNav
                             if ((new B2Mgr(m).GoalIds[(int)(i)] != (-1)))
                             {
                                 d = Vec.Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).GoalIds[(int)(i)]));
-                                if (((d < best) || (best == Mem.F32(0x800C6E6Cu))))
+                                if (((d < best) || (best == (-1f))))
                                 {
                                     best = d;
                                 }
@@ -1156,11 +1156,11 @@ public static partial class AiNav
                 new B2Node(start).SearchState_Set(1);
                 while ((func_0020C5A0_hasOpen(m) != 0))
                 {
-                    bestf = Mem.F32(0x800C6E74u);
+                    bestf = (-1f);
                     sel = 0u;
                     for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
                     {
-                        if (((new B2Node(n).SearchState == 1) && ((new B2Node(n).TotalCost < bestf) || (bestf == Mem.F32(0x800C6E70u)))))
+                        if (((new B2Node(n).SearchState == 1) && ((new B2Node(n).TotalCost < bestf) || (bestf == (-1f)))))
                         {
                             sel = n;
                             bestf = new B2Node(n).TotalCost;
@@ -1208,7 +1208,7 @@ public static partial class AiNav
                                 d = (float)((float)(d) + new B2Node(nbr).ExtraCost);
                                 if ((((int)(Mem.U16((rec2 + (uint)12))) & 1024) != 0))
                                 {
-                                    d = (float)((float)(d) + Mem.F32(0x800C6E78u));
+                                    d = (float)((float)(d) + 51200f);
                                 }
                                 if ((d < 0.0f))
                                 {
@@ -1303,11 +1303,11 @@ public static partial class AiNav
             new B2Node(n).unk8_Set((-1));
             new B2Node(n).unkC_Set(0);
             new B2Node(n).next__Set(0u);
-            new B2Node(n).unk4_Set(Mem.F32(0x800C6E7Cu));
+            new B2Node(n).unk4_Set((-1f));
             r = func_0020CA10_getRec0(Gv.AiNavGraph, idx);
             if ((((int)(new B2Rec(r).flags) & 2) != 0))
             {
-                new B2Node(n).BranchOffsetScale_Set(Mem.F32(0x800C6E80u));
+                new B2Node(n).BranchOffsetScale_Set(15f);
             }
             new B2Node(n).unk34__Set(0u);
             new B2Node(n).TimerCost_Set(0);
@@ -1484,7 +1484,7 @@ public static partial class AiNav
                 int r = 0;
                 int s0 = 0;
                 Mem.Copy(_fp, func_0020CD74_getRec0(m, idx), 12);
-                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6E84u)));
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + 61.44f));
                 if ((((int)(new B2Actor(a).Type) == 1) && ((new B2Actor(a).Flags & (uint)(3145728)) != 0u)))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
@@ -1552,7 +1552,7 @@ public static partial class AiNav
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                new B2Node(n).unk4_Set(Mem.F32(0x800C6E88u));
+                new B2Node(n).unk4_Set((-1f));
                 new B2Node(n).unk8_Set((-1));
                 new B2Node(n).ExtraCost_Set((float)(0));
                 new B2Node(n).CostFromStart_Set((float)(0));
@@ -1562,7 +1562,7 @@ public static partial class AiNav
                 new B2Node(n).IsGoal_Set(0);
                 new B2Node(n).link30__Set(0u);
             }
-            new B2Mgr(m).SearchF_1C_Set(Mem.F32(0x800C6E8Cu));
+            new B2Mgr(m).SearchF_1C_Set((-1f));
             new B2Mgr(m).SearchI_20_Set((-1));
         }
     }
@@ -1741,11 +1741,11 @@ public static partial class AiNav
             uint n = 0u;
             uint best = 0u;
             float min = 0f;
-            min = Mem.F32(0x800C6E90u);
+            min = (-1f);
             best = 0u;
             for (n = new TimedList(list).head_; (n != 0u); n = new TimedNode(n).next_)
             {
-                if (((new TimedNode(n).SearchState == 1) && ((new TimedNode(n).TotalCost < min) || (min == Mem.F32(0x800C6E90u)))))
+                if (((new TimedNode(n).SearchState == 1) && ((new TimedNode(n).TotalCost < min) || (min == (-1f)))))
                 {
                     best = n;
                     min = new TimedNode(n).TotalCost;
@@ -1860,7 +1860,7 @@ public static partial class AiNav
             _f17: ;
             _f12: ;
             _f20: ;
-            new B2Node(AiNav.FindSearchNode(m, AiNav.FindNearestNode(m, new B2Actor(n).Position.P))).ExtraCost_Set(Mem.F32(0x800C6F50u));
+            new B2Node(AiNav.FindSearchNode(m, AiNav.FindNearestNode(m, new B2Actor(n).Position.P))).ExtraCost_Set(51200f);
             _f21: ;
             if ((0 != 0)) goto _f20;
             _f22: ;
@@ -1895,7 +1895,7 @@ public static partial class AiNav
                 {
                     if ((new B2Ctl(ctl).EnemyPtrs[(int)(i)] != 0u))
                     {
-                        new B2Node(AiNav.FindSearchNode(m, new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).OwnerPtr.BrainPtr.key)).ExtraCost_Set(Mem.F32(0x800C6FCCu));
+                        new B2Node(AiNav.FindSearchNode(m, new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).OwnerPtr.BrainPtr.key)).ExtraCost_Set(51200f);
                     }
                 }
             }
@@ -1911,7 +1911,7 @@ public static partial class AiNav
             uint n = 0u;
             for (n = Mem.U32(0x8013B388u); (n != 0u); n = new B2Node(n).next_)
             {
-                new B2Node(n).ExtraCost_Set((new B2Node(n).ExtraCost + ((float)((new B2Node(n).TimerCost * 30)) * Mem.F32(0x800C6FD0u))));
+                new B2Node(n).ExtraCost_Set((new B2Node(n).ExtraCost + ((float)((new B2Node(n).TimerCost * 30)) * 10.24f)));
             }
         }
     }
@@ -1932,7 +1932,7 @@ public static partial class AiNav
                 {
                     if (((Ai.IsHealthItemId((int)(new B2Rec(r).id)) != 0) || (Ai.IsAmmoItemId((int)(new B2Rec(r).id)) != 0)))
                     {
-                        new B2Node(n).ExtraCost_Set((float)((float)(new B2Node(n).ExtraCost) + Mem.F32(0x800C6FD4u)));
+                        new B2Node(n).ExtraCost_Set((float)((float)(new B2Node(n).ExtraCost) + (-614.39996f)));
                     }
                 }
             }

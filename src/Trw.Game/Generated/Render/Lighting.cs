@@ -219,9 +219,9 @@ public static partial class Light
                     MathUtil.MtxGetTranslationVec((_fp + 32u), (_fp + 16u));
                     Vec.Sub(_fp, ((uint)(Obj.GetField20_0022A404(Gv.PlayerPool)) + (uint)1768), (_fp + 16u));
                     Vec.Normalize(_fp);
-                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(0), (sbyte)(int)((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32(0x800C9758u))));
-                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(1), (sbyte)(int)((Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32(0x800C9758u))));
-                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(2), (sbyte)(int)((Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32(0x800C9758u))));
+                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(0), (sbyte)(int)((Mem.F32((_fp + (uint)(0 * 4))) * 127f)));
+                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(1), (sbyte)(int)((Mem.F32((_fp + (uint)(1 * 4))) * 127f)));
+                    new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(2), (sbyte)(int)((Mem.F32((_fp + (uint)(2 * 4))) * 127f)));
                     a0 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(a0).words.P, 3674341376u);
                     Mem.Set((new P4Gfx(a0).words.P + 4u), (uint)(24));
@@ -602,17 +602,17 @@ public static partial class Light
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00277198", (uint)o, (uint)v_in);
                 float s = 0.0f;
-                if ((((((!(new M5Vec3(_fp).x >= Mem.F32(0x800C9BB0u)) && !(new M5Vec3(_fp).x <= Mem.F32(0x800C9BB4u))) && !(new M5Vec3(_fp).y >= Mem.F32(0x800C9BB0u))) && !(new M5Vec3(_fp).y <= Mem.F32(0x800C9BB4u))) && !(new M5Vec3(_fp).z >= Mem.F32(0x800C9BB0u))) && !(new M5Vec3(_fp).z <= Mem.F32(0x800C9BB4u))))
+                if ((((((!(new M5Vec3(_fp).x >= 1f) && !(new M5Vec3(_fp).x <= (-1f))) && !(new M5Vec3(_fp).y >= 1f)) && !(new M5Vec3(_fp).y <= (-1f))) && !(new M5Vec3(_fp).z >= 1f)) && !(new M5Vec3(_fp).z <= (-1f))))
                 {
                     switch ((int)(new M5Shape(o).mode))
                     {
                     case 0:
                         s = (((new M5Vec3(_fp).x * new M5Vec3(_fp).x) + (new M5Vec3(_fp).y * new M5Vec3(_fp).y)) + (new M5Vec3(_fp).z * new M5Vec3(_fp).z));
-                        if ((Mem.F32(0x800C9BB0u) < s))
+                        if ((1f < s))
                         {
                             goto L_fail;
                         }
-                        s = Mem.F32((0x800D2648u + (uint)((int)((s * Mem.F32(0x800C9BB8u))) * 4)));
+                        s = Mem.F32((0x800D2648u + (uint)((int)((s * 64f)) * 4)));
                         break;
                     case 2:
                         if ((new M5Vec3(_fp).x <= 0.0f))
@@ -624,7 +624,7 @@ public static partial class Light
                         {
                             goto L_fail;
                         }
-                        s = Mem.F32((0x800D274Cu + (uint)((int)((s * Mem.F32(0x800C9BBCu))) * 4)));
+                        s = Mem.F32((0x800D274Cu + (uint)((int)((s * 64f)) * 4)));
                         s = (s / new M5Vec3(_fp).x);
                         break;
                     case 1:
@@ -663,14 +663,14 @@ public static partial class Light
                         }
                         break;
                     }
-                    s = (Mem.F32(0x800C9BC0u) - s);
+                    s = (1f - s);
                     if ((s < new M5Shape(o).f0))
                     {
                         s = (s / new M5Shape(o).f0);
                     }
                     else
                     {
-                        s = Mem.F32(0x800C9BC0u);
+                        s = 1f;
                     }
                     if (((int)(new M5Shape(o).mode) == 1))
                     {
@@ -687,7 +687,7 @@ public static partial class Light
                 L_fail: ;
                 new M5Vec3(@out).y_Set(0.0f);
                 new M5Vec3(@out).z_Set(0.0f);
-                new M5Vec3(@out).x_Set(Mem.F32(0x800C9BC4u));
+                new M5Vec3(@out).x_Set(1f);
                 Mem.Set(res, 0.0f);
                 return 0;
             }
@@ -738,7 +738,7 @@ public static partial class Light
                         t = 0.0f;
                     }
                     f4 = new Probe(o).f4;
-                    Mem.Set((_fp + 76u), (Mem.F32((_fp + 76u)) * (f4 + (t * (Mem.F32(0x800C9BC8u) - f4)))));
+                    Mem.Set((_fp + 76u), (Mem.F32((_fp + 76u)) * (f4 + (t * (1f - f4)))));
                     if ((Mem.F32((_fp + 76u)) <= 0.0f))
                     {
                         Mem.Set((_fp + 76u), 0.0f);

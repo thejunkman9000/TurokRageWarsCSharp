@@ -123,7 +123,7 @@ public static partial class Camera
             }
             if ((new Chan(c).v.z == 0.0f))
             {
-                new Chan(c).d_Set(Mem.F32(0x800C8170u));
+                new Chan(c).d_Set(90f);
             }
             t = (new Chan(c).v.y + new Chan(c).v.y);
             if ((new Chan(c).v.z < t))
@@ -131,7 +131,7 @@ public static partial class Camera
                 new Chan(c).v.z_Set(t);
             }
             g = Mem.F32(Gv.FrameTime);
-            k = Mem.F32(0x800C8174u);
+            k = 3f;
             new Chan(c).v.x_Set(MathUtil.DecayToZero(new Chan(c).v.x, (g * k)));
             new Chan(c).v.y_Set(MathUtil.DecayToZero(new Chan(c).v.y, (Mem.F32(Gv.FrameTime) * k)));
             switch (new Chan(c).mode)
@@ -140,13 +140,13 @@ public static partial class Camera
                 if ((new Chan(c).v.z > 0.0f))
                 {
                     new Chan(c).d_Set((new Chan(c).d + ((2.0f * new Chan(c).v.z) * (Mem.F32(Gv.FrameTime) * k))));
-                    new Chan(c).v.z_Set(MathUtil.DecayToZero(new Chan(c).v.z, Mem.F32(0x800C8178u)));
+                    new Chan(c).v.z_Set(MathUtil.DecayToZero(new Chan(c).v.z, 6f));
                 }
                 break;
             case 0:
                 if ((new Chan(c).v.z > 0.0f))
                 {
-                    new Chan(c).v.z_Set(MathUtil.DecayToZero(new Chan(c).v.z, Mem.F32(0x800C817Cu)));
+                    new Chan(c).v.z_Set(MathUtil.DecayToZero(new Chan(c).v.z, 6f));
                 }
                 break;
             }
@@ -981,10 +981,10 @@ public static partial class Camera
             new ObjInit(o).PosZ_Set(0);
             p = new ObjInit(o).Rotation.P;
             new Vec3f(p).x_Set(new Vec3f(p).y_Set(new Vec3f(p).z_Set(z)));
-            new ObjInit(o).RotationW_Set(Mem.F32(0x800C8608u));
+            new ObjInit(o).RotationW_Set(1f);
             new ObjInit(o).FloorTriPtr_Set(0);
             new ObjInit(o).Override_38_Set(z);
-            new ObjInit(o).unk3C_Set(Mem.F32(0x800C860Cu));
+            new ObjInit(o).unk3C_Set(0.17453295f);
             new ObjInit(o).RegionId_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
         }
     }
@@ -1030,8 +1030,8 @@ public static partial class Camera
                 new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
                 if (((node != 0u) && (Flyby.IsInWindow() == 0)))
                 {
-                    dist = (((y + w) - Collision.GetFloorHeightAt(node, x, z)) * Mem.F32(0x800C8610u));
-                    if (((dist < Mem.F32(0x800C8614u)) && (Mem.F32(0x800C8618u) < dist)))
+                    dist = (((y + w) - Collision.GetFloorHeightAt(node, x, z)) * 0.09765625f);
+                    if (((dist < 11f) && (5f < dist)))
                     {
                         new Tracker(t).RegionId_Set(new SurfNode(node).unk1C);
                     }
@@ -1107,10 +1107,10 @@ public static partial class Camera
             {
                 new Obj88(o).SwayPhaseX_Set(0);
                 new Obj88(o).SwayPhaseY_Set(0);
-                new Obj88(o).SwayAmplitudeX_Set(Mem.F32(0x800C861Cu));
-                new Obj88(o).SwayAmplitudeY_Set(Mem.F32(0x800C8620u));
-                new Obj88(o).SwayRateX_Set(Mem.F32(0x800C8624u));
-                new Obj88(o).SwayRateY_Set(Mem.F32(0x800C8628u));
+                new Obj88(o).SwayAmplitudeX_Set(0.2f);
+                new Obj88(o).SwayAmplitudeY_Set(0.1f);
+                new Obj88(o).SwayRateX_Set(1.5707965f);
+                new Obj88(o).SwayRateY_Set(1.308997f);
             }
         }
     }
@@ -1165,9 +1165,9 @@ public static partial class Camera
                 new BigObj(o).co.ch[(int)(1)].mode_Set(e);
                 new BigObj(o).co.ch[(int)(2)].mode_Set(e);
                 new BigObj(o).co.ch[(int)(3)].mode_Set(e);
-                new BigObj(o).co.ch[(int)(1)].v.x_Set((a * Mem.F32(0x800C862Cu)));
-                new BigObj(o).co.ch[(int)(2)].v.x_Set((b * Mem.F32(0x800C862Cu)));
-                new BigObj(o).co.ch[(int)(3)].v.x_Set((c * Mem.F32(0x800C862Cu)));
+                new BigObj(o).co.ch[(int)(1)].v.x_Set((a * 0.1f));
+                new BigObj(o).co.ch[(int)(2)].v.x_Set((b * 0.1f));
+                new BigObj(o).co.ch[(int)(3)].v.x_Set((c * 0.1f));
             }
         }
         finally { Stack.Free(12); }
@@ -1245,8 +1245,8 @@ public static partial class Camera
             new ModeBlk2(p).unk108_Set(0);
             new ModeBlk2(p).unk10C_Set(0);
             new ModeBlk2(p).unk118_Set(0);
-            new ModeBlk2(p).unk110_Set(Mem.F32(0x800C8630u));
-            new ModeBlk2(p).unk114_Set(Mem.F32(0x800C8630u));
+            new ModeBlk2(p).unk110_Set(1f);
+            new ModeBlk2(p).unk114_Set(1f);
         }
     }
 
@@ -1341,14 +1341,14 @@ public static partial class Camera
             }
             if (((new Row44(r).unk44 & (uint)(65536)) != 0u))
             {
-                tx = Mem.F32(0x800C8668u);
-                ty = Mem.F32(0x800C866Cu);
+                tx = 0.5f;
+                ty = 0.25f;
             }
-            new ObjF4(o).JitterAmplitudeXZ_Set((new ObjF4(o).JitterAmplitudeXZ + ((tx - new ObjF4(o).JitterAmplitudeXZ) * Mem.F32(0x800C8670u))));
-            k = Mem.F32(0x800C8674u);
-            new ObjF4(o).JitterAmplitudeY_Set((new ObjF4(o).JitterAmplitudeY + ((ty - new ObjF4(o).JitterAmplitudeY) * Mem.F32(0x800C8678u))));
+            new ObjF4(o).JitterAmplitudeXZ_Set((new ObjF4(o).JitterAmplitudeXZ + ((tx - new ObjF4(o).JitterAmplitudeXZ) * 0.2f)));
+            k = 0.017453294f;
+            new ObjF4(o).JitterAmplitudeY_Set((new ObjF4(o).JitterAmplitudeY + ((ty - new ObjF4(o).JitterAmplitudeY) * 0.1f)));
             new Vec3f(@out).x_Set(RandomGen.Symmetric(((-new ObjF4(o).JitterAmplitudeXZ) * k), (new ObjF4(o).JitterAmplitudeXZ * k)));
-            new Vec3f(@out).y_Set(RandomGen.Symmetric(0.0f, (new ObjF4(o).JitterAmplitudeY * Mem.F32(0x800C867Cu))));
+            new Vec3f(@out).y_Set(RandomGen.Symmetric(0.0f, (new ObjF4(o).JitterAmplitudeY * 10.24f)));
             new Vec3f(@out).z_Set(RandomGen.Symmetric(((-new ObjF4(o).JitterAmplitudeXZ) * k), (new ObjF4(o).JitterAmplitudeXZ * k)));
         }
     }
@@ -1395,8 +1395,8 @@ public static partial class Camera
             new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
             if (((n != 0u) && (Flyby.IsInWindow() == 0)))
             {
-                d = (((y + w) - Collision.GetFloorHeightAt(n, x, z)) * Mem.F32(0x800C8680u));
-                if (((d < Mem.F32(0x800C8684u)) && (Mem.F32(0x800C8688u) < d)))
+                d = (((y + w) - Collision.GetFloorHeightAt(n, x, z)) * 0.09765625f);
+                if (((d < 11f) && (5f < d)))
                 {
                     new Tracker(t).RegionId_Set(new SurfNode(n).unk1C);
                 }
@@ -1425,7 +1425,7 @@ public static partial class Camera
             if ((x < target))
             {
                 x = (float)((float)(x) + step);
-                Mem.Set(Gv.View_Timer_80103224, Mem.F32(0x800C868Cu));
+                Mem.Set(Gv.View_Timer_80103224, 30f);
                 if ((target < x))
                 {
                     x = target;
@@ -1436,7 +1436,7 @@ public static partial class Camera
                 if ((target < x))
                 {
                     x = (float)((float)(x) - step);
-                    Mem.Set(Gv.View_Timer_80103224, Mem.F32(0x800C8690u));
+                    Mem.Set(Gv.View_Timer_80103224, 30f);
                     if ((x < target))
                     {
                         x = target;
@@ -1627,7 +1627,7 @@ public static partial class CameraManager
                 Vec.ClampLengthChecked(pt, 2.0E+4f);
                 if ((new PList(l).unk1200 == 0))
                 {
-                    min = Mem.F32(0x800C8638u);
+                    min = 3.4028235e+38f;
                     best = 0u;
                     for (n = new PList(l).head_; (n != 0u); n = new PNode_v2(n).next_)
                     {
@@ -3182,16 +3182,16 @@ public static partial class View
             by = 0.0f;
             if ((new S6World(w).mode >= (uint)(2)))
             {
-                bx = Mem.F32(0x800D05CCu);
-                ay = (float)((float)(ay) - Mem.F32(0x800D05C8u));
-                by = Mem.F32(0x800D05D0u);
-                ax = (float)((float)(ax) - Mem.F32(0x800D05D4u));
+                bx = 0f;
+                ay = (float)((float)(ay) - 3f);
+                by = 0f;
+                ax = (float)((float)(ax) - 0f);
             }
             sx = (ax - by);
-            tx = (sx * Mem.F32(0x800C8410u));
+            tx = (sx * 0.5f);
             sy = (ay - bx);
             n = Mem.U32(0x80146274u);
-            ty = (sy * Mem.F32(0x800C8410u));
+            ty = (sy * 0.5f);
             if ((n != 0u))
             {
                 do

@@ -18,7 +18,7 @@ public static partial class Collision
                 if (Dbg.On) Dbg.Enter("func_0022E42C", (uint)actor, (uint)p);
                 int moved = 0;
                 Mem.Copy(_fp, actor, 80);
-                Mem.Set((actor + (uint)12), (float)((float)(Mem.F32((actor + (uint)12))) + (Actor.GetHeight(actor) * Mem.F32(0x800C7F04u))));
+                Mem.Set((actor + (uint)12), (float)((float)(Mem.F32((actor + (uint)12))) + (Actor.GetHeight(actor) * 0.5f)));
                 Mem.Set((actor + (uint)12), (float)((float)(Mem.F32((actor + (uint)12))) + Mem.F32((actor + (uint)112))));
                 Collision.MoveActor((int)(actor), new Vec3f(p).x, new Vec3f(p).y, new Vec3f(p).z, (int)(Gv.Collision_ProbeResult));
                 moved = ((((new Vec3f(p).x != Mem.F32((actor + (uint)8))) || (new Vec3f(p).y != Mem.F32((actor + (uint)12)))) || (new Vec3f(p).z != Mem.F32((actor + (uint)16)))) ? 1 : 0);
@@ -160,13 +160,13 @@ public static partial class Collision
                 float k = 0f;
                 if ((new B09Mover(m).IsIntegrating_2C != 0))
                 {
-                    dt = (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C8710u));
+                    dt = (Mem.F32(Gv.FrameTime) * 0.06666667f);
                     d = new B09Mover(m).def_;
                     if ((dt != 0.0f))
                     {
                         c = new B09BodyDef(d).f14;
-                        c = (float)((float)(c) * Mem.F32(0x800C8714u));
-                        lim = (Mem.F32(0x800C8718u) / dt);
+                        c = (float)((float)(c) * 15f);
+                        lim = (1f / dt);
                         if (!(c <= lim))
                         {
                             c = lim;
@@ -188,7 +188,7 @@ public static partial class Collision
                             new B09V3(_fp).y_Set((((-new B09Mover(m).Velocity.y) * c) + up));
                             new B09V3(_fp).z_Set(((-new B09Mover(m).Velocity.z) * c));
                         }
-                        k = (dt * Mem.F32(0x800C871Cu));
+                        k = (dt * 0.5f);
                         new B09Mover(m).EndPos.x_Set((new B09Mover(m).EndPos.x + ((new B09Mover(m).Velocity.x + (new B09V3(_fp).x * k)) * dt)));
                         new B09Mover(m).EndPos.y_Set((new B09Mover(m).EndPos.y + ((new B09Mover(m).Velocity.y + (new B09V3(_fp).y * k)) * dt)));
                         new B09Mover(m).EndPos.z_Set((new B09Mover(m).EndPos.z + ((new B09Mover(m).Velocity.z + (new B09V3(_fp).z * k)) * dt)));
@@ -224,7 +224,7 @@ public static partial class Collision
             }
             if ((new B09Mover(m).MoveLength != 0.0f))
             {
-                Vec.Scale(new B09Mover(m).Direction.P, new B09Mover(m).Delta.P, (Mem.F32(0x800C8720u) / new B09Mover(m).MoveLength));
+                Vec.Scale(new B09Mover(m).Direction.P, new B09Mover(m).Delta.P, (1f / new B09Mover(m).MoveLength));
             }
             else
             {
@@ -1276,7 +1276,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C8780u))))))
+                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(0.1f * 10.24f)))))
                 {
                     return 0;
                 }
@@ -1351,7 +1351,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C8788u))))))
+                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(0.1f * 10.24f)))))
                 {
                     return 0;
                 }
@@ -1389,7 +1389,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                inv = (Mem.F32(0x800C8784u) / len);
+                inv = (1f / len);
                 new B09V3((_fp + 16u)).x_Set((new B09Mover(m).Delta.x * inv));
                 new B09V3((_fp + 16u)).z_Set((new B09Mover(m).Delta.z * inv));
                 along = ((new B09V3(_fp).x * new B09V3((_fp + 16u)).x) + (new B09V3(_fp).z * new B09V3((_fp + 16u)).z));
@@ -1511,7 +1511,7 @@ public static partial class Collision
             {
                 hi = a;
             }
-            new B09Range(r).MaxExtent_18_Set((hi + Mem.F32(0x800C87B4u)));
+            new B09Range(r).MaxExtent_18_Set((hi + 1.024f));
         }
     }
 
@@ -1687,7 +1687,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C0u))))))
+                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(0.1f * 10.24f)))))
                 {
                     return 0;
                 }
@@ -1743,7 +1743,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C4u))))))
+                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(0.1f * 10.24f)))))
                 {
                     return 0;
                 }
@@ -1907,7 +1907,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C8u))))))
+                if ((((uint)((new B09Quad(h).HitType - 5)) < (uint)(2)) || ((v * new B09Mover(m).MoveLength) < (-(0.1f * 10.24f)))))
                 {
                     return 0;
                 }
@@ -3736,7 +3736,7 @@ public static partial class Collision
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00240C7C", (uint)p);
-            float g = Mem.F32(0x800C882Cu);
+            float g = 1f;
             Mem.Set((p + (uint)0), 0);
             Mem.Set((p + (uint)84), 0);
             Mem.Set((p + (uint)88), (-1));
@@ -4003,7 +4003,7 @@ public static partial class Collision
                 }
                 else
                 {
-                    v = Mem.F32(0x800C8830u);
+                    v = 1f;
                 }
                 Mem.Set(t, v);
                 return r;
@@ -4030,7 +4030,7 @@ public static partial class Collision
                 denom = (((new B09Quad(q).Normal * Mem.F32((_fp + (uint)(0 * 4)))) + (new B09Quad(q).NormalY * Mem.F32((_fp + (uint)(1 * 4))))) + (new B09Quad(q).NormalZ * Mem.F32((_fp + (uint)(2 * 4)))));
                 if ((denom >= 0.0f))
                 {
-                    Mem.Set(t, Mem.F32(0x800C8834u));
+                    Mem.Set(t, 1f);
                     return 0;
                 }
                 Vec.Sub((_fp + 16u), org, (new B09Quad(q).Vertices.P + (uint)(0 * 12)));
@@ -4550,7 +4550,7 @@ public static partial class Collision
                         fb = Actor.GetRadius(o);
                         fc = Actor.GetHeight(o);
                         fd = Actor.GetBottomOffset(o);
-                        h = (float)((float)(h) + Mem.F32(0x800C8848u));
+                        h = (float)((float)(h) + 0.4096f);
                         new Vec3f((_fp + 264u)).x_Set(Mem.F32((o + 8u)));
                         new Vec3f((_fp + 264u)).y_Set(h);
                         new Vec3f((_fp + 264u)).z_Set(Mem.F32((o + 16u)));
@@ -4644,7 +4644,7 @@ public static partial class Collision
                         fb = Actor.GetRadius(o);
                         fc = Actor.GetHeight(o);
                         fd = Actor.GetBottomOffset(o);
-                        h2 = (float)((float)(h2) + Mem.F32(0x800C884Cu));
+                        h2 = (float)((float)(h2) + 0.4096f);
                         new Vec3f((_fp + 264u)).x_Set(Mem.F32((o + 8u)));
                         new Vec3f((_fp + 264u)).y_Set(h2);
                         new Vec3f((_fp + 264u)).z_Set(Mem.F32((o + 16u)));
@@ -6044,7 +6044,7 @@ public static partial class Collision
                                     new B10Ev(_fp).Vertices[(int)((2 - i))].z_Set(new B10Pt(new B10Tri(tri).pt[(int)(i)]).z);
                                 }
                                 Collision.ComputeFaceNormal(_fp);
-                                if ((new B10Ev(_fp).NormalY > Mem.F32(0x800C8870u)))
+                                if ((new B10Ev(_fp).NormalY > 0.1f))
                                 {
                                     new B10Ev(_fp).HitType_Set(5);
                                     new B10Ev(_fp).SurfaceParam_4_Set(new B10Fl(fl).f18);
@@ -7945,7 +7945,7 @@ public static partial class Collision
                 {
                     new Vec3f(Gv.Collision_CeilingNormal).x_Set((float)(0));
                     new Vec3f(Gv.Collision_CeilingNormal).z_Set((float)(0));
-                    new Vec3f(Gv.Collision_CeilingNormal).y_Set(Mem.F32(0x800C9AB4u));
+                    new Vec3f(Gv.Collision_CeilingNormal).y_Set((-1f));
                 }
                 else
                 {
@@ -7977,7 +7977,7 @@ public static partial class Collision
             {
                 new Vec3f(Gv.Collision_CeilingUnitNormal).x_Set((float)(0));
                 new Vec3f(Gv.Collision_CeilingUnitNormal).z_Set((float)(0));
-                new Vec3f(Gv.Collision_CeilingUnitNormal).y_Set(Mem.F32(0x800C9AB0u));
+                new Vec3f(Gv.Collision_CeilingUnitNormal).y_Set((-1f));
             }
             else
             {
@@ -8006,7 +8006,7 @@ public static partial class Collision
                 {
                     new Vec3f(Gv.Collision_CeilingNormal).x_Set((float)(0));
                     new Vec3f(Gv.Collision_CeilingNormal).z_Set((float)(0));
-                    new Vec3f(Gv.Collision_CeilingNormal).y_Set(Mem.F32(0x800C9AB4u));
+                    new Vec3f(Gv.Collision_CeilingNormal).y_Set((-1f));
                 }
                 else
                 {
@@ -8054,7 +8054,7 @@ public static partial class Collision
                     }
                     else
                     {
-                        r = (((new Pt4(new Tri4(t).v[(int)(0)]).y + new Pt4(new Tri4(t).v[(int)(1)]).y) + new Pt4(new Tri4(t).v[(int)(2)]).y) * Mem.F32(0x800C9AB8u));
+                        r = (((new Pt4(new Tri4(t).v[(int)(0)]).y + new Pt4(new Tri4(t).v[(int)(1)]).y) + new Pt4(new Tri4(t).v[(int)(2)]).y) * 0.33333334f);
                     }
                 }
                 return r;
@@ -8075,7 +8075,7 @@ public static partial class Collision
                 if ((t == 0u))
                 {
                     new Vec3f(Gv.Collision_FaceNormal).x_Set((float)(0));
-                    new Vec3f(Gv.Collision_FaceNormal).y_Set(Mem.F32(0x800C9AC0u));
+                    new Vec3f(Gv.Collision_FaceNormal).y_Set(1f);
                     new Vec3f(Gv.Collision_FaceNormal).z_Set((float)(0));
                 }
                 else
@@ -8102,7 +8102,7 @@ public static partial class Collision
             {
                 new Vec3f(Gv.Collision_FloorUnitNormal).x_Set((float)(0));
                 new Vec3f(Gv.Collision_FloorUnitNormal).z_Set((float)(0));
-                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(Mem.F32(0x800C9ABCu));
+                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(1f);
             }
             else
             {
@@ -8128,7 +8128,7 @@ public static partial class Collision
                 float h = 0f;
                 float sn = 0f;
                 func_00275480_tri_unit_upd(t);
-                h = Mem.F32(0x800C9AC4u);
+                h = 1f;
                 Mem.Set(Gv.Collision_FloorNormalTriPtr, t);
                 Mem.Copy(_fp, Gv.Collision_FloorUnitNormal, 12);
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
@@ -8147,7 +8147,7 @@ public static partial class Collision
                 {
                     h = (h / len);
                     Vec.Scale((_fp + 32u), (_fp + 32u), h);
-                    h = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800C9AC8u));
+                    h = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * 0.5f);
                     sn = sinf(h);
                     Mem.Set(Gv.Quat_SinScratch, sn);
                     new QuatView((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * sn));
@@ -8175,7 +8175,7 @@ public static partial class Collision
                 float t = 0f;
                 float sn = 0f;
                 Collision.GetCeilingUnitNormal(_fp, (uint)(_a1));
-                t = Mem.F32(0x800C9ACCu);
+                t = 1f;
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(t);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
@@ -8192,7 +8192,7 @@ public static partial class Collision
                 {
                     t = (t / len);
                     Vec.Scale((_fp + 32u), (_fp + 32u), t);
-                    t = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800C9AD0u));
+                    t = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * 0.5f);
                     sn = sinf(t);
                     Mem.Set(Gv.Quat_SinScratch, sn);
                     new QuatView((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * sn));
@@ -8219,7 +8219,7 @@ public static partial class Collision
                 if ((t == 0u))
                 {
                     new Vec3f(Gv.Collision_FaceNormal).x_Set((float)(0));
-                    new Vec3f(Gv.Collision_FaceNormal).y_Set(Mem.F32(0x800C9AD4u));
+                    new Vec3f(Gv.Collision_FaceNormal).y_Set(1f);
                     new Vec3f(Gv.Collision_FaceNormal).z_Set((float)(0));
                 }
                 else
@@ -8248,7 +8248,7 @@ public static partial class Collision
             {
                 new Vec3f(Gv.Collision_FloorUnitNormal).x_Set((float)(0));
                 new Vec3f(Gv.Collision_FloorUnitNormal).z_Set((float)(0));
-                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(Mem.F32(0x800C9AD4u));
+                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(1f);
             }
             else
             {
@@ -8281,10 +8281,10 @@ public static partial class Collision
                 {
                     new Vec3f(_fp).x_Set((float)(0));
                     new Vec3f(_fp).z_Set((float)(0));
-                    new Vec3f(_fp).y_Set(Mem.F32(0x800C9AD4u));
+                    new Vec3f(_fp).y_Set(1f);
                     func_00275854_tri_unit((_fp + 16u), t);
                     r = 1;
-                    if (!((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z)) <= Mem.F32(0x800C9AD8u)))
+                    if (!((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z)) <= 0.5f))
                     {
                         r = 0;
                     }
@@ -8305,10 +8305,10 @@ public static partial class Collision
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00275AC8", (uint)p);
-            new IF32((p + (uint)(0 * 4))).f_Set(((float)(new IF32((p + (uint)(0 * 4))).i) * Mem.F32(0x800C9ADCu)));
-            new IF32((p + (uint)(1 * 4))).f_Set(((float)(new IF32((p + (uint)(1 * 4))).i) * Mem.F32(0x800C9ADCu)));
-            new IF32((p + (uint)(2 * 4))).f_Set(((float)(new IF32((p + (uint)(2 * 4))).i) * Mem.F32(0x800C9ADCu)));
-            new IF32((p + (uint)(3 * 4))).f_Set(((float)(new IF32((p + (uint)(3 * 4))).i) * Mem.F32(0x800C9ADCu)));
+            new IF32((p + (uint)(0 * 4))).f_Set(((float)(new IF32((p + (uint)(0 * 4))).i) * 0.029296875f));
+            new IF32((p + (uint)(1 * 4))).f_Set(((float)(new IF32((p + (uint)(1 * 4))).i) * 0.029296875f));
+            new IF32((p + (uint)(2 * 4))).f_Set(((float)(new IF32((p + (uint)(2 * 4))).i) * 0.029296875f));
+            new IF32((p + (uint)(3 * 4))).f_Set(((float)(new IF32((p + (uint)(3 * 4))).i) * 0.029296875f));
         }
     }
 
@@ -8376,7 +8376,7 @@ public static partial class Collision
                 {
                     new Vec3f(Gv.Collision_FaceNormal).x_Set((float)(0));
                     new Vec3f(Gv.Collision_FaceNormal).z_Set((float)(0));
-                    new Vec3f(Gv.Collision_FaceNormal).y_Set(Mem.F32(0x800C9AE0u));
+                    new Vec3f(Gv.Collision_FaceNormal).y_Set(1f);
                 }
                 else
                 {
@@ -8408,7 +8408,7 @@ public static partial class Collision
                 {
                     new Vec3f(Gv.Collision_FaceNormal).x_Set((float)(0));
                     new Vec3f(Gv.Collision_FaceNormal).z_Set((float)(0));
-                    new Vec3f(Gv.Collision_FaceNormal).y_Set(Mem.F32(0x800C9AE8u));
+                    new Vec3f(Gv.Collision_FaceNormal).y_Set(1f);
                 }
                 else
                 {
@@ -8436,7 +8436,7 @@ public static partial class Collision
             {
                 new Vec3f(Gv.Collision_FloorUnitNormal).x_Set((float)(0));
                 new Vec3f(Gv.Collision_FloorUnitNormal).z_Set((float)(0));
-                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(Mem.F32(0x800C9AE4u));
+                new Vec3f(Gv.Collision_FloorUnitNormal).y_Set(1f);
             }
             else
             {
@@ -8495,7 +8495,7 @@ public static partial class Collision
                 float r = 0f;
                 if ((t == 0u))
                 {
-                    return Mem.F32(0x800C9AECu);
+                    return (-14336f);
                 }
                 func_00275E44_tri_normal(_fp, t);
                 if ((new Vec3f(_fp).y != 0.0f))
@@ -8505,7 +8505,7 @@ public static partial class Collision
                 }
                 else
                 {
-                    r = (((new Vec3f(new Tri3(t).v[(int)(0)]).y + new Vec3f(new Tri3(t).v[(int)(1)]).y) + new Vec3f(new Tri3(t).v[(int)(2)]).y) * Mem.F32(0x800C9AF0u));
+                    r = (((new Vec3f(new Tri3(t).v[(int)(0)]).y + new Vec3f(new Tri3(t).v[(int)(1)]).y) + new Vec3f(new Tri3(t).v[(int)(2)]).y) * 0.33333334f);
                 }
                 return r;
             }
@@ -8526,7 +8526,7 @@ public static partial class Collision
                 {
                     new Vec3f(Gv.Collision_CeilingNormal).x_Set((float)(0));
                     new Vec3f(Gv.Collision_CeilingNormal).z_Set((float)(0));
-                    new Vec3f(Gv.Collision_CeilingNormal).y_Set(Mem.F32(0x800C9AF4u));
+                    new Vec3f(Gv.Collision_CeilingNormal).y_Set((-1f));
                 }
                 else
                 {

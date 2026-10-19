@@ -179,7 +179,7 @@ public static partial class Toggle
                 float t = 0f;
                 if (((int)(new M1Info(info).Count_8) != (-1)))
                 {
-                    if ((func_0020486C_r01_check(actor, state, ((float)(new M1Info(info).Count_8) * Mem.F32(0x800C6B70u))) != 0))
+                    if ((func_0020486C_r01_check(actor, state, ((float)(new M1Info(info).Count_8) * 0.007874016f)) != 0))
                     {
                         new M1Pair(_fp).a_Set(0);
                         Event.Invoke((int)(actor), (int)(actor), 6, new M1Actor(actor).Position.P, _fp);

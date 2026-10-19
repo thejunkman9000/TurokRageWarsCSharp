@@ -59,12 +59,12 @@ public static partial class MathUtil
                 MathUtil.WrapAngleInPlace((_fp + 4u), default(uint), default(uint), default(uint));
                 if (!((dir > 0))) goto _f0;
                 if (!((Mem.F32((_fp + 4u)) < Mem.F32(_fp)))) goto _f1;
-                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) + Mem.F32(0x800C7340u)));
+                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) + 6.283186f));
                 _f1: ;
                 goto _f2;
                 _f0: ;
                 if (!((Mem.F32((_fp + 4u)) > Mem.F32(_fp)))) goto _f3;
-                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) - Mem.F32(0x800C7344u)));
+                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) - 6.283186f));
                 _f3: ;
                 _f2: ;
                 d = (Mem.F32((_fp + 4u)) - Mem.F32(_fp));
@@ -97,8 +97,8 @@ public static partial class MathUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022DBB4");
-            float t = (Mem.F32(0x800C7EC4u) - x);
-            return (Mem.F32(0x800C7EC4u) - ((t * t) * t));
+            float t = (1f - x);
+            return (1f - ((t * t) * t));
         }
     }
 
@@ -378,31 +378,31 @@ public static partial class MathUtil
             if ((x < 0.0f))
             {
                 neg = 1;
-                fx = (x * Mem.F32(0x800C9A3Cu));
+                fx = (x * (-1023f));
             }
             else
             {
                 neg = 0;
-                fx = (x * Mem.F32(0x800C9A40u));
+                fx = (x * 1023f);
             }
             i = (int)(fx);
             fi = (float)(i);
-            if ((fi < Mem.F32(0x800C9A44u)))
+            if ((fi < 1023f))
             {
                 a = Mem.F32((0x800D162Cu + (uint)(i * 4)));
                 r = (a + ((fx - fi) * (Mem.F32((0x800D1630u + (uint)(i * 4))) - a)));
                 if ((neg != 0))
                 {
-                    return (Mem.F32(0x800C9A48u) - r);
+                    return (3.1415927f - r);
                 }
                 return r;
             }
             if ((neg != 0))
             {
-                float t = Mem.F32(0x800D2628u);
-                return (Mem.F32(0x800C9A4Cu) - t);
+                float t = 0f;
+                return (3.1415927f - t);
             }
-            return Mem.F32(0x800D2628u);
+            return 0f;
         }
     }
 
@@ -579,13 +579,13 @@ public static partial class MathUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002749B4");
-            while ((x < Mem.F32(0x800C9A58u)))
+            while ((x < (-3.1415927f)))
             {
-                x = (float)((float)(x) + Mem.F32(0x800C9A5Cu));
+                x = (float)((float)(x) + 6.2831855f);
             }
-            while ((Mem.F32(0x800C9A60u) < x))
+            while ((3.1415927f < x))
             {
-                x = (float)((float)(x) - Mem.F32(0x800C9A64u));
+                x = (float)((float)(x) - 6.2831855f);
             }
             return (-x);
         }
@@ -598,22 +598,22 @@ public static partial class MathUtil
         {
             if (Dbg.On) Dbg.Enter("func_00274A24");
             float d = 0f;
-            while ((b < Mem.F32(0x800C9A68u)))
+            while ((b < (-3.1415927f)))
             {
-                b = (float)((float)(b) + Mem.F32(0x800C9A6Cu));
+                b = (float)((float)(b) + 6.2831855f);
             }
-            while ((Mem.F32(0x800C9A70u) < b))
+            while ((3.1415927f < b))
             {
-                b = (float)((float)(b) - Mem.F32(0x800C9A74u));
+                b = (float)((float)(b) - 6.2831855f);
             }
             d = (a - b);
-            while ((d < Mem.F32(0x800C9A78u)))
+            while ((d < (-3.1415927f)))
             {
-                d = (float)((float)(d) + Mem.F32(0x800C9A7Cu));
+                d = (float)((float)(d) + 6.2831855f);
             }
-            while ((Mem.F32(0x800C9A80u) < d))
+            while ((3.1415927f < d))
             {
-                d = (float)((float)(d) - Mem.F32(0x800C9A84u));
+                d = (float)((float)(d) - 6.2831855f);
             }
             return (-d);
         }
@@ -1543,12 +1543,12 @@ public static partial class MathUtil
             double temp = 0.0;
             double integral = 0.0;
             double limit = 0.0;
-            limit = Mem.F64(0x800CACB8u);
+            limit = 4503599627370496.0d;
             if ((limit <= arg0))
             {
                 return arg0;
             }
-            if ((arg0 < Mem.F64(0x800CACC0u)))
+            if ((arg0 < 0.0d))
             {
                 return (-MathUtil.Ceil((-arg0)));
             }
@@ -1557,7 +1557,7 @@ public static partial class MathUtil
             temp = (double)((double)(temp) - limit);
             if ((arg0 < temp))
             {
-                integral = (temp - Mem.F64(0x800CACC8u));
+                integral = (temp - 1.0d);
             }
             else
             {
@@ -1816,7 +1816,7 @@ public static partial class MathUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029ED18");
-            return MathUtil.Sin((x + Mem.F32(0x800CAD60u)));
+            return MathUtil.Sin((x + 1.5707964f));
         }
     }
 
@@ -1826,7 +1826,7 @@ public static partial class MathUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029ED3C");
-            return (MathUtil.Sin(x) / MathUtil.Sin((x + Mem.F32(0x800CAD64u))));
+            return (MathUtil.Sin(x) / MathUtil.Sin((x + 1.5707964f)));
         }
     }
 
@@ -2072,15 +2072,15 @@ public static partial class MathUtil
             new_var2 = value;
             if ((1 != 0))
             {
-                if ((((long)(((Mem.F32(0x800CADF4u) < new_var2) ? 1 : 0)) != 0L) || (new_var2 < Mem.F32(0x800CADF8u))))
+                if ((((long)(((25.132744f < new_var2) ? 1 : 0)) != 0L) || (new_var2 < (-25.132744f))))
                 {
-                    value = (float)(MathUtil.Fmod((double)(value), Mem.F64(0x800CAE00u)));
+                    value = (float)(MathUtil.Fmod((double)(value), 6.283185958862305d));
                 }
                 else
                 {
-                    if ((Mem.F32(0x800CAE08u) < value))
+                    if ((6.283186f < value))
                     {
-                        new_var3 = Mem.F32(0x800CAE08u);
+                        new_var3 = 6.283186f;
                         do
                         {
                             value = (float)((float)(value) - new_var3);
@@ -2094,7 +2094,7 @@ public static partial class MathUtil
                     {
                         do
                         {
-                            value = (float)((float)(value) + Mem.F32(0x800CAE0Cu));
+                            value = (float)((float)(value) + 6.283186f);
                         }
                         while ((value < (new_var3 = 0.0f)));
                     }
@@ -2188,9 +2188,9 @@ public static partial class MathUtil
             new_var2 = value;
             if ((1 != 0))
             {
-                if ((((long)(((Mem.F32(0x800CAE18u) < new_var2) ? 1 : 0)) != 0L) || (new_var2 < Mem.F32(0x800CAE1Cu))))
+                if ((((long)(((25.132744f < new_var2) ? 1 : 0)) != 0L) || (new_var2 < (-25.132744f))))
                 {
-                    value = (float)(MathUtil.Fmod((double)(value), Mem.F64(0x800CAE20u)));
+                    value = (float)(MathUtil.Fmod((double)(value), 6.283185958862305d));
                 }
                 else
                 {
@@ -2229,13 +2229,13 @@ public static partial class MathUtil
             float new_var = 0f;
             float new_var3 = 0f;
             float new_var2 = 0f;
-            new_var = Mem.F32(0x800CAE14u);
+            new_var = 3.1415927f;
             new_var2 = (x + new_var);
             {
                 new_var3 = new_var2;
             }
             new_var2 = func_0029F1D4_wrap(new_var3);
-            return (new_var2 - Mem.F32(0x800CAE30u));
+            return (new_var2 - 3.1415927f);
         }
     }
 
@@ -2345,7 +2345,7 @@ public static partial class RandomGen
             uint r = ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765));
             uint v = ((r >> (int)16) & (uint)(32767));
             Mem.Set(Gv.Random_State, r);
-            return (((float)(v) * a) * Mem.F32(0x800C9A38u));
+            return (((float)(v) * a) * 3.051851e-05f);
         }
     }
 
@@ -2361,8 +2361,8 @@ public static partial class RandomGen
             r = ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765));
             Mem.Set(Gv.Random_State, r);
             v = (int)((((r << (int)16) | (r >> (int)16)) & (uint)(2147483647)));
-            t = ((float)((v % 10000)) * Mem.F32(0x800C9A88u));
-            return ((t * a) + ((Mem.F32(0x800C9A8Cu) - t) * b));
+            t = ((float)((v % 10000)) * 0.00010001f);
+            return ((t * a) + ((1f - t) * b));
         }
     }
 
@@ -2509,7 +2509,7 @@ public static partial class RandomGen
                 Mem.Set((_fp + 8u), ((int)(new B19Pair(_fp).b) << (int)16));
                 Mem.Set(Gv.Random_State, ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765)));
                 r = ((Mem.U32(Gv.Random_State) >> (int)16) & (uint)(32767));
-                return (Mem.F32((_fp + 4u)) + (((float)(r) * Mem.F32((_fp + 8u))) * Mem.F32(0x800C9FA8u)));
+                return (Mem.F32((_fp + 4u)) + (((float)(r) * Mem.F32((_fp + 8u))) * 3.051851e-05f));
             }
         }
         finally { Stack.Free(12); }

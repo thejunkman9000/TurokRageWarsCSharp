@@ -153,7 +153,7 @@ public static partial class Tint
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6A14", (uint)p, (uint)v);
-            Mem.Set((p + (uint)(5 * 4)), Mem.F32(0x800CB030u));
+            Mem.Set((p + (uint)(5 * 4)), 255f);
             Mem.Set((p + (uint)(0 * 4)), v);
             Mem.Set((p + (uint)(1 * 4)), 0);
             Mem.Set((p + (uint)(3 * 4)), 0);

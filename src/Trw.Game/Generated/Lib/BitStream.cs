@@ -46,7 +46,7 @@ public static partial class BitStream
                 uint p = 0u;
                 uint addr = Mem.U32(pp);
                 Mem.Copy(new B14Tmp((_fp + 16u)).r.P, _fp, 12);
-                f = ((((v - new B14Tmp((_fp + 16u)).r.min) / new B14Tmp((_fp + 16u)).r.range) * (float)(((1 << (int)new B14Tmp((_fp + 16u)).r.n) - 1))) + Mem.F32(0x800C9258u));
+                f = ((((v - new B14Tmp((_fp + 16u)).r.min) / new B14Tmp((_fp + 16u)).r.range) * (float)(((1 << (int)new B14Tmp((_fp + 16u)).r.n) - 1))) + 0.5f);
                 if ((f >= 0.0f))
                 {
                     q = (uint)((int)(f));
@@ -385,7 +385,7 @@ public static partial class BitStream
                 uint hi = 0u;
                 uint sh = 0u;
                 uint p = 0u;
-                f = ((((v - new B14FRange(_fp).min) / new B14FRange(_fp).range) * (float)(((1 << (int)new B14FRange(_fp).n) - 1))) + Mem.F32(0x800C9268u));
+                f = ((((v - new B14FRange(_fp).min) / new B14FRange(_fp).range) * (float)(((1 << (int)new B14FRange(_fp).n) - 1))) + 0.5f);
                 if ((f >= 0.0f))
                 {
                     q = (uint)((int)(f));

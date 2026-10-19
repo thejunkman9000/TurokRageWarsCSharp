@@ -51,8 +51,8 @@ public static partial class AnimProp
             if (Dbg.On) Dbg.Enter("func_002066A4", (uint)actor, (uint)state);
             new ActorStateView(state).ClassVar_124_Set(new ActorDef(new ActorView(actor).DefPtr).Params.BaseHealth);
             Actor.DispatchEvent(actor, state, 0);
-            Mem.Set(new ActorStateView(state).ClassVar_128.P, Mem.F32(0x800C6BD0u));
-            Mem.Set(new ActorStateView(state).ClassVar_12C.P, Mem.F32(0x800C6BD0u));
+            Mem.Set(new ActorStateView(state).ClassVar_128.P, 1f);
+            Mem.Set(new ActorStateView(state).ClassVar_12C.P, 1f);
             if ((Level.IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
                 new ActorView(actor).Flags_Set((uint)((uint)(new ActorView(actor).Flags) & (uint)((~8192))));

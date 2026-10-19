@@ -149,7 +149,7 @@ public static partial class Flyby
                     else
                     {
                         new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A0u))));
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * 0.06666667f)));
                         if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                         {
                             Flyby.OnWindowStart();
@@ -198,7 +198,7 @@ public static partial class Flyby
                         else
                         {
                             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A4u))));
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * 0.06666667f)));
                             if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                             {
                                 Flyby.OnWindowStart();
@@ -226,8 +226,8 @@ public static partial class Flyby
                 Flyby.RunPending();
                 if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut != 0))
                 {
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel) - ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A8u)) * 2.0f)));
-                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel < Mem.F32(0x800C88ACu)))
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel) - ((Mem.F32(Gv.FrameTime) * 0.06666667f) * 2.0f)));
+                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel < (-0.5f)))
                     {
                         new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
                         new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)(0));
@@ -315,13 +315,13 @@ public static partial class Flyby
                 step = 26;
                 if ((Mem.S32(Gv.ScreenHeight) >= 223))
                 {
-                    k = Mem.F32(0x800C88B0u);
+                    k = 0.5f;
                     fx = (fx * k);
                     y = 180;
                 }
                 else
                 {
-                    k = Mem.F32(0x800C88B4u);
+                    k = 0.5f;
                     do
                     {
                         fx = (fx * k);
@@ -335,10 +335,10 @@ public static partial class Flyby
                 Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), 1);
                 for (i = 0; (i < new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount); ++i)
                 {
-                    TextUtil.Draw((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLines.P + (uint)(i * 40)), half, y, 255, 1, 1, Mem.F32(0x800C88B8u), Mem.F32(0x800C88B8u));
+                    TextUtil.Draw((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLines.P + (uint)(i * 40)), half, y, 255, 1, 1, 1f, 1f);
                     t = ((float)(step) * fy);
-                    fx2 = ((float)((Mem.S32(Gv.ScreenWidth) / 284)) * Mem.F32(0x800C88BCu));
-                    fy = ((float)((Mem.S32(Gv.ScreenHeight) / 222)) * Mem.F32(0x800C88BCu));
+                    fx2 = ((float)((Mem.S32(Gv.ScreenWidth) / 284)) * 0.35f);
+                    fy = ((float)((Mem.S32(Gv.ScreenHeight) / 222)) * 0.35f);
                     y = (int)(((float)(y) + t));
                     TextUtil.SetScale(fx2, fy);
                 }
@@ -410,7 +410,7 @@ public static partial class Flyby
                     if ((new B10Ctl(p).IsFadingOut == 0))
                     {
                         new B10Ctl(p).IsFadingOut_Set(1);
-                        new B10Ctl(p).FadeOutLevel_Set(Mem.F32(0x800C88C0u));
+                        new B10Ctl(p).FadeOutLevel_Set(1f);
                     }
                 }
             }
@@ -638,10 +638,10 @@ public static partial class Flyby
             float t = 0f;
             if ((new B10Ctl(p).IsActive == 0))
             {
-                return Mem.F32(0x800C88C4u);
+                return 47.5f;
             }
             t = new B10Ctl(p).FovOverride;
-            if ((t > Mem.F32(0x800C88C8u)))
+            if ((t > 1f))
             {
                 return t;
             }
@@ -734,7 +734,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AC8");
-            return (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FarPlane * Mem.F32(0x800C88CCu));
+            return (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FarPlane * 10.24f);
         }
     }
 
@@ -866,7 +866,7 @@ public static partial class Flyby
                     return;
                 }
                 new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88D0u))));
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * 0.06666667f)));
                 if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                 {
                     Flyby.OnWindowStart();
@@ -1342,7 +1342,7 @@ public static partial class Flyby
                 Mem.Set((A + (uint)(i * 4)), ((Mem.F32((t + (uint)((i + 1) * 4))) - Mem.F32((t + (uint)((i - 1) * 4)))) * 2.0f));
                 if ((Mem.F32((A + (uint)(i * 4))) == 0.0f))
                 {
-                    Mem.Set((A + (uint)(i * 4)), Mem.F32(0x800E0B20u));
+                    Mem.Set((A + (uint)(i * 4)), 1f);
                     flag = 1;
                 }
             }
@@ -1351,13 +1351,13 @@ public static partial class Flyby
                 Mem.Set((C + (uint)(i * 4)), (Mem.F32((t + (uint)((i + 1) * 4))) - Mem.F32((t + (uint)(i * 4)))));
                 if ((Mem.F32((C + (uint)(i * 4))) == 0.0f))
                 {
-                    Mem.Set((C + (uint)(i * 4)), Mem.F32(0x800E0B24u));
+                    Mem.Set((C + (uint)(i * 4)), 1f);
                     flag = 1;
                 }
             }
             for (i = 1; (i < (n - 1)); ++i)
             {
-                Mem.Set((B + (uint)(i * 4)), ((((Mem.F32((x + (uint)((i + 1) * 4))) - Mem.F32((x + (uint)(i * 4)))) / Mem.F32((C + (uint)(i * 4)))) - ((Mem.F32((x + (uint)(i * 4))) - Mem.F32((x + (uint)((i - 1) * 4)))) / Mem.F32((C + (uint)((i - 1) * 4))))) * Mem.F32(0x800E0B28u)));
+                Mem.Set((B + (uint)(i * 4)), ((((Mem.F32((x + (uint)((i + 1) * 4))) - Mem.F32((x + (uint)(i * 4)))) / Mem.F32((C + (uint)(i * 4)))) - ((Mem.F32((x + (uint)(i * 4))) - Mem.F32((x + (uint)((i - 1) * 4)))) / Mem.F32((C + (uint)((i - 1) * 4))))) * 6f));
             }
             for (i = 1; (i < (n - 2)); ++i)
             {
@@ -2066,7 +2066,7 @@ public static partial class Flyby
                             {
                                 u = 0.0f;
                             }
-                            s = ((((A * (Mem.F32(0x800E0B4Cu) - u)) + (B * u)) + ((m0 - (B - A)) * ((u - ((2.0f * u) * u)) + ((u * u) * u)))) + ((m1 - (B - A)) * (((u * u) * u) - (u * u))));
+                            s = ((((A * (1f - u)) + (B * u)) + ((m0 - (B - A)) * ((u - ((2.0f * u) * u)) + ((u * u) * u)))) + ((m1 - (B - A)) * (((u * u) * u) - (u * u))));
                             for (i = 0; (i < (n - 1)); ++i)
                             {
                                 p = (rec + (uint)(i * 36));
@@ -2085,9 +2085,9 @@ public static partial class Flyby
                                 w = ((s - pa) / h);
                             }
                             h2 = (h * h);
-                            new O01Vec3(_fp).x_Set((((new O01SplRec(p).x * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).x * w)) + ((((new O01SplRec(p).cx * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cx * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
-                            new O01Vec3(_fp).y_Set((((new O01SplRec(p).y * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).y * w)) + ((((new O01SplRec(p).cy * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cy * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
-                            new O01Vec3(_fp).z_Set((((new O01SplRec(p).z * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).z * w)) + ((((new O01SplRec(p).cz * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cz * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
+                            new O01Vec3(_fp).x_Set((((new O01SplRec(p).x * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).x * w)) + ((((new O01SplRec(p).cx * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cx * (((w * w) * w) - w))) * h2) * 0.16666667f)));
+                            new O01Vec3(_fp).y_Set((((new O01SplRec(p).y * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).y * w)) + ((((new O01SplRec(p).cy * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cy * (((w * w) * w) - w))) * h2) * 0.16666667f)));
+                            new O01Vec3(_fp).z_Set((((new O01SplRec(p).z * (Mem.F32(Gv.Flyby_SplineOne) - w)) + (new O01SplRec(q).z * w)) + ((((new O01SplRec(p).cz * ((((Mem.F32(Gv.Flyby_SplineOne) - w) * (Mem.F32(Gv.Flyby_SplineOne) - w)) * (Mem.F32(Gv.Flyby_SplineOne) - w)) - (Mem.F32(Gv.Flyby_SplineOne) - w))) + (new O01SplRec(q).cz * (((w * w) * w) - w))) * h2) * 0.16666667f)));
                         }
                     }
                 }
@@ -2471,7 +2471,7 @@ public static partial class Flyby
                             new O01Vec3((_fp + 32u)).x_Set(new O01K5(keys).x);
                             new O01Vec3((_fp + 32u)).y_Set(new O01K5(keys).y);
                             new O01Vec3((_fp + 32u)).z_Set(new O01K5(keys).z);
-                            Vec.Scale((_fp + 16u), (_fp + 16u), (Mem.F32(0x800E0B58u) - u));
+                            Vec.Scale((_fp + 16u), (_fp + 16u), (1f - u));
                             Vec.Scale((_fp + 32u), (_fp + 32u), u);
                             Vec.Add(_fp, (_fp + 16u), (_fp + 32u));
                         }
@@ -2528,16 +2528,16 @@ public static partial class Flyby
                             }
                         }
                         u = ((t - new O01Key((keys + (uint)((-1) * 20))).time) / (new O01Key(keys).time - new O01Key((keys + (uint)((-1) * 20))).time));
-                        w = (Mem.F32(0x800E0B5Cu) - u);
+                        w = (1f - u);
                         res = ((new O01Key((keys + (uint)((-1) * 20))).val * w) + (new O01Key(keys).val * u));
                     }
                 }
             }
-            res = (float)((float)(res) * ((Mem.F32(0x800E2848u) + Mem.F32(0x800E2848u)) + Mem.F32(0x800E0B60u)));
+            res = (float)((float)(res) * ((Mem.F32(0x800E2848u) + Mem.F32(0x800E2848u)) + 1f));
             res = (float)((float)(res) - Mem.F32(0x800E2848u));
-            if ((Mem.F32(0x800E0B60u) < res))
+            if ((1f < res))
             {
-                res = Mem.F32(0x800E0B60u);
+                res = 1f;
             }
             if ((res < 0.0f))
             {
@@ -2676,7 +2676,7 @@ public static partial class Flyby
                 }
                 Flyby.EvalCameraPos(_fp, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                 Flyby.EvalTargetPos((_fp + 16u), new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock);
-                fs0 = Mem.F32(0x800E0B70u);
+                fs0 = 10.24f;
                 Vec.Scale(_fp, _fp, fs0);
                 Vec.Scale((_fp + 16u), (_fp + 16u), fs0);
                 new Q01Out_v2(arg0).Yaw_Set(0.0f);
@@ -2689,7 +2689,7 @@ public static partial class Flyby
                         if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr != 0u))
                         {
                             Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).pos.P, 12);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).f6C + Mem.F32(0x800E0B74u)));
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).f6C + 1.5707964f));
                         }
                     }
                     if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 2) != 0))
@@ -3284,7 +3284,7 @@ public static partial class Flyby
                         for (i = 0; (i < cnt); ++i)
                         {
                             e = (ents + (uint)(i * 12));
-                            if ((new O01EntF(e).Time <= Mem.F32(0x800E0CA0u)))
+                            if ((new O01EntF(e).Time <= (-10000f)))
                             {
                                 continue;
                             }
@@ -3312,7 +3312,7 @@ public static partial class Flyby
                             {
                                 Level.ActivateTriggerRecord(k);
                             }
-                            new O01EntF(e).Time_Set(Mem.F32(0x800E0CA4u));
+                            new O01EntF(e).Time_Set((-20000f));
                             new O01Kind_v2(k).unkE_Set((byte)((((int)(new O01Kind_v2(k).unkE) | 1) & 239)));
                             Level.SetTriggerSavedFlag(Gv.LevelMgr, k, 0);
                         }
@@ -3503,7 +3503,7 @@ public static partial class Flyby
                 uint n = 0u;
                 if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
-                    new O01Vec3((_fp + 32u)).x_Set(Mem.F32(0x800E0CACu));
+                    new O01Vec3((_fp + 32u)).x_Set(10f);
                     new O01Vec3((_fp + 32u)).y_Set((float)(0));
                     new O01Vec3((_fp + 32u)).z_Set((float)(0));
                     Mem.Copy(_ret, (_fp + 32u), 12);
@@ -3632,7 +3632,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403C58");
-            float u = (Mem.F32(0x800E0CB0u) - t);
+            float u = (1f - t);
             return ((a * (((u * u) * u) - u)) + (b * (((t * t) * t) - t)));
         }
     }
@@ -3643,7 +3643,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403C98");
-            return ((a * (Mem.F32(0x800E0CB4u) - t)) + (b * t));
+            return ((a * (1f - t)) + (b * t));
         }
     }
 

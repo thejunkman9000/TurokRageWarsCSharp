@@ -620,7 +620,7 @@ public static partial class Event
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, r_in, 8);
                 if (Dbg.On) Dbg.Enter("func_00267DC4", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                CameraShake.Add(Gv.ViewMgr, (float)(new B15S16x4((_fp + 16u)).a), (float)(new B15S16x4((_fp + 16u)).b), (float)(new B15S16x4((_fp + 16u)).c), ((float)((int)(new B15S16x4((_fp + 16u)).d)) * Mem.F32(0x800C9544u)), 1, _fp);
+                CameraShake.Add(Gv.ViewMgr, (float)(new B15S16x4((_fp + 16u)).a), (float)(new B15S16x4((_fp + 16u)).b), (float)(new B15S16x4((_fp + 16u)).c), ((float)((int)(new B15S16x4((_fp + 16u)).d)) * 10.24f), 1, _fp);
             }
         }
         finally { Stack.Free(24); }
@@ -637,7 +637,7 @@ public static partial class Event
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, r_in, 8);
                 if (Dbg.On) Dbg.Enter("func_00267E58", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                CameraShake.Add(Gv.ViewMgr, (float)(new B15S16x4((_fp + 16u)).a), (float)(new B15S16x4((_fp + 16u)).b), (float)(new B15S16x4((_fp + 16u)).c), ((float)((int)(new B15S16x4((_fp + 16u)).d)) * Mem.F32(0x800C9548u)), 0, _fp);
+                CameraShake.Add(Gv.ViewMgr, (float)(new B15S16x4((_fp + 16u)).a), (float)(new B15S16x4((_fp + 16u)).b), (float)(new B15S16x4((_fp + 16u)).c), ((float)((int)(new B15S16x4((_fp + 16u)).d)) * 10.24f), 0, _fp);
             }
         }
         finally { Stack.Free(24); }
@@ -803,7 +803,7 @@ public static partial class Event
                 {
                     p = Gv.Rumble_Mgr;
                 }
-                Rumble.StartById(Gv.LevelMgr, (int)(p), new B15Y((_fp + 16u)).a, _fp, ((float)((int)(new B15Y((_fp + 16u)).b)) * Mem.F32(0x800C954Cu)), ((float)((int)(new B15Y((_fp + 16u)).c)) * Mem.F32(0x800C9550u)));
+                Rumble.StartById(Gv.LevelMgr, (int)(p), new B15Y((_fp + 16u)).a, _fp, ((float)((int)(new B15Y((_fp + 16u)).b)) * 10.24f), ((float)((int)(new B15Y((_fp + 16u)).c)) * 0.003921569f));
             }
         }
         finally { Stack.Free(24); }
@@ -822,7 +822,7 @@ public static partial class Event
                 if (Dbg.On) Dbg.Enter("func_0026827C", (uint)act, (uint)src, (uint)c, (uint)pos_in);
                 float vol = 0f;
                 uint s = 0u;
-                vol = Mem.F32(0x800C9554u);
+                vol = 1f;
                 s = (uint)((-1));
                 if ((new B15Globals(Gv.Settings).GamePaused != 0))
                 {
@@ -842,13 +842,13 @@ public static partial class Event
                     {
                         if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(64)) != 0u))
                         {
-                            vol = Mem.F32(0x800C9558u);
+                            vol = 2.5f;
                         }
                         else
                         {
                             if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(32)) != 0u))
                             {
-                                vol = Mem.F32(0x800C955Cu);
+                                vol = 0.35f;
                             }
                         }
                     }
@@ -925,7 +925,7 @@ public static partial class Event
                 if (Dbg.On) Dbg.Enter("func_002683F0", (uint)a, (uint)b, (uint)c, (uint)pos_in);
                 float d = 0f;
                 d = (new B15Src(a).pos.y - new Vec3f(_fp).y);
-                if ((((d < 0.0f) ? (((-d) <= Mem.F32(0x800C9560u)) ? 1 : 0) : ((d <= Mem.F32(0x800C9564u)) ? 1 : 0)) != 0))
+                if ((((d < 0.0f) ? (((-d) <= 76.799995f) ? 1 : 0) : ((d <= 76.799995f) ? 1 : 0)) != 0))
                 {
                     func_002683F0_w(a, b, c, _fp, (_fp + 16u));
                 }
@@ -1075,7 +1075,7 @@ public static partial class Event
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, k_in, 8);
                 if (Dbg.On) Dbg.Enter("func_00268768", (uint)act, (uint)src, (uint)c, (uint)pos_in);
-                float vol = Mem.F32(0x800C9568u);
+                float vol = 1f;
                 uint s = (uint)((-1));
                 if (((new B15Globals(Gv.Settings).GamePaused == 0) && (Actor.GetField3C_0024E958(act) == new B15Blk8((_fp + 16u)).c)))
                 {
@@ -1089,11 +1089,11 @@ public static partial class Event
                         {
                             if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(64)) != 0u))
                             {
-                                vol = Mem.F32(0x800C956Cu);
+                                vol = 2.5f;
                             }
                             if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(32)) != 0u))
                             {
-                                vol = Mem.F32(0x800C9570u);
+                                vol = 0.35f;
                             }
                         }
                         break;
@@ -1164,7 +1164,7 @@ public static partial class Event
                     o = new ActorView(act).OwnerPtr;
                     if ((new B15Own_v3(o).unk16D4 != 0))
                     {
-                        r = ((float)(new B15Pair((_fp + 16u)).a) * Mem.F32(0x800C9574u));
+                        r = ((float)(new B15Pair((_fp + 16u)).a) * 10.24f);
                         Vec.Sub((_fp + 24u), (o + (uint)8), (src + (uint)8));
                         r = (r * r);
                         d = (((new Vec3f((_fp + 24u)).x * new Vec3f((_fp + 24u)).x) + (new Vec3f((_fp + 24u)).y * new Vec3f((_fp + 24u)).y)) + (new Vec3f((_fp + 24u)).z * new Vec3f((_fp + 24u)).z));

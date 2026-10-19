@@ -1323,18 +1323,18 @@ public static partial class Gfx
                     srcHi = (int)(srcH);
                     wCopy = w;
                     dy = ((y1 - y0) + 1);
-                    dsdx = ((int)((((s1 - s0) * (float)(w)) * Mem.F32(0x800E1434u))) / ((x1 - x0) + 1));
+                    dsdx = ((int)((((s1 - s0) * (float)(w)) * 1024f)) / ((x1 - x0) + 1));
                     mode = Mem.S32(Gv.Gfx_TexBitsPerPixel);
                     tw = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth);
                     Mem.Set(0x800E32B4u, 0);
-                    dtdy = ((int)((srcH * Mem.F32(0x800E1434u))) / dy);
+                    dtdy = ((int)((srcH * 1024f)) / dy);
                     if ((srcHi == 0))
                     {
                         invDtdy = 1000;
                     }
                     else
                     {
-                        invDtdy = (int)((((float)(dy) * Mem.F32(0x800E1434u)) / srcH));
+                        invDtdy = (int)((((float)(dy) * 1024f) / srcH));
                     }
                     y0 = (int)((int)(y0) << (int)10);
                     x0 = (int)((int)(x0) << (int)10);

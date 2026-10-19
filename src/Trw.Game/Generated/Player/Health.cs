@@ -823,16 +823,16 @@ public static partial class Player
                             v5 = (dmg >> (int)8);
                             if ((v5 != 0))
                             {
-                                fv = ((float)(v5) * Mem.F32(0x800C7468u));
+                                fv = ((float)(v5) * 0.06666667f);
                                 fv2 = fv;
-                                if ((Mem.F32(0x800C746Cu) < fv))
+                                if ((1f < fv))
                                 {
-                                    fv2 = Mem.F32(0x800C746Cu);
+                                    fv2 = 1f;
                                 }
                                 new B04V3(_fp).x_Set((float)(0));
                                 new B04V3(_fp).y_Set((float)(0));
                                 new B04V3(_fp).z_Set((float)(0));
-                                Rumble.StartById(Gv.LevelMgr, (Mem.S32((p + (uint)1688)) + 320), 17, _fp, Mem.F32(0x800C7470u), fv2);
+                                Rumble.StartById(Gv.LevelMgr, (Mem.S32((p + (uint)1688)) + 320), 17, _fp, 51.199997f, fv2);
                             }
                         }
                         if (((s4 == 0) && ((int)(Mem.S16((p + (uint)1616))) != 18)))
@@ -1360,7 +1360,7 @@ public static partial class Player
                                 tgt = o2;
                                 if ((tgt == a))
                                 {
-                                    new HitB6(b).Amount_Set((int)(((((float)(new HitB6(b).Amount) * Mem.F32(0x800C7DB4u)) * Mem.F32(0x800C7DB8u)) * Mem.F32(0x800C7DBCu))));
+                                    new HitB6(b).Amount_Set((int)(((((float)(new HitB6(b).Amount) * 0.00390625f) * 0.25f) * 256f)));
                                 }
                             }
                             else
@@ -1397,16 +1397,16 @@ public static partial class Player
                         new Plr(tgt).PlayerEntryPtr.BotSkill_Set((byte)(0));
                         goto case 0;
                     case 0:
-                        x = ((float)(new HitB6(b).Amount) * Mem.F32(0x800C7DC0u));
-                        y = Mem.F32(0x800C7DC4u);
+                        x = ((float)(new HitB6(b).Amount) * 0.00390625f);
+                        y = 0.6f;
                         x = (x * y);
                         goto L_common;
                     case 1:
-                        x = ((float)(new HitB6(b).Amount) * Mem.F32(0x800C7DC8u));
-                        y = Mem.F32(0x800C7DCCu);
+                        x = ((float)(new HitB6(b).Amount) * 0.00390625f);
+                        y = 0.8f;
                         x = (x * y);
                         L_common: ;
-                        new HitB6(b).Amount_Set((int)((x * Mem.F32(0x800C7DD0u))));
+                        new HitB6(b).Amount_Set((int)((x * 256f)));
                         break;
                     }
                 }
@@ -1597,7 +1597,7 @@ public static partial class Player
                     new PlrEnt(e).TotalDamage_Set(x);
                     new PlrEnt(e).Elapsed_10_Set(0.0f);
                     new PlrEnt(e).Kind_Set(d);
-                    new PlrEnt(e).Duration_Set((y * Mem.F32(0x800C7E00u)));
+                    new PlrEnt(e).Duration_Set((y * 15f));
                     new PlrEnt(e).DamagePerTick_Set((x / new PlrEnt(e).Duration));
                     return;
                 }
@@ -1613,7 +1613,7 @@ public static partial class Player
             if (Dbg.On) Dbg.Enter("func_0022B5B0", (uint)a, _a1);
             if ((new Plr(a).Health != 0))
             {
-                new Plr(a).BodyScale_Set(MathUtil.ApproachLinear(new Plr(a).BodyScale, Mem.F32(0x800C7E04u), Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
+                new Plr(a).BodyScale_Set(MathUtil.ApproachLinear(new Plr(a).BodyScale, 1f, Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
             }
         }
     }
@@ -1628,13 +1628,13 @@ public static partial class Player
             {
                 if (Dbg.On) Dbg.Enter("func_0022B5FC", (uint)a, 0u, (uint)y);
                 float v = (new Plr(a).BodyScale + x);
-                float t = Mem.F32(0x800CE3E0u);
+                float t = 4.5f;
                 if (!(t <= v))
                 {
                     t = v;
                 }
                 new Plr(a).BodyScale_Set(t);
-                if ((Mem.F32(0x800CE3E0u) <= t))
+                if ((4.5f <= t))
                 {
                     DamageInfo.Set(_fp, y, 262144, (int)Cpu.F2U(25.5999985f), 128, 0);
                     Player.StateHandler(a, (a + (uint)368), _fp, default(uint));
@@ -1654,13 +1654,13 @@ public static partial class Player
             {
                 if (Dbg.On) Dbg.Enter("func_0022B68C", (uint)p, 0u, (uint)a);
                 float x = (new Player_v3(p).BodyScale - d);
-                float t = Mem.F32(0x800CE3E4u);
+                float t = 0.5f;
                 if (!(x <= t))
                 {
                     t = x;
                 }
                 new Player_v3(p).BodyScale_Set(t);
-                if ((t <= Mem.F32(0x800CE3E4u)))
+                if ((t <= 0.5f))
                 {
                     DamageInfo.Set(_fp, a, (int)((new Player_v3(p).f174_ + (uint)6400)), (int)Cpu.F2U(25.5999985f), 128, 0);
                     Player.StateHandler(p, (p + 368u), _fp, default(uint));
@@ -1681,7 +1681,7 @@ public static partial class Player
             {
                 Audio.PlaySound2D(2885);
                 new Plr(a).EmbryoOwnerPtr_Set((int)(b));
-                new Plr(a).EmbryoTimer_Set(Mem.F32(0x800C7E0Cu));
+                new Plr(a).EmbryoTimer_Set(105f);
                 if ((new Plr(a).ViewPtr != 0u))
                 {
                     View.Hud_PostMessage(Gv.ViewMgr, new Plr(a).ViewPtr, Mem.U32(0x800D71E0u));
@@ -2009,7 +2009,7 @@ public static partial class Player
             uint carried = 0u;
             Player.ClearTimedEffects_0022B500(player);
             new RespawnPlayer(player).GroundFlags_Set(0);
-            new RespawnPlayer(player).BodyScale_Set(Mem.F32(0x800C7428u));
+            new RespawnPlayer(player).BodyScale_Set(1f);
             Rumble.SetEnabled(new RespawnPlayer(player).ControllerPtr, 1);
             if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
@@ -2027,7 +2027,7 @@ public static partial class Player
                 }
                 new RespawnPlayer(player).HitPoints_Set(new RespawnPlayer(player).Health);
             }
-            new RespawnPlayer(player).InvulnerableTime_Set(Mem.F32(0x800C742Cu));
+            new RespawnPlayer(player).InvulnerableTime_Set(60f);
             Player.ResetFields(player);
             new RespawnPlayer(player).StunTime_Set(0);
             new RespawnPlayer(player).MarkerTime_Set(0);

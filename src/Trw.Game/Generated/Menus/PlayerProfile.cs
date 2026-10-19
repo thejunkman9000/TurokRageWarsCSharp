@@ -453,9 +453,9 @@ public static partial class NameEntry
             int n = Player.GetIndex(Gv.PlayerPool, Mem.S32((b + (uint)28)));
             float v = (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer + Mem.F32(Gv.FrameTime));
             new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set(v);
-            if ((Mem.F32(0x800E2810u) <= v))
+            if ((15f <= v))
             {
-                new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set((v - Mem.F32(0x800E2810u)));
+                new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set((v - 15f));
             }
             if (((int)(new O06A2(b).CursorIndex) == 1))
             {

@@ -1032,10 +1032,10 @@ public static partial class Pad
                     new B14Ctl(Gv.Pad_Combined).PollDoubleTapButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollDoubleTapButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollDoubleTapButtons));
                     new B14Ctl(Gv.Pad_Combined).PollRepeatButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollRepeatButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollRepeatButtons));
                 }
-                new B14Ctl(Gv.Pad_Combined).PollStickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickX)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).PollStickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickY)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).StickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickX)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).StickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickY)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).PollStickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickX)) * 0.25f))));
+                new B14Ctl(Gv.Pad_Combined).PollStickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickY)) * 0.25f))));
+                new B14Ctl(Gv.Pad_Combined).StickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickX)) * 0.25f))));
+                new B14Ctl(Gv.Pad_Combined).StickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickY)) * 0.25f))));
                 break;
             case 1:
                 osRecvMesg(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
@@ -2119,9 +2119,9 @@ public static partial class Rumble
                         if ((d != 0.0f))
                         {
                             Mem.Set(new B14Ctl(c).RumblePwmAccum.P, (Mem.F32(new B14Ctl(c).RumblePwmAccum.P) + d));
-                            if ((Mem.F32(0x800C93F8u) <= Mem.F32(new B14Ctl(c).RumblePwmAccum.P)))
+                            if ((1f <= Mem.F32(new B14Ctl(c).RumblePwmAccum.P)))
                             {
-                                Mem.Set(new B14Ctl(c).RumblePwmAccum.P, (Mem.F32(new B14Ctl(c).RumblePwmAccum.P) - Mem.F32(0x800C93F8u)));
+                                Mem.Set(new B14Ctl(c).RumblePwmAccum.P, (Mem.F32(new B14Ctl(c).RumblePwmAccum.P) - 1f));
                                 osMotorStart(new B14Ctl(c).MotorPfs.P);
                                 return;
                             }
@@ -2346,7 +2346,7 @@ public static partial class Rumble
             switch (new B14Src(s).type)
             {
             case 0:
-                return ((float)(Mem.U8(((s + (uint)(int)(((new B14Smp(o).Time * Mem.F32(0x800C940Cu)) / new B14Src(s).f14))) + (uint)4))) * Mem.F32(0x800C9410u));
+                return ((float)(Mem.U8(((s + (uint)(int)(((new B14Smp(o).Time * 16f) / new B14Src(s).f14))) + (uint)4))) * 0.003921569f);
             case 1:
                 return new B14Smp(o).Level;
             default:

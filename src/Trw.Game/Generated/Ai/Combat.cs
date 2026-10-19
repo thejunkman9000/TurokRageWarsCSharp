@@ -147,7 +147,7 @@ public static partial class Ai
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209AE8", (uint)ctl);
-            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.MessageIndex_18 * Mem.F32(0x800C6D80u));
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.MessageIndex_18 * 0.01f);
             switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill))
             {
             case 1:
@@ -156,10 +156,10 @@ public static partial class Ai
                 new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
-                v = (float)((float)(v) * Mem.F32(0x800C6D84u));
+                v = (float)((float)(v) * 0.9f);
                 break;
             case 2:
-                v = (float)((float)(v) * Mem.F32(0x800C6D88u));
+                v = (float)((float)(v) * 1.1f);
                 break;
             }
             return v;
@@ -180,23 +180,23 @@ public static partial class Ai
                 new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
-                k = Mem.F32(0x800CDA30u);
+                k = 1.2217306f;
                 break;
             case 1:
-                k = Mem.F32(0x800CDA34u);
+                k = 0.8726647f;
                 break;
             case 2:
-                k = Mem.F32(0x800CDA38u);
+                k = 0.52359885f;
                 break;
             }
             f = new B2Ctl(ctl).AimWobble;
             if ((f < RandomGen.Symmetric((-k), k)))
             {
-                f = (float)((float)(f) + Mem.F32(0x800C6DB0u));
+                f = (float)((float)(f) + 0.26179942f);
             }
             else
             {
-                f = (float)((float)(f) - Mem.F32(0x800C6DB4u));
+                f = (float)((float)(f) - 0.26179942f);
             }
             new B2Ctl(ctl).AimWobble_Set(f);
             return f;
@@ -273,8 +273,8 @@ public static partial class Ai
                 new B2Ctl(ctl).BurstCooldown_Set((int)(new B2Ctl(ctl).BurstCooldown - 1));
                 if ((new B2Ctl(ctl).BurstCooldown == 0))
                 {
-                    k = Mem.F32(0x800C6DE4u);
-                    if ((RandomGen.Float(k) < Mem.F32(0x800C6DE8u)))
+                    k = 1f;
+                    if ((RandomGen.Float(k) < 0.3f))
                     {
                         new B2Ctl(ctl).BurstCooldown_Set((-1));
                         new B2Ctl(ctl).FireDelay_Set(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayBase);
@@ -294,7 +294,7 @@ public static partial class Ai
                 new B2Ctl(ctl).ShotsRemaining_Set((int)(new B2Ctl(ctl).ShotsRemaining - 1));
                 if ((new B2Ctl(ctl).ShotsRemaining == 0))
                 {
-                    k = Mem.F32(0x800C6DECu);
+                    k = 1f;
                     new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg(cfg).BurstCooldownBase);
                     new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (RandomGen.Float(k) * (float)(new B2Cfg(cfg).BurstCooldownRandom))));
                     new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).FireDelayBase);
@@ -316,14 +316,14 @@ public static partial class Ai
             if ((new B2Ctl(ctl).SecondaryFireTicks_240 > 0))
             {
                 nv = new B2Cfg((cfg + (uint)(1 * 28))).FireDelayBase;
-                nv = (int)((float)(nv) + (RandomGen.Float(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayRandom)));
-                lim = Mem.F32(0x800C6DF4u);
+                nv = (int)((float)(nv) + (RandomGen.Float(1f) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayRandom)));
+                lim = 0.26179942f;
             }
             else
             {
                 nv = new B2Cfg(cfg).FireDelayBase;
-                nv = (int)((float)(nv) + (RandomGen.Float(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).FireDelayRandom)));
-                lim = Mem.F32(0x800C6DFCu);
+                nv = (int)((float)(nv) + (RandomGen.Float(1f) * (float)(new B2Cfg(cfg).FireDelayRandom)));
+                lim = 0.52359885f;
             }
             a = new B2Ctl(ctl).TargetPtr.owner_;
             if (!(lim < Actor.AngleToPoint(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).Position.x), Cpu.F2U(new B2Actor(a).Position.y), Cpu.F2U(new B2Actor(a).Position.z)))))
@@ -349,7 +349,7 @@ public static partial class Ai
                 if ((new B2Ctl(ctl).FireDelay > 0))
                 {
                     new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).ShotCountBase);
-                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (RandomGen.Float(Mem.F32(0x800C6E00u)) * (float)(new B2Cfg(cfg).ShotCountRandom))));
+                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (RandomGen.Float(1f) * (float)(new B2Cfg(cfg).ShotCountRandom))));
                     new B2Ctl(ctl).FireDelay_Set((int)(new B2Ctl(ctl).FireDelay - 1));
                     return;
                 }
@@ -367,13 +367,13 @@ public static partial class Ai
                     }
                     new B2Ctl(ctl).FireDelay_Set((-1));
                     new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountBase);
-                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (RandomGen.Float(Mem.F32(0x800C6E04u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom))));
+                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (RandomGen.Float(1f) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom))));
                     return;
                 }
                 new B2Ctl(ctl).ShotsRemaining_Set((int)(new B2Ctl(ctl).ShotsRemaining - 1));
                 t = new B2Ctl(ctl).TargetPtr.owner_;
                 Particle.GetChargesCentroid(Gv.EffectMgr, (int)(new B2Ctl(ctl).owner_), _fp);
-                k = Mem.F32(0x800C6E08u);
+                k = 94371.83f;
                 new Vec3f(_fp).y_Set(new B2Actor(t).Position.y);
                 if ((Vec.DistanceSq(_fp, new B2Actor(t).Position.P) < k))
                 {
@@ -409,10 +409,10 @@ public static partial class Ai
                 if ((new B2Ctl(ctl).BurstCooldown == 0))
                 {
                     Particle.GetNearestDistance(Gv.EffectMgr, new B2Ctl(ctl).owner_, _fp);
-                    if ((Mem.F32(_fp) < Mem.F32(0x800C6E0Cu)))
+                    if ((Mem.F32(_fp) < 41943.035f))
                     {
-                        k = Mem.F32(0x800C6E14u);
-                        if (((RandomGen.Float(Mem.F32(0x800C6E10u)) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).UseChancePercent)))
+                        k = 1f;
+                        if (((RandomGen.Float(98f) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).UseChancePercent)))
                         {
                             t = new B2Cfg((cfg + (uint)(1 * 28))).ShotCountBase;
                             new B2Ctl(ctl).SecondaryFireTicks_240_Set((int)(((float)(t) + (RandomGen.Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom)))));
@@ -568,8 +568,8 @@ public static partial class Ai
             {
                 if (((new Brain(brain).IsFireRequested == 0) && (new Brain(brain).SecondaryFireTicks_240 <= 0)))
                 {
-                    k = Mem.F32(0x800C6E1Cu);
-                    if (((RandomGen.Float(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).UseChancePercent)))
+                    k = 1f;
+                    if (((RandomGen.Float(98f) + k) > (float)(new AiCfg(cfg).UseChancePercent)))
                     {
                         new Brain(brain).SecondaryFireTicks_240_Set(1);
                         Ai.ResetFireTimers(brain, cfg);
@@ -591,7 +591,7 @@ public static partial class Ai
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020A95C", (uint)ctl, (uint)cfg);
-            float k = Mem.F32(0x800C6E20u);
+            float k = 1f;
             new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).FireDelayBase);
             new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (RandomGen.Float(k) * (float)(new B2Cfg(cfg).FireDelayRandom))));
             new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).ShotCountBase);
@@ -609,7 +609,7 @@ public static partial class Ai
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020AA0C", (uint)ctl);
-            return ((Mem.F32(0x800C6E24u) - Ai.GetAccuracy(ctl)) * Mem.F32(0x800C6E28u));
+            return ((1f - Ai.GetAccuracy(ctl)) * 0.52359885f);
         }
     }
 
@@ -1954,7 +1954,7 @@ public static partial class Ai
                 {
                     return 0;
                 }
-                k = (Mem.F32(0x800C6F30u) / new B2Ctl(ctl).AimDistance);
+                k = (1f / new B2Ctl(ctl).AimDistance);
                 new Vec3f((_fp + 32u)).x_Set(((new B2Ctl(ctl).AimPoint.x - new B2Ctl(ctl).OwnerPtr.Position.x) * k));
                 new Vec3f((_fp + 32u)).x_Set((float)((float)(new Vec3f((_fp + 32u)).x) * (speed * cosf(new B2Ctl(ctl).LobPitch))));
                 new Vec3f((_fp + 32u)).z_Set(((new B2Ctl(ctl).AimPoint.z - new B2Ctl(ctl).OwnerPtr.Position.z) * k));
@@ -1968,14 +1968,14 @@ public static partial class Ai
                 {
                     return 0;
                 }
-                n = (int)((h * Mem.F32(0x800C6F34u)));
+                n = (int)((h * 1.3333334f));
                 if ((n == 0))
                 {
                     return 0;
                 }
                 dt = (h / (float)(n));
                 Mem.Copy(_fp, new B2Ctl(ctl).OwnerPtr.Position.P, 12);
-                dd = ((dt * dt) * Mem.F32(0x800C6F38u));
+                dd = ((dt * dt) * 0.5f);
                 ax = (new Vec3f((_fp + 48u)).x * dd);
                 ay = (new Vec3f((_fp + 48u)).y * dd);
                 az = (new Vec3f((_fp + 48u)).z * dd);

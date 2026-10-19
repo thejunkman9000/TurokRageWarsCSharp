@@ -180,7 +180,7 @@ public static partial class TextUtil
                     new DlCmd(_g_15).w1_Set((uint)(17023036));
                 }
                 TextUtil.SetColors(140, 140, 140, 140, 140, 140);
-                TextUtil.SetScale(Mem.F32(0x800CB140u), Mem.F32(0x800CB140u));
+                TextUtil.SetScale(1f, 1f);
                 Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), 2);
                 Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), 2);
             }
@@ -1591,7 +1591,7 @@ public static partial class TextUtil
                 if (Dbg.On) Dbg.Enter("func_002AC398");
                 TextUtil.BeginFontPass();
                 Gfx.LoadTexImage16();
-                TextUtil.SetScale(Mem.F32(0x800CB3E8u), Mem.F32(0x800CB3E8u));
+                TextUtil.SetScale(0.7f, 0.7f);
                 TextUtil.SetColors(255, 255, 255, 200, 200, 200);
             }
         }
@@ -1625,7 +1625,7 @@ public static partial class TextUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044239C", (uint)c, (uint)n);
-            float k = Mem.F32(0x800E2528u);
+            float k = 1f;
             switch ((int)(c))
             {
             case 36:
@@ -1634,29 +1634,29 @@ public static partial class TextUtil
                 return y;
             case 73:
             case 105:
-                k = Mem.F32(0x800E26A8u);
+                k = 0.5f;
                 break;
             case 76:
             case 108:
                 if ((((int)(n) == 116) || ((int)(n) == 84)))
                 {
-                    k = Mem.F32(0x800E26ACu);
+                    k = 0.7f;
                 }
                 break;
             case 65:
             case 97:
                 if ((((int)(n) == 116) || ((int)(n) == 84)))
                 {
-                    k = Mem.F32(0x800E26B0u);
+                    k = 0.8f;
                 }
                 break;
             case 77:
             case 109:
-                k = Mem.F32(0x800E26B4u);
+                k = 1.2f;
                 break;
             case 33:
             case 46:
-                k = Mem.F32(0x800E26B8u);
+                k = 0.4f;
                 break;
             }
             return (k * x);

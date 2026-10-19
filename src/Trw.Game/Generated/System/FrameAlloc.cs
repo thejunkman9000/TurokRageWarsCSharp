@@ -199,13 +199,13 @@ public static partial class FrameAlloc
             int old = Mem.S32(0x8014D328u);
             Mem.Set(0x8014D328u, (old + n));
             new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)(n)));
-            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < Mem.F32(0x800CAF08u)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF08u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > Mem.F32(0x800CAF0Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF0Cu));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo))
             {
@@ -216,13 +216,13 @@ public static partial class FrameAlloc
                 new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
             new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)((-n))));
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF08u)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF08u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF0Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF0Cu));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {
@@ -247,13 +247,13 @@ public static partial class FrameAlloc
             Mem.Set(Gv.ScratchHeap_MarkDepth, (Mem.S32(Gv.ScratchHeap_MarkDepth) - 1));
             Mem.Set(0x8014D328u, v);
             new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)((-d))));
-            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < Mem.F32(0x800CAF10u)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF10u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF14u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo))
             {
@@ -264,13 +264,13 @@ public static partial class FrameAlloc
                 new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
             new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)(d)));
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF10u)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF10u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF14u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {
@@ -293,13 +293,13 @@ public static partial class FrameAlloc
             int left = (Mem.S32(0x8014D324u) - n);
             Mem.Set(0x8014D324u, left);
             new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set((new MinMaxF(Gv.FrameAlloc_UsageStats).cur + (float)(n)));
-            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < Mem.F32(0x800CAF18u)))
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set(Mem.F32(0x800CAF18u));
+                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur > Mem.F32(0x800CAF1Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set(Mem.F32(0x800CAF1Cu));
+                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < new MinMaxF(Gv.FrameAlloc_UsageStats).lo))
             {
@@ -310,13 +310,13 @@ public static partial class FrameAlloc
                 new MinMaxF(Gv.FrameAlloc_UsageStats).hi_Set(new MinMaxF(Gv.FrameAlloc_UsageStats).cur);
             }
             new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)((-n))));
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF18u)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < (-100000000f)))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF18u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((-100000000f));
             }
-            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF1Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > 100000000f))
             {
-                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF1Cu));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(100000000f);
             }
             if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {

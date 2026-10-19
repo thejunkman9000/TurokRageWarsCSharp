@@ -90,7 +90,7 @@ public static partial class Entity
                 {
                     if (((int)(new Rec14(r).b10) != 0))
                     {
-                        Hud.SpawnTextLineA(Gv.ViewMgr, a1, (uint)(Mem.S32(new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).b10 * 8))).p_)), Mem.S32(Gv.LevelFrameCount), Mem.F32(0x800C9C20u));
+                        Hud.SpawnTextLineA(Gv.ViewMgr, a1, (uint)(Mem.S32(new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).b10 * 8))).p_)), Mem.S32(Gv.LevelFrameCount), 4f);
                         v = new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).b10 * 8))).v;
                         if ((v != 0))
                         {
@@ -150,7 +150,7 @@ public static partial class Level
                 {
                     s1 = (int)(Level.GetFloorTriangle(Gv.LevelMgr, (int)(new B11Spawn(p).u20)));
                 }
-                fs0 = ((float)((int)(new B11Spawn(p).s24)) * Mem.F32(0x800C8C3Cu));
+                fs0 = ((float)((int)(new B11Spawn(p).s24)) * 9.587673e-05f);
                 new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                 a3 = Level.IsEntitySavedFlagSet(Gv.LevelMgr, (uint)(arg0));
                 Actor.Init((uint)(arg0), (int)(new B11Spawn(p).u1C), (int)(new B11Spawn(p).u1E), new B11Spawn(p).unk0, (uint)(s2), (((int)(new B11Spawn(p).u27) == 255) ? (-1) : (int)(new B11Spawn(p).u27)), (uint)(s1), fs0, new B11Spawn(p).v4.P, (uint)((int)(new B11Spawn(p).u26)), new B11Spawn(p).v10.P, _fp);
@@ -782,7 +782,7 @@ public static partial class Level
                 Effects.UpdateFrame((int)(Gv.Fx_TrailMgr));
                 Level.UpdateActors(ow);
                 PickupPool.UpdateAll((ow + (uint)71544));
-                new B19Owner(ow).SceneTime_Set((new B19Owner(ow).SceneTime + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800CA1D4u))));
+                new B19Owner(ow).SceneTime_Set((new B19Owner(ow).SceneTime + (Mem.F32(Gv.FrameTime) * 0.087266475f)));
                 Level.UpdateDelayedSpawns(ow);
             }
             Particle.UpdateAll((ow + (uint)6920));
@@ -926,11 +926,11 @@ public static partial class Level
                         new B19Dl(q_5).w1_Set((uint)(65535));
                     }
                     Camera.GetPosition((_fp + 16384u), cam);
-                    sx = (new B19Vec3((_fp + 16384u)).x * Mem.F32(0x800CA1ECu));
+                    sx = (new B19Vec3((_fp + 16384u)).x * (-2f));
                     Camera.GetPosition((_fp + 16384u), cam);
-                    sy = (new B19Vec3((_fp + 16384u)).y * Mem.F32(0x800CA1ECu));
+                    sy = (new B19Vec3((_fp + 16384u)).y * (-2f));
                     Camera.GetPosition((_fp + 16384u), cam);
-                    sz = (new B19Vec3((_fp + 16384u)).z * Mem.F32(0x800CA1ECu));
+                    sz = (new B19Vec3((_fp + 16384u)).z * (-2f));
                     for (i = 0; (i < n); ++i)
                     {
                         o = new B19Owner(ow).TranslucentActors[(int)(i)];

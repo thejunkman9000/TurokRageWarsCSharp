@@ -612,7 +612,7 @@ public static partial class BossBar
                 }
                 TextUtil.BeginFontPass();
                 Gfx.LoadTexImage16();
-                TextUtil.SetScale(Mem.F32(0x800CB380u), Mem.F32(0x800CB380u));
+                TextUtil.SetScale(0.7f, 0.7f);
                 TextUtil.SetColors(255, 255, 255, 200, 200, 200);
                 Gfx.BeginFlatColorPass((uint)((int)(Mem.U8(0x801462DEu))), default(uint), default(uint), default(uint));
                 if ((new Scn(s).unk40 != 0))

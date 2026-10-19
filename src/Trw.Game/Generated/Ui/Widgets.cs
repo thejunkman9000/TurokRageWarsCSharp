@@ -2545,8 +2545,8 @@ public static partial class UiTree
                 new_var = 4;
                 if ((new Widget_v2(w).IsHiResScaled == 0))
                 {
-                    float sx = Mem.F32(0x800CAF48u);
-                    float sy = Mem.F32(0x800CAF4Cu);
+                    float sx = 1.6901408f;
+                    float sy = 1.6216216f;
                     if (((int)(new Widget_v2(w).Type) == new_var))
                     {
                         new Widget_v2(w).ScaleX_Set(sx);

@@ -181,7 +181,7 @@ public static partial class Player
             {
                 return 0;
             }
-            if ((Mem.F32((actor + (uint)1764)) > Mem.F32(0x800C7E4Cu)))
+            if ((Mem.F32((actor + (uint)1764)) > 11.25f))
             {
                 return 0;
             }
@@ -228,7 +228,7 @@ public static partial class Player
                 {
                     MathUtil.ApproachProportional((actor + (uint)1836), 1.30899704f, 0.25f);
                 }
-                if ((Mem.F32((actor + (uint)1624)) > Mem.F32(0x800C7EB4u)))
+                if ((Mem.F32((actor + (uint)1624)) > 7.5f))
                 {
                     Player.Respawn(actor);
                 }
@@ -284,13 +284,13 @@ public static partial class Player
             if ((c == 0))
             {
                 x = Mem.F32((actor + (uint)1728));
-                if ((Mem.F32(0x800C7F78u) <= x))
+                if ((1.024f <= x))
                 {
                     Mem.Set((actor + (uint)2156), 2210);
                 }
                 else
                 {
-                    if ((x <= Mem.F32(0x800C7F7Cu)))
+                    if ((x <= (-1.024f)))
                     {
                         Mem.Set((actor + (uint)2156), 2215);
                     }
@@ -448,11 +448,11 @@ public static partial class PlayerState
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022CA04", (uint)actor, (uint)state);
-                float k = Mem.F32(0x800C7E50u);
+                float k = 389.12f;
                 uint p = 0u;
                 if ((Mem.S32(Gv.Level_StartPointId) == 7601))
                 {
-                    k = Mem.F32(0x800C7E54u);
+                    k = 481.28f;
                 }
                 Mem.Set((state + (uint)32), (k * Mem.F32((Mem.U32((state + (uint)24)) + (uint)32))));
                 p = (uint)(Actor.GetStandingObject(state));
@@ -490,14 +490,14 @@ public static partial class PlayerState
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022CB4C", (uint)actor, (uint)state);
-            float k = Mem.F32(0x800C7E58u);
+            float k = 389.12f;
             if ((Mem.S32(Gv.Level_StartPointId) == 7601))
             {
-                k = Mem.F32(0x800C7E5Cu);
+                k = 481.28f;
             }
             if ((new ActorView(actor).IsComputer != 0))
             {
-                if ((Mem.F32((actor + (uint)1624)) >= Mem.F32(0x800C7E60u)))
+                if ((Mem.F32((actor + (uint)1624)) >= 3f))
                 {
                     Player.SetState(actor, (int)(state), 6);
                 }
@@ -508,7 +508,7 @@ public static partial class PlayerState
             }
             else
             {
-                if ((!((Mem.U32((actor + (uint)1708)) & (uint)(16)) != 0u) || (Mem.F32((actor + (uint)1624)) >= Mem.F32(0x800C7E64u))))
+                if ((!((Mem.U32((actor + (uint)1708)) & (uint)(16)) != 0u) || (Mem.F32((actor + (uint)1624)) >= 3f)))
                 {
                     Player.SetState(actor, (int)(state), 6);
                 }
@@ -545,7 +545,7 @@ public static partial class PlayerState
             }
             if ((x <= 0.0f))
             {
-                if ((((Actor.GetFloorY(state) < 0.0f) ? (((-Actor.GetFloorY(state)) < Mem.F32(0x800C7E68u)) ? 1 : 0) : ((Actor.GetFloorY(state) < Mem.F32(0x800C7E6Cu)) ? 1 : 0)) != 0))
+                if ((((Actor.GetFloorY(state) < 0.0f) ? (((-Actor.GetFloorY(state)) < 61.44f) ? 1 : 0) : ((Actor.GetFloorY(state) < 61.44f) ? 1 : 0)) != 0))
                 {
                     if ((Mem.U32((actor + (uint)5044)) == Gv.Player_StateTableChar0))
                     {
@@ -568,13 +568,13 @@ public static partial class PlayerState
             if (Dbg.On) Dbg.Enter("func_0022CD68", (uint)actor, (uint)state);
             if ((Mem.F32((actor + (uint)1700)) < (float)(0)))
             {
-                Mem.Set((actor + (uint)1732), Mem.F32(0x800C7E70u));
+                Mem.Set((actor + (uint)1732), (-30.72f));
             }
             else
             {
-                Mem.Set((actor + (uint)1732), Mem.F32(0x800C7E74u));
+                Mem.Set((actor + (uint)1732), 30.72f);
             }
-            Mem.Set((state + (uint)32), Mem.F32(0x800C7E78u));
+            Mem.Set((state + (uint)32), 307.19998f);
         }
     }
 
@@ -585,13 +585,13 @@ public static partial class PlayerState
         {
             if (Dbg.On) Dbg.Enter("func_0022CDAC", (uint)actor, (uint)state);
             float y = Mem.F32((actor + (uint)1732));
-            if (((((y < (float)(0)) && (Mem.F32((actor + (uint)1700)) >= (float)(0))) || ((y > (float)(0)) && (Mem.F32((actor + (uint)1700)) <= (float)(0)))) || (Mem.F32((actor + (uint)1624)) >= Mem.F32(0x800C7E7Cu))))
+            if (((((y < (float)(0)) && (Mem.F32((actor + (uint)1700)) >= (float)(0))) || ((y > (float)(0)) && (Mem.F32((actor + (uint)1700)) <= (float)(0)))) || (Mem.F32((actor + (uint)1624)) >= 1.5f)))
             {
                 Player.SetState(actor, (int)(state), 8);
             }
             else
             {
-                Mem.Set((state + (uint)32), Mem.F32(0x800C7E80u));
+                Mem.Set((state + (uint)32), 307.19998f);
             }
             PlayerState.UpdateState08_0022CE68(actor, state);
         }
@@ -634,10 +634,10 @@ public static partial class PlayerState
             if (Dbg.On) Dbg.Enter("func_0022CF28", (uint)actor, (uint)state);
             float t = 0f;
             float k = 0f;
-            Mem.Set((actor + (uint)1728), (float)((float)(Mem.F32((actor + (uint)1728))) * Mem.F32(0x800C7E84u)));
-            Mem.Set((actor + (uint)1732), (float)((float)(Mem.F32((actor + (uint)1732))) * Mem.F32(0x800C7E84u)));
-            t = (Mem.F32((state + (uint)32)) * Mem.F32(0x800C7E88u));
-            k = Mem.F32(0x800C7E8Cu);
+            Mem.Set((actor + (uint)1728), (float)((float)(Mem.F32((actor + (uint)1728))) * 0.5f));
+            Mem.Set((actor + (uint)1732), (float)((float)(Mem.F32((actor + (uint)1732))) * 0.5f));
+            t = (Mem.F32((state + (uint)32)) * 0.75f);
+            k = (-51.199997f);
             Mem.Set((state + (uint)32), t);
             if ((t < k))
             {
@@ -663,9 +663,9 @@ public static partial class PlayerState
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022D000", (uint)actor, (uint)state);
-            Mem.Set((actor + (uint)1728), (float)((float)(Mem.F32((actor + (uint)1728))) * Mem.F32(0x800C7E90u)));
-            Mem.Set((actor + (uint)1732), (float)((float)(Mem.F32((actor + (uint)1732))) * Mem.F32(0x800C7E90u)));
-            Mem.Set((state + (uint)32), (float)((float)(Mem.F32((state + (uint)32))) * Mem.F32(0x800C7E90u)));
+            Mem.Set((actor + (uint)1728), (float)((float)(Mem.F32((actor + (uint)1728))) * 0.5f));
+            Mem.Set((actor + (uint)1732), (float)((float)(Mem.F32((actor + (uint)1732))) * 0.5f));
+            Mem.Set((state + (uint)32), (float)((float)(Mem.F32((state + (uint)32))) * 0.5f));
         }
     }
 
@@ -841,7 +841,7 @@ public static partial class PlayerState
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022D154", (uint)actor, (uint)state);
-            Mem.Set((actor + (uint)1760), Mem.F32(0x800C7EA0u));
+            Mem.Set((actor + (uint)1760), 0.017044233f);
             Mem.Set((actor + (uint)1728), (float)(0));
             Mem.Set((actor + (uint)1732), (float)(0));
             Mem.Set((state + (uint)28), (float)(0));
@@ -1003,7 +1003,7 @@ public static partial class PlayerState
                 Mem.Set((actor + (uint)2156), 1);
             }
             t = (Mem.F32((actor + (uint)2144)) + Mem.F32(Gv.FrameTime));
-            k = Mem.F32(0x800C7EA4u);
+            k = 75f;
             Mem.Set((actor + (uint)2144), t);
             if (((k < t) || ((new B07Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) && (new B07Game(Gv.Settings_MatchRules).IsMatchOver != 0))))
             {
@@ -1075,7 +1075,7 @@ public static partial class PlayerState
                 {
                     MathUtil.ApproachProportional((p + 1836u), 1.30899704f, 0.25f);
                 }
-                if ((new Player_v3(p).StateTime > Mem.F32(0x800C7EA8u)))
+                if ((new Player_v3(p).StateTime > 7.5f))
                 {
                     Player.Respawn(p);
                 }
@@ -1117,16 +1117,16 @@ public static partial class PlayerState
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022D4AC", (uint)actor);
-            if ((Mem.F32((actor + (uint)1624)) > Mem.F32(0x800C7EACu)))
+            if ((Mem.F32((actor + (uint)1624)) > 60f))
             {
                 Mem.Set((actor + (uint)5064), 1);
                 Mem.Set((actor + (uint)4664), (-1));
                 Mem.Set((actor + (uint)4656), 0);
                 Mem.Set((actor + (uint)4652), (uint)((uint)(Mem.U32((actor + (uint)4652))) & (uint)((~32))));
                 Player.Respawn(actor);
-                Mem.Set((actor + (uint)80), Mem.F32(0x800C7EB0u));
-                Mem.Set((actor + (uint)84), Mem.F32(0x800C7EB0u));
-                Mem.Set((actor + (uint)88), Mem.F32(0x800C7EB0u));
+                Mem.Set((actor + (uint)80), 0.02f);
+                Mem.Set((actor + (uint)84), 0.02f);
+                Mem.Set((actor + (uint)88), 0.02f);
             }
             else
             {
@@ -1558,15 +1558,15 @@ public static partial class PlayerState
             float s = 0f;
             float c = 0f;
             new ActorView(actor).Flags_Set((uint)((uint)(new ActorView(actor).Flags) | (uint)(8388608)));
-            Mem.Set((actor + (uint)468), Mem.F32(0x800C7EB8u));
+            Mem.Set((actor + (uint)468), 18.75f);
             if (((int)(Mem.S16((actor + (uint)1618))) == 15))
             {
                 float x = Mem.F32((obj + (uint)108));
-                k = Mem.F32(0x800C7EBCu);
+                k = 6.2831855f;
                 s = sinf((x + k));
                 c = cosf((Mem.F32((obj + (uint)108)) + k));
-                s = (float)((float)(s) * Mem.F32(0x800C7EC0u));
-                c = (float)((float)(c) * Mem.F32(0x800C7EC0u));
+                s = (float)((float)(s) * 384f);
+                c = (float)((float)(c) * 384f);
                 Mem.Set((obj + (uint)28), (float)((float)(Mem.F32((obj + (uint)28))) + s));
                 Mem.Set((obj + (uint)36), (float)((float)(Mem.F32((obj + (uint)36))) + c));
                 Mem.Set((obj + (uint)108), (float)((float)(Mem.F32((obj + (uint)108))) + Mem.F32((actor + (uint)1832))));

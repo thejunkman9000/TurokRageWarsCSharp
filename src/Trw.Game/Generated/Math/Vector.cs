@@ -66,7 +66,7 @@ public static partial class MathUtil
             z = 0.0f;
             if ((len2 != 0.0f))
             {
-                len2 = (Mem.F32(0x800C9A90u) / sqrtf_Recompiled(len2));
+                len2 = (1f / sqrtf_Recompiled(len2));
                 z = (new VelObj(o).vel.z * len2);
                 new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
                 new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
@@ -92,7 +92,7 @@ public static partial class MathUtil
             z = 0.0f;
             if ((len2 != 0.0f))
             {
-                len2 = (Mem.F32(0x800C9A94u) / sqrtf_Recompiled(len2));
+                len2 = (1f / sqrtf_Recompiled(len2));
                 z = (new VelObj(o).vel.z * len2);
                 new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
                 new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
@@ -361,7 +361,7 @@ public static partial class MathUtil
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                if ((new Vec3f((@in + (uint)(i * 12))).z > Mem.F32(0x800CAE38u)))
+                if ((new Vec3f((@in + (uint)(i * 12))).z > 0.01f))
                 {
                     new Vec3f((@out + (uint)(i * 12))).x_Set((ox + (sx * (new Vec3f((@in + (uint)(i * 12))).x / new Vec3f((@in + (uint)(i * 12))).z))));
                     new Vec3f((@out + (uint)(i * 12))).y_Set((oy + (sy * (new Vec3f((@in + (uint)(i * 12))).y / new Vec3f((@in + (uint)(i * 12))).z))));
@@ -553,19 +553,19 @@ public static partial class Quat
                 Mem.Copy((_fp + 16u), 0x800C6AE0u, 12);
                 Vec.Normalize(v);
                 y = new Vec3f(v).y;
-                if ((Mem.F32(0x800C6AECu) < y))
+                if ((0.99999f < y))
                 {
                     zero = 0.0f;
                     new M1Quat(_fp).z_Set(zero);
                     new M1Quat(_fp).y_Set(zero);
                     new M1Quat(_fp).x_Set(zero);
-                    new M1Quat(_fp).w_Set(Mem.F32(0x800C6AF0u));
+                    new M1Quat(_fp).w_Set(1f);
                 }
                 else
                 {
-                    if ((y < Mem.F32(0x800C6AF4u)))
+                    if ((y < (-0.99999f)))
                     {
-                        ang = Mem.F32(0x800C6AF8u);
+                        ang = 1.5707965f;
                         new M1Quat(_fp).x_Set(Mem.Set(Gv.Quat_SinScratch, sinf(ang)));
                         new M1Quat(_fp).y_Set(0.0f);
                         new M1Quat(_fp).z_Set(0.0f);
@@ -576,7 +576,7 @@ public static partial class Quat
                         ang2 = MathUtil.Acosf((((new Vec3f(v).x * new Vec3f((_fp + 16u)).x) + (y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(v).z * new Vec3f((_fp + 16u)).z)));
                         Vec.Cross((_fp + 32u), (_fp + 16u), v);
                         Vec.Normalize((_fp + 32u));
-                        ang = (ang2 * Mem.F32(0x800C6AFCu));
+                        ang = (ang2 * 0.5f);
                         sn = sinf(ang);
                         Mem.Set(Gv.Quat_SinScratch, sn);
                         new M1Quat(_fp).x_Set((new Vec3f((_fp + 32u)).x * sn));
@@ -632,7 +632,7 @@ public static partial class Quat
             Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.F32((pos + (uint)(1 * 4))));
             Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), Mem.F32((pos + (uint)(2 * 4))));
             Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
-            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800C8CA0u));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1f);
             Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
             Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
         }
@@ -1055,7 +1055,7 @@ public static partial class Quat
                 float one = 0f;
                 float ang = 0f;
                 float s = 0f;
-                one = Mem.F32(0x800CB018u);
+                one = 1f;
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(one);
@@ -1071,7 +1071,7 @@ public static partial class Quat
                 else
                 {
                     Vec.Scale((_fp + 32u), (_fp + 32u), (one / len));
-                    ang = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800CB01Cu));
+                    ang = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * 0.5f);
                     s = sinf(ang);
                     Mem.Set(Gv.Quat_SinScratch, s);
                     new Quat4f((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * s));

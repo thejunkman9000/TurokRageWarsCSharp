@@ -4982,11 +4982,11 @@ public static partial class Shadow
                             new Vec3f((_fp + 16u)).x_Set(((float)((int)(new B15Pt(n).x)) - new Vec3f(_fp).x));
                             new Vec3f((_fp + 16u)).y_Set(((float)((int)(new B15Pt(n).y)) - new Vec3f(_fp).y));
                             u = ((float)((int)(new B15Pt(n).z)) - new Vec3f(_fp).z);
-                            nv = (Mem.F32(0x800C9580u) - (d / r));
+                            nv = (1f - (d / r));
                             new Vec3f((_fp + 16u)).z_Set(u);
                             f = nv;
                             Vec.Normalize((_fp + 16u));
-                            f = (f * Mem.F32(0x800C9584u));
+                            f = (f * 0.4f);
                             Vec.Scale((_fp + 16u), (_fp + 16u), f);
                             Vec.Add((uint)(a), (uint)(a), (_fp + 16u));
                             Mem.Set(b, (float)((float)(Mem.F32(b)) - f));

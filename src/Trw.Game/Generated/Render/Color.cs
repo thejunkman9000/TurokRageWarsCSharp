@@ -311,9 +311,9 @@ public static partial class ColorUtil
             }
             else
             {
-                if ((w > Mem.F32(0x800CB034u)))
+                if ((w > 255f))
                 {
-                    Mem.Set(p, Mem.F32(0x800CB034u));
+                    Mem.Set(p, 255f);
                 }
             }
         }

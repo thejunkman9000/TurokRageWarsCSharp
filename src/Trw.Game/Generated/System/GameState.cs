@@ -970,7 +970,7 @@ public static partial class Game
             new B21Game(g).PrevStateId_Set(old);
             if ((Level.IsRestartPending() != 0))
             {
-                new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA584u));
+                new B21Game(g).FadeLevel_Set(1f);
             }
         }
     }
@@ -1027,18 +1027,18 @@ public static partial class Game
             {
                 b = new B21World(Gv.PlayerPool).blk.P;
                 new B21GameBlk(b).PlayTimeTicks_Set((float)((float)(new B21GameBlk(b).PlayTimeTicks) + Mem.F32(Gv.FrameTime)));
-                if ((new B21GameBlk(b).PlayTimeTicks >= Mem.F32(0x800CA598u)))
+                if ((new B21GameBlk(b).PlayTimeTicks >= 15f))
                 {
-                    new B21GameBlk(b).PlayTimeTicks_Set((float)((float)(new B21GameBlk(b).PlayTimeTicks) - Mem.F32(0x800CA598u)));
-                    new B21GameBlk(b).PlayTimeSeconds_Set((float)((float)(new B21GameBlk(b).PlayTimeSeconds) + Mem.F32(0x800CA59Cu)));
-                    if ((new B21GameBlk(b).PlayTimeSeconds >= Mem.F32(0x800CA5A0u)))
+                    new B21GameBlk(b).PlayTimeTicks_Set((float)((float)(new B21GameBlk(b).PlayTimeTicks) - 15f));
+                    new B21GameBlk(b).PlayTimeSeconds_Set((float)((float)(new B21GameBlk(b).PlayTimeSeconds) + 1f));
+                    if ((new B21GameBlk(b).PlayTimeSeconds >= 60f))
                     {
-                        new B21GameBlk(b).PlayTimeSeconds_Set((float)((float)(new B21GameBlk(b).PlayTimeSeconds) - Mem.F32(0x800CA5A0u)));
-                        new B21GameBlk(b).PlayTimeMinutes_Set((float)((float)(new B21GameBlk(b).PlayTimeMinutes) + Mem.F32(0x800CA59Cu)));
-                        if ((new B21GameBlk(b).PlayTimeMinutes >= Mem.F32(0x800CA5A0u)))
+                        new B21GameBlk(b).PlayTimeSeconds_Set((float)((float)(new B21GameBlk(b).PlayTimeSeconds) - 60f));
+                        new B21GameBlk(b).PlayTimeMinutes_Set((float)((float)(new B21GameBlk(b).PlayTimeMinutes) + 1f));
+                        if ((new B21GameBlk(b).PlayTimeMinutes >= 60f))
                         {
-                            new B21GameBlk(b).PlayTimeMinutes_Set((float)((float)(new B21GameBlk(b).PlayTimeMinutes) - Mem.F32(0x800CA5A0u)));
-                            new B21GameBlk(b).PlayTimeHours_Set((float)((float)(new B21GameBlk(b).PlayTimeHours) + Mem.F32(0x800CA59Cu)));
+                            new B21GameBlk(b).PlayTimeMinutes_Set((float)((float)(new B21GameBlk(b).PlayTimeMinutes) - 60f));
+                            new B21GameBlk(b).PlayTimeHours_Set((float)((float)(new B21GameBlk(b).PlayTimeHours) + 1f));
                         }
                     }
                 }
@@ -1103,7 +1103,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029414C", (uint)a);
-            TextUtil.DrawLineList(a, 1, (uint)(Mem.S32(0x800D7064u)), (Mem.S32(Gv.ScreenWidth) / 2), 5, 10, Mem.F32(0x800CA5B4u), Mem.F32(0x800CA5B8u));
+            TextUtil.DrawLineList(a, 1, (uint)(Mem.S32(0x800D7064u)), (Mem.S32(Gv.ScreenWidth) / 2), 5, 10, 0.75f, 1f);
         }
     }
 
@@ -1242,7 +1242,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00294428", (uint)g);
             Mem.Set(0x800D29C0u, (int)(Mem.S32(0x800D29C0u) + 1));
             Flyby.SetDefaultView();
-            Flyby.SetFieldOfView(Mem.F32(0x800CA5BCu));
+            Flyby.SetFieldOfView(0.5f);
             State.LoadScene(g, 111);
         }
     }
@@ -1744,7 +1744,7 @@ public static partial class State
                 Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
                 return 1;
             }
-            if (((x * Mem.F32(0x800CA588u)) < new B21Game(g).StateTime))
+            if (((x * 15f) < new B21Game(g).StateTime))
             {
                 new B21Game(g).FadeMode_Set((byte)(2));
                 new B21Game(g).NextStateId_Set(a);
@@ -1798,7 +1798,7 @@ public static partial class State
                     new B21Game(g).PrevStateId_Set(old);
                     if ((Level.IsRestartPending() != 0))
                     {
-                        new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA58Cu));
+                        new B21Game(g).FadeLevel_Set(1f);
                     }
                 }
             }
@@ -1815,9 +1815,9 @@ public static partial class State
             if ((Mem.S32(Gv.Demo_Active) == 1))
             {
                 t = new B21Game(g).StateTime;
-                if ((Mem.F32(0x800CA590u) < t))
+                if ((30f < t))
                 {
-                    if ((Mem.F32(0x800CA594u) < t))
+                    if ((675f < t))
                     {
                         Mem.Set(Gv.Demo_Active, 0);
                         Menu.InitFrontend();
@@ -1858,9 +1858,9 @@ public static partial class State
             if ((new B21GameBlk(b).IsDemoActive == 1))
             {
                 t = new B21Game(g).StateTime;
-                if ((Mem.F32(0x800CA5A4u) < t))
+                if ((30f < t))
                 {
-                    if ((Mem.F32(0x800CA5A8u) < t))
+                    if ((675f < t))
                     {
                         new B21GameBlk(b).IsDemoActive_Set(0);
                         Menu.InitFrontend();
@@ -1903,7 +1903,7 @@ public static partial class State
             Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
             Mem.Set(Gv.PakMenu_BootCheckDone, 1);
             Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
-            new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA5ACu));
+            new B21Game(g).FadeLevel_Set(1f);
             Menu.GotoScreen(29);
         }
     }
@@ -1971,7 +1971,7 @@ public static partial class State
                     mode = 3;
                 }
             }
-            if ((new B21Game(g).StateTime > Mem.F32(0x800CA5B0u)))
+            if ((new B21Game(g).StateTime > 45f))
             {
                 Mem.Set(0x800D29CCu, 0);
             }
@@ -2063,7 +2063,7 @@ public static partial class State
             Game_LatchPads();
             Collision.InitProfiles();
             Artsend.Init();
-            v = Mem.F32(0x800CA5C0u);
+            v = 1f;
             Mem.Set(0x800D2970u, 0);
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
@@ -2102,7 +2102,7 @@ public static partial class State
             }
             Collision.InitProfiles();
             Artsend.Init();
-            v = Mem.F32(0x800CA5C4u);
+            v = 1f;
             Mem.Set(0x800D2970u, 0);
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
@@ -2156,7 +2156,7 @@ public static partial class State
                     {
                         Mem.Set(Gv.Credits_SkipRequested, 1);
                         Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
-                        Mem.Set(Gv.Credits_ScrollTimer, Mem.F32(0x800CA5C8u));
+                        Mem.Set(Gv.Credits_ScrollTimer, 15f);
                     }
                 }
             }
@@ -2214,7 +2214,7 @@ public static partial class State
                     {
                         Mem.Set(Gv.Credits_SkipRequested, 1);
                         Mem.Set(Gv.Pad_PressedButtons, 0);
-                        Mem.Set(Gv.Credits_ScrollTimer, Mem.F32(0x800CA5CCu));
+                        Mem.Set(Gv.Credits_ScrollTimer, 15f);
                     }
                 }
             }

@@ -269,37 +269,37 @@ public static partial class Player
             {
                 MathUtil.ApproachProportional((p + 1836u), 0.0f, 0.25f);
                 MathUtil.ApproachProportional((p + 1832u), 0.0f, 0.5f);
-                new B05P9(p).SwayPitch_Set(MathUtil.DecayToZero(new B05P9(p).SwayPitch, Mem.F32(0x800C7A04u)));
-                new B05P9(p).SwayYaw_Set(MathUtil.DecayToZero(new B05P9(p).SwayYaw, Mem.F32(0x800C7A04u)));
-                new B05P9(p).SwayRoll_Set(MathUtil.DecayToZero(new B05P9(p).SwayRoll, Mem.F32(0x800C7A04u)));
-                if ((new B05P9(p).BobFrequency > Mem.F32(0x800C7A08u)))
+                new B05P9(p).SwayPitch_Set(MathUtil.DecayToZero(new B05P9(p).SwayPitch, 0.087266475f));
+                new B05P9(p).SwayYaw_Set(MathUtil.DecayToZero(new B05P9(p).SwayYaw, 0.087266475f));
+                new B05P9(p).SwayRoll_Set(MathUtil.DecayToZero(new B05P9(p).SwayRoll, 0.087266475f));
+                if ((new B05P9(p).BobFrequency > 21f))
                 {
-                    new B05P9(p).BobFrequency_Set(Mem.F32(0x800C7A08u));
+                    new B05P9(p).BobFrequency_Set(21f);
                 }
-                if ((new B05P9(p).BobAmplitude > Mem.F32(0x800C7A0Cu)))
+                if ((new B05P9(p).BobAmplitude > 0.1f))
                 {
-                    new B05P9(p).BobAmplitude_Set(Mem.F32(0x800C7A0Cu));
+                    new B05P9(p).BobAmplitude_Set(0.1f);
                 }
-                new B05P9(p).BobFrequency_Set(MathUtil.DecayToZero(new B05P9(p).BobFrequency, Mem.F32(0x800C7A10u)));
-                new B05P9(p).BobAmplitude_Set(MathUtil.DecayToZero(new B05P9(p).BobAmplitude, Mem.F32(0x800C7A14u)));
-                if ((new B05P9(p).BobAmplitude < Mem.F32(0x800C7A18u)))
+                new B05P9(p).BobFrequency_Set(MathUtil.DecayToZero(new B05P9(p).BobFrequency, 0.11666667f));
+                new B05P9(p).BobAmplitude_Set(MathUtil.DecayToZero(new B05P9(p).BobAmplitude, 0.00055555557f));
+                if ((new B05P9(p).BobAmplitude < 0.06f))
                 {
                     new B05P9(p).BobAmplitude_Set(0.0f);
                     new B05P9(p).BobFrequency_Set(0.0f);
                 }
-                ang = ((new B05P9(p).StateTime * new B05P9(p).BobFrequency) * Mem.F32(0x800C7A1Cu));
+                ang = ((new B05P9(p).StateTime * new B05P9(p).BobFrequency) * 0.017453294f);
                 if ((new B05P9(p).DefPtr != 0u))
                 {
-                    @base = (new B05Def9(new B05P9(p).DefPtr).unkF4 * Mem.F32(0x800C7A20u));
+                    @base = (new B05Def9(new B05P9(p).DefPtr).unkF4 * 0.9f);
                 }
                 else
                 {
-                    @base = Mem.F32(0x800C7A24u);
+                    @base = 82.94399f;
                 }
-                MathUtil.ApproachProportional((p + 1856u), (@base + (new B05P9(p).BobAmplitude * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
-                r = (new B05P9(p).BobAmplitude * (cosf(ang) * Mem.F32(0x800C7A30u)));
-                MathUtil.ApproachProportional((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
-                MathUtil.ApproachProportional((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                MathUtil.ApproachProportional((p + 1856u), (@base + (new B05P9(p).BobAmplitude * (sinf(ang) * 10.24f))), 0.5f);
+                r = (new B05P9(p).BobAmplitude * (cosf(ang) * 8.192f));
+                MathUtil.ApproachProportional((p + 1852u), ((-sinf((new B05S9(s).ang + 3.1415927f))) * r), 0.5f);
+                MathUtil.ApproachProportional((p + 1860u), ((-cosf((new B05S9(s).ang + 3.1415927f))) * r), 0.5f);
             }
         }
     }
@@ -313,11 +313,11 @@ public static partial class Player
             float v = 0f;
             if ((new B05Obj(obj).def_ != 0u))
             {
-                v = (new B05Obj(obj).def.unkF4 * Mem.F32(0x800C7A38u));
+                v = (new B05Obj(obj).def.unkF4 * 0.9f);
             }
             else
             {
-                v = Mem.F32(0x800C7A3Cu);
+                v = 82.94399f;
             }
             MathUtil.ApproachProportional((obj + (uint)1856), v, 0.5f);
         }
@@ -342,7 +342,7 @@ public static partial class Player
                 float roll0 = 0f;
                 float pitch0 = 0f;
                 yaw0 = ((new Plr(a).ViewPitch + new Plr(a).SwayPitch) - new Plr(a).ViewPitchBase);
-                K = Mem.F32(0x800C7C60u);
+                K = 0.5f;
                 pitch = ((new Plr(a).ViewRoll + new Plr(a).SwayRoll) * K);
                 new_var = (new Plr(a).ViewYawOffset + new Plr(a).SwayYaw);
                 roll = new_var;

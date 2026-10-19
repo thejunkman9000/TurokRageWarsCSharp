@@ -206,7 +206,7 @@ public static partial class Damage
                     Quat.FromDirection((_fp + 80u), (_fp + 32u));
                     Collision.LocatePoint_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
                     Mem.Copy((_fp + 48u), _fp, 12);
-                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + Mem.F32(0x800C94C0u)));
+                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + 12f));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set((float)(0));
@@ -214,7 +214,7 @@ public static partial class Damage
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    Rumble.StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C94C4u), Mem.F32(0x800C94C8u));
+                    Rumble.StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), 10.24f, 1f);
                 }
             }
         }
@@ -250,13 +250,13 @@ public static partial class Damage
                         {
                             if (((new B15Ent(a1).HitFlags_1AC & (uint)(16384)) != 0u))
                             {
-                                Camera.StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94B4u), 100.0f, Mem.F32(0x800C94B4u), Mem.F32(0x800C94B0u), 1, _fp);
+                                Camera.StartShake(Mem.U32((o + (uint)1500)), 20f, 100.0f, 20f, 1f, 1, _fp);
                             }
                             else
                             {
                                 if (((new B15Ent(a1).HitFlags_1AC & (uint)(8192)) != 0u))
                                 {
-                                    Camera.StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94BCu), 50.0f, Mem.F32(0x800C94BCu), Mem.F32(0x800C94B8u), 1, _fp);
+                                    Camera.StartShake(Mem.U32((o + (uint)1500)), 10f, 50.0f, 10f, 1f, 1, _fp);
                                 }
                             }
                         }
@@ -282,7 +282,7 @@ public static partial class Damage
                     Vec.Add(new B15Ent(a0).Velocity.P, new B15Ent(a0).Velocity.P, (_fp + 16u));
                     if ((w9 != 0))
                     {
-                        new B15Ent(a0).Yaw_Set((new B15Ent(a0).Yaw + (Actor.AngleToPoint(a0, C.Tmp(Cpu.F2U(new B15Ent(a1).Position.x), Cpu.F2U(new B15Ent(a1).Position.y), Cpu.F2U(new B15Ent(a1).Position.z))) * Mem.F32(0x800C94CCu))));
+                        new B15Ent(a0).Yaw_Set((new B15Ent(a0).Yaw + (Actor.AngleToPoint(a0, C.Tmp(Cpu.F2U(new B15Ent(a1).Position.x), Cpu.F2U(new B15Ent(a1).Position.y), Cpu.F2U(new B15Ent(a1).Position.z))) * 0.5f)));
                     }
                 }
             }
@@ -860,7 +860,7 @@ public static partial class Damage
             {
                 return Actor.GetAverageScale(src);
             }
-            return Mem.F32(0x800C9510u);
+            return 1f;
         }
     }
 
@@ -884,7 +884,7 @@ public static partial class Damage
                         Mem.Copy(_fp, pos, 12);
                         Mem.Copy((_fp + 16u), new B15O(o).Position.P, 12);
                         Vec.Lerp(pos, 0.75f, _fp, (_fp + 16u));
-                        new Vec3f(pos).y_Set((new Vec3f(pos).y + (Actor.GetHeight(o) * Mem.F32(0x800C9520u))));
+                        new Vec3f(pos).y_Set((new Vec3f(pos).y + (Actor.GetHeight(o) * 0.5f)));
                         r = 1;
                     }
                 }
@@ -938,7 +938,7 @@ public static partial class Damage
                 float s = 0f;
                 float d = 0f;
                 float t = 0f;
-                s = ((float)((int)(new B15R(_fp).a)) * Mem.F32(0x800C9524u));
+                s = ((float)((int)(new B15R(_fp).a)) * 0.04f);
                 t = Damage.GetTargetScale(src);
                 new Vec3f(@out).x_Set(new Vec3f(@out).y_Set(new Vec3f(@out).z_Set(0.0f)));
                 s = (s * t);
@@ -949,7 +949,7 @@ public static partial class Damage
                     Vec.Normalize(pv);
                     if (!(s <= d))
                     {
-                        Vec.Scale(@out, pv, ((float)((int)(new B15R(_fp).b)) * (((s - d) / s) * Mem.F32(0x800C9528u))));
+                        Vec.Scale(@out, pv, ((float)((int)(new B15R(_fp).b)) * (((s - d) / s) * 102.399994f)));
                     }
                 }
             }
@@ -982,7 +982,7 @@ public static partial class Damage
                 isFx = 0;
                 s6 = (s3 = 1);
                 own = 0u;
-                vol = Mem.F32(0x800C952Cu);
+                vol = 1f;
                 if (((new B15Act2(a).flags & (uint)(3145728)) != 0u))
                 {
                     own = new B15Act2(a).owner_;
@@ -1019,7 +1019,7 @@ public static partial class Damage
                 }
                 if ((s4 != 0))
                 {
-                    if (((((own != 0u) && ((Mem.U32((own + (uint)4652)) & (uint)(2)) != 0u)) && (vol == Mem.F32(0x800C9530u))) && ((flags & (uint)(512)) != 0u)))
+                    if (((((own != 0u) && ((Mem.U32((own + (uint)4652)) & (uint)(2)) != 0u)) && (vol == 1f)) && ((flags & (uint)(512)) != 0u)))
                     {
                         vol = 0.0f;
                     }
@@ -1051,7 +1051,7 @@ public static partial class Damage
                         }
                         if ((s6 != 0))
                         {
-                            vol = (vol * (Mem.F32(0x800C9534u) - (dist / fs0)));
+                            vol = (vol * (1f - (dist / fs0)));
                         }
                     }
                 }
@@ -1086,7 +1086,7 @@ public static partial class Damage
                     Quat.FromDirection((_fp + 80u), (_fp + 32u));
                     Collision.LocatePoint_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
                     Mem.Copy((_fp + 48u), _fp, 12);
-                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + Mem.F32(0x800C9538u)));
+                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + 12f));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set((float)(0));
@@ -1094,7 +1094,7 @@ public static partial class Damage
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    Rumble.StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
+                    Rumble.StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), 10.24f, 1f);
                 }
             }
         }

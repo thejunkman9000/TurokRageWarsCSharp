@@ -1787,9 +1787,9 @@ public static partial class RegionLayer
             {
                 float up = new B09Emitter(e).FadeAlpha;
                 up = (float)((float)(up) + (new B09EDef(def).FadeRate * Mem.F32(Gv.FrameTime)));
-                if ((Mem.F32(0x800C86E0u) < up))
+                if ((1f < up))
                 {
-                    up = Mem.F32(0x800C86E0u);
+                    up = 1f;
                 }
                 new B09Emitter(e).FadeAlpha_Set(up);
             }
@@ -1806,17 +1806,17 @@ public static partial class RegionLayer
             }
             new B09Emitter(e).AnimTime_Set((new B09Emitter(e).AnimTime + ((Mem.F32(Gv.FrameTime) * new B09EDef(def).AnimRate) * new B09Emitter(e).SpeedScale)));
             step = ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800D2994u)) * new B09EDef(def).ScrollSpeed);
-            t = (new B09Emitter(e).ScrollU + (step * Mem.F32(0x800C86E4u)));
+            t = (new B09Emitter(e).ScrollU + (step * 1.536f));
             new B09Emitter(e).ScrollU_Set(t);
-            if ((Mem.F32(0x800C86E8u) < t))
+            if ((20480f < t))
             {
-                new B09Emitter(e).ScrollU_Set((t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).ScrollU_Set((t - 20480f));
             }
-            t = (new B09Emitter(e).ScrollV + (step * Mem.F32(0x800C86ECu)));
+            t = (new B09Emitter(e).ScrollV + (step * 3.072f));
             new B09Emitter(e).ScrollV_Set(t);
-            if ((Mem.F32(0x800C86E8u) < t))
+            if ((20480f < t))
             {
-                new B09Emitter(e).ScrollV_Set((t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).ScrollV_Set((t - 20480f));
             }
             x = (new B09EDef(def).BaseHeight + new B09Emitter(e).HeightOffset);
             if (((flag != 0) && (Mem.S32((ctx + (uint)36)) == 0)))

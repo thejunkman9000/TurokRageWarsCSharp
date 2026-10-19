@@ -1965,22 +1965,22 @@ public static partial class Anim
                 }
                 new Vec3f((_fp + 144u)).x_Set((float)(0));
                 new Vec3f((_fp + 144u)).z_Set((float)(0));
-                new Vec3f((_fp + 144u)).y_Set(Mem.F32(0x800C8A74u));
+                new Vec3f((_fp + 144u)).y_Set(1f);
                 k = (flags & (uint)(195));
                 if ((k == (uint)(2)))
                 {
-                    new Vec3f((_fp + 144u)).z_Set(Mem.F32(0x800C8A74u));
+                    new Vec3f((_fp + 144u)).z_Set(1f);
                     new Vec3f((_fp + 144u)).x_Set((float)(0));
-                    fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A78u));
+                    fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - 0.5f);
                     new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
                 }
                 else
                 {
                     if ((k == (uint)(130)))
                     {
-                        new Vec3f((_fp + 144u)).x_Set(Mem.F32(0x800C8A74u));
+                        new Vec3f((_fp + 144u)).x_Set(1f);
                         new Vec3f((_fp + 144u)).z_Set((float)(0));
-                        fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A7Cu));
+                        fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - 0.5f);
                         fs0f = (float)((float)(fs0f) * 2.0f);
                         new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
                     }
@@ -1988,7 +1988,7 @@ public static partial class Anim
                     {
                         if ((k == (uint)(64)))
                         {
-                            fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(30)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A80u));
+                            fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(30)) % (uint)(120)) * 4))) - 0.5f);
                             fs0f = (float)((float)(fs0f) * 2.0f);
                             new Vec3f((_fp + 144u)).x_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
                             new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(42)) % (uint)(120)) * 4))));
@@ -1998,8 +1998,8 @@ public static partial class Anim
                         {
                             if ((k == (uint)(1)))
                             {
-                                fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(70)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A84u));
-                                fs0f = (fs0f * Mem.F32(0x800C8A88u));
+                                fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(70)) % (uint)(120)) * 4))) - 0.5f);
+                                fs0f = (fs0f * 0.7f);
                             }
                             else
                             {
@@ -2013,7 +2013,7 @@ public static partial class Anim
                 new Vec3f((_fp + 128u)).y_Set(new B10R(obj).v30.y);
                 new Vec3f((_fp + 128u)).z_Set(new B10R(obj).v30.z);
                 MathUtil.MtxCopy((_fp + 64u), obj);
-                fs0 = Mem.F32(0x800C8A8Cu);
+                fs0 = (-1f);
                 Vec.Scale((_fp + 128u), (_fp + 128u), fs0);
                 MathUtil.MtxTranslate((_fp + 64u), Cpu.U2F(Mem.U32((_fp + 128u) + 0u)), Cpu.U2F(Mem.U32((_fp + 128u) + 4u)), Cpu.U2F(Mem.U32((_fp + 128u) + 8u)));
                 MathUtil.MtxMakeRotateAxis(_fp, fs0f, new Vec3f((_fp + 144u)).x, new Vec3f((_fp + 144u)).y, new Vec3f((_fp + 144u)).z);
@@ -2205,10 +2205,10 @@ public static partial class Anim
                     new Vec3f(_fp).y_Set(Mem.F32((m + (uint)(13 * 4))));
                     new Vec3f(_fp).z_Set(Mem.F32((m + (uint)(14 * 4))));
                     Mem.Copy((_fp + 16u), new B11P(p).v18.P, 12);
-                    k = (Mem.F32((0x800D06C0u + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * Mem.F32(0x800C8C58u));
-                    f = Mem.F32(0x800C8C5Cu);
+                    k = (Mem.F32((0x800D06C0u + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * 0.5f);
+                    f = 0.3f;
                     k = (k * f);
-                    f = Mem.F32(0x800C8C60u);
+                    f = (-2f);
                     if ((n != 5))
                     {
                         f = (float)(n);
@@ -2219,7 +2219,7 @@ public static partial class Anim
                     }
                     while ((0 != 0));
                     MathUtil.MtxCopy((_fp + 96u), m);
-                    k2 = Mem.F32(0x800C8C64u);
+                    k2 = (-1f);
                     Vec.Scale(_fp, _fp, k2);
                     MathUtil.MtxTranslate((_fp + 96u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
                     MathUtil.MtxMakeRotateAxis((_fp + 32u), k, new Vec3f((_fp + 16u)).x, new Vec3f((_fp + 16u)).y, new Vec3f((_fp + 16u)).z);
@@ -2279,10 +2279,10 @@ public static partial class Anim
             if ((key == (-1)))
             {
                 r = (new B11Trk(s).vals_ + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * 3.051851e-05f));
             }
             else
             {
@@ -2310,10 +2310,10 @@ public static partial class Anim
             if ((key == (-1)))
             {
                 r = (new B11Trk(s).vals_ + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * 3.051851e-05f));
             }
             else
             {
@@ -3279,10 +3279,10 @@ public static partial class Anim
             if (((int)(new B14Key((new B14Anim2(a).keys_ + (uint)(idx * 4))).b) == (-1)))
             {
                 v = (new B14Anim2(a).vals_ + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B14Val20(v).q[(int)(0)])) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B14Val20(v).q[(int)(1)])) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B14Val20(v).q[(int)(2)])) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B14Val20(v).q[(int)(3)])) * Mem.F32(0x800C925Cu)));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B14Val20(v).q[(int)(0)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B14Val20(v).q[(int)(1)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B14Val20(v).q[(int)(2)])) * 3.051851e-05f));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B14Val20(v).q[(int)(3)])) * 3.051851e-05f));
             }
             else
             {
@@ -4509,7 +4509,7 @@ public static partial class Anim
             {
                 last = j;
             }
-            return MathUtil.LerpAngle((t - (float)(i)), ((float)((int)(Mem.S16((tbl + (uint)(i * 2))))) * Mem.F32(0x800C9348u)), ((float)((int)(Mem.S16((tbl + (uint)(last * 2))))) * Mem.F32(0x800C9348u)));
+            return MathUtil.LerpAngle((t - (float)(i)), ((float)((int)(Mem.S16((tbl + (uint)(i * 2))))) * 9.587673e-05f), ((float)((int)(Mem.S16((tbl + (uint)(last * 2))))) * 9.587673e-05f));
         }
     }
 

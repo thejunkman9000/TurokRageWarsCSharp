@@ -71,7 +71,7 @@ public static partial class Frustum
             float d2 = (((new B21Plane(pl).x * new Vec3f(b).x) + (new B21Plane(pl).y * new Vec3f(b).y)) + (new B21Plane(pl).z * new Vec3f(b).z));
             if ((d2 == d1))
             {
-                return Mem.F32(0x800CA6A0u);
+                return 1f;
             }
             return ((new B21Plane(pl).w - d1) / (d2 - d1));
         }

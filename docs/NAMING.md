@@ -77,6 +77,17 @@ members (`padNN` byte arrays) are never renamed. Code then reads `new Actor(othe
 `tools/rename/structs.py` lists every used view type with its layout and use count (`struct_types.tsv`); `tools/rename/field_evidence.py OUT.md
 Type1,Type2` collects, per offset, the alias members there and the functions and lines that access them, for naming.
 
+## Float constants: `tools/names/rodata_floats.tsv`
+
+The C code loads most float constants from the ROM's literal pools (`Mem.F32(0x800C793Cu)`). `tools/rename/consts.py` (run by `apply_names.py`)
+replaces each read of a listed address with its value (`0.833f`): the shortest decimal that rounds back to the same bits, so the arithmetic is
+unchanged (constant folding of two float literals is safe too: a float `+ - * /` rounded through double gives the float result). The list
+(`address, width, bits, literal`) is made once from the ROM, `python tools/rename/consts.py --scan baserom.us.v11.z64`: addresses in the
+constant region 0x800C6AB0..0x800E2830 that the code only ever reads as a float (every literal mention is a `Mem.F32` / `Mem.F64` read and no
+recompiled MIPS store resolves to it). The region is not purely constant: the frame-time scales at 0x800D298C..0x800D2994 (set by
+`State.PlayInit`) and the audio / scheduler words around 0x800D0920 and 0x800D2978 are variables, and stay reads. A write watch over all listed
+addresses (`TRW_WATCH`) during a 6000-tick oracle run saw no write besides the boot load. A later scan keeps the listed rows and adds new ones.
+
 ## Naming in bulk
 
 * `python tools/rename/graph.py` writes `tools/names/graph.tsv` (per function: callers, callees, the guest data addresses its code uses, its height in

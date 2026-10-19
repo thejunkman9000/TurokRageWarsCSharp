@@ -50,12 +50,12 @@ public static partial class Turret
                 }
                 else
                 {
-                    Mem.Set(Gv.Quat_SinScratch, sinf((new M1State(state).HomeYaw * Mem.F32(0x800C6B04u))));
+                    Mem.Set(Gv.Quat_SinScratch, sinf((new M1State(state).HomeYaw * 0.5f)));
                 }
                 new M1Quat(_fp).x_Set(0.0f);
                 new M1Quat(_fp).z_Set(0.0f);
                 new M1Quat(_fp).y_Set(Mem.F32(Gv.Quat_SinScratch));
-                new M1Quat(_fp).w_Set(cosf((new M1State(state).HomeYaw * Mem.F32(0x800C6B08u))));
+                new M1Quat(_fp).w_Set(cosf((new M1State(state).HomeYaw * 0.5f)));
                 Quat.Multiply((_fp + 16u), _fp, new M1Actor(actor).Rotation.P);
                 Quat.ToMatrix((_fp + 16u), (_fp + 32u));
                 MathUtil.MtxScaleRows((_fp + 32u), new M1Actor(actor).Scale, new M1Actor(actor).ScaleY, new M1Actor(actor).ScaleZ);
@@ -105,7 +105,7 @@ public static partial class Turret
                     new M1State(state).ClassVar_128.f_Set(d);
                     if (((int)(new M1State(state).SubMode_37) == 0))
                     {
-                        hi = Mem.F32(0x800C6B0Cu);
+                        hi = 1f;
                         if ((hi < t))
                         {
                             new M1State(state).ClassVar_128.f_Set(0.0f);
@@ -156,7 +156,7 @@ public static partial class Turret
                 case 0:
                 default:
                     L_block24: ;
-                    hi = Mem.F32(0x800C6B10u);
+                    hi = 1f;
                     break;
                 }
                 if (((hi < t) || (C.Seq((object?)((hi = 0.0f)), ((t < 0.0f) ? 1 : 0)) != 0)))
@@ -199,7 +199,7 @@ public static partial class Turret
                 info = new M1Actor(actor).DefPtr.Params.P;
                 if ((p != 0u))
                 {
-                    k = Mem.F32(0x800C6B14u);
+                    k = 0.5f;
                     do
                     {
                         d = Vec.DistanceSq(new M1Actor(actor).Position.P, new M1Actor(p).Position.P);

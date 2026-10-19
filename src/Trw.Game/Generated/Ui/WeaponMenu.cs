@@ -310,7 +310,7 @@ public static partial class TeamMenu
             goto _f4;
             _f2: ;
             L_blk9: ;
-            Mem.Set((p + (uint)1648), Mem.F32(0x800C7388u));
+            Mem.Set((p + (uint)1648), 2f);
             new B04Act(p).IsStickCaptured_Set(1);
             Mem.Set((p + (uint)4536), 1);
             v = TeamMenu.StickDirection4(p);
@@ -340,9 +340,9 @@ public static partial class TeamMenu
             k2 = new B04Mn3(o).OpenState;
             switch (k2) { case 1: goto _f13; case 2: goto _f14; case 3: goto _f15; default: goto _f12; }
             _f13: ;
-            new B04Mn3(o).OpenScale_Set((new B04Mn3(o).OpenScale + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C738Cu))));
-            if (!((Mem.F32(0x800C7390u) <= new B04Mn3(o).OpenScale))) goto _f16;
-            new B04Mn3(o).OpenScale_Set(Mem.F32(0x800C7390u));
+            new B04Mn3(o).OpenScale_Set((new B04Mn3(o).OpenScale + (Mem.F32(Gv.FrameTime) * 0.25f)));
+            if (!((1f <= new B04Mn3(o).OpenScale))) goto _f16;
+            new B04Mn3(o).OpenScale_Set(1f);
             new B04Mn3(o).OpenState_Set(2);
             _f16: ;
             goto _f12;
@@ -372,7 +372,7 @@ public static partial class TeamMenu
             goto _f18;
             _f18: ;
             _f15: ;
-            t = (new B04Mn3(o).OpenScale - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7394u)));
+            t = (new B04Mn3(o).OpenScale - (Mem.F32(Gv.FrameTime) * 0.25f));
             new B04Mn3(o).OpenScale_Set(t);
             if (!((t <= 0.0f))) goto _f23;
             new B04Mn3(o).OpenScale_Set(0.0f);
@@ -382,7 +382,7 @@ public static partial class TeamMenu
             goto _f12;
             _f12: ;
             if (!((new B04Mn3(o).OpenState != 0))) goto _f24;
-            new B04Mn3(o).SpinAngle_Set((new B04Mn3(o).SpinAngle + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7398u))));
+            new B04Mn3(o).SpinAngle_Set((new B04Mn3(o).SpinAngle + (Mem.F32(Gv.FrameTime) * 0.52359885f)));
             _f24: ;
             _f0: ;
         }
@@ -395,8 +395,8 @@ public static partial class TeamMenu
         {
             if (Dbg.On) Dbg.Enter("func_00218E98", (uint)o);
             int i = 0;
-            float a = Mem.F32(0x800C739Cu);
-            float b = Mem.F32(0x800CE3CCu);
+            float a = 1.5707965f;
+            float b = 0.25f;
             new B04Set_v2(o).w0_Set(0);
             new B04Set_v2(o).w4_Set(0);
             new B04Set_v2(o).w8_Set(0);
@@ -547,8 +547,8 @@ public static partial class TeamMenu
         {
             if (Dbg.On) Dbg.Enter("func_00219124", (uint)o);
             int i = 0;
-            float a = Mem.F32(0x800C73B4u);
-            float b = Mem.F32(0x800CE3CCu);
+            float a = 1.5707965f;
+            float b = 0.25f;
             Mem.Set((o + (uint)108), (-1));
             for (i = 0; (i < 4); ++i)
             {
@@ -620,7 +620,7 @@ public static partial class TeamMenu
             goto _f2;
             _f0: ;
             L_blk5: ;
-            Mem.Set((p + (uint)1648), Mem.F32(0x800C73B8u));
+            Mem.Set((p + (uint)1648), 2f);
             Mem.Set((p + (uint)4532), 1);
             Mem.Set((p + (uint)4536), 1);
             v = TeamMenu.StickDirection4(p);
@@ -1407,16 +1407,16 @@ public static partial class WeaponMenu
             _f8: ;
             switch (new B04Menu(o).OpenState) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
             _f11: ;
-            new B04Menu(o).OpenScale_Set((new B04Menu(o).OpenScale + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7324u))));
+            new B04Menu(o).OpenScale_Set((new B04Menu(o).OpenScale + (Mem.F32(Gv.FrameTime) * 1.25f)));
             if (!((new B04Menu(o).OpenDirection_388 != (-1)))) goto _f14;
-            new B04Menu(o).HoldTimer_Set(Mem.F32(0x800C7328u));
+            new B04Menu(o).HoldTimer_Set(16f);
             goto _f15;
             _f14: ;
             new B04Menu(o).HoldTimer_Set((float)(0));
             _f15: ;
-            if (!((new B04Menu(o).OpenScale >= Mem.F32(0x800C732Cu)))) goto _f16;
+            if (!((new B04Menu(o).OpenScale >= 1f))) goto _f16;
             new B04Menu(o).OpenState_Set(2);
-            new B04Menu(o).OpenScale_Set(Mem.F32(0x800C732Cu));
+            new B04Menu(o).OpenScale_Set(1f);
             if (!((new B04Menu(o).OpenDirection_388 != (-1)))) goto _f17;
             new B04Menu(o).OpenDirection_388_Set(8);
             _f17: ;
@@ -1428,7 +1428,7 @@ public static partial class WeaponMenu
             new B04Act(p).IsStickCaptured_Set(0);
             new B04Menu(o).OpenState_Set(3);
             _f13: ;
-            t = (new B04Menu(o).OpenScale - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7330u)));
+            t = (new B04Menu(o).OpenScale - (Mem.F32(Gv.FrameTime) * 0.25f));
             new B04Menu(o).OpenScale_Set(t);
             if (!((t <= 0.0f))) goto _f19;
             new B04Menu(o).OpenScale_Set(0.0f);
@@ -1438,7 +1438,7 @@ public static partial class WeaponMenu
             goto _f10;
             _f10: ;
             if (!((new B04Menu(o).OpenState != 0))) goto _f20;
-            new B04Menu(o).SpinAngle_Set((new B04Menu(o).SpinAngle + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7334u))));
+            new B04Menu(o).SpinAngle_Set((new B04Menu(o).SpinAngle + (Mem.F32(Gv.FrameTime) * 0.52359885f)));
             goto _f21;
             _f20: ;
             new B04Act(p).IsStickCaptured_Set(0);
@@ -1527,8 +1527,8 @@ public static partial class WeaponMenu
                         new B04Roster(o).ent[(int)(i)].on_Set(0);
                     }
                     new B04Roster(o).ent[(int)(i)].z2C_Set(0);
-                    new B04Roster(o).ent[(int)(i)].f30_Set(Mem.F32(0x800CE38Cu));
-                    new B04Roster(o).ent[(int)(i)].f28_Set(((float)(i) * Mem.F32(0x800C7338u)));
+                    new B04Roster(o).ent[(int)(i)].f30_Set(0.25f);
+                    new B04Roster(o).ent[(int)(i)].f28_Set(((float)(i) * 0.78539824f));
                 }
             }
             new B04Roster(o).w380_Set(1);
@@ -1542,8 +1542,8 @@ public static partial class WeaponMenu
         {
             if (Dbg.On) Dbg.Enter("func_0021836C", (uint)o);
             int i = 0;
-            float a = Mem.F32(0x800C733Cu);
-            float b = Mem.F32(0x800CE38Cu);
+            float a = 0.17453295f;
+            float b = 0.25f;
             new B04Set3(o).w0_Set(0);
             new B04Set3(o).w4_Set(0);
             new B04Set3(o).w8_Set(0);

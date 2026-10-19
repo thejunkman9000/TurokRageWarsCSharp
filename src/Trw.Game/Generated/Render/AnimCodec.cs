@@ -159,7 +159,7 @@ public static partial class AnimCodec
                                     for (d = (-blur); (d <= blur); ++d)
                                     {
                                         int idx = (((j + d) + D) % D);
-                                        cnt = (float)((float)(cnt) + Mem.F32(0x800C91F8u));
+                                        cnt = (float)((float)(cnt) + 1f);
                                         sum = (float)((float)(sum) + Mem.F32((t0 + (uint)(((idx * 4) + k) * 4))));
                                     }
                                     Mem.Set((t0 + (uint)(((j * 4) + k) * 4)), (sum / cnt));
@@ -602,15 +602,15 @@ public static partial class AnimCodec
             uint b2 = Chunk.Get(b, 2);
             Mem.Set(0x8010EC78u, 1);
             Mem.Set(0x8010EC74u, 0);
-            Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9288u));
-            Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C928Cu));
+            Mem.Set(Gv.AnimCodec_QuantRangeMin, (-2000f));
+            Mem.Set(Gv.AnimCodec_QuantRangeMax, 2000f);
             Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
             if ((AnimCodec.DecodeTracks((int)(a1), b1, new B14Hdr(h).PositionTrackCount, 3, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0))
             {
                 Mem.Set(0x8010EC78u, 0);
                 Mem.Set(0x8010EC74u, 1);
-                Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9290u));
-                Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C9294u));
+                Mem.Set(Gv.AnimCodec_QuantRangeMin, (-1f));
+                Mem.Set(Gv.AnimCodec_QuantRangeMax, 1f);
                 Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
                 r = ((AnimCodec.DecodeTracks((int)(a2), b2, new B14Hdr(h).RotationTrackCount, 4, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0) ? 1 : 0);
             }
@@ -689,12 +689,12 @@ public static partial class AnimCodec
         {
             if (Dbg.On) Dbg.Enter("func_0026156C");
             int n = 0;
-            float t = ((Mem.F32(0x800C929Cu) / (2.0f * x)) + Mem.F32(0x800C929Cu));
-            if ((Mem.F32(0x800C9298u) <= x))
+            float t = ((1f / (2.0f * x)) + 1f);
+            if ((0.5f <= x))
             {
                 return 0;
             }
-            if ((Mem.F32(0x800C929Cu) < t))
+            if ((1f < t))
             {
                 do
                 {

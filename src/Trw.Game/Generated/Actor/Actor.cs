@@ -522,14 +522,14 @@ public static partial class Actor
                 {
                     if (((m1 & new B04Ent(e).mask) != 0u))
                     {
-                        Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(Mem.F32(0x800C72C8u), Mem.F32(0x800C72CCu)))));
+                        Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(450f, 600f))));
                     }
                 }
                 for (e = 0x800CE348u; (new B04Ent(e).mask != (uint)(0)); e += 8u)
                 {
                     if (((m2 & new B04Ent(e).mask) != 0u))
                     {
-                        Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(Mem.F32(0x800C72D0u), Mem.F32(0x800C72D4u)))));
+                        Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(450f, 600f))));
                     }
                 }
             }
@@ -582,7 +582,7 @@ public static partial class Actor
             {
                 if (((mask & new B04Ent(e).mask) != 0u))
                 {
-                    Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(Mem.F32(0x800C72DCu), Mem.F32(0x800C72E0u)))));
+                    Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(450f, 600f))));
                 }
             }
         }
@@ -597,7 +597,7 @@ public static partial class Actor
             float v = 0f;
             if (((int)(new B05P7(p).StateId) < 2))
             {
-                new B05P7(p).TimeScale_Set(Mem.F32(0x800C7938u));
+                new B05P7(p).TimeScale_Set(1f);
                 return;
             }
             v = new B05Src7(s).def.unk1C;
@@ -612,10 +612,10 @@ public static partial class Actor
                     new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
                     goto case 0;
                 case 0:
-                    new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C793Cu)));
+                    new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * 0.833f));
                     break;
                 case 1:
-                    new B05P7(p).TimeScale_Set((v * Mem.F32(0x800C7940u)));
+                    new B05P7(p).TimeScale_Set((v * 0.917f));
                     break;
                 }
                 if ((new B05P7(p).IsComputer != 0))
@@ -628,10 +628,10 @@ public static partial class Actor
                         new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
                         goto case 0;
                     case 0:
-                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C7944u)));
+                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * 0.833f));
                         break;
                     case 1:
-                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C7948u)));
+                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * 0.917f));
                         break;
                     }
                 }
@@ -1321,7 +1321,7 @@ public static partial class Actor
             new B10Init(o).FloorY_Set(0);
             new B10Init(o).f44_Set(0);
             new B10Init(o).f4C_Set(0);
-            new B10Init(o).f48_Set(Mem.F32(0x800C8914u));
+            new B10Init(o).f48_Set(1f);
         }
     }
 
@@ -1421,7 +1421,7 @@ public static partial class Actor
                 float k = 0f;
                 int r = 0;
                 Mem.Copy(_fp, o, 80);
-                k = Mem.F32(0x800C8918u);
+                k = 0.8f;
                 new B10Obj(o).PositionY_Set((float)((float)(new B10Obj(o).PositionY) + (Actor.GetHeight(o) * k)));
                 Mem.Copy((_fp + 80u), (other + 8u), 12);
                 new Vec3f((_fp + 80u)).y_Set((float)((float)(new Vec3f((_fp + 80u)).y) + (Actor.GetHeight(other) * k)));
@@ -2081,7 +2081,7 @@ public static partial class Actor
                                     fv1 = (float)(new B10Obj(o).BlendTangentOut_139);
                                     ft0 = (float)(new B10Obj(o).BlendTangentIn_138);
                                     t = (fv0 / (fv1f + Mem.F32(Gv.FrameTime)));
-                                    new B10Obj(o).BlendWeight_Set((((((((fv1 + Mem.F32(0x800C8A38u)) + ft0) * t) * t) * t) + ((((Mem.F32(0x800C8A3Cu) - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
+                                    new B10Obj(o).BlendWeight_Set((((((((fv1 + (-2f)) + ft0) * t) * t) * t) + ((((3f - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
                                     Anim.SampleTrack(new B10Obj(o).BlendClipSlot.P, (_fp + 16u), (_fp + 136u), o);
                                     Vec.Lerp((_fp + 32u), new B10Obj(o).BlendWeight, (_fp + 16u), _fp);
                                     fs0 = MathUtil.LerpAngle(new B10Obj(o).BlendWeight, Mem.F32((_fp + 136u)), Mem.F32((_fp + 132u)));
@@ -2142,7 +2142,7 @@ public static partial class Actor
                     pl = new B10Ow(ow).p5DC_;
                     if ((pl != 0u))
                     {
-                        k = Mem.F32(0x800C8A40u);
+                        k = 1.5707964f;
                         s = sinf(k);
                         Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
@@ -2153,7 +2153,7 @@ public static partial class Actor
                     }
                     else
                     {
-                        k = Mem.F32(0x800C8A44u);
+                        k = 1.5707964f;
                         Player.GetViewQuat(ow, (_fp + 80u));
                         s = sinf(k);
                         Mem.Set(Gv.Quat_SinScratch, s);
@@ -2168,30 +2168,30 @@ public static partial class Actor
                 {
                     if ((Mem.S32(new B10Obj(o).p18_) == 4))
                     {
-                        s = sinf((new B10Obj(o).Pitch_294 * Mem.F32(0x800C8A48u)));
+                        s = sinf((new B10Obj(o).Pitch_294 * 0.5f));
                         new B10Q4((_fp + 16u)).x_Set(s);
                         new B10Q4((_fp + 16u)).y_Set(0.0f);
                         new B10Q4((_fp + 16u)).z_Set(0.0f);
                         Mem.Set(Gv.Quat_SinScratch, s);
-                        new B10Q4((_fp + 16u)).w_Set(cosf((new B10Obj(o).Pitch_294 * Mem.F32(0x800C8A48u))));
-                        s = sinf(((new B10Obj(o).Yaw + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u)));
+                        new B10Q4((_fp + 16u)).w_Set(cosf((new B10Obj(o).Pitch_294 * 0.5f)));
+                        s = sinf(((new B10Obj(o).Yaw + 3.1415927f) * 0.5f));
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(Gv.Quat_SinScratch, s);
-                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).Yaw + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
+                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).Yaw + 3.1415927f) * 0.5f)));
                         Quat.Multiply((_fp + 48u), (_fp + 16u), (_fp + 32u));
                         Turret.GetBaseQuat((_fp + 64u), o, (o + 368u));
                         Quat.Multiply(_fp, (_fp + 48u), (_fp + 64u));
                     }
                     else
                     {
-                        s = sinf(((new B10Obj(o).Yaw + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u)));
+                        s = sinf(((new B10Obj(o).Yaw + 3.1415927f) * 0.5f));
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(Gv.Quat_SinScratch, s);
-                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).Yaw + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u))));
+                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).Yaw + 3.1415927f) * 0.5f)));
                         Quat.Multiply(_fp, (_fp + 32u), (o + 92u));
                     }
                 }
@@ -2225,14 +2225,14 @@ public static partial class Actor
                 new_var2 = angle;
                 new Vec3f((_fp + 32u)).x_Set((float)(0));
                 new Vec3f((_fp + 32u)).y_Set((float)(0));
-                new Vec3f((_fp + 32u)).z_Set(Mem.F32(0x800C8A58u));
+                new Vec3f((_fp + 32u)).z_Set(1f);
                 Actor.GetFacingQuat((_fp + 112u), self);
                 if ((new_var2 == 0.0f))
                 {
                     if ((outq != 0u))
                     {
                         new B10Q4(outq).x_Set(new B10Q4(outq).y_Set(new B10Q4(outq).z_Set((float)(0))));
-                        new B10Q4(outq).w_Set(Mem.F32(0x800C8A58u));
+                        new B10Q4(outq).w_Set(1f);
                     }
                     Mem.Copy(@out, (_fp + 112u), 16);
                     return @out;
@@ -2240,7 +2240,7 @@ public static partial class Actor
                 Quat.ToMatrix((_fp + 112u), (_fp + 160u));
                 MathUtil.MtxTransformPoint((_fp + 160u), (_fp + 32u), (_fp + 48u));
                 best = 0u;
-                thr = cosf((new_var2 * Mem.F32(0x800C8A5Cu)));
+                thr = cosf((new_var2 * 0.008726647f));
                 n = Mem.S32(0x80120CD8u);
                 for (i = 0; (i < n); ++i)
                 {
@@ -2259,7 +2259,7 @@ public static partial class Actor
                     }
                     Mem.Copy((_fp + 96u), (obj + 8u), 12);
                     new Vec3f((_fp + 96u)).y_Set((new Vec3f((_fp + 96u)).y + new B10Obj(obj).BottomOffset));
-                    new Vec3f((_fp + 96u)).y_Set((new Vec3f((_fp + 96u)).y + (Actor.GetHeight(obj) * Mem.F32(0x800C8A60u))));
+                    new Vec3f((_fp + 96u)).y_Set((new Vec3f((_fp + 96u)).y + (Actor.GetHeight(obj) * 0.5f)));
                     Vec.Sub((_fp + 16u), (_fp + 96u), _fp);
                     Vec.Normalize((_fp + 16u));
                     d = (((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 16u)).z));
@@ -2275,8 +2275,8 @@ public static partial class Actor
                     Vec.Cross((_fp + 64u), (_fp + 48u), (_fp + 80u));
                     Vec.Normalize((_fp + 64u));
                     t = MathUtil.Acosf(thr);
-                    t = (float)((float)(t) * sqrtf(sqrtf((Mem.F32(0x800C8A68u) - (t / (new_var2 * Mem.F32(0x800C8A64u)))))));
-                    t = (float)((float)(t) * Mem.F32(0x800C8A6Cu));
+                    t = (float)((float)(t) * sqrtf(sqrtf((1f - (t / (new_var2 * 0.008726647f))))));
+                    t = (float)((float)(t) * 0.5f);
                     s = sinf(t);
                     Mem.Set(Gv.Quat_SinScratch, s);
                     new B10Q4((_fp + 128u)).x_Set((new Vec3f((_fp + 64u)).x * s));
@@ -2295,7 +2295,7 @@ public static partial class Actor
                 if ((outq != 0u))
                 {
                     new B10Q4(outq).x_Set(new B10Q4(outq).y_Set(new B10Q4(outq).z_Set(0.0f)));
-                    new B10Q4(outq).w_Set(Mem.F32(0x800C8A70u));
+                    new B10Q4(outq).w_Set(1f);
                 }
                 Mem.Copy(@out, (_fp + 112u), 16);
                 return @out;
@@ -2552,12 +2552,12 @@ public static partial class Actor
                             if (((Mem.S32(Chunk.Get(Chunk.Get(n, 0), 0)) & 32768) != 0))
                             {
                                 Mem.Copy(_fp, new ObjView(a).Position.P, 12);
-                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * Mem.F32(0x800C8B3Cu))));
+                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * 0.5f)));
                                 Effects.SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new ObjView(a).Velocity.P, new ObjView(a).Rotation.P, _fp, 0, (-1), 0);
                                 r = Particle.GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
-                                    k = Mem.F32(0x800C8B40u);
+                                    k = 0.1f;
                                     new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
                                     new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
@@ -2598,12 +2598,12 @@ public static partial class Actor
                             if (((Mem.S32(Chunk.Get(Chunk.Get(n, 0), 0)) & 32768) != 0))
                             {
                                 Mem.Copy(_fp, new ObjView(a).Position.P, 12);
-                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * Mem.F32(0x800C8B44u))));
+                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * 0.5f)));
                                 Effects.SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new ObjView(a).Velocity.P, new ObjView(a).Rotation.P, _fp, 0, (-1), 0);
                                 r = Particle.GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
-                                    k = Mem.F32(0x800C8B48u);
+                                    k = 0.1f;
                                     new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
                                     new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
@@ -2644,12 +2644,12 @@ public static partial class Actor
                             if (((Mem.S32(Chunk.Get(Chunk.Get(n, 0), 0)) & 32768) != 0))
                             {
                                 Mem.Copy(_fp, new ObjView(a).Position.P, 12);
-                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * Mem.F32(0x800C8B4Cu))));
+                                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * 0.5f)));
                                 Effects.SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new ObjView(a).Velocity.P, new ObjView(a).Rotation.P, _fp, 0, (-1), 0);
                                 r = Particle.GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
-                                    k = Mem.F32(0x800C8B50u);
+                                    k = 0.1f;
                                     new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
                                     new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
@@ -2858,7 +2858,7 @@ public static partial class Actor
                 }
                 t = Chunk.Get((uint)(Mem.S32(h)), 5);
                 n = new M03Tbl(t).count;
-                bestd = Mem.F32(0x800C8BD0u);
+                bestd = 3.4028235e+38f;
                 best = 0u;
                 for (i = 0; (i < n); ++i)
                 {
@@ -2887,7 +2887,7 @@ public static partial class Actor
                     Mem.Copy(@out, best, 112);
                     if ((((new ObjView(a).Flags & (uint)(3145728)) != 0u) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0)))
                     {
-                        Mem.Set((@out + (uint)104), Mem.F32(0x800C8BD4u));
+                        Mem.Set((@out + (uint)104), 1f);
                     }
                 }
                 ResourcePool.Unref(0, h);
@@ -2970,12 +2970,12 @@ public static partial class Actor
                 {
                     Actor.GetGroundTiltQuat((_fp + 32u), a);
                 }
-                s = sinf((new ObjView(a).Yaw.f * Mem.F32(0x800C8C40u)));
+                s = sinf((new ObjView(a).Yaw.f * 0.5f));
                 new Quat4(_fp).x_Set((float)(0));
                 new Quat4(_fp).y_Set(s);
                 new Quat4(_fp).z_Set((float)(0));
                 Mem.Set(Gv.Quat_SinScratch, s);
-                new Quat4(_fp).w_Set(cosf((new ObjView(a).Yaw.f * Mem.F32(0x800C8C40u))));
+                new Quat4(_fp).w_Set(cosf((new ObjView(a).Yaw.f * 0.5f)));
                 Quat.Multiply((_fp + 16u), _fp, (_fp + 32u));
                 Quat.ToMatrix((_fp + 16u), new ObjView(a).TransformMtx.P);
                 MathUtil.MtxScaleRows(new ObjView(a).TransformMtx.P, new ObjView(a).Scale, new ObjView(a).ScaleY, new ObjView(a).ScaleZ);
@@ -3292,7 +3292,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BE1C");
-            return Mem.F32(0x800C8C44u);
+            return 1f;
         }
     }
 
@@ -3346,7 +3346,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BECC", (uint)a);
-            return sqrtf(((((new ObjView(a).Scale * new ObjView(a).Scale) + (new ObjView(a).ScaleY * new ObjView(a).ScaleY)) + (new ObjView(a).ScaleZ * new ObjView(a).ScaleZ)) * Mem.F32(0x800C8C48u)));
+            return sqrtf(((((new ObjView(a).Scale * new ObjView(a).Scale) + (new ObjView(a).ScaleY * new ObjView(a).ScaleY)) + (new ObjView(a).ScaleZ * new ObjView(a).ScaleZ)) * 0.33333334f));
         }
     }
 
@@ -3356,7 +3356,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BF14", (uint)a);
-            float r = Mem.F32(0x800C8C4Cu);
+            float r = 1f;
             uint h = 0u;
             if (((new ObjView(a).Flags & (uint)(262144)) != 0u))
             {
@@ -3470,12 +3470,12 @@ public static partial class Actor
                         if (((Mem.S32(Chunk.Get(Chunk.Get(n, 0), 0)) & 32768) != 0))
                         {
                             Mem.Copy(_fp, new ObjView(a).Position.P, 12);
-                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * Mem.F32(0x800C8C50u))));
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * 0.5f)));
                             Effects.SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new ObjView(a).Velocity.P, new ObjView(a).Rotation.P, _fp, 0, (-1), 0);
                             r = Particle.GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                             if ((r != 0u))
                             {
-                                k = Mem.F32(0x800C8C54u);
+                                k = 0.1f;
                                 new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
                                 new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                             }
@@ -3651,7 +3651,7 @@ public static partial class Actor
             case 8:
                 d = new ObjView(a).DefPtr;
                 r = (float)((new ObjDef(d).Params & (uint)(1)));
-                r = Mem.F32(0x800C8D24u);
+                r = 122.88f;
                 if (!((new ObjDef(d).Params & (uint)(1)) != 0u))
                 {
                     r = new ObjDef(d).ShapeHeight_1C;
@@ -3660,7 +3660,7 @@ public static partial class Actor
             case 7:
                 return new ObjDef(new ObjView(a).DefPtr).ShapeParam_20;
             case 6:
-                return Mem.F32(0x800C8D28u);
+                return 102.399994f;
             case 0:
             case 5:
             case 10:
@@ -3689,7 +3689,7 @@ public static partial class Actor
             case 11:
                 if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && (new ObjView(a).OwnerPtr.unk80C_ != 0u)))
                 {
-                    return Mem.F32(0x800C8D6Cu);
+                    return 122.88f;
                 }
                 return new ObjDef(new ObjView(a).DefPtr).CharacterRadius;
             case 0:
@@ -3717,7 +3717,7 @@ public static partial class Actor
                     {
                         hi = lo;
                     }
-                    return (hi * Mem.F32(0x800C8D70u));
+                    return (hi * 1.42f);
                 }
                 return new ObjDef(d).ShapeHeight_1C;
             case 7:
@@ -3745,7 +3745,7 @@ public static partial class Actor
                 case 0:
                 default:
                     new Vec3f(_fp).x_Set((float)(0));
-                    new Vec3f(_fp).y_Set(Mem.F32(0x800C8D88u));
+                    new Vec3f(_fp).y_Set(1f);
                     new Vec3f(_fp).z_Set((float)(0));
                     break;
                 case 1:
@@ -3755,11 +3755,11 @@ public static partial class Actor
                     break;
                 }
                 new Vec3f((_fp + 16u)).x_Set((float)(0));
-                new Vec3f((_fp + 16u)).y_Set(Mem.F32(0x800C8D8Cu));
+                new Vec3f((_fp + 16u)).y_Set(1f);
                 new Vec3f((_fp + 16u)).z_Set((float)(0));
                 Vec.Cross((_fp + 32u), (_fp + 16u), _fp);
                 Vec.Normalize((_fp + 32u));
-                ang = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800C8D90u));
+                ang = (MathUtil.Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * 0.5f);
                 s = sinf(ang);
                 new Quat4((_fp + 48u)).x_Set((new Quat4((_fp + 32u)).x * s));
                 new Quat4((_fp + 48u)).y_Set((new Quat4((_fp + 32u)).y * s));
@@ -4357,7 +4357,7 @@ public static partial class Actor
             case 2:
                 if (((int)(new ObjDef(new ObjView(a).DefPtr).BaseHealth.h) == 0))
                 {
-                    return Mem.F32(0x800C8E5Cu);
+                    return 256f;
                 }
                 return new ObjDef(new ObjView(a).DefPtr).ShapeHeight_1C;
             case 5:
@@ -4365,11 +4365,11 @@ public static partial class Actor
             case 8:
                 if (((new ObjDef(new ObjView(a).DefPtr).Params & (uint)(1)) != 0u))
                 {
-                    return Mem.F32(0x800C8E60u);
+                    return 81.92f;
                 }
                 return new ObjDef(new ObjView(a).DefPtr).BaseHealth.f;
             default:
-                return Mem.F32(0x800C8E64u);
+                return 61.44f;
             }
             return 0f;
         }
@@ -5811,8 +5811,8 @@ public static partial class ActorState
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002138F0", (uint)s, (uint)def, (uint)pos_in);
                 int t1 = 0;
-                float a = Mem.F32(0x800C71F0u);
-                float b = Mem.F32(0x800C71F4u);
+                float a = 100f;
+                float b = 128f;
                 int t0 = 0;
                 int a3 = 0;
                 float c = 0f;
@@ -5848,17 +5848,17 @@ public static partial class ActorState
                         switch (Mem.S32(Gv.Settings_DifficultyMask))
                         {
                         case 8:
-                            f = (c * Mem.F32(0x800C7208u));
+                            f = (c * 0.5f);
                             b = 0.0f;
-                            if ((f < Mem.F32(0x800C720Cu)))
+                            if ((f < 1f))
                             {
-                                f = Mem.F32(0x800C720Cu);
+                                f = 1f;
                             }
                             c = f;
                             break;
                         case 32:
-                            b = Mem.F32(0x800C7214u);
-                            c = (c * Mem.F32(0x800C7210u));
+                            b = 255f;
+                            c = (c * 1.25f);
                             break;
                         }
                     }
@@ -6225,12 +6225,12 @@ public static partial class Emitter
                 s = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                 if ((s < new ChanObj(o).ch[(int)(0)].d))
                 {
-                    s = Emitter.Falloff_00265734((Mem.F32(0x800C8180u) - (s / new ChanObj(o).ch[(int)(0)].d)));
+                    s = Emitter.Falloff_00265734((1f - (s / new ChanObj(o).ch[(int)(0)].d)));
                     c = (new ChanObj(o).ch.P + (uint)(1 * 20));
                     switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((new Chan(c).d * Mem.F32(0x800C8184u))) * new Chan(c).v.z);
+                        w = (sinf((new Chan(c).d * 0.017453294f)) * new Chan(c).v.z);
                         break;
                     case 0:
                         w = RandomGen.Symmetric((-new Chan(c).v.z), new Chan(c).v.z);
@@ -6244,7 +6244,7 @@ public static partial class Emitter
                     switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((new Chan(c).d * Mem.F32(0x800C8188u))) * new Chan(c).v.z);
+                        w = (sinf((new Chan(c).d * 0.017453294f)) * new Chan(c).v.z);
                         break;
                     case 0:
                         w = RandomGen.Symmetric((-new Chan(c).v.z), new Chan(c).v.z);
@@ -6258,7 +6258,7 @@ public static partial class Emitter
                     switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((new Chan(c).d * Mem.F32(0x800C818Cu))) * new Chan(c).v.z);
+                        w = (sinf((new Chan(c).d * 0.017453294f)) * new Chan(c).v.z);
                         break;
                     case 0:
                         w = RandomGen.Symmetric((-new Chan(c).v.z), new Chan(c).v.z);
@@ -6286,12 +6286,12 @@ public static partial class Emitter
             }
             else
             {
-                if ((x > Mem.F32(0x800C9488u)))
+                if ((x > 1f))
                 {
-                    x = Mem.F32(0x800C9488u);
+                    x = 1f;
                 }
             }
-            return ((Mem.F32(0x800C9490u) - cosf((x * Mem.F32(0x800C948Cu)))) * Mem.F32(0x800C9494u));
+            return ((1f - cosf((x * 3.141593f))) * 0.5f);
         }
     }
 }
@@ -6406,11 +6406,11 @@ public static partial class ObjB4
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022C66C", (uint)p);
-            float a = Mem.F32(0x800C7E38u);
-            float b = Mem.F32(0x800C7E3Cu);
-            float c = Mem.F32(0x800C7E40u);
-            float d = Mem.F32(0x800C7E44u);
-            float e = Mem.F32(0x800C7E48u);
+            float a = 437.5f;
+            float b = (-675f);
+            float c = 0.25f;
+            float d = 0.1875f;
+            float e = 1.5707965f;
             Mem.Set((p + (uint)180), 0);
             Mem.Set((p + (uint)8), 0);
             Mem.Set((p + (uint)184), 0);

@@ -2025,7 +2025,7 @@ public static partial class Gfx
                         Gfx.PushMatrixF(mp);
                         new O02V3(_fp).x_Set((float)(0));
                         new O02V3(_fp).y_Set((float)(0));
-                        new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));
+                        new O02V3(_fp).z_Set((-100f));
                         MathUtil.MtxTransformPoint(0x80145228u, _fp, (_fp + 16u));
                         n = 4;
                         v = (uint)(FrameAlloc.AllocHigh(64));

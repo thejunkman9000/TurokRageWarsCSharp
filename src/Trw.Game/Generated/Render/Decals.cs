@@ -134,7 +134,7 @@ public static partial class Decal
                 new Dead28(_fp).b_Set(0);
                 new Dead28(_fp).c_Set(0);
                 new Dead28(_fp).e_Set(0);
-                new Dead28(_fp).f_Set(Mem.F32(0x800CB020u));
+                new Dead28(_fp).f_Set(1f);
                 new Dead28(_fp).g_Set(0);
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -251,7 +251,7 @@ public static partial class Decal
                 Vec.Scale((_fp + 16u), (_fp + 16u), 2.0480001f);
                 Vec.Add(_fp, _fp, (_fp + 16u));
                 MathUtil.MtxTranslate((_fp + 32u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
-                MathUtil.MtxScaleRows((_fp + 32u), Mem.F32(0x800CB038u), 1.0f, Mem.F32(0x800CB038u));
+                MathUtil.MtxScaleRows((_fp + 32u), 6.144f, 1.0f, 6.144f);
                 MathUtil.MtxFloatToFixed((_fp + 32u), new Node6BD4(n).sub.P);
                 _f3: ;
                 _f2: ;

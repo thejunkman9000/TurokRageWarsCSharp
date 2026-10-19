@@ -1214,7 +1214,7 @@ public static partial class MenuItem
                 if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
                 {
                     Mem.Set(Gv.Menu_CurrentDrawPass, 3);
-                    Gfx.BeginFlatColorPass((uint)((int)((new O06D_v6(d).PanelFade * (new O06D_v6(d).TextFade * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
+                    Gfx.BeginFlatColorPass((uint)((int)((new O06D_v6(d).PanelFade * (new O06D_v6(d).TextFade * 255f)))), default(uint), default(uint), default(uint));
                 }
                 Sprite.Draw(new O06A_v9(a).Data, 0, (short)(new O06B_v11(b).Left), (short)(new O06B_v11(b).Top), new O06B_v11(b).ScaleX, new O06B_v11(b).ScaleY, 1);
             }
@@ -1518,7 +1518,7 @@ public static partial class MenuItem
             new O06A_v41(p).DefCopy.Params_Set(0);
             new O06A_v41(p).DefCopy.BaseHealth_Set(0);
             new O06A_v41(p).DefCopy.ShapeHeight_1C_Set(0);
-            new O06A_v41(p).DefCopy.Scale_8_Set(Mem.F32(0x800E2524u));
+            new O06A_v41(p).DefCopy.Scale_8_Set(10240f);
             new O06A_v41(p).ModelHeight_Set(new O06A_v41(p).DefCopy.CharacterHeight);
             return new O06A_v41(p).DefCopy.P;
         }

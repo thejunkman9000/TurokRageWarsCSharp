@@ -724,18 +724,18 @@ public static partial class Results
                     UiNode.SetVisible(o, 1);
                     new O04Sub2C(o).Alpha_Set((byte)(175));
                     new O04Sub2C(o).unk38_Set(Mem.S32(0x800D752Cu));
-                    new O04V3(_fp).x_Set(Mem.F32(0x800E1B2Cu));
-                    new O04V3(_fp).y_Set(Mem.F32(0x800E1B2Cu));
-                    new O04V3(_fp).z_Set(Mem.F32(0x800E1B2Cu));
+                    new O04V3(_fp).x_Set(0.3f);
+                    new O04V3(_fp).y_Set(0.3f);
+                    new O04V3(_fp).z_Set(0.3f);
                     new O04V3((_fp + 32u)).x_Set((float)(0));
                     new O04V3((_fp + 32u)).y_Set((float)(0));
                     new O04V3((_fp + 32u)).z_Set((float)(0));
                     new O04V3((_fp + 48u)).x_Set((float)(0));
-                    new O04V3((_fp + 48u)).y_Set(Mem.F32(0x800E1B30u));
+                    new O04V3((_fp + 48u)).y_Set(3f);
                     new O04V3((_fp + 48u)).z_Set((float)(0));
                     new O04V3((_fp + 16u)).x_Set((float)(0));
-                    new O04V3((_fp + 16u)).y_Set(Mem.F32(0x800E1B34u));
-                    new O04V3((_fp + 16u)).z_Set(Mem.F32(0x800E1B38u));
+                    new O04V3((_fp + 16u)).y_Set((-30f));
+                    new O04V3((_fp + 16u)).z_Set((-100f));
                     PreviewModel.Init(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RewardModel.P, 0, _fp, (_fp + 16u));
                     PreviewModel.SetRotation(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RewardModel.P, (_fp + 32u));
                     PreviewModel.SetSpin(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RewardModel.P, (_fp + 48u));
@@ -847,9 +847,9 @@ public static partial class Results
             if (((new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RewardModelId != (-1)) && (new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).IsRewardVisible != 0)))
             {
                 Mem.Set(Gv.Model_ColorOverrideMode, 1);
-                Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), Mem.F32(0x800E1B3Cu));
+                Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), 150f);
                 PreviewModel.Draw(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RewardModel.P);
-                Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), Mem.F32(0x800E1B40u));
+                Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), 255f);
                 Mem.Set(Gv.Model_ColorOverrideMode, 0);
             }
         }

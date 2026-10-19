@@ -1044,7 +1044,7 @@ public static partial class InGameMenu
             if ((Mem.F32(Gv.InGameMenu_ResolutionCooldown) == 0.0f))
             {
                 Video.RequestNextResolution();
-                Mem.Set(Gv.InGameMenu_ResolutionCooldown, Mem.F32(0x800E27C0u));
+                Mem.Set(Gv.InGameMenu_ResolutionCooldown, 18f);
                 Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(0x800E28DBu));
             }
             return 0;
@@ -1516,7 +1516,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044524C", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 0, 1, 255, Mem.F32(0x800E27F4u));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 0, 1, 255, 1f);
         }
     }
 
@@ -1526,7 +1526,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00445288", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 1, 1, 255, Mem.F32(0x800E27F8u));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 1, 1, 255, 1f);
         }
     }
 
@@ -1536,7 +1536,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004452C4", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 2, 1, 255, Mem.F32(0x800E27FCu));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 0, 2, 1, 255, 1f);
         }
     }
 
@@ -1546,7 +1546,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00445304", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 1, 8, 10, 2000, Mem.F32(0x800E2800u));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 1, 8, 10, 2000, 1f);
         }
     }
 
@@ -1556,7 +1556,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00445344", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 2, 16, 102, 40960, Mem.F32(0x800E2804u));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 2, 16, 102, 40960, 10.24f);
         }
     }
 
@@ -1566,7 +1566,7 @@ public static partial class InGameMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00445384", (uint)a, (uint)b, (uint)c);
-            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 2, 20, 1, 180, Mem.F32(0x800E2808u));
+            InGameMenu.EditFogValue((uint)(a), (uint)(b), c, 2, 20, 1, 180, 1f);
         }
     }
 

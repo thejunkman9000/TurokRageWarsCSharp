@@ -1267,9 +1267,9 @@ public static partial class Pickup
                 new ObjI(a).TypeIndex_Set(new B11Sp2(s).u14);
                 new ObjI(a).RegionId_Set(new B11Sp2(s).w0);
                 Mem.Copy(new ObjI(a).Position.P, new B11Sp2(s).pos.P, 12);
-                new ObjI(a).Position.y_Set((new ObjI(a).Position.y + Mem.F32(0x800C8E70u)));
-                new ObjI(a).Yaw_Set(((float)((int)(new B11Sp2(s).s1E)) * Mem.F32(0x800C8E74u)));
-                new ObjI(a).Scale_Set(Mem.F32(0x800C8E78u));
+                new ObjI(a).Position.y_Set((new ObjI(a).Position.y + 10.24f));
+                new ObjI(a).Yaw_Set(((float)((int)(new B11Sp2(s).s1E)) * 0.02473695f));
+                new ObjI(a).Scale_Set(0.35f);
                 new ObjI(a).HeightOffset_Set(0);
                 new ObjI(a).BoundsMin.x_Set((new B11Sp2(s).pos.x - new B11Sp2(s).r));
                 new ObjI(a).BoundsMin.y_Set((new B11Sp2(s).pos.y - new B11Sp2(s).r));
@@ -1310,7 +1310,7 @@ public static partial class Pickup
                 new ObjI(a).SpinStep_Set(0);
                 new ObjI(a).RecordParam_19E_Set(new B11Sp2(s).u1A);
                 new Vec3f(_fp).x_Set(new ObjI(a).Position.x);
-                new Vec3f(_fp).y_Set((new ObjI(a).Position.y + (Actor.GetHeight(a) * Mem.F32(0x800C8E7Cu))));
+                new Vec3f(_fp).y_Set((new ObjI(a).Position.y + (Actor.GetHeight(a) * 0.5f)));
                 new Vec3f(_fp).z_Set(new ObjI(a).Position.z);
                 Mem.Copy(new ObjI(a).LightSet.P, Gv.Light_AmbientColor, 24);
                 new ObjI(a).CachedDisplayList_Set(0);
@@ -1402,19 +1402,19 @@ public static partial class Pickup
                 if ((Model.GetViewFlag() != 0))
                 {
                     new Quat4((_fp + 16u)).x_Set(new Quat4((_fp + 16u)).y_Set(new Quat4((_fp + 16u)).z_Set(0.0f)));
-                    new Quat4((_fp + 16u)).w_Set(Mem.F32(0x800C8E80u));
+                    new Quat4((_fp + 16u)).w_Set(1f);
                     n = Chunk.Get(Mem.U32(b), 2);
                     if ((Mem.S32(n) != 0))
                     {
                         if (((Mem.S32(Chunk.Get(Chunk.Get(n, 0), 0)) & 32768) != 0))
                         {
                             Mem.Copy(_fp, new ObjView(a).Position.P, 12);
-                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * Mem.F32(0x800C8E84u))));
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(a) * 0.5f)));
                             Effects.SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new ObjView(a).Velocity.P, (_fp + 16u), _fp, 0, (-1), 0);
                             r = Particle.GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                             if ((r != 0u))
                             {
-                                k = Mem.F32(0x800C8E88u);
+                                k = 0.1f;
                                 new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
                                 new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                             }
@@ -1567,16 +1567,16 @@ public static partial class Pickup
                 {
                     if ((((int)(new ObjFx(a).Flags) & 16) != 0))
                     {
-                        t = (new ObjFx(a).GrowTime + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C8EE0u)));
+                        t = (new ObjFx(a).GrowTime + (Mem.F32(Gv.FrameTime) * 0.06666667f));
                         new ObjFx(a).GrowTime_Set(t);
-                        if ((t < Mem.F32(0x800C8EE4u)))
+                        if ((t < 0.75f))
                         {
-                            new ObjFx(a).Scale_Set((t * Mem.F32(0x800C8EE8u)));
+                            new ObjFx(a).Scale_Set((t * 0.46666667f));
                         }
                         else
                         {
                             new ObjFx(a).Flags_Set((ushort)((int)(new ObjFx(a).Flags) & (~16)));
-                            new ObjFx(a).Scale_Set(Mem.F32(0x800C8EECu));
+                            new ObjFx(a).Scale_Set(0.35f);
                         }
                     }
                 }
@@ -1601,16 +1601,16 @@ public static partial class Pickup
             float t = 0f;
             if ((((int)(new ObjFx(a).Flags) & 16) != 0))
             {
-                t = (new ObjFx(a).GrowTime + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C8EF0u)));
+                t = (new ObjFx(a).GrowTime + (Mem.F32(Gv.FrameTime) * 0.06666667f));
                 new ObjFx(a).GrowTime_Set(t);
-                if ((t < Mem.F32(0x800C8EF4u)))
+                if ((t < 0.75f))
                 {
-                    new ObjFx(a).Scale_Set((t * Mem.F32(0x800C8EF8u)));
+                    new ObjFx(a).Scale_Set((t * 0.46666667f));
                 }
                 else
                 {
                     new ObjFx(a).Flags_Set((ushort)((int)(new ObjFx(a).Flags) & (~16)));
-                    new ObjFx(a).Scale_Set(Mem.F32(0x800C8EFCu));
+                    new ObjFx(a).Scale_Set(0.35f);
                 }
             }
         }
@@ -3304,10 +3304,10 @@ public static partial class Pickup
             switch ((int)((short)(((int)(new Fx24_v5(f).ItemId) - 1800))))
             {
             case 0:
-                new Ent24(e).InvulnerableTime_Set(Mem.F32(0x800CB468u));
+                new Ent24(e).InvulnerableTime_Set(120f);
                 break;
             case 1:
-                new Ent24(e).PlaneWalkerTime_Set(Mem.F32(0x800CB46Cu));
+                new Ent24(e).PlaneWalkerTime_Set(120f);
                 break;
             case 2:
             case 3:
@@ -3860,8 +3860,8 @@ public static partial class Player
                 int st = 0;
                 Mem.Set((_fp + 204u), 0u);
                 pw = new B05P19(p).ViewPtr;
-                fs1f = Mem.F32(0x800C74A4u);
-                fs2 = Mem.F32(0x800C74A8u);
+                fs1f = 0.080000006f;
+                fs2 = 0.52f;
                 if ((pw != 0u))
                 {
                     if ((new B05Pawn(pw).unk24 == 1))
@@ -3882,7 +3882,7 @@ public static partial class Player
                 }
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(0.0f);
-                new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C74ACu));
+                new Vec3f((_fp + 16u)).z_Set((-5120f));
                 MathUtil.MtxTransformPoint((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((Collision.RayCast(p, (_fp + 128u), (_fp + 48u), Gv.Collision_LosResult) != 0))
                 {
@@ -3897,7 +3897,7 @@ public static partial class Player
                 }
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(0.0f);
-                new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C74B0u));
+                new Vec3f((_fp + 16u)).z_Set((-1024f));
                 MathUtil.MtxTransformPoint((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((new B05P19(p).IsInWeaponStance != 0))
                 {
@@ -3934,7 +3934,7 @@ public static partial class Player
                 s0 = 1;
                 if ((((int)(new B05P19(p).WeaponIndex) == 1) || ((int)(new B05P19(p).WeaponIndex) == 18)))
                 {
-                    fs0f = Mem.F32(0x800C74B4u);
+                    fs0f = 11.25f;
                     fs1 = fs0f;
                 }
                 else
@@ -4016,7 +4016,7 @@ public static partial class Player
                         new B05P19(p).CrosshairVelocity2.z_Set(0.0f);
                     }
                 }
-                fs0 = Mem.F32(0x800C74BCu);
+                fs0 = 1.25f;
                 Vec.Sub((_fp + 32u), _fp, new B05P19(p).CrosshairPos2.P);
                 Vec.Scale((_fp + 32u), (_fp + 32u), (fs1f * fs0));
                 Vec.Add(new B05P19(p).CrosshairVelocity2.P, new B05P19(p).CrosshairVelocity2.P, (_fp + 32u));
@@ -4076,7 +4076,7 @@ public static partial class Player
                         {
                             Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).pos.P, 12);
                             new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B05Tgt(Mem.U32((_fp + 204u))).f70));
-                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(Mem.U32((_fp + 204u))) * Mem.F32(0x800C74C0u))));
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(Mem.U32((_fp + 204u))) * 0.75f)));
                         }
                         if ((((int)(new B05P19(p).WeaponIndex) == 1) && (new B05P19(p).FireMode == 2)))
                         {
@@ -5327,7 +5327,7 @@ public static partial class Weapon
             if (!(new M2Own(o).StunTime > 0.0f))
             {
                 dt = Mem.F32(Gv.FrameTime);
-                sc = (dt * Mem.F32(0x800C7F80u));
+                sc = (dt * 0.25f);
                 if (((o != 0u) && ((new M2Own(o).PowerupFlags & (uint)(8192)) != 0u)))
                 {
                     Mem.Set(Gv.FrameTime, sc);
@@ -5713,7 +5713,7 @@ public static partial class Weapon
                                     {
                                         yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                         xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                        Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FD8u));
+                                        Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                     }
                                 }
                                 ok = t;
@@ -5732,7 +5732,7 @@ public static partial class Weapon
                                 {
                                     yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                    Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
+                                    Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                 }
                                 new M2St(s).FireMode_Set(1);
                             }
@@ -5863,7 +5863,7 @@ public static partial class Weapon
                                 {
                                     yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FE0u));
+                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                 }
                             }
                             ok = t;
@@ -5886,7 +5886,7 @@ public static partial class Weapon
                         {
                             yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                             xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                            Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FE4u));
+                            Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                         }
                         new M2St(s).FireMode_Set(st);
                         return;
@@ -5907,14 +5907,14 @@ public static partial class Weapon
             sub = new M2Own(o).unk698_;
             if ((w < 0.0f))
             {
-                if ((Mem.F32(0x800C7FECu) < ((-w) * Mem.F32(0x800C7FE8u))))
+                if ((1f < ((-w) * 1.7904929f)))
                 {
                     goto L_A;
                 }
             }
             else
             {
-                if ((Mem.F32(0x800C7FF4u) < (w * Mem.F32(0x800C7FF0u))))
+                if ((1f < (w * 1.7904929f)))
                 {
                     goto L_A;
                 }
@@ -5922,15 +5922,15 @@ public static partial class Weapon
             v = new M2St(s).SpinSpeed;
             if ((v < 0.0f))
             {
-                new M2Sub698(sub).RumbleBaseIntensity_Set(((-v) * Mem.F32(0x800C7FF8u)));
+                new M2Sub698(sub).RumbleBaseIntensity_Set(((-v) * 1.7904929f));
             }
             else
             {
-                new M2Sub698(sub).RumbleBaseIntensity_Set((v * Mem.F32(0x800C7FFCu)));
+                new M2Sub698(sub).RumbleBaseIntensity_Set((v * 1.7904929f));
             }
             goto L_done;
             L_A: ;
-            new M2Sub698(sub).RumbleBaseIntensity_Set(Mem.F32(0x800C8000u));
+            new M2Sub698(sub).RumbleBaseIntensity_Set(1f);
             L_done: ;
             new M2St(s).SpinAngle_Set((2.0f * (new M2St(s).SpinSpeed * Mem.F32(Gv.FrameTime))));
             new M2St(s).FireMode_Set(1);
@@ -5969,7 +5969,7 @@ public static partial class Weapon
                     break;
                 case 0:
                     L_zero: ;
-                    if ((Mem.F32((state + (uint)64)) > Mem.F32(0x800C8004u)))
+                    if ((Mem.F32((state + (uint)64)) > 30f))
                     {
                         Actor.DispatchEvent(actor, state, 5);
                     }
@@ -6216,7 +6216,7 @@ public static partial class Weapon
                                 {
                                     yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8040u));
+                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                 }
                             }
                             ok = t;
@@ -6257,7 +6257,7 @@ public static partial class Weapon
                                         {
                                             yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                             xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                            Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8044u));
+                                            Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                         }
                                     }
                                     ok2 = t2;
@@ -6276,7 +6276,7 @@ public static partial class Weapon
                             {
                                 yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                 xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8048u));
+                                Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                             }
                         }
                         new M2St(s).FireMode_Set(1);
@@ -6618,7 +6618,7 @@ public static partial class Weapon
                                 {
                                     v = Player.GetIndex(Gv.PlayerPool, (int)(owner));
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                    Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A0u));
+                                    Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(xx), v, 1f);
                                 }
                             }
                             ok = res;
@@ -6643,7 +6643,7 @@ public static partial class Weapon
                                 g = Gv.PlayerPool;
                                 v = Player.GetIndex(g, (int)(owner));
                                 xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                Hud.SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A4u));
+                                Hud.SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, 1f);
                             }
                         }
                         return;
@@ -6768,7 +6768,7 @@ public static partial class Weapon
                                     {
                                         v = Player.GetIndex(Gv.PlayerPool, (int)(owner));
                                         xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                        Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80ACu));
+                                        Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(xx), v, 1f);
                                     }
                                 }
                                 ok = res;
@@ -6796,7 +6796,7 @@ public static partial class Weapon
                                 g = Gv.PlayerPool;
                                 v = Player.GetIndex(g, (int)(owner));
                                 xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                Hud.SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80B0u));
+                                Hud.SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, 1f);
                             }
                             return;
                         }
@@ -6870,7 +6870,7 @@ public static partial class Weapon
                                 {
                                     yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B4u));
+                                    Hud.SpawnTextLineA(Gv.ViewMgr, new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                                 }
                             }
                             ok = t;
@@ -6894,7 +6894,7 @@ public static partial class Weapon
                         {
                             yy = Player.GetIndex(Gv.PlayerPool, (int)(o));
                             xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
-                            Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B8u));
+                            Hud.SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1f);
                         }
                         new M2St(s).FireMode_Set(st);
                         return;
@@ -6961,7 +6961,7 @@ public static partial class Weapon
                                     if ((Mem.U32((owner + (uint)1500)) != 0u))
                                     {
                                         v = Player.GetIndex(Gv.PlayerPool, (int)(owner));
-                                        Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(Gv.HudMsg_FunctionNotAvailable)), v, Mem.F32(0x800C80BCu));
+                                        Hud.SpawnTextLineA(Gv.ViewMgr, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(Gv.HudMsg_FunctionNotAvailable)), v, 1f);
                                     }
                                 }
                             }
@@ -7283,7 +7283,7 @@ public static partial class Weapon
         {
             if (Dbg.On) Dbg.Enter("func_002328C8", (uint)actor, (uint)state);
             uint owner = new ActorView(actor).OwnerPtr;
-            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8104u)));
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)24)) * 15f));
             if ((((int)(Mem.S16((owner + (uint)1582))) == 5) && (new ActorView(owner).LoopSound2Handle == 0)))
             {
                 Player.PlayLoopSound2(owner, 1130);
@@ -7330,7 +7330,7 @@ public static partial class Weapon
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232A38", (uint)a0, (uint)state);
-            float k = Mem.F32(0x800C8108u);
+            float k = 1f;
             new ActorStateView(state).StateTablePtr_Set(0x800CF298u);
             new ActorStateView(state).UpdateCallback_Set(0x0022FC10u);
             new ActorStateView(state).DrawCallback_Set(0x0023292Cu);
@@ -7377,7 +7377,7 @@ public static partial class Weapon
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232BC0", (uint)a, (uint)unused, (uint)c);
-            if ((Mem.F32((c + (uint)4568)) > Mem.F32(0x800C810Cu)))
+            if ((Mem.F32((c + (uint)4568)) > 0.1f))
             {
                 return 1;
             }
@@ -7417,7 +7417,7 @@ public static partial class Weapon
         {
             if (Dbg.On) Dbg.Enter("func_00232C78", (uint)c, (uint)e);
             uint p = new PlayerCtl(c).player_;
-            new PlayerEvt(e).RefireTime_Set((new WeaponInfo_v2(Mem.U32((Gv.WeaponDefTable + (uint)(new Player_v3(p).WeaponIndex * 4)))).RefireDelay * Mem.F32(0x800C8110u)));
+            new PlayerEvt(e).RefireTime_Set((new WeaponInfo_v2(Mem.U32((Gv.WeaponDefTable + (uint)(new Player_v3(p).WeaponIndex * 4)))).RefireDelay * 15f));
             if ((((int)(new Player_v3(p).WeaponIndex) == 8) && (new Player_v3(p).LoopSound2Handle == 0)))
             {
                 Player.PlayLoopSound2(p, 2620);
@@ -7512,29 +7512,29 @@ public static partial class Weapon
             p = Mem.U32((owner + (uint)1688));
             if ((Mem.F32((state + (uint)296)) < (float)(0)))
             {
-                if ((Mem.F32(0x800C8118u) < ((-Mem.F32((state + (uint)296))) * Mem.F32(0x800C8114u))))
+                if ((1f < ((-Mem.F32((state + (uint)296))) * 1.7904929f)))
                 {
                     goto L_big;
                 }
             }
             else
             {
-                if ((Mem.F32(0x800C8120u) < (Mem.F32((state + (uint)296)) * Mem.F32(0x800C811Cu))))
+                if ((1f < (Mem.F32((state + (uint)296)) * 1.7904929f)))
                 {
                     goto L_big;
                 }
             }
             if ((Mem.F32((state + (uint)296)) < (float)(0)))
             {
-                Mem.Set((p + (uint)360), ((-Mem.F32((state + (uint)296))) * Mem.F32(0x800C8124u)));
+                Mem.Set((p + (uint)360), ((-Mem.F32((state + (uint)296))) * 1.7904929f));
             }
             else
             {
-                Mem.Set((p + (uint)360), (Mem.F32((state + (uint)296)) * Mem.F32(0x800C8128u)));
+                Mem.Set((p + (uint)360), (Mem.F32((state + (uint)296)) * 1.7904929f));
             }
             goto L_done;
             L_big: ;
-            Mem.Set((p + (uint)360), Mem.F32(0x800C812Cu));
+            Mem.Set((p + (uint)360), 1f);
             L_done: ;
             if (((int)(new ActorStateView(state).AnimLoopCount) != 0))
             {
@@ -7554,7 +7554,7 @@ public static partial class Weapon
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232F7C", (uint)actor, (uint)obj);
-            float v = (Mem.F32((Mem.U32((obj + (uint)8)) + (uint)660)) * Mem.F32(0x800C8130u));
+            float v = (Mem.F32((Mem.U32((obj + (uint)8)) + (uint)660)) * 1.5f);
             if ((Mem.S32(Gv.ViewCount) == 1))
             {
                 if ((Mem.S32((obj + (uint)4)) == 2))
@@ -7615,7 +7615,7 @@ public static partial class Weapon
             Player.PlayLoopSound1(owner, 1930);
             Player.PlayLoopSound2(owner, 1920);
             o2 = new ActorView(actor).OwnerPtr;
-            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8134u)));
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * 15f));
             if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new ActorView(o2).LoopSound2Handle == 0)))
             {
                 Player.PlayLoopSound2(o2, 2620);
@@ -7676,7 +7676,7 @@ public static partial class Weapon
                 Player.SetState(owner, (int)(owner), 2);
                 return;
             }
-            Mem.Set((state + (uint)100), Mem.F32(0x800C8138u));
+            Mem.Set((state + (uint)100), 2.5f);
             if (((new ActorView(owner).IsComputer == 0) && (Mem.S32(Gv.ViewCount) == 1)))
             {
                 Weapon.FireShot(new ActorView(actor).OwnerPtr, (uint)(1019), default(uint), default(uint));
@@ -7689,7 +7689,7 @@ public static partial class Weapon
             Player.PlayLoopSound1(owner, 2423);
             Player.PlayLoopSound2(owner, 2420);
             o2 = new ActorView(actor).OwnerPtr;
-            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C813Cu)));
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * 15f));
             if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new ActorView(o2).LoopSound2Handle == 0)))
             {
                 Player.PlayLoopSound2(o2, 2620);
@@ -7712,7 +7712,7 @@ public static partial class Weapon
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023330C", (uint)actor, (uint)state);
-            Mem.Set((state + (uint)328), Mem.F32(0x800C8140u));
+            Mem.Set((state + (uint)328), 300f);
             Actor.DispatchEvent(actor, state, 8);
         }
     }
@@ -7739,7 +7739,7 @@ public static partial class Weapon
                 Mem.Set((owner + (uint)1904), (short)(Player.PickFallbackWeapon(owner)));
                 return;
             }
-            if ((Mem.F32((actor + (uint)260)) >= Mem.F32(0x800C8144u)))
+            if ((Mem.F32((actor + (uint)260)) >= 4f))
             {
                 if ((Player.IsInWeaponStance_0022B174(owner) == 0))
                 {
@@ -7848,27 +7848,27 @@ public static partial class Weapon
             p = new ActorView(actor).OwnerPtr;
             if (((int)(Mem.S8((state + 52u))) == 5))
             {
-                MathUtil.ApproachProportional(new ActorStateView(state).ClassVar_128.P, ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
+                MathUtil.ApproachProportional(new ActorStateView(state).ClassVar_128.P, ((float)(Mem.S32(0x800CF518u)) * 0.017453294f), 0.400000006f);
             }
             else
             {
                 MathUtil.ApproachProportional(new ActorStateView(state).ClassVar_128.P, 0.0f, 0.400000006f);
             }
             q = new PlayerA(p).unk698_;
-            if (!(((Mem.F32(new ActorStateView(state).ClassVar_128.P) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32(new ActorStateView(state).ClassVar_128.P)) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32(new ActorStateView(state).ClassVar_128.P) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
+            if (!(((Mem.F32(new ActorStateView(state).ClassVar_128.P) < 0.0f) ? ((1f < ((-Mem.F32(new ActorStateView(state).ClassVar_128.P)) * 1.7904929f)) ? 1 : 0) : ((1f < (Mem.F32(new ActorStateView(state).ClassVar_128.P) * 1.7904929f)) ? 1 : 0)) != 0))
             {
                 if ((Mem.F32(new ActorStateView(state).ClassVar_128.P) < 0.0f))
                 {
-                    new Ptr168(q).RumbleBaseIntensity_Set(((-Mem.F32(new ActorStateView(state).ClassVar_128.P)) * Mem.F32(0x800C815Cu)));
+                    new Ptr168(q).RumbleBaseIntensity_Set(((-Mem.F32(new ActorStateView(state).ClassVar_128.P)) * 1.7904929f));
                 }
                 else
                 {
-                    new Ptr168(q).RumbleBaseIntensity_Set((Mem.F32(new ActorStateView(state).ClassVar_128.P) * Mem.F32(0x800C8160u)));
+                    new Ptr168(q).RumbleBaseIntensity_Set((Mem.F32(new ActorStateView(state).ClassVar_128.P) * 1.7904929f));
                 }
             }
             else
             {
-                new Ptr168(q).RumbleBaseIntensity_Set(Mem.F32(0x800C8164u));
+                new Ptr168(q).RumbleBaseIntensity_Set(1f);
             }
         }
     }
@@ -7881,7 +7881,7 @@ public static partial class Weapon
             if (Dbg.On) Dbg.Enter("func_0023370C", (uint)actor, (uint)state);
             float lim = 0f;
             float v = 0f;
-            lim = Mem.F32(0x800C8168u);
+            lim = 600f;
             v = MathUtil.ApproachLinear(Mem.F32((state + 292u)), lim, Cpu.U2F((uint)(Mem.S32(0x800CF9E0u))));
             Mem.Set((state + 292u), v);
             if ((lim <= v))

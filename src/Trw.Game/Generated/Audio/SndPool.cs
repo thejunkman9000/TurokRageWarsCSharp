@@ -145,18 +145,18 @@ public static partial class SndPool
             Sound.Unlock(new SndVoices(p).owner_);
             return 0u;
             _f4: ;
-            f = ((float)((short)(flag)) * Mem.F32(0x800C905Cu));
+            f = ((float)((short)(flag)) * 1.27f);
             Mem.Set((core + (uint)128), (ushort)(Mem.U16((core + (uint)128)) + 1));
             new M04Emitter(v).Handle_Set(a3);
             m3 = new SndVoices(p).owner_;
             new M04Emitter(v).VoiceId_Set((new SndMgr(m3).NextEmitterId_Set((int)(new SndMgr(m3).NextEmitterId + 1)) - 1));
             new M04Emitter(v).SndpSoundId_Set((int)(Mem.S16((snd + (uint)(idx * 2)))));
             new M04Emitter(v).PlayDelay_Set((int)(Mem.S16(new_var)));
-            if (!(!(Mem.F32(0x800C9060u) <= f))) goto _f5;
+            if (!(!(2147483648f <= f))) goto _f5;
             pr = (int)(f);
             goto _f6;
             _f5: ;
-            pr = (int)((f - Mem.F32(0x800C9060u)));
+            pr = (int)((f - 2147483648f));
             pr = (int)(((uint)(pr) | 2147483648u));
             _f6: ;
             alSndpSetPriority(new_var2, Mem.S16((snd + (uint)(idx * 2))), (byte)((pr & 255)));
@@ -199,7 +199,7 @@ public static partial class SndPool
             new M04VP(vp).s2A_Set((short)(pri));
             new M04VP(vp).s2C_Set((short)(tag));
             new M04VP(vp).w0_Set(new SndMgr(new SndVoices(p).owner_).FrameCounter);
-            new M04VP(vp).f24_Set(Mem.F32(0x800C9064u));
+            new M04VP(vp).f24_Set(1f);
             new M04VP(vp).mode_Set((sbyte)(SndInfo.GetFalloffMode(info)));
             new M04Emitter(v).Flags_Set((uint)((short)(SndInfo.GetFlags(info))));
             new M04VP(vp).f40_Set(0);
@@ -305,8 +305,8 @@ public static partial class SndPool
             new SndVoices(p).owner__Set(m);
             for (i = 0; (i <= 90); ++i)
             {
-                x = ((float)(i) * Mem.F32(0x800C906Cu));
-                y = (((((x * x) * x) * x) * x) * Mem.F32(0x800C9070u));
+                x = ((float)(i) * 0.011111111f);
+                y = (((((x * x) * x) * x) * x) * 32000f);
                 Mem.Set((0x8010BFA0u + (uint)((90 - i) * 2)), (short)((int)(y)));
             }
             for (i = 0; (i < 17); ++i)
@@ -321,14 +321,14 @@ public static partial class SndPool
                 new SndVoiceView(v).Priority_Set((short)(0));
                 new SndVoiceView(v).PendingVoiceId_Set((-1));
                 new SndVoiceView(v).QueueDelay_Set(0);
-                new SndVoiceView(v).DistanceGain_Set(Mem.F32(0x800C9074u));
+                new SndVoiceView(v).DistanceGain_Set(1f);
                 new SndVoiceView(v).DistanceSq_Set(0);
                 new SndVoiceView(v).PrevDistanceSq_Set(0);
-                new SndVoiceView(v).DopplerPitch_Set(Mem.F32(0x800C9074u));
+                new SndVoiceView(v).DopplerPitch_Set(1f);
                 new SndVoiceView(v).Flags_Set(0);
                 new SndVoiceView(v).IsStopping_Set(0);
                 new SndVoiceView(v).Owner_Set((uint)((-1)));
-                new SndVoiceView(v).PitchScale_Set(Mem.F32(0x800C9074u));
+                new SndVoiceView(v).PitchScale_Set(1f);
                 new SndVoiceView(v).IsZoneBound_Set(0);
                 new SndVoiceView(v).IsNonPositional_Set(0);
                 new SndVoiceView(v).IsDuckable_Set(1);

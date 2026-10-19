@@ -450,7 +450,7 @@ public static partial class Trail
                 Vec.Normalize((_fp + 16u));
                 Mem.Set(_fp, 0);
                 Mem.Set((_fp + 4u), 0);
-                new V16(_fp).z_Set(Mem.F32(0x800CAF7Cu));
+                new V16(_fp).z_Set(1f);
                 MathUtil.MtxRotateVector((arg2 + (uint)416), _fp, (_fp + 32u));
                 ty = (-new V16((_fp + 32u)).y);
                 tz = (-new V16((_fp + 32u)).z);
@@ -589,10 +589,10 @@ public static partial class Trail
                 if (Dbg.On) Dbg.Enter("func_002A453C_Attach453C", (uint)slot, (uint)e, (uint)act);
                 float k = 0f;
                 MathUtil.MtxFixedToFloatAffine(_fp, (act + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 96)), default(uint), default(uint));
-                k = Mem.F32(0x800CAF80u);
+                k = 0.01f;
                 if ((new Actor453C(act).unk118.unk14 != 0))
                 {
-                    k = Mem.F32(0x800CAF84u);
+                    k = 0.29257143f;
                 }
                 MathUtil.MtxScaleRows(_fp, k, k, k);
                 MathUtil.MtxClampFixedRange(_fp);
@@ -744,16 +744,16 @@ public static partial class Trail
                         new S8Sp((_fp + 16u)).FrameA_8_Set(new S8Emit(e).Color1_C);
                         new S8Sp((_fp + 16u)).FrameB_C_Set(new S8Emit(e).Color1_C);
                     }
-                    new S8Sp((_fp + 16u)).ScrollU_10_Set(((float)(new S8Emit(e).DefPtr.StartWidth_21) * Mem.F32(0x800CAF88u)));
-                    new S8Sp((_fp + 16u)).ScrollV_14_Set(((float)(new S8Emit(e).DefPtr.EndWidth_22) * Mem.F32(0x800CAF88u)));
+                    new S8Sp((_fp + 16u)).ScrollU_10_Set(((float)(new S8Emit(e).DefPtr.StartWidth_21) * 3.125f));
+                    new S8Sp((_fp + 16u)).ScrollV_14_Set(((float)(new S8Emit(e).DefPtr.EndWidth_22) * 3.125f));
                     if ((qp != 0u))
                     {
                         new S8Sp((_fp + 16u)).TexWidth_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)2))) + 5))));
-                        new S8Sp((_fp + 16u)).TexWidth_Set(((new S8Sp((_fp + 16u)).TexWidth * (float)(new S8Emit(e).DefPtr.TexRepeat_1D)) - Mem.F32(0x800CAF8Cu)));
+                        new S8Sp((_fp + 16u)).TexWidth_Set(((new S8Sp((_fp + 16u)).TexWidth * (float)(new S8Emit(e).DefPtr.TexRepeat_1D)) - 32f));
                         new S8Sp((_fp + 16u)).TexHeight_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)3))) + 5))));
-                        new S8Sp((_fp + 16u)).FrameStep_20_Set((Mem.F32(0x800CAF90u) / ((float)(new S8Sp((_fp + 16u)).FrameCount_0) - Mem.F32(0x800CAF90u))));
+                        new S8Sp((_fp + 16u)).FrameStep_20_Set((1f / ((float)(new S8Sp((_fp + 16u)).FrameCount_0) - 1f)));
                     }
-                    k = Mem.F32(0x800CAF94u);
+                    k = 1f;
                     f = new S8Emit(e).TexScroll_28;
                     if ((k <= f))
                     {
@@ -921,8 +921,8 @@ public static partial class Trail
                     new R4Sp(p).FrameA_8_Set(new R4Emit(e).Color1_C);
                     new R4Sp(p).FrameB_C_Set(new R4Emit(e).Color1_C);
                 }
-                new R4Sp(p).ScrollU_10_Set(((float)(new R4Emit(e).DefPtr.StartWidth_21) * Mem.F32(0x800CAF98u)));
-                new R4Sp(p).ScrollV_14_Set(((float)(new R4Emit(e).DefPtr.EndWidth_22) * Mem.F32(0x800CAF98u)));
+                new R4Sp(p).ScrollU_10_Set(((float)(new R4Emit(e).DefPtr.StartWidth_21) * 3.125f));
+                new R4Sp(p).ScrollV_14_Set(((float)(new R4Emit(e).DefPtr.EndWidth_22) * 3.125f));
                 n1 = new R4Emit(e).nodes_;
                 n2 = new R4Node(n1).next_;
                 id = (int)(new R4Emit(e).DefPtr.SegmentCount_23);
@@ -1567,7 +1567,7 @@ public static partial class Trail
                 if ((s != 0u))
                 {
                     zero = 0.0f;
-                    k = Mem.F32(0x800CB024u);
+                    k = 1.5258789e-07f;
                     do
                     {
                         if ((new Slot67D0(s).owner == key))
@@ -1614,10 +1614,10 @@ public static partial class Trail
                                 if ((zero < new Slot68A0(s).unk24))
                                 {
                                     MathUtil.MtxFixedToFloatAffine(_fp, src, default(uint), default(uint));
-                                    k = Mem.F32(0x800CB028u);
+                                    k = 0.01f;
                                     if ((new Actor68A0(who).unk118.unk14 != 0))
                                     {
-                                        k = Mem.F32(0x800CB02Cu);
+                                        k = 0.29257143f;
                                     }
                                     MathUtil.MtxScaleRows(_fp, k, k, k);
                                     MathUtil.MtxClampFixedRange(_fp);
@@ -1791,15 +1791,15 @@ public static partial class Trail
                 new EmitOut(o).unk8_Set(new Emit(e).Color1_C);
                 new EmitOut(o).unkC_Set(new Emit(e).Color1_C);
             }
-            new EmitOut(o).unk10_Set(((float)((int)(new Emit(e).DefPtr.StartWidth_21)) * Mem.F32(0x800CB03Cu)));
-            new EmitOut(o).unk14_Set(((float)((int)(new Emit(e).DefPtr.EndWidth_22)) * Mem.F32(0x800CB03Cu)));
+            new EmitOut(o).unk10_Set(((float)((int)(new Emit(e).DefPtr.StartWidth_21)) * 3.125f));
+            new EmitOut(o).unk14_Set(((float)((int)(new Emit(e).DefPtr.EndWidth_22)) * 3.125f));
             if ((e2 != 0u))
             {
                 t = (float)((1 << (int)((int)(new Emit(e2).DefPtr.TexWidthLog2) + 5)));
                 new EmitOut(o).unk18_Set(t);
-                new EmitOut(o).unk18_Set(((t * (float)((int)(new Emit(e).DefPtr.TexRepeat_1D))) - Mem.F32(0x800CB040u)));
+                new EmitOut(o).unk18_Set(((t * (float)((int)(new Emit(e).DefPtr.TexRepeat_1D))) - 32f));
                 new EmitOut(o).unk1C_Set((float)((1 << (int)((int)(new Emit(e2).DefPtr.TexHeightLog2) + 5))));
-                new EmitOut(o).unk20_Set((Mem.F32(0x800CB044u) / ((float)(new EmitOut(o).unk0) - Mem.F32(0x800CB044u))));
+                new EmitOut(o).unk20_Set((1f / ((float)(new EmitOut(o).unk0) - 1f)));
             }
         }
     }
@@ -1826,10 +1826,10 @@ public static partial class Trail
                     else
                     {
                         MathUtil.MtxFixedToFloatAffine(_fp, (o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 96)), default(uint), default(uint));
-                        s = Mem.F32(0x800CB048u);
+                        s = 0.01f;
                         if ((new EmitOwner(o).info.unk14 != 0))
                         {
-                            s = Mem.F32(0x800CB04Cu);
+                            s = 0.29257143f;
                         }
                         MathUtil.MtxScaleRows(_fp, s, s, s);
                         MathUtil.MtxClampFixedRange(_fp);
@@ -1913,10 +1913,10 @@ public static partial class Trail
                 if (((new Emit(e).owner_ == own) && (new Emit(e).LifeTime > 0.0f)))
                 {
                     MathUtil.MtxFixedToFloatAffine(_fp, (uint)(d), default(uint), default(uint));
-                    s = Mem.F32(0x800CB050u);
+                    s = 0.01f;
                     if ((new EmitOwner(own).info.unk14 != 0))
                     {
-                        s = Mem.F32(0x800CB054u);
+                        s = 0.29257143f;
                     }
                     MathUtil.MtxScaleRows(_fp, s, s, s);
                     MathUtil.MtxClampFixedRange(_fp);

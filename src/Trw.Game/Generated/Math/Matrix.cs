@@ -2676,9 +2676,9 @@ public static partial class MathUtil
                     Mem.Set(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)), (float)(0));
                 }
             }
-            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE4Cu));
-            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE4Cu));
-            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1f);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1f);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1f);
         }
     }
 
@@ -2713,10 +2713,10 @@ public static partial class MathUtil
                     MathUtil.SinCos(angle, (_fp + 64u), (_fp + 68u));
                     r = _fp;
                     MemUtil.Fill(r, 0, (uint)(64));
-                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE50u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE50u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE50u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE50u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1f);
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (-Mem.F32((_fp + 64u))));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 64u)));
@@ -2743,10 +2743,10 @@ public static partial class MathUtil
                     MathUtil.SinCos(angle, (_fp + 64u), (_fp + 68u));
                     r = _fp;
                     MemUtil.Fill(r, 0, (uint)(64));
-                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE54u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE54u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE54u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE54u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1f);
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 64u)));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (-Mem.F32((_fp + 64u))));
@@ -2773,10 +2773,10 @@ public static partial class MathUtil
                     MathUtil.SinCos(angle, (_fp + 64u), (_fp + 68u));
                     r = _fp;
                     MemUtil.Fill(r, 0, (uint)(64));
-                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1f);
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1f);
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 64u))));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 64u)));
@@ -2979,7 +2979,7 @@ public static partial class MathUtil
                 float nv = 0f;
                 MathUtil.SinCos(angle, _fp, (_fp + 4u));
                 nv = Mem.F32((_fp + 4u));
-                t = (Mem.F32(0x800CAE5Cu) - nv);
+                t = (1f - nv);
                 x = new Vec3f(axis).x;
                 tx = (t * x);
                 y = new Vec3f(axis).y;
@@ -3002,7 +3002,7 @@ public static partial class MathUtil
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), zero);
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), zero);
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), zero);
-                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE5Cu));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1f);
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (txx + Mem.F32((_fp + 4u))));
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (txy + zs));
                 Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (txz - ys));

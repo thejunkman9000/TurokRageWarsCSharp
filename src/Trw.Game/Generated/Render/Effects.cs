@@ -516,7 +516,7 @@ public static partial class Effects
                 case 0:
                     new Vec3f((_fp + 32u)).x_Set(new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 32u)).z_Set(0.0f)));
                     new B04Vec4((_fp + 48u)).x_Set(new B04Vec4((_fp + 48u)).y_Set(new B04Vec4((_fp + 48u)).z_Set(0.0f)));
-                    new B04Vec4((_fp + 48u)).w_Set(Mem.F32(0x800C72B4u));
+                    new B04Vec4((_fp + 48u)).w_Set(1f);
                     break;
                 case 1:
                     e = o;
@@ -570,14 +570,14 @@ public static partial class Effects
                     Quat.ToMatrix((_fp + 112u), (_fp + 144u));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
-                    new Vec3f((_fp + 64u)).z_Set(Mem.F32(0x800C8D74u));
+                    new Vec3f((_fp + 64u)).z_Set(1f);
                     MathUtil.MtxTransformPoint((_fp + 144u), (_fp + 64u), (_fp + 48u));
                 }
                 else
                 {
                     new Vec3f((_fp + 48u)).x_Set(0.0f);
                     new Vec3f((_fp + 48u)).y_Set(0.0f);
-                    new Vec3f((_fp + 48u)).z_Set(Mem.F32(0x800C8D78u));
+                    new Vec3f((_fp + 48u)).z_Set(1f);
                 }
                 if ((t == 0u))
                 {
@@ -592,19 +592,19 @@ public static partial class Effects
                         new Quat4((_fp + 128u)).z_Set(zero);
                         new Quat4((_fp + 128u)).y_Set(zero);
                         new Quat4((_fp + 128u)).x_Set(zero);
-                        new Quat4((_fp + 128u)).w_Set(Mem.F32(0x800C8D7Cu));
+                        new Quat4((_fp + 128u)).w_Set(1f);
                         Mem.Copy(_ret, (_fp + 128u), 16);
                         return _ret;
                     }
                 }
                 Mem.Copy((_fp + 16u), new ObjView(t).Position.P, 12);
                 new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + new ObjView(t).BottomOffset));
-                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + (Actor.GetHeight(t) * Mem.F32(0x800C8D80u))));
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + (Actor.GetHeight(t) * 0.75f)));
                 Vec.Sub((_fp + 32u), (_fp + 16u), _fp);
                 Vec.Normalize((_fp + 32u));
                 Vec.Cross((_fp + 80u), (_fp + 48u), (_fp + 32u));
                 Vec.Normalize((_fp + 80u));
-                ang = (MathUtil.Acosf((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
+                ang = (MathUtil.Acosf((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * 0.5f);
                 s = sinf(ang);
                 Mem.Set(Gv.Quat_SinScratch, s);
                 new Quat4((_fp + 96u)).x_Set((new Vec3f((_fp + 80u)).x * s));
@@ -4884,7 +4884,7 @@ public static partial class Particle
                 float f = 0f;
                 float tmp = 0f;
                 n = (int)(new ActorX(a).BlendClipSlot.p2C.b18);
-                f = Mem.F32(0x800C9C30u);
+                f = 1f;
                 if ((n != 0))
                 {
                     if ((new ActorX(a).FrameLightSets < (float)(n)))
@@ -4898,7 +4898,7 @@ public static partial class Particle
                 {
                     new Vec3f(_fp).x_Set(0.0f);
                     new Vec3f(_fp).z_Set(0.0f);
-                    new Vec3f(_fp).y_Set(Mem.F32(0x800C9C34u));
+                    new Vec3f(_fp).y_Set(1f);
                     Vec.Cross((_fp + 16u), _fp, (_fp + 32u));
                     Vec.Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).ActorStateTablePtr) * new ActorX(a).HitFlags_1AC) * f));
                     new ActorX(a).ActorStateTablePtr_Set((float)((float)(new ActorX(a).ActorStateTablePtr) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
@@ -4915,7 +4915,7 @@ public static partial class Particle
                 {
                     new Vec3f(_fp).x_Set(0.0f);
                     new Vec3f(_fp).z_Set(0.0f);
-                    new Vec3f(_fp).y_Set(Mem.F32(0x800C9C38u));
+                    new Vec3f(_fp).y_Set(1f);
                     Vec.Cross((_fp + 80u), _fp, (_fp + 32u));
                     Vec.Cross((_fp + 16u), (_fp + 80u), (_fp + 32u));
                     Vec.Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).CollisionProfilePtr) * new ActorX(a).f1B0) * f));
@@ -5008,41 +5008,41 @@ public static partial class Particle
                 new M5Obj(o).handle__Set(LoopSound.Start((uint)((int)(LoopSound.GetPool())), 1840, new M5Obj(o).Position.P, (int)(new M5Obj(o).Position.P), (-1)));
                 _f5: ;
                 tgt = new M5Obj(o).TargetPtr;
-                if (!(((tgt != 0u) && (new M5Obj(o).Age > Mem.F32(0x800C9C3Cu))))) goto _f6;
+                if (!(((tgt != 0u) && (new M5Obj(o).Age > 7f)))) goto _f6;
                 Quat.FromDirection((_fp + 48u), new M5Obj(o).Direction.P);
                 speed = sqrtf((((new M5Obj(o).Velocity.x * new M5Obj(o).Velocity.x) + (new M5Obj(o).Velocity.y * new M5Obj(o).Velocity.y)) + (new M5Obj(o).Velocity.z * new M5Obj(o).Velocity.z)));
                 Mem.Copy(_fp, new M5Tgt(tgt).pos.P, 12);
                 Vec.Sub((_fp + 16u), _fp, new M5Obj(o).Position.P);
                 dist = sqrtf((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 16u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 16u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 16u)).z)));
-                if (!((dist < Mem.F32(0x800C9C40u)))) goto _f7;
+                if (!((dist < 102.399994f))) goto _f7;
                 Quat.FromDirection((_fp + 80u), (_fp + 16u));
                 Quat.ToMatrix((_fp + 80u), (_fp + 96u));
                 Mem.Set((_fp + 32u), 0);
                 Mem.Set(((_fp + 32u) + 4u), 0);
-                new M5Vec3((_fp + 32u)).z_Set(Mem.F32(0x800C9C44u));
+                new M5Vec3((_fp + 32u)).z_Set(1f);
                 MathUtil.MtxTransformPoint((_fp + 96u), (_fp + 32u), new M5Obj(o).Direction.P);
                 Vec.Scale(new M5Obj(o).Velocity.P, new M5Obj(o).Direction.P, speed);
                 return;
                 _f7: ;
-                if (!((Mem.F32(0x800C9C48u) < dist))) goto _f8;
-                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + Mem.F32(0x800C9C40u)));
+                if (!((153.59999f < dist))) goto _f8;
+                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + 102.399994f));
                 Vec.Sub((_fp + 16u), _fp, new M5Obj(o).Position.P);
                 dist = sqrtf((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 16u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 16u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 16u)).z)));
                 _f8: ;
                 Vec.Normalize((_fp + 16u));
                 Quat.FromDirection((_fp + 64u), (_fp + 16u));
-                if (!((dist < Mem.F32(0x800C9C4Cu)))) goto _f9;
-                t = (dist - Mem.F32(0x800C9C50u));
+                if (!((dist < 1024f))) goto _f9;
+                t = (dist - 204.79999f);
                 if (!((t < 0.0f))) goto _f10;
                 w = 0.0f;
                 goto _f11;
                 _f10: ;
-                w = (t * Mem.F32(0x800C9C54u));
+                w = (t * 0.0012207031f);
                 _f11: ;
-                w = (Mem.F32(0x800C9C5Cu) - (w * Mem.F32(0x800C9C58u)));
+                w = (1f - (w * 0.85999995f));
                 goto _f12;
                 _f9: ;
-                w = Mem.F32(0x800C9C60u);
+                w = 0.04f;
                 _f12: ;
                 Quat.Normalize((_fp + 64u), default(uint), default(uint), default(uint));
                 Quat.Normalize((_fp + 48u), default(uint), default(uint), default(uint));
@@ -5050,7 +5050,7 @@ public static partial class Particle
                 Quat.ToMatrix((_fp + 80u), (_fp + 96u));
                 Mem.Set((_fp + 32u), 0);
                 Mem.Set(((_fp + 32u) + 4u), 0);
-                new M5Vec3((_fp + 32u)).z_Set(Mem.F32(0x800C9C64u));
+                new M5Vec3((_fp + 32u)).z_Set(1f);
                 MathUtil.MtxTransformPoint((_fp + 96u), (_fp + 32u), new M5Obj(o).Direction.P);
                 Vec.Scale(new M5Obj(o).Velocity.P, new M5Obj(o).Direction.P, speed);
                 _f6: ;
@@ -5138,7 +5138,7 @@ public static partial class Particle
                 new M5Obj(o).handle__Set(LoopSound.Start((uint)((int)(LoopSound.GetPool())), 2220, new M5Obj(o).Position.P, (int)(new M5Obj(o).Position.P), (-1)));
                 _f5: ;
                 if (!((new M5Obj(o).TargetPtr != 0u))) goto _f6;
-                if (!((new M5Obj(o).Age >= Mem.F32(0x800C9C68u)))) goto _f7;
+                if (!((new M5Obj(o).Age >= 30f))) goto _f7;
                 new M5Obj(o).TargetPtr_Set(0u);
                 _f7: ;
                 if (!((new M5Obj(o).TargetPtr != 0u))) goto _f8;
@@ -5147,10 +5147,10 @@ public static partial class Particle
                 _f6: ;
                 Mem.Set((_fp + 64u), 0);
                 Mem.Set(((_fp + 64u) + 4u), 0);
-                new M5Vec3((_fp + 64u)).z_Set(Mem.F32(0x800C9C6Cu));
+                new M5Vec3((_fp + 64u)).z_Set((-40.96f));
                 Player.TransformPoint((uint)(sd), (_fp + 64u));
                 Vec.Sub((_fp + 80u), (_fp + 64u), new M5Obj(o).Position.P);
-                if (!(((sqrtf((((new M5Vec3((_fp + 80u)).x * new M5Vec3((_fp + 80u)).x) + (new M5Vec3((_fp + 80u)).y * new M5Vec3((_fp + 80u)).y)) + (new M5Vec3((_fp + 80u)).z * new M5Vec3((_fp + 80u)).z))) < Mem.F32(0x800C9C70u)) && (new M5Obj(o).Age > Mem.F32(0x800C9C74u))))) goto _f9;
+                if (!(((sqrtf((((new M5Vec3((_fp + 80u)).x * new M5Vec3((_fp + 80u)).x) + (new M5Vec3((_fp + 80u)).y * new M5Vec3((_fp + 80u)).y)) + (new M5Vec3((_fp + 80u)).z * new M5Vec3((_fp + 80u)).z))) < 51.199997f) && (new M5Obj(o).Age > 5f)))) goto _f9;
                 Particle.PlayExpireEvents(o);
                 Particle.Free(Gv.EffectMgr, o, default(uint), default(uint));
                 Particle.StopLoopSound(o);
@@ -5160,7 +5160,7 @@ public static partial class Particle
                 L_tpb: ;
                 tgt = new M5Obj(o).TargetPtr;
                 Mem.Copy(_fp, new M5Tgt1(tgt).pos.P, 12);
-                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + (Actor.GetHeight(new M5Obj(o).TargetPtr) * Mem.F32(0x800C9C78u))));
+                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + (Actor.GetHeight(new M5Obj(o).TargetPtr) * 0.5f)));
                 Vec.Sub((_fp + 80u), _fp, new M5Obj(o).Position.P);
                 L_have: ;
                 Mem.Copy((_fp + 16u), (_fp + 80u), 12);
@@ -5173,20 +5173,20 @@ public static partial class Particle
                 Vec.Normalize((_fp + 32u));
                 ang = MathUtil.Acosf((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 32u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 32u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 32u)).z)));
                 w = 0.0f;
-                if (!(!(new M5Obj(o).Age < Mem.F32(0x800C9C7Cu)))) goto _f10;
-                w = Mem.F32(0x800C9C84u);
-                if (!((((ang < Mem.F32(0x800C9C80u)) && (Mem.F32(0x800C9C88u) < new M5Obj(o).Age)) || (new M5Obj(o).TargetPtr != 0u)))) goto _f11;
-                w = Mem.F32(0x800C9C8Cu);
+                if (!(!(new M5Obj(o).Age < 10f))) goto _f10;
+                w = 0.1f;
+                if (!((((ang < 90f) && (5f < new M5Obj(o).Age)) || (new M5Obj(o).TargetPtr != 0u)))) goto _f11;
+                w = 0.3f;
                 _f11: ;
                 _f10: ;
                 Quat.Blend((_fp + 128u), w, (_fp + 96u), (_fp + 112u));
                 Quat.ToMatrix((_fp + 128u), (_fp + 144u));
                 Mem.Set((_fp + 48u), 0);
                 Mem.Set(((_fp + 48u) + 4u), 0);
-                new M5Vec3((_fp + 48u)).z_Set(Mem.F32(0x800C9C90u));
+                new M5Vec3((_fp + 48u)).z_Set(1f);
                 MathUtil.MtxTransformPoint((_fp + 144u), (_fp + 48u), new M5Obj(o).Direction.P);
                 Vec.Scale(new M5Obj(o).Velocity.P, new M5Obj(o).Direction.P, speed);
-                if (!((new M5Obj(o).Age >= Mem.F32(0x800C9C94u)))) goto _f12;
+                if (!((new M5Obj(o).Age >= 30f))) goto _f12;
                 new M5Obj(o).WallHitMode_1B9_Set((byte)(0));
                 new M5Obj(o).FloorHitMode_1BA_Set((byte)(0));
                 _f12: ;
@@ -5256,7 +5256,7 @@ public static partial class Particle
                 float t = 0f;
                 Vec.Sub(_fp, target, new ActorX(a).Position.P);
                 dist = sqrtf_Recompiled((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
-                if ((dist <= Mem.F32(0x800C9C98u)))
+                if ((dist <= 51.199997f))
                 {
                     Mem.Copy(new ActorX(a).Position.P, target, 12);
                     return;
@@ -5265,28 +5265,28 @@ public static partial class Particle
                 Quat.FromDirection((_fp + 48u), _fp);
                 Quat.FromDirection((_fp + 32u), new ActorX(a).HitPoints.P);
                 speed = sqrtf_Recompiled((((new ActorX(a).Velocity.x * new ActorX(a).Velocity.x) + (new ActorX(a).Velocity.y * new ActorX(a).Velocity.y)) + (new ActorX(a).Velocity.z * new ActorX(a).Velocity.z)));
-                if ((dist < Mem.F32(0x800C9C9Cu)))
+                if ((dist < 1024f))
                 {
-                    t = (dist - Mem.F32(0x800C9CA0u));
+                    t = (dist - 204.79999f);
                     if ((t < 0.0f))
                     {
                         t = 0.0f;
                     }
                     else
                     {
-                        t = (t * Mem.F32(0x800C9CA4u));
+                        t = (t * 0.0012207031f);
                     }
-                    k = (Mem.F32(0x800C9CACu) - (t * Mem.F32(0x800C9CA8u)));
+                    k = (0.9f - (t * 0.85999995f));
                 }
                 else
                 {
-                    k = Mem.F32(0x800C9CB0u);
+                    k = 0.04f;
                 }
                 Quat.Blend((_fp + 64u), k, (_fp + 32u), (_fp + 48u));
                 Quat.ToMatrix((_fp + 64u), (_fp + 80u));
                 new Vec3f((_fp + 16u)).x_Set((float)(0));
                 new Vec3f((_fp + 16u)).y_Set((float)(0));
-                new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C9CB4u));
+                new Vec3f((_fp + 16u)).z_Set(1f);
                 MathUtil.MtxTransformPoint((_fp + 80u), (_fp + 16u), new ActorX(a).HitPoints.P);
                 Vec.Scale(new ActorX(a).Velocity.P, new ActorX(a).HitPoints.P, speed);
                 func_0027A9B8_vel_tail(a);
@@ -5308,7 +5308,7 @@ public static partial class Particle
                 float s = 0f;
                 float lim = 0f;
                 float len = 0f;
-                if (((new ActorX(a).p134_ != 0u) && (new ActorX(a).FrameLightSets > Mem.F32(0x800C9CB8u))))
+                if (((new ActorX(a).p134_ != 0u) && (new ActorX(a).FrameLightSets > 1f)))
                 {
                     Particle.SteerTowardPoint(a, (new ActorX(a).p134_ + (uint)8));
                     return;
@@ -6957,12 +6957,12 @@ public static partial class Particle
             float x = xin;
             float d = 0f;
             float k = 0f;
-            d = (x - Mem.F32(0x800C9D58u));
-            k = (!(d < 0.0f) ? (!(Mem.F32(0x800C9D60u) < (d * Mem.F32(0x800C9D5Cu))) ? (!(d < 0.0f) ? (d * Mem.F32(0x800C9D64u)) : 0.0f) : Mem.F32(0x800C9D60u)) : 0.0f);
+            d = (x - 16f);
+            k = (!(d < 0.0f) ? (!(1f < (d * 0.000492126f)) ? (!(d < 0.0f) ? (d * 0.000492126f) : 0.0f) : 1f) : 0.0f);
             {
                 float fb = new B18CfgD(par).unk24.unk20;
                 float fa = new B18CfgD(par).unk24.unk1C;
-                x = ((x * (fa + ((fb - fa) * k))) * Mem.F32(0x800C9D68u));
+                x = ((x * (fa + ((fb - fa) * k))) * 0.001f);
             }
             return x;
         }
@@ -11116,8 +11116,8 @@ public static partial class Particle
                 {
                     Audio.PlaySound((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).Position.x), Cpu.F2U(new B19Plr(p).Position.y), Cpu.F2U(new B19Plr(p).Position.z)), (int)(new B19Plr(p).Position.P), (int)((uint)((-1))));
                     Player.AddDamageOverTime_0022B540(p, 30.0f, 3.0f, new B19Obj(o).OwnerPtr, 0);
-                    Rumble.StartById(Gv.LevelMgr, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
-                    new B19Plr(p).BurnTime_11EC_Set(Mem.F32(0x800C9F54u));
+                    Rumble.StartById(Gv.LevelMgr, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, 10.24f, 1f);
+                    new B19Plr(p).BurnTime_11EC_Set(45f);
                 }
                 par = new B19Obj(o).parent_;
                 k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
@@ -11915,12 +11915,12 @@ public static partial class Particle
             float x = xin;
             float d = 0f;
             float k = 0f;
-            d = (x - Mem.F32(0x800C9F58u));
-            k = (!(d < 0.0f) ? (!(Mem.F32(0x800C9F60u) < (d * Mem.F32(0x800C9F5Cu))) ? (!(d < 0.0f) ? (d * Mem.F32(0x800C9F64u)) : 0.0f) : Mem.F32(0x800C9F60u)) : 0.0f);
+            d = (x - 16f);
+            k = (!(d < 0.0f) ? (!(1f < (d * 0.000492126f)) ? (!(d < 0.0f) ? (d * 0.000492126f) : 0.0f) : 1f) : 0.0f);
             {
                 float fb = new B19Parent(par).pf.b;
                 float fa = new B19Parent(par).pf.a;
-                x = ((x * (fa + ((fb - fa) * k))) * Mem.F32(0x800C9F68u));
+                x = ((x * (fa + ((fb - fa) * k))) * 0.001f);
             }
             return x;
         }
@@ -11940,11 +11940,11 @@ public static partial class Particle
             }
             else
             {
-                t = Mem.F32(0x800C9F6Cu);
+                t = 1f;
             }
             {
                 float m = new B19Q2(q).f6C;
-                return ((t * Mem.F32(0x800C9F78u)) * (m + ((Mem.F32(0x800C9F70u) - m) * Mem.F32(0x800C9F74u))));
+                return ((t * 0.021052632f) * (m + ((47.5f - m) * 0.25f)));
             }
             return 0f;
         }
@@ -12006,7 +12006,7 @@ public static partial class Particle
                     i = 1;
                     if ((i <= n))
                     {
-                        k = ((float)(n) + Mem.F32(0x800C9F7Cu));
+                        k = ((float)(n) + 1f);
                         do
                         {
                             Vec.Scale((_fp + 32u), (_fp + 16u), ((float)(i) / k));
@@ -12414,7 +12414,7 @@ public static partial class Particle
                 int done = 0;
                 if (!(r <= 0.0f))
                 {
-                    r = (r * Mem.F32(0x800C9F80u));
+                    r = (r * 10.24f);
                     r = (r * r);
                     for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); )
                     {
@@ -12422,7 +12422,7 @@ public static partial class Particle
                         done = 0;
                         if (((int)(new B19Obj(o).TypeId) != 1039))
                         {
-                            new B19Vec3(_fp).y_Set((float)((float)(new B19Vec3(_fp).y) + (Actor.GetHeight(p) * Mem.F32(0x800C9F84u))));
+                            new B19Vec3(_fp).y_Set((float)((float)(new B19Vec3(_fp).y) + (Actor.GetHeight(p) * 0.5f)));
                         }
                         if ((Vec.DistanceSq(new B19Obj(o).Position.P, _fp) < r))
                         {
@@ -12463,7 +12463,7 @@ public static partial class Particle
                     if (((int)(new B19Obj(o).TypeId) != 87))
                     {
                         Vec.Sub(_fp, new B19Obj(o).Position.P, new B19Obj(@ref).Position.P);
-                        if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= Mem.F32(0x800C9F88u)))
+                        if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= 65536f))
                         {
                             new B19Obj(o).LifeFrames_Set((short)(1));
                         }
@@ -12504,7 +12504,7 @@ public static partial class Particle
                             if (((int)(new B19Obj(e).TypeId) != 87))
                             {
                                 Vec.Sub(_fp, new B19Obj(e).Position.P, new B19Obj(o).Position.P);
-                                if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= Mem.F32(0x800C9F8Cu)))
+                                if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= 65536f))
                                 {
                                     new B19Obj(e).LifeFrames_Set((short)(1));
                                 }
@@ -12556,7 +12556,7 @@ public static partial class Particle
             if (Dbg.On) Dbg.Enter("func_0028509C", (uint)owner, (uint)obj, (uint)@out);
             uint o = 0u;
             float d = 0f;
-            Mem.Set(@out, Mem.F32(0x800C9F90u));
+            Mem.Set(@out, 10000000f);
             for (o = new B19Owner(owner).lb.head_; (o != 0u); o = new B19Obj(o).next2_)
             {
                 if (((new B19Obj(o).OwnerPtr != (int)(obj)) && ((new B19Obj(o).Flags & (uint)(256)) != 0u)))

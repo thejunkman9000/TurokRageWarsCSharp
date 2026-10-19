@@ -591,7 +591,7 @@ public static partial class Player
                 if ((Mem.U32((actor + (uint)1500)) != 0u))
                 {
                     v = Player.GetIndex((g - (uint)4744), (int)(actor));
-                    Hud.SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(Gv.HudMsg_FunctionNotAvailable)), v, Mem.F32(0x800C8100u));
+                    Hud.SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(Gv.HudMsg_FunctionNotAvailable)), v, 1f);
                 }
             }
             return r;

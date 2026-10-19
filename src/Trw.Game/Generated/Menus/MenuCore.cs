@@ -1446,7 +1446,7 @@ public static partial class Menu
             case 2:
                 if ((cmd == (uint)(3592)))
                 {
-                    now = (int)((Time.GetSecondsSinceStart() * Mem.F64(0x800CA7B0u)));
+                    now = (int)((Time.GetSecondsSinceStart() * 1000.0d));
                     a = (now - new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).LastTickTime);
                     b = now;
                     new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set(b);
@@ -1713,7 +1713,7 @@ public static partial class Menu
             }
             MemUtil.Fill(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C__Set(ResourcePool.Malloc((uint)(900))), 0, (uint)(900));
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set((int)((Time.GetSecondsSinceStart() * Mem.F64(0x800CA7F8u))));
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set((int)((Time.GetSecondsSinceStart() * 1000.0d)));
             new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).StackCapacity_Set(n);
             MemUtil.Fill(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk__Set(ResourcePool.Malloc((uint)((n * 28)))), 0, (uint)((n * 28)));
             Mem.Set(0x8014D094u, 0);
@@ -2286,7 +2286,7 @@ public static partial class Menu
                 new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).DrawOffsetY);
                 new B22Viewport(_fp).w_Set((Mem.S32(0x8014D088u) - 1));
                 new B22Viewport(_fp).h_Set((Mem.S32(0x8014D08Cu) - 1));
-                now = (int)((Time.GetSecondsSinceStart() * Mem.F64(0x800CA810u)));
+                now = (int)((Time.GetSecondsSinceStart() * 1000.0d));
                 if ((Mem.S32(0x800D2B50u) == 0))
                 {
                     Mem.Set(0x800D2B50u, now);
@@ -3000,8 +3000,8 @@ public static partial class Menu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AB60", (uint)a, (uint)b);
-            Mem.Set(a, Mem.F32(0x800CA818u));
-            Mem.Set(b, Mem.F32(0x800CA818u));
+            Mem.Set(a, (-1f));
+            Mem.Set(b, (-1f));
         }
     }
 

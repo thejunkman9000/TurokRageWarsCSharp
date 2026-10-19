@@ -1122,7 +1122,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EF1C", (uint)a);
-            Mem.Set((0x801468B0u + (uint)(0 * 4)), Mem.F32(0x800E2390u));
+            Mem.Set((0x801468B0u + (uint)(0 * 4)), 120f);
             new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags) & (uint)((~67108864))));
         }
     }

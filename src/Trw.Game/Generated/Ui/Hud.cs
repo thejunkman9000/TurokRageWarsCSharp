@@ -70,7 +70,7 @@ public static partial class Hud
                     MathUtil.MtxCopy(mp, _fp);
                     if ((Mem.S32(Gv.VideoResolution) == 2))
                     {
-                        MathUtil.MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
+                        MathUtil.MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), 1f, 1f);
                     }
                     MathUtil.MtxFloatToFixed(mp, (o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 16)));
                     MathUtil.MtxTransformPoint(_fp, new B04O5(o).Position.P, (_fp + 128u));
@@ -344,7 +344,7 @@ public static partial class Hud
                             }
                             else
                             {
-                                new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
+                                new B05P13(p).CrosshairAnimTime_Set(1f);
                             }
                         }
                     }
@@ -358,7 +358,7 @@ public static partial class Hud
                             new B05P13(p).CrosshairSpriteId_Set(753);
                             if ((((int)(new B05P13(p).WeaponIndex) == 9) && (new B05P13(p).WeaponCharge_5A0 > 0.0f)))
                             {
-                                new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
+                                new B05P13(p).CrosshairAnimTime_Set(1f);
                             }
                             else
                             {
@@ -381,7 +381,7 @@ public static partial class Hud
                                         }
                                         else
                                         {
-                                            new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
+                                            new B05P13(p).CrosshairAnimTime_Set(1f);
                                         }
                                     }
                                 }
@@ -414,7 +414,7 @@ public static partial class Hud
                 case 730:
                 case 751:
                 case 752:
-                    val = Mem.F32(0x800C74D4u);
+                    val = 8f;
                     break;
                 case 700:
                 case 740:
@@ -426,15 +426,15 @@ public static partial class Hud
                 case 811:
                 case 860:
                 case 861:
-                    val = Mem.F32(0x800C74D8u);
+                    val = 32f;
                     break;
                 default:
-                    val = Mem.F32(0x800C74DCu);
+                    val = 16f;
                     break;
                 }
                 if ((flag != 0))
                 {
-                    Hud.DrawIconSprite(s, new B05P13(p).CrosshairPos2.P, id, new B05P13(p).CrosshairAnimTime, val, Mem.F32(0x800C74E0u));
+                    Hud.DrawIconSprite(s, new B05P13(p).CrosshairPos2.P, id, new B05P13(p).CrosshairAnimTime, val, 1f);
                 }
             }
             id = new B05P13(p).CrosshairSpriteId;
@@ -2431,32 +2431,32 @@ public static partial class Hud
             if (((Flyby.IsActive() == 0) && (Flyby.IsInWindow() == 0)))
             {
                 Gfx.BeginFlatColorPass((uint)(Mem.U8((0x801462DEu + (uint)0))), default(uint), default(uint), default(uint));
-                if ((!(Mem.F32((0x801462DEu + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((0x801462DEu + (uint)1494)) * Mem.F32(0x800C7CCCu)))), (fs0 = (new HudInB6(b).unk29C / (float)(Mem.S32(Gv.ScreenWidth)))))), (ft0 = (float)((int)((fs2 * Mem.F32(0x800C7CD0u))))))), (fs1f = (new HudInB6(b).unk2A0 / (float)(Mem.S32(Gv.ScreenHeight)))))), (fs2 = (fs2 - (ft0 * Mem.F32(0x800C7CD4u)))))), ((ft0 < Mem.F32(0x800C7CD8u)) ? 0 : 1)) != 0) || !(fs2 < Mem.F32(0x800C7CDCu))) || ((Mem.U32(Gv.LevelFrameCount) % (uint)(15)) >= (uint)(5)))))
+                if ((!(Mem.F32((0x801462DEu + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((0x801462DEu + (uint)1494)) * 0.06666667f))), (fs0 = (new HudInB6(b).unk29C / (float)(Mem.S32(Gv.ScreenWidth)))))), (ft0 = (float)((int)((fs2 * 0.016666668f)))))), (fs1f = (new HudInB6(b).unk2A0 / (float)(Mem.S32(Gv.ScreenHeight)))))), (fs2 = (fs2 - (ft0 * 60f))))), ((ft0 < 1f) ? 0 : 1)) != 0) || !(fs2 < 30f)) || ((Mem.U32(Gv.LevelFrameCount) % (uint)(15)) >= (uint)(5)))))
                 {
                     if ((Mem.S32(Gv.ViewCount) == 1))
                     {
                         if ((Mem.S32(Gv.VideoResolution) == 0))
                         {
-                            fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * Mem.F32(0x800C7CE0u));
-                            fs0 = (fs0 * Mem.F32(0x800C7CE4u));
-                            fs0f = Mem.F32(0x800C7CE8u);
-                            fs1f = (fs1f * Mem.F32(0x800C7CE4u));
+                            fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * 0.5f);
+                            fs0 = (fs0 * 0.8f);
+                            fs0f = 10f;
+                            fs1f = (fs1f * 0.8f);
                         }
                         else
                         {
-                            fs0f = Mem.F32(0x800C7CF0u);
-                            fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * Mem.F32(0x800C7CECu));
+                            fs0f = 20f;
+                            fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * 0.5f);
                         }
                     }
                     else
                     {
-                        fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * Mem.F32(0x800C7CF4u));
-                        fs0f = ((float)((Mem.S32(Gv.ScreenHeight) - 10)) * Mem.F32(0x800C7CF4u));
+                        fs1 = ((float)(Mem.S32(Gv.ScreenWidth)) * 0.5f);
+                        fs0f = ((float)((Mem.S32(Gv.ScreenHeight) - 10)) * 0.5f);
                     }
-                    Hud.DrawNumber((int)(ft0), (fs1 - (fs0 * Mem.F32(0x800C7CF8u))), fs0f, fs0, fs1f, 1, 1, 0);
+                    Hud.DrawNumber((int)(ft0), (fs1 - (fs0 * 7f)), fs0f, fs0, fs1f, 1, 1, 0);
                     Hud.DrawNumber((int)(fs2), (fs1 + (2.0f * fs0)), fs0f, fs0, fs1f, 1, 0, 2);
                     TextUtil.BeginFontPass();
-                    TextUtil.Draw(0x800C7CC8u, (int)((fs1 - (fs0 * Mem.F32(0x800C7CFCu)))), (int)((fs0f - (fs1f * Mem.F32(0x800C7D00u)))), 255, 0, 0, fs0, fs1f);
+                    TextUtil.Draw(0x800C7CC8u, (int)((fs1 - (fs0 * 6f))), (int)((fs0f - (fs1f * 12f))), 255, 0, 0, fs0, fs1f);
                 }
             }
         }

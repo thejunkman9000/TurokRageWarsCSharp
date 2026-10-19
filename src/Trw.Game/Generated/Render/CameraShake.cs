@@ -21,9 +21,9 @@ public static partial class CameraShake
                 new ChanObj(co).ch[(int)(1)].mode_Set(e);
                 new ChanObj(co).ch[(int)(2)].mode_Set(e);
                 new ChanObj(co).ch[(int)(3)].mode_Set(e);
-                new ChanObj(co).ch[(int)(1)].v.x_Set((a * Mem.F32(0x800C8634u)));
-                new ChanObj(co).ch[(int)(2)].v.x_Set((b * Mem.F32(0x800C8634u)));
-                new ChanObj(co).ch[(int)(3)].v.x_Set((c * Mem.F32(0x800C8634u)));
+                new ChanObj(co).ch[(int)(1)].v.x_Set((a * 0.1f));
+                new ChanObj(co).ch[(int)(2)].v.x_Set((b * 0.1f));
+                new ChanObj(co).ch[(int)(3)].v.x_Set((c * 0.1f));
             }
         }
         finally { Stack.Free(12); }
@@ -74,7 +74,7 @@ public static partial class CameraShake
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239CF0", (uint)o, 0u, (uint)b);
-            new Obj4F(o).unk4_Set((a * Mem.F32(0x800C8658u)));
+            new Obj4F(o).unk4_Set((a * 0.1f));
             new Obj4F(o).unk0_Set(b);
         }
     }
@@ -88,7 +88,7 @@ public static partial class CameraShake
             switch (new ObjWave(o).Mode)
             {
             case 1:
-                return (sinf((new ObjWave(o).Phase * Mem.F32(0x800C865Cu))) * new ObjWave(o).Amplitude);
+                return (sinf((new ObjWave(o).Phase * 0.017453294f)) * new ObjWave(o).Amplitude);
             case 0:
                 return RandomGen.Symmetric((-new ObjWave(o).Amplitude), new ObjWave(o).Amplitude);
             default:
@@ -110,7 +110,7 @@ public static partial class CameraShake
             new ChanObj(o).ch[(int)(0)].v.x_Set((float)(0));
             new ChanObj(o).ch[(int)(0)].v.y_Set((float)(0));
             new ChanObj(o).ch[(int)(0)].v.z_Set((float)(0));
-            new ChanObj(o).ch[(int)(0)].d_Set(Mem.F32(0x800C8660u));
+            new ChanObj(o).ch[(int)(0)].d_Set(1f);
             new Chan(c1).v.x_Set((float)(0));
             new Chan(c1).v.y_Set((float)(0));
             new Chan(c1).v.z_Set((float)(0));
@@ -141,9 +141,9 @@ public static partial class CameraShake
                 new ChanObj(o).ch[(int)(1)].mode_Set(e);
                 new ChanObj(o).ch[(int)(2)].mode_Set(e);
                 new ChanObj(o).ch[(int)(3)].mode_Set(e);
-                new ChanObj(o).ch[(int)(1)].v.x_Set((a * Mem.F32(0x800C8664u)));
-                new ChanObj(o).ch[(int)(2)].v.x_Set((b * Mem.F32(0x800C8664u)));
-                new ChanObj(o).ch[(int)(3)].v.x_Set((c * Mem.F32(0x800C8664u)));
+                new ChanObj(o).ch[(int)(1)].v.x_Set((a * 0.1f));
+                new ChanObj(o).ch[(int)(2)].v.x_Set((b * 0.1f));
+                new ChanObj(o).ch[(int)(3)].v.x_Set((c * 0.1f));
             }
         }
         finally { Stack.Free(12); }

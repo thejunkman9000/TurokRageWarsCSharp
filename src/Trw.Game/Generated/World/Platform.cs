@@ -962,7 +962,7 @@ public static partial class PlatformObj
             {
                 new B2State(state).Timer_64_Set((new B2State(state).Timer_64 + (Mem.F32(Gv.FrameTime) / new B2Info(info).TravelTime_38)));
             }
-            if ((new B2State(state).Timer_64 >= Mem.F32(0x800C6C90u)))
+            if ((new B2State(state).Timer_64 >= 1f))
             {
                 Actor.DispatchEvent(actor, state, 2);
             }
