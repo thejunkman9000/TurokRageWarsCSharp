@@ -681,7 +681,7 @@ public readonly struct Scene_func_802A5180_de_v2
     // +0x95A8
     public S8x0 pad95A8 { [MethodImpl(Inl)] get => new(P + 0x95A8u); }
     // +0x95A8
-    public Particle free
+    public ParticleView free
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x95A8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x95A8u, value.P);
@@ -3202,17 +3202,17 @@ public readonly struct SessionState
     [MethodImpl(Inl)] public int paused_Set(int v) => Mem.Set(P + 0x60Cu, v);
 }
 
-/// <summary>struct Settings, 0x84 bytes, at a guest address.</summary>
-public readonly struct Settings
+/// <summary>struct SettingsView, 0x84 bytes, at a guest address.</summary>
+public readonly struct SettingsView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Settings(uint p) { P = p; }
+    [MethodImpl(Inl)] public SettingsView(uint p) { P = p; }
     public const int SizeOf = 132;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Settings At(int i) => new(P + (uint)(i * 132));
-    [MethodImpl(Inl)] public static implicit operator uint(Settings v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Settings(uint p) => new(p);
+    [MethodImpl(Inl)] public SettingsView At(int i) => new(P + (uint)(i * 132));
+    [MethodImpl(Inl)] public static implicit operator uint(SettingsView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SettingsView(uint p) => new(p);
     // +0x0
     public S8x120 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x78

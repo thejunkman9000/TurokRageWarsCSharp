@@ -1870,17 +1870,17 @@ public readonly struct OW
     [MethodImpl(Inl)] public int f147C_Set(int v) => Mem.Set(P + 0x147Cu, v);
 }
 
-/// <summary>struct Obj, 0x2E4 bytes, at a guest address.</summary>
-public readonly struct Obj
+/// <summary>struct ObjView, 0x2E4 bytes, at a guest address.</summary>
+public readonly struct ObjView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Obj(uint p) { P = p; }
+    [MethodImpl(Inl)] public ObjView(uint p) { P = p; }
     public const int SizeOf = 740;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Obj At(int i) => new(P + (uint)(i * 740));
-    [MethodImpl(Inl)] public static implicit operator uint(Obj v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Obj(uint p) => new(p);
+    [MethodImpl(Inl)] public ObjView At(int i) => new(P + (uint)(i * 740));
+    [MethodImpl(Inl)] public static implicit operator uint(ObjView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ObjView(uint p) => new(p);
     // +0x0
     public byte Type
     {
@@ -4869,7 +4869,7 @@ public readonly struct Obj_func_80442EC0_de
     [MethodImpl(Inl)] public uint value__Set(uint v) => Mem.Set(P + 0x14u, v);
 }
 
-/// <summary>struct Obj, 0x20 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x20 bytes, at a guest address.</summary>
 public readonly struct Obj_v10
 {
     public readonly uint P;
@@ -4886,7 +4886,7 @@ public readonly struct Obj_v10
     public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x14u); }
 }
 
-/// <summary>struct Obj, 0x4 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x4 bytes, at a guest address.</summary>
 public readonly struct Obj_v11
 {
     public readonly uint P;
@@ -4908,7 +4908,7 @@ public readonly struct Obj_v11
     [MethodImpl(Inl)] public ushort flags_Set(ushort v) => Mem.Set(P + 0x2u, v);
 }
 
-/// <summary>struct Obj, 0x1D0 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x1D0 bytes, at a guest address.</summary>
 public readonly struct Obj_v12
 {
     public readonly uint P;
@@ -4973,7 +4973,7 @@ public readonly struct Obj_v12
     [MethodImpl(Inl)] public float unk1CC_Set(float v) => Mem.Set(P + 0x1CCu, v);
 }
 
-/// <summary>struct Obj, 0x1C bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x1C bytes, at a guest address.</summary>
 public readonly struct Obj_v2
 {
     public readonly uint P;
@@ -5021,7 +5021,7 @@ public readonly struct Obj_v2
     [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
 }
 
-/// <summary>struct Obj, 0xA4 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0xA4 bytes, at a guest address.</summary>
 public readonly struct Obj_v3
 {
     public readonly uint P;
@@ -5048,7 +5048,7 @@ public readonly struct Obj_v3
     [MethodImpl(Inl)] public uint unkA0__Set(uint v) => Mem.Set(P + 0xA0u, v);
 }
 
-/// <summary>struct Obj, 0xA8 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0xA8 bytes, at a guest address.</summary>
 public readonly struct Obj_v4
 {
     public readonly uint P;
@@ -5075,7 +5075,7 @@ public readonly struct Obj_v4
     [MethodImpl(Inl)] public uint unkA4__Set(uint v) => Mem.Set(P + 0xA4u, v);
 }
 
-/// <summary>struct Obj, 0x24 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x24 bytes, at a guest address.</summary>
 public readonly struct Obj_v5
 {
     public readonly uint P;
@@ -5120,7 +5120,7 @@ public readonly struct Obj_v5
     [MethodImpl(Inl)] public int i20_Set(int v) => Mem.Set(P + 0x20u, v);
 }
 
-/// <summary>struct Obj, 0x1C bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x1C bytes, at a guest address.</summary>
 public readonly struct Obj_v6
 {
     public readonly uint P;
@@ -5149,7 +5149,7 @@ public readonly struct Obj_v6
     [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
 }
 
-/// <summary>struct Obj, 0xB0 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0xB0 bytes, at a guest address.</summary>
 public readonly struct Obj_v7
 {
     public readonly uint P;
@@ -5176,7 +5176,7 @@ public readonly struct Obj_v7
     [MethodImpl(Inl)] public uint unkAC__Set(uint v) => Mem.Set(P + 0xACu, v);
 }
 
-/// <summary>struct Obj, 0x2F8 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x2F8 bytes, at a guest address.</summary>
 public readonly struct Obj_v8
 {
     public readonly uint P;
@@ -5203,7 +5203,7 @@ public readonly struct Obj_v8
     [MethodImpl(Inl)] public uint task__Set(uint v) => Mem.Set(P + 0x2F4u, v);
 }
 
-/// <summary>struct Obj, 0x74 bytes, at a guest address.</summary>
+/// <summary>struct ObjView, 0x74 bytes, at a guest address.</summary>
 public readonly struct Obj_v9
 {
     public readonly uint P;

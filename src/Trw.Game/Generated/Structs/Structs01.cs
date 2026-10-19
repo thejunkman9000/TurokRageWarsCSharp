@@ -3091,17 +3091,17 @@ public readonly struct Action_func_8040B648_de
     [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
 }
 
-/// <summary>struct Actor, 0x16E4 bytes, at a guest address.</summary>
-public readonly struct Actor
+/// <summary>struct ActorView, 0x16E4 bytes, at a guest address.</summary>
+public readonly struct ActorView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Actor(uint p) { P = p; }
+    [MethodImpl(Inl)] public ActorView(uint p) { P = p; }
     public const int SizeOf = 5860;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Actor At(int i) => new(P + (uint)(i * 5860));
-    [MethodImpl(Inl)] public static implicit operator uint(Actor v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Actor(uint p) => new(p);
+    [MethodImpl(Inl)] public ActorView At(int i) => new(P + (uint)(i * 5860));
+    [MethodImpl(Inl)] public static implicit operator uint(ActorView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ActorView(uint p) => new(p);
     // +0x0
     public U8x24 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x18
@@ -4154,17 +4154,17 @@ public readonly struct ActorRow400
     public U8x396 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
 }
 
-/// <summary>struct ActorState, 0x140 bytes, at a guest address.</summary>
-public readonly struct ActorState
+/// <summary>struct ActorStateView, 0x140 bytes, at a guest address.</summary>
+public readonly struct ActorStateView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public ActorState(uint p) { P = p; }
+    [MethodImpl(Inl)] public ActorStateView(uint p) { P = p; }
     public const int SizeOf = 320;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public ActorState At(int i) => new(P + (uint)(i * 320));
-    [MethodImpl(Inl)] public static implicit operator uint(ActorState v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator ActorState(uint p) => new(p);
+    [MethodImpl(Inl)] public ActorStateView At(int i) => new(P + (uint)(i * 320));
+    [MethodImpl(Inl)] public static implicit operator uint(ActorStateView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ActorStateView(uint p) => new(p);
     // +0x0
     public uint Flags
     {

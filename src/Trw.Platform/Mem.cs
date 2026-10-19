@@ -179,7 +179,7 @@ public static class Mem
         bool hit = false;
         foreach (var (lo, hi) in watchRanges) if (a < hi && a + (uint)n > lo) { hit = true; break; }
         if (!hit || Interlocked.Increment(ref watchHits) > watchMax) return;
-        var frames = new System.Diagnostics.StackTrace(2, false).GetFrames().Select(f => f.GetMethod()).Where(m => m != null && m.DeclaringType?.Name is "Game" or "Funcs" or "GameBoot").Select(m => m!.Name).Take(10);
+        var frames = new System.Diagnostics.StackTrace(2, false).GetFrames().Select(f => f.GetMethod()).Where(m => m != null && (m.DeclaringType?.Namespace == "Trw.Game" || m.DeclaringType?.Name == "Funcs")).Select(m => m!.DeclaringType!.Name == "Game" ? m.Name : m.DeclaringType.Name + "." + m.Name).Take(10);
         Console.Error.WriteLine($"[watch] write of {n} bytes at {a:X8} (was {Convert.ToHexString(At(a, n))}) by {string.Join(" <- ", frames)}");
     }
 

@@ -9,7 +9,7 @@ public sealed class HudContext
     public required HudValues Values;
     public required HudCanvas Canvas;
     public HudFonts? Fonts;
-    public HudView? FirstView;              // the shared pass lays the clock out from the first view (Hud_DrawMatchClock)
+    public HudView? FirstView;              // the shared pass lays the clock out from the first view (Hud.DrawMatchClock)
     public float FrameW = 480, FrameH = 360; // the HUD frame of a view (D_800E28D0 x D_800E28D4)
     public float Sx => View.W / FrameW;      // frame units -> screen pixels of this view (2-player halves: 1 x 0.5, the game's look)
     public float Sy => View.H / FrameH;
@@ -90,8 +90,8 @@ public abstract class HudElement
         return (x, y, ux * (float)ScaleX.Eval(c.Values), uy * (float)ScaleY.Eval(c.Values));
     }
 
-    /// <summary>The base point and the frame-unit size of an origin / anchor. The origins follow the game's formulas (Hud_DrawPlayer, Hud_DrawAmmo,
-    /// Hud_DrawMatchClock), including its quirks (a right-hand counter more than 200 pixels in moves 12 pixels left).</summary>
+    /// <summary>The base point and the frame-unit size of an origin / anchor. The origins follow the game's formulas (Hud.DrawPlayer, Hud.DrawAmmo,
+    /// Hud.DrawMatchClock), including its quirks (a right-hand counter more than 200 pixels in moves 12 pixels left).</summary>
     public static (float x, float y, float ux, float uy) Basis(HudContext c, string? origin, string anchor)
     {
         var v = c.View; var val = c.Values;
@@ -110,10 +110,10 @@ public abstract class HudElement
             case "lives": return ((float)val["lives.x"] * k2 * sx + v.X, (float)val["lives.y"] * k2 * sy + v.Y, sx, sy);
             case "ammo1": case "ammo2": case "ammo3":
                 return ((float)val[origin + ".x"] * sx + v.X + (hires ? 10f : -9f), (float)val[origin + ".y"] * sy + v.Y + v.H, sx, sy);
-            case "crosshair": return (v.X + v.W * 0.5f, v.Y + v.H * 0.5f, 1, 1);        // Hud_DrawIconSprite: centred, drawn at its own size in every view
+            case "crosshair": return (v.X + v.W * 0.5f, v.Y + v.H * 0.5f, 1, 1);        // Hud.DrawIconSprite: centred, drawn at its own size in every view
             case "center": return (v.X + v.W * 0.5f, v.Y + v.H * 0.5f, sx, sy);
             case "clock":
-            {   // Hud_DrawMatchClock, from the first view's size: one view: (W/2, 20) hi-res, (W/2, 10) else; several: (W/2, (H-10)/2)
+            {   // Hud.DrawMatchClock, from the first view's size: one view: (W/2, 20) hi-res, (W/2, 10) else; several: (W/2, (H-10)/2)
                 var f = c.FirstView ?? v;
                 float W = val["screen.w"] > 0 ? (float)val["screen.w"] : 480, H = val["screen.h"] > 0 ? (float)val["screen.h"] : 360;
                 float fs0 = f.W / W, fs1f = f.H / H;
@@ -149,12 +149,12 @@ public sealed class SpriteElement : HudElement
         DrawSprite(c, (int)SpriteId.Eval(c.Values), (int)FrameNo.Eval(c.Values), S(x), S(y), sx, sy, Color, AlphaOf(c));
     }
 
-    /// <summary>One frame of a game sprite at screen (x, y), cells laid out as Sprite_DrawFrameScaled does (scaled path).</summary>
+    /// <summary>One frame of a game sprite at screen (x, y), cells laid out as Sprite.DrawFrameScaled does (scaled path).</summary>
     public static bool DrawSprite(HudContext c, int id, int frame, float x, float y, float sx, float sy, HudColor col, float alpha)
     {
         var fr = GameSprites.Get(id)?.Get(frame);
         if (fr == null) return false;
-        // Sprite_SetRenderState: the texture rectangle's corners are truncated to the RDP's quarter pixels, the texel step to 1/1024 (dsdx = (int)(1024 / scale))
+        // Sprite.SetRenderState: the texture rectangle's corners are truncated to the RDP's quarter pixels, the texel step to 1/1024 (dsdx = (int)(1024 / scale))
         int dsdx = sx != 0 ? (int)(1024f / sx) : 1024, dtdy = sy != 0 ? (int)(1024f / sy) : 1024;
         foreach (var cell in fr.Cells)
         {
@@ -168,7 +168,7 @@ public sealed class SpriteElement : HudElement
     }
 }
 
-/// <summary>A number in the game's digit sprites (sprite 4, Hud_DrawNumber): <c>value</c>, <c>digits</c> (minimum digits, zero padded), <c>align</c> ("left" =
+/// <summary>A number in the game's digit sprites (sprite 4, Hud.DrawNumber): <c>value</c>, <c>digits</c> (minimum digits, zero padded), <c>align</c> ("left" =
 /// starts at x, "right" = ends at x). Digits advance 13 frame units ('1' 0.7 of that), a minus sign precedes negative values.
 /// With <c>font</c> set to a sprite font (e.g. "Scoreboard") the number is drawn as text instead.</summary>
 public sealed class NumberElement : HudElement
@@ -200,7 +200,7 @@ public sealed class NumberElement : HudElement
         DrawDigits(c, n, x, y, sx, sy, Right, Digits, Color, AlphaOf(c));
     }
 
-    /// <summary>Hud_DrawNumber, digit for digit (positions truncated to whole pixels as the game passes them).</summary>
+    /// <summary>Hud.DrawNumber, digit for digit (positions truncated to whole pixels as the game passes them).</summary>
     public static void DrawDigits(HudContext c, int n, float x, float y, float sx, float sy, bool rev, int mindig, HudColor col, float alpha)
     {
         var spr = GameSprites.Get(GameSprites.DigitFont);
@@ -307,8 +307,8 @@ public sealed class RectElement : HudElement
     }
 }
 
-/// <summary>The crosshair. <c>style</c> "sprite" (default): the game's crosshair sprite (id <c>crosshair.id</c>, animation frame <c>crosshair.frame</c>, Hud_DrawCrosshair /
-/// Hud_DrawIconSprite: centred on the view, drawn at its own size); "cross": four bars of <c>size</c>, <c>gap</c> and <c>thickness</c> (screen pixels of the
+/// <summary>The crosshair. <c>style</c> "sprite" (default): the game's crosshair sprite (id <c>crosshair.id</c>, animation frame <c>crosshair.frame</c>, Hud.DrawCrosshair /
+/// Hud.DrawIconSprite: centred on the view, drawn at its own size); "cross": four bars of <c>size</c>, <c>gap</c> and <c>thickness</c> (screen pixels of the
 /// 480x360 picture) in <c>color</c>; "dot": a square of <c>thickness</c>. Use <c>origin</c> "crosshair" (the view's centre, unscaled).</summary>
 public sealed class CrosshairElement : HudElement
 {

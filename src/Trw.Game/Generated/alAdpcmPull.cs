@@ -32,7 +32,7 @@ public static partial class Game
             {
                 uint _a = ((ptr += 8u) - 8u);
                 new Acmd_v2(_a).w0_Set(((((uint)(11) & (uint)(((1 << (int)8) - 1))) << (int)24) | (((uint)(new S13Loader(f).bookSize) & (uint)(((1 << (int)24) - 1))) << (int)0)));
-                new Acmd_v2(_a).w1_Set(Audio_DmaCacheLoad((uint)(((uint)(Mem.U32((new S13Loader(f).table.waveInfo.P + 4u))) + (uint)(8))), (uint)(new S13Loader(f).bookSize)));
+                new Acmd_v2(_a).w1_Set(Audio.DmaCacheLoad((uint)(((uint)(Mem.U32((new S13Loader(f).table.waveInfo.P + 4u))) + (uint)(8))), (uint)(new S13Loader(f).bookSize)));
             }
             looped = 0;
             inp = (short)(0);

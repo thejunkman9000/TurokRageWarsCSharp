@@ -662,17 +662,17 @@ public readonly struct U
     public U8x1180 pad { [MethodImpl(Inl)] get => new(P); }
 }
 
-/// <summary>struct Ui, 0x10 bytes, at a guest address.</summary>
-public readonly struct Ui
+/// <summary>struct UiView, 0x10 bytes, at a guest address.</summary>
+public readonly struct UiView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Ui(uint p) { P = p; }
+    [MethodImpl(Inl)] public UiView(uint p) { P = p; }
     public const int SizeOf = 16;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Ui At(int i) => new(P + (uint)(i * 16));
-    [MethodImpl(Inl)] public static implicit operator uint(Ui v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Ui(uint p) => new(p);
+    [MethodImpl(Inl)] public UiView At(int i) => new(P + (uint)(i * 16));
+    [MethodImpl(Inl)] public static implicit operator uint(UiView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator UiView(uint p) => new(p);
     // +0x0
     public int pad0
     {
@@ -2543,17 +2543,17 @@ public readonly struct VersusResultsScreen
     [MethodImpl(Inl)] public int blinking_Set(int v) => Mem.Set(P + 0x46Cu, v);
 }
 
-/// <summary>struct Vi, 0x114 bytes, at a guest address.</summary>
-public readonly struct Vi
+/// <summary>struct ViView, 0x114 bytes, at a guest address.</summary>
+public readonly struct ViView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Vi(uint p) { P = p; }
+    [MethodImpl(Inl)] public ViView(uint p) { P = p; }
     public const int SizeOf = 276;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Vi At(int i) => new(P + (uint)(i * 276));
-    [MethodImpl(Inl)] public static implicit operator uint(Vi v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Vi(uint p) => new(p);
+    [MethodImpl(Inl)] public ViView At(int i) => new(P + (uint)(i * 276));
+    [MethodImpl(Inl)] public static implicit operator uint(ViView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ViView(uint p) => new(p);
     // +0x0
     public U8x272 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x110
@@ -2782,17 +2782,17 @@ public readonly struct Vid_v4
     [MethodImpl(Inl)] public uint unk2E0__Set(uint v) => Mem.Set(P + 0x2E0u, v);
 }
 
-/// <summary>struct View, 0x350 bytes, at a guest address.</summary>
-public readonly struct View
+/// <summary>struct ViewView, 0x350 bytes, at a guest address.</summary>
+public readonly struct ViewView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public View(uint p) { P = p; }
+    [MethodImpl(Inl)] public ViewView(uint p) { P = p; }
     public const int SizeOf = 848;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public View At(int i) => new(P + (uint)(i * 848));
-    [MethodImpl(Inl)] public static implicit operator uint(View v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator View(uint p) => new(p);
+    [MethodImpl(Inl)] public ViewView At(int i) => new(P + (uint)(i * 848));
+    [MethodImpl(Inl)] public static implicit operator uint(ViewView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ViewView(uint p) => new(p);
     // +0x0
     public S8x668 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x29C
@@ -3260,7 +3260,7 @@ public readonly struct View_func_8028FA60_de
     [MethodImpl(Inl)] public uint next__Set(uint v) => Mem.Set(P + 0x2F8u, v);
 }
 
-/// <summary>struct View, 0x140 bytes, at a guest address.</summary>
+/// <summary>struct ViewView, 0x140 bytes, at a guest address.</summary>
 public readonly struct View_v2
 {
     public readonly uint P;
@@ -3291,7 +3291,7 @@ public readonly struct View_v2
     public U8x40 pad118 { [MethodImpl(Inl)] get => new(P + 0x118u); }
 }
 
-/// <summary>struct View, 0x140 bytes, at a guest address.</summary>
+/// <summary>struct ViewView, 0x140 bytes, at a guest address.</summary>
 public readonly struct View_v3
 {
     public readonly uint P;

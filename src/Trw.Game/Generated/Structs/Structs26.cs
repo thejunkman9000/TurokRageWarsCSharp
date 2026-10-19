@@ -4624,17 +4624,17 @@ public readonly struct Quad_func_8040F218_de
     public S32x4 values { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
 }
 
-/// <summary>struct Quat, 0x10 bytes, at a guest address.</summary>
-public readonly struct Quat
+/// <summary>struct QuatView, 0x10 bytes, at a guest address.</summary>
+public readonly struct QuatView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Quat(uint p) { P = p; }
+    [MethodImpl(Inl)] public QuatView(uint p) { P = p; }
     public const int SizeOf = 16;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Quat At(int i) => new(P + (uint)(i * 16));
-    [MethodImpl(Inl)] public static implicit operator uint(Quat v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Quat(uint p) => new(p);
+    [MethodImpl(Inl)] public QuatView At(int i) => new(P + (uint)(i * 16));
+    [MethodImpl(Inl)] public static implicit operator uint(QuatView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator QuatView(uint p) => new(p);
     // +0x0
     public float x
     {

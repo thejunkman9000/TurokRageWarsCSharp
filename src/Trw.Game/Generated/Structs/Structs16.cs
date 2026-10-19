@@ -343,17 +343,17 @@ public readonly struct Mtx64_v2
     public F32x16 m { [MethodImpl(Inl)] get => new(P); }
 }
 
-/// <summary>struct MtxStack, 0x10 bytes, at a guest address.</summary>
-public readonly struct MtxStack
+/// <summary>struct MtxStackView, 0x10 bytes, at a guest address.</summary>
+public readonly struct MtxStackView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public MtxStack(uint p) { P = p; }
+    [MethodImpl(Inl)] public MtxStackView(uint p) { P = p; }
     public const int SizeOf = 16;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public MtxStack At(int i) => new(P + (uint)(i * 16));
-    [MethodImpl(Inl)] public static implicit operator uint(MtxStack v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator MtxStack(uint p) => new(p);
+    [MethodImpl(Inl)] public MtxStackView At(int i) => new(P + (uint)(i * 16));
+    [MethodImpl(Inl)] public static implicit operator uint(MtxStackView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator MtxStackView(uint p) => new(p);
     // +0x0
     public uint base_
     {

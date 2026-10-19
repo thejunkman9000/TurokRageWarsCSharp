@@ -128,17 +128,17 @@ public readonly struct Six
     [MethodImpl(Inl)] public int f_Set(int v) => Mem.Set(P + 0x14u, v);
 }
 
-/// <summary>struct Slider, 0x70 bytes, at a guest address.</summary>
-public readonly struct Slider
+/// <summary>struct SliderView, 0x70 bytes, at a guest address.</summary>
+public readonly struct SliderView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Slider(uint p) { P = p; }
+    [MethodImpl(Inl)] public SliderView(uint p) { P = p; }
     public const int SizeOf = 112;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Slider At(int i) => new(P + (uint)(i * 112));
-    [MethodImpl(Inl)] public static implicit operator uint(Slider v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Slider(uint p) => new(p);
+    [MethodImpl(Inl)] public SliderView At(int i) => new(P + (uint)(i * 112));
+    [MethodImpl(Inl)] public static implicit operator uint(SliderView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SliderView(uint p) => new(p);
     // +0x0
     public S8x68 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x44
@@ -2286,17 +2286,17 @@ public readonly struct SndEnv
     [MethodImpl(Inl)] public ushort wA_Set(ushort v) => Mem.Set(P + 0xAu, v);
 }
 
-/// <summary>struct SndFx, 0x40 bytes, at a guest address.</summary>
-public readonly struct SndFx
+/// <summary>struct SndFxView, 0x40 bytes, at a guest address.</summary>
+public readonly struct SndFxView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public SndFx(uint p) { P = p; }
+    [MethodImpl(Inl)] public SndFxView(uint p) { P = p; }
     public const int SizeOf = 64;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public SndFx At(int i) => new(P + (uint)(i * 64));
-    [MethodImpl(Inl)] public static implicit operator uint(SndFx v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator SndFx(uint p) => new(p);
+    [MethodImpl(Inl)] public SndFxView At(int i) => new(P + (uint)(i * 64));
+    [MethodImpl(Inl)] public static implicit operator uint(SndFxView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SndFxView(uint p) => new(p);
     // +0x0
     public uint owner_
     {
@@ -2374,17 +2374,17 @@ public readonly struct SndHandle
     [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct SndInfo, 0x16 bytes, at a guest address.</summary>
-public readonly struct SndInfo
+/// <summary>struct SndInfoView, 0x16 bytes, at a guest address.</summary>
+public readonly struct SndInfoView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public SndInfo(uint p) { P = p; }
+    [MethodImpl(Inl)] public SndInfoView(uint p) { P = p; }
     public const int SizeOf = 22;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public SndInfo At(int i) => new(P + (uint)(i * 22));
-    [MethodImpl(Inl)] public static implicit operator uint(SndInfo v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator SndInfo(uint p) => new(p);
+    [MethodImpl(Inl)] public SndInfoView At(int i) => new(P + (uint)(i * 22));
+    [MethodImpl(Inl)] public static implicit operator uint(SndInfoView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SndInfoView(uint p) => new(p);
     // +0x0
     public short w0
     {
@@ -2478,19 +2478,19 @@ public readonly struct SndInfo
     [MethodImpl(Inl)] public short w14_Set(short v) => Mem.Set(P + 0x14u, v);
 }
 
-/// <summary>struct SndLink, 0x8 bytes, at a guest address.</summary>
-public readonly struct SndLink
+/// <summary>struct SndLinkView, 0x8 bytes, at a guest address.</summary>
+public readonly struct SndLinkView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public SndLink(uint p) { P = p; }
+    [MethodImpl(Inl)] public SndLinkView(uint p) { P = p; }
     public const int SizeOf = 8;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public SndLink At(int i) => new(P + (uint)(i * 8));
-    [MethodImpl(Inl)] public static implicit operator uint(SndLink v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator SndLink(uint p) => new(p);
+    [MethodImpl(Inl)] public SndLinkView At(int i) => new(P + (uint)(i * 8));
+    [MethodImpl(Inl)] public static implicit operator uint(SndLinkView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SndLinkView(uint p) => new(p);
     // +0x0
-    public SndLink prev
+    public SndLinkView prev
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2502,7 +2502,7 @@ public readonly struct SndLink
     }
     [MethodImpl(Inl)] public uint prev__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public SndLink next
+    public SndLinkView next
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -2702,7 +2702,7 @@ public readonly struct SndMgr
     }
     [MethodImpl(Inl)] public int AmbientLoopSoundId_Set(int v) => Mem.Set(P + 0x134u, v);
     // +0x138
-    public SndQueue Queue { [MethodImpl(Inl)] get => new(P + 0x138u); }
+    public SndQueueView Queue { [MethodImpl(Inl)] get => new(P + 0x138u); }
     // +0x1D64
     public SndSeq SeqPlayer { [MethodImpl(Inl)] get => new(P + 0x1D64u); }
     // +0x1DA8
@@ -2927,7 +2927,7 @@ public readonly struct SndMgr
     // +0x2BBC
     public U8x4 pad2BBC { [MethodImpl(Inl)] get => new(P + 0x2BBCu); }
     // +0x2BC0
-    public SndFx SndFxPlayer { [MethodImpl(Inl)] get => new(P + 0x2BC0u); }
+    public SndFxView SndFxPlayer { [MethodImpl(Inl)] get => new(P + 0x2BC0u); }
 }
 
 /// <summary>struct SndMgrQ, 0x2AB8 bytes, at a guest address.</summary>
@@ -3202,9 +3202,9 @@ public readonly struct SndNode
     [MethodImpl(Inl)] public static implicit operator uint(SndNode v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SndNode(uint p) => new(p);
     // +0x0
-    public SndLink link { [MethodImpl(Inl)] get => new(P); }
+    public SndLinkView link { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public SndVoice body { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public SndVoiceView body { [MethodImpl(Inl)] get => new(P + 0x8u); }
 }
 
 /// <summary>struct SndNodeRec, 0x8 bytes, at a guest address.</summary>
@@ -3292,17 +3292,17 @@ public readonly struct SndPlaylist
     [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
 }
 
-/// <summary>struct SndQueue, 0x1C2C bytes, at a guest address.</summary>
-public readonly struct SndQueue
+/// <summary>struct SndQueueView, 0x1C2C bytes, at a guest address.</summary>
+public readonly struct SndQueueView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public SndQueue(uint p) { P = p; }
+    [MethodImpl(Inl)] public SndQueueView(uint p) { P = p; }
     public const int SizeOf = 7212;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public SndQueue At(int i) => new(P + (uint)(i * 7212));
-    [MethodImpl(Inl)] public static implicit operator uint(SndQueue v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator SndQueue(uint p) => new(p);
+    [MethodImpl(Inl)] public SndQueueView At(int i) => new(P + (uint)(i * 7212));
+    [MethodImpl(Inl)] public static implicit operator uint(SndQueueView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SndQueueView(uint p) => new(p);
     // +0x0
     public uint owner_
     {
@@ -3603,17 +3603,17 @@ public readonly struct SndStkEnt
     [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
 }
 
-/// <summary>struct SndVoice, 0xCC bytes, at a guest address.</summary>
-public readonly struct SndVoice
+/// <summary>struct SndVoiceView, 0xCC bytes, at a guest address.</summary>
+public readonly struct SndVoiceView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public SndVoice(uint p) { P = p; }
+    [MethodImpl(Inl)] public SndVoiceView(uint p) { P = p; }
     public const int SizeOf = 204;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public SndVoice At(int i) => new(P + (uint)(i * 204));
-    [MethodImpl(Inl)] public static implicit operator uint(SndVoice v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator SndVoice(uint p) => new(p);
+    [MethodImpl(Inl)] public SndVoiceView At(int i) => new(P + (uint)(i * 204));
+    [MethodImpl(Inl)] public static implicit operator uint(SndVoiceView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SndVoiceView(uint p) => new(p);
     // +0x0
     public int Index
     {
@@ -4601,17 +4601,17 @@ public readonly struct Spinner
     public S8x12 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
 }
 
-/// <summary>struct Sprite, 0x24 bytes, at a guest address.</summary>
-public readonly struct Sprite
+/// <summary>struct SpriteView, 0x24 bytes, at a guest address.</summary>
+public readonly struct SpriteView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Sprite(uint p) { P = p; }
+    [MethodImpl(Inl)] public SpriteView(uint p) { P = p; }
     public const int SizeOf = 36;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Sprite At(int i) => new(P + (uint)(i * 36));
-    [MethodImpl(Inl)] public static implicit operator uint(Sprite v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Sprite(uint p) => new(p);
+    [MethodImpl(Inl)] public SpriteView At(int i) => new(P + (uint)(i * 36));
+    [MethodImpl(Inl)] public static implicit operator uint(SpriteView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator SpriteView(uint p) => new(p);
     // +0x0
     public int format
     {
@@ -4852,17 +4852,17 @@ public readonly struct Src_v2
     [MethodImpl(Inl)] public ushort unk19E_Set(ushort v) => Mem.Set(P + 0x19Eu, v);
 }
 
-/// <summary>struct State, 0xAC bytes, at a guest address.</summary>
-public readonly struct State
+/// <summary>struct StateView, 0xAC bytes, at a guest address.</summary>
+public readonly struct StateView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public State(uint p) { P = p; }
+    [MethodImpl(Inl)] public StateView(uint p) { P = p; }
     public const int SizeOf = 172;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public State At(int i) => new(P + (uint)(i * 172));
-    [MethodImpl(Inl)] public static implicit operator uint(State v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator State(uint p) => new(p);
+    [MethodImpl(Inl)] public StateView At(int i) => new(P + (uint)(i * 172));
+    [MethodImpl(Inl)] public static implicit operator uint(StateView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator StateView(uint p) => new(p);
     // +0x0
     public S8x88 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x58

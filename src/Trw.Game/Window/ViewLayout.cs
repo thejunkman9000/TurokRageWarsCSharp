@@ -12,8 +12,8 @@ public readonly record struct ViewRegion(int X0, int Y0, int X1, int Y1)
 
 /// <summary>
 /// Split-screen layout of a multiplayer match and the local-view remap.
-/// <para>How the game lays the views out (per-view setup View_SetupViewport: G_MOVEMEM viewport + G_SETSCISSOR from the player's view rectangle, then a
-/// FILL-mode rectangle that clears that view's part of the z-buffer, and the 2-pixel frame of View_DrawFrame inside the view):
+/// <para>How the game lays the views out (per-view setup View.SetupViewport: G_MOVEMEM viewport + G_SETSCISSOR from the player's view rectangle, then a
+/// FILL-mode rectangle that clears that view's part of the z-buffer, and the 2-pixel frame of View.View_DrawFrame inside the view):
 /// 2 players = two 480x180 halves (player 1 top, player 2 bottom), 3-4 players = 240x180 quadrants (1 top left, 2 top right, 3 bottom left,
 /// 4 bottom right); the match clock and other shared overlays are drawn afterwards with the full-screen scissor across the view borders.</para>
 /// <para>The local view takes the local player's scissor rectangle and maps it onto the whole render target: every vertex (already in clip space)
@@ -41,7 +41,7 @@ public static class ViewLayout
         int pad = LocalView.Pad;
         if (!MatchInfo.ViewOf(pad, players, out var me)) return null;
         if (!(me.W > 8 && me.H > 8 && me.W < 4096 && me.H < 4096 && me.X >= 0 && me.Y >= 0)) return null;
-        // the scissor View_SetupViewport sets: truncated to integers, clamped to the colour image
+        // the scissor View.SetupViewport sets: truncated to integers, clamped to the colour image
         float sw = 480, sh = 360;
         foreach (var c in cmds) if (c is DrawCommand d) { sw = d.State.ScreenWidth; sh = d.State.ScreenHeight; break; }
         int x0 = (int)me.X, y0 = (int)me.Y, x1 = (int)(me.X + me.W), y1 = (int)(me.Y + me.H);

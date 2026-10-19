@@ -36,12 +36,12 @@ public readonly record struct HudColor(byte R, byte G, byte B, byte A)
 /// <summary>
 /// Collects the port HUD's draws as ordinary <see cref="DrawCommand"/>s in N64 screen coordinates (480x360, W = 1, like the game's own 2D), so they go
 /// through exactly the renderer path of the game's HUD: the RDP combiner, the local-view remap, the 4:3 shape in a wide picture (GfxRenderer.Keep2DShape).
-/// The render state is the game's sprite state (Sprite_SetRenderState: 2-cycle, TEXEL0 * ENV colour, TEXEL1 * ENV alpha, translucent surface, no z),
+/// The render state is the game's sprite state (Sprite.SetRenderState: 2-cycle, TEXEL0 * ENV colour, TEXEL1 * ENV alpha, translucent surface, no z),
 /// so a game sprite drawn here looks exactly like the game's draw of it.
 /// </summary>
 public sealed class HudCanvas
 {
-    // the game's HUD sprite state, as the interpreter captures it from Sprite_SetRenderState's display list
+    // the game's HUD sprite state, as the interpreter captures it from Sprite.SetRenderState's display list
     public const uint OtherHighLinear = 0x00102C10, OtherHighPoint = 0x00100C10, OtherLow = 0x0C184240, CombineW0 = 0x0012ABFF, CombineW1 = 0xFFFFFE38;
 
     public readonly List<DrawCommand> Draws = new();

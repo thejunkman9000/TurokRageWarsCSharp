@@ -1438,7 +1438,7 @@ public readonly struct MenuItemx4
     public const int Stride = 56;
     public const int SizeOf = 224;
     [MethodImpl(Inl)] public static implicit operator uint(MenuItemx4 v) => v.P;
-    public MenuItem this[int i] { [MethodImpl(Inl)] get => new(P + (uint)(i * 56)); }
+    public MenuItemView this[int i] { [MethodImpl(Inl)] get => new(P + (uint)(i * 56)); }
 }
 
 /// <summary>Mtx4f_v2[2] at a guest address.</summary>
@@ -15586,7 +15586,7 @@ public readonly struct SndVoicex17
     public const int Stride = 204;
     public const int SizeOf = 3468;
     [MethodImpl(Inl)] public static implicit operator uint(SndVoicex17 v) => v.P;
-    public SndVoice this[int i] { [MethodImpl(Inl)] get => new(P + (uint)(i * 204)); }
+    public SndVoiceView this[int i] { [MethodImpl(Inl)] get => new(P + (uint)(i * 204)); }
 }
 
 /// <summary>StateEntry[1] at a guest address.</summary>

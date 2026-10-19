@@ -70,6 +70,8 @@ def plan(types, objects, fields):
         for t in aliases:
             if t in owner: errs.append(f'objects.tsv: {t} is listed under both {owner[t]} and {obj}')
             owner[t] = obj
+    for obj in objects:                                                      # a view type renamed after a subject class (Actor -> ActorView)
+        objects[obj] = [t if t in types or t + an.VIEW_SUFFIX not in types else t + an.VIEW_SUFFIX for t in objects[obj]]
     for obj, aliases in objects.items():
         named = fields.get(obj, {})
         seen_names = {}

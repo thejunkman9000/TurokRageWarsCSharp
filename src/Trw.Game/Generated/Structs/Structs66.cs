@@ -1097,7 +1097,7 @@ public readonly struct SharedPlayer_func_802227F4_de_views18_view18_2
     [MethodImpl(Inl)] public static implicit operator uint(SharedPlayer_func_802227F4_de_views18_view18_2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SharedPlayer_func_802227F4_de_views18_view18_2(uint p) => new(p);
     // +0x0
-    public Model model
+    public ModelView model
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);

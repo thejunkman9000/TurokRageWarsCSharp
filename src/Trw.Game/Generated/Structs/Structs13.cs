@@ -1191,17 +1191,17 @@ public readonly struct Leaf
     [MethodImpl(Inl)] public byte flag_Set(byte v) => Mem.Set(P + 0x8Eu, v);
 }
 
-/// <summary>struct Level, 0x26DD8 bytes, at a guest address.</summary>
-public readonly struct Level
+/// <summary>struct LevelView, 0x26DD8 bytes, at a guest address.</summary>
+public readonly struct LevelView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Level(uint p) { P = p; }
+    [MethodImpl(Inl)] public LevelView(uint p) { P = p; }
     public const int SizeOf = 159192;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Level At(int i) => new(P + (uint)(i * 159192));
-    [MethodImpl(Inl)] public static implicit operator uint(Level v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Level(uint p) => new(p);
+    [MethodImpl(Inl)] public LevelView At(int i) => new(P + (uint)(i * 159192));
+    [MethodImpl(Inl)] public static implicit operator uint(LevelView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator LevelView(uint p) => new(p);
     // +0x0
     public int LoadState
     {
@@ -2615,7 +2615,7 @@ public readonly struct Level_func_8044CD8C_de
     [MethodImpl(Inl)] public uint CellGrid_Set(uint v) => Mem.Set(P + 0x68u, v);
 }
 
-/// <summary>struct Level, 0x11D8 bytes, at a guest address.</summary>
+/// <summary>struct LevelView, 0x11D8 bytes, at a guest address.</summary>
 public readonly struct Level_v2
 {
     public readonly uint P;
@@ -3844,17 +3844,17 @@ public readonly struct Lists802A6DF8
     public List802A6DF8 inactive { [MethodImpl(Inl)] get => new(P + 0xCu); }
 }
 
-/// <summary>struct Loadout, 0x10C bytes, at a guest address.</summary>
-public readonly struct Loadout
+/// <summary>struct LoadoutView, 0x10C bytes, at a guest address.</summary>
+public readonly struct LoadoutView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Loadout(uint p) { P = p; }
+    [MethodImpl(Inl)] public LoadoutView(uint p) { P = p; }
     public const int SizeOf = 268;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Loadout At(int i) => new(P + (uint)(i * 268));
-    [MethodImpl(Inl)] public static implicit operator uint(Loadout v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Loadout(uint p) => new(p);
+    [MethodImpl(Inl)] public LoadoutView At(int i) => new(P + (uint)(i * 268));
+    [MethodImpl(Inl)] public static implicit operator uint(LoadoutView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator LoadoutView(uint p) => new(p);
     // +0x0
     public S8x264 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x108

@@ -3860,7 +3860,7 @@ public readonly struct CamObj_v2
     }
     [MethodImpl(Inl)] public float unk44_Set(float v) => Mem.Set(P + 0x44u, v);
     // +0x48
-    public Quat quat48 { [MethodImpl(Inl)] get => new(P + 0x48u); }
+    public QuatView quat48 { [MethodImpl(Inl)] get => new(P + 0x48u); }
     // +0x58
     public U8x36 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x7C
@@ -3877,26 +3877,26 @@ public readonly struct CamObj_v2
     // +0xF4
     public U8x60 padF4 { [MethodImpl(Inl)] get => new(P + 0xF4u); }
     // +0x130
-    public Quat unk130 { [MethodImpl(Inl)] get => new(P + 0x130u); }
+    public QuatView unk130 { [MethodImpl(Inl)] get => new(P + 0x130u); }
     // +0x140
-    public Quat unk140 { [MethodImpl(Inl)] get => new(P + 0x140u); }
+    public QuatView unk140 { [MethodImpl(Inl)] get => new(P + 0x140u); }
     // +0x150
-    public Quat unk150 { [MethodImpl(Inl)] get => new(P + 0x150u); }
+    public QuatView unk150 { [MethodImpl(Inl)] get => new(P + 0x150u); }
     // +0x160
     public Mtx4 unk160 { [MethodImpl(Inl)] get => new(P + 0x160u); }
 }
 
-/// <summary>struct Camera, 0x14 bytes, at a guest address.</summary>
-public readonly struct Camera
+/// <summary>struct CameraView, 0x14 bytes, at a guest address.</summary>
+public readonly struct CameraView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Camera(uint p) { P = p; }
+    [MethodImpl(Inl)] public CameraView(uint p) { P = p; }
     public const int SizeOf = 20;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Camera At(int i) => new(P + (uint)(i * 20));
-    [MethodImpl(Inl)] public static implicit operator uint(Camera v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Camera(uint p) => new(p);
+    [MethodImpl(Inl)] public CameraView At(int i) => new(P + (uint)(i * 20));
+    [MethodImpl(Inl)] public static implicit operator uint(CameraView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator CameraView(uint p) => new(p);
     // +0x0
     public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8

@@ -5585,17 +5585,17 @@ public readonly struct Mat4F
     public F32x16 m { [MethodImpl(Inl)] get => new(P); }
 }
 
-/// <summary>struct Match, 0x684 bytes, at a guest address.</summary>
-public readonly struct Match
+/// <summary>struct MatchView, 0x684 bytes, at a guest address.</summary>
+public readonly struct MatchView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Match(uint p) { P = p; }
+    [MethodImpl(Inl)] public MatchView(uint p) { P = p; }
     public const int SizeOf = 1668;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Match At(int i) => new(P + (uint)(i * 1668));
-    [MethodImpl(Inl)] public static implicit operator uint(Match v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Match(uint p) => new(p);
+    [MethodImpl(Inl)] public MatchView At(int i) => new(P + (uint)(i * 1668));
+    [MethodImpl(Inl)] public static implicit operator uint(MatchView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator MatchView(uint p) => new(p);
     // +0x0
     public Settings20 settings { [MethodImpl(Inl)] get => new(P); }
     // +0x20

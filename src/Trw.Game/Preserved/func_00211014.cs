@@ -20,8 +20,8 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_00211014: ;
-                r4 = r17; Ai_UpdateFiring(r4);
-                {  r2 = Ai_UpdateRushAttackTail(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
+                r4 = r17; Ai.UpdateFiring(r4);
+                {  r2 = Ai.UpdateRushAttackTail(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
                 Cpu.V1 = r3; return r2;
             }
         }

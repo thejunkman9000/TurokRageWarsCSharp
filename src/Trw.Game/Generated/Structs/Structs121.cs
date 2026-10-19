@@ -3496,17 +3496,17 @@ public readonly struct TaskSetup
     [MethodImpl(Inl)] public uint name_Set(uint v) => Mem.Set(P + 0x20u, v);
 }
 
-/// <summary>struct TeamMenu, 0x74 bytes, at a guest address.</summary>
-public readonly struct TeamMenu
+/// <summary>struct TeamMenuView, 0x74 bytes, at a guest address.</summary>
+public readonly struct TeamMenuView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public TeamMenu(uint p) { P = p; }
+    [MethodImpl(Inl)] public TeamMenuView(uint p) { P = p; }
     public const int SizeOf = 116;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public TeamMenu At(int i) => new(P + (uint)(i * 116));
-    [MethodImpl(Inl)] public static implicit operator uint(TeamMenu v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator TeamMenu(uint p) => new(p);
+    [MethodImpl(Inl)] public TeamMenuView At(int i) => new(P + (uint)(i * 116));
+    [MethodImpl(Inl)] public static implicit operator uint(TeamMenuView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator TeamMenuView(uint p) => new(p);
     // +0x0
     public int state
     {
@@ -4614,17 +4614,17 @@ public readonly struct TextSrc_v4
     [MethodImpl(Inl)] public uint freeF24__Set(uint v) => Mem.Set(P + 0xF24u, v);
 }
 
-/// <summary>struct Texture, 0x8 bytes, at a guest address.</summary>
-public readonly struct Texture
+/// <summary>struct TextureView, 0x8 bytes, at a guest address.</summary>
+public readonly struct TextureView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Texture(uint p) { P = p; }
+    [MethodImpl(Inl)] public TextureView(uint p) { P = p; }
     public const int SizeOf = 8;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Texture At(int i) => new(P + (uint)(i * 8));
-    [MethodImpl(Inl)] public static implicit operator uint(Texture v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Texture(uint p) => new(p);
+    [MethodImpl(Inl)] public TextureView At(int i) => new(P + (uint)(i * 8));
+    [MethodImpl(Inl)] public static implicit operator uint(TextureView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator TextureView(uint p) => new(p);
     // +0x0
     public S8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4

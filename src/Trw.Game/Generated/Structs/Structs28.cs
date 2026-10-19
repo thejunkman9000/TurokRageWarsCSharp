@@ -2359,17 +2359,17 @@ public readonly struct ResidentEventHandlerEntry
     [MethodImpl(Inl)] public uint handler_Set(uint v) => Mem.Set(P + 0x8u, v);
 }
 
-/// <summary>struct Resource, 0x8 bytes, at a guest address.</summary>
-public readonly struct Resource
+/// <summary>struct ResourceView, 0x8 bytes, at a guest address.</summary>
+public readonly struct ResourceView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Resource(uint p) { P = p; }
+    [MethodImpl(Inl)] public ResourceView(uint p) { P = p; }
     public const int SizeOf = 8;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Resource At(int i) => new(P + (uint)(i * 8));
-    [MethodImpl(Inl)] public static implicit operator uint(Resource v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Resource(uint p) => new(p);
+    [MethodImpl(Inl)] public ResourceView At(int i) => new(P + (uint)(i * 8));
+    [MethodImpl(Inl)] public static implicit operator uint(ResourceView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ResourceView(uint p) => new(p);
     // +0x0
     public int unk0
     {
@@ -3041,17 +3041,17 @@ public readonly struct Result_func_802165F8_de
     [MethodImpl(Inl)] public float height_Set(float v) => Mem.Set(P + 0x38u, v);
 }
 
-/// <summary>struct Results, 0x948 bytes, at a guest address.</summary>
-public readonly struct Results
+/// <summary>struct ResultsView, 0x948 bytes, at a guest address.</summary>
+public readonly struct ResultsView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Results(uint p) { P = p; }
+    [MethodImpl(Inl)] public ResultsView(uint p) { P = p; }
     public const int SizeOf = 2376;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Results At(int i) => new(P + (uint)(i * 2376));
-    [MethodImpl(Inl)] public static implicit operator uint(Results v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Results(uint p) => new(p);
+    [MethodImpl(Inl)] public ResultsView At(int i) => new(P + (uint)(i * 2376));
+    [MethodImpl(Inl)] public static implicit operator uint(ResultsView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ResultsView(uint p) => new(p);
     // +0x0
     public S8x324 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x144

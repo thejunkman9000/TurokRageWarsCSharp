@@ -121,7 +121,7 @@ public readonly struct Player_func_8044560C_de
     [MethodImpl(Inl)] public uint actor__Set(uint v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct Player, 0x16E4 bytes, at a guest address.</summary>
+/// <summary>struct PlayerView, 0x16E4 bytes, at a guest address.</summary>
 public readonly struct Player_v2
 {
     public readonly uint P;
@@ -218,7 +218,7 @@ public readonly struct Player_v2
     [MethodImpl(Inl)] public uint Next_Set(uint v) => Mem.Set(P + 0x16E0u, v);
 }
 
-/// <summary>struct Player, 0x16E4 bytes, at a guest address.</summary>
+/// <summary>struct PlayerView, 0x16E4 bytes, at a guest address.</summary>
 public readonly struct Player_v3
 {
     public readonly uint P;
@@ -2259,17 +2259,17 @@ public readonly struct Polygon_func_8023E8D4_de
     public Vec3 hit { [MethodImpl(Inl)] get => new(P + 0xD0u); }
 }
 
-/// <summary>struct Pool, 0x48 bytes, at a guest address.</summary>
-public readonly struct Pool
+/// <summary>struct PoolView, 0x48 bytes, at a guest address.</summary>
+public readonly struct PoolView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Pool(uint p) { P = p; }
+    [MethodImpl(Inl)] public PoolView(uint p) { P = p; }
     public const int SizeOf = 72;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Pool At(int i) => new(P + (uint)(i * 72));
-    [MethodImpl(Inl)] public static implicit operator uint(Pool v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Pool(uint p) => new(p);
+    [MethodImpl(Inl)] public PoolView At(int i) => new(P + (uint)(i * 72));
+    [MethodImpl(Inl)] public static implicit operator uint(PoolView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator PoolView(uint p) => new(p);
     // +0x0
     public int count
     {
@@ -2928,17 +2928,17 @@ public readonly struct Probe_v3
     public S8x140 pad54 { [MethodImpl(Inl)] get => new(P + 0x54u); }
 }
 
-/// <summary>struct Profile, 0x190 bytes, at a guest address.</summary>
-public readonly struct Profile
+/// <summary>struct ProfileView, 0x190 bytes, at a guest address.</summary>
+public readonly struct ProfileView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Profile(uint p) { P = p; }
+    [MethodImpl(Inl)] public ProfileView(uint p) { P = p; }
     public const int SizeOf = 400;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Profile At(int i) => new(P + (uint)(i * 400));
-    [MethodImpl(Inl)] public static implicit operator uint(Profile v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Profile(uint p) => new(p);
+    [MethodImpl(Inl)] public ProfileView At(int i) => new(P + (uint)(i * 400));
+    [MethodImpl(Inl)] public static implicit operator uint(ProfileView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ProfileView(uint p) => new(p);
     // +0x0
     public byte bonus2
     {

@@ -1339,21 +1339,21 @@ public readonly struct Part6ED0
     [MethodImpl(Inl)] public uint cb_Set(uint v) => Mem.Set(P + 0x18u, v);
 }
 
-/// <summary>struct Particle, 0x28 bytes, at a guest address.</summary>
-public readonly struct Particle
+/// <summary>struct ParticleView, 0x28 bytes, at a guest address.</summary>
+public readonly struct ParticleView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Particle(uint p) { P = p; }
+    [MethodImpl(Inl)] public ParticleView(uint p) { P = p; }
     public const int SizeOf = 40;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Particle At(int i) => new(P + (uint)(i * 40));
-    [MethodImpl(Inl)] public static implicit operator uint(Particle v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Particle(uint p) => new(p);
+    [MethodImpl(Inl)] public ParticleView At(int i) => new(P + (uint)(i * 40));
+    [MethodImpl(Inl)] public static implicit operator uint(ParticleView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ParticleView(uint p) => new(p);
     // +0x0
     public S8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public Particle next
+    public ParticleView next
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -1380,7 +1380,7 @@ public readonly struct ParticleList
     [MethodImpl(Inl)] public static implicit operator uint(ParticleList v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ParticleList(uint p) => new(p);
     // +0x0
-    public Particle active
+    public ParticleView active
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2513,17 +2513,17 @@ public readonly struct Plane_func_802965B0_de
     [MethodImpl(Inl)] public float distance_Set(float v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct Player, 0x14 bytes, at a guest address.</summary>
-public readonly struct Player
+/// <summary>struct PlayerView, 0x14 bytes, at a guest address.</summary>
+public readonly struct PlayerView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Player(uint p) { P = p; }
+    [MethodImpl(Inl)] public PlayerView(uint p) { P = p; }
     public const int SizeOf = 20;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Player At(int i) => new(P + (uint)(i * 20));
-    [MethodImpl(Inl)] public static implicit operator uint(Player v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Player(uint p) => new(p);
+    [MethodImpl(Inl)] public PlayerView At(int i) => new(P + (uint)(i * 20));
+    [MethodImpl(Inl)] public static implicit operator uint(PlayerView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator PlayerView(uint p) => new(p);
     // +0x0
     public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
@@ -3837,7 +3837,7 @@ public readonly struct Player_func_8022ACB8_de
     // +0x0
     public S8x24 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x18
-    public Loadout loadout
+    public LoadoutView loadout
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);

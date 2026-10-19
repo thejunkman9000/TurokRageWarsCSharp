@@ -18,8 +18,8 @@ public static partial class Game
             effect = new func_80262ABC_S1(scene).unk5F00.v0_;
             if ((effect != 0u))
             {
-                List_Remove(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
-                List_Add((scene + 24340u), effect);
+                ListUtil.Remove(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
+                ListUtil.Add((scene + 24340u), effect);
                 new Effect_func_80262A9C_de(effect).ref__Set(@ref);
                 if ((@ref != 0u))
                 {
@@ -52,7 +52,7 @@ public static partial class Game
                 }
                 if ((id == (-1)))
                 {
-                    id = Level_FindTypeIndexById(Gv.LevelMgr, variant);
+                    id = Level.FindTypeIndexById(Gv.LevelMgr, variant);
                     if ((id == (-1)))
                     {
                         return 0u;
@@ -60,15 +60,15 @@ public static partial class Game
                 }
                 if (((uint)((variant + 1)) < (uint)(2)))
                 {
-                    variant = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, id));
+                    variant = (int)(Level.GetTypeIdByIndex(Gv.LevelMgr, id));
                 }
                 effect = func_00262ABC_take_effect(scene, @ref);
                 if ((effect == 0u))
                 {
                     return 0u;
                 }
-                Actor_Init(effect, id, variant, Mem.S32(Gv.NoRegionId), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
-                Actor_CallRestore(effect);
+                Actor.Init(effect, id, variant, Mem.S32(Gv.NoRegionId), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                Actor.CallRestore(effect);
                 return effect;
             }
         }

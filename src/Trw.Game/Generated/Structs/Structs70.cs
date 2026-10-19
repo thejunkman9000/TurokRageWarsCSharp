@@ -1192,7 +1192,7 @@ public readonly struct SharedPlayer_func_802233F0_de_views5D8_view5D8_6
     [MethodImpl(Inl)] public static implicit operator uint(SharedPlayer_func_802233F0_de_views5D8_view5D8_6 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SharedPlayer_func_802233F0_de_views5D8_view5D8_6(uint p) => new(p);
     // +0x0
-    public Profile profile
+    public ProfileView profile
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -1217,7 +1217,7 @@ public readonly struct SharedPlayer_func_802233F0_de_views5D8_view5D8_7
     [MethodImpl(Inl)] public static implicit operator uint(SharedPlayer_func_802233F0_de_views5D8_view5D8_7 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SharedPlayer_func_802233F0_de_views5D8_view5D8_7(uint p) => new(p);
     // +0x0
-    public Settings settings
+    public SettingsView settings
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);

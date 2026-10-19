@@ -202,7 +202,7 @@ public readonly struct Globals
     // +0x0
     public S8x4744 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1288
-    public Match match { [MethodImpl(Inl)] get => new(P + 0x1288u); }
+    public MatchView match { [MethodImpl(Inl)] get => new(P + 0x1288u); }
 }
 
 /// <summary>struct Globals_func_804220A8_de, 0x94 bytes, at a guest address.</summary>
@@ -813,17 +813,17 @@ public readonly struct Header_func_8025B5F0_de
     [MethodImpl(Inl)] public short local_Set(short v) => Mem.Set(P + 0x102u, v);
 }
 
-/// <summary>struct Heap, 0x14 bytes, at a guest address.</summary>
-public readonly struct Heap
+/// <summary>struct HeapView, 0x14 bytes, at a guest address.</summary>
+public readonly struct HeapView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Heap(uint p) { P = p; }
+    [MethodImpl(Inl)] public HeapView(uint p) { P = p; }
     public const int SizeOf = 20;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Heap At(int i) => new(P + (uint)(i * 20));
-    [MethodImpl(Inl)] public static implicit operator uint(Heap v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Heap(uint p) => new(p);
+    [MethodImpl(Inl)] public HeapView At(int i) => new(P + (uint)(i * 20));
+    [MethodImpl(Inl)] public static implicit operator uint(HeapView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator HeapView(uint p) => new(p);
     // +0x0
     public S8Ptr start
     {
@@ -1097,17 +1097,17 @@ public readonly struct Hnd
     [MethodImpl(Inl)] public ushort fl_Set(ushort v) => Mem.Set(P + 0x2u, v);
 }
 
-/// <summary>struct Holder, 0x20 bytes, at a guest address.</summary>
-public readonly struct Holder
+/// <summary>struct HolderView, 0x20 bytes, at a guest address.</summary>
+public readonly struct HolderView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Holder(uint p) { P = p; }
+    [MethodImpl(Inl)] public HolderView(uint p) { P = p; }
     public const int SizeOf = 32;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Holder At(int i) => new(P + (uint)(i * 32));
-    [MethodImpl(Inl)] public static implicit operator uint(Holder v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Holder(uint p) => new(p);
+    [MethodImpl(Inl)] public HolderView At(int i) => new(P + (uint)(i * 32));
+    [MethodImpl(Inl)] public static implicit operator uint(HolderView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator HolderView(uint p) => new(p);
     // +0x0
     public S8x28 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
@@ -1255,17 +1255,17 @@ public readonly struct Host_func_8026851C_de
     [MethodImpl(Inl)] public uint partner__Set(uint v) => Mem.Set(P + 0x1D8u, v);
 }
 
-/// <summary>struct Hud, 0x90 bytes, at a guest address.</summary>
-public readonly struct Hud
+/// <summary>struct HudView, 0x90 bytes, at a guest address.</summary>
+public readonly struct HudView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Hud(uint p) { P = p; }
+    [MethodImpl(Inl)] public HudView(uint p) { P = p; }
     public const int SizeOf = 144;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Hud At(int i) => new(P + (uint)(i * 144));
-    [MethodImpl(Inl)] public static implicit operator uint(Hud v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Hud(uint p) => new(p);
+    [MethodImpl(Inl)] public HudView At(int i) => new(P + (uint)(i * 144));
+    [MethodImpl(Inl)] public static implicit operator uint(HudView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator HudView(uint p) => new(p);
     // +0x0
     public Barx2 bars { [MethodImpl(Inl)] get => new(P); }
 }
@@ -1799,17 +1799,17 @@ public readonly struct Idpair
     [MethodImpl(Inl)] public int b_Set(int v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct Image, 0x40 bytes, at a guest address.</summary>
-public readonly struct Image
+/// <summary>struct ImageView, 0x40 bytes, at a guest address.</summary>
+public readonly struct ImageView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Image(uint p) { P = p; }
+    [MethodImpl(Inl)] public ImageView(uint p) { P = p; }
     public const int SizeOf = 64;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Image At(int i) => new(P + (uint)(i * 64));
-    [MethodImpl(Inl)] public static implicit operator uint(Image v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Image(uint p) => new(p);
+    [MethodImpl(Inl)] public ImageView At(int i) => new(P + (uint)(i * 64));
+    [MethodImpl(Inl)] public static implicit operator uint(ImageView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ImageView(uint p) => new(p);
     // +0x0
     public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
@@ -4074,17 +4074,17 @@ public readonly struct IntrusiveList
     [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0x10u, v);
 }
 
-/// <summary>struct Inventory, 0x5FA bytes, at a guest address.</summary>
-public readonly struct Inventory
+/// <summary>struct InventoryView, 0x5FA bytes, at a guest address.</summary>
+public readonly struct InventoryView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Inventory(uint p) { P = p; }
+    [MethodImpl(Inl)] public InventoryView(uint p) { P = p; }
     public const int SizeOf = 1530;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Inventory At(int i) => new(P + (uint)(i * 1530));
-    [MethodImpl(Inl)] public static implicit operator uint(Inventory v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Inventory(uint p) => new(p);
+    [MethodImpl(Inl)] public InventoryView At(int i) => new(P + (uint)(i * 1530));
+    [MethodImpl(Inl)] public static implicit operator uint(InventoryView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator InventoryView(uint p) => new(p);
     // +0x0
     public S8x1524 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x5F4

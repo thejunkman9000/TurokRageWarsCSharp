@@ -614,7 +614,7 @@ public readonly struct Actor_func_8044A020_de
     [MethodImpl(Inl)] public uint part__Set(uint v) => Mem.Set(P + 0x5D8u, v);
 }
 
-/// <summary>struct Actor, 0x19C bytes, at a guest address.</summary>
+/// <summary>struct ActorView, 0x19C bytes, at a guest address.</summary>
 public readonly struct Actor_v2
 {
     public readonly uint P;
@@ -1200,17 +1200,17 @@ public readonly struct Angles_func_8025AB94_de
     [MethodImpl(Inl)] public short pad0A_Set(short v) => Mem.Set(P + 0xAu, v);
 }
 
-/// <summary>struct Anim, 0x14 bytes, at a guest address.</summary>
-public readonly struct Anim
+/// <summary>struct AnimView, 0x14 bytes, at a guest address.</summary>
+public readonly struct AnimView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Anim(uint p) { P = p; }
+    [MethodImpl(Inl)] public AnimView(uint p) { P = p; }
     public const int SizeOf = 20;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Anim At(int i) => new(P + (uint)(i * 20));
-    [MethodImpl(Inl)] public static implicit operator uint(Anim v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Anim(uint p) => new(p);
+    [MethodImpl(Inl)] public AnimView At(int i) => new(P + (uint)(i * 20));
+    [MethodImpl(Inl)] public static implicit operator uint(AnimView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator AnimView(uint p) => new(p);
     // +0x0
     public int time
     {

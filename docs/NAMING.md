@@ -19,10 +19,30 @@ One tab-separated row per registered function (`--template` adds rows for functi
 
 `python tools/rename/apply_names.py --check` validates the list (identifiers, duplicates, collisions with names that already exist in `src/`).
 
+## Static classes
+
+Every `Subject_Verb` function is a member of a static class per subject: `Weapon_GetAmmoType` is declared as `GetAmmoType` in
+`public static partial class Weapon` and called as `Weapon.GetAmmoType(...)` everywhere (generated and hand-written code). The tool decides this
+on every run from the names in `functions.tsv`, so the list keeps the `Subject_Verb` spelling.
+
+* What stays in class `Game`: functions without a subject prefix (SDK / library names, `_Recompiled` copies), the `Game_` subject (hand-written
+  `Game` members could collide), functions defined outside the generated members (registration tables, `Preserved/`, the OS layer), and any
+  function whose class name would equal a function that stays in `Game`.
+* A function that lives in another function's member file (several functions of one C file) goes to that member's class with its full name
+  (`View.Hud_PostMessage`).
+* Subjects named like a Trw.Platform / MonoGame / System type or the `Trw.Game.Debug` namespace get another class name (`CLASS_OVERRIDE`:
+  `Mem` -> `MemUtil`, `Math` -> `MathUtil`, `Debug` -> `DebugUtil`, `List` -> `ListUtil` ...).
+* Struct view types named like a subject class get the suffix `View` (`Actor` -> `ActorView`, `Player` -> `PlayerView`); `objects.tsv` may keep
+  the original names.
+* Every generated file imports class `Game` (`using static Trw.Game.Game;`: the OS layer and helpers), and `Generated/_ClassUsings.cs` imports
+  every subject class globally, so helpers that travel with a member (the recompiled `_rc` twins) stay reachable unqualified. A member is never
+  named like a class (that would make `Class.X` ambiguous): it keeps its full name then.
+* Debug paths are unchanged: `Dbg.Enter`, `TRW_TRACE_FN`, the call histogram and the differential tester use the original names; the write
+  watch (`TRW_WATCH`) prints `Class.Member`.
+
 ## Conventions
 
-* `Subject_VerbObject`: `Arena_Set`, `Flyby_IsInWindow`, `AttractDemo_Setup`. The prefix is the class the function moves to once the code is split
-  into real static classes (`Arena_Set` -> `Arena.Set`); until then everything stays in `public static partial class Game`.
+* `Subject_VerbObject`: `Arena_Set`, `Flyby_IsInWindow`, `AttractDemo_Setup`. The prefix is the static class (`Arena_Set` -> `Arena.Set`).
 * Library code keeps its SDK names (`osRecvMesg`, `alSynNew`, `sprintf`).
 * Low-confidence names keep the address: `Actor_Think_0044E910`.
 * A group file collects the functions of one subject in ROM order; one group should match one original source file where that can be recovered.

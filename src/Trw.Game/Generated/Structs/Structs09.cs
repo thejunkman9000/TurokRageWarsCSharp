@@ -892,17 +892,17 @@ public readonly struct Choice
     public S8x4 pad6C { [MethodImpl(Inl)] get => new(P + 0x6Cu); }
 }
 
-/// <summary>struct Chunk, 0x10 bytes, at a guest address.</summary>
-public readonly struct Chunk
+/// <summary>struct ChunkView, 0x10 bytes, at a guest address.</summary>
+public readonly struct ChunkView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Chunk(uint p) { P = p; }
+    [MethodImpl(Inl)] public ChunkView(uint p) { P = p; }
     public const int SizeOf = 16;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Chunk At(int i) => new(P + (uint)(i * 16));
-    [MethodImpl(Inl)] public static implicit operator uint(Chunk v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Chunk(uint p) => new(p);
+    [MethodImpl(Inl)] public ChunkView At(int i) => new(P + (uint)(i * 16));
+    [MethodImpl(Inl)] public static implicit operator uint(ChunkView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ChunkView(uint p) => new(p);
     // +0x0
     public uint source
     {

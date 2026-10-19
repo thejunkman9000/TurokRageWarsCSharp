@@ -20,7 +20,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_002627B4: ;
-                {  r2 = Pad_ReadControllerTail_00263AF8(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
+                {  r2 = Pad.ReadControllerTail_00263AF8(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
                 r4 = 2148597760u;
                 Cpu.V1 = r3; return r2;
             }

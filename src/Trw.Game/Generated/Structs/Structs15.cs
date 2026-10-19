@@ -119,17 +119,17 @@ public readonly struct Match_func_80420618_de
     public RosterSlotx8 slots { [MethodImpl(Inl)] get => new(P + 0xD0u); }
 }
 
-/// <summary>struct Material, 0x7 bytes, at a guest address.</summary>
-public readonly struct Material
+/// <summary>struct MaterialView, 0x7 bytes, at a guest address.</summary>
+public readonly struct MaterialView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Material(uint p) { P = p; }
+    [MethodImpl(Inl)] public MaterialView(uint p) { P = p; }
     public const int SizeOf = 7;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Material At(int i) => new(P + (uint)(i * 7));
-    [MethodImpl(Inl)] public static implicit operator uint(Material v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Material(uint p) => new(p);
+    [MethodImpl(Inl)] public MaterialView At(int i) => new(P + (uint)(i * 7));
+    [MethodImpl(Inl)] public static implicit operator uint(MaterialView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator MaterialView(uint p) => new(p);
     // +0x0
     public U8x6 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x6
@@ -1211,17 +1211,17 @@ public readonly struct MemBlk
     [MethodImpl(Inl)] public uint data_Set(uint v) => Mem.Set(P, v);
 }
 
-/// <summary>struct Menu, 0x380 bytes, at a guest address.</summary>
-public readonly struct Menu
+/// <summary>struct MenuView, 0x380 bytes, at a guest address.</summary>
+public readonly struct MenuView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Menu(uint p) { P = p; }
+    [MethodImpl(Inl)] public MenuView(uint p) { P = p; }
     public const int SizeOf = 896;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Menu At(int i) => new(P + (uint)(i * 896));
-    [MethodImpl(Inl)] public static implicit operator uint(Menu v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Menu(uint p) => new(p);
+    [MethodImpl(Inl)] public MenuView At(int i) => new(P + (uint)(i * 896));
+    [MethodImpl(Inl)] public static implicit operator uint(MenuView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator MenuView(uint p) => new(p);
     // +0x0
     public int active
     {
@@ -1388,17 +1388,17 @@ public readonly struct MenuHandlerEntry
     [MethodImpl(Inl)] public int flags_Set(int v) => Mem.Set(P + 0x10u, v);
 }
 
-/// <summary>struct MenuItem, 0x38 bytes, at a guest address.</summary>
-public readonly struct MenuItem
+/// <summary>struct MenuItemView, 0x38 bytes, at a guest address.</summary>
+public readonly struct MenuItemView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public MenuItem(uint p) { P = p; }
+    [MethodImpl(Inl)] public MenuItemView(uint p) { P = p; }
     public const int SizeOf = 56;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public MenuItem At(int i) => new(P + (uint)(i * 56));
-    [MethodImpl(Inl)] public static implicit operator uint(MenuItem v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator MenuItem(uint p) => new(p);
+    [MethodImpl(Inl)] public MenuItemView At(int i) => new(P + (uint)(i * 56));
+    [MethodImpl(Inl)] public static implicit operator uint(MenuItemView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator MenuItemView(uint p) => new(p);
     // +0x0
     public int active
     {
@@ -3527,17 +3527,17 @@ public readonly struct Mode_func_8040C09C_de
     public S32x5 rest { [MethodImpl(Inl)] get => new(P + 0x8u); }
 }
 
-/// <summary>struct Model, 0x6C bytes, at a guest address.</summary>
-public readonly struct Model
+/// <summary>struct ModelView, 0x6C bytes, at a guest address.</summary>
+public readonly struct ModelView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Model(uint p) { P = p; }
+    [MethodImpl(Inl)] public ModelView(uint p) { P = p; }
     public const int SizeOf = 108;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Model At(int i) => new(P + (uint)(i * 108));
-    [MethodImpl(Inl)] public static implicit operator uint(Model v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Model(uint p) => new(p);
+    [MethodImpl(Inl)] public ModelView At(int i) => new(P + (uint)(i * 108));
+    [MethodImpl(Inl)] public static implicit operator uint(ModelView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ModelView(uint p) => new(p);
     // +0x0
     public S8x76 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4C

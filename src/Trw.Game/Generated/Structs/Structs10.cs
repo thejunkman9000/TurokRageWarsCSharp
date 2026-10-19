@@ -1440,17 +1440,17 @@ public readonly struct EmitOwnerInfo
     [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
 }
 
-/// <summary>struct Emitter, 0xC4 bytes, at a guest address.</summary>
-public readonly struct Emitter
+/// <summary>struct EmitterView, 0xC4 bytes, at a guest address.</summary>
+public readonly struct EmitterView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Emitter(uint p) { P = p; }
+    [MethodImpl(Inl)] public EmitterView(uint p) { P = p; }
     public const int SizeOf = 196;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Emitter At(int i) => new(P + (uint)(i * 196));
-    [MethodImpl(Inl)] public static implicit operator uint(Emitter v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Emitter(uint p) => new(p);
+    [MethodImpl(Inl)] public EmitterView At(int i) => new(P + (uint)(i * 196));
+    [MethodImpl(Inl)] public static implicit operator uint(EmitterView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator EmitterView(uint p) => new(p);
     // +0x0
     public S8x52 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x34
@@ -1528,7 +1528,7 @@ public readonly struct Emitter
     [MethodImpl(Inl)] public int reset_Set(int v) => Mem.Set(P + 0xC0u, v);
 }
 
-/// <summary>struct Emitter, 0x1F8 bytes, at a guest address.</summary>
+/// <summary>struct EmitterView, 0x1F8 bytes, at a guest address.</summary>
 public readonly struct Emitter_v2
 {
     public readonly uint P;
@@ -1586,7 +1586,7 @@ public readonly struct Emitter_v2
     [MethodImpl(Inl)] public uint TypeListNext_Set(uint v) => Mem.Set(P + 0x1F4u, v);
 }
 
-/// <summary>struct Emitter, 0x48 bytes, at a guest address.</summary>
+/// <summary>struct EmitterView, 0x48 bytes, at a guest address.</summary>
 public readonly struct Emitter_v3
 {
     public readonly uint P;
@@ -2352,17 +2352,17 @@ public readonly struct Ent_v2
     [MethodImpl(Inl)] public short unkC_Set(short v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct Entity, 0x2E8 bytes, at a guest address.</summary>
-public readonly struct Entity
+/// <summary>struct EntityView, 0x2E8 bytes, at a guest address.</summary>
+public readonly struct EntityView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public Entity(uint p) { P = p; }
+    [MethodImpl(Inl)] public EntityView(uint p) { P = p; }
     public const int SizeOf = 744;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public Entity At(int i) => new(P + (uint)(i * 744));
-    [MethodImpl(Inl)] public static implicit operator uint(Entity v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator Entity(uint p) => new(p);
+    [MethodImpl(Inl)] public EntityView At(int i) => new(P + (uint)(i * 744));
+    [MethodImpl(Inl)] public static implicit operator uint(EntityView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator EntityView(uint p) => new(p);
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
@@ -2729,7 +2729,7 @@ public readonly struct Entity_func_8041C7F4_de
     public Vec3 saved { [MethodImpl(Inl)] get => new(P + 0x1C4u); }
 }
 
-/// <summary>struct Entity, 0x14 bytes, at a guest address.</summary>
+/// <summary>struct EntityView, 0x14 bytes, at a guest address.</summary>
 public readonly struct Entity_v2
 {
     public readonly uint P;

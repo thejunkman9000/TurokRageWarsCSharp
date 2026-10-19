@@ -5,12 +5,12 @@ namespace Trw.Game.PortHud;
 
 /// <summary>
 /// The game's HUD sprites, read straight from guest RAM (read-only; nothing here calls game code or writes memory).
-/// <para>Lookup (Sprite_Draw -&gt; Sprite_Lookup with the HUD library <c>D_8011FE88</c>, re-implemented without its side effects): the library's key table
-/// at +0x9C (<c>{?, n, keys[n]}</c>, sorted) gives the index of the sprite id (Sprite_FindIndex, binary search); the offset table at +0x5C and the base at +0x2C give
-/// the resource's cartridge key <c>base + off[idx]</c> (Resource_GetCartridgeKey); the resource cache's hash (ResourceCache_Hash: buckets <c>*Gv.AddrHash_BucketsPtr</c>, mask
+/// <para>Lookup (Sprite.Draw -&gt; Sprite.Lookup with the HUD library <c>D_8011FE88</c>, re-implemented without its side effects): the library's key table
+/// at +0x9C (<c>{?, n, keys[n]}</c>, sorted) gives the index of the sprite id (Sprite.FindIndex, binary search); the offset table at +0x5C and the base at +0x2C give
+/// the resource's cartridge key <c>base + off[idx]</c> (Resource.GetCartridgeKey); the resource cache's hash (ResourceCache.Hash: buckets <c>*Gv.AddrHash_BucketsPtr</c>, mask
 /// <c>*0x80105190</c>, chained through +0xC) maps that key to the cache entry, whose node's first word is the data in RAM. A sprite the game has not loaded
 /// is not found (it is not drawn then either).</para>
-/// <para>Data (Sprite_GetFrameData_002AB19C / Sprite_GetFrame): <c>s16 frames</c>, then at +8 one <c>{s32 offset, u8 kind}</c> per frame; a frame is <c>u16 cols, u16 rows</c> and from +8
+/// <para>Data (Sprite.GetFrameData_002AB19C / Sprite.GetFrame): <c>s16 frames</c>, then at +8 one <c>{s32 offset, u8 kind}</c> per frame; a frame is <c>u16 cols, u16 rows</c> and from +8
 /// the cells row by row, each <c>u32 w, u32 h</c> and the texels: kind 0 = RGBA 5551 colour (w*h*2 bytes) followed by a 4-bit intensity alpha plane
 /// (w*h/2 bytes), loaded as two tiles and combined TEXEL0 * ENV (colour), TEXEL1 * ENV (alpha); kind 1 = the 4-bit plane only.</para>
 /// Decoded cells are <see cref="DecodedTexture"/>s with exactly the texels the display-list interpreter decodes for the game's own draws.
@@ -18,7 +18,7 @@ namespace Trw.Game.PortHud;
 public static class GameSprites
 {
     public const uint Library = Gv.LevelMgr, HashBuckets = Gv.AddrHash_BucketsPtr, HashMask = 0x80105190;
-    public const int DigitFont = 4;          // Hud_DrawNumber: frames 0..9 = digits, 10 = minus
+    public const int DigitFont = 4;          // Hud.DrawNumber: frames 0..9 = digits, 10 = minus
 
     public sealed class Cell { public float X, Y; public int W, H; public uint Colour, Alpha; public int Kind; public DecodedTexture? Tex0, Tex1; }
     public sealed class Frame { public List<Cell> Cells = new(); public float Width, Height; }

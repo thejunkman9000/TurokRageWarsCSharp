@@ -2301,17 +2301,17 @@ public readonly struct ObjectList
     [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0x8u, v);
 }
 
-/// <summary>struct ObjectPool, 0x34 bytes, at a guest address.</summary>
-public readonly struct ObjectPool
+/// <summary>struct ObjectPoolView, 0x34 bytes, at a guest address.</summary>
+public readonly struct ObjectPoolView
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public ObjectPool(uint p) { P = p; }
+    [MethodImpl(Inl)] public ObjectPoolView(uint p) { P = p; }
     public const int SizeOf = 52;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public ObjectPool At(int i) => new(P + (uint)(i * 52));
-    [MethodImpl(Inl)] public static implicit operator uint(ObjectPool v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator ObjectPool(uint p) => new(p);
+    [MethodImpl(Inl)] public ObjectPoolView At(int i) => new(P + (uint)(i * 52));
+    [MethodImpl(Inl)] public static implicit operator uint(ObjectPoolView v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator ObjectPoolView(uint p) => new(p);
     // +0x0
     public uint allocation
     {
@@ -2344,7 +2344,7 @@ public readonly struct ObjectPool
     public IntrusiveList object_queue { [MethodImpl(Inl)] get => new(P + 0x20u); }
 }
 
-/// <summary>struct ObjectPool, 0x34 bytes, at a guest address.</summary>
+/// <summary>struct ObjectPoolView, 0x34 bytes, at a guest address.</summary>
 public readonly struct ObjectPool_v2
 {
     public readonly uint P;

@@ -6,9 +6,9 @@ namespace Trw.Game;
 /// <summary>
 /// Keyboard text entry for the game's NEW PLAYER name screen (Controller Pak screen, UI screen 19). The game itself has no keyboard: its name
 /// entry is a letter cycler driven by pad buttons (overlay A, player record <c>O05Plr</c> of the lobby block <c>*D_800E54A4</c>, state 12):
-/// D-pad up / down step the letter at the cursor through 0x20..0x5A (NameEntry_LetterUp / NameEntry_LetterDown), left / right move the cursor over the
-/// 7 letter slots (NameEntry_EnterSlot2 / NameEntry_EnterSlot; a slot entered for the first time becomes 'A'), A is DONE (PlayerMenu_StepStateMachine: copies the slots,
-/// trims trailing blanks, state 16) and B (NameEntry_Cancel) leaves the pak screen when it was opened from the 1-player menu (lobby phase 7),
+/// D-pad up / down step the letter at the cursor through 0x20..0x5A (NameEntry.LetterUp / NameEntry.LetterDown), left / right move the cursor over the
+/// 7 letter slots (NameEntry.EnterSlot2 / NameEntry.EnterSlot; a slot entered for the first time becomes 'A'), A is DONE (PlayerMenu.StepStateMachine: copies the slots,
+/// trims trailing blanks, state 16) and B (NameEntry.Cancel) leaves the pak screen when it was opened from the 1-player menu (lobby phase 7),
 /// otherwise blanks the letter.
 /// Typed characters are turned into exactly those pad presses, closed-loop: the next press is chosen from the cursor and letter the game holds
 /// in its RAM, so every field changes the way the game's own handlers change it. Backspace and space step the letter to the blank (B is not
