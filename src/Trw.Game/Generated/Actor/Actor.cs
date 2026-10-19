@@ -424,7 +424,7 @@ public static partial class Game
                 t = (uint)(Actor_GetStandingObject((uint)(a)));
                 if (((t != 0u) && (new ActorDef(new ActorB(t).def_).type == 2)))
                 {
-                    Mem.Copy((_fp + 16u), new ActorB(a).pos.P, 12);
+                    Mem.Copy((_fp + 16u), new ActorB(a).Position.P, 12);
                     Actor_GetFrameMotion(t, _fp);
                     if ((!((new ActorB(a).flags38 & (uint)(4096)) != 0u) || (0.0f < new Vec3f(_fp).y)))
                     {
@@ -434,11 +434,11 @@ public static partial class Game
                     new ActorB(a).vel.x_Set((float)(0));
                     new ActorB(a).vel.y_Set((float)(0));
                     new ActorB(a).vel.z_Set((float)(0));
-                    Vec_Sub((_fp + 32u), (_fp + 16u), new ActorB(t).pos.P);
+                    Vec_Sub((_fp + 32u), (_fp + 16u), new ActorB(t).Position.P);
                     ang = Actor_GetFrameMotionField38_0024E72C(t);
                     Math_MtxMakeRotateY((_fp + 48u), ang);
                     Math_MtxTransformPoints((_fp + 48u), (_fp + 32u), (_fp + 32u), 1);
-                    Vec_Add((_fp + 32u), (_fp + 32u), new ActorB(t).pos.P);
+                    Vec_Add((_fp + 32u), (_fp + 32u), new ActorB(t).Position.P);
                     Vec_Sub((_fp + 32u), (_fp + 32u), (_fp + 16u));
                     new ActorB(a).unk6C_Set((new ActorB(a).unk6C + ang));
                     Vec_Add((_fp + 16u), (_fp + 16u), (_fp + 32u));
@@ -931,10 +931,10 @@ public static partial class Game
             {
                 if ((new M1Actor(actor).def.kind == 2))
                 {
-                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).pos.P, 12);
+                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).Position.P, 12);
                     new M1State(state).f60_Set(new M1Actor(actor).f6C);
                 }
-                Mem.Copy(new M1State(state).v54.P, new M1Actor(actor).pos.P, 12);
+                Mem.Copy(new M1State(state).v54.P, new M1Actor(actor).Position.P, 12);
                 new M1State(state).f40_Set((new M1State(state).f40 + Mem.F32(Gv.FrameTime)));
                 if (((new M1Actor(actor).flags & (uint)(65536)) != 0u))
                 {
@@ -947,7 +947,7 @@ public static partial class Game
                 ActorState_UpdateAnim(actor, state);
                 if ((new M1Actor(actor).def.kind != 2))
                 {
-                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).pos.P, 12);
+                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).Position.P, 12);
                     new M1State(state).f60_Set(new M1Actor(actor).f6C);
                 }
             }

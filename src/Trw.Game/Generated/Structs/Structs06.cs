@@ -2290,7 +2290,7 @@ public readonly struct B18Ent
     // +0x6
     public U8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x280 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x12C
@@ -2326,12 +2326,12 @@ public readonly struct B18Ent
     // +0x178
     public U8x1132 pad178 { [MethodImpl(Inl)] get => new(P + 0x178u); }
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x4344 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x16E0
@@ -4801,7 +4801,7 @@ public readonly struct B19Plr
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public B19Vec3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public B19Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x1668 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x698

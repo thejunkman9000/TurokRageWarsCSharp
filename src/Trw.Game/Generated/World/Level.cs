@@ -1268,7 +1268,7 @@ public static partial class Game
             {
                 pl = (new B14GameP(Gv.PlayerPool).players_ + (uint)(i * 5864));
                 Mem.Copy((new B14Mgr(m).blk.P + (uint)(i * 112)), new B14Pl(pl).blk.P, 112);
-                Mem.Copy((new B14Mgr(m).w.P + (uint)(i * 12)), new B14Pl(pl).w.P, 12);
+                Mem.Copy((new B14Mgr(m).w.P + (uint)(i * 12)), new B14Pl(pl).Position.P, 12);
                 new B14Mgr(m).f3F0.Set((int)(i), new B14Pl(pl).f6C);
                 new B14Mgr(m).i410.Set((int)(i), (int)(Level_GetFloorTriangleIndex(Gv.LevelMgr, (uint)(new B14Pl(pl).f14))));
             }

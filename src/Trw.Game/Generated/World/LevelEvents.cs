@@ -62,9 +62,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002790B8", (uint)a, (uint)d);
             new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) | (uint)(1073741824)));
-            new B17Dst(d).pos.x_Set(new ActorX(a).pos.x);
-            new B17Dst(d).pos.y_Set(new ActorX(a).pos.y);
-            new B17Dst(d).pos.z_Set(new ActorX(a).pos.z);
+            new B17Dst(d).pos.x_Set(new ActorX(a).Position.x);
+            new B17Dst(d).pos.y_Set(new ActorX(a).Position.y);
+            new B17Dst(d).pos.z_Set(new ActorX(a).Position.z);
             new B17Dst(d).unk60_Set(new ActorX(a).unk6C);
         }
     }

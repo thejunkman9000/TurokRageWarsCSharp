@@ -312,6 +312,10 @@ def main():
     nm += [f'        ["{o}"] = "{w}",' for o, w in sorted(desired.items()) if w != o]
     nm += ['    };', '}']
     write_if_changed(os.path.join(GEN, '_NameMap.cs'), '\n'.join(nm) + '\n')
+    # 3b. struct fields: canonical names per game object (tools/names/objects.tsv + fields.tsv, tools/rename/fields.py)
+    import fields as struct_fields
+    fren, ffiles = struct_fields.apply()
+    if fren: print(f'struct fields: {fren} member renames, {ffiles} files touched')
     # 4. remember what is in effect
     out = ['# original name -> name in effect (written by tools/rename/apply_names.py; do not edit)']
     out += [f'{o}\t{w}' for o, w in sorted(desired.items()) if w != o]

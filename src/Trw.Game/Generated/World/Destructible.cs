@@ -174,10 +174,10 @@ public static partial class Game
             mode = Mem.S32((Gv.LevelMgr + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
             if (!((new M1Info(info).unk20.i != (-1)))) goto _f3;
-            Audio_PlaySound((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).pos.P, 0, (-1));
+            Audio_PlaySound((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).Position.P, 0, (-1));
             _f3: ;
             if (!((new M1Info(info).unk1C != (-1)))) goto _f4;
-            Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).pos.P);
+            Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).Position.P);
             _f4: ;
             Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new M1Info(info).unk24.i), (uint)(new M1Info(info).unk28.i));
             Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));

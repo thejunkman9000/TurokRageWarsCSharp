@@ -2621,7 +2621,7 @@ public static partial class Game
             if ((t != 0u))
             {
                 cur = new ActorB(t).owner_;
-                if ((new ActorB(cur).unk5E4 == 0))
+                if ((new ActorB(cur).Health == 0))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
@@ -2637,7 +2637,7 @@ public static partial class Game
                 if ((t != 0u))
                 {
                     cur = new ActorB(t).owner_;
-                    curDist = Vec_Distance(from, new ActorB(cur).pos.P);
+                    curDist = Vec_Distance(from, new ActorB(cur).Position.P);
                 }
                 else
                 {
@@ -2653,7 +2653,7 @@ public static partial class Game
             if (((new BrainB(b).target_ != 0u) && ((new BrainB(b).target.flags & (uint)(3145728)) != 0u)))
             {
                 tgt = new BrainB(b).target.owner_;
-                tgtDist = Vec_Distance(from, new ActorB(tgt).pos.P);
+                tgtDist = Vec_Distance(from, new ActorB(tgt).Position.P);
             }
             else
             {
@@ -2670,14 +2670,14 @@ public static partial class Game
                 if (((tgt != 0u) && (Ai_IsTargetCandidateVisible(b) != 0)))
                 {
                     new BrainB(b).unk64__Set(tgt);
-                    new BrainB(b).unk258_Set(new ActorB(tgt).pos.x);
+                    new BrainB(b).unk258_Set(new ActorB(tgt).Position.x);
                     v = tgt;
                 }
                 else
                 {
                     v = new BrainB(b).actors[(int)(Ai_FindNearestCandidate(b))];
                     new BrainB(b).unk64__Set(v);
-                    new BrainB(b).unk258_Set(new ActorB(v).pos.x);
+                    new BrainB(b).unk258_Set(new ActorB(v).Position.x);
                 }
             }
             else
@@ -2685,7 +2685,7 @@ public static partial class Game
                 if (((tgt != 0u) && (tgtDist <= curDist)))
                 {
                     new BrainB(b).unk64__Set(tgt);
-                    new BrainB(b).unk258_Set(new ActorB(tgt).pos.x);
+                    new BrainB(b).unk258_Set(new ActorB(tgt).Position.x);
                     v = tgt;
                 }
                 else
@@ -2695,7 +2695,7 @@ public static partial class Game
                     {
                         v = new BrainB(b).actors[(int)(i)];
                         new BrainB(b).unk64__Set(v);
-                        new BrainB(b).unk258_Set(new ActorB(v).pos.x);
+                        new BrainB(b).unk258_Set(new ActorB(v).Position.x);
                     }
                     else
                     {
@@ -2706,22 +2706,22 @@ public static partial class Game
                         }
                         else
                         {
-                            if (((new ActorB(tgt).pos.P != 0u) || (b != 0u)))
+                            if (((new ActorB(tgt).Position.P != 0u) || (b != 0u)))
                             {
                                 v = new BrainB(b).unk64_;
-                                new BrainB(b).unk258_Set(new ActorB(v).pos.x);
+                                new BrainB(b).unk258_Set(new ActorB(v).Position.x);
                             }
                             else
                             {
                                 v = new BrainB(b).unk64_;
-                                new BrainB(b).unk258_Set(new ActorB(v).pos.x);
+                                new BrainB(b).unk258_Set(new ActorB(v).Position.x);
                             }
                         }
                     }
                 }
             }
-            new BrainB(b).unk25C_Set(new ActorB(v).pos.y);
-            new BrainB(b).unk260_Set(new ActorB(v).pos.z);
+            new BrainB(b).unk25C_Set(new ActorB(v).Position.y);
+            new BrainB(b).unk260_Set(new ActorB(v).Position.z);
             return 1;
         }
     }
@@ -3173,10 +3173,10 @@ public static partial class Game
             for (i = 0, g = Gv.PlayerPool, gf = new GameB(g).gf.P; (i < 8); ++i)
             {
                 a = Player_GetByIndex(g, (uint)(i));
-                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).stats.unk92) != (int)(new BrainB(b).actor.stats.unk92)))) && ((new ActorB(a).unk5E4 >> (int)8) > 0)))
+                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).stats.unk92) != (int)(new BrainB(b).actor.stats.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
                 {
                     new BrainB(b).actors.Set((int)(n), a);
-                    new BrainB(b).value.Set((int)(n), (int)(Vec_Distance(new BrainB(b).actor.pos.P, new ActorB(a).pos.P)));
+                    new BrainB(b).value.Set((int)(n), (int)(Vec_Distance(new BrainB(b).actor.Position.P, new ActorB(a).Position.P)));
                     new BrainB(b).valid.Set((int)(n), Ai_CanSeeCandidate(b, n));
                     ++n;
                 }
@@ -3302,13 +3302,13 @@ public static partial class Game
             th1 = (int)((f * Mem.F32(0x800C7040u)));
             th2 = (int)((f * Mem.F32(0x800C7044u)));
             th3 = (int)((f * Mem.F32(0x800C7048u)));
-            if ((Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))) < 0.0f))
+            if ((Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).Position.x), Cpu.F2U(new ActorB(t).Position.y), Cpu.F2U(new ActorB(t).Position.z))) < 0.0f))
             {
-                d = (-Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))));
+                d = (-Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).Position.x), Cpu.F2U(new ActorB(t).Position.y), Cpu.F2U(new ActorB(t).Position.z))));
             }
             else
             {
-                d = Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z)));
+                d = Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).Position.x), Cpu.F2U(new ActorB(t).Position.y), Cpu.F2U(new ActorB(t).Position.z)));
             }
             if ((d <= Mem.F32(0x800C704Cu)))
             {
@@ -4485,14 +4485,14 @@ public static partial class Game
                     }
                     else
                     {
-                        Mem.Copy(new BrainB(b).unk2C.P, new BrainB(b).unk68.pos.P, 12);
+                        Mem.Copy(new BrainB(b).unk2C.P, new BrainB(b).unk68.Position.P, 12);
                     }
                 }
                 Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
                 if ((new BrainB(b).unk68_ != 0u))
                 {
                     Ai_SteerWhileFacingTarget(b);
-                    if (((Vec_Distance(new BrainB(b).actor.pos.P, new BrainB(b).unk68.pos.P) < Mem.F32(0x800C71D4u)) && (new BrainB(b).unk238 == 0)))
+                    if (((Vec_Distance(new BrainB(b).actor.Position.P, new BrainB(b).unk68.Position.P) < Mem.F32(0x800C71D4u)) && (new BrainB(b).unk238 == 0)))
                     {
                         new BrainB(b).unk238_Set(1);
                         for (i = 0; (i < 64); ++i)

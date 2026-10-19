@@ -758,7 +758,7 @@ public static partial class Game
                 uint type = 0u;
                 t = new BrainB(b).unk64.owner_;
                 me = new ActorB(t).brain.unk4;
-                Mem.Copy((_fp + 512u), new ActorB(t).pos.P, 12);
+                Mem.Copy((_fp + 512u), new ActorB(t).Position.P, 12);
                 for (i = 0; (i < 64); ++i)
                 {
                     Mem.Set((_fp + (uint)(i * 4)), (-1));
@@ -832,7 +832,7 @@ public static partial class Game
             Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
             Ai_FollowPath(b);
             Ai_SteerWhileFacingTarget(b);
-            if (((Vec_DistanceSq(new ActorB(to).pos.P, new BrainB(b).actor.pos.P) < Mem.F32(0x800C71B4u)) || (new BrainB(b).unk4 == new BrainB(b).unkC)))
+            if (((Vec_DistanceSq(new ActorB(to).Position.P, new BrainB(b).actor.Position.P) < Mem.F32(0x800C71B4u)) || (new BrainB(b).unk4 == new BrainB(b).unkC)))
             {
                 Ai_SetState(b, new BrainB(b).unk230);
             }
@@ -876,7 +876,7 @@ public static partial class Game
                     return;
                 }
             }
-            if ((Mem.F32(0x800C71B8u) < Vec_DistanceSq(new BrainB(b).unk64.owner.pos.P, new BrainB(b).actor.pos.P)))
+            if ((Mem.F32(0x800C71B8u) < Vec_DistanceSq(new BrainB(b).unk64.owner.Position.P, new BrainB(b).actor.Position.P)))
             {
                 Ai_SetState(b, new BrainB(b).unk230);
                 return;
@@ -925,7 +925,7 @@ public static partial class Game
                 for (i = 0; (i < new EntList(L).count); ++i)
                 {
                     r = AiNav_GetNode(L, i);
-                    if (((Vec_DistanceSq(new BrainB(b).actor.pos.P, r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
+                    if (((Vec_DistanceSq(new BrainB(b).actor.Position.P, r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
                     {
                         AiNav_AddGoal(L, i);
                     }

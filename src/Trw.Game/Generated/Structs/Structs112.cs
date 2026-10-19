@@ -581,7 +581,7 @@ public readonly struct SharedPlayer_func_80449EE4_de
     // +0x5DC
     public SharedPlayer_func_80449EE4_de_views5DC views5DC { [MethodImpl(Inl)] get => new(P + 0x5DCu); }
     // +0x5E4
-    public SharedPlayer_func_80449EE4_de_views5E4 views5E4 { [MethodImpl(Inl)] get => new(P + 0x5E4u); }
+    public SharedPlayer_func_80449EE4_de_views5E4 Health { [MethodImpl(Inl)] get => new(P + 0x5E4u); }
     // +0x5E8
     public SharedPlayer_func_80449EE4_de_views5E8 views5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x122C

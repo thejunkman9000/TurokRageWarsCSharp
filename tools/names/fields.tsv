@@ -1,0 +1,3 @@
+# object	offset	name	confidence	note   (tools/rename/fields.py)
+Player	0x8	Position	high	Vec3f world position (Plr.pos)
+Player	0x5E4	Health	high	health in 1/256 units (damage fix: 100 -> 97 -> 57 ...)

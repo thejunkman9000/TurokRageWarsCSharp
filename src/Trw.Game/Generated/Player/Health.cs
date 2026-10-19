@@ -1036,7 +1036,7 @@ public static partial class Game
                     CameraShake_Add(Gv.ViewMgr, 0.0f, 204.799988f, 0.0f, 512.0f, 0, new Pawn(pw).pos128.P);
                 }
                 new Plr(a).unk1D4_Set((new Plr(a).unk1D4 - Mem.F32(Gv.FrameTime)));
-                if (((new Plr(a).unk1D4 <= 0.0f) || (new Plr(a).unk5E4 == 0)))
+                if (((new Plr(a).unk1D4 <= 0.0f) || (new Plr(a).Health == 0)))
                 {
                     o = new Plr(a).unk13D8_;
                     tgt = 0u;
@@ -1098,7 +1098,7 @@ public static partial class Game
             new Plr(a).unk54_Set(new PlrCls(c).unk100);
             new Plr(a).unk58_Set(new PlrCls(c).unk104);
             if (!(((Mem.S32((Gv.Settings_MonkeyTagMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk8F) != 0)))) goto _f3;
-            new Plr(a).unk5E4_Set(2560);
+            new Plr(a).Health_Set(2560);
             new Plr(a).unk174_Set(2560);
             return;
             _f3: ;
@@ -1133,7 +1133,7 @@ public static partial class Game
             if (!((((int)(Mem.U8((Gv.Settings_GameMode + (uint)0))) == 1) && (new Plr(a).unk1450 == 0)))) goto _f13;
             v = (int)((int)(v) + new ActorRow400((Gv.CharacterClassTable + (uint)(new Plr(a).unk5D4 * 400))).unk0);
             _f13: ;
-            new Plr(a).unk5E4_Set(v);
+            new Plr(a).Health_Set(v);
             if (!(((Mem.S32((Gv.Match_FragTagMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk94) != 0)))) goto _f14;
             s = (int)(new Plr(a).stats.unk80);
             if (!((s == 11))) goto _f15;
@@ -1308,7 +1308,7 @@ public static partial class Game
                 Actor_DispatchEvent((a + (uint)744), (a + (uint)1112), 2);
                 if ((new Plr(a).unk1210 != 0))
                 {
-                    if ((new Plr(a).unk5E4 != 0))
+                    if ((new Plr(a).Health != 0))
                     {
                         Player_SetState(a, (int)(a), 2);
                     }
@@ -1511,7 +1511,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022ADA0", (uint)a);
-            return ((new Actor(a).unk5E4 < 25600) ? 1 : 0);
+            return ((new Actor(a).Health < 25600) ? 1 : 0);
         }
     }
 
@@ -1537,7 +1537,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B168", (uint)a);
-            return ((new Actor(a).unk5E4 == 0) ? 1 : 0);
+            return ((new Actor(a).Health == 0) ? 1 : 0);
         }
     }
 
@@ -1607,7 +1607,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B5B0", (uint)a, _a1);
-            if ((new Plr(a).unk5E4 != 0))
+            if ((new Plr(a).Health != 0))
             {
                 new Plr(a).unk12C0_Set(Math_ApproachLinear(new Plr(a).unk12C0, Mem.F32(0x800C7E04u), Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
             }

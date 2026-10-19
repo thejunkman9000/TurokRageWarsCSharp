@@ -2156,7 +2156,7 @@ public readonly struct Shared_ActorView
     // +0x0
     public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public Shared_ActorView_position position { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Shared_ActorView_position Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public S8x4 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
@@ -2231,7 +2231,7 @@ public readonly struct Shared_ActorView
     }
     [MethodImpl(Inl)] public int state_Set(int v) => Mem.Set(P + 0x5E0u, v);
     // +0x5E4
-    public S8x16 pad5E4 { [MethodImpl(Inl)] get => new(P + 0x5E4u); }
+    public S8x16 Health { [MethodImpl(Inl)] get => new(P + 0x5E4u); }
     // +0x5F4
     public S16x3 ammo { [MethodImpl(Inl)] get => new(P + 0x5F4u); }
     // +0x5FA

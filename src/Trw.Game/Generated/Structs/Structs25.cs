@@ -232,7 +232,7 @@ public readonly struct Player_v3
     // +0x0
     public U8x8 pad_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public P2Vec3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public P2Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x348 pad_14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x170
@@ -496,7 +496,7 @@ public readonly struct Plr
     // +0x4
     public U8x4 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public int unk14
     {
@@ -791,12 +791,12 @@ public readonly struct Plr
     }
     [MethodImpl(Inl)] public int unk5E0_Set(int v) => Mem.Set(P + 0x5E0u, v);
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x2 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x5EA
@@ -1426,12 +1426,12 @@ public readonly struct Plr24d
     // +0x5E0
     public U8x4 pad5E0 { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x12 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x5F4

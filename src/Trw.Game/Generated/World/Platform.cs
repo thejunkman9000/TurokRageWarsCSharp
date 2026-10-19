@@ -235,7 +235,7 @@ public static partial class Game
                 _f8: ;
                 if (!(!((new M1State(state).flags3C & (uint)(1024)) != 0u))) goto _f10;
                 _f9: ;
-                if (!(((info != 0u) || (new M1Actor(actor).pos.P != 0u)))) goto _f11;
+                if (!(((info != 0u) || (new M1Actor(actor).Position.P != 0u)))) goto _f11;
                 new M1Actor(actor).f6C_Set((new M1Actor(actor).f6C + (new M1Info(info).f3C * 0.0666666701f)));
                 goto _f12;
                 _f11: ;
@@ -245,7 +245,7 @@ public static partial class Game
                 goto _f6;
                 _f6: ;
                 if (!(((int)(new M1Info(info).unk4.hu[(int)(0)]) == 0))) goto _f13;
-                Collision_SetFaceGroupHeight((uint)(new M1Actor(actor).unk14), ((Collision_GetFloorHeightAt((uint)(new M1Actor(actor).unk14), new M1Actor(actor).pos.x, new M1Actor(actor).pos.z) + new M1State(state).v54.y) - new M1Actor(actor).pos.y));
+                Collision_SetFaceGroupHeight((uint)(new M1Actor(actor).unk14), ((Collision_GetFloorHeightAt((uint)(new M1Actor(actor).unk14), new M1Actor(actor).Position.x, new M1Actor(actor).Position.z) + new M1State(state).v54.y) - new M1Actor(actor).Position.y));
                 _f13: ;
             }
         }

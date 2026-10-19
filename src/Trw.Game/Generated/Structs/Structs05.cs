@@ -4030,7 +4030,7 @@ public readonly struct B14Pl
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public B14W3 w { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public B14W3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public int f14
     {

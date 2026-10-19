@@ -959,8 +959,8 @@ public static partial class Game
                 _f38: ;
                 _f36: ;
                 if (!((var_s3_2 != 0))) goto _f55;
-                temp_s0_5 = AiNav_GetNode(Gv.AiNavGraph, AiNav_FindNearestNode(Gv.AiNavGraph, new Shared_ActorView(arg0).position.P));
-                Collision_LocatePoint_0024E78C(arg0, new Shared_ActorView(arg0).position.P, (_fp + 16u), (_fp + 80u));
+                temp_s0_5 = AiNav_GetNode(Gv.AiNavGraph, AiNav_FindNearestNode(Gv.AiNavGraph, new Shared_ActorView(arg0).Position.P));
+                Collision_LocatePoint_0024E78C(arg0, new Shared_ActorView(arg0).Position.P, (_fp + 16u), (_fp + 80u));
                 if (!((temp_s0_5 != 0u))) goto _f56;
                 Mem.Copy((_fp + 16u), temp_s0_5, 12);
                 _f56: ;
@@ -1032,17 +1032,17 @@ public static partial class Game
                 if (!((arg3 != 31))) goto _f75;
                 var_a0_4 = (short)(Player_GetCharacterSoundId(arg0, 5015));
                 _f75: ;
-                Audio_PlaySound((int)(var_a0_4), new Shared_ActorView(arg0).position.P, (int)(new Shared_ActorView(arg0).position.P), (-1));
+                Audio_PlaySound((int)(var_a0_4), new Shared_ActorView(arg0).Position.P, (int)(new Shared_ActorView(arg0).Position.P), (-1));
                 goto _f76;
                 _f74: ;
-                Audio_PlaySound((int)((short)(2555)), new Shared_ActorView(arg0).position.P, (int)(new Shared_ActorView(arg0).position.P), (-1));
+                Audio_PlaySound((int)((short)(2555)), new Shared_ActorView(arg0).Position.P, (int)(new Shared_ActorView(arg0).Position.P), (-1));
                 _f76: ;
                 Audio_PlaySound2D(530);
                 if (!((((new Shared_ActorView(arg0).special != 0) || (C.Seq((object?)((temp_v1_5 = new Shared_ActorView(arg0).kind)), (((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(0 * 4)))) ? 1 : 0)) != 0)) || ((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(1 * 4))))))) goto _f77;
-                new Vec3((_fp + 32u)).x_Set(new Vec3(new Shared_ActorView(arg0).position.P).x);
-                new Vec3((_fp + 32u)).y_Set((new Vec3(new Shared_ActorView(arg0).position.P).y + new Shared_HeightBonuses(0x800C7458u).projectile));
+                new Vec3((_fp + 32u)).x_Set(new Vec3(new Shared_ActorView(arg0).Position.P).x);
+                new Vec3((_fp + 32u)).y_Set((new Vec3(new Shared_ActorView(arg0).Position.P).y + new Shared_HeightBonuses(0x800C7458u).projectile));
                 var_s1_3 = 1;
-                new Vec3((_fp + 32u)).z_Set(new Vec3(new Shared_ActorView(arg0).position.P).z);
+                new Vec3((_fp + 32u)).z_Set(new Vec3(new Shared_ActorView(arg0).Position.P).z);
                 var_v0 = Random_NextLcg();
                 temp_v1_6 = var_v0;
                 if (!((temp_v1_6 < 0))) goto _f78;
@@ -4287,7 +4287,7 @@ public static partial class Game
             {
                 Player_StubStop938_00218464();
                 new Plr(b).unk20_Set(0);
-                Audio_PlaySound((int)((uint)((short)(734))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)((short)(734))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 new Plr(a).unk840_Set(0);
                 if (((new Plr(b).flags38 & (uint)(3)) != 0u))
                 {
@@ -4334,8 +4334,8 @@ public static partial class Game
             if (((5.11999989f < new Plr(a).unk6C8) && (45.0f < t)))
             {
                 new Plr(a).unk11C4_Set(Random_Float(15.0f));
-                Audio_PlaySound((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
-                Audio_PlaySound((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
             }
         }
     }
@@ -5178,12 +5178,12 @@ public static partial class Game
                     Player_ComputeAutoAim(_fp, a, (_fp + 44u), (_fp + 16u));
                     if ((Mem.U32((_fp + 44u)) != 0u))
                     {
-                        d = Vec_Distance(new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P);
+                        d = Vec_Distance(new Plr(a).Position.P, new Plr(Mem.U32((_fp + 44u))).Position.P);
                         if (!(Mem.F32(0x800C7C3Cu) < d))
                         {
-                            if (((Collision_RayCast(a, new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P, Gv.Collision_LosResult) == 0) || (Mem.U32(Mem.U32(Gv.Collision_ContactPtr)) == Mem.U32((_fp + 44u)))))
+                            if (((Collision_RayCast(a, new Plr(a).Position.P, new Plr(Mem.U32((_fp + 44u))).Position.P, Gv.Collision_LosResult) == 0) || (Mem.U32(Mem.U32(Gv.Collision_ContactPtr)) == Mem.U32((_fp + 44u)))))
                             {
-                                Vec_Sub((_fp + 32u), new Plr(Mem.U32((_fp + 44u))).pos.P, new Plr(a).pos.P);
+                                Vec_Sub((_fp + 32u), new Plr(Mem.U32((_fp + 44u))).Position.P, new Plr(a).Position.P);
                                 Mem.Set((_fp + 48u), Vec_GetYaw((_fp + 32u)));
                                 Math_WrapAngleInPlace((_fp + 48u), default(uint), default(uint), default(uint));
                                 Math_WrapAngleInPlace((b + 108u), default(uint), default(uint), default(uint));
@@ -5282,7 +5282,7 @@ public static partial class Game
             Flyby_StartFadeOut();
             goto _f13;
             _f12: ;
-            if (!((((Menu_IsFrontendActive() == 0) && (MenuPanel_CountOpen(Gv.MenuPanel_SharedList) == 0)) && (new Plr(a).unk5E4 != 0)))) goto _f14;
+            if (!((((Menu_IsFrontendActive() == 0) && (MenuPanel_CountOpen(Gv.MenuPanel_SharedList) == 0)) && (new Plr(a).Health != 0)))) goto _f14;
             if (!(((new Plr(a).unk5DC_ != 0u) && (new Pawn(new Plr(a).unk5DC_).unk564 == 0)))) goto _f15;
             h = (Gv.MenuPanel_SharedList + (uint)4740);
             if (!(((new HudSubB6(h).unk1C == 0) || ((int)(Mem.U8((Gv.MenuPanel_SharedList + (uint)3273))) == 0)))) goto _f16;
@@ -5363,7 +5363,7 @@ public static partial class Game
                             {
                                 new Plr(a).unk10E_Set((sbyte)(0));
                             }
-                            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).pos.P, 12);
+                            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).Position.P, 12);
                             new Plr(a).unk354_Set(new Plr(a).unk6C);
                             new Plr(a).unk2FC_Set(new Plr(a).unk14);
                             Mem.Copy(new Plr(a).unk344.P, new Plr(a).unk5C.P, 16);
@@ -5903,7 +5903,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00229CFC", (uint)a);
-            if ((new Plr(a).unk5E4 != 0))
+            if ((new Plr(a).Health != 0))
             {
                 if ((Menu_IsFrontendActive() != 0))
                 {
@@ -6126,9 +6126,9 @@ public static partial class Game
                 float d = 0f;
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    dx = (new Plr(a).pos.x - new Vec3f(_fp).x);
-                    dy = (new Plr(a).pos.y - new Vec3f(_fp).y);
-                    dz = (new Plr(a).pos.z - new Vec3f(_fp).z);
+                    dx = (new Plr(a).Position.x - new Vec3f(_fp).x);
+                    dy = (new Plr(a).Position.y - new Vec3f(_fp).y);
+                    dz = (new Plr(a).Position.z - new Vec3f(_fp).z);
                     d = (((dx * dx) + (dy * dy)) + (dz * dz));
                     if ((d < min))
                     {
@@ -6161,11 +6161,11 @@ public static partial class Game
                 float d = 0f;
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((new Plr(a).unk5E4 != 0) && (a != skip)))
+                    if (((new Plr(a).Health != 0) && (a != skip)))
                     {
-                        dx = (new Plr(a).pos.x - new Vec3f(_fp).x);
-                        dy = (new Plr(a).pos.y - new Vec3f(_fp).y);
-                        dz = (new Plr(a).pos.z - new Vec3f(_fp).z);
+                        dx = (new Plr(a).Position.x - new Vec3f(_fp).x);
+                        dy = (new Plr(a).Position.y - new Vec3f(_fp).y);
+                        dz = (new Plr(a).Position.z - new Vec3f(_fp).z);
                         d = (((dx * dx) + (dy * dy)) + (dz * dz));
                         if ((d < min))
                         {
@@ -6311,7 +6311,7 @@ public static partial class Game
             {
                 new Plr(a).unk10E_Set((sbyte)(0));
             }
-            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).pos.P, 12);
+            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).Position.P, 12);
             new Plr(a).unk354_Set(new Plr(a).unk6C);
             new Plr(a).unk2FC_Set(new Plr(a).unk14);
             Mem.Copy(new Plr(a).unk344.P, new Plr(a).unk5C.P, 16);
@@ -6791,7 +6791,7 @@ public static partial class Game
                     Mem.Set((q + (uint)180), 3);
                 }
             }
-            if ((new Actor(actor).unk5E4 != 0))
+            if ((new Actor(actor).Health != 0))
             {
                 if ((Mem.S32((actor + (uint)2024)) != 0))
                 {

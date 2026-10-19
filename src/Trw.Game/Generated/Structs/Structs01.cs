@@ -3180,12 +3180,12 @@ public readonly struct Actor
     // +0x5DC
     public U8x8 pad5DC { [MethodImpl(Inl)] get => new(P + 0x5DCu); }
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x136 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x670
@@ -3436,7 +3436,7 @@ public readonly struct ActorB
     // +0x1
     public U8x7 pad1 { [MethodImpl(Inl)] get => new(P + 0x1u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x4 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
@@ -3619,12 +3619,12 @@ public readonly struct ActorB
     }
     [MethodImpl(Inl)] public int unk5E0_Set(int v) => Mem.Set(P + 0x5E0u, v);
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x70 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x62E
@@ -4433,7 +4433,7 @@ public readonly struct ActorX
     // +0x6
     public U8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x4 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
@@ -4705,12 +4705,12 @@ public readonly struct ActorX
     // +0x5DC
     public U8x8 pad5DC { [MethodImpl(Inl)] get => new(P + 0x5DCu); }
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x136 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x670

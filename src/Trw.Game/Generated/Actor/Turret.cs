@@ -58,8 +58,8 @@ public static partial class Game
                 Quat_Multiply((_fp + 16u), _fp, new M1Actor(actor).v5C.P);
                 Quat_ToMatrix((_fp + 16u), (_fp + 32u));
                 Math_MtxScaleRows((_fp + 32u), new M1Actor(actor).f50, new M1Actor(actor).f54, new M1Actor(actor).f58);
-                Vec_ClampLengthChecked(new M1Actor(actor).pos.P, 2.0E+4f);
-                Math_MtxTranslate((_fp + 32u), new M1Actor(actor).pos.x, new M1Actor(actor).pos.y, new M1Actor(actor).pos.z);
+                Vec_ClampLengthChecked(new M1Actor(actor).Position.P, 2.0E+4f);
+                Math_MtxTranslate((_fp + 32u), new M1Actor(actor).Position.x, new M1Actor(actor).Position.y, new M1Actor(actor).Position.z);
                 Math_MtxMulAffine(new M1Actor(actor).mtx74.P, (_fp + 96u), (_fp + 32u));
                 Math_MtxSwapRowsYZ(new M1Actor(actor).mtx74.P);
             }
@@ -126,7 +126,7 @@ public static partial class Game
                     {
                         if ((new M1Info(info).f64 != 0.0f))
                         {
-                            Vec_Sub((_fp + 16u), new M1Actor(tgt).pos.P, new M1State(state).vA0.P);
+                            Vec_Sub((_fp + 16u), new M1Actor(tgt).Position.P, new M1State(state).vA0.P);
                             Math_MtxMakeRotateY((_fp + 48u), (-new M1Info(info).f64));
                             Math_MtxTransformPoint((_fp + 48u), (_fp + 16u), (_fp + 32u));
                             v = (new Vec3f((_fp + 32u)).z / new M1Info(info).f60);
@@ -201,13 +201,13 @@ public static partial class Game
                     k = Mem.F32(0x800C6B14u);
                     do
                     {
-                        d = Vec_DistanceSq(new M1Actor(actor).pos.P, new M1Actor(p).pos.P);
+                        d = Vec_DistanceSq(new M1Actor(actor).Position.P, new M1Actor(p).Position.P);
                         r = new M1Info(info).f54;
                         if ((d < (r * r)))
                         {
                             o = new M1Actor(actor).owner_;
                             ok = 0;
-                            if (((o != p) && (new M1Actor(p).unk5E4 != 0)))
+                            if (((o != p) && (new M1Actor(p).Health != 0)))
                             {
                                 ok = 1;
                                 if ((Mem.S32(Gv.TeamPlayEnabled) != 0))
@@ -217,13 +217,13 @@ public static partial class Game
                             }
                             if ((ok != 0))
                             {
-                                Vec_Sub((_fp + 16u), new M1Actor(p).pos.P, new M1Actor(actor).pos.P);
+                                Vec_Sub((_fp + 16u), new M1Actor(p).Position.P, new M1Actor(actor).Position.P);
                                 new V16(_fp).x_Set(new M1State(state).vec130.x);
                                 new V16(_fp).y_Set(new M1State(state).vec130.y);
                                 new V16(_fp).z_Set(new M1State(state).vec130.z);
-                                Mem.Copy(_fp, new M1Actor(actor).pos.P, 12);
+                                Mem.Copy(_fp, new M1Actor(actor).Position.P, 12);
                                 new V16(_fp).y_Set((new V16(_fp).y + (Actor_GetHeight(actor) * k)));
-                                Mem.Copy((_fp + 16u), new M1Actor(p).pos.P, 12);
+                                Mem.Copy((_fp + 16u), new M1Actor(p).Position.P, 12);
                                 new V16((_fp + 16u)).y_Set((new V16((_fp + 16u)).y + (Actor_GetHeight(p) * k)));
                                 ok = Collision_RayCast(actor, _fp, (_fp + 16u), Gv.Collision_LosResult);
                                 vis = 1;
@@ -321,9 +321,9 @@ public static partial class Game
                 if (((t != 0u) && (new B801Out(_fp).f40 <= new M1Info(info).unk4C.f)))
                 {
                     fs1 = 0.5f;
-                    Mem.Copy((_fp + 136u), new M1Actor(actor).pos.P, 12);
+                    Mem.Copy((_fp + 136u), new M1Actor(actor).Position.P, 12);
                     new V16((_fp + 136u)).y_Set((new V16((_fp + 136u)).y + (Actor_GetHeight(actor) * fs1)));
-                    Mem.Copy((_fp + 152u), new M1Actor(t).pos.P, 12);
+                    Mem.Copy((_fp + 152u), new M1Actor(t).Position.P, 12);
                     new V16((_fp + 152u)).y_Set((new V16((_fp + 152u)).y + (Actor_GetHeight(t) * fs1)));
                     m = (_fp + 184u);
                     func_002034A4_r01_mk(state, m);
@@ -747,7 +747,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00203EB0", (uint)actor, (uint)unused, (uint)other);
             uint owner = new Actor(actor).owner_;
-            if (((owner == other) || (new Actor(other).unk5E4 == 0)))
+            if (((owner == other) || (new Actor(other).Health == 0)))
             {
                 return 0;
             }

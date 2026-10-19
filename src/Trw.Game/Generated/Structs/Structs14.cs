@@ -971,7 +971,7 @@ public readonly struct M1Actor
     // +0x2
     public U8x6 pad2 { [MethodImpl(Inl)] get => new(P + 0x2u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public int unk14
     {
@@ -1170,12 +1170,12 @@ public readonly struct M1Actor
     // +0x5E0
     public U8x4 pad5E0 { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
     // +0x5E4
-    public int unk5E4
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int unk5E4_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
     public U8x2 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x5EA

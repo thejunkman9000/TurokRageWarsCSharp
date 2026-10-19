@@ -52,7 +52,7 @@ public static partial class Game
             {
                 if ((new Player_v3(p).pawn_ != 0u))
                 {
-                    sum = (float)((float)(sum) + Vec_Distance(v, new Player_v3(p).pos.P));
+                    sum = (float)((float)(sum) + Vec_Distance(v, new Player_v3(p).Position.P));
                 }
             }
             return sum;

@@ -817,7 +817,7 @@ public static partial class Game
                     }
                     if ((y == 0.0f))
                     {
-                        Mem.Copy((_fp + 80u), new ActorX(a).pos.P, 12);
+                        Mem.Copy((_fp + 80u), new ActorX(a).Position.P, 12);
                         goto L_L;
                     }
                 }
@@ -845,7 +845,7 @@ public static partial class Game
                 {
                     Mem.Copy((_fp + 64u), (_fp + 48u), 12);
                 }
-                Vec_Add((_fp + 96u), (_fp + 64u), new ActorX(a).pos.P);
+                Vec_Add((_fp + 96u), (_fp + 64u), new ActorX(a).Position.P);
                 Mem.Set(Gv.Collision_ContactPtr, (_fp + 176u));
                 Mem.Copy((_fp + 80u), (_fp + 96u), 12);
                 Mem.Set(Gv.Collision_ContactPtr, Gv.Collision_Contacts);
@@ -1239,11 +1239,11 @@ public static partial class Game
                 float speed = 0f;
                 float k = 0f;
                 float t = 0f;
-                Vec_Sub(_fp, target, new ActorX(a).pos.P);
+                Vec_Sub(_fp, target, new ActorX(a).Position.P);
                 dist = sqrtf_Recompiled((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                 if ((dist <= Mem.F32(0x800C9C98u)))
                 {
-                    Mem.Copy(new ActorX(a).pos.P, target, 12);
+                    Mem.Copy(new ActorX(a).Position.P, target, 12);
                     return;
                 }
                 Vec_Normalize(_fp);
@@ -9792,7 +9792,7 @@ public static partial class Game
                     uint e = new B18Mgr(Gv.LevelMgr).ents[(int)(i)];
                     if ((new B18Ent(e).unk174 > 0))
                     {
-                        Vec_Sub(_fp, new B18Ent(e).pos.P, new B18Ent(o).pos.P);
+                        Vec_Sub(_fp, new B18Ent(e).Position.P, new B18Ent(o).Position.P);
                         if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 65536.0f))
                         {
                             new B18Ent(o).unk14C_Set((short)(1));
@@ -9804,9 +9804,9 @@ public static partial class Game
                     uint p = 0u;
                     for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new B18Ent(p).next_)
                     {
-                        if (((new B18Ent(o).unk12C_ != p) && (new B18Ent(p).unk5E4 > 0)))
+                        if (((new B18Ent(o).unk12C_ != p) && (new B18Ent(p).Health > 0)))
                         {
-                            Vec_Sub(_fp, new B18Ent(p).pos.P, new B18Ent(o).pos.P);
+                            Vec_Sub(_fp, new B18Ent(p).Position.P, new B18Ent(o).Position.P);
                             if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 65536.0f))
                             {
                                 new B18Ent(o).unk14C_Set((short)(1));
@@ -9820,7 +9820,7 @@ public static partial class Game
                     uint e_2 = Mem.U32((arr + (uint)(i * 4)));
                     if (((e_2 != o) && (((int)(new B18Ent(e_2).type) == 12) || ((int)(new B18Ent(e_2).type) == 34))))
                     {
-                        Vec_Sub(_fp, new B18Ent(e_2).pos.P, new B18Ent(o).pos.P);
+                        Vec_Sub(_fp, new B18Ent(e_2).Position.P, new B18Ent(o).Position.P);
                         if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 262144.0f))
                         {
                             new B18Ent(o).unk14C_Set((short)(1));
@@ -10521,7 +10521,7 @@ public static partial class Game
                 memset(_fp, 0, (uint)(12));
                 if (((int)(new B19Obj(o).id) == 1039))
                 {
-                    Audio_PlaySound((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).pos.x), Cpu.F2U(new B19Plr(p).pos.y), Cpu.F2U(new B19Plr(p).pos.z)), (int)(new B19Plr(p).pos.P), (int)((uint)((-1))));
+                    Audio_PlaySound((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).Position.x), Cpu.F2U(new B19Plr(p).Position.y), Cpu.F2U(new B19Plr(p).Position.z)), (int)(new B19Plr(p).Position.P), (int)((uint)((-1))));
                     Player_AddDamageOverTime_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
                     Rumble_StartById(Gv.LevelMgr, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
                     new B19Plr(p).f11EC_Set(Mem.F32(0x800C9F54u));
@@ -11825,7 +11825,7 @@ public static partial class Game
                     r = (r * r);
                     for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); )
                     {
-                        Mem.Copy(_fp, new B19Plr(p).pos.P, 12);
+                        Mem.Copy(_fp, new B19Plr(p).Position.P, 12);
                         done = 0;
                         if (((int)(new B19Obj(o).id) != 1039))
                         {

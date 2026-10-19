@@ -2764,7 +2764,7 @@ public static partial class Game
             if (!((r != 0u))) goto _f16;
             if (!(((int)(new Plr(r).stats.unk94) != 0))) goto _f17;
             ++total;
-            if (!((new Plr(r).unk5E4 == 0))) goto _f18;
+            if (!((new Plr(r).Health == 0))) goto _f18;
             ++dead;
             _f18: ;
             if (!(((int)(new Plr(r).stats.unk80) == 14))) goto _f19;

@@ -181,7 +181,7 @@ public static partial class Game
                     if ((func_0020486C_r01_check(actor, state, ((float)(new M1Info(info).b8) * Mem.F32(0x800C6B70u))) != 0))
                     {
                         new M1Pair(_fp).a_Set(0);
-                        Event_Invoke((int)(actor), (int)(actor), 6, new M1Actor(actor).pos.P, _fp);
+                        Event_Invoke((int)(actor), (int)(actor), 6, new M1Actor(actor).Position.P, _fp);
                         Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
                     }
                 }

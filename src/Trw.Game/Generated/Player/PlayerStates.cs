@@ -61,7 +61,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022B9B4", (uint)a);
             if ((new Plr(a).unk1210 != 0))
             {
-                if ((new Plr(a).unk5E4 != 0))
+                if ((new Plr(a).Health != 0))
                 {
                     Player_SetState(a, (int)(a), 2);
                 }

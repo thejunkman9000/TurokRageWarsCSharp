@@ -3165,7 +3165,7 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    if ((new Actor(owner).unk5E4 != 0))
+                    if ((new Actor(owner).Health != 0))
                     {
                         if (((int)(Mem.S16((owner + (uint)1524))) >= 25))
                         {
@@ -4284,7 +4284,7 @@ public static partial class Game
                     Player_EnterWeaponStance_0022B974(owner);
                 }
             }
-            if ((!((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u) || (new Actor(owner).unk5E4 == 0)))
+            if ((!((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u) || (new Actor(owner).Health == 0)))
             {
                 Actor_DispatchEvent(actor, state, 2);
                 Player_LeaveWeaponStance_0022B9B4(owner);
@@ -6887,7 +6887,7 @@ public static partial class Game
             uint g = 0u;
             uint pl = 0u;
             uint gf = 0u;
-            if ((new Plr24d(o).unk5E4 > 0))
+            if ((new Plr24d(o).Health > 0))
             {
                 switch ((int)((short)(Mem.U16((f + (uint)4)))))
                 {
@@ -7139,7 +7139,7 @@ public static partial class Game
                 case 5057:
                     ok = 1;
                     Mem.Set((Gv.CharacterClassTable + (uint)((new Plr24d(o).unk5D4 * 100) * 4)), (int)((int)(Mem.S32((Gv.CharacterClassTable + (uint)((new Plr24d(o).unk5D4 * 100) * 4)))) + 1280));
-                    new Plr24d(o).unk5E4_Set((int)((int)(new Plr24d(o).unk5E4) + 1280));
+                    new Plr24d(o).Health_Set((int)((int)(new Plr24d(o).Health) + 1280));
                     Flyby_QueueById(504);
                     break;
                 case 5001:

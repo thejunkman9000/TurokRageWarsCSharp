@@ -1,0 +1,2 @@
+# object	alias struct view types (comma separated)	note   (tools/rename/fields.py, docs/NAMING.md)
+Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)

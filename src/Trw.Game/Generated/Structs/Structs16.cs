@@ -3099,12 +3099,12 @@ public readonly struct Node_func_80449E18_de
     // +0x0
     public S8x8 p0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public int unk8
+    public int Position
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int Position_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public S8x8 p1 { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x14

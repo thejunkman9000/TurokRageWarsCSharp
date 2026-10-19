@@ -26,7 +26,7 @@ public static partial class Game
                 {
                 case 1614:
                     pl = Match_FindMonkeyPlayer(Gv.PlayerPool);
-                    if ((((pl != 0u) && (new M1Actor(pl).unk5E4 != 0)) && ((int)(new M1State(state).unk36) != (int)(new M1State(state).unk34))))
+                    if ((((pl != 0u) && (new M1Actor(pl).Health != 0)) && ((int)(new M1State(state).unk36) != (int)(new M1State(state).unk34))))
                     {
                         blk = new M1World(Gv.PlayerPool).blk.P;
                         if (((new M1Blk(blk).unk68 == 0) && (new M1State(state).unk12C.i == 0)))
@@ -60,9 +60,9 @@ public static partial class Game
                     {
                         return;
                     }
-                    new Vec3f(_fp).x_Set((new M1Actor(pl).pos.x - new M1Actor(actor).pos.x));
-                    new Vec3f(_fp).y_Set((new M1Actor(pl).pos.y - new M1Actor(actor).pos.y));
-                    new Vec3f(_fp).z_Set((new M1Actor(pl).pos.z - new M1Actor(actor).pos.z));
+                    new Vec3f(_fp).x_Set((new M1Actor(pl).Position.x - new M1Actor(actor).Position.x));
+                    new Vec3f(_fp).y_Set((new M1Actor(pl).Position.y - new M1Actor(actor).Position.y));
+                    new Vec3f(_fp).z_Set((new M1Actor(pl).Position.z - new M1Actor(actor).Position.z));
                     d = (int)(sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
                     if (!((float)(d) < 122.879997f))
                     {
