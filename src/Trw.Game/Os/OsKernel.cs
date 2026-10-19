@@ -400,7 +400,10 @@ public static partial class Game
 
     // ---------------------------------------------------------------------------------------------- time and timers
 
-    public static uint osGetCount() { TraceOs("osGetCount"); if (Oracle.Deterministic && tlsSelf != null) OpPoint(); return (uint)Host.Counter(); }
+    /// <summary>Set by the differential tester (Debug/DiffTest.cs) while it runs a function twice: both runs then read the same count (the
+    /// interpreter reads it as CP0 register 9), so code that stores the count (the profiling timers) compares equal.</summary>
+    internal static uint? FrozenCount;
+    public static uint osGetCount() { TraceOs("osGetCount"); if (Oracle.Deterministic && tlsSelf != null) OpPoint(); return FrozenCount ?? (uint)Host.Counter(); }
     public static ulong osGetTime() { TraceOs("osGetTime"); MaybeYield(SelfThread()!); return Host.Counter(); }
 
     private sealed class HTimer { public uint T; public ulong Due, Interval; public bool Live; }

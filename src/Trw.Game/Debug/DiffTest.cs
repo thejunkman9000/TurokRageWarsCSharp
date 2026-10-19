@@ -135,7 +135,7 @@ public static class DiffTest
             done[name] = c + 1;
         }
         inTest = true;
-        try { lock (Game.kernelLock) { ExpandStructs(name, ref a0, ref a1, ref a2, ref a3); Run(name, addr, a0, a1, a2, a3); } }       // no host thread may post a message while memory is being rolled back
+        try { lock (Game.kernelLock) { ExpandStructs(name, ref a0, ref a1, ref a2, ref a3); RunFrozenCount(name, addr, a0, a1, a2, a3); } }       // no host thread may post a message while memory is being rolled back
         catch (Exception e) { Inconclusive($"{e.GetType().Name} {e.Message}".Split('\n')[0]); }
         finally { inTest = false; }
     }
@@ -147,6 +147,15 @@ public static class DiffTest
         if (verbose) Console.Error.WriteLine($"[diff] inconclusive {current}: {why}");
         inconclusive++; tested++;
         lock (abortReasons) { abortReasons.TryGetValue(why, out var c); abortReasons[why] = c + 1; }
+    }
+
+    /// <summary>Both runs read one frozen count (CP0 Count in the interpreter, osGetCount in the translation), so the profiling timers that store it compare equal.</summary>
+    private static void RunFrozenCount(string name, uint addr, uint a0, uint a1, uint a2, uint a3)
+    {
+        uint count = (uint)Host.Counter(), saved = Cpu.Cp0[9];
+        Game.FrozenCount = count; Cpu.Cp0[9] = count;
+        try { Run(name, addr, a0, a1, a2, a3); }
+        finally { Game.FrozenCount = null; Cpu.Cp0[9] = saved; }
     }
 
     private static void Run(string name, uint addr, uint a0, uint a1, uint a2, uint a3)
