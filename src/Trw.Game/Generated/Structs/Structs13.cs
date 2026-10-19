@@ -6079,21 +6079,21 @@ public readonly struct M04Chaser
     // +0x0
     public U8x52 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x34
-    public float val
+    public float DopplerPitch
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float val_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float DopplerPitch_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
     public U8x12 pad38 { [MethodImpl(Inl)] get => new(P + 0x38u); }
     // +0x44
-    public float x
+    public float Position
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public float x_Set(float v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public float Position_Set(float v) => Mem.Set(P + 0x44u, v);
     // +0x48
     public float y
     {
@@ -6111,32 +6111,32 @@ public readonly struct M04Chaser
     // +0x50
     public U8x8 pad50 { [MethodImpl(Inl)] get => new(P + 0x50u); }
     // +0x58
-    public float dist2
+    public float DistanceSq
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x58u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value);
     }
-    [MethodImpl(Inl)] public float dist2_Set(float v) => Mem.Set(P + 0x58u, v);
+    [MethodImpl(Inl)] public float DistanceSq_Set(float v) => Mem.Set(P + 0x58u, v);
     // +0x5C
-    public float prevDist2
+    public float PrevDistanceSq
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x5Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5Cu, value);
     }
-    [MethodImpl(Inl)] public float prevDist2_Set(float v) => Mem.Set(P + 0x5Cu, v);
+    [MethodImpl(Inl)] public float PrevDistanceSq_Set(float v) => Mem.Set(P + 0x5Cu, v);
     // +0x60
     public U8x72 pad60 { [MethodImpl(Inl)] get => new(P + 0x60u); }
     // +0xA8
-    public int kind
+    public int SoundId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int kind_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int SoundId_Set(int v) => Mem.Set(P + 0xA8u, v);
     // +0xAC
     public U8x4 padAC { [MethodImpl(Inl)] get => new(P + 0xACu); }
     // +0xB0
-    public M04Ctx ctx
+    public M04Ctx MgrPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xB0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value.P);
@@ -6150,12 +6150,12 @@ public readonly struct M04Chaser
     // +0xB4
     public U8x12 padB4 { [MethodImpl(Inl)] get => new(P + 0xB4u); }
     // +0xC0
-    public int resetFlag
+    public int IsNonPositional
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC0u, value);
     }
-    [MethodImpl(Inl)] public int resetFlag_Set(int v) => Mem.Set(P + 0xC0u, v);
+    [MethodImpl(Inl)] public int IsNonPositional_Set(int v) => Mem.Set(P + 0xC0u, v);
 }
 
 /// <summary>struct M04Ctx, 0x2BBC bytes, at a guest address.</summary>
@@ -6289,120 +6289,120 @@ public readonly struct M04Emitter
     [MethodImpl(Inl)] public static implicit operator uint(M04Emitter v) => v.P;
     [MethodImpl(Inl)] public static explicit operator M04Emitter(uint p) => new(p);
     // +0x0
-    public int w0
+    public int Index
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int w0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int Index_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public int w4
+    public int Handle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int w4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int Handle_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public int w8
+    public int SndpSoundId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int w8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int SndpSoundId_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public int id
+    public int VoiceId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int id_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int VoiceId_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public M04VP vp { [MethodImpl(Inl)] get => new(P + 0x10u); }
+    public M04VP StartFrame { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x60
-    public M04Rec12 env { [MethodImpl(Inl)] get => new(P + 0x60u); }
+    public M04Rec12 PitchEnvelope { [MethodImpl(Inl)] get => new(P + 0x60u); }
     // +0x6C
-    public float envA
+    public float PitchLevel
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public float envA_Set(float v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public float PitchLevel_Set(float v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
-    public float envSlope0
+    public float PitchStep
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x70u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x70u, value);
     }
-    [MethodImpl(Inl)] public float envSlope0_Set(float v) => Mem.Set(P + 0x70u, v);
+    [MethodImpl(Inl)] public float PitchStep_Set(float v) => Mem.Set(P + 0x70u, v);
     // +0x74
-    public M04Rec12 env2 { [MethodImpl(Inl)] get => new(P + 0x74u); }
+    public M04Rec12 VolumeEnvelope { [MethodImpl(Inl)] get => new(P + 0x74u); }
     // +0x80
-    public float env2A
+    public float VolumeLevel
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public float env2A_Set(float v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public float VolumeLevel_Set(float v) => Mem.Set(P + 0x80u, v);
     // +0x84
-    public float env2Slope
+    public float VolumeStep
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x84u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x84u, value);
     }
-    [MethodImpl(Inl)] public float env2Slope_Set(float v) => Mem.Set(P + 0x84u, v);
+    [MethodImpl(Inl)] public float VolumeStep_Set(float v) => Mem.Set(P + 0x84u, v);
     // +0x88
-    public int hasEnv
+    public int HasPanEnvelope
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int hasEnv_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int HasPanEnvelope_Set(int v) => Mem.Set(P + 0x88u, v);
     // +0x8C
-    public M04Rec12 rec { [MethodImpl(Inl)] get => new(P + 0x8Cu); }
+    public M04Rec12 PanEnvelope { [MethodImpl(Inl)] get => new(P + 0x8Cu); }
     // +0x98
-    public float env0
+    public float PanLevel
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x98u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x98u, value);
     }
-    [MethodImpl(Inl)] public float env0_Set(float v) => Mem.Set(P + 0x98u, v);
+    [MethodImpl(Inl)] public float PanLevel_Set(float v) => Mem.Set(P + 0x98u, v);
     // +0x9C
-    public float envSlope
+    public float PanStep
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x9Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x9Cu, value);
     }
-    [MethodImpl(Inl)] public float envSlope_Set(float v) => Mem.Set(P + 0x9Cu, v);
+    [MethodImpl(Inl)] public float PanStep_Set(float v) => Mem.Set(P + 0x9Cu, v);
     // +0xA0
-    public int unkA0
+    public int PlayDelay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value);
     }
-    [MethodImpl(Inl)] public int unkA0_Set(int v) => Mem.Set(P + 0xA0u, v);
+    [MethodImpl(Inl)] public int PlayDelay_Set(int v) => Mem.Set(P + 0xA0u, v);
     // +0xA4
-    public uint flags
+    public uint Flags
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0xA4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA4u, value);
     }
-    [MethodImpl(Inl)] public uint flags_Set(uint v) => Mem.Set(P + 0xA4u, v);
+    [MethodImpl(Inl)] public uint Flags_Set(uint v) => Mem.Set(P + 0xA4u, v);
     // +0xA8
-    public int kind
+    public int SoundId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int kind_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int SoundId_Set(int v) => Mem.Set(P + 0xA8u, v);
     // +0xAC
-    public int unkAC
+    public int IsStopping
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int unkAC_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int IsStopping_Set(int v) => Mem.Set(P + 0xACu, v);
     // +0xB0
-    public M04Ctx ctx
+    public M04Ctx MgrPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xB0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value.P);
@@ -6414,47 +6414,47 @@ public readonly struct M04Emitter
     }
     [MethodImpl(Inl)] public uint ctx__Set(uint v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public int unkB4
+    public int Owner
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int unkB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int Owner_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
-    public float unkB8
+    public float PitchScale
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB8u, value);
     }
-    [MethodImpl(Inl)] public float unkB8_Set(float v) => Mem.Set(P + 0xB8u, v);
+    [MethodImpl(Inl)] public float PitchScale_Set(float v) => Mem.Set(P + 0xB8u, v);
     // +0xBC
-    public int unkBC
+    public int IsZoneBound
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xBCu, value);
     }
-    [MethodImpl(Inl)] public int unkBC_Set(int v) => Mem.Set(P + 0xBCu, v);
+    [MethodImpl(Inl)] public int IsZoneBound_Set(int v) => Mem.Set(P + 0xBCu, v);
     // +0xC0
-    public int resetFlag
+    public int IsNonPositional
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC0u, value);
     }
-    [MethodImpl(Inl)] public int resetFlag_Set(int v) => Mem.Set(P + 0xC0u, v);
+    [MethodImpl(Inl)] public int IsNonPositional_Set(int v) => Mem.Set(P + 0xC0u, v);
     // +0xC4
-    public int unkC4
+    public int IsDuckable
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC4u, value);
     }
-    [MethodImpl(Inl)] public int unkC4_Set(int v) => Mem.Set(P + 0xC4u, v);
+    [MethodImpl(Inl)] public int IsDuckable_Set(int v) => Mem.Set(P + 0xC4u, v);
     // +0xC8
-    public float unkC8
+    public float VolumeScale
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xC8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC8u, value);
     }
-    [MethodImpl(Inl)] public float unkC8_Set(float v) => Mem.Set(P + 0xC8u, v);
+    [MethodImpl(Inl)] public float VolumeScale_Set(float v) => Mem.Set(P + 0xC8u, v);
 }
 
 /// <summary>struct M04Fx, 0x28 bytes, at a guest address.</summary>

@@ -12,9 +12,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002065C0", (uint)actor, (uint)state, (uint)arg2);
-            new ActorState(state).unk35_Set((sbyte)((-1)));
-            new ActorState(state).unkCB_Set((sbyte)(0));
-            new ActorState(state).unk124_Set(arg2);
+            new ActorState(state).AnimStateId_Set((sbyte)((-1)));
+            new ActorState(state).AnimLoopCount_Set((sbyte)(0));
+            new ActorState(state).ClassVar_124_Set(arg2);
             Anim_PlayAction(actor, arg2, 1);
             Actor_ApplyAnimRootMotion(actor);
         }
@@ -26,8 +26,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206604", (uint)actor, (uint)state);
-            new B01State(state).table_Set(0x800CD840u);
-            new B01State(state).fn108_Set(0x00206724u);
+            new B01State(state).StateTablePtr_Set(0x800CD840u);
+            new B01State(state).UpdateCallback_Set(0x00206724u);
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(16777216)));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(33554432)));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(131072)));
@@ -37,7 +37,7 @@ public static partial class Game
             }
             if ((((int)(new B01Actor(actor).unkE4) == 1107) && (Flyby_GetId() == 111)))
             {
-                new B01State(state).fn10C_Set(0x0020694Cu);
+                new B01State(state).DrawCallback_Set(0x0020694Cu);
             }
         }
     }
@@ -48,10 +48,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002066A4", (uint)actor, (uint)state);
-            new ActorState(state).unk124_Set(new ActorDef(new Actor(actor).DefPtr).info.unk4);
+            new ActorState(state).ClassVar_124_Set(new ActorDef(new Actor(actor).DefPtr).Params.BaseHealth);
             Actor_DispatchEvent(actor, state, 0);
-            Mem.Set(new ActorState(state).unk128.P, Mem.F32(0x800C6BD0u));
-            Mem.Set(new ActorState(state).unk12C.P, Mem.F32(0x800C6BD0u));
+            Mem.Set(new ActorState(state).ClassVar_128.P, Mem.F32(0x800C6BD0u));
+            Mem.Set(new ActorState(state).ClassVar_12C.P, Mem.F32(0x800C6BD0u));
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
@@ -97,7 +97,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206758", (uint)actor, (uint)state);
-            return new B01State(state).unk124.i;
+            return new B01State(state).ClassVar_124.i;
         }
     }
 
@@ -154,7 +154,7 @@ public static partial class Game
             new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8448)));
             if ((Flyby_IsInWindow() != 0))
             {
-                new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
+                new ActorState(state).Flags_Set((uint)((uint)(new ActorState(state).Flags) | (uint)(512)));
             }
             Actor_ApplyAnimRootMotion(actor);
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);

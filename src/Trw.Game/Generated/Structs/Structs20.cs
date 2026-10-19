@@ -3606,12 +3606,12 @@ public readonly struct O3Scr3C
     // +0x0
     public U8x60 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x3C
-    public int f3C
+    public int IsHolding
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public int f3C_Set(int v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public int IsHolding_Set(int v) => Mem.Set(P + 0x3Cu, v);
 }
 
 /// <summary>struct O3Sel, 0x114 bytes, at a guest address.</summary>

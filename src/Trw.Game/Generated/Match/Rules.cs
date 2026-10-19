@@ -2518,11 +2518,11 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((new GameB6(Gv.Settings_MatchRules).unk18 == 0))
+            if ((new GameB6(Gv.Settings_MatchRules).FragLimit == 0))
             {
                 return 0;
             }
-            if ((new GameB6(Gv.Settings_MatchRules).unk24 != 0))
+            if ((new GameB6(Gv.Settings_MatchRules).IsTeamPlay != 0))
             {
                 want = 255;
                 p = (Gv.Settings_MatchRules - (uint)1496);
@@ -2543,9 +2543,9 @@ public static partial class Game
                 i = 0;
                 for (; (i < 5); ++i)
                 {
-                    int lim = new GameB6(Gv.Settings_MatchRules).unk18;
+                    int lim = new GameB6(Gv.Settings_MatchRules).FragLimit;
                     uint gp = (Gv.Settings_MatchRules - (uint)1496);
-                    if ((new GameB6(Gv.Settings_MatchRules).unk2C[(int)(i)] >= lim))
+                    if ((new GameB6(Gv.Settings_MatchRules).TeamFrags[(int)(i)] >= lim))
                     {
                         int t = (int)(new GStateB6(gp).unkD);
                         if ((t == 0))
@@ -2554,10 +2554,10 @@ public static partial class Game
                         }
                         if ((i == want))
                         {
-                            new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
+                            new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(1);
                             return 1;
                         }
-                        new GameB6(Gv.Settings_MatchRules).unkA8_Set(0);
+                        new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(0);
                         if ((t != 1))
                         {
                             return 1;
@@ -2570,7 +2570,7 @@ public static partial class Game
             {
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    int lim_2 = new GameB6(Gv.Settings_MatchRules).unk18;
+                    int lim_2 = new GameB6(Gv.Settings_MatchRules).FragLimit;
                     uint gp_2 = (Gv.Settings_MatchRules - (uint)1496);
                     if (((int)(new Plr(a).PlayerEntryPtr.unk4) >= lim_2))
                     {
@@ -2581,10 +2581,10 @@ public static partial class Game
                         }
                         if ((new Plr(a).PlayerIndex < 4))
                         {
-                            new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
+                            new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(1);
                             return 1;
                         }
-                        new GameB6(Gv.Settings_MatchRules).unkA8_Set(0);
+                        new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(0);
                         if ((t_2 != 1))
                         {
                             do
@@ -2613,7 +2613,7 @@ public static partial class Game
             int i = 0;
             uint gp = 0u;
             int t = 0;
-            if ((new GameB6(Gv.Settings_MatchRules).unk58 == 0))
+            if ((new GameB6(Gv.Settings_MatchRules).KillLimit == 0))
             {
                 return 0;
             }
@@ -2626,7 +2626,7 @@ public static partial class Game
                     if ((i != idx))
                     {
                         sum = (int)((int)(sum) + (int)(new Plr(a).PlayerEntryPtr.unk1C[(int)(i)]));
-                        if ((sum >= new GameB6(Gv.Settings_MatchRules).unk58))
+                        if ((sum >= new GameB6(Gv.Settings_MatchRules).KillLimit))
                         {
                             gp = (Gv.Settings_MatchRules - (uint)1496);
                             t = (int)(Mem.U8((gp + (uint)13)));
@@ -2636,10 +2636,10 @@ public static partial class Game
                             }
                             if ((new Plr(a).PlayerIndex < 4))
                             {
-                                new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
+                                new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(1);
                                 return 1;
                             }
-                            new GameB6(Gv.Settings_MatchRules).unkA8_Set(0);
+                            new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(0);
                             if ((t != 1))
                             {
                                 return 1;
@@ -2664,7 +2664,7 @@ public static partial class Game
             uint p = 0u;
             uint g = 0u;
             uint s = 0u;
-            if ((new GameB6(Gv.Settings_MatchRules).unk7C == 0))
+            if ((new GameB6(Gv.Settings_MatchRules).TeamScoreLimit == 0))
             {
                 return 0;
             }
@@ -2688,14 +2688,14 @@ public static partial class Game
             s = Gv.Settings_MatchRules;
             for (; (i < 5); ++i)
             {
-                if ((new GameB6(s).unk40[(int)(i)] >= new GameB6(s).unk7C))
+                if ((new GameB6(s).TeamScores[(int)(i)] >= new GameB6(s).TeamScoreLimit))
                 {
                     if ((i == want))
                     {
-                        new GameB6(s).unkA8_Set(1);
+                        new GameB6(s).IsHumanWinner_Set(1);
                         return 1;
                     }
-                    new GameB6(s).unkA8_Set(0);
+                    new GameB6(s).IsHumanWinner_Set(0);
                     g = (Gv.Settings_MatchRules - (uint)1496);
                     if (((int)(Mem.U8((g + (uint)13))) == 0))
                     {
@@ -2721,26 +2721,26 @@ public static partial class Game
             uint a = 0u;
             uint r = 0u;
             uint h = 0u;
-            if (!(((((Flyby_IsActive() == 0) && (Flyby_IsInWindow() == 0)) && (new GameB6(Gv.Settings_MatchRules).unk1C == 0)) && ((int)(Mem.U8((Gv.Settings_MatchRules + (uint)(-1467)))) != 0)))) goto _f0;
-            if (!((((MenuPanel_CountOpen((Gv.Settings_MatchRules - (uint)4740)) == 0) && (new GameB6(Gv.Settings_MatchRules).unk14 > 0.0f)) && (Mem.S32((Gv.Settings_MatchRules - (uint)12)) == 0)))) goto _f1;
+            if (!(((((Flyby_IsActive() == 0) && (Flyby_IsInWindow() == 0)) && (new GameB6(Gv.Settings_MatchRules).IsMatchOver == 0)) && ((int)(Mem.U8((Gv.Settings_MatchRules + (uint)(-1467)))) != 0)))) goto _f0;
+            if (!((((MenuPanel_CountOpen((Gv.Settings_MatchRules - (uint)4740)) == 0) && (new GameB6(Gv.Settings_MatchRules).TimeRemaining > 0.0f)) && (Mem.S32((Gv.Settings_MatchRules - (uint)12)) == 0)))) goto _f1;
             if (!((Match_CountActivePlayers(g) != 0))) goto _f2;
-            new GameB6(Gv.Settings_MatchRules).unk14_Set((new GameB6(Gv.Settings_MatchRules).unk14 - Mem.F32(Gv.FrameTime)));
+            new GameB6(Gv.Settings_MatchRules).TimeRemaining_Set((new GameB6(Gv.Settings_MatchRules).TimeRemaining - Mem.F32(Gv.FrameTime)));
             _f2: ;
-            if (!(((new GameB6(Gv.Settings_MatchRules).unk14 <= 0.0f) && (new GameB6(Gv.Settings_MatchRules).unk1C == 0)))) goto _f3;
-            new GameB6(Gv.Settings_MatchRules).unk14_Set(0.0f);
+            if (!(((new GameB6(Gv.Settings_MatchRules).TimeRemaining <= 0.0f) && (new GameB6(Gv.Settings_MatchRules).IsMatchOver == 0)))) goto _f3;
+            new GameB6(Gv.Settings_MatchRules).TimeRemaining_Set(0.0f);
             if (!(((int)(Mem.U8((Gv.Settings_MatchRules + (uint)(-1483)))) == 3))) goto _f4;
-            new GameB6(Gv.Settings_MatchRules).unkA8_Set(0);
+            new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(0);
             _f4: ;
             Match_EndForAllPlayers(g);
             _f3: ;
             _f1: ;
             if (!((MenuPanel_CountOpen(Gv.MenuPanel_SharedList) == 0))) goto _f5;
-            if (!((((((Match_IsFragLimitReached(g) != 0) && (C.Seq((object?)((h = (Gv.MenuPanel_SharedList + (uint)4740))), ((new GameB6(h).unk1C == 0) ? 1 : 0)) != 0)) && (Mem.S32((Gv.MenuPanel_SharedList + (uint)4728)) == 0)) && (new GameB6(h).unk18 > 0)) && (new GameB6(h).unk54 == 0)))) goto _f6;
+            if (!((((((Match_IsFragLimitReached(g) != 0) && (C.Seq((object?)((h = (Gv.MenuPanel_SharedList + (uint)4740))), ((new GameB6(h).IsMatchOver == 0) ? 1 : 0)) != 0)) && (Mem.S32((Gv.MenuPanel_SharedList + (uint)4728)) == 0)) && (new GameB6(h).FragLimit > 0)) && (new GameB6(h).IsMonkeyTagMode == 0)))) goto _f6;
             Match_EndForAllPlayers(g);
             _f6: ;
             _f5: ;
             total = (uint)(0);
-            if (!((Mem.S32(Gv.Match_FragTagMode) != 0))) goto _f7;
+            if (!((Mem.S32(Gv.MatchRules_IsBossMode) != 0))) goto _f7;
             dead = (uint)(0);
             flag = 0;
             i = (uint)(0);
@@ -2778,8 +2778,8 @@ public static partial class Game
             _f10: ;
             if (!((dead == total))) goto _f20;
             if (!((flag != 0))) goto _f21;
-            if (!((new GameB6(Gv.Settings_MatchRules).unk9C >= 3))) goto _f22;
-            new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
+            if (!((new GameB6(Gv.Settings_MatchRules).TrialCounter_9C >= 3))) goto _f22;
+            new GameB6(Gv.Settings_MatchRules).IsHumanWinner_Set(1);
             goto L_call;
             _f22: ;
             goto _f23;
@@ -2888,7 +2888,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A410", (uint)g);
             uint a = 0u;
-            if (((new GameFlags(Gv.Settings_MatchRules).unk54 != 0) && (new GameFlags(Gv.Settings_MatchRules).unk68 != 0)))
+            if (((new GameFlags(Gv.Settings_MatchRules).IsMonkeyTagMode != 0) && (new GameFlags(Gv.Settings_MatchRules).MonkeyState_68 != 0)))
             {
                 return 0u;
             }
@@ -2911,7 +2911,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022A67C", (uint)g);
             uint a = 0u;
             int count = 0;
-            if ((((((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)) && (Mem.S32(Gv.Debug_Freeze_8013B29C) == 0)) && (new GameFlags(Gv.Settings_MatchRules).unk20 == 0)) && (new GameFlags(Gv.Settings_MatchRules).unk1C != 0)))
+            if ((((((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)) && (Mem.S32(Gv.Debug_Freeze_8013B29C) == 0)) && (new GameFlags(Gv.Settings_MatchRules).IsEndAcknowledged == 0)) && (new GameFlags(Gv.Settings_MatchRules).IsMatchOver != 0)))
             {
                 count = 0;
                 for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
@@ -2923,8 +2923,8 @@ public static partial class Game
                 }
                 if ((count > 0))
                 {
-                    new GameFlags(Gv.Settings_MatchRules).unk20_Set(1);
-                    new GameFlags(Gv.Settings_MatchRules).unk1C_Set(0);
+                    new GameFlags(Gv.Settings_MatchRules).IsEndAcknowledged_Set(1);
+                    new GameFlags(Gv.Settings_MatchRules).IsMatchOver_Set(0);
                     return 1;
                 }
             }
@@ -2939,14 +2939,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A738", (uint)g);
             uint a = 0u;
-            if (((new GameB6(Gv.Settings_MatchRules).unk1C == 0) && (new GameB6(Gv.Settings_MatchRules).unk20 == 0)))
+            if (((new GameB6(Gv.Settings_MatchRules).IsMatchOver == 0) && (new GameB6(Gv.Settings_MatchRules).IsEndAcknowledged == 0)))
             {
                 Rumble_SetEnabledAll(0);
-                if ((new GameB6(Gv.Settings_MatchRules).unk24 != 0))
+                if ((new GameB6(Gv.Settings_MatchRules).IsTeamPlay != 0))
                 {
-                    if ((new GameB6(Gv.Settings_MatchRules).unk28 == 0))
+                    if ((new GameB6(Gv.Settings_MatchRules).IsTeamEndStarted == 0))
                     {
-                        new GameB6(Gv.Settings_MatchRules).unk28_Set(1);
+                        new GameB6(Gv.Settings_MatchRules).IsTeamEndStarted_Set(1);
                         for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                         {
                             Player_SetState(a, (int)(a), 21);
@@ -2955,13 +2955,13 @@ public static partial class Game
                 }
                 else
                 {
-                    new GameB6(Gv.Settings_MatchRules).unk1C_Set(1);
+                    new GameB6(Gv.Settings_MatchRules).IsMatchOver_Set(1);
                     for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                     {
                         Player_SetState(a, (int)(a), 21);
                     }
                 }
-                new GameB6(Gv.Settings_MatchRules).unk1C_Set(1);
+                new GameB6(Gv.Settings_MatchRules).IsMatchOver_Set(1);
                 for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                 {
                     Mem.Set((a + (uint)2140), 0);
@@ -3301,11 +3301,11 @@ public static partial class Game
                 new func_80293268_S1(Gv.Settings_MatchRules).unk4_Set(0);
                 new func_80293268_S1(Gv.Settings_MatchRules).unk8_Set(0);
                 new func_80293268_S1(Gv.Settings_MatchRules).unkC_Set(0);
-                new func_80293268_S2(arg0).unk26DDC_Set(0);
+                new func_80293268_S2(arg0).IsLevelWarp_26DDC_2_Set(0);
                 new func_80293268_S1(Gv.Settings_MatchRules).unk88_Set(0);
-                new func_80293268_S2(arg0).unk26DC1_Set((sbyte)(2));
-                new func_80293268_S2(arg0).unk26DD8_Set(var_s0);
-                new func_80293268_S2(arg0).unk26DBC_Set(12);
+                new func_80293268_S2(arg0).FadeMode_Set((sbyte)(2));
+                new func_80293268_S2(arg0).StartPointId_Set(var_s0);
+                new func_80293268_S2(arg0).NextStateId_Set(12);
             }
         }
         finally { Stack.Free(24); }

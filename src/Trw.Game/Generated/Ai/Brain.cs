@@ -241,7 +241,7 @@ public static partial class Game
             new B2Ctl(ctl).AimWobble_Set((float)(0));
             new B2Ctl(ctl).IsFireRequested_Set(0);
             new B2Ctl(ctl).SecondaryFireTicks_240_Set(0);
-            new B2Ctl(ctl).LobPitchOffset_250_Set(new B2Ctl(ctl).LobPitchOffsetAlt_254_Set(new B2Ctl(ctl).AimPitch_Set(new B2Ctl(ctl).AimPitchAlt_Set(new B2Ctl(ctl).AimPoint.x_Set(new B2Ctl(ctl).AimPoint.y_Set(new B2Ctl(ctl).AimPoint.z_Set(new B2Ctl(ctl).AimWobble)))))));
+            new B2Ctl(ctl).LobPitchOffset_Set(new B2Ctl(ctl).LobPitchOffsetAlt_Set(new B2Ctl(ctl).AimPitch_Set(new B2Ctl(ctl).AimPitchAlt_Set(new B2Ctl(ctl).AimPoint.x_Set(new B2Ctl(ctl).AimPoint.y_Set(new B2Ctl(ctl).AimPoint.z_Set(new B2Ctl(ctl).AimWobble)))))));
             Ai_ResetProbes(ctl);
             Ai_ResetRouteBias(ctl);
             Ai_ClearMoveFlags(ctl);
@@ -326,18 +326,18 @@ public static partial class Game
             _f17: ;
             _f14: ;
             g = Gv.Settings_MatchRules;
-            if (!((new B2GameFlags(g).unk98 != 0))) goto _f18;
+            if (!((new B2GameFlags(g).IsBossMode != 0))) goto _f18;
             if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80) == 11))) goto _f19;
-            BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).unkA0)));
-            if (!((new B2GameFlags(g).unkA4 > 0))) goto _f20;
-            new B2GameFlags(g).unkA4_Set((int)(new B2GameFlags(g).unkA4 - 1));
+            BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).BossShieldPercent)));
+            if (!((new B2GameFlags(g).BossShieldRegenTimer > 0))) goto _f20;
+            new B2GameFlags(g).BossShieldRegenTimer_Set((int)(new B2GameFlags(g).BossShieldRegenTimer - 1));
             Pad_ClearPlayerInput((new B2Ctl(ctl).owner_ + (uint)1672));
             new B2Ctl(ctl).IsFireRequested_Set(0);
             new B2Ctl(ctl).SecondaryFireTicks_240_Set(0);
             _f20: ;
-            if (!(((new B2GameFlags(g).unkA4 == 0) && (new B2Ctl(ctl).OwnerPtr.Health > 0)))) goto _f21;
-            new B2GameFlags(g).unkA0_Set(100);
-            new B2GameFlags(g).unkA4_Set((-1));
+            if (!(((new B2GameFlags(g).BossShieldRegenTimer == 0) && (new B2Ctl(ctl).OwnerPtr.Health > 0)))) goto _f21;
+            new B2GameFlags(g).BossShieldPercent_Set(100);
+            new B2GameFlags(g).BossShieldRegenTimer_Set((-1));
             Player_SetState(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).owner_), 2);
             _f21: ;
             _f19: ;
@@ -932,7 +932,7 @@ public static partial class Game
                     new B2Ctl(ctl).OwnerPtr.TurnInput_Set((sign * v));
                 }
             }
-            Ai_SetLookPitch(ctl, (((new B2Ctl(ctl).OwnerPtr.FireMode == 2) ? (new B2Ctl(ctl).AimPitchAlt + new B2Ctl(ctl).LobPitchOffsetAlt_254) : (new B2Ctl(ctl).AimPitch + new B2Ctl(ctl).LobPitchOffset_250)) * Mem.F32(0x800C6D60u)));
+            Ai_SetLookPitch(ctl, (((new B2Ctl(ctl).OwnerPtr.FireMode == 2) ? (new B2Ctl(ctl).AimPitchAlt + new B2Ctl(ctl).LobPitchOffsetAlt) : (new B2Ctl(ctl).AimPitch + new B2Ctl(ctl).LobPitchOffset)) * Mem.F32(0x800C6D60u)));
             return d;
         }
     }
@@ -1133,7 +1133,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00209B64", (uint)@ref);
             uint a = new ActorRef(@ref).actor_;
-            float v = (new ActorDef(new Actor(a).DefPtr).info.unk14 * Mem.F32(0x800C6D8Cu));
+            float v = (new ActorDef(new Actor(a).DefPtr).Params.SpawnTypeIndex_14 * Mem.F32(0x800C6D8Cu));
             switch ((int)(new Actor(a).PlayerEntryPtr.unk93))
             {
             case 1:
@@ -1158,7 +1158,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209BE0", (uint)ctl);
-            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.info.unk20 * Mem.F32(0x800C6D98u));
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.BreakSoundId_20 * Mem.F32(0x800C6D98u));
             switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
             {
             case 1:
@@ -1183,7 +1183,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209C5C", (uint)ctl);
-            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.info.unk1C * Mem.F32(0x800C6DA4u));
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.BreakEffectId_1C * Mem.F32(0x800C6DA4u));
             switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
             {
             case 1:
@@ -1213,7 +1213,7 @@ public static partial class Game
             uint stats = 0u;
             uint o = 0u;
             uint g = 0u;
-            if ((Mem.S32(Gv.Match_FragTagMode) != 0))
+            if ((Mem.S32(Gv.MatchRules_IsBossMode) != 0))
             {
                 st = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80);
                 if ((st != 12))
@@ -1237,13 +1237,13 @@ public static partial class Game
             {
                 new B2Ctl(ctl).OwnerPtr.DeadTime_Set(0);
                 g = Gv.Settings_MatchRules;
-                if ((new B2GameFlags(g).unk98 != 0))
+                if ((new B2GameFlags(g).IsBossMode != 0))
                 {
                     o = new B2Ctl(ctl).owner_;
                     stats = new B2Actor(o).stats_;
                     if (((int)(new B2Stats(stats).unk94) == 0))
                     {
-                        if ((((int)(new B2Stats(stats).unk95) != 0) && (new B2GameFlags(g).unk9C != 3)))
+                        if ((((int)(new B2Stats(stats).unk95) != 0) && (new B2GameFlags(g).TrialCounter_9C != 3)))
                         {
                             return;
                         }
@@ -1859,7 +1859,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020DC60", (uint)ctl);
-            int v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.info.P);
+            int v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.Params.P);
             new B2Ctl(ctl).AttackStyle_Set(v);
             Ai_SetState(ctl, v);
         }
@@ -1875,7 +1875,7 @@ public static partial class Game
             int v = 0;
             if ((((n / 4) * 4) == (n - 1)))
             {
-                v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.info.P);
+                v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.Params.P);
                 new B2Ctl(ctl).AttackStyle_Set(v);
                 Ai_SetState(ctl, v);
             }
@@ -1896,9 +1896,9 @@ public static partial class Game
             int total = 0;
             int r = 0;
             int v = 0;
-            a = (int)(new B2Info(info).unk2C);
-            b = (int)(new B2Info(info).unk30);
-            c = (int)(new B2Info(info).unk34);
+            a = (int)(new B2Info(info).TravelHeight);
+            b = (int)(new B2Info(info).TravelDistance);
+            c = (int)(new B2Info(info).TravelYaw);
             t1 = 0;
             if ((a > 0))
             {
@@ -1957,7 +1957,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020EA10", (uint)ctl);
             float v = 0f;
-            if ((new B2GameFlags(Gv.Settings_MatchRules).unk78 != 0))
+            if ((new B2GameFlags(Gv.Settings_MatchRules).TagObjectiveMode_78 != 0))
             {
                 if (((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) == 0))
                 {
@@ -2983,8 +2983,8 @@ public static partial class Game
             goto L_done;
             _f7: ;
             _f5: ;
-            if (!(((new B2GameFlags(Gv.Settings_MatchRules).unk54 != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) != 0)))) goto _f8;
-            if (!((new B2GameFlags(Gv.Settings_MatchRules).unk68 > 0))) goto _f9;
+            if (!(((new B2GameFlags(Gv.Settings_MatchRules).IsMonkeyTagMode != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) != 0)))) goto _f8;
+            if (!((new B2GameFlags(Gv.Settings_MatchRules).MonkeyState_68 > 0))) goto _f9;
             if (!((new B2Ctl(ctl).StateId != 2))) goto _f10;
             Ai_SetState(ctl, 2);
             new B2Ctl(ctl).IsAvoidingEnemies_Set(1);
@@ -2997,7 +2997,7 @@ public static partial class Game
             goto L_done;
             _f8: ;
             var_s0 = (int)(((Mem.F32(0x800C7018u) - Ai_GetAggression_00209B64(ctl)) * Mem.F32(0x800C701Cu)));
-            if (!(((Mem.S32(Gv.Match_FragTagMode) != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0)))) goto _f11;
+            if (!(((Mem.S32(Gv.MatchRules_IsBossMode) != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0)))) goto _f11;
             var_s0 = 0;
             _f11: ;
             if (!((Ai_IsSeekingItem(ctl) == 0))) goto _f12;
@@ -3349,7 +3349,7 @@ public static partial class Game
                     zone = 2;
                 }
             }
-            if ((Mem.S32(Gv.Match_FragTagMode) != 0))
+            if ((Mem.S32(Gv.MatchRules_IsBossMode) != 0))
             {
                 if (((((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk94) ^ 0) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk80) == 12)))
                 {
@@ -6778,7 +6778,7 @@ public static partial class Game
             {
                 return 2;
             }
-            if ((new ActorDef(new B04Act(t).DefPtr).type == 5))
+            if ((new ActorDef(new B04Act(t).DefPtr).Kind == 5))
             {
                 return 5;
             }

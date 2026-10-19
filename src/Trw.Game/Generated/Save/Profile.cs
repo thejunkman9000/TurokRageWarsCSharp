@@ -553,9 +553,9 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((new Q2G(Gv.Settings_MatchRules).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
+                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
                     {
-                        y = (new Q2G(Gv.Settings_MatchRules).f14 * 0.0666666701f);
+                        y = (new Q2G(Gv.Settings_MatchRules).TimeRemaining * 0.0666666701f);
                         {
                             float ft = (float)((int)((y * 0.0166666675f)));
                             if ((((float)(Mem.S8((Gv.Settings_MatchRules + (uint)(-1460)))) - ft) <= 5.0f))
@@ -584,9 +584,9 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((new Q2G(Gv.Settings_MatchRules).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
+                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
                     {
-                        y = (new Q2G(Gv.Settings_MatchRules).f14 * 0.0666666701f);
+                        y = (new Q2G(Gv.Settings_MatchRules).TimeRemaining * 0.0666666701f);
                         {
                             float ft_2 = (float)((int)((y * 0.0166666675f)));
                             if ((((float)(Mem.S8((Gv.Settings_MatchRules + (uint)(-1460)))) - ft_2) <= 10.0f))

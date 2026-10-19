@@ -342,9 +342,9 @@ public static partial class Game
                 }
                 if (((int)(Mem.U8((new Actor(actor).stats_ + (uint)143))) == 1))
                 {
-                    if ((new B07Game(Gv.Settings_MatchRules).unk54 != 0))
+                    if ((new B07Game(Gv.Settings_MatchRules).IsMonkeyTagMode != 0))
                     {
-                        switch (new B07Game(Gv.Settings_MatchRules).unk70)
+                        switch (new B07Game(Gv.Settings_MatchRules).MonkeySoundSet)
                         {
                         case 0:
                             Audio_PlaySound((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
@@ -884,11 +884,11 @@ public static partial class Game
             t = (Mem.F32((actor + (uint)2144)) + Mem.F32(Gv.FrameTime));
             k = Mem.F32(0x800C7EA4u);
             Mem.Set((actor + (uint)2144), t);
-            if (((k < t) || ((new B07Game(Gv.Settings_MatchRules).unk28 != 0) && (new B07Game(Gv.Settings_MatchRules).unk1C != 0))))
+            if (((k < t) || ((new B07Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) && (new B07Game(Gv.Settings_MatchRules).IsMatchOver != 0))))
             {
-                if ((new B07Game(Gv.Settings_MatchRules).unk28 != 0))
+                if ((new B07Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0))
                 {
-                    if ((new B07Game(Gv.Settings_MatchRules).unk1C == 0))
+                    if ((new B07Game(Gv.Settings_MatchRules).IsMatchOver == 0))
                     {
                         Player_SetState(actor, (int)(actor), 20);
                     }

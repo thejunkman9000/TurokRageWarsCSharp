@@ -3174,12 +3174,12 @@ public static partial class Game
             sp10 = 0;
             if ((((uint)(Mem.S32(Gv.Gfx_DisplayListCapacity)) - (((uint)(Mem.U32(Gv.DisplayListPtr)) - (uint)(new B15GfxCtx(Mem.U32(Gv.Gfx_FrameCtxPtr)).start_)) >> (int)3)) >= (uint)(3000)))
             {
-                if ((new B15Dbg(Gv.Settings_MatchRules).unk98 != 0))
+                if ((new B15Dbg(Gv.Settings_MatchRules).IsBossMode != 0))
                 {
                     st = new B15Pl(plp).stats_;
                     if ((((int)(new B15Stats(st).unk80) == 11) && ((int)(new B15Stats(st).unk94) != 0)))
                     {
-                        s6 = ((0 < new B15Dbg(Gv.Settings_MatchRules).unkA0) ? 1 : 0);
+                        s6 = ((0 < new B15Dbg(Gv.Settings_MatchRules).BossShieldPercent) ? 1 : 0);
                     }
                 }
                 if (((new B15Pl(plp).unk122C & (uint)(32768)) != 0u))

@@ -158,14 +158,14 @@ public static partial class Game
                         new Vec3f(_fp).y_Set(h);
                     }
                 }
-                switch (new S5Info(info).kind)
+                switch (new S5Info(info).BaseHealth)
                 {
                 case 0:
-                    p = Level_GetDefinition(Gv.LevelMgr, (int)(new S5Info(info).id16));
+                    p = Level_GetDefinition(Gv.LevelMgr, (int)(new S5Info(info).SpawnDefIndex_16));
                     switch (Mem.S32(p))
                     {
                     case 8:
-                        id8 = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, (int)(new S5Info(info).id14)));
+                        id8 = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, (int)(new S5Info(info).SpawnTypeIndex_14)));
                         if ((func_00205720_canSpawn(id8) != 0))
                         {
                             func_00205720_spawnObj(sp, own, _fp, t0, id8);
@@ -180,15 +180,15 @@ public static partial class Game
                     case 7:
                     case 9:
                     case 10:
-                        new Vec3f((_fp + 16u)).x_Set(new S5Info(info).v18);
-                        new Vec3f((_fp + 16u)).y_Set(new S5Info(info).v1C);
-                        new Vec3f((_fp + 16u)).z_Set(new S5Info(info).v20);
-                        func_00205720_callA(sp, own, _fp, (_fp + 16u), t0, (int)(new S5Info(info).id14), p);
+                        new Vec3f((_fp + 16u)).x_Set(new S5Info(info).MessageIndex_18);
+                        new Vec3f((_fp + 16u)).y_Set(new S5Info(info).BreakEffectId_1C);
+                        new Vec3f((_fp + 16u)).z_Set(new S5Info(info).BreakSoundId_20);
+                        func_00205720_callA(sp, own, _fp, (_fp + 16u), t0, (int)(new S5Info(info).SpawnTypeIndex_14), p);
                         break;
                     }
                     break;
                 case 1:
-                    func_00205720_callB(sp, own, _fp, 0, (int)(new S5Info(info).id24));
+                    func_00205720_callB(sp, own, _fp, 0, (int)(new S5Info(info).ClassFlags));
                     break;
                 case 2:
                     s5 = (-1);
@@ -196,15 +196,15 @@ public static partial class Game
                     s3 = s5;
                     if (((int)(new S5G(Gv.Settings).unk1D) != 0))
                     {
-                        if (((new S5Info(info).flags & (uint)(32)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(32)) != 0u))
                         {
                             s5 = (int)((short)((int)(Random_PickWeighted(0x800CD764u))));
                         }
-                        if (((new S5Info(info).flags & (uint)(64)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(64)) != 0u))
                         {
                             s6 = (int)((short)((int)(Random_PickWeighted(0x800CD784u))));
                         }
-                        if (((new S5Info(info).flags & (uint)(128)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(128)) != 0u))
                         {
                             Random_WeightedClear((_fp + 136u));
                             for (e = 0x800CD798u; ((int)(new S5Ent(e).id) != (-1)); e += 4u)
@@ -224,7 +224,7 @@ public static partial class Game
                         {
                             return;
                         }
-                        if (((new S5Info(info).flags & (uint)(32)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(32)) != 0u))
                         {
                             Random_WeightedClear((_fp + 32u));
                             for (e2 = 0x800CD760u; ((int)(Mem.S16(e2)) != (-1)); e2 = (uint)(e2 + (uint)(2 * 2)))
@@ -236,7 +236,7 @@ public static partial class Game
                             }
                             s5 = (int)((short)((int)(Random_WeightedPick((_fp + 32u)))));
                         }
-                        if (((new S5Info(info).flags & (uint)(64)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(64)) != 0u))
                         {
                             Random_WeightedClear((_fp + 32u));
                             e2 = 0x800CD768u;
@@ -253,7 +253,7 @@ public static partial class Game
                             }
                             s6 = (int)((short)((int)(Random_WeightedPick((_fp + 32u)))));
                         }
-                        if (((new S5Info(info).flags & (uint)(128)) != 0u))
+                        if (((new S5Info(info).Flags & (uint)(128)) != 0u))
                         {
                             s3 = (int)((short)((int)(Random_PickWeighted(0x800CD794u))));
                         }
@@ -290,9 +290,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00205EC4", (uint)actor, (uint)state);
             uint def = new Actor(actor).DefPtr;
-            new ActorState(state).table_Set(0x800CD79Cu);
-            new ActorState(state).fn108_Set(0x00206018u);
-            if ((((int)(new Actor(actor).TypeId) == 1604) || ((new B01Def(def).flags14 & (uint)(8)) != 0u)))
+            new ActorState(state).StateTablePtr_Set(0x800CD79Cu);
+            new ActorState(state).UpdateCallback_Set(0x00206018u);
+            if ((((int)(new Actor(actor).TypeId) == 1604) || ((new B01Def(def).Params & (uint)(8)) != 0u)))
             {
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
             }
@@ -310,24 +310,24 @@ public static partial class Game
             uint info = 0u;
             a2 = actor;
             new_var = (new B01Actor(a2).def_ + (uint)20);
-            if (!((!((new B01Actor(a2).def.flags14 & (uint)(16)) != 0u) || (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0) && ((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)1))) == 1))))) goto _f0;
+            if (!((!((new B01Actor(a2).def.Params & (uint)(16)) != 0u) || (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0) && ((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)1))) == 1))))) goto _f0;
             if (!((state != 0u))) goto _f1;
-            new B01State(state).unk64_Set(Random_Symmetric(45.0f, 60.0f));
+            new B01State(state).Timer_64_Set(Random_Symmetric(45.0f, 60.0f));
             info = new_var;
-            new B01State(state).unk124.i_Set(0);
-            new B01State(state).unk128.i_Set((int)(new B01Info(info).unk8));
+            new B01State(state).ClassVar_124.i_Set(0);
+            new B01State(state).ClassVar_128.i_Set((int)(new B01Info(info).Count_8));
             goto _f2;
             _f1: ;
             info = new_var;
-            new B01State(state).unk64_Set(Random_Symmetric(45.0f, 60.0f));
-            new B01State(state).unk124.i_Set(0);
-            new B01State(state).unk128.i_Set((int)(new B01Info(info).unk8));
+            new B01State(state).Timer_64_Set(Random_Symmetric(45.0f, 60.0f));
+            new B01State(state).ClassVar_124.i_Set(0);
+            new B01State(state).ClassVar_128.i_Set((int)(new B01Info(info).Count_8));
             _f2: ;
-            if (!((((int)(new B01Actor(a2).unkE4) == 1604) || ((new B01Info(info).flags & (uint)(8)) != 0u)))) goto _f3;
+            if (!((((int)(new B01Actor(a2).unkE4) == 1604) || ((new B01Info(info).Flags & (uint)(8)) != 0u)))) goto _f3;
             new B01Actor(a2).flags_Set((uint)((uint)(new B01Actor(a2).flags) & (uint)((~8192))));
             _f3: ;
             Actor_DispatchEvent(a2, state, 0);
-            if (!((((new B01Info(info).flags & (uint)(16)) != 0u) && ((int)(Mem.U8(0x801462E6u)) != 1)))) goto _f4;
+            if (!((((new B01Info(info).Flags & (uint)(16)) != 0u) && ((int)(Mem.U8(0x801462E6u)) != 1)))) goto _f4;
             goto L_clear;
             _f4: ;
             goto _f5;
@@ -348,9 +348,9 @@ public static partial class Game
             {
                 if ((new ActorState(state).link_ != 0u))
                 {
-                    if ((new ActorState(state).link.cb != 0u))
+                    if ((new ActorState(state).StateEntryPtr.cb != 0u))
                     {
-                        Funcs.CallReg(new ActorState(state).link.cb, actor, state, 0u, 0u);
+                        Funcs.CallReg(new ActorState(state).StateEntryPtr.cb, actor, state, 0u, 0u);
                     }
                 }
             }
@@ -364,15 +364,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00206080", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            float v = Random_Symmetric(new B01Info(info).unkC.f, new B01Info(info).unk10.f);
+            float v = Random_Symmetric(new B01Info(info).RangeMin_C.f, new B01Info(info).RangeMax_10.f);
             uint g = Gv.Settings;
-            new B01State(state).unk64_Set(v);
+            new B01State(state).Timer_64_Set(v);
             if (((int)(Mem.U8((g + (uint)29))) != 0))
             {
                 uint n = Mem.U32((g - (uint)4696));
                 if ((n >= (uint)(3)))
                 {
-                    new B01State(state).unk64_Set(((v * 0.00999999977f) * (float)(((uint)(100) - ((n - (uint)(2)) * (uint)(25))))));
+                    new B01State(state).Timer_64_Set(((v * 0.00999999977f) * (float)(((uint)(100) - ((n - (uint)(2)) * (uint)(25))))));
                 }
             }
         }
@@ -385,32 +385,32 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020612C", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            if ((new B01Info(info).unk4 == 0))
+            if ((new B01Info(info).BaseHealth == 0))
             {
-                if (((int)(new B01Info(info).unk14) == (-1)))
+                if (((int)(new B01Info(info).SpawnTypeIndex_14) == (-1)))
                 {
-                    new B01State(state).unk40_Set(0.0f);
+                    new B01State(state).StateTime_Set(0.0f);
                     return;
                 }
-                if (((int)(new B01Info(info).unk16) == (-1)))
+                if (((int)(new B01Info(info).SpawnDefIndex_16) == (-1)))
                 {
-                    new B01State(state).unk40_Set(0.0f);
+                    new B01State(state).StateTime_Set(0.0f);
                     return;
                 }
             }
-            if ((new B01State(state).unk124.i == (int)(new B01Info(info).unkA)))
+            if ((new B01State(state).ClassVar_124.i == (int)(new B01Info(info).MaxCount_A)))
             {
-                new B01State(state).unk40_Set(0.0f);
+                new B01State(state).StateTime_Set(0.0f);
                 return;
             }
-            if ((((new B01Info(info).flags & (uint)(1)) != 0u) || (new B01State(state).unk128.i > 0)))
+            if ((((new B01Info(info).Flags & (uint)(1)) != 0u) || (new B01State(state).ClassVar_128.i > 0)))
             {
-                if ((((new B01Info(info).flags & (uint)(2)) != 0u) && ((new B01Actor(actor).flags & (uint)(512)) != 0u)))
+                if ((((new B01Info(info).Flags & (uint)(2)) != 0u) && ((new B01Actor(actor).flags & (uint)(512)) != 0u)))
                 {
-                    new B01State(state).unk40_Set(0.0f);
+                    new B01State(state).StateTime_Set(0.0f);
                     return;
                 }
-                if ((new B01State(state).unk40 >= new B01State(state).unk64))
+                if ((new B01State(state).StateTime >= new B01State(state).Timer_64))
                 {
                     Actor_DispatchEvent(actor, state, 1);
                 }
@@ -424,7 +424,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002061D8", (uint)actor, (uint)state);
-            if (((int)(new ActorState(state).unkCB) != 0))
+            if (((int)(new ActorState(state).AnimLoopCount) != 0))
             {
                 Actor_DispatchEvent(actor, state, 0);
             }
@@ -492,7 +492,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002062E0", (uint)actor, (uint)state, (uint)v_in);
                 uint p = 0u;
-                if ((((id == 3031) && (new B01Game(Gv.Settings_MatchRules).unk78 != 0)) && (new B01Game(Gv.Settings_MatchRules).unk80 != 0)))
+                if ((((id == 3031) && (new B01Game(Gv.Settings_MatchRules).TagObjectiveMode_78 != 0)) && (new B01Game(Gv.Settings_MatchRules).IsTokenHeld_80 != 0)))
                 {
                     return;
                 }
@@ -504,11 +504,11 @@ public static partial class Game
                         return;
                     }
                 }
-                p = PickupPool_Spawn(0x80131600u, new B01State(state).unk124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
+                p = PickupPool_Spawn(0x80131600u, new B01State(state).ClassVar_124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
                     new B01Actor(p).unk1A0_Set(0);
-                    new B01State(state).unk128.i_Set((new B01State(state).unk128.i - 1));
+                    new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - 1));
                     Effect_SpawnForObject(p, 285, new B01Actor(p).pos.P);
                 }
             }
@@ -527,9 +527,9 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002063EC", (uint)actor, (uint)state, (uint)v1_in);
-                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).unk124.P)) != 0))
+                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).ClassVar_124.P)) != 0))
                 {
-                    new B01State(state).unk128.i_Set((new B01State(state).unk128.i - 1));
+                    new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - 1));
                 }
             }
         }
@@ -546,7 +546,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002064A0", (uint)actor, (uint)state, (uint)v_in);
-                new B01State(state).unk128.i_Set((new B01State(state).unk128.i - Effect_SpawnFromTemplates(Gv.EffectMgr, actor, actor, new B01State(state).unk124.P, 0, p70, new B01Actor(actor).vec1C.P, new B01Actor(actor).vec5C.P, _fp, 0, (-1), 0)));
+                new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - Effect_SpawnFromTemplates(Gv.EffectMgr, actor, actor, new B01State(state).ClassVar_124.P, 0, p70, new B01Actor(actor).vec1C.P, new B01Actor(actor).vec5C.P, _fp, 0, (-1), 0)));
             }
         }
         finally { Stack.Free(12); }
@@ -563,7 +563,7 @@ public static partial class Game
             {
                 for (a = Mem.U32(0x8013B124u); (a != 0u); a = new Actor(a).next2EC_)
                 {
-                    if ((new ActorDef(new Actor(a).DefPtr).type == 4))
+                    if ((new ActorDef(new Actor(a).DefPtr).Kind == 4))
                     {
                         return 0;
                     }

@@ -903,10 +903,10 @@ public static partial class Game
                 new B21GameBlk(b).unk8_Set((float)(0));
                 new B21GameBlk(b).unkC_Set((float)(0));
                 new B21GameBlk(b).unk88_Set(0);
-                new B21Game(g).unk26DC1_Set((byte)(2));
-                new B21Game(g).unk26DD8_Set(a);
-                new B21Game(g).unk26DDC_Set(1);
-                new B21Game(g).unk26DBC_Set(13);
+                new B21Game(g).FadeMode_Set((byte)(2));
+                new B21Game(g).StartPointId_Set(a);
+                new B21Game(g).IsLevelWarp_26DDC_Set(1);
+                new B21Game(g).NextStateId_Set(13);
             }
         }
         finally { Stack.Free(24); }
@@ -918,8 +918,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293318", (uint)g, (uint)a, (uint)b);
-            CameraManager_Init(new B21Game(g).sub255C8.P, (int)(uint)(a));
-            Player_InitPool(new B21Game(g).sub25580.P, a, b);
+            CameraManager_Init(new B21Game(g).ViewMgr.P, (int)(uint)(a));
+            Player_InitPool(new B21Game(g).PlayerPool.P, a, b);
         }
     }
 
@@ -937,7 +937,7 @@ public static partial class Game
                 Mem.Set((_fp + (uint)0), (byte)(0));
                 Mem.Set((_fp + (uint)1), (byte)(0));
                 Mem.Set((_fp + (uint)2), (byte)(0));
-                t = new B21Game(g).unk26DC4;
+                t = new B21Game(g).FadeLevel;
                 if (!((t < 0.0f))) goto _f0;
                 goto L_c255;
                 _f0: ;
@@ -976,9 +976,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293574", (uint)g);
-            new B21Game(g).unk26DC1_Set((byte)(1));
-            new B21Game(g).unk26DC4_Set(0.0f);
-            new B21Game(g).unk26DC0_Set((byte)(0));
+            new B21Game(g).FadeMode_Set((byte)(1));
+            new B21Game(g).FadeLevel_Set(0.0f);
+            new B21Game(g).IsResetting_Set((byte)(0));
         }
     }
 
@@ -990,10 +990,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002935A4", (uint)g);
             float speed = 0f;
             float kk = 0f;
-            if (((int)(new B21Game(g).unk26DC1) != 0))
+            if (((int)(new B21Game(g).FadeMode) != 0))
             {
                 speed = 0.100000001f;
-                if (((int)(new B21Game(g).unk26DC0) != 0))
+                if (((int)(new B21Game(g).IsResetting) != 0))
                 {
                     if (((g != 0u) || (Mem.F32(Gv.FrameTime) != 0f)))
                     {
@@ -1012,40 +1012,40 @@ public static partial class Game
                 {
                     kk = speed;
                 }
-                if (((int)(new B21Game(g).unk26DC1) != 1))
+                if (((int)(new B21Game(g).FadeMode) != 1))
                 {
-                    if (((int)(new B21Game(g).unk26DC1) == 2))
+                    if (((int)(new B21Game(g).FadeMode) == 2))
                     {
-                        if ((0.0f < new B21Game(g).unk26DC4))
+                        if ((0.0f < new B21Game(g).FadeLevel))
                         {
-                            new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 - (kk * Mem.F32(Gv.FrameTime))));
-                            if ((new B21Game(g).unk26DC4 < 0.0f))
+                            new B21Game(g).FadeLevel_Set((new B21Game(g).FadeLevel - (kk * Mem.F32(Gv.FrameTime))));
+                            if ((new B21Game(g).FadeLevel < 0.0f))
                             {
-                                new B21Game(g).unk26DC4_Set(0.0f);
+                                new B21Game(g).FadeLevel_Set(0.0f);
                             }
                         }
                         else
                         {
-                            new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 - 1.0f));
+                            new B21Game(g).FadeLevel_Set((new B21Game(g).FadeLevel - 1.0f));
                         }
-                        if ((new B21Game(g).unk26DC4 < (-4.0f)))
+                        if ((new B21Game(g).FadeLevel < (-4.0f)))
                         {
-                            int old = new B21Game(g).unk26DB8;
-                            new B21Game(g).unk26DB8_Set(20);
-                            new B21Game(g).unk26DC4_Set(0.0f);
-                            new B21Game(g).unk26DC1_Set((byte)(1));
-                            new B21Game(g).unk26DB4_Set(old);
+                            int old = new B21Game(g).StateId;
+                            new B21Game(g).StateId_Set(20);
+                            new B21Game(g).FadeLevel_Set(0.0f);
+                            new B21Game(g).FadeMode_Set((byte)(1));
+                            new B21Game(g).PrevStateId_Set(old);
                         }
                     }
                 }
                 else
                 {
-                    new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 + (speed * ((Mem.F32(Gv.FrameTime) < 0.5f) ? 0.5f : Mem.F32(Gv.FrameTime)))));
-                    if ((1.0f <= new B21Game(g).unk26DC4))
+                    new B21Game(g).FadeLevel_Set((new B21Game(g).FadeLevel + (speed * ((Mem.F32(Gv.FrameTime) < 0.5f) ? 0.5f : Mem.F32(Gv.FrameTime)))));
+                    if ((1.0f <= new B21Game(g).FadeLevel))
                     {
-                        new B21Game(g).unk26DC1_Set((byte)(0));
-                        new B21Game(g).unk26DC4_Set(1.0f);
-                        new B21Game(g).unk26DC0_Set((byte)(0));
+                        new B21Game(g).FadeMode_Set((byte)(0));
+                        new B21Game(g).FadeLevel_Set(1.0f);
+                        new B21Game(g).IsResetting_Set((byte)(0));
                     }
                 }
             }
@@ -1058,15 +1058,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293774", (uint)g, (uint)a);
-            int old = new B21Game(g).unk26DB8;
-            new B21Game(g).unk26DC1_Set((byte)(1));
-            new B21Game(g).unk26DC4_Set(0.0f);
-            new B21Game(g).unk26DB8_Set(20);
-            new B21Game(g).unk26DBC_Set(a);
-            new B21Game(g).unk26DB4_Set(old);
+            int old = new B21Game(g).StateId;
+            new B21Game(g).FadeMode_Set((byte)(1));
+            new B21Game(g).FadeLevel_Set(0.0f);
+            new B21Game(g).StateId_Set(20);
+            new B21Game(g).NextStateId_Set(a);
+            new B21Game(g).PrevStateId_Set(old);
             if ((Level_IsRestartPending() != 0))
             {
-                new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA584u));
+                new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA584u));
             }
         }
     }
@@ -1077,8 +1077,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293808", (uint)p, (uint)a);
-            new B21Game(p).unk26DC1_Set((byte)(2));
-            new B21Game(p).unk26DBC_Set(a);
+            new B21Game(p).FadeMode_Set((byte)(2));
+            new B21Game(p).NextStateId_Set(a);
         }
     }
 
@@ -1094,11 +1094,11 @@ public static partial class Game
                 Mem.Set(0x800D2974u, 0);
             }
             Level_TickRestartTimer();
-            st = new B21Game(g).unk26DB8;
+            st = new B21Game(g).StateId;
             if ((new B21StateEnt((0x800D29DCu + (uint)(st * 12))).fn != 0u))
             {
                 Funcs.CallReg(new B21StateEnt((0x800D29DCu + (uint)(st * 12))).fn, g, 0u, 0u, 0u);
-                st = new B21Game(g).unk26DB8;
+                st = new B21Game(g).StateId;
             }
             if ((st != 20))
             {
@@ -1120,15 +1120,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002938E8", (uint)g, 0u, (uint)a, (uint)b);
             if (((Mem.S32((Gv.Pad_PressedButtons + (uint)(0 * 4))) != 0) && (b != (-1))))
             {
-                new B21Game(g).unk26DC1_Set((byte)(2));
-                new B21Game(g).unk26DBC_Set(b);
+                new B21Game(g).FadeMode_Set((byte)(2));
+                new B21Game(g).NextStateId_Set(b);
                 Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
                 return 1;
             }
-            if (((x * Mem.F32(0x800CA588u)) < new B21Game(g).unk26DB0))
+            if (((x * Mem.F32(0x800CA588u)) < new B21Game(g).StateTime))
             {
-                new B21Game(g).unk26DC1_Set((byte)(2));
-                new B21Game(g).unk26DBC_Set(a);
+                new B21Game(g).FadeMode_Set((byte)(2));
+                new B21Game(g).NextStateId_Set(a);
                 return 1;
             }
             return 0;
@@ -1141,8 +1141,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029397C", (uint)g, (uint)a);
-            CameraManager_Init(new B21Game(g).sub255C8.P, 1);
-            Player_InitPool(new B21Game(g).sub25580.P, 1, 0);
+            CameraManager_Init(new B21Game(g).ViewMgr.P, 1);
+            Player_InitPool(new B21Game(g).PlayerPool.P, 1, 0);
             Level_SetTransitionState_0044E178(Gv.LevelMgr, (~Flyby_QueueById(a)), 0);
             Level_LoadSelectedResource_0044DCA4(Gv.LevelMgr);
             Level_LoadPreviewSound_0044DD40(Gv.LevelMgr);
@@ -1157,29 +1157,29 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00293A04", (uint)g, (uint)a, (uint)b);
             int f = (Mem.S32((Gv.Pad_PressedButtons + (uint)(0 * 4))) & 4096);
             int old = 0;
-            if (((new B21Game(g).unk26DB8 == 11) || (new B21Game(g).unk26DB8 == 12)))
+            if (((new B21Game(g).StateId == 11) || (new B21Game(g).StateId == 12)))
             {
                 f = 0;
             }
             if (((f != 0) && (b != (-1))))
             {
-                new B21Game(g).unk26DC1_Set((byte)(2));
-                new B21Game(g).unk26DBC_Set(b);
+                new B21Game(g).FadeMode_Set((byte)(2));
+                new B21Game(g).NextStateId_Set(b);
                 Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
             }
             else
             {
                 if ((Flyby_IsIdle() != 0))
                 {
-                    old = new B21Game(g).unk26DB8;
-                    new B21Game(g).unk26DC1_Set((byte)(1));
-                    new B21Game(g).unk26DC4_Set(0.0f);
-                    new B21Game(g).unk26DB8_Set(20);
-                    new B21Game(g).unk26DBC_Set(a);
-                    new B21Game(g).unk26DB4_Set(old);
+                    old = new B21Game(g).StateId;
+                    new B21Game(g).FadeMode_Set((byte)(1));
+                    new B21Game(g).FadeLevel_Set(0.0f);
+                    new B21Game(g).StateId_Set(20);
+                    new B21Game(g).NextStateId_Set(a);
+                    new B21Game(g).PrevStateId_Set(old);
                     if ((Level_IsRestartPending() != 0))
                     {
-                        new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA58Cu));
+                        new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA58Cu));
                     }
                 }
             }
@@ -1195,7 +1195,7 @@ public static partial class Game
             float t = 0f;
             if ((Mem.S32(Gv.Demo_Active) == 1))
             {
-                t = new B21Game(g).unk26DB0;
+                t = new B21Game(g).StateTime;
                 if ((Mem.F32(0x800CA590u) < t))
                 {
                     if ((Mem.F32(0x800CA594u) < t))
@@ -1205,7 +1205,7 @@ public static partial class Game
                         Menu_GotoScreen(2);
                         Video_RequestResolution(0);
                         Game_BeginTransition(g, 1);
-                        new B21Game(g).unk26DB0_Set(0.0f);
+                        new B21Game(g).StateTime_Set(0.0f);
                     }
                     else
                     {
@@ -1215,14 +1215,14 @@ public static partial class Game
                             Menu_InitFrontend();
                             Menu_GotoScreen(2);
                             Game_BeginTransition(g, 8);
-                            new B21Game(g).unk26DB0_Set(0.0f);
+                            new B21Game(g).StateTime_Set(0.0f);
                         }
                     }
                 }
             }
-            Level_UpdateFrame(new B21Game(g).sub3C8.P);
+            Level_UpdateFrame(new B21Game(g).Level.P);
             CameraManager_Nop_002394A4();
-            BossBar_DrawAll(new B21Game(g).sub1BCF8.P);
+            BossBar_DrawAll(new B21Game(g).TextMgr.P);
             Artsend_Update(default(uint), default(uint), default(uint), default(uint));
             State_DrawFade(g);
         }
@@ -1235,7 +1235,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00293C20", (uint)g);
             uint b = 0u;
-            if ((new B21Game(g).unk26DD4 == 0))
+            if ((new B21Game(g).IsPaused == 0))
             {
                 b = new B21World(Gv.PlayerPool).blk.P;
                 new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) + Mem.F32(Gv.FrameTime)));
@@ -1268,7 +1268,7 @@ public static partial class Game
             float t = 0f;
             if ((new B21GameBlk(b).unkAC == 1))
             {
-                t = new B21Game(g).unk26DB0;
+                t = new B21Game(g).StateTime;
                 if ((Mem.F32(0x800CA5A4u) < t))
                 {
                     if ((Mem.F32(0x800CA5A8u) < t))
@@ -1278,7 +1278,7 @@ public static partial class Game
                         Menu_GotoScreen(2);
                         Video_RequestResolution(0);
                         Game_BeginTransition(g, 1);
-                        new B21Game(g).unk26DB0_Set(0.0f);
+                        new B21Game(g).StateTime_Set(0.0f);
                     }
                     else
                     {
@@ -1288,14 +1288,14 @@ public static partial class Game
                             Menu_InitFrontend();
                             Menu_GotoScreen(2);
                             Game_BeginTransition(g, 8);
-                            new B21Game(g).unk26DB0_Set(0.0f);
+                            new B21Game(g).StateTime_Set(0.0f);
                         }
                     }
                 }
             }
-            Level_UpdateFrame(new B21Game(g).sub3C8.P);
+            Level_UpdateFrame(new B21Game(g).Level.P);
             CameraManager_Nop_002394A4();
-            BossBar_DrawAll(new B21Game(g).sub1BCF8.P);
+            BossBar_DrawAll(new B21Game(g).TextMgr.P);
             Artsend_Update(default(uint), default(uint), default(uint), default(uint));
             State_DrawFade(g);
         }
@@ -1323,7 +1323,7 @@ public static partial class Game
             Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
             Mem.Set(Gv.PakMenu_BootCheckDone, 1);
             Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
-            new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA5ACu));
+            new B21Game(g).FadeLevel_Set(Mem.F32(0x800CA5ACu));
             Menu_GotoScreen(29);
         }
     }
@@ -1391,7 +1391,7 @@ public static partial class Game
                     mode = 3;
                 }
             }
-            if ((new B21Game(g).unk26DB0 > Mem.F32(0x800CA5B0u)))
+            if ((new B21Game(g).StateTime > Mem.F32(0x800CA5B0u)))
             {
                 Mem.Set(0x800D29CCu, 0);
             }
@@ -1752,7 +1752,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00294590", (uint)g);
             Flyby_SetDefaultView();
-            State_LoadScene(g, (new B21Game(g).unk26DD8 + 601));
+            State_LoadScene(g, (new B21Game(g).StartPointId + 601));
         }
     }
 
@@ -1793,8 +1793,8 @@ public static partial class Game
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).unk26DD8, 0);
-            new B21Game(g).unk26DB8_Set(13);
+            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).StartPointId, 0);
+            new B21Game(g).StateId_Set(13);
             Mem.Set(0x80154048u, 0);
         }
     }
@@ -1812,7 +1812,7 @@ public static partial class Game
             Game_LatchPads();
             if ((Level_IsRestartPending() != 0))
             {
-                new B21Game(g).unk26DD8_Set(Level_GetRestartLevelId());
+                new B21Game(g).StartPointId_Set(Level_GetRestartLevelId());
             }
             b = new B21World(Gv.PlayerPool).blk.P;
             new B21GameBlk(b).unk20_Set(0);
@@ -1820,7 +1820,7 @@ public static partial class Game
             s = new B21World(Gv.PlayerPool).sub1288.P;
             new B21Sub1288(s).unk1D_Set((byte)(1));
             new B21Sub1288(s).unk1E_Set((byte)(8));
-            Game_InitCameras(g, (int)(new B21Game(g).unk26826), 0);
+            Game_InitCameras(g, (int)(new B21Game(g).MaxPlayers), 0);
             if ((Level_IsRestartPending() != 0))
             {
                 Level_RestorePlayersAfterRestart();
@@ -1833,7 +1833,7 @@ public static partial class Game
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
             Level_InitState_0044DC48(Gv.LevelMgr);
-            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).unk26DD8, 0);
+            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).StartPointId, 0);
         }
     }
 
@@ -1886,9 +1886,9 @@ public static partial class Game
                 {
                     a = 0;
                 }
-                new B21Game(g).unk26DC1_Set((byte)(2));
-                new B21Game(g).unk26DD8_Set(a);
-                new B21Game(g).unk26DBC_Set(14);
+                new B21Game(g).FadeMode_Set((byte)(2));
+                new B21Game(g).StartPointId_Set(a);
+                new B21Game(g).NextStateId_Set(14);
             }
         }
         finally { Stack.Free(24); }
@@ -2021,17 +2021,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294AC4", (uint)g);
-            if (((Mem.S32(0x80146D68u) == 2) && (new P4Game(g).f26DD0 == 0)))
+            if (((Mem.S32(0x80146D68u) == 2) && (new P4Game(g).IsSoundDisabled == 0)))
             {
-                int v = new P4Game(g).f26DBC;
-                new P4Game(g).f26DB0_Set(0);
-                new P4Game(g).f26DB8_Set(v);
+                int v = new P4Game(g).NextStateId;
+                new P4Game(g).StateTime_Set(0);
+                new P4Game(g).StateId_Set(v);
                 Flyby_Stop();
                 Audio_StopAllExcept((-1));
                 Rumble_SetEnabledAll(0);
-                if ((new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn != 0u))
+                if ((new P4Hook((0x800D29D8u + (uint)(new P4Game(g).StateId * 12))).fn != 0u))
                 {
-                    Funcs.CallReg(new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn, g, 0u, 0u, 0u);
+                    Funcs.CallReg(new P4Hook((0x800D29D8u + (uint)(new P4Game(g).StateId * 12))).fn, g, 0u, 0u, 0u);
                 }
             }
         }
@@ -2115,7 +2115,7 @@ public static partial class Game
             if (!((new B21GameBlk(b).unk88 != 0))) goto _f3;
             goto L_check;
             _f3: ;
-            if (!((new B21Game(g).unk26DD4 == 0))) goto _f4;
+            if (!((new B21Game(g).IsPaused == 0))) goto _f4;
             new B21GameBlk(b).unk88_Set(1);
             Flyby_SetFlagB4_004037D4();
             _f4: ;
@@ -2165,14 +2165,14 @@ public static partial class Game
                 new S7Blk(b).unk8_Set(0);
                 new S7Blk(b).unkC_Set(0);
                 new S7Blk(b).unk88_Set(0);
-                new S7Match(m).unk26DDC_Set(0);
-                new S7Match(m).unk26DD8_Set(a);
-                if ((((int)(new S7Match(m).unk26825) != 0) && (new S7Blk(b).unkAC != 0)))
+                new S7Match(m).IsLevelWarp_26DDC_Set(0);
+                new S7Match(m).StartPointId_Set(a);
+                if ((((int)(new S7Match(m).IsMultiplayer) != 0) && (new S7Blk(b).IsDemoActive != 0)))
                 {
                     do
                     {
-                        new S7Match(m).unk26DC1_Set((byte)(2));
-                        new S7Match(m).state_Set(13);
+                        new S7Match(m).FadeMode_Set((byte)(2));
+                        new S7Match(m).NextStateId_Set(13);
                     }
                     while ((0 != 0));
                 }
@@ -2180,8 +2180,8 @@ public static partial class Game
                 {
                     do
                     {
-                        new S7Match(m).unk26DC1_Set((byte)(2));
-                        new S7Match(m).state_Set(12);
+                        new S7Match(m).FadeMode_Set((byte)(2));
+                        new S7Match(m).NextStateId_Set(12);
                     }
                     while ((0 != 0));
                 }

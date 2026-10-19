@@ -3336,33 +3336,33 @@ public readonly struct O06G
     // +0x0
     public U8x28 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
-    public int unk1C
+    public int IsMatchOver
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int IsMatchOver_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int unk20
+    public int IsEndAcknowledged
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int IsEndAcknowledged_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public int pad24
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int pad24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int IsTeamEndStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsTeamEndStarted_Set(int v) => Mem.Set(P + 0x28u, v);
 }
 
 /// <summary>struct O06G, 0x14 bytes, at a guest address.</summary>
@@ -3379,12 +3379,12 @@ public readonly struct O06G_v2
     // +0x0
     public U8x16 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x10
-    public float unk10
+    public float MessageTimer
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public float MessageTimer_Set(float v) => Mem.Set(P + 0x10u, v);
 }
 
 /// <summary>struct O06G, 0x78 bytes, at a guest address.</summary>
@@ -3401,21 +3401,21 @@ public readonly struct O06G_v3
     // +0x0
     public U8x84 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x54
-    public int unk54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int unk54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x28 pad2 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x74
-    public int unk74
+    public int MonkeyEvent_74
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x74u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x74u, value);
     }
-    [MethodImpl(Inl)] public int unk74_Set(int v) => Mem.Set(P + 0x74u, v);
+    [MethodImpl(Inl)] public int MonkeyEvent_74_Set(int v) => Mem.Set(P + 0x74u, v);
 }
 
 /// <summary>struct O06Gfx, 0x8 bytes, at a guest address.</summary>

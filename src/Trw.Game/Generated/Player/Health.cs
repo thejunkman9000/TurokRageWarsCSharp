@@ -732,23 +732,23 @@ public static partial class Game
                                 Player_PlaceAtSpawn(p, (uint)(Mem.S32((p + (uint)1516))), (uint)(0), (uint)(1));
                             }
                         }
-                        if ((((new B04GF2(Gv.Settings_MatchRules).unk98 != 0) && ((int)(new B04St3(Mem.U32((p + (uint)1496))).unk80) == 11)) && (new B04GF2(Gv.Settings_MatchRules).unkA0 > 0)))
+                        if ((((new B04GF2(Gv.Settings_MatchRules).IsBossMode != 0) && ((int)(new B04St3(Mem.U32((p + (uint)1496))).unk80) == 11)) && (new B04GF2(Gv.Settings_MatchRules).BossShieldPercent > 0)))
                         {
-                            t = (new B04GF2(Gv.Settings_MatchRules).unkA0 - (dmg >> (int)8));
-                            new B04GF2(Gv.Settings_MatchRules).unkA0_Set(t);
+                            t = (new B04GF2(Gv.Settings_MatchRules).BossShieldPercent - (dmg >> (int)8));
+                            new B04GF2(Gv.Settings_MatchRules).BossShieldPercent_Set(t);
                             if ((t <= 0))
                             {
-                                new B04GF2(Gv.Settings_MatchRules).unkA0_Set(0);
+                                new B04GF2(Gv.Settings_MatchRules).BossShieldPercent_Set(0);
                                 switch ((int)(new B04St3(Mem.U32((p + (uint)1496))).unk93))
                                 {
                                 case 0:
-                                    new B04GF2(Gv.Settings_MatchRules).unkA4_Set(75);
+                                    new B04GF2(Gv.Settings_MatchRules).BossShieldRegenTimer_Set(75);
                                     break;
                                 case 1:
-                                    new B04GF2(Gv.Settings_MatchRules).unkA4_Set(60);
+                                    new B04GF2(Gv.Settings_MatchRules).BossShieldRegenTimer_Set(60);
                                     break;
                                 case 2:
-                                    new B04GF2(Gv.Settings_MatchRules).unkA4_Set(60);
+                                    new B04GF2(Gv.Settings_MatchRules).BossShieldRegenTimer_Set(60);
                                     break;
                                 }
                                 Player_SetState(p, (int)(p), 45);
@@ -861,7 +861,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021C440", (uint)a, (uint)a1, (uint)a2, (uint)e);
-            if ((((((new B04Pa7(a).unk5E4 != 0) && (Player_IsDying(a) == 0)) && !(new B04Pa7(a).unk670 > 0.0f)) && (((new B04GF(Gv.Settings_MatchRules).unk98 == 0) || ((int)(new B04Pa7(a).stats.unk80) != 11)) || (new B04GF(Gv.Settings_MatchRules).unkA0 <= 0))) && !((new B04Pa7(a).unk122C & (uint)(32768)) != 0u)))
+            if ((((((new B04Pa7(a).unk5E4 != 0) && (Player_IsDying(a) == 0)) && !(new B04Pa7(a).unk670 > 0.0f)) && (((new B04GF(Gv.Settings_MatchRules).IsBossMode == 0) || ((int)(new B04Pa7(a).stats.unk80) != 11)) || (new B04GF(Gv.Settings_MatchRules).BossShieldPercent <= 0))) && !((new B04Pa7(a).unk122C & (uint)(32768)) != 0u)))
             {
                 switch ((int)(new B04Ev7(e).unk4))
                 {
@@ -1102,7 +1102,7 @@ public static partial class Game
             new Plr(a).HitPoints_Set(2560);
             return;
             _f3: ;
-            if (!(((Mem.S32((Gv.Match_FragTagMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk94) != 0)))) goto _f4;
+            if (!(((Mem.S32((Gv.MatchRules_IsBossMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk94) != 0)))) goto _f4;
             s = (int)(new Plr(a).PlayerEntryPtr.unk80);
             if (!((s == 11))) goto _f5;
             goto L_A1;
@@ -1134,7 +1134,7 @@ public static partial class Game
             v = (int)((int)(v) + new ActorRow400((Gv.CharacterClassTable + (uint)(new Plr(a).PlayerIndex * 400))).unk0);
             _f13: ;
             new Plr(a).Health_Set(v);
-            if (!(((Mem.S32((Gv.Match_FragTagMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk94) != 0)))) goto _f14;
+            if (!(((Mem.S32((Gv.MatchRules_IsBossMode + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk94) != 0)))) goto _f14;
             s = (int)(new Plr(a).PlayerEntryPtr.unk80);
             if (!((s == 11))) goto _f15;
             goto L_A2;
@@ -1297,7 +1297,7 @@ public static partial class Game
             uint v = 0u;
             uint w = 0u;
             uint pw = 0u;
-            if ((((((x != 0.0f) && !(75.0f <= new Plr(a).StunTime)) && !(new Plr(a).InvulnerableTime > 0.0f)) && (((new GameB6(Gv.Settings_MatchRules).unk98 == 0) || ((int)(new Plr(a).PlayerEntryPtr.unk80) != 11)) || (new GameB6(Gv.Settings_MatchRules).unkA0 <= 0))) && !((new Plr(a).PowerupFlags & 32768) != 0)))
+            if ((((((x != 0.0f) && !(75.0f <= new Plr(a).StunTime)) && !(new Plr(a).InvulnerableTime > 0.0f)) && (((new GameB6(Gv.Settings_MatchRules).IsBossMode == 0) || ((int)(new Plr(a).PlayerEntryPtr.unk80) != 11)) || (new GameB6(Gv.Settings_MatchRules).BossShieldPercent <= 0))) && !((new Plr(a).PowerupFlags & 32768) != 0)))
             {
                 f = (new Plr(a).StunTime + (x * 15.0f));
                 if ((75.0f < f))
@@ -1406,7 +1406,7 @@ public static partial class Game
                         break;
                     }
                 }
-                if (((((new GameB6(Gv.Settings_MatchRules).unk24 != 0) && ((int)(Mem.U8((Gv.Settings_MatchRules + (uint)(-1456)))) == 0)) && ((new Plr(tgt).IsComputer == 0) || (new Plr(a).IsComputer == 0))) && ((int)(new Plr(a).PlayerEntryPtr.unk92) == (int)(new Plr(tgt).PlayerEntryPtr.unk92))))
+                if (((((new GameB6(Gv.Settings_MatchRules).IsTeamPlay != 0) && ((int)(Mem.U8((Gv.Settings_MatchRules + (uint)(-1456)))) == 0)) && ((new Plr(tgt).IsComputer == 0) || (new Plr(a).IsComputer == 0))) && ((int)(new Plr(a).PlayerEntryPtr.unk92) == (int)(new Plr(tgt).PlayerEntryPtr.unk92))))
                 {
                     new HitB6(b).unk4_Set(0);
                 }
@@ -1469,7 +1469,7 @@ public static partial class Game
             int r = 0;
             uint st = 0u;
             sbyte t = 0;
-            if (!(((Mem.S32(Gv.Match_FragTagMode) != 0) && ((int)(new ActorStats((st = new Actor(a).stats_)).unk94) != 0)))) goto _f0;
+            if (!(((Mem.S32(Gv.MatchRules_IsBossMode) != 0) && ((int)(new ActorStats((st = new Actor(a).stats_)).unk94) != 0)))) goto _f0;
             t = new ActorStats(st).unk80;
             if (!(((int)(t) == 11))) goto _f1;
             goto L_A;
@@ -1495,7 +1495,7 @@ public static partial class Game
             goto _f8;
             _f0: ;
             L_C: ;
-            r = (new ActorDef(new Actor(a).DefPtr).info.unk4 << (int)8);
+            r = (new ActorDef(new Actor(a).DefPtr).Params.BaseHealth << (int)8);
             _f8: ;
             if (!((((int)(Mem.U8(Gv.Settings_GameMode)) == 1) && (new Actor(a).IsComputer == 0)))) goto _f9;
             r = (int)((int)(r) + new ActorRow400((Gv.CharacterClassTable + (uint)(new Actor(a).PlayerIndex * 400))).unk0);

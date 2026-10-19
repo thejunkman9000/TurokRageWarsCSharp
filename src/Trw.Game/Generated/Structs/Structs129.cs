@@ -1088,14 +1088,14 @@ public readonly struct func_80292FA4_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80292FA4_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80292FA4_S1(uint p) => new(p);
     // +0x0
-    public S8x159176 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159176 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DC8
-    public int unk26DC8
+    public int BootFlag_26DC8
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DC8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DC8_Set(int v) => Mem.Set(P + 0x26DC8u, v);
+    [MethodImpl(Inl)] public int BootFlag_26DC8_Set(int v) => Mem.Set(P + 0x26DC8u, v);
 }
 
 /// <summary>struct func_80293268_S1, 0x8C bytes, at a guest address.</summary>
@@ -1144,7 +1144,7 @@ public readonly struct func_80293268_S1
     }
     [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public S8x120 padC { [MethodImpl(Inl)] get => new(P + 0x10u); }
+    public S8x120 MessageTimer { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x88
     public int unk88
     {
@@ -1166,41 +1166,41 @@ public readonly struct func_80293268_S2
     [MethodImpl(Inl)] public static implicit operator uint(func_80293268_S2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293268_S2(uint p) => new(p);
     // +0x0
-    public S8x159164 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159164 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public sbyte unk26DC1
+    public sbyte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk26DC1_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public sbyte FadeMode_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
     // +0x26DC2
     public S8x22 pad26DC1 { [MethodImpl(Inl)] get => new(P + 0x26DC2u); }
     // +0x26DD8
-    public int unk26DD8
+    public int StartPointId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DD8_Set(int v) => Mem.Set(P + 0x26DD8u, v);
+    [MethodImpl(Inl)] public int StartPointId_Set(int v) => Mem.Set(P + 0x26DD8u, v);
     // +0x26DDC
-    public S8x0 pad26DD8 { [MethodImpl(Inl)] get => new(P + 0x26DDCu); }
+    public S8x0 IsLevelWarp_26DDC { [MethodImpl(Inl)] get => new(P + 0x26DDCu); }
     // +0x26DDC
-    public int unk26DDC
+    public int IsLevelWarp_26DDC_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DDCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DDC_Set(int v) => Mem.Set(P + 0x26DDCu, v);
+    [MethodImpl(Inl)] public int IsLevelWarp_26DDC_2_Set(int v) => Mem.Set(P + 0x26DDCu, v);
 }
 
 /// <summary>struct func_80293318_S1, 0x25581 bytes, at a guest address.</summary>
@@ -1215,14 +1215,14 @@ public readonly struct func_80293318_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293318_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293318_S1(uint p) => new(p);
     // +0x0
-    public S8x152960 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x152960 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x25580
-    public sbyte unk25580
+    public sbyte PlayerPool
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x25580u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x25580u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk25580_Set(sbyte v) => Mem.Set(P + 0x25580u, v);
+    [MethodImpl(Inl)] public sbyte PlayerPool_Set(sbyte v) => Mem.Set(P + 0x25580u, v);
 }
 
 /// <summary>struct func_80293574_S1, 0x26DC8 bytes, at a guest address.</summary>
@@ -1237,32 +1237,32 @@ public readonly struct func_80293574_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293574_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293574_S1(uint p) => new(p);
     // +0x0
-    public S8x159168 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159168 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DC0
-    public byte unk26DC0
+    public byte IsResetting
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26DC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC0u, value);
     }
-    [MethodImpl(Inl)] public byte unk26DC0_Set(byte v) => Mem.Set(P + 0x26DC0u, v);
+    [MethodImpl(Inl)] public byte IsResetting_Set(byte v) => Mem.Set(P + 0x26DC0u, v);
     // +0x26DC1
-    public S8x0 pad26DC0 { [MethodImpl(Inl)] get => new(P + 0x26DC1u); }
+    public S8x0 FadeMode { [MethodImpl(Inl)] get => new(P + 0x26DC1u); }
     // +0x26DC1
-    public byte unk26DC1
+    public byte FadeMode_2
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public byte unk26DC1_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public byte FadeMode_2_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
     // +0x26DC2
     public S8x2 pad26DC1 { [MethodImpl(Inl)] get => new(P + 0x26DC2u); }
     // +0x26DC4
-    public int unk26DC4
+    public int FadeLevel
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DC4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC4u, value);
     }
-    [MethodImpl(Inl)] public int unk26DC4_Set(int v) => Mem.Set(P + 0x26DC4u, v);
+    [MethodImpl(Inl)] public int FadeLevel_Set(int v) => Mem.Set(P + 0x26DC4u, v);
 }
 
 /// <summary>struct func_80293774_S1, 0x26DC8 bytes, at a guest address.</summary>
@@ -1277,45 +1277,45 @@ public readonly struct func_80293774_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293774_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293774_S1(uint p) => new(p);
     // +0x0
-    public S8x159156 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159156 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB4
-    public int unk26DB4
+    public int PrevStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB4u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB4_Set(int v) => Mem.Set(P + 0x26DB4u, v);
+    [MethodImpl(Inl)] public int PrevStateId_Set(int v) => Mem.Set(P + 0x26DB4u, v);
     // +0x26DB8
-    public S8x0 pad26DB4 { [MethodImpl(Inl)] get => new(P + 0x26DB8u); }
+    public S8x0 StateId { [MethodImpl(Inl)] get => new(P + 0x26DB8u); }
     // +0x26DB8
-    public int unk26DB8
+    public int StateId_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_2_Set(int v) => Mem.Set(P + 0x26DB8u, v);
     // +0x26DBC
-    public S8x0 pad26DB8 { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
+    public S8x0 NextStateId { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_2_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public sbyte unk26DC1
+    public sbyte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk26DC1_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public sbyte FadeMode_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
     // +0x26DC2
     public S8x2 pad26DC1 { [MethodImpl(Inl)] get => new(P + 0x26DC2u); }
     // +0x26DC4
-    public func_8022E280_S1_U744 unk26DC4 { [MethodImpl(Inl)] get => new(P + 0x26DC4u); }
+    public func_8022E280_S1_U744 FadeLevel { [MethodImpl(Inl)] get => new(P + 0x26DC4u); }
 }
 
 /// <summary>struct func_80293808_S1, 0x26DC4 bytes, at a guest address.</summary>
@@ -1330,23 +1330,23 @@ public readonly struct func_80293808_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293808_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293808_S1(uint p) => new(p);
     // +0x0
-    public S8x159164 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159164 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public sbyte unk26DC1
+    public sbyte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk26DC1_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public sbyte FadeMode_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
 }
 
 /// <summary>struct func_8029382C_S1, 0x26DBC bytes, at a guest address.</summary>
@@ -1361,14 +1361,14 @@ public readonly struct func_8029382C_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_8029382C_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8029382C_S1(uint p) => new(p);
     // +0x0
-    public S8x159160 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159160 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB8
-    public int unk26DB8
+    public int StateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_Set(int v) => Mem.Set(P + 0x26DB8u, v);
 }
 
 /// <summary>struct func_80293904_S1, 0x26DC4 bytes, at a guest address.</summary>
@@ -1383,32 +1383,32 @@ public readonly struct func_80293904_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293904_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293904_S1(uint p) => new(p);
     // +0x0
-    public S8x159152 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159152 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB0
-    public float unk26DB0
+    public float StateTime
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x26DB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB0u, value);
     }
-    [MethodImpl(Inl)] public float unk26DB0_Set(float v) => Mem.Set(P + 0x26DB0u, v);
+    [MethodImpl(Inl)] public float StateTime_Set(float v) => Mem.Set(P + 0x26DB0u, v);
     // +0x26DB4
-    public S8x8 pad26DB4 { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
+    public S8x8 PrevStateId { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DC0 { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public sbyte unk26DC1
+    public sbyte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk26DC1_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public sbyte FadeMode_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
 }
 
 /// <summary>struct func_8029397C_S1, 0x255C9 bytes, at a guest address.</summary>
@@ -1423,23 +1423,23 @@ public readonly struct func_8029397C_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_8029397C_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8029397C_S1(uint p) => new(p);
     // +0x0
-    public S8x152960 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x152960 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x25580
-    public sbyte unk25580
+    public sbyte PlayerPool
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x25580u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x25580u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk25580_Set(sbyte v) => Mem.Set(P + 0x25580u, v);
+    [MethodImpl(Inl)] public sbyte PlayerPool_Set(sbyte v) => Mem.Set(P + 0x25580u, v);
     // +0x25581
     public S8x71 pad25580 { [MethodImpl(Inl)] get => new(P + 0x25581u); }
     // +0x255C8
-    public sbyte unk255C8
+    public sbyte ViewMgr
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x255C8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x255C8u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk255C8_Set(sbyte v) => Mem.Set(P + 0x255C8u, v);
+    [MethodImpl(Inl)] public sbyte ViewMgr_Set(sbyte v) => Mem.Set(P + 0x255C8u, v);
 }
 
 /// <summary>struct func_80293C20_S1, 0x26DD8 bytes, at a guest address.</summary>
@@ -1454,14 +1454,14 @@ public readonly struct func_80293C20_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293C20_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293C20_S1(uint p) => new(p);
     // +0x0
-    public S8x159188 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159188 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DD4
-    public int unk26DD4
+    public int IsPaused
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD4u, value);
     }
-    [MethodImpl(Inl)] public int unk26DD4_Set(int v) => Mem.Set(P + 0x26DD4u, v);
+    [MethodImpl(Inl)] public int IsPaused_Set(int v) => Mem.Set(P + 0x26DD4u, v);
 }
 
 /// <summary>struct func_802947DC_S1, 0x26DDC bytes, at a guest address.</summary>
@@ -1476,32 +1476,32 @@ public readonly struct func_802947DC_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_802947DC_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_802947DC_S1(uint p) => new(p);
     // +0x0
-    public S8x159164 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159164 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public sbyte unk26DC1
+    public sbyte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk26DC1_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public sbyte FadeMode_Set(sbyte v) => Mem.Set(P + 0x26DC1u, v);
     // +0x26DC2
     public S8x22 pad26DC1 { [MethodImpl(Inl)] get => new(P + 0x26DC2u); }
     // +0x26DD8
-    public int unk26DD8
+    public int StartPointId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DD8_Set(int v) => Mem.Set(P + 0x26DD8u, v);
+    [MethodImpl(Inl)] public int StartPointId_Set(int v) => Mem.Set(P + 0x26DD8u, v);
 }
 
 /// <summary>struct func_80294AC4_S1, 0x26DD4 bytes, at a guest address.</summary>
@@ -1516,41 +1516,41 @@ public readonly struct func_80294AC4_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80294AC4_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80294AC4_S1(uint p) => new(p);
     // +0x0
-    public S8x159152 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159152 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB0
-    public int unk26DB0
+    public int StateTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB0u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB0_Set(int v) => Mem.Set(P + 0x26DB0u, v);
+    [MethodImpl(Inl)] public int StateTime_Set(int v) => Mem.Set(P + 0x26DB0u, v);
     // +0x26DB4
-    public S8x4 pad26DB0 { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
+    public S8x4 PrevStateId { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
     // +0x26DB8
-    public int unk26DB8
+    public int StateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_Set(int v) => Mem.Set(P + 0x26DB8u, v);
     // +0x26DBC
-    public S8x0 pad26DB8 { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
+    public S8x0 NextStateId { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_2_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x16 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x16 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DD0
-    public int unk26DD0
+    public int IsSoundDisabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD0u, value);
     }
-    [MethodImpl(Inl)] public int unk26DD0_Set(int v) => Mem.Set(P + 0x26DD0u, v);
+    [MethodImpl(Inl)] public int IsSoundDisabled_Set(int v) => Mem.Set(P + 0x26DD0u, v);
 }
 
 /// <summary>struct func_80294BB0_S1, 0x1310 bytes, at a guest address.</summary>

@@ -2756,30 +2756,30 @@ public readonly struct O05G
     // +0x0
     public U8x84 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x54
-    public int f54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int f54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x32 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x78
-    public int f78
+    public int TagObjectiveMode_78
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x78u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x78u, value);
     }
-    [MethodImpl(Inl)] public int f78_Set(int v) => Mem.Set(P + 0x78u, v);
+    [MethodImpl(Inl)] public int TagObjectiveMode_78_Set(int v) => Mem.Set(P + 0x78u, v);
     // +0x7C
     public U8x44 pad7C { [MethodImpl(Inl)] get => new(P + 0x7Cu); }
     // +0xA8
-    public int fA8
+    public int IsHumanWinner
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int fA8_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int IsHumanWinner_Set(int v) => Mem.Set(P + 0xA8u, v);
 }
 
 /// <summary>struct O05GX, 0x26 bytes, at a guest address.</summary>

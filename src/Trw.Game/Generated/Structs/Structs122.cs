@@ -3003,47 +3003,47 @@ public readonly struct View_func_8025AB94_de
     [MethodImpl(Inl)] public static implicit operator uint(View_func_8025AB94_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator View_func_8025AB94_de(uint p) => new(p);
     // +0x0
-    public int slot
+    public int Index
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int slot_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int Index_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public S8x12 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
+    public S8x12 Handle { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x10
-    public Motion_func_8025AB94_de motion { [MethodImpl(Inl)] get => new(P + 0x10u); }
+    public Motion_func_8025AB94_de StartFrame { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x38
-    public S8x40 pad38 { [MethodImpl(Inl)] get => new(P + 0x38u); }
+    public S8x40 Priority { [MethodImpl(Inl)] get => new(P + 0x38u); }
     // +0x60
-    public Angles_func_8025AB94_de angles { [MethodImpl(Inl)] get => new(P + 0x60u); }
+    public Angles_func_8025AB94_de PitchEnvelope { [MethodImpl(Inl)] get => new(P + 0x60u); }
     // +0x6C
-    public float pitch
+    public float PitchLevel
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public float pitch_Set(float v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public float PitchLevel_Set(float v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
-    public float pitchStep
+    public float PitchStep
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x70u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x70u, value);
     }
-    [MethodImpl(Inl)] public float pitchStep_Set(float v) => Mem.Set(P + 0x70u, v);
+    [MethodImpl(Inl)] public float PitchStep_Set(float v) => Mem.Set(P + 0x70u, v);
     // +0x74
-    public S8x48 pad74 { [MethodImpl(Inl)] get => new(P + 0x74u); }
+    public S8x48 VolumeEnvelope { [MethodImpl(Inl)] get => new(P + 0x74u); }
     // +0xA4
-    public int flags
+    public int Flags
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA4u, value);
     }
-    [MethodImpl(Inl)] public int flags_Set(int v) => Mem.Set(P + 0xA4u, v);
+    [MethodImpl(Inl)] public int Flags_Set(int v) => Mem.Set(P + 0xA4u, v);
     // +0xA8
-    public S8x8 padA8 { [MethodImpl(Inl)] get => new(P + 0xA8u); }
+    public S8x8 SoundId { [MethodImpl(Inl)] get => new(P + 0xA8u); }
     // +0xB0
-    public Context_func_8025AB94_de context
+    public Context_func_8025AB94_de MgrPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xB0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value.P);
@@ -3055,14 +3055,14 @@ public readonly struct View_func_8025AB94_de
     }
     [MethodImpl(Inl)] public uint context__Set(uint v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public S8x4 padB4 { [MethodImpl(Inl)] get => new(P + 0xB4u); }
+    public S8x4 Owner { [MethodImpl(Inl)] get => new(P + 0xB4u); }
     // +0xB8
-    public float scale
+    public float PitchScale
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB8u, value);
     }
-    [MethodImpl(Inl)] public float scale_Set(float v) => Mem.Set(P + 0xB8u, v);
+    [MethodImpl(Inl)] public float PitchScale_Set(float v) => Mem.Set(P + 0xB8u, v);
 }
 
 /// <summary>struct View_func_8025AE1C_de, 0xC0 bytes, at a guest address.</summary>

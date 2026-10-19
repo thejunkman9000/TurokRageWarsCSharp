@@ -52,39 +52,39 @@ public readonly struct Glob24b
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int unk24
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
     public U8x44 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x54
-    public int unk54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int unk54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x28 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x74
-    public int unk74
+    public int MonkeyEvent_74
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x74u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x74u, value);
     }
-    [MethodImpl(Inl)] public int unk74_Set(int v) => Mem.Set(P + 0x74u, v);
+    [MethodImpl(Inl)] public int MonkeyEvent_74_Set(int v) => Mem.Set(P + 0x74u, v);
     // +0x78
     public U8x8 pad78 { [MethodImpl(Inl)] get => new(P + 0x78u); }
     // +0x80
-    public int unk80
+    public int IsTokenHeld_80
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public int unk80_Set(int v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public int IsTokenHeld_80_Set(int v) => Mem.Set(P + 0x80u, v);
     // +0x84
     public int unk84
     {

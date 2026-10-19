@@ -1647,32 +1647,32 @@ public readonly struct State_func_8044DD50_de
     // +0x0
     public S8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int a
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int a_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public S8x44 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
+    public S8x44 IsTeamEndStarted { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x54
-    public int b
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int b_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
-    public S8x32 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
+    public S8x32 KillLimit { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x78
-    public int c
+    public int TagObjectiveMode_78
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x78u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x78u, value);
     }
-    [MethodImpl(Inl)] public int c_Set(int v) => Mem.Set(P + 0x78u, v);
+    [MethodImpl(Inl)] public int TagObjectiveMode_78_Set(int v) => Mem.Set(P + 0x78u, v);
     // +0x7C
-    public S8x12 pad7C { [MethodImpl(Inl)] get => new(P + 0x7Cu); }
+    public S8x12 TeamScoreLimit { [MethodImpl(Inl)] get => new(P + 0x7Cu); }
     // +0x88
     public int d
     {
@@ -1683,15 +1683,15 @@ public readonly struct State_func_8044DD50_de
     // +0x8C
     public S8x32 pad8C { [MethodImpl(Inl)] get => new(P + 0x8Cu); }
     // +0xAC
-    public int e
+    public int IsDemoActive
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int e_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int IsDemoActive_Set(int v) => Mem.Set(P + 0xACu, v);
 }
 
-/// <summary>struct Stats, 0x4C bytes, at a guest address.</summary>
+/// <summary>struct Stats, 0x4C bytes, at IsTeamPlay guest address.</summary>
 public readonly struct Stats
 {
     public readonly uint P;
@@ -2423,12 +2423,12 @@ public readonly struct T808
     // +0x0
     public U8x204 pad { [MethodImpl(Inl)] get => new(P); }
     // +0xCC
-    public int unkCC
+    public int IsRumbleEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCCu, value);
     }
-    [MethodImpl(Inl)] public int unkCC_Set(int v) => Mem.Set(P + 0xCCu, v);
+    [MethodImpl(Inl)] public int IsRumbleEnabled_Set(int v) => Mem.Set(P + 0xCCu, v);
 }
 
 /// <summary>struct TNode, 0x1C bytes, at a guest address.</summary>

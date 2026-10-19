@@ -932,176 +932,176 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029B650", (uint)p);
             int cur = 0;
             int prev = 0;
-            cur = new B22Pad(p).cur;
-            prev = new B22Pad(p).prev;
-            MenuInput_PostStick((short)(new B22Pad(p).ch), (int)(new B22Pad(p).unkC4), (int)(new B22Pad(p).unkC5));
+            cur = new B22Pad(p).Buttons;
+            prev = new B22Pad(p).PrevButtons;
+            MenuInput_PostStick((short)(new B22Pad(p).Port), (int)(new B22Pad(p).PollStickX), (int)(new B22Pad(p).PollStickY));
             if ((cur != prev))
             {
                 if ((((cur & 4096) != 0) && !((prev & 4096) != 0)))
                 {
-                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(13), 1);
+                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(13), 1);
                 }
                 else
                 {
                     if ((((prev & 4096) != 0) && !((cur & 4096) != 0)))
                     {
-                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(13), 0);
+                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(13), 0);
                     }
                     else
                     {
                         if ((((cur & 32768) != 0) && !((prev & 32768) != 0)))
                         {
-                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(11), 1);
+                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(11), 1);
                         }
                         else
                         {
                             if ((((prev & 32768) != 0) && !((cur & 32768) != 0)))
                             {
-                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(11), 0);
+                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(11), 0);
                             }
                             else
                             {
                                 if ((((cur & 16384) != 0) && !((prev & 16384) != 0)))
                                 {
-                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(12), 1);
+                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(12), 1);
                                 }
                                 else
                                 {
                                     if ((((prev & 16384) != 0) && !((cur & 16384) != 0)))
                                     {
-                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(12), 0);
+                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(12), 0);
                                     }
                                     else
                                     {
                                         if ((((cur & 32) != 0) && !((prev & 32) != 0)))
                                         {
-                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(9), 1);
+                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(9), 1);
                                         }
                                         else
                                         {
                                             if ((((prev & 32) != 0) && !((cur & 32) != 0)))
                                             {
-                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(9), 0);
+                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(9), 0);
                                             }
                                             else
                                             {
                                                 if ((((cur & 16) != 0) && !((prev & 16) != 0)))
                                                 {
-                                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(8), 1);
+                                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(8), 1);
                                                 }
                                                 else
                                                 {
                                                     if ((((prev & 16) != 0) && !((cur & 16) != 0)))
                                                     {
-                                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(8), 0);
+                                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(8), 0);
                                                     }
                                                     else
                                                     {
                                                         if ((((cur & 8192) != 0) && !((prev & 8192) != 0)))
                                                         {
-                                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(10), 1);
+                                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(10), 1);
                                                         }
                                                         else
                                                         {
                                                             if ((((prev & 8192) != 0) && !((cur & 8192) != 0)))
                                                             {
-                                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(10), 0);
+                                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(10), 0);
                                                             }
                                                             else
                                                             {
                                                                 if ((((cur & 2048) != 0) && !((prev & 2048) != 0)))
                                                                 {
-                                                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(4), 1);
+                                                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(4), 1);
                                                                 }
                                                                 else
                                                                 {
                                                                     if ((((prev & 2048) != 0) && !((cur & 2048) != 0)))
                                                                     {
-                                                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(4), 0);
+                                                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(4), 0);
                                                                     }
                                                                     else
                                                                     {
                                                                         if ((((cur & 512) != 0) && !((prev & 512) != 0)))
                                                                         {
-                                                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(6), 1);
+                                                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(6), 1);
                                                                         }
                                                                         else
                                                                         {
                                                                             if ((((prev & 512) != 0) && !((cur & 512) != 0)))
                                                                             {
-                                                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(6), 0);
+                                                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(6), 0);
                                                                             }
                                                                             else
                                                                             {
                                                                                 if ((((cur & 256) != 0) && !((prev & 256) != 0)))
                                                                                 {
-                                                                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(7), 1);
+                                                                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(7), 1);
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     if ((((prev & 256) != 0) && !((cur & 256) != 0)))
                                                                                     {
-                                                                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(7), 0);
+                                                                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(7), 0);
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         if ((((cur & 1024) != 0) && !((prev & 1024) != 0)))
                                                                                         {
-                                                                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(5), 1);
+                                                                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(5), 1);
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             if ((((prev & 1024) != 0) && !((cur & 1024) != 0)))
                                                                                             {
-                                                                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(5), 0);
+                                                                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(5), 0);
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 if ((((cur & 8) != 0) && !((prev & 8) != 0)))
                                                                                                 {
-                                                                                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(0), 1);
+                                                                                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(0), 1);
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     if ((((prev & 8) != 0) && !((cur & 8) != 0)))
                                                                                                     {
-                                                                                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(0), 0);
+                                                                                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(0), 0);
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         if ((((cur & 2) != 0) && !((prev & 2) != 0)))
                                                                                                         {
-                                                                                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(2), 1);
+                                                                                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(2), 1);
                                                                                                         }
                                                                                                         else
                                                                                                         {
                                                                                                             if ((((prev & 2) != 0) && !((cur & 2) != 0)))
                                                                                                             {
-                                                                                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(2), 0);
+                                                                                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(2), 0);
                                                                                                             }
                                                                                                             else
                                                                                                             {
                                                                                                                 if ((((cur & 1) != 0) && !((prev & 1) != 0)))
                                                                                                                 {
-                                                                                                                    MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(3), 1);
+                                                                                                                    MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(3), 1);
                                                                                                                 }
                                                                                                                 else
                                                                                                                 {
                                                                                                                     if ((((prev & 1) != 0) && !((cur & 1) != 0)))
                                                                                                                     {
-                                                                                                                        MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(3), 0);
+                                                                                                                        MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(3), 0);
                                                                                                                     }
                                                                                                                     else
                                                                                                                     {
                                                                                                                         if ((((cur & 4) != 0) && !((prev & 4) != 0)))
                                                                                                                         {
-                                                                                                                            MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(1), 1);
+                                                                                                                            MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(1), 1);
                                                                                                                         }
                                                                                                                         else
                                                                                                                         {
                                                                                                                             if ((((prev & 4) != 0) && !((cur & 4) != 0)))
                                                                                                                             {
-                                                                                                                                MenuInput_PostButton((short)(new B22Pad(p).ch), (short)(1), 0);
+                                                                                                                                MenuInput_PostButton((short)(new B22Pad(p).Port), (short)(1), 0);
                                                                                                                             }
                                                                                                                             else
                                                                                                                             {

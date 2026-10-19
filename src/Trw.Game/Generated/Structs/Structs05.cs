@@ -2949,180 +2949,180 @@ public readonly struct B14Ctl
     [MethodImpl(Inl)] public static implicit operator uint(B14Ctl v) => v.P;
     [MethodImpl(Inl)] public static explicit operator B14Ctl(uint p) => new(p);
     // +0x0
-    public int f0
+    public int IsConnected
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int f0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int IsConnected_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public sbyte port
+    public sbyte Port
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public sbyte port_Set(sbyte v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public sbyte Port_Set(sbyte v) => Mem.Set(P + 0x4u, v);
     // +0x5
     public U8x3 pad5 { [MethodImpl(Inl)] get => new(P + 0x5u); }
     // +0x8
-    public int f8
+    public int RumbleListenerX
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int f8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int RumbleListenerX_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public int fC
+    public int RumbleListenerY
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int fC_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int RumbleListenerY_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public int f10
+    public int RumbleListenerZ
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public int f10_Set(int v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public int RumbleListenerZ_Set(int v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public int f14
+    public int PollPrevButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int f14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int PollPrevButtons_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int f18
+    public int PollHeldButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int f18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int PollHeldButtons_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int f1C
+    public int PollPressedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int f1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int PollPressedButtons_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int f20
+    public int PollTappedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int f20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int PollTappedButtons_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public int f24
+    public int PollDoubleTapButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int f24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int PollDoubleTapButtons_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int f28
+    public int PollRepeatButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int f28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int PollRepeatButtons_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public B14Entx32 ent { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
+    public B14Entx32 ButtonTimers { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0xAC
-    public int fAC
+    public int PrevButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int fAC_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int PrevButtons_Set(int v) => Mem.Set(P + 0xACu, v);
     // +0xB0
-    public int fB0
+    public int Buttons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value);
     }
-    [MethodImpl(Inl)] public int fB0_Set(int v) => Mem.Set(P + 0xB0u, v);
+    [MethodImpl(Inl)] public int Buttons_Set(int v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public int fB4
+    public int PressedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int fB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int PressedButtons_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
-    public int fB8
+    public int TappedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB8u, value);
     }
-    [MethodImpl(Inl)] public int fB8_Set(int v) => Mem.Set(P + 0xB8u, v);
+    [MethodImpl(Inl)] public int TappedButtons_Set(int v) => Mem.Set(P + 0xB8u, v);
     // +0xBC
-    public int fBC
+    public int DoubleTapButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xBCu, value);
     }
-    [MethodImpl(Inl)] public int fBC_Set(int v) => Mem.Set(P + 0xBCu, v);
+    [MethodImpl(Inl)] public int DoubleTapButtons_Set(int v) => Mem.Set(P + 0xBCu, v);
     // +0xC0
-    public int fC0
+    public int RepeatButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC0u, value);
     }
-    [MethodImpl(Inl)] public int fC0_Set(int v) => Mem.Set(P + 0xC0u, v);
+    [MethodImpl(Inl)] public int RepeatButtons_Set(int v) => Mem.Set(P + 0xC0u, v);
     // +0xC4
-    public byte fC4
+    public byte PollStickX
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC4u, value);
     }
-    [MethodImpl(Inl)] public byte fC4_Set(byte v) => Mem.Set(P + 0xC4u, v);
+    [MethodImpl(Inl)] public byte PollStickX_Set(byte v) => Mem.Set(P + 0xC4u, v);
     // +0xC5
-    public byte fC5
+    public byte PollStickY
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC5u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC5u, value);
     }
-    [MethodImpl(Inl)] public byte fC5_Set(byte v) => Mem.Set(P + 0xC5u, v);
+    [MethodImpl(Inl)] public byte PollStickY_Set(byte v) => Mem.Set(P + 0xC5u, v);
     // +0xC6
-    public byte fC6
+    public byte StickX
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC6u, value);
     }
-    [MethodImpl(Inl)] public byte fC6_Set(byte v) => Mem.Set(P + 0xC6u, v);
+    [MethodImpl(Inl)] public byte StickX_Set(byte v) => Mem.Set(P + 0xC6u, v);
     // +0xC7
-    public byte fC7
+    public byte StickY
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC7u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC7u, value);
     }
-    [MethodImpl(Inl)] public byte fC7_Set(byte v) => Mem.Set(P + 0xC7u, v);
+    [MethodImpl(Inl)] public byte StickY_Set(byte v) => Mem.Set(P + 0xC7u, v);
     // +0xC8
-    public int fC8
+    public int HasRumblePak
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC8u, value);
     }
-    [MethodImpl(Inl)] public int fC8_Set(int v) => Mem.Set(P + 0xC8u, v);
+    [MethodImpl(Inl)] public int HasRumblePak_Set(int v) => Mem.Set(P + 0xC8u, v);
     // +0xCC
-    public int fCC
+    public int IsRumbleEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCCu, value);
     }
-    [MethodImpl(Inl)] public int fCC_Set(int v) => Mem.Set(P + 0xCCu, v);
+    [MethodImpl(Inl)] public int IsRumbleEnabled_Set(int v) => Mem.Set(P + 0xCCu, v);
     // +0xD0
-    public B14Ctl_fD0 fD0 { [MethodImpl(Inl)] get => new(P + 0xD0u); }
+    public B14Ctl_fD0 RumbleIntensity { [MethodImpl(Inl)] get => new(P + 0xD0u); }
     // +0xD4
-    public B14Ctl_fD4 fD4 { [MethodImpl(Inl)] get => new(P + 0xD4u); }
+    public B14Ctl_fD4 RumblePwmAccum { [MethodImpl(Inl)] get => new(P + 0xD4u); }
     // +0xD8
-    public OSPfs pfs { [MethodImpl(Inl)] get => new(P + 0xD8u); }
+    public OSPfs MotorPfs { [MethodImpl(Inl)] get => new(P + 0xD8u); }
     // +0x140
-    public U8x44 blkA { [MethodImpl(Inl)] get => new(P + 0x140u); }
+    public U8x44 RumblePool { [MethodImpl(Inl)] get => new(P + 0x140u); }
     // +0x16C
-    public U8x180 blkB { [MethodImpl(Inl)] get => new(P + 0x16Cu); }
+    public U8x180 RumbleSourceBlock { [MethodImpl(Inl)] get => new(P + 0x16Cu); }
     // +0x220
     public int f220
     {
@@ -3715,112 +3715,112 @@ public readonly struct B14Hist
     // +0x0
     public U8x24 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x18
-    public int f18
+    public int PollHeldButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int f18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int PollHeldButtons_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int f1C
+    public int PollPressedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int f1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int PollPressedButtons_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int f20
+    public int PollTappedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int f20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int PollTappedButtons_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public int f24
+    public int PollDoubleTapButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int f24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int PollDoubleTapButtons_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int f28
+    public int PollRepeatButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int f28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int PollRepeatButtons_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
     public U8x128 pad2C { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0xAC
-    public int fAC
+    public int PrevButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int fAC_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int PrevButtons_Set(int v) => Mem.Set(P + 0xACu, v);
     // +0xB0
-    public int fB0
+    public int Buttons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value);
     }
-    [MethodImpl(Inl)] public int fB0_Set(int v) => Mem.Set(P + 0xB0u, v);
+    [MethodImpl(Inl)] public int Buttons_Set(int v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public int fB4
+    public int PressedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int fB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int PressedButtons_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
-    public int fB8
+    public int TappedButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB8u, value);
     }
-    [MethodImpl(Inl)] public int fB8_Set(int v) => Mem.Set(P + 0xB8u, v);
+    [MethodImpl(Inl)] public int TappedButtons_Set(int v) => Mem.Set(P + 0xB8u, v);
     // +0xBC
-    public int fBC
+    public int DoubleTapButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xBCu, value);
     }
-    [MethodImpl(Inl)] public int fBC_Set(int v) => Mem.Set(P + 0xBCu, v);
+    [MethodImpl(Inl)] public int DoubleTapButtons_Set(int v) => Mem.Set(P + 0xBCu, v);
     // +0xC0
-    public int fC0
+    public int RepeatButtons
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC0u, value);
     }
-    [MethodImpl(Inl)] public int fC0_Set(int v) => Mem.Set(P + 0xC0u, v);
+    [MethodImpl(Inl)] public int RepeatButtons_Set(int v) => Mem.Set(P + 0xC0u, v);
     // +0xC4
-    public byte fC4
+    public byte PollStickX
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC4u, value);
     }
-    [MethodImpl(Inl)] public byte fC4_Set(byte v) => Mem.Set(P + 0xC4u, v);
+    [MethodImpl(Inl)] public byte PollStickX_Set(byte v) => Mem.Set(P + 0xC4u, v);
     // +0xC5
-    public byte fC5
+    public byte PollStickY
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC5u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC5u, value);
     }
-    [MethodImpl(Inl)] public byte fC5_Set(byte v) => Mem.Set(P + 0xC5u, v);
+    [MethodImpl(Inl)] public byte PollStickY_Set(byte v) => Mem.Set(P + 0xC5u, v);
     // +0xC6
-    public byte fC6
+    public byte StickX
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC6u, value);
     }
-    [MethodImpl(Inl)] public byte fC6_Set(byte v) => Mem.Set(P + 0xC6u, v);
+    [MethodImpl(Inl)] public byte StickX_Set(byte v) => Mem.Set(P + 0xC6u, v);
     // +0xC7
-    public byte fC7
+    public byte StickY
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xC7u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC7u, value);
     }
-    [MethodImpl(Inl)] public byte fC7_Set(byte v) => Mem.Set(P + 0xC7u, v);
+    [MethodImpl(Inl)] public byte StickY_Set(byte v) => Mem.Set(P + 0xC7u, v);
 }
 
 /// <summary>struct B14Key, 0x4 bytes, at a guest address.</summary>
@@ -3982,16 +3982,16 @@ public readonly struct B14Pad
     // +0x0
     public U8x180 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xB4
-    public B14Pad_fB4 fB4 { [MethodImpl(Inl)] get => new(P + 0xB4u); }
+    public B14Pad_fB4 PressedButtons { [MethodImpl(Inl)] get => new(P + 0xB4u); }
     // +0xB8
     public U8x8 padB8 { [MethodImpl(Inl)] get => new(P + 0xB8u); }
     // +0xC0
-    public uint fC0
+    public uint RepeatButtons
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0xC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC0u, value);
     }
-    [MethodImpl(Inl)] public uint fC0_Set(uint v) => Mem.Set(P + 0xC0u, v);
+    [MethodImpl(Inl)] public uint RepeatButtons_Set(uint v) => Mem.Set(P + 0xC0u, v);
 }
 
 /// <summary>union B14Pad_fB4, 0x4 bytes, at a guest address.</summary>
@@ -4244,12 +4244,12 @@ public readonly struct B14Slot
     // +0x0
     public U8x204 pad { [MethodImpl(Inl)] get => new(P); }
     // +0xCC
-    public int fCC
+    public int IsRumbleEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCCu, value);
     }
-    [MethodImpl(Inl)] public int fCC_Set(int v) => Mem.Set(P + 0xCCu, v);
+    [MethodImpl(Inl)] public int IsRumbleEnabled_Set(int v) => Mem.Set(P + 0xCCu, v);
     // +0xD0
     public U8x340 pad2 { [MethodImpl(Inl)] get => new(P + 0xD0u); }
 }
@@ -5013,21 +5013,21 @@ public readonly struct B15Dbg
     // +0x0
     public U8x152 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x98
-    public int unk98
+    public int IsBossMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x98u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x98u, value);
     }
-    [MethodImpl(Inl)] public int unk98_Set(int v) => Mem.Set(P + 0x98u, v);
+    [MethodImpl(Inl)] public int IsBossMode_Set(int v) => Mem.Set(P + 0x98u, v);
     // +0x9C
     public U8x4 pad9C { [MethodImpl(Inl)] get => new(P + 0x9Cu); }
     // +0xA0
-    public int unkA0
+    public int BossShieldPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value);
     }
-    [MethodImpl(Inl)] public int unkA0_Set(int v) => Mem.Set(P + 0xA0u, v);
+    [MethodImpl(Inl)] public int BossShieldPercent_Set(int v) => Mem.Set(P + 0xA0u, v);
 }
 
 /// <summary>struct B15Def, 0x10 bytes, at a guest address.</summary>

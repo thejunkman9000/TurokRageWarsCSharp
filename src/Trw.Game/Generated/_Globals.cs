@@ -624,8 +624,8 @@ public static class Gv
     public const uint Settings_MonkeyTagMode = 0x801468F4u;
     /// <summary>match flag (801468A0+0x78): monkey role (stats+0x8F) drawing/handing, AI objective; cleared by results [medium]</summary>
     public const uint Match_MonkeyTagMode = 0x80146918u;
-    /// <summary>match flag (801468A0+0x98): frag-tag priority (stats+0x94) in AI sight, end reason, character class/max health [medium]</summary>
-    public const uint Match_FragTagMode = 0x80146938u;
+    /// <summary>MatchRules+0x98: boss mode (boss shield, BossBar, trial bot setup) [was Match_FragTagMode] [medium]</summary>
+    public const uint MatchRules_IsBossMode = 0x80146938u;
     /// <summary>set to 1 by AttractDemo_Setup/State_DemoInit; frontend idle and rumble check it [high]</summary>
     public const uint Demo_Active = 0x8014694Cu;
     /// <summary>Start during credits sets it (skip to end), credits init clears it [high]</summary>

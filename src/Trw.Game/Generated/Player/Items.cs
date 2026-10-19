@@ -521,7 +521,7 @@ public static partial class Game
             w = new B04Act(pl).WeaponIndex;
             if (!(((int)(w) == 18))) goto _f0;
             if (!(((new B04Act(t).Flags & (uint)(3145728)) != 0u))) goto _f1;
-            if (!(((new ActorDef(new B04Act(t).DefPtr).info.flags & (uint)(32)) != 0u))) goto _f2;
+            if (!(((new ActorDef(new B04Act(t).DefPtr).Params.Flags & (uint)(32)) != 0u))) goto _f2;
             v = new B04Act(t).unk1A4;
             if (!(((int)(v) == 38))) goto _f3;
             return 0;
@@ -546,8 +546,8 @@ public static partial class Game
             _f2: ;
             goto L_end0;
             _f1: ;
-            if (!((new ActorDef(new B04Act(t).DefPtr).type == 1))) goto _f9;
-            if (!(((new ActorDef(new B04Act(t).DefPtr).info.flags & (uint)(9216)) != 0u))) goto _f10;
+            if (!((new ActorDef(new B04Act(t).DefPtr).Kind == 1))) goto _f9;
+            if (!(((new ActorDef(new B04Act(t).DefPtr).Params.Flags & (uint)(9216)) != 0u))) goto _f10;
             v = new B04Act(t).unk1A4;
             if (!(((((int)(v) == 33) || ((int)(v) == 52)) || ((int)(v) == 60)))) goto _f11;
             goto L_end0;
@@ -563,7 +563,7 @@ public static partial class Game
             goto L_end0;
             _f9: ;
             _f0: ;
-            ty = new ActorDef(new B04Act(t).DefPtr).type;
+            ty = new ActorDef(new B04Act(t).DefPtr).Kind;
             if (!((ty != 4))) goto _f14;
             if (!((ty >= 5))) goto _f15;
             switch (ty) { case 7: goto _f17; case 11: goto _f18; default: goto _f19; }
@@ -1861,12 +1861,12 @@ public static partial class Game
             float sc = 0f;
             int kind = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (!(new M2Own(o).unk11D8 > 0.0f))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (!(new M2Own(o).StunTime > 0.0f))
             {
                 dt = Mem.F32(Gv.FrameTime);
                 sc = (dt * Mem.F32(0x800C7F80u));
-                if (((o != 0u) && ((new M2Own(o).unk122C & (uint)(8192)) != 0u)))
+                if (((o != 0u) && ((new M2Own(o).PowerupFlags & (uint)(8192)) != 0u)))
                 {
                     Mem.Set(Gv.FrameTime, sc);
                 }
@@ -1874,33 +1874,33 @@ public static partial class Game
                 {
                     Mem.Set(Gv.FrameTime, dt);
                 }
-                if ((new M2St(s).unk148 > 0.0f))
+                if ((new M2St(s).AltFireCooldown > 0.0f))
                 {
-                    new M2St(s).unk148_Set((new M2St(s).unk148 - Mem.F32(Gv.FrameTime)));
+                    new M2St(s).AltFireCooldown_Set((new M2St(s).AltFireCooldown - Mem.F32(Gv.FrameTime)));
                 }
                 new M2Act(a).unk1_Set((byte)(0));
-                if ((new M2St(s).unk130 > 0.0f))
+                if ((new M2St(s).RefireTime > 0.0f))
                 {
-                    new M2St(s).unk130_Set((new M2St(s).unk130 - Mem.F32(Gv.FrameTime)));
+                    new M2St(s).RefireTime_Set((new M2St(s).RefireTime - Mem.F32(Gv.FrameTime)));
                 }
                 if ((kind == 1))
                 {
                     Actor_DispatchEvent(a, s, 1);
                 }
-                if (((int)(new M2Own(o).unk770) != (int)(new M2Own(o).unk62E)))
+                if (((int)(new M2Own(o).PendingWeaponIndex) != (int)(new M2Own(o).WeaponIndex)))
                 {
-                    new M2Own(o).unk7E8_Set(0);
+                    new M2Own(o).ZoomMode_Set(0);
                     Actor_DispatchEvent(a, s, 1);
                 }
                 if ((new M2St(s).link_ != 0u))
                 {
-                    f = new M2St(s).link.cb8;
+                    f = new M2St(s).StateEntryPtr.cb8;
                     if ((f != 0u))
                     {
                         Funcs.CallReg(f, a, s, 0u, 0u);
                     }
                 }
-                f = new M2Cls(Mem.U32((Gv.WeaponDefTable + (uint)(new M2Own(o).unk62E * 4)))).fn5C;
+                f = new M2Cls(Mem.U32((Gv.WeaponDefTable + (uint)(new M2Own(o).WeaponIndex * 4)))).fn5C;
                 if ((f != 0u))
                 {
                     Funcs.CallReg(f, a, s, 0u, 0u);
@@ -2019,7 +2019,7 @@ public static partial class Game
             uint new_var = 0u;
             uint o = 0u;
             float zero = 0f;
-            float t = new M2St(s).unk130;
+            float t = new M2St(s).RefireTime;
             zero = 0.0f;
             o = new M2Act(a).owner_;
             if ((t > zero))
@@ -2028,11 +2028,11 @@ public static partial class Game
             }
             do
             {
-                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
                 {
                     return 0;
                 }
-                if (((int)(new M2Own(o).stats.unk8F) == 1))
+                if (((int)(new M2Own(o).PlayerEntryPtr.unk8F) == 1))
                 {
                     if ((Mem.S32(Gv.Settings_MonkeyTagMode) != 0))
                     {
@@ -2042,46 +2042,46 @@ public static partial class Game
             }
             while ((0 != 0));
             new_var = o;
-            if ((new M2Own(new_var).unk11D8 > zero))
+            if ((new M2Own(new_var).StunTime > zero))
             {
                 return 0;
             }
-            if ((new M2Own(o).unk11B4 != 0))
+            if ((new M2Own(o).IsStickCaptured != 0))
             {
                 return 0;
             }
-            switch ((int)(new M2Own(o).unk62E))
+            switch ((int)(new M2Own(o).WeaponIndex))
             {
             case 11:
-                if (!((new M2Own(o).unk6AC & (uint)(16384)) != 0u))
+                if (!((new M2Own(o).ButtonsHeld & (uint)(16384)) != 0u))
                 {
                     goto L_ret1;
                 }
                 return 0;
             case 18:
-                if ((new M2Own(o).unk788 == 2))
+                if ((new M2Own(o).LockOnState == 2))
                 {
                     goto L_ret1;
                 }
                 return 0;
             case 9:
-                if ((new M2St(s).unk148 > 0.0f))
+                if ((new M2St(s).AltFireCooldown > 0.0f))
                 {
-                    if ((new M2St(s).unk13C == 2))
+                    if ((new M2St(s).FireMode == 2))
                     {
                         return 0;
                     }
                 }
                 if (((int)(new M2Own(o).unk5F6) < 50))
                 {
-                    if ((new M2St(s).unk13C == 2))
+                    if ((new M2St(s).FireMode == 2))
                     {
                         return 0;
                     }
                 }
                 if (((int)(new M2Own(o).unk5F6) < 10))
                 {
-                    if ((new M2St(s).unk13C == 1))
+                    if ((new M2St(s).FireMode == 1))
                     {
                         return 0;
                     }
@@ -2094,7 +2094,7 @@ public static partial class Game
                 }
                 return 0;
             case 1:
-                if ((new M2St(s).unk144 == 0))
+                if ((new M2St(s).AltReady_144 == 0))
                 {
                     return 0;
                 }
@@ -2118,32 +2118,32 @@ public static partial class Game
             int ok = 0;
             int t = 0;
             o = new M2Act(a).owner_;
-            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            if ((new M2Own(o).StunTime > 0.100000001f))
             {
                 return 0;
             }
-            if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+            if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
             {
-                v = new M2Own(o).unk1454.unk23C;
-                new M2Own(o).unk1454.unk23C_Set(0);
+                v = new M2Own(o).BrainPtr.unk23C;
+                new M2Own(o).BrainPtr.unk23C_Set(0);
             }
             else
             {
-                v = (int)((new M2Own(o).unk6AC & (uint)(8192)));
+                v = (int)((new M2Own(o).ButtonsHeld & (uint)(8192)));
             }
             if ((v != 0))
             {
                 if ((Weapon_CanFire(a, s) != 0))
                 {
-                    if ((new M2St(s).unk13C == 2))
+                    if ((new M2St(s).FireMode == 2))
                     {
-                        if ((new M2Own(o).unk11D8 > 0.0f))
+                        if ((new M2Own(o).StunTime > 0.0f))
                         {
                             ok = 0;
                         }
                         else
                         {
-                            if ((new M2Own(o).unk1450 != 0))
+                            if ((new M2Own(o).IsComputer != 0))
                             {
                                 ok = 1;
                             }
@@ -2155,7 +2155,7 @@ public static partial class Game
                                 }
                                 else
                                 {
-                                    t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                                    t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                                     if ((t == 0))
                                     {
                                         Audio_PlaySound2D(3405);
@@ -2175,7 +2175,7 @@ public static partial class Game
                         }
                     }
                     Actor_DispatchEvent(a, s, 4);
-                    new M2St(s).unkCB_Set((sbyte)(0));
+                    new M2St(s).AnimLoopCount_Set((sbyte)(0));
                     return 1;
                 }
             }
@@ -2198,40 +2198,40 @@ public static partial class Game
             int yy = 0;
             int xx = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            cls = Mem.U32((Gv.WeaponDefTable + (uint)(new M2Own(o).unk62E * 4)));
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            cls = Mem.U32((Gv.WeaponDefTable + (uint)(new M2Own(o).WeaponIndex * 4)));
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                if ((new M2St(s).unk13C == 2))
+                if ((new M2St(s).FireMode == 2))
                 {
-                    new M2St(s).unk13C_Set(1);
+                    new M2St(s).FireMode_Set(1);
                     if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
                     {
-                        new M2Own(o).unk7E8_Set(0);
+                        new M2Own(o).ZoomMode_Set(0);
                     }
-                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
                     {
                         goto L_b5;
                     }
                     goto L_b6;
                 }
                 L_b5: ;
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
                 return;
             }
             L_b6: ;
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                w = (int)(new M2Own(o).unk62E);
+                w = (int)(new M2Own(o).WeaponIndex);
                 if ((w < 18))
                 {
-                    if ((new M2Own(o).unk11D8 > 0.0f))
+                    if ((new M2Own(o).StunTime > 0.0f))
                     {
                         ok = 0;
                     }
                     else
                     {
-                        if ((new M2Own(o).unk1450 != 0))
+                        if ((new M2Own(o).IsComputer != 0))
                         {
                             ok = 1;
                         }
@@ -2243,7 +2243,7 @@ public static partial class Game
                             }
                             else
                             {
-                                t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)(w), default(uint), default(uint)));
+                                t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)(w), default(uint), default(uint)));
                                 if ((t == 0))
                                 {
                                     Audio_PlaySound2D(3405);
@@ -2260,10 +2260,10 @@ public static partial class Game
                     }
                     if ((ok != 0))
                     {
-                        if ((new M2St(s).unk13C == 1))
+                        if ((new M2St(s).FireMode == 1))
                         {
-                            new M2St(s).unk13C_Set(2);
-                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                            new M2St(s).FireMode_Set(2);
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
                             {
                                 Audio_PlaySound2D(3405);
                                 if ((new M2Own(o).pawn_ != 0u))
@@ -2272,22 +2272,22 @@ public static partial class Game
                                     xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
                                     Hud_SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
                                 }
-                                new M2St(s).unk13C_Set(1);
+                                new M2St(s).FireMode_Set(1);
                             }
                             else
                             {
                                 if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
                                 {
-                                    new M2Own(o).unk7E8_Set(1);
+                                    new M2Own(o).ZoomMode_Set(1);
                                 }
                             }
                         }
                         else
                         {
-                            new M2St(s).unk13C_Set(1);
+                            new M2St(s).FireMode_Set(1);
                             if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
                             {
-                                new M2Own(o).unk7E8_Set(0);
+                                new M2Own(o).ZoomMode_Set(0);
                             }
                         }
                     }
@@ -2309,40 +2309,40 @@ public static partial class Game
             uint o = 0u;
             int kind = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((((int)(new M2St(s).unkCB) != 0) && ((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0)) && (new M2St(s).unk13C == 2)))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((((int)(new M2St(s).AnimLoopCount) != 0) && ((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0)) && (new M2St(s).FireMode == 2)))
             {
-                new M2St(s).unk13C_Set(1);
-                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                new M2St(s).FireMode_Set(1);
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
                 {
-                    new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                    new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
                 }
             }
             Player_LeaveWeaponStance_0022B9B4(o);
-            new M2Own(o).unk11FC_Set(0);
-            new M2Own(o).unk698.unk168_Set((float)(0));
+            new M2Own(o).MarkerTime_Set(0);
+            new M2Own(o).ControllerPtr.unk168_Set((float)(0));
             new M2St(s).unk138_Set(0);
-            if (((new M2G(Gv.Settings_MatchRules).unk54 != 0) && ((int)(new M2Own(o).stats.unk8F) != 0)))
+            if (((new M2G(Gv.Settings_MatchRules).IsMonkeyTagMode != 0) && ((int)(new M2Own(o).PlayerEntryPtr.unk8F) != 0)))
             {
-                if (((new M2Own(o).unk6B0 & (uint)(8192)) != 0u))
+                if (((new M2Own(o).ButtonsPressed & (uint)(8192)) != 0u))
                 {
-                    switch (new M2G(Gv.Settings_MatchRules).unk70)
+                    switch (new M2G(Gv.Settings_MatchRules).MonkeySoundSet)
                     {
                     case 0:
-                        Audio_PlaySound(6305, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        Audio_PlaySound(6305, new M2Own(o).Position.P, (int)(new M2Own(o).Position.P), (-1));
                         break;
                     case 1:
-                        Audio_PlaySound(6505, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        Audio_PlaySound(6505, new M2Own(o).Position.P, (int)(new M2Own(o).Position.P), (-1));
                         break;
                     case 2:
-                        Audio_PlaySound(6405, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        Audio_PlaySound(6405, new M2Own(o).Position.P, (int)(new M2Own(o).Position.P), (-1));
                         break;
                     }
                 }
             }
             else
             {
-                if ((((kind != 1) && (kind != 7)) && ((int)(new M2St(s).unkCB) != 0)))
+                if ((((kind != 1) && (kind != 7)) && ((int)(new M2St(s).AnimLoopCount) != 0)))
                 {
                     Weapon_EquipPendingAndDraw(a, s);
                 }
@@ -2368,20 +2368,20 @@ public static partial class Game
             int t = 0;
             int st = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
             }
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -2393,7 +2393,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -2410,13 +2410,13 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    st = new M2St(s).unk13C;
+                    st = new M2St(s).FireMode;
                     if ((st == 1))
                     {
                         if (((int)(new M2Own(o).unk5F6) >= 50))
                         {
                             Actor_DispatchEvent(a, s, 5);
-                            new M2St(s).unk13C_Set(2);
+                            new M2St(s).FireMode_Set(2);
                             return;
                         }
                         Audio_PlaySound2D(3405);
@@ -2426,7 +2426,7 @@ public static partial class Game
                             xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
                             Hud_SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FE4u));
                         }
-                        new M2St(s).unk13C_Set(st);
+                        new M2St(s).FireMode_Set(st);
                         return;
                     }
                 }
@@ -2439,9 +2439,9 @@ public static partial class Game
                 }
                 return;
             }
-            x = new M2St(s).unk128;
+            x = new M2St(s).SpinSpeed;
             w = (x + (2.0f * (x * Mem.F32(Gv.FrameTime))));
-            new M2St(s).unk128_Set(w);
+            new M2St(s).SpinSpeed_Set(w);
             sub = new M2Own(o).unk698_;
             if ((w < 0.0f))
             {
@@ -2457,7 +2457,7 @@ public static partial class Game
                     goto L_A;
                 }
             }
-            v = new M2St(s).unk128;
+            v = new M2St(s).SpinSpeed;
             if ((v < 0.0f))
             {
                 new M2Sub698(sub).unk168_Set(((-v) * Mem.F32(0x800C7FF8u)));
@@ -2470,8 +2470,8 @@ public static partial class Game
             L_A: ;
             new M2Sub698(sub).unk168_Set(Mem.F32(0x800C8000u));
             L_done: ;
-            new M2St(s).unk124_Set((2.0f * (new M2St(s).unk128 * Mem.F32(Gv.FrameTime))));
-            new M2St(s).unk13C_Set(1);
+            new M2St(s).SpinAngle_Set((2.0f * (new M2St(s).SpinSpeed * Mem.F32(Gv.FrameTime))));
+            new M2St(s).FireMode_Set(1);
         }
     }
 
@@ -2545,34 +2545,34 @@ public static partial class Game
             float tm = 0f;
             o = new M2Act(a).owner_;
             pawn = new M2Own(o).pawn_;
-            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
-            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).Position.P);
+            if ((new M2Own(o).StunTime > 0.100000001f))
             {
                 ok = 1;
             }
             else
             {
-                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
                 {
-                    t = new M2Own(o).unk1454.unk23C;
-                    new M2Own(o).unk1454.unk23C_Set(0);
+                    t = new M2Own(o).BrainPtr.unk23C;
+                    new M2Own(o).BrainPtr.unk23C_Set(0);
                     ok = ((t == 0) ? 1 : 0);
                 }
                 else
                 {
-                    if (!((new M2Own(o).unk6AC & (uint)(8192)) != 0u))
+                    if (!((new M2Own(o).ButtonsHeld & (uint)(8192)) != 0u))
                     {
                         ok = 1;
                     }
                     else
                     {
-                        if ((new M2Own(o).unk11B4 != 0))
+                        if ((new M2Own(o).IsStickCaptured != 0))
                         {
                             ok = 1;
                         }
                         else
                         {
-                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
+                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0) ? 1 : 0);
                         }
                     }
                 }
@@ -2587,12 +2587,12 @@ public static partial class Game
                 return;
             }
             Math_ApproachProportional((s + 296u), ((float)(Mem.S32(0x800CF518u)) * 0.0174532942f), 0.400000006f);
-            tm = (new M2St(s).unk64 - Mem.F32(Gv.FrameTime));
-            new M2St(s).unk64_Set(tm);
+            tm = (new M2St(s).FireSoundTimer_64 - Mem.F32(Gv.FrameTime));
+            new M2St(s).FireSoundTimer_64_Set(tm);
             if ((tm <= 0.0f))
             {
-                new M2St(s).unk64_Set((tm + 1.125f));
-                if (((new M2Own(o).unk1450 == 0) && (Mem.S32(Gv.ViewCount) == 1)))
+                new M2St(s).FireSoundTimer_64_Set((tm + 1.125f));
+                if (((new M2Own(o).IsComputer == 0) && (Mem.S32(Gv.ViewCount) == 1)))
                 {
                     Weapon_FireShot(new M2Act(a).owner_, (uint)(1017), default(uint), default(uint));
                 }
@@ -2616,12 +2616,12 @@ public static partial class Game
             int ok = 0;
             int t = 0;
             o = new M2Act(a).owner_;
-            if (((int)(new M2St(s).unk34) != 4))
+            if (((int)(new M2St(s).StateId) != 4))
             {
-                new M2St(s).unk128_Set(Math_DecayToZero(new M2St(s).unk128, 0.0136135686f));
+                new M2St(s).SpinSpeed_Set(Math_DecayToZero(new M2St(s).SpinSpeed, 0.0136135686f));
             }
-            new M2St(s).unk124_Set((new M2St(s).unk124 + (2.0f * (new M2St(s).unk128 * Mem.F32(Gv.FrameTime)))));
-            v = new M2St(s).unk128;
+            new M2St(s).SpinAngle_Set((new M2St(s).SpinAngle + (2.0f * (new M2St(s).SpinSpeed * Mem.F32(Gv.FrameTime)))));
+            v = new M2St(s).SpinSpeed;
             sub = new M2Own(o).unk698_;
             if ((v < 0.0f))
             {
@@ -2637,7 +2637,7 @@ public static partial class Game
                     goto L_A;
                 }
             }
-            v = new M2St(s).unk128;
+            v = new M2St(s).SpinSpeed;
             if ((v < 0.0f))
             {
                 new M2Sub698(sub).unk168_Set(((-v) * 1.79049289f));
@@ -2650,15 +2650,15 @@ public static partial class Game
             L_A: ;
             new M2Sub698(sub).unk168_Set(1.0f);
             L_done: ;
-            if (((new M2Own(o).unk6AC & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsHeld & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -2670,7 +2670,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -2685,12 +2685,12 @@ public static partial class Game
                 }
                 if (((ok != 0) && ((int)(new M2Own(o).unk5F6) > 0)))
                 {
-                    if (!((new M2Own(o).unk122C & (uint)(99328)) != 0u))
+                    if (!((new M2Own(o).PowerupFlags & (uint)(99328)) != 0u))
                     {
                         Audio_PlaySound2D(1980);
                     }
-                    new M2Own(o).unk122C_Set((new M2Own(o).unk122C | (uint)(99328)));
-                    new M2Own(o).unk1230_Set(25.0f);
+                    new M2Own(o).PowerupFlags_Set((new M2Own(o).PowerupFlags | (uint)(99328)));
+                    new M2Own(o).PowerupTime_Set(25.0f);
                 }
             }
         }
@@ -2711,30 +2711,30 @@ public static partial class Game
             int t = 0;
             int t2 = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                if ((new M2St(s).unk13C == 2))
+                if ((new M2St(s).FireMode == 2))
                 {
-                    new M2St(s).unk13C_Set(1);
-                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                    new M2St(s).FireMode_Set(1);
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) != 0))
                     {
                         goto L_b6;
                     }
                 }
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
                 return;
             }
             L_b6: ;
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -2746,7 +2746,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -2763,19 +2763,19 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    if ((new M2St(s).unk13C != 1))
+                    if ((new M2St(s).FireMode != 1))
                     {
-                        new M2St(s).unk13C_Set(1);
+                        new M2St(s).FireMode_Set(1);
                     }
                     else
                     {
-                        if ((new M2Own(o).unk11D8 > 0.0f))
+                        if ((new M2Own(o).StunTime > 0.0f))
                         {
                             ok2 = 0;
                         }
                         else
                         {
-                            if ((new M2Own(o).unk1450 != 0))
+                            if ((new M2Own(o).IsComputer != 0))
                             {
                                 ok2 = 1;
                             }
@@ -2787,7 +2787,7 @@ public static partial class Game
                                 }
                                 else
                                 {
-                                    t2 = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                                    t2 = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                                     if ((t2 == 0))
                                     {
                                         Audio_PlaySound2D(3405);
@@ -2804,8 +2804,8 @@ public static partial class Game
                         }
                         if ((ok2 != 0))
                         {
-                            new M2St(s).unk13C_Set(2);
-                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                            new M2St(s).FireMode_Set(2);
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) != 0))
                             {
                                 goto L_b6c;
                             }
@@ -2817,7 +2817,7 @@ public static partial class Game
                                 Hud_SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8048u));
                             }
                         }
-                        new M2St(s).unk13C_Set(1);
+                        new M2St(s).FireMode_Set(1);
                     }
                 }
             }
@@ -2845,34 +2845,34 @@ public static partial class Game
             uint pawn = 0u;
             o = new M2Act(a).owner_;
             pawn = new M2Own(o).pawn_;
-            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
-            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).Position.P);
+            if ((new M2Own(o).StunTime > 0.100000001f))
             {
                 ok = 1;
             }
             else
             {
-                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
                 {
-                    t = new M2Own(o).unk1454.unk23C;
-                    new M2Own(o).unk1454.unk23C_Set(0);
+                    t = new M2Own(o).BrainPtr.unk23C;
+                    new M2Own(o).BrainPtr.unk23C_Set(0);
                     ok = ((t == 0) ? 1 : 0);
                 }
                 else
                 {
-                    if (!((new M2Own(o).unk6AC & (uint)(8192)) != 0u))
+                    if (!((new M2Own(o).ButtonsHeld & (uint)(8192)) != 0u))
                     {
                         ok = 1;
                     }
                     else
                     {
-                        if ((new M2Own(o).unk11B4 != 0))
+                        if ((new M2Own(o).IsStickCaptured != 0))
                         {
                             ok = 1;
                         }
                         else
                         {
-                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
+                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0) ? 1 : 0);
                         }
                     }
                 }
@@ -2886,11 +2886,11 @@ public static partial class Game
                 return;
             }
             Math_ApproachProportional((s + 296u), ((float)(Mem.S32(0x800CF5BCu)) * 0.0174532942f), 0.400000006f);
-            new M2St(s).unk64_Set((new M2St(s).unk64 - Mem.F32(Gv.FrameTime)));
-            if ((new M2St(s).unk64 <= 0.0f))
+            new M2St(s).FireSoundTimer_64_Set((new M2St(s).FireSoundTimer_64 - Mem.F32(Gv.FrameTime)));
+            if ((new M2St(s).FireSoundTimer_64 <= 0.0f))
             {
-                new M2St(s).unk64_Set(2.5f);
-                if (((new M2Own(o).unk1450 == 0) && (Mem.S32(Gv.ViewCount) == 1)))
+                new M2St(s).FireSoundTimer_64_Set(2.5f);
+                if (((new M2Own(o).IsComputer == 0) && (Mem.S32(Gv.ViewCount) == 1)))
                 {
                     Weapon_FireShot(new M2Act(a).owner_, (uint)(1019), default(uint), default(uint));
                 }
@@ -2995,30 +2995,30 @@ public static partial class Game
             int ok = 0;
             int t = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                if ((new M2St(s).unk13C == 2))
+                if ((new M2St(s).FireMode == 2))
                 {
-                    new M2St(s).unk13C_Set(1);
-                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                    new M2St(s).FireMode_Set(1);
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) != 0))
                     {
                         goto L_b6;
                     }
                 }
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
                 return;
             }
             L_b6: ;
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -3030,7 +3030,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -3045,14 +3045,14 @@ public static partial class Game
                         }
                     }
                 }
-                if (((ok != 0) && (new M2St(s).unk144 > 0)))
+                if (((ok != 0) && (new M2St(s).AltReady_144 > 0)))
                 {
-                    if ((new M2St(s).unk13C == 1))
+                    if ((new M2St(s).FireMode == 1))
                     {
-                        new M2St(s).unk13C_Set(2);
-                        if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                        new M2St(s).FireMode_Set(2);
+                        if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) != 0))
                         {
-                            new M2St(s).unk144_Set(1);
+                            new M2St(s).AltReady_144_Set(1);
                         }
                         else
                         {
@@ -3063,42 +3063,42 @@ public static partial class Game
                                 xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
                                 Hud_SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1.0f);
                             }
-                            new M2St(s).unk13C_Set(1);
+                            new M2St(s).FireMode_Set(1);
                         }
                     }
                     else
                     {
-                        new M2St(s).unk13C_Set(1);
-                        new M2St(s).unk144_Set(1);
+                        new M2St(s).FireMode_Set(1);
+                        new M2St(s).AltReady_144_Set(1);
                     }
                 }
             }
-            if ((new M2St(s).unk13C == 1))
+            if ((new M2St(s).FireMode == 1))
             {
-                if ((1.0f < new M2Own(o).unk11F4))
+                if ((1.0f < new M2Own(o).WeaponSpinSpeed))
                 {
-                    new M2Own(o).unk11F4_Set((new M2Own(o).unk11F4 - 0.5f));
+                    new M2Own(o).WeaponSpinSpeed_Set((new M2Own(o).WeaponSpinSpeed - 0.5f));
                 }
-                if ((new M2Own(o).unk11F4 < 1.0f))
+                if ((new M2Own(o).WeaponSpinSpeed < 1.0f))
                 {
-                    new M2Own(o).unk11F4_Set(1.0f);
+                    new M2Own(o).WeaponSpinSpeed_Set(1.0f);
                 }
             }
             else
             {
-                if ((new M2St(s).unk13C == 2))
+                if ((new M2St(s).FireMode == 2))
                 {
-                    if ((new M2Own(o).unk11F4 < 2.0f))
+                    if ((new M2Own(o).WeaponSpinSpeed < 2.0f))
                     {
-                        new M2Own(o).unk11F4_Set((new M2Own(o).unk11F4 + 0.0500000007f));
+                        new M2Own(o).WeaponSpinSpeed_Set((new M2Own(o).WeaponSpinSpeed + 0.0500000007f));
                     }
-                    if ((2.0f < new M2Own(o).unk11F4))
+                    if ((2.0f < new M2Own(o).WeaponSpinSpeed))
                     {
-                        new M2Own(o).unk11F4_Set(2.0f);
+                        new M2Own(o).WeaponSpinSpeed_Set(2.0f);
                     }
                 }
             }
-            new M2Own(o).unk11F8_Set(((new M2Own(o).unk11F8 + (int)(new M2Own(o).unk11F4)) % 8));
+            new M2Own(o).WeaponSpinFrame_Set(((new M2Own(o).WeaponSpinFrame + (int)(new M2Own(o).WeaponSpinSpeed)) % 8));
             if ((Weapon_TryFire(a, s) == 0))
             {
                 if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
@@ -3206,21 +3206,21 @@ public static partial class Game
             int ok = 0;
             int t = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
                 return;
             }
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -3232,7 +3232,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -3373,22 +3373,22 @@ public static partial class Game
             int t = 0;
             int st = 0;
             o = new M2Act(a).owner_;
-            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            kind = (int)(new M2Row18((Gv.Weapon_InfoTable + (uint)(new M2Own(o).StateId * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint))) == 0))
             {
-                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                new M2Own(o).PendingWeaponIndex_Set((short)(Player_PickFallbackWeapon(o)));
             }
             pawn = new M2Own(o).pawn_;
-            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
-            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).Position.P);
+            if (((new M2Own(o).ButtonsPressed & (uint)(16384)) != 0u))
             {
-                if ((new M2Own(o).unk11D8 > 0.0f))
+                if ((new M2Own(o).StunTime > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((new M2Own(o).unk1450 != 0))
+                    if ((new M2Own(o).IsComputer != 0))
                     {
                         ok = 1;
                     }
@@ -3400,7 +3400,7 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            t = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new M2Own(o).PlayerIndex * 400)), (uint)((int)(new M2Own(o).WeaponIndex)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 Audio_PlaySound2D(3405);
@@ -3417,10 +3417,10 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    st = new M2St(s).unk13C;
+                    st = new M2St(s).FireMode;
                     if ((st == 1))
                     {
-                        new M2St(s).unk13C_Set(2);
+                        new M2St(s).FireMode_Set(2);
                         if (((int)(new M2Own(o).unk5F6) >= 50))
                         {
                             Audio_PlaySound(2851, pv, (int)(pv), (int)(o));
@@ -3434,7 +3434,7 @@ public static partial class Game
                             xx = Mem.S32(Gv.HudMsg_FunctionNotAvailable);
                             Hud_SpawnTextLineA((Gv.PlayerPool + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B8u));
                         }
-                        new M2St(s).unk13C_Set(st);
+                        new M2St(s).FireMode_Set(st);
                         return;
                     }
                 }
@@ -3448,8 +3448,8 @@ public static partial class Game
             }
             else
             {
-                new M2St(s).unk13C_Set(1);
-                new M2St(s).unk124_Set((float)(0));
+                new M2St(s).FireMode_Set(1);
+                new M2St(s).SpinAngle_Set((float)(0));
             }
         }
     }
@@ -3869,9 +3869,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00232A38", (uint)a0, (uint)state);
             float k = Mem.F32(0x800C8108u);
-            new ActorState(state).table_Set(0x800CF298u);
-            new ActorState(state).fn108_Set(0x0022FC10u);
-            new ActorState(state).fn10C_Set(0x0023292Cu);
+            new ActorState(state).StateTablePtr_Set(0x800CF298u);
+            new ActorState(state).UpdateCallback_Set(0x0022FC10u);
+            new ActorState(state).DrawCallback_Set(0x0023292Cu);
             Mem.Set((state + (uint)292), 0);
             Mem.Set((state + (uint)296), 0);
             Mem.Set((state + (uint)304), 0);
@@ -3899,7 +3899,7 @@ public static partial class Game
             Mem.Set((owner + (uint)1932), 0);
             Mem.Set((state + (uint)292), 0);
             Mem.Set((state + (uint)296), 0);
-            if (((int)(new ActorState(state).unkCB) != 0))
+            if (((int)(new ActorState(state).AnimLoopCount) != 0))
             {
                 if ((Weapon_TryFire(actor, state) == 0))
                 {
@@ -3970,12 +3970,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00232CDC", (uint)actor, (uint)state);
             uint owner = new Actor(actor).OwnerPtr;
-            if (((int)(new ActorState(state).unkCB) != 0))
+            if (((int)(new ActorState(state).AnimLoopCount) != 0))
             {
                 if ((Weapon_TryFire(actor, state) != 0))
                 {
-                    new ActorState(state).unkCB_Set((sbyte)(0));
-                    new ActorState(state).unk35_Set((sbyte)((-1)));
+                    new ActorState(state).AnimLoopCount_Set((sbyte)(0));
+                    new ActorState(state).AnimStateId_Set((sbyte)((-1)));
                 }
                 else
                 {
@@ -4074,7 +4074,7 @@ public static partial class Game
             L_big: ;
             Mem.Set((p + (uint)360), Mem.F32(0x800C812Cu));
             L_done: ;
-            if (((int)(new ActorState(state).unkCB) != 0))
+            if (((int)(new ActorState(state).AnimLoopCount) != 0))
             {
                 Mem.Set((state + (uint)316), 2);
                 if ((Weapon_TryFire(actor, state) != 0))
@@ -4334,7 +4334,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00233534", (uint)actor, (uint)state);
-            if (((int)(new ActorState(state).unkCB) != 0))
+            if (((int)(new ActorState(state).AnimLoopCount) != 0))
             {
                 Actor_DispatchEvent(actor, state, 2);
             }
@@ -4386,22 +4386,22 @@ public static partial class Game
             p = new Actor(actor).OwnerPtr;
             if (((int)(Mem.S8((state + 52u))) == 5))
             {
-                Math_ApproachProportional(new ActorState(state).unk128.P, ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
+                Math_ApproachProportional(new ActorState(state).ClassVar_128.P, ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
             }
             else
             {
-                Math_ApproachProportional(new ActorState(state).unk128.P, 0.0f, 0.400000006f);
+                Math_ApproachProportional(new ActorState(state).ClassVar_128.P, 0.0f, 0.400000006f);
             }
             q = new PlayerA(p).unk698_;
-            if (!(((Mem.F32(new ActorState(state).unk128.P) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
+            if (!(((Mem.F32(new ActorState(state).ClassVar_128.P) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32(new ActorState(state).ClassVar_128.P)) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32(new ActorState(state).ClassVar_128.P) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
             {
-                if ((Mem.F32(new ActorState(state).unk128.P) < 0.0f))
+                if ((Mem.F32(new ActorState(state).ClassVar_128.P) < 0.0f))
                 {
-                    new Ptr168(q).unk168_Set(((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C815Cu)));
+                    new Ptr168(q).unk168_Set(((-Mem.F32(new ActorState(state).ClassVar_128.P)) * Mem.F32(0x800C815Cu)));
                 }
                 else
                 {
-                    new Ptr168(q).unk168_Set((Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8160u)));
+                    new Ptr168(q).unk168_Set((Mem.F32(new ActorState(state).ClassVar_128.P) * Mem.F32(0x800C8160u)));
                 }
             }
             else
@@ -5084,7 +5084,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024F624", (uint)a);
-                if ((new ActorInfo_v2(new Actor_v2(a).info_).kind == 8))
+                if ((new ActorInfo_v2(new Actor_v2(a).info_).Kind == 8))
                 {
                     Math_MtxMakeRotateY(_fp, Cpu.U2F((uint)(Mem.S32(0x8013B190u))));
                 }
@@ -6893,11 +6893,11 @@ public static partial class Game
                 {
                 case 3030:
                     t = new Plr24d(o).PlayerEntryPtr.unk8F;
-                    if ((((int)(t) == 1) && (new Glob24b(Gv.Settings_MatchRules).unk54 != 0)))
+                    if ((((int)(t) == 1) && (new Glob24b(Gv.Settings_MatchRules).IsMonkeyTagMode != 0)))
                     {
                         new Plr24d(o).PlayerEntryPtr.unk8F_Set((byte)(0));
                         new Plr24d(o).PlayerEntryPtr.unk90_Set(t);
-                        new Glob24b(Gv.Settings_MatchRules).unk74_Set(2);
+                        new Glob24b(Gv.Settings_MatchRules).MonkeyEvent_74_Set(2);
                         Mem.Set(0x800CE408u, Audio_IsSoundOn());
                         if ((Audio_IsSoundOn() != 0))
                         {
@@ -6908,7 +6908,7 @@ public static partial class Game
                     break;
                 case 3031:
                     new Glob24b(Gv.Settings_MatchRules).unk84_Set(0);
-                    new Glob24b(Gv.Settings_MatchRules).unk80_Set(1);
+                    new Glob24b(Gv.Settings_MatchRules).IsTokenHeld_80_Set(1);
                     new Plr24d(o).PlayerEntryPtr.unk8F_Set((byte)(1));
                     q = Mem.U32((Gv.Settings_MatchRules - (uint)6208));
                     ok = 1;
@@ -6973,7 +6973,7 @@ public static partial class Game
                                 do
                                 {
                                     q = (Mem.U32(pl) + (uint)(i * 5864));
-                                    if ((((q != 0u) && (q != o)) && ((new Glob24b(gf).unk24 == 0) || ((int)(new Plr24d(q).PlayerEntryPtr.unk92) != (int)(new Plr24d(o).PlayerEntryPtr.unk92)))))
+                                    if ((((q != 0u) && (q != o)) && ((new Glob24b(gf).IsTeamPlay == 0) || ((int)(new Plr24d(q).PlayerEntryPtr.unk92) != (int)(new Plr24d(o).PlayerEntryPtr.unk92)))))
                                     {
                                         new Plr24d(q).PowerupFlags_Set((int)((int)(new Plr24d(q).PowerupFlags) | 8192));
                                         new Plr24d(q).SlowTime_Set((float)((float)(new Plr24d(q).SlowTime) + k));

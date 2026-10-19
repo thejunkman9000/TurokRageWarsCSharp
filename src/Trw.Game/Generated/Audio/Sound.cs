@@ -387,7 +387,7 @@ public static partial class Game
             uint vv = 0u;
             for (vv = new SndMgr(m).VoicePool.v.P, i = 0; (i < 17); ++i, vv += 204u)
             {
-                if ((new SndVoice(vv).unkC == id))
+                if ((new SndVoice(vv).VoiceId == id))
                 {
                     return i;
                 }
@@ -559,24 +559,24 @@ public static partial class Game
                 c = (m + (uint)124);
                 for (i = 0; (i < 17); ++i)
                 {
-                    if ((new SndMgr(m).VoicePool.v[(int)(i)].unk4 == tag))
+                    if ((new SndMgr(m).VoicePool.v[(int)(i)].Handle == tag))
                     {
                         ++n;
                         v = (new SndMgr(m).VoicePool.v.P + (uint)(i * 204));
                         if ((i == 16))
                         {
-                            new SndVoice(v).unk4_Set((-1));
-                            new SndVoice(v).unk38_Set((short)(0));
-                            new SndVoice(v).unk3A_Set((short)((-1)));
-                            new SndVoice(v).unkC_Set((-1));
-                            new SndVoice(v).unk8_Set((-1));
+                            new SndVoice(v).Handle_Set((-1));
+                            new SndVoice(v).Priority_Set((short)(0));
+                            new SndVoice(v).SampleIndex_Set((short)((-1)));
+                            new SndVoice(v).VoiceId_Set((-1));
+                            new SndVoice(v).SndpSoundId_Set((-1));
                         }
                         else
                         {
-                            if ((new SndVoice(v).unkA0 > 0))
+                            if ((new SndVoice(v).PlayDelay > 0))
                             {
-                                new SndVoice(v).unkA0_Set(0);
-                                new SndVoice(v).unkA4_Set((int)((int)(new SndVoice(v).unkA4) & (~16)));
+                                new SndVoice(v).PlayDelay_Set(0);
+                                new SndVoice(v).Flags_Set((int)((int)(new SndVoice(v).Flags) & (~16)));
                             }
                             if (((int)(new SndCore(c).snd[(int)(i)]) != (-1)))
                             {
@@ -675,7 +675,7 @@ public static partial class Game
             SndVoice_SetTag(v, (int)(new SndMgr(m).CurrentSoundId));
             SndVoice_InitParams(v, info, (uint)(a5));
             func_00257BD4_SndMgr_Lock(m);
-            Sound_ApplyVoiceAndPlay(m, (uint)(new SndVoice(v).unkC), (uint)(0), (uint)(id));
+            Sound_ApplyVoiceAndPlay(m, (uint)(new SndVoice(v).VoiceId), (uint)(0), (uint)(id));
             func_00257BD4_SndMgr_Unlock(m);
             return 0;
         }
@@ -1666,7 +1666,7 @@ public static partial class Game
             func_00258D70_SndMgr_Lock(m);
             for (i = 0; (i < 17); ++i)
             {
-                if ((new SndMgr(m).VoicePool.v[(int)(i)].unk4 == tag))
+                if ((new SndMgr(m).VoicePool.v[(int)(i)].Handle == tag))
                 {
                     ++n;
                 }
@@ -1850,7 +1850,7 @@ public static partial class Game
             v = new SndMgr(m).VoicePool.v.P;
             for (i = 0; (i < 17); ++i)
             {
-                if ((new SndVoice(v).unkC == id))
+                if ((new SndVoice(v).VoiceId == id))
                 {
                     return i;
                 }
@@ -1957,7 +1957,7 @@ public static partial class Game
                 n = 0;
                 for (i = 0; (i < 17); ++i)
                 {
-                    if ((new SndMgr(m).VoicePool.v[(int)(i)].tag == tag))
+                    if ((new SndMgr(m).VoicePool.v[(int)(i)].SoundId == tag))
                     {
                         ++n;
                     }
@@ -2122,31 +2122,31 @@ public static partial class Game
                 new SndLink(l).prev.next__Set(new SndLink(l).next_);
                 new SndLink(l).next.prev__Set(new SndLink(l).prev_);
                 n = l;
-                new SndNode(n).body.unkC_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
-                new SndNode(n).body.unk4_Set(a3);
-                new SndNode(n).body.unk40_Set((-1));
-                new SndNode(n).body.unk3C_Set((short)(a3));
-                new SndNode(n).body.unk3A_Set((short)(SndInfo_GetSampleIndex(info)));
-                new SndNode(n).body.unk38_Set((short)((sbyte)(SndInfo_GetPriority(info))));
-                new SndNode(n).body.unk14_Set((int)((short)(SndInfo_GetDelay(info))));
-                new SndNode(n).body.unk54_Set((byte)(SndInfo_GetFalloffMode(info)));
-                new SndNode(n).body.unkA4_Set((int)((short)(SndInfo_GetFlags(info))));
-                new SndNode(n).body.unk20_Set((short)((sbyte)(SndInfo_GetByteE_0025E574(info))));
-                new SndNode(n).body.unk1C_Set(32000);
-                new SndNode(n).body.unk18_Set(32000);
-                new SndNode(n).body.unk24_Set(0);
-                new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
-                Mem.Copy(new SndNode(n).body.pos.P, pos, 12);
-                new SndNode(n).body.unk50_Set(0);
-                new SndNode(n).body.unkAC_Set(0);
+                new SndNode(n).body.VoiceId_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
+                new SndNode(n).body.Handle_Set(a3);
+                new SndNode(n).body.PendingVoiceId_Set((-1));
+                new SndNode(n).body.CallerTag_3C_Set((short)(a3));
+                new SndNode(n).body.SampleIndex_Set((short)(SndInfo_GetSampleIndex(info)));
+                new SndNode(n).body.Priority_Set((short)((sbyte)(SndInfo_GetPriority(info))));
+                new SndNode(n).body.QueueDelay_Set((int)((short)(SndInfo_GetDelay(info))));
+                new SndNode(n).body.FalloffMode_Set((byte)(SndInfo_GetFalloffMode(info)));
+                new SndNode(n).body.Flags_Set((int)((short)(SndInfo_GetFlags(info))));
+                new SndNode(n).body.InfoByteE_20_Set((short)((sbyte)(SndInfo_GetByteE_0025E574(info))));
+                new SndNode(n).body.BaseVolume_Set(32000);
+                new SndNode(n).body.Volume_Set(32000);
+                new SndNode(n).body.PitchRatio_Set(0);
+                new SndNode(n).body.StartFrame_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
+                Mem.Copy(new SndNode(n).body.Position.P, pos, 12);
+                new SndNode(n).body.SourcePosPtr_Set(0);
+                new SndNode(n).body.IsStopping_Set(0);
                 b = new SndNode(n).body.P;
                 SndVoice_SetTag(b, (int)(new SndMgr(new SndQueue(q).owner_).CurrentSoundId));
-                new SndNode(n).body.unkC0_Set(new SndMgr(new SndQueue(q).owner_).PosFlag_2BAC);
+                new SndNode(n).body.IsNonPositional_Set(new SndMgr(new SndQueue(q).owner_).PosFlag_2BAC);
                 SndVoice_InitParams(b, info, (uint)(flags));
-                pri = (int)(new SndNode(n).body.unk38);
+                pri = (int)(new SndNode(n).body.Priority);
                 for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
                 {
-                    if (((int)(new SndNode(c).body.unk38) < pri))
+                    if (((int)(new SndNode(c).body.Priority) < pri))
                     {
                         break;
                     }
@@ -2156,7 +2156,7 @@ public static partial class Game
                 new SndLink(c).prev.next__Set(new SndNode(n).link.P);
                 new SndLink(c).prev__Set(new SndNode(n).link.P);
                 Sound_Unlock(new SndQueue(q).owner_);
-                return new SndNode(n).body.unkC;
+                return new SndNode(n).body.VoiceId;
             }
             return (-1);
         }
@@ -2183,17 +2183,17 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if ((new SndNode(n).body.unk14 != 0))
+                if ((new SndNode(n).body.QueueDelay != 0))
                 {
-                    if ((new SndNode(n).body.unk14_Set((int)(new SndNode(n).body.unk14 - 1)) == 0))
+                    if ((new SndNode(n).body.QueueDelay_Set((int)(new SndNode(n).body.QueueDelay - 1)) == 0))
                     {
-                        new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
-                        new SndNode(n).body.unk40_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
-                        new SndNode(n).body.unkA0_Set(0);
+                        new SndNode(n).body.StartFrame_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
+                        new SndNode(n).body.PendingVoiceId_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
+                        new SndNode(n).body.PlayDelay_Set(0);
                     }
                     continue;
                 }
-                if (((new SndMgr(new SndQueue(q).owner_).FrameCounter - new SndNode(n).body.unk10) >= 16))
+                if (((new SndMgr(new SndQueue(q).owner_).FrameCounter - new SndNode(n).body.StartFrame) >= 16))
                 {
                     new SndNode(n).link.prev.next__Set(next);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2201,7 +2201,7 @@ public static partial class Game
                 }
                 else
                 {
-                    idx = (short)(SndPool_FindFreeVoice(new SndMgr(new SndQueue(q).owner_).VoicePool.P, (int)(new SndNode(n).body.unk3C), (int)(new SndNode(n).body.unk3A), new SndNode(n).body.unk38, 0));
+                    idx = (short)(SndPool_FindFreeVoice(new SndMgr(new SndQueue(q).owner_).VoicePool.P, (int)(new SndNode(n).body.CallerTag_3C), (int)(new SndNode(n).body.SampleIndex), new SndNode(n).body.Priority, 0));
                     if ((((int)(idx) == (-1)) || ((int)(idx) == 16)))
                     {
                         break;
@@ -2211,20 +2211,20 @@ public static partial class Game
                     {
                         break;
                     }
-                    Mem.Set((ids + (uint)(idx * 2)), alSndpAllocate(player, (uint)(Mem.S32(((bank + (uint)((int)(new SndNode(n).body.unk3A) << (int)2)) + (uint)16)))));
+                    Mem.Set((ids + (uint)(idx * 2)), alSndpAllocate(player, (uint)(Mem.S32(((bank + (uint)((int)(new SndNode(n).body.SampleIndex) << (int)2)) + (uint)16)))));
                     if (((int)(Mem.S16((ids + (uint)(idx * 2)))) == old))
                     {
                         break;
                     }
                     v = ((new SndQueue(q).owner_ + (uint)7612) + (uint)((int)(idx) * 204));
                     memcpy(v, new SndNode(n).body.P, (uint)(204));
-                    new SndVoice(v).unkC_Set(new SndNode(n).body.unk40);
-                    new SndVoice(v).unk8_Set((int)(Mem.S16((ids + (uint)(idx * 2)))));
-                    new SndVoice(v).unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
-                    new SndVoice(v).idx_Set((int)(idx));
-                    Sound_ApplyVoiceAndPlay(new SndQueue(q).owner_, (uint)(new SndVoice(v).unkC), (uint)(0), new SndVoice(v).pos.P);
-                    new SndNode(n).body.unk40_Set(old);
-                    new SndNode(n).body.unk38_Set((short)(old));
+                    new SndVoice(v).VoiceId_Set(new SndNode(n).body.PendingVoiceId);
+                    new SndVoice(v).SndpSoundId_Set((int)(Mem.S16((ids + (uint)(idx * 2)))));
+                    new SndVoice(v).StartFrame_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
+                    new SndVoice(v).Index_Set((int)(idx));
+                    Sound_ApplyVoiceAndPlay(new SndQueue(q).owner_, (uint)(new SndVoice(v).VoiceId), (uint)(0), new SndVoice(v).Position.P);
+                    new SndNode(n).body.PendingVoiceId_Set(old);
+                    new SndNode(n).body.Priority_Set((short)(old));
                     new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
                     func_00259460_SndLink_AddTail(new SndQueue(q).free.link.P, new SndNode(n).link.P);
@@ -2324,7 +2324,7 @@ public static partial class Game
             uint c = 0u;
             int pri = 0;
             src = ((new SndQueue(q).owner_ + (uint)7612) + (uint)(idx * 204));
-            if ((new SndVoice(src).unkAC == 0))
+            if ((new SndVoice(src).IsStopping == 0))
             {
                 l = new SndQueue(q).free.link.next_;
                 if ((l != new SndQueue(q).free.link.P))
@@ -2333,15 +2333,15 @@ public static partial class Game
                     new SndLink(l).next.prev__Set(new SndLink(l).prev_);
                     n = l;
                     memcpy(new SndNode(n).body.P, src, (uint)(204));
-                    new SndNode(n).body.unk40_Set(a2);
-                    new SndNode(n).body.pos.x_Set(new Vec3f(pos).x);
-                    new SndNode(n).body.pos.y_Set(new Vec3f(pos).y);
-                    new SndNode(n).body.pos.z_Set(new Vec3f(pos).z);
-                    new SndNode(n).body.unk14_Set(0);
-                    pri = (int)(new SndNode(n).body.unk38);
+                    new SndNode(n).body.PendingVoiceId_Set(a2);
+                    new SndNode(n).body.Position.x_Set(new Vec3f(pos).x);
+                    new SndNode(n).body.Position.y_Set(new Vec3f(pos).y);
+                    new SndNode(n).body.Position.z_Set(new Vec3f(pos).z);
+                    new SndNode(n).body.QueueDelay_Set(0);
+                    pri = (int)(new SndNode(n).body.Priority);
                     for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
                     {
-                        if (((int)(new SndNode(c).body.unk38) < pri))
+                        if (((int)(new SndNode(c).body.Priority) < pri))
                         {
                             break;
                         }
@@ -2370,7 +2370,7 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if ((new SndNode(n).body.unk4 == a))
+                if ((new SndNode(n).body.Handle == a))
                 {
                     new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2423,7 +2423,7 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if ((new SndNode(n).body.tag == a))
+                if ((new SndNode(n).body.SoundId == a))
                 {
                     new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2447,7 +2447,7 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if ((new SndNode(n).body.unkB4_ == a))
+                if ((new SndNode(n).body.Owner == a))
                 {
                     new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2471,7 +2471,7 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if (((new SndNode(n).body.unkA4 & mask) != 0))
+                if (((new SndNode(n).body.Flags & mask) != 0))
                 {
                     new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2495,7 +2495,7 @@ public static partial class Game
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
                 next = new SndNode(n).link.next_;
-                if ((new SndNode(n).body.tag == a))
+                if ((new SndNode(n).body.SoundId == a))
                 {
                     return 1;
                 }
@@ -2900,7 +2900,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00259F88", (uint)o, (uint)rec);
-            uint vp = new M04Emitter(o).vp.P;
+            uint vp = new M04Emitter(o).StartFrame.P;
             uint env = 0u;
             uint pp = 0u;
             int i = 0;
@@ -2914,24 +2914,24 @@ public static partial class Game
             float fs = 0f;
             uint p = 0u;
             uint q = 0u;
-            pp = new M04Emitter(o).ctx.tab2B88_;
-            new M04Emitter(o).unkC8_Set(Mem.F32(0x800C9010u));
-            if ((new M04Emitter(o).kind < 256))
+            pp = new M04Emitter(o).MgrPtr.tab2B88_;
+            new M04Emitter(o).VolumeScale_Set(Mem.F32(0x800C9010u));
+            if ((new M04Emitter(o).SoundId < 256))
             {
                 for (i = 0; (i < 31); ++i)
                 {
-                    if ((new M04Emitter(o).kind == (int)(new M04Tab((0x800D0A30u + (uint)(i * 8))).key)))
+                    if ((new M04Emitter(o).SoundId == (int)(new M04Tab((0x800D0A30u + (uint)(i * 8))).key)))
                     {
-                        new M04Emitter(o).unkC8_Set(new M04Tab((0x800D0A30u + (uint)(i * 8))).val);
+                        new M04Emitter(o).VolumeScale_Set(new M04Tab((0x800D0A30u + (uint)(i * 8))).val);
                         break;
                     }
                 }
             }
             if ((Flyby_IsInWindow() != 0))
             {
-                new M04Emitter(o).unkC8_Set((new M04Emitter(o).unkC8 * Mem.F32(0x800C9014u)));
+                new M04Emitter(o).VolumeScale_Set((new M04Emitter(o).VolumeScale * Mem.F32(0x800C9014u)));
             }
-            env = new M04Emitter(o).env2.P;
+            env = new M04Emitter(o).VolumeEnvelope.P;
             if (((int)(new M04Info(rec).envId) != (-1)))
             {
                 Mem.Copy(env, Sound_GetVolumeEnvelope(new M04Emitter(o).ctx_, (int)(new M04Info(rec).envId)), 12);
@@ -2940,7 +2940,7 @@ public static partial class Game
             {
                 new M04Rec12(env).w0_Set(F32ToTrunc16((float)(new M04Info(rec).b0F)));
             }
-            if (((!(((int)(new M04Info(rec).bits6) & 2048) != 0) && (new M04Emitter(o).resetFlag != 1)) && (new M04Emitter(o).ctx.tgt_ != 0u)))
+            if (((!(((int)(new M04Info(rec).bits6) & 2048) != 0) && (new M04Emitter(o).IsNonPositional != 1)) && (new M04Emitter(o).MgrPtr.tgt_ != 0u)))
             {
                 a = ((float)(Mem.U8((pp + (uint)0))) * Mem.F32(0x800C9018u));
                 b = ((float)(Mem.U8((pp + (uint)1))) * Mem.F32(0x800C9018u));
@@ -2960,7 +2960,7 @@ public static partial class Game
                     }
                 }
                 p = new M04VP(vp).pos.P;
-                q = (new M04Emitter(o).ctx.tgt_ + 296u);
+                q = (new M04Emitter(o).MgrPtr.tgt_ + 296u);
                 {
                     float d2 = ((((new M04Vec3(p).x - new M04Vec3(q).x) * (new M04Vec3(p).x - new M04Vec3(q).x)) + ((new M04Vec3(p).y - new M04Vec3(q).y) * (new M04Vec3(p).y - new M04Vec3(q).y))) + ((new M04Vec3(p).z - new M04Vec3(q).z) * (new M04Vec3(p).z - new M04Vec3(q).z)));
                     if ((Mem.F32(Gv.Sound_MaxDistanceSq) <= d2))
@@ -3005,13 +3005,13 @@ public static partial class Game
                 fs = (float)((float)(fs) - Trunc16ToF32(new M04Rec12(env).w2));
                 if (((int)(new M04Rec12(env).w3) == 0))
                 {
-                    new M04Emitter(o).env2Slope_Set(0.0f);
+                    new M04Emitter(o).VolumeStep_Set(0.0f);
                 }
                 else
                 {
-                    new M04Emitter(o).env2Slope_Set((fs / (float)(new M04Rec12(env).w3)));
+                    new M04Emitter(o).VolumeStep_Set((fs / (float)(new M04Rec12(env).w3)));
                 }
-                new M04Emitter(o).env2A_Set(Trunc16ToF32(new M04Rec12(env).w1));
+                new M04Emitter(o).VolumeLevel_Set(Trunc16ToF32(new M04Rec12(env).w1));
                 n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
                 if (((float)(n) < 0.0f))
                 {
@@ -3021,7 +3021,7 @@ public static partial class Game
                 {
                     t = (n * 2);
                 }
-                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * new M04Emitter(o).env2A))) * vf)));
+                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * new M04Emitter(o).VolumeLevel))) * vf)));
                 if (((float)(n) < 0.0f))
                 {
                     t = ((-n) * 2);
@@ -3326,53 +3326,53 @@ public static partial class Game
             byte pan = 0;
             uint pl = 0u;
             uint c = 0u;
-            vp = new M04Emitter(o).vp.P;
+            vp = new M04Emitter(o).StartFrame.P;
             if (!((Sound_IsStereo(new M04Emitter(o).ctx_) == 0))) goto _f0;
             c = new M04Emitter(o).ctx_;
-            alSndpSetSound(new M04Ctx(c).player.P, new M04Ctx(c).snd[(int)(new M04Emitter(o).w0)]);
+            alSndpSetSound(new M04Ctx(c).player.P, new M04Ctx(c).snd[(int)(new M04Emitter(o).Index)]);
             alSndpSetPan(new M04Ctx(c).player.P, (byte)(64));
             return;
             _f0: ;
-            if (!((new M04Emitter(o).hasEnv != 0))) goto _f1;
-            if (!(((int)(Mem.S16((new M04Emitter(o).rec.P + 8u))) > 0))) goto _f2;
-            new M04Emitter(o).rec.w4_Set((ushort)(((int)(new M04Emitter(o).rec.w4) - 1)));
+            if (!((new M04Emitter(o).HasPanEnvelope != 0))) goto _f1;
+            if (!(((int)(Mem.S16((new M04Emitter(o).PanEnvelope.P + 8u))) > 0))) goto _f2;
+            new M04Emitter(o).PanEnvelope.w4_Set((ushort)(((int)(new M04Emitter(o).PanEnvelope.w4) - 1)));
             goto _f3;
             _f2: ;
             neg = 0;
-            if (!((new M04Emitter(o).envSlope < 0.0f))) goto _f4;
+            if (!((new M04Emitter(o).PanStep < 0.0f))) goto _f4;
             neg = 1;
             _f4: ;
             if (!((neg != 0))) goto _f5;
-            if (!((new M04Emitter(o).env0 < Trunc16ToF32(new M04Emitter(o).rec.w2)))) goto _f6;
+            if (!((new M04Emitter(o).PanLevel < Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2)))) goto _f6;
             goto L_blk;
             _f6: ;
             goto _f7;
             _f5: ;
-            if (!((Trunc16ToF32(new M04Emitter(o).rec.w2) < new M04Emitter(o).env0))) goto _f8;
+            if (!((Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2) < new M04Emitter(o).PanLevel))) goto _f8;
             L_blk: ;
-            new M04Emitter(o).env0_Set((new M04Emitter(o).env0 - new M04Emitter(o).envSlope));
+            new M04Emitter(o).PanLevel_Set((new M04Emitter(o).PanLevel - new M04Emitter(o).PanStep));
             if (!((neg != 0))) goto _f9;
-            if (!((Trunc16ToF32(new M04Emitter(o).rec.w2) < new M04Emitter(o).env0))) goto _f10;
-            new M04Emitter(o).env0_Set(Trunc16ToF32(new M04Emitter(o).rec.w2));
+            if (!((Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2) < new M04Emitter(o).PanLevel))) goto _f10;
+            new M04Emitter(o).PanLevel_Set(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2));
             _f10: ;
             goto _f11;
             _f9: ;
-            if (!((new M04Emitter(o).env0 < Trunc16ToF32(new M04Emitter(o).rec.w2)))) goto _f12;
-            new M04Emitter(o).env0_Set(Trunc16ToF32(new M04Emitter(o).rec.w2));
+            if (!((new M04Emitter(o).PanLevel < Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2)))) goto _f12;
+            new M04Emitter(o).PanLevel_Set(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2));
             _f12: ;
             _f11: ;
             _f8: ;
             _f7: ;
             _f3: ;
-            new M04VP(vp).pan_Set((short)((int)(new M04Emitter(o).env0)));
+            new M04VP(vp).pan_Set((short)((int)(new M04Emitter(o).PanLevel)));
             goto L_setpan;
             _f1: ;
-            if (!((((new M04Emitter(o).flags & (uint)(1024)) != 0u) && (new M04Emitter(o).resetFlag == 0)))) goto _f13;
-            new M04VP(vp).pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
+            if (!((((new M04Emitter(o).Flags & (uint)(1024)) != 0u) && (new M04Emitter(o).IsNonPositional == 0)))) goto _f13;
+            new M04VP(vp).pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
             L_setpan: ;
             pan = Mem.U8(((vp + 24u) + (uint)1));
-            pl = new M04Emitter(o).ctx.player.P;
-            alSndpSetSound(pl, new M04Emitter(o).ctx.snd[(int)(new M04Emitter(o).w0)]);
+            pl = new M04Emitter(o).MgrPtr.player.P;
+            alSndpSetSound(pl, new M04Emitter(o).MgrPtr.snd[(int)(new M04Emitter(o).Index)]);
             alSndpSetPan(pl, (byte)((int)(pan)));
             return;
             _f13: ;
@@ -3391,28 +3391,28 @@ public static partial class Game
             float v = 0f;
             float lim = 0f;
             float r = 0f;
-            if ((new M04Chaser(o).kind != 2220))
+            if ((new M04Chaser(o).SoundId != 2220))
             {
                 return;
             }
-            if ((new M04Chaser(o).resetFlag != 0))
+            if ((new M04Chaser(o).IsNonPositional != 0))
             {
-                new M04Chaser(o).val_Set(Mem.F32(0x800C9040u));
+                new M04Chaser(o).DopplerPitch_Set(Mem.F32(0x800C9040u));
             }
-            t = new M04Chaser(o).ctx.tgt_;
-            d2 = ((((new M04Chaser(o).x - new M04Tgt(t).x) * (new M04Chaser(o).x - new M04Tgt(t).x)) + ((new M04Chaser(o).y - new M04Tgt(t).y) * (new M04Chaser(o).y - new M04Tgt(t).y))) + ((new M04Chaser(o).z - new M04Tgt(t).z) * (new M04Chaser(o).z - new M04Tgt(t).z)));
-            new M04Chaser(o).dist2_Set(d2);
-            if ((new M04Chaser(o).prevDist2 < d2))
+            t = new M04Chaser(o).MgrPtr.tgt_;
+            d2 = ((((new M04Chaser(o).Position - new M04Tgt(t).x) * (new M04Chaser(o).Position - new M04Tgt(t).x)) + ((new M04Chaser(o).y - new M04Tgt(t).y) * (new M04Chaser(o).y - new M04Tgt(t).y))) + ((new M04Chaser(o).z - new M04Tgt(t).z) * (new M04Chaser(o).z - new M04Tgt(t).z)));
+            new M04Chaser(o).DistanceSq_Set(d2);
+            if ((new M04Chaser(o).PrevDistanceSq < d2))
             {
-                new M04Chaser(o).val_Set((new M04Chaser(o).val - Mem.F32(0x800D0B28u)));
+                new M04Chaser(o).DopplerPitch_Set((new M04Chaser(o).DopplerPitch - Mem.F32(0x800D0B28u)));
                 goto L_clamp;
             }
-            if ((d2 < new M04Chaser(o).prevDist2))
+            if ((d2 < new M04Chaser(o).PrevDistanceSq))
             {
-                new M04Chaser(o).val_Set((new M04Chaser(o).val + Mem.F32(0x800D0B28u)));
+                new M04Chaser(o).DopplerPitch_Set((new M04Chaser(o).DopplerPitch + Mem.F32(0x800D0B28u)));
                 goto L_clamp;
             }
-            v = new M04Chaser(o).val;
+            v = new M04Chaser(o).DopplerPitch;
             if ((Mem.F32(Gv.SndVoice_PitchNeutral) < v))
             {
                 r = (v - Mem.F32(0x800D0B28u));
@@ -3420,7 +3420,7 @@ public static partial class Game
                 {
                     r = Mem.F32(Gv.SndVoice_PitchNeutral);
                 }
-                new M04Chaser(o).val_Set(r);
+                new M04Chaser(o).DopplerPitch_Set(r);
             }
             else
             {
@@ -3431,18 +3431,18 @@ public static partial class Game
                     {
                         r = Mem.F32(Gv.SndVoice_PitchNeutral);
                     }
-                    new M04Chaser(o).val_Set(r);
+                    new M04Chaser(o).DopplerPitch_Set(r);
                 }
             }
             return;
             L_clamp: ;
-            r = new M04Chaser(o).val;
+            r = new M04Chaser(o).DopplerPitch;
             lim = Mem.F32(0x800C9048u);
             if (((lim < r) || (C.Seq((object?)((lim = Mem.F32(0x800C904Cu))), ((r < lim) ? 1 : 0)) != 0)))
             {
-                new M04Chaser(o).val_Set(lim);
+                new M04Chaser(o).DopplerPitch_Set(lim);
             }
-            new M04Chaser(o).prevDist2_Set(new M04Chaser(o).dist2);
+            new M04Chaser(o).PrevDistanceSq_Set(new M04Chaser(o).DistanceSq);
         }
     }
 
@@ -3464,8 +3464,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025ABB4_apply", (uint)context, (uint)slot, 0u, (uint)view);
             uint channel = new Context_func_8025AB94_de(context).channels.P;
             alSndpSetSound(channel, (short)((int)(new Context_func_8025AB94_de(context).slots[(int)(slot)])));
-            value = (float)((float)(value) * new View_func_8025AB94_de(view).motion.factor);
-            value = (float)((float)(value) * new View_func_8025AB94_de(view).scale);
+            value = (float)((float)(value) * new View_func_8025AB94_de(view).StartFrame.factor);
+            value = (float)((float)(value) * new View_func_8025AB94_de(view).PitchScale);
             alSndpSetPitch(channel, value);
         }
     }
@@ -3775,25 +3775,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025B718", (uint)v, (uint)m, (uint)idx);
-            new SndVoice(v).unkC_Set((-1));
-            new SndVoice(v).unk8_Set((-1));
-            new SndVoice(v).unk3A_Set((short)((-1)));
-            new SndVoice(v).unk40_Set((-1));
-            new SndVoice(v).unkB4__Set((uint)((-1)));
-            new SndVoice(v).mgr__Set(m);
-            new SndVoice(v).idx_Set(idx);
-            new SndVoice(v).unk38_Set((short)(0));
-            new SndVoice(v).unk14_Set(0);
-            new SndVoice(v).unk58_Set(0);
-            new SndVoice(v).unk5C_Set(0);
-            new SndVoice(v).unkA4_Set(0);
-            new SndVoice(v).unkAC_Set(0);
-            new SndVoice(v).unkBC_Set(0);
-            new SndVoice(v).unkC0_Set(0);
-            new SndVoice(v).unkC4_Set(1);
-            new SndVoice(v).unk2C_Set(Mem.F32(0x800C9068u));
-            new SndVoice(v).unk34_Set(Mem.F32(0x800C9068u));
-            new SndVoice(v).unkB8_Set(Mem.F32(0x800C9068u));
+            new SndVoice(v).VoiceId_Set((-1));
+            new SndVoice(v).SndpSoundId_Set((-1));
+            new SndVoice(v).SampleIndex_Set((short)((-1)));
+            new SndVoice(v).PendingVoiceId_Set((-1));
+            new SndVoice(v).Owner_Set((uint)((-1)));
+            new SndVoice(v).MgrPtr_Set(m);
+            new SndVoice(v).Index_Set(idx);
+            new SndVoice(v).Priority_Set((short)(0));
+            new SndVoice(v).QueueDelay_Set(0);
+            new SndVoice(v).DistanceSq_Set(0);
+            new SndVoice(v).PrevDistanceSq_Set(0);
+            new SndVoice(v).Flags_Set(0);
+            new SndVoice(v).IsStopping_Set(0);
+            new SndVoice(v).IsZoneBound_Set(0);
+            new SndVoice(v).IsNonPositional_Set(0);
+            new SndVoice(v).IsDuckable_Set(1);
+            new SndVoice(v).DistanceGain_Set(Mem.F32(0x800C9068u));
+            new SndVoice(v).DopplerPitch_Set(Mem.F32(0x800C9068u));
+            new SndVoice(v).PitchScale_Set(Mem.F32(0x800C9068u));
         }
     }
 
@@ -3804,8 +3804,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025B8DC", (uint)p, (uint)idx);
             uint v = (new SndVoices(p).v.P + (uint)((short)(idx) * 204));
-            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).SndPlayer.P);
-            new SndVoices(p).v[(int)((short)(idx))].unkA4_Set((int)((int)(new SndVoices(p).v[(int)((short)(idx))].unkA4) | 8));
+            alSndpPlay(new SndMgr(new SndVoice(v).MgrPtr).SndPlayer.P);
+            new SndVoices(p).v[(int)((short)(idx))].Flags_Set((int)((int)(new SndVoices(p).v[(int)((short)(idx))].Flags) | 8));
         }
     }
 
@@ -3815,8 +3815,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025BB7C", (uint)v, (uint)pos, (uint)a);
-            Mem.Copy(new SndVoice(v).pos.P, pos, 12);
-            new SndVoice(v).unk50_Set(a);
+            Mem.Copy(new SndVoice(v).Position.P, pos, 12);
+            new SndVoice(v).SourcePosPtr_Set(a);
         }
     }
 
@@ -3826,7 +3826,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025BB9C", (uint)v, (uint)tag);
-            new SndVoice(v).tag_Set(tag);
+            new SndVoice(v).SoundId_Set(tag);
         }
     }
 
@@ -3841,36 +3841,36 @@ public static partial class Game
             short id = 0;
             SndVoice_InitPitch(o, a1, a2, default(uint));
             SndVoice_InitVolume(o, a1);
-            new M04Emitter(o).vp.pan_Set((short)(64));
+            new M04Emitter(o).StartFrame.pan_Set((short)(64));
             id = new M04EmArg(a1).id;
             if (((int)(id) != (-1)))
             {
                 r = Sound_GetPanEnvelope(new M04Emitter(o).ctx_, (int)(id));
-                Mem.Copy(new M04Emitter(o).rec.P, r, 12);
-                f = Trunc16ToF32(new M04Emitter(o).rec.w1);
+                Mem.Copy(new M04Emitter(o).PanEnvelope.P, r, 12);
+                f = Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1);
                 do
                 {
-                    new M04Emitter(o).envSlope_Set(((f - Trunc16ToF32(new M04Emitter(o).rec.w2)) / (float)(new M04Emitter(o).rec.w3)));
-                    new M04Emitter(o).env0_Set(Trunc16ToF32(new M04Emitter(o).rec.w1));
-                    new M04Emitter(o).vp.pan_Set((short)((int)(Trunc16ToF32(new M04Emitter(o).rec.w1))));
-                    new M04Emitter(o).hasEnv_Set(1);
+                    new M04Emitter(o).PanStep_Set(((f - Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2)) / (float)(new M04Emitter(o).PanEnvelope.w3)));
+                    new M04Emitter(o).PanLevel_Set(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1));
+                    new M04Emitter(o).StartFrame.pan_Set((short)((int)(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1))));
+                    new M04Emitter(o).HasPanEnvelope_Set(1);
                     return;
                 }
                 while ((0 != 0));
             }
-            new M04Emitter(o).hasEnv_Set(0);
-            if ((new M04Emitter(o).kind < 256))
+            new M04Emitter(o).HasPanEnvelope_Set(0);
+            if ((new M04Emitter(o).SoundId < 256))
             {
-                if (((new M04Emitter(o).resetFlag == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
+                if (((new M04Emitter(o).IsNonPositional == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
-                    new M04Emitter(o).vp.pan_Set((short)(new M04Emitter(o).ctx.defaultPan));
+                    new M04Emitter(o).StartFrame.pan_Set((short)(new M04Emitter(o).MgrPtr.defaultPan));
                 }
             }
             else
             {
-                if (((new M04Emitter(o).resetFlag == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
+                if (((new M04Emitter(o).IsNonPositional == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
-                    new M04Emitter(o).vp.pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
+                    new M04Emitter(o).StartFrame.pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
                 }
             }
         }
@@ -4038,9 +4038,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C4D4", (uint)v);
-            uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
-            alSndpSetPitch(new SndMgr(m).SndPlayer.P, ((pitch * new SndVoice(v).unk34) * new SndVoice(v).unkB8));
+            uint m = new SndVoice(v).MgrPtr;
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).Index)])));
+            alSndpSetPitch(new SndMgr(m).SndPlayer.P, ((pitch * new SndVoice(v).DopplerPitch) * new SndVoice(v).PitchScale));
         }
     }
 
@@ -4050,8 +4050,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C544", (uint)v, (uint)pan);
-            uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            uint m = new SndVoice(v).MgrPtr;
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).Index)])));
             alSndpSetPan(new SndMgr(m).SndPlayer.P, (byte)((pan & 255)));
         }
     }
@@ -4062,8 +4062,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C598", (uint)v);
-            uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            uint m = new SndVoice(v).MgrPtr;
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).Index)])));
             return alSndpGetState(new SndMgr(m).SndPlayer.P);
         }
     }
@@ -4074,7 +4074,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C5DC", (uint)v);
-            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).SndPlayer.P);
+            alSndpPlay(new SndMgr(new SndVoice(v).MgrPtr).SndPlayer.P);
         }
     }
 
@@ -4084,17 +4084,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C5FC", (uint)v);
-            uint m = new SndVoice(v).mgr_;
-            new SndVoice(v).unkAC_Set(1);
-            new SndVoice(v).unk50_Set(0);
-            if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
+            uint m = new SndVoice(v).MgrPtr;
+            new SndVoice(v).IsStopping_Set(1);
+            new SndVoice(v).SourcePosPtr_Set(0);
+            if ((new SndVoice(v).StartFrame != new SndMgr(m).FrameCounter))
             {
-                alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+                alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).Index)])));
                 if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                 {
                     alSndpStop(new SndMgr(m).SndPlayer.P);
                 }
-                new SndVoice(v).unk4_Set((-1));
+                new SndVoice(v).Handle_Set((-1));
             }
         }
     }
@@ -4105,16 +4105,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C67C", (uint)v);
-            uint m = new SndVoice(v).mgr_;
+            uint m = new SndVoice(v).MgrPtr;
             uint c = (m + (uint)124);
-            alSndpDeallocate(new SndMgr(m).SndPlayer.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
-            new SndCore(c).snd.Set((int)(new SndVoice(v).idx), (short)((-1)));
-            new SndVoice(v).unk38_Set((short)(0));
-            new SndVoice(v).unkC_Set((-1));
-            new SndVoice(v).unk8_Set((-1));
-            new SndVoice(v).tag_Set((-1));
-            new SndVoice(v).unk3A_Set((short)((-1)));
-            new SndVoice(v).unkB4__Set((uint)((-1)));
+            alSndpDeallocate(new SndMgr(m).SndPlayer.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).Index)])));
+            new SndCore(c).snd.Set((int)(new SndVoice(v).Index), (short)((-1)));
+            new SndVoice(v).Priority_Set((short)(0));
+            new SndVoice(v).VoiceId_Set((-1));
+            new SndVoice(v).SndpSoundId_Set((-1));
+            new SndVoice(v).SoundId_Set((-1));
+            new SndVoice(v).SampleIndex_Set((short)((-1)));
+            new SndVoice(v).Owner_Set((uint)((-1)));
         }
     }
 
@@ -4126,37 +4126,37 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025C6F4", (uint)v, (uint)info);
             float d = 0f;
             short id = 0;
-            new SndVoice(v).pan_Set((short)(64));
+            new SndVoice(v).Pan_Set((short)(64));
             id = new SndInfo(info).wC;
             if (((int)(id) != (-1)))
             {
-                Mem.Copy(new SndVoice(v).env.P, Sound_GetPanEnvelope(new SndVoice(v).mgr_, (int)(id)), 12);
-                d = Trunc16ToF32(new SndVoice(v).env.a);
+                Mem.Copy(new SndVoice(v).PanEnvelope.P, Sound_GetPanEnvelope(new SndVoice(v).MgrPtr, (int)(id)), 12);
+                d = Trunc16ToF32(new SndVoice(v).PanEnvelope.a);
                 do
                 {
-                    new SndVoice(v).unk9C_Set(((d - Trunc16ToF32(new SndVoice(v).env.b)) / (float)(new SndVoice(v).env.c)));
-                    new SndVoice(v).unk98_Set(Trunc16ToF32(new SndVoice(v).env.a));
-                    new SndVoice(v).pan_Set((short)(int)(Trunc16ToF32(new SndVoice(v).env.a)));
-                    new SndVoice(v).unk88_Set(1);
+                    new SndVoice(v).PanStep_Set(((d - Trunc16ToF32(new SndVoice(v).PanEnvelope.b)) / (float)(new SndVoice(v).PanEnvelope.c)));
+                    new SndVoice(v).PanLevel_Set(Trunc16ToF32(new SndVoice(v).PanEnvelope.a));
+                    new SndVoice(v).Pan_Set((short)(int)(Trunc16ToF32(new SndVoice(v).PanEnvelope.a)));
+                    new SndVoice(v).HasPanEnvelope_Set(1);
                     return;
                 }
                 while ((0 != 0));
             }
             else
             {
-                new SndVoice(v).unk88_Set(0);
-                if ((new SndVoice(v).tag < 256))
+                new SndVoice(v).HasPanEnvelope_Set(0);
+                if ((new SndVoice(v).SoundId < 256))
                 {
-                    if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
+                    if (((new SndVoice(v).IsNonPositional == 0) && (Sound_IsStereo(new SndVoice(v).MgrPtr) != 0)))
                     {
-                        new SndVoice(v).pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).mgr_).CurrentPan)));
+                        new SndVoice(v).Pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).MgrPtr).CurrentPan)));
                     }
                 }
                 else
                 {
-                    if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
+                    if (((new SndVoice(v).IsNonPositional == 0) && (Sound_IsStereo(new SndVoice(v).MgrPtr) != 0)))
                     {
-                        new SndVoice(v).pan_Set((short)(Sound_ComputePan(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).ListenerPtr), default(uint), default(uint))));
+                        new SndVoice(v).Pan_Set((short)(Sound_ComputePan(new SndVoice(v).Position.P, (uint)(new SndMgr(new SndVoice(v).MgrPtr).ListenerPtr), default(uint), default(uint))));
                     }
                 }
             }
@@ -4930,17 +4930,17 @@ public static partial class Game
             uint r = 0u;
             uint n = 0u;
             int res = 0;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).MgrPtr).SongIndexTablePtr, new SndMgr(new SndSeq(s).MgrPtr).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
-                new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
-                new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
-                if ((new SndSeq(s).unk30 <= 0.0f))
+                r = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, i);
+                new SndSeq(s).SongVolume_Set(new SndNodeRec(n).w0);
+                new SndSeq(s).FadeTime_Set(Trunc16ToF32(new SndNodeRec(n).h4));
+                if ((new SndSeq(s).FadeTime <= 0.0f))
                 {
-                    new SndSeq(s).unk30_Set(Mem.F32(0x800C90C0u));
+                    new SndSeq(s).FadeTime_Set(Mem.F32(0x800C90C0u));
                 }
                 res = (int)(r);
             }
@@ -4948,7 +4948,7 @@ public static partial class Game
             {
                 res = 0;
             }
-            new SndSeq(s).unkC_Set(res);
+            new SndSeq(s).SongDataPtr_Set(res);
             return ((res != 0) ? 1 : 0);
         }
     }
@@ -4960,16 +4960,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025D470_SeqStart_", (uint)s);
             int i = 0;
             float f = 0f;
-            alCSeqNew(new SndSeq(s).unk10, (uint)(new SndSeq(s).unkC));
-            alCSPSetSeq(new SndSeq(s).csp, new SndSeq(s).unk10);
-            alCSPSetBank(new SndSeq(s).csp, (uint)(Mem.S32((new SndSeq(s).unk8_ + (uint)(1 * 4)))));
+            alCSeqNew(new SndSeq(s).CSeqPtr, (uint)(new SndSeq(s).SongDataPtr));
+            alCSPSetSeq(new SndSeq(s).PlayerPtr, new SndSeq(s).CSeqPtr);
+            alCSPSetBank(new SndSeq(s).PlayerPtr, (uint)(Mem.S32((new SndSeq(s).unk8_ + (uint)(1 * 4)))));
             for (i = 0; (i < 20); ++i)
             {
-                alCSPSetChlFXMix(new SndSeq(s).csp, (byte)(i), (byte)(0));
+                alCSPSetChlFXMix(new SndSeq(s).PlayerPtr, (byte)(i), (byte)(0));
             }
-            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90C4u)));
-            alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C90C8u))));
-            new SndSeq(s).vol_Set(f);
+            f = ((float)(new SndSeq(s).SongVolume) * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C90C4u)));
+            alCSPSetVol(new SndSeq(s).PlayerPtr, (short)(int)((f * Mem.F32(0x800C90C8u))));
+            new SndSeq(s).Volume_Set(f);
         }
     }
 
@@ -4982,90 +4982,90 @@ public static partial class Game
             float t = 0f;
             int c40 = 0;
             c40 = 64;
-            switch (new SndSeq(s).unk18) { case 32: goto _f1; case 256: goto _f2; case 64: goto _f3; case 128: goto _f4; case 16: goto _f5; default: goto _f6; }
+            switch (new SndSeq(s).State) { case 32: goto _f1; case 256: goto _f2; case 64: goto _f3; case 128: goto _f4; case 16: goto _f5; default: goto _f6; }
             _f1: ;
-            if (!(((new SndSeq(s).unk1C & 4) != 0))) goto _f7;
-            new SndSeq(s).unk1C_Set(0);
+            if (!(((new SndSeq(s).Flags & 4) != 0))) goto _f7;
+            new SndSeq(s).Flags_Set(0);
             Mem.Set(Gv.Seq_PlayingSongId, (-1));
-            if (!((new SndSeq(s).unk28 >= 0))) goto _f8;
-            new SndSeq(s).unk18_Set(64);
+            if (!((new SndSeq(s).SongId >= 0))) goto _f8;
+            new SndSeq(s).State_Set(64);
             return;
             _f8: ;
-            new SndSeq(s).unk18_Set(16);
+            new SndSeq(s).State_Set(16);
             return;
             _f7: ;
             return;
             _f2: ;
-            if (!(((new SndSeq(s).unk1C & 8) != 0))) goto _f9;
-            new SndSeq(s).unk18_Set(128);
-            new SndSeq(s).unk1C_Set(0);
+            if (!(((new SndSeq(s).Flags & 8) != 0))) goto _f9;
+            new SndSeq(s).State_Set(128);
+            new SndSeq(s).Flags_Set(0);
             return;
             _f9: ;
             Mem.Set(0x800D0D94u, (Mem.S32(0x800D0D94u) + 1));
             if (!((Mem.S32(0x800D0D94u) >= 10))) goto _f10;
             Mem.Set(Gv.Seq_PlayingSongId, (-1));
-            new SndSeq(s).unk18_Set(64);
+            new SndSeq(s).State_Set(64);
             return;
             _f10: ;
             goto _f0;
             _f3: ;
-            if (!((new SndSeq(s).unk28 != (-1)))) goto _f11;
-            if (!(!(func_0025D470_SeqLoad_(s, new SndSeq(s).unk28) != 0))) goto _f12;
-            new SndSeq(s).unk18_Set(256);
+            if (!((new SndSeq(s).SongId != (-1)))) goto _f11;
+            if (!(!(func_0025D470_SeqLoad_(s, new SndSeq(s).SongId) != 0))) goto _f12;
+            new SndSeq(s).State_Set(256);
             Mem.Set(0x800D0D94u, 0);
-            new SndSeq(s).unk1C_Set(0);
+            new SndSeq(s).Flags_Set(0);
             return;
             _f12: ;
-            new SndSeq(s).unk18_Set(128);
-            new SndSeq(s).unk4_Set(1);
+            new SndSeq(s).State_Set(128);
+            new SndSeq(s).IsStarted_4_Set(1);
             _f4: ;
             func_0025D470_SeqStart_(s);
-            alCSPPlay(new SndSeq(s).csp);
-            new SndSeq(s).unk1C_Set(0);
-            new SndSeq(s).unk18_Set(16);
-            Mem.Set(Gv.Seq_PlayingSongId, new SndSeq(s).unk28);
+            alCSPPlay(new SndSeq(s).PlayerPtr);
+            new SndSeq(s).Flags_Set(0);
+            new SndSeq(s).State_Set(16);
+            Mem.Set(Gv.Seq_PlayingSongId, new SndSeq(s).SongId);
             return;
             _f11: ;
-            new SndSeq(s).unk18_Set(16);
+            new SndSeq(s).State_Set(16);
             goto _f0;
             _f5: ;
             _f6: ;
-            if (!(((Mem.S32(Gv.Seq_PlayingSongId) > 0) && (alCSPGetState(new SndSeq(s).csp) == 0)))) goto _f13;
+            if (!(((Mem.S32(Gv.Seq_PlayingSongId) > 0) && (alCSPGetState(new SndSeq(s).PlayerPtr) == 0)))) goto _f13;
             Mem.Set(Gv.Seq_PlayingSongId, 0);
-            new SndSeq(s).unk28_Set(0);
+            new SndSeq(s).SongId_Set(0);
             goto _f14;
             _f13: ;
-            if (!((new SndSeq(s).unk38 != 0))) goto _f15;
-            vol = (float)(new SndSeq(s).unk24);
-            vol = (vol * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90CCu)));
-            vol = (vol * new SndSeq(s).unk3C);
+            if (!((new SndSeq(s).IsDucked != 0))) goto _f15;
+            vol = (float)(new SndSeq(s).SongVolume);
+            vol = (vol * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C90CCu)));
+            vol = (vol * new SndSeq(s).DuckLevel);
             goto L_setvol;
             _f15: ;
-            vol = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90D0u)));
-            if (!((new SndMgr(new SndSeq(s).owner_).IsMuffled != 0))) goto _f16;
+            vol = ((float)(new SndSeq(s).SongVolume) * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C90D0u)));
+            if (!((new SndMgr(new SndSeq(s).MgrPtr).IsMuffled != 0))) goto _f16;
             vol = (float)((float)(vol) * Mem.F32(0x800C90D4u));
             _f16: ;
-            if (!((vol != new SndSeq(s).vol))) goto _f17;
+            if (!((vol != new SndSeq(s).Volume))) goto _f17;
             L_setvol: ;
-            alCSPSetVol(new SndSeq(s).csp, (short)(int)((vol * Mem.F32(0x800C90D8u))));
-            new SndSeq(s).vol_Set(vol);
+            alCSPSetVol(new SndSeq(s).PlayerPtr, (short)(int)((vol * Mem.F32(0x800C90D8u))));
+            new SndSeq(s).Volume_Set(vol);
             _f17: ;
             _f14: ;
-            if (!((new SndSeq(s).unk28 != Mem.S32(Gv.Seq_PlayingSongId)))) goto _f18;
+            if (!((new SndSeq(s).SongId != Mem.S32(Gv.Seq_PlayingSongId)))) goto _f18;
             if (!((Mem.S32(Gv.Seq_PlayingSongId) > 0))) goto _f19;
-            t = new SndSeq(s).unk30;
-            new SndSeq(s).unk1C_Set(2);
-            new SndSeq(s).unk18_Set(32);
-            new SndSeq(s).unk20_Set((int)((new SndSeq(s).vol * Mem.F32(0x800C90DCu))));
+            t = new SndSeq(s).FadeTime;
+            new SndSeq(s).Flags_Set(2);
+            new SndSeq(s).State_Set(32);
+            new SndSeq(s).FadeVolume_Set((int)((new SndSeq(s).Volume * Mem.F32(0x800C90DCu))));
             if (!(!(Mem.F32(0x800C90E0u) <= t))) goto _f20;
             t = Mem.F32(0x800C90E0u);
             _f20: ;
-            new SndSeq(s).unk30_Set(t);
-            new SndSeq(s).unk34_Set(((float)(new SndSeq(s).unk20) / (t * Mem.F32(0x800C90E4u))));
+            new SndSeq(s).FadeTime_Set(t);
+            new SndSeq(s).FadeStep_Set(((float)(new SndSeq(s).FadeVolume) / (t * Mem.F32(0x800C90E4u))));
             return;
             _f19: ;
-            new SndSeq(s).unk1C_Set(0);
-            new SndSeq(s).unk18_Set(64);
+            new SndSeq(s).Flags_Set(0);
+            new SndSeq(s).State_Set(64);
             _f18: ;
             goto _f0;
             _f0: ;
@@ -5081,26 +5081,26 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0025D864", (uint)s, (uint)m);
-                new SndSeq(s).owner__Set(m);
-                new SndSeq(s).unk18_Set(16);
-                new SndSeq(s).unk28_Set((-1));
-                new SndSeq(s).unk1C_Set(0);
+                new SndSeq(s).MgrPtr_Set(m);
+                new SndSeq(s).State_Set(16);
+                new SndSeq(s).SongId_Set((-1));
+                new SndSeq(s).Flags_Set(0);
                 new SeqpCfg(_fp).maxVoices_Set(20);
                 new SeqpCfg(_fp).maxEvents_Set(192);
                 new SeqpCfg(_fp).maxChannels_Set((byte)(20));
-                new SeqpCfg(_fp).heap__Set(new SndMgr(new SndSeq(s).owner_).Heap.P);
+                new SeqpCfg(_fp).heap__Set(new SndMgr(new SndSeq(s).MgrPtr).Heap.P);
                 new SeqpCfg(_fp).initOsc_Set(0u);
                 new SeqpCfg(_fp).updateOsc_Set(0u);
                 new SeqpCfg(_fp).stopOsc_Set(0u);
-                new SndSeq(s).csp_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).Heap.P, 1, 124));
-                alCSPNew(new SndSeq(s).csp, _fp);
-                new SndSeq(s).unk10_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).Heap.P, 1, 248));
-                new SndSeq(s).unk24_Set(50);
-                new SndSeq(s).unk38_Set(0);
-                new SndSeq(s).unk30_Set(Mem.F32(0x800C90E8u));
-                new SndSeq(s).unk34_Set(Mem.F32(0x800C90ECu));
-                new SndSeq(s).unk3C_Set(Mem.F32(0x800C90E8u));
-                new SndSeq(s).unk40.f_Set(Mem.F32(0x800C90E8u));
+                new SndSeq(s).PlayerPtr_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).MgrPtr).Heap.P, 1, 124));
+                alCSPNew(new SndSeq(s).PlayerPtr, _fp);
+                new SndSeq(s).CSeqPtr_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).MgrPtr).Heap.P, 1, 248));
+                new SndSeq(s).SongVolume_Set(50);
+                new SndSeq(s).IsDucked_Set(0);
+                new SndSeq(s).FadeTime_Set(Mem.F32(0x800C90E8u));
+                new SndSeq(s).FadeStep_Set(Mem.F32(0x800C90ECu));
+                new SndSeq(s).DuckLevel_Set(Mem.F32(0x800C90E8u));
+                new SndSeq(s).DuckTarget.f_Set(Mem.F32(0x800C90E8u));
             }
         }
         finally { Stack.Free(28); }
@@ -5115,23 +5115,23 @@ public static partial class Game
             float cur = 0f;
             float tgt = 0f;
             float n = 0f;
-            if (((new SndSeq(s).unk1C & 2) != 0))
+            if (((new SndSeq(s).Flags & 2) != 0))
             {
-                alCSPSetVol(new SndSeq(s).csp, Mem.S16(((s + 32u) + (uint)(1 * 2))));
-                new SndSeq(s).unk20_Set((int)(((float)(new SndSeq(s).unk20) - new SndSeq(s).unk34)));
-                if ((new SndSeq(s).unk20 <= 0))
+                alCSPSetVol(new SndSeq(s).PlayerPtr, Mem.S16(((s + 32u) + (uint)(1 * 2))));
+                new SndSeq(s).FadeVolume_Set((int)(((float)(new SndSeq(s).FadeVolume) - new SndSeq(s).FadeStep)));
+                if ((new SndSeq(s).FadeVolume <= 0))
                 {
-                    new SndSeq(s).unk20_Set(0);
-                    alCSPStop(new SndSeq(s).csp);
-                    new SndSeq(s).unk1C_Set((int)((int)(new SndSeq(s).unk1C) | 4));
+                    new SndSeq(s).FadeVolume_Set(0);
+                    alCSPStop(new SndSeq(s).PlayerPtr);
+                    new SndSeq(s).Flags_Set((int)((int)(new SndSeq(s).Flags) | 4));
                 }
             }
             else
             {
-                if ((new SndSeq(s).unk38 != 0))
+                if ((new SndSeq(s).IsDucked != 0))
                 {
-                    cur = new SndSeq(s).unk3C;
-                    tgt = new SndSeq(s).unk40.f;
+                    cur = new SndSeq(s).DuckLevel;
+                    tgt = new SndSeq(s).DuckTarget.f;
                     if ((tgt < cur))
                     {
                         n = (cur - Mem.F32(0x800C90F0u));
@@ -5139,7 +5139,7 @@ public static partial class Game
                         {
                             n = tgt;
                         }
-                        new SndSeq(s).unk3C_Set(n);
+                        new SndSeq(s).DuckLevel_Set(n);
                     }
                     else
                     {
@@ -5150,7 +5150,7 @@ public static partial class Game
                             {
                                 n = tgt;
                             }
-                            new SndSeq(s).unk3C_Set(n);
+                            new SndSeq(s).DuckLevel_Set(n);
                         }
                     }
                 }
@@ -5168,17 +5168,17 @@ public static partial class Game
             uint r = 0u;
             uint n = 0u;
             int res = 0;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).MgrPtr).SongIndexTablePtr, new SndMgr(new SndSeq(s).MgrPtr).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
-                new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
-                new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
-                if ((new SndSeq(s).unk30 <= 0.0f))
+                r = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, i);
+                new SndSeq(s).SongVolume_Set(new SndNodeRec(n).w0);
+                new SndSeq(s).FadeTime_Set(Trunc16ToF32(new SndNodeRec(n).h4));
+                if ((new SndSeq(s).FadeTime <= 0.0f))
                 {
-                    new SndSeq(s).unk30_Set(Mem.F32(0x800C90F8u));
+                    new SndSeq(s).FadeTime_Set(Mem.F32(0x800C90F8u));
                 }
                 res = (int)(r);
             }
@@ -5186,7 +5186,7 @@ public static partial class Game
             {
                 res = 0;
             }
-            new SndSeq(s).unkC_Set(res);
+            new SndSeq(s).SongDataPtr_Set(res);
             return ((res != 0) ? 1 : 0);
         }
     }
@@ -5198,17 +5198,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025DAEC", (uint)s);
             float f = 0f;
-            new SndSeq(s).unk1C_Set(2);
-            new SndSeq(s).unk18_Set(32);
-            new SndSeq(s).unk20_Set((int)((new SndSeq(s).vol * Mem.F32(0x800C90FCu))));
-            f = new SndSeq(s).unk30;
+            new SndSeq(s).Flags_Set(2);
+            new SndSeq(s).State_Set(32);
+            new SndSeq(s).FadeVolume_Set((int)((new SndSeq(s).Volume * Mem.F32(0x800C90FCu))));
+            f = new SndSeq(s).FadeTime;
             if (!(Mem.F32(0x800C9100u) <= f))
             {
                 f = Mem.F32(0x800C9100u);
             }
-            new SndSeq(s).unk30_Set(f);
-            new SndSeq(s).unk28_Set(0);
-            new SndSeq(s).unk34_Set(((float)(new SndSeq(s).unk20) / (f * Mem.F32(0x800C9104u))));
+            new SndSeq(s).FadeTime_Set(f);
+            new SndSeq(s).SongId_Set(0);
+            new SndSeq(s).FadeStep_Set(((float)(new SndSeq(s).FadeVolume) / (f * Mem.F32(0x800C9104u))));
         }
     }
 
@@ -5218,8 +5218,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DB54", (uint)s);
-            new SndSeq(s).unk38_Set(1);
-            new SndSeq(s).unk40.i_Set(0);
+            new SndSeq(s).IsDucked_Set(1);
+            new SndSeq(s).DuckTarget.i_Set(0);
         }
     }
 
@@ -5229,8 +5229,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DB64", (uint)o);
-            new P3Obj38(o).unk38_Set(0);
-            new P3Obj38(o).unk40_Set(Mem.F32(0x800C9108u));
+            new P3Obj38(o).IsDucked_Set(0);
+            new P3Obj38(o).DuckTarget_Set(Mem.F32(0x800C9108u));
         }
     }
 
@@ -5240,8 +5240,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DB78", (uint)s);
-            new SndSeq(s).unk28_Set((-1));
-            alCSPStop(new SndSeq(s).csp);
+            new SndSeq(s).SongId_Set((-1));
+            alCSPStop(new SndSeq(s).PlayerPtr);
         }
     }
 
@@ -5254,17 +5254,17 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             uint n = 0u;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).MgrPtr).SongIndexTablePtr, new SndMgr(new SndSeq(s).MgrPtr).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
-                new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
-                new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
-                if ((new SndSeq(s).unk30 <= 0.0f))
+                r = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).MgrPtr).SongNodePtr, i);
+                new SndSeq(s).SongVolume_Set(new SndNodeRec(n).w0);
+                new SndSeq(s).FadeTime_Set(Trunc16ToF32(new SndNodeRec(n).h4));
+                if ((new SndSeq(s).FadeTime <= 0.0f))
                 {
-                    new SndSeq(s).unk30_Set(Mem.F32(0x800C910Cu));
+                    new SndSeq(s).FadeTime_Set(Mem.F32(0x800C910Cu));
                 }
                 return r;
             }
@@ -5278,8 +5278,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DC54", (uint)s);
-            alCSPSetVol(new SndSeq(s).csp, (short)(int)((vol * Mem.F32(0x800C9110u))));
-            new SndSeq(s).vol_Set(vol);
+            alCSPSetVol(new SndSeq(s).PlayerPtr, (short)(int)((vol * Mem.F32(0x800C9110u))));
+            new SndSeq(s).Volume_Set(vol);
         }
     }
 
@@ -5290,26 +5290,26 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025DCA8", (uint)s);
             float f = 0f;
-            if ((new SndSeq(s).unk38 != 0))
+            if ((new SndSeq(s).IsDucked != 0))
             {
-                f = (float)(new SndSeq(s).unk24);
-                f = (float)((float)(f) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9114u)));
-                f = (float)((float)(f) * new SndSeq(s).unk3C);
+                f = (float)(new SndSeq(s).SongVolume);
+                f = (float)((float)(f) * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C9114u)));
+                f = (float)((float)(f) * new SndSeq(s).DuckLevel);
             }
             else
             {
-                f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9118u)));
-                if ((new SndMgr(new SndSeq(s).owner_).IsMuffled != 0))
+                f = ((float)(new SndSeq(s).SongVolume) * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C9118u)));
+                if ((new SndMgr(new SndSeq(s).MgrPtr).IsMuffled != 0))
                 {
                     f = (float)((float)(f) * Mem.F32(0x800C911Cu));
                 }
-                if ((f == new SndSeq(s).vol))
+                if ((f == new SndSeq(s).Volume))
                 {
                     return;
                 }
             }
-            alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C9120u))));
-            new SndSeq(s).vol_Set(f);
+            alCSPSetVol(new SndSeq(s).PlayerPtr, (short)(int)((f * Mem.F32(0x800C9120u))));
+            new SndSeq(s).Volume_Set(f);
         }
     }
 
@@ -5321,16 +5321,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025DD80", (uint)s);
             int i = 0;
             float f = 0f;
-            alCSeqNew(new SndSeq(s).unk10, (uint)(new SndSeq(s).unkC));
-            alCSPSetSeq(new SndSeq(s).csp, new SndSeq(s).unk10);
-            alCSPSetBank(new SndSeq(s).csp, (uint)(Mem.S32((new SndSeq(s).unk8_ + (uint)(1 * 4)))));
+            alCSeqNew(new SndSeq(s).CSeqPtr, (uint)(new SndSeq(s).SongDataPtr));
+            alCSPSetSeq(new SndSeq(s).PlayerPtr, new SndSeq(s).CSeqPtr);
+            alCSPSetBank(new SndSeq(s).PlayerPtr, (uint)(Mem.S32((new SndSeq(s).unk8_ + (uint)(1 * 4)))));
             for (i = 0; (i < 20); ++i)
             {
-                alCSPSetChlFXMix(new SndSeq(s).csp, (byte)(i), (byte)(0));
+                alCSPSetChlFXMix(new SndSeq(s).PlayerPtr, (byte)(i), (byte)(0));
             }
-            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9124u)));
-            alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C9128u))));
-            new SndSeq(s).vol_Set(f);
+            f = ((float)(new SndSeq(s).SongVolume) * (new SndMgr(new SndSeq(s).MgrPtr).MusicVolume * Mem.F32(0x800C9124u)));
+            alCSPSetVol(new SndSeq(s).PlayerPtr, (short)(int)((f * Mem.F32(0x800C9128u))));
+            new SndSeq(s).Volume_Set(f);
         }
     }
 

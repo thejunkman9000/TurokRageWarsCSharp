@@ -987,7 +987,7 @@ func_002446D0	0x002446D0	Collision_RayCastRadius	World/Collision.cs	medium	Colli
 func_0024490C	0x0024490C	Collision_CheckActorMove	World/Collision.cs	medium	casts an actor shape (extents 0024E454/0024D388/0024D274/0024E410) between two points with a profile; the solid-push code uses it to see if an actor can be lifted
 func_00244B58	0x00244B58	Collision_RayCastOnce_00244B58	World/Collision.cs	low	one test/respond pass with a caller-supplied work record (ClearContacts, TestMove, RecordContact, RespondToHit)
 func_00244D60	0x00244D60	Flyby_Reset	World/Flyby.cs	medium	zeroes the flyby control block *D_800E2830 (ids -1)
-func_00244E48	0x00244E48	Flyby_OnWindowStart	World/Flyby.cs	low	called once the clock passes f30: resets player 0 view state, loads sound bank id fD8 if needed, marks started (f40)
+func_00244E48	0x00244E48	Flyby_OnWindowStart	World/Flyby.cs	low	called once the clock passes f30: resets player 0 view state, loads level fD8 (the pending level id) if needed, marks started (f40)
 func_00244FA4	0x00244FA4	Flyby_RunPending	World/Flyby.cs	low	if a pending id (fDC) is set: runs overlay func_4009F4(id), advances the clock like Flyby_Advance
 func_002450BC	0x002450BC	Flyby_Update	World/Flyby.cs	medium	once per retrace: advances the clock (f1C += dt*speed), handles loop/hold, fade-out (f60/f64) and the end callbacks
 func_002453C4	0x002453C4	Flyby_DrawText	World/Flyby.cs	medium	draws the f1E0 text lines centred, scaled to the screen size (D_800E28D0/D4 vs 284x222)

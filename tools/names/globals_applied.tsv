@@ -309,7 +309,7 @@
 0x801468C4	TeamPlayEnabled
 0x801468F4	Settings_MonkeyTagMode
 0x80146918	Match_MonkeyTagMode
-0x80146938	Match_FragTagMode
+0x80146938	MatchRules_IsBossMode
 0x8014694C	Demo_Active
 0x80146958	Credits_SkipRequested
 0x801469E8	Sched_Main

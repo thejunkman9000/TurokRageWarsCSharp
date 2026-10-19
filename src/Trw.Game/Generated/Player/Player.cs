@@ -4360,35 +4360,35 @@ public static partial class Game
             uint fl = 0u;
             if (!((new R2A5(a).flags38 & (uint)(256)) != 0u))
             {
-                new R2P5(p).f724_Set(0.0f);
-                new R2P5(p).f16C0_Set(0.0f);
+                new R2P5(p).ViewPitch_Set(0.0f);
+                new R2P5(p).ClimbLookYaw_Set(0.0f);
                 if ((Actor_IsOnGround(a) == 0))
                 {
                     fs0 = 2.0480001f;
-                    new R2P5(p).f6E8_Set((new R2P5(p).f6E8 - (sinf(new R2A5(a).f6C) * fs0)));
+                    new R2P5(p).MoveVelocity_Set((new R2P5(p).MoveVelocity - (sinf(new R2A5(a).f6C) * fs0)));
                     new R2P5(p).f6F0_Set((new R2P5(p).f6F0 - (cosf(new R2A5(a).f6C) * fs0)));
                 }
                 Player_SetState(p, (int)(a), 5);
                 return;
             }
-            if (((0.100000001f < new R2P5(p).f69C) || (new R2P5(p).f69C < 0.100000001f)))
+            if (((0.100000001f < new R2P5(p).TurnInput) || (new R2P5(p).TurnInput < 0.100000001f)))
             {
-                new R2P5(p).f16C0_Set((new R2P5(p).f16C0 + (new R2P5(p).f69C * 0.0625f)));
+                new R2P5(p).ClimbLookYaw_Set((new R2P5(p).ClimbLookYaw + (new R2P5(p).TurnInput * 0.0625f)));
             }
-            if ((1.0f < new R2P5(p).f16C0))
+            if ((1.0f < new R2P5(p).ClimbLookYaw))
             {
-                new R2P5(p).f16C0_Set(1.0f);
+                new R2P5(p).ClimbLookYaw_Set(1.0f);
             }
             else
             {
-                if ((new R2P5(p).f16C0 < (-1.0f)))
+                if ((new R2P5(p).ClimbLookYaw < (-1.0f)))
                 {
-                    new R2P5(p).f16C0_Set((-1.0f));
+                    new R2P5(p).ClimbLookYaw_Set((-1.0f));
                 }
             }
-            Math_ApproachProportional((p + 1832u), (new R2P5(p).f16C0 * 0.785398245f), 0.5f);
+            Math_ApproachProportional((p + 1832u), (new R2P5(p).ClimbLookYaw * 0.785398245f), 0.5f);
             {
-                float c = ((-new R2P5(p).f6A0) * 100.0f);
+                float c = ((-new R2P5(p).PitchInput) * 100.0f);
                 if ((c < (-90.0f)))
                 {
                     c = (-90.0f);
@@ -4402,7 +4402,7 @@ public static partial class Game
                 }
                 Math_ApproachProportional((p + 1828u), (c * 0.0174532942f), 0.0625f);
             }
-            if (((new R2P5(p).unk7E8 != 0) || (11.25f < new R2P5(p).f6E4)))
+            if (((new R2P5(p).ZoomMode != 0) || (11.25f < new R2P5(p).AirTime)))
             {
                 ok = 0;
             }
@@ -4420,13 +4420,13 @@ public static partial class Game
                     }
                     else
                     {
-                        if (!((new R2P5(p).unk6B0 & (uint)(16)) != 0u))
+                        if (!((new R2P5(p).ButtonsPressed & (uint)(16)) != 0u))
                         {
                             ok = 0;
                         }
                         else
                         {
-                            if (!(new R2P5(p).f11D8 <= 0.0f))
+                            if (!(new R2P5(p).StunTime <= 0.0f))
                             {
                                 ok = 0;
                             }
@@ -4442,10 +4442,10 @@ public static partial class Game
             if ((ok != 0))
             {
                 {
-                    float y = (new R2A5(a).f6C + new R2P5(p).f728);
+                    float y = (new R2A5(a).f6C + new R2P5(p).ViewYawOffset);
                     float z = 0f;
                     new R2A5(a).f6C_Set(y);
-                    z = new R2P5(p).f728;
+                    z = new R2P5(p).ViewYawOffset;
                     if ((1.57079649f <= z))
                     {
                         new R2A5(a).f6C_Set((y + 3.14159298f));
@@ -4470,7 +4470,7 @@ public static partial class Game
                 new R2A5(a).f1C_Set((new R2A5(a).f1C + (w * 384.0f)));
                 new R2A5(a).f24_Set((new R2A5(a).f24 + (m * 384.0f)));
                 {
-                    float z_2 = new R2P5(p).f728;
+                    float z_2 = new R2P5(p).ViewYawOffset;
                     if ((1.57079649f <= z_2))
                     {
                         new R2A5(a).f6C_Set((new R2A5(a).f6C + 3.14159298f));
@@ -4483,13 +4483,13 @@ public static partial class Game
                         }
                     }
                 }
-                new R2P5(p).f728_Set(0.0f);
-                new R2P5(p).f16C0_Set(0.0f);
+                new R2P5(p).ViewYawOffset_Set(0.0f);
+                new R2P5(p).ClimbLookYaw_Set(0.0f);
                 return;
             }
-            w = sinf((new R2P5(p).f658 * 0.069813177f));
-            t = ((new R2P5(p).f6E0 * new R2P5(p).f6C0) * w);
-            x = new R2P5(p).f6A8;
+            w = sinf((new R2P5(p).StateTime * 0.069813177f));
+            t = ((new R2P5(p).ClimbDirection_6E0 * new R2P5(p).ForwardSpeed) * w);
+            x = new R2P5(p).ForwardInput;
             if (((x > 0.0f) || (x < 0.0f)))
             {
                 Math_ApproachProportional((p + 1836u), t, 0.25f);
@@ -4498,47 +4498,47 @@ public static partial class Game
             {
                 Math_ApproachProportional((p + 1836u), 0.0f, 0.899999976f);
             }
-            x1 = new R2P5(p).f6A8;
+            x1 = new R2P5(p).ForwardInput;
             pos = ((x1 > 0.0f) ? 1 : 0);
             neg = ((x1 < 0.0f) ? 1 : 0);
-            fs0 = new R2P5(p).f6C0;
+            fs0 = new R2P5(p).ForwardSpeed;
             if (((pos != 0) || (neg != 0)))
             {
-                new R2P5(p).f6C0_Set(Math_Accelerate(new R2P5(p).f6C0, (x1 * 6.14400005f), ((x1 < 0.0f) ? ((-x1) * 20.4799995f) : (x1 * 20.4799995f))));
+                new R2P5(p).ForwardSpeed_Set(Math_Accelerate(new R2P5(p).ForwardSpeed, (x1 * 6.14400005f), ((x1 < 0.0f) ? ((-x1) * 20.4799995f) : (x1 * 20.4799995f))));
             }
             else
             {
-                new R2P5(p).f6C0_Set(Math_DecayToZero(fs0, 4.09600019f));
+                new R2P5(p).ForwardSpeed_Set(Math_DecayToZero(fs0, 4.09600019f));
             }
-            x2 = new R2P5(p).f6A4;
+            x2 = new R2P5(p).StrafeInput;
             if ((x2 != 0.0f))
             {
-                new R2P5(p).f6C4_Set(Math_Accelerate(new R2P5(p).f6C4, (x2 * 6.14400005f), ((x2 < 0.0f) ? ((-x2) * 20.4799995f) : (x2 * 20.4799995f))));
+                new R2P5(p).StrafeSpeed_Set(Math_Accelerate(new R2P5(p).StrafeSpeed, (x2 * 6.14400005f), ((x2 < 0.0f) ? ((-x2) * 20.4799995f) : (x2 * 20.4799995f))));
             }
             else
             {
-                new R2P5(p).f6C4_Set(Math_DecayToZero(new R2P5(p).f6C4, 4.09600019f));
+                new R2P5(p).StrafeSpeed_Set(Math_DecayToZero(new R2P5(p).StrafeSpeed, 4.09600019f));
             }
-            if (((new R2P5(p).f6C0 == 0.0f) && (new R2P5(p).f6C4 == 0.0f)))
+            if (((new R2P5(p).ForwardSpeed == 0.0f) && (new R2P5(p).StrafeSpeed == 0.0f)))
             {
-                new R2P5(p).f658_Set(0.0f);
+                new R2P5(p).StateTime_Set(0.0f);
                 if ((fs0 != 0.0f))
                 {
-                    new R2P5(p).f6E0_Set((-new R2P5(p).f6E0));
+                    new R2P5(p).ClimbDirection_6E0_Set((-new R2P5(p).ClimbDirection_6E0));
                 }
             }
             else
             {
-                t2 = new R2P5(p).f658;
+                t2 = new R2P5(p).StateTime;
                 if ((8.4375f < t2))
                 {
-                    new R2P5(p).f6E0_Set((-new R2P5(p).f6E0));
-                    new R2P5(p).f658_Set((t2 - 8.4375f));
-                    new R2P5(p).f6C0_Set((new R2P5(p).f6C0 * 0.100000001f));
-                    new R2P5(p).f6C4_Set((new R2P5(p).f6C4 * 0.100000001f));
-                    if ((((int)(new R2G5(Gv.Settings).b1D) != 0) && (((int)(new R2P5(p).stats.b8F) != 1) || (new R2G5(Gv.Settings).w62C == 0))))
+                    new R2P5(p).ClimbDirection_6E0_Set((-new R2P5(p).ClimbDirection_6E0));
+                    new R2P5(p).StateTime_Set((t2 - 8.4375f));
+                    new R2P5(p).ForwardSpeed_Set((new R2P5(p).ForwardSpeed * 0.100000001f));
+                    new R2P5(p).StrafeSpeed_Set((new R2P5(p).StrafeSpeed * 0.100000001f));
+                    if ((((int)(new R2G5(Gv.Settings).b1D) != 0) && (((int)(new R2P5(p).PlayerEntryPtr.b8F) != 1) || (new R2G5(Gv.Settings).w62C == 0))))
                     {
-                        fl = new R2P5(p).flags38;
+                        fl = new R2P5(p).GroundFlags;
                         if (((fl & (uint)(512)) != 0u))
                         {
                             Audio_PlaySound((int)((uint)(Mem.S16(0x800CF21Au))), C.Tmp((uint)(new R2A5(a).w8), (uint)(new R2A5(a).wC), (uint)(new R2A5(a).w10)), (int)((uint)(0)), (int)((uint)((-1))));
@@ -4557,7 +4557,7 @@ public static partial class Game
                                 }
                                 else
                                 {
-                                    Audio_PlaySound((int)((uint)(Mem.S16(((0x800CF1E8u + (uint)6) + (uint)(new R2P5(p).unk5E0 * 4))))), C.Tmp((uint)(new R2A5(a).w8), (uint)(new R2A5(a).wC), (uint)(new R2A5(a).w10)), (int)((uint)(0)), (int)((uint)((-1))));
+                                    Audio_PlaySound((int)((uint)(Mem.S16(((0x800CF1E8u + (uint)6) + (uint)(new R2P5(p).CharacterId * 4))))), C.Tmp((uint)(new R2A5(a).w8), (uint)(new R2A5(a).wC), (uint)(new R2A5(a).w10)), (int)((uint)(0)), (int)((uint)((-1))));
                                 }
                             }
                         }
@@ -4573,35 +4573,35 @@ public static partial class Game
                 w = sinf((tt_2 - (fs0 = 1.57079637f)));
             }
             m = cosf((new R2A5(a).f6C - fs0));
-            new R2P5(p).f6E8_Set((new R2P5(p).f6E8 + ((w * new R2P5(p).f6C4) * new R2P5(p).f66C)));
-            new R2P5(p).f6F0_Set((new R2P5(p).f6F0 + ((m * new R2P5(p).f6C4) * new R2P5(p).f66C)));
-            new R2P5(p).f6EC_Set((new R2P5(p).f6EC + (new R2P5(p).f6C0 * (Mem.F32(Gv.FrameTime) * 1.5f))));
-            if (((int)(new R2P5(p).unkE4) == Mem.S32((Gv.Player_RemoteBodyType_800CE47C + (uint)(0 * 4)))))
+            new R2P5(p).MoveVelocity_Set((new R2P5(p).MoveVelocity + ((w * new R2P5(p).StrafeSpeed) * new R2P5(p).TimeStep)));
+            new R2P5(p).f6F0_Set((new R2P5(p).f6F0 + ((m * new R2P5(p).StrafeSpeed) * new R2P5(p).TimeStep)));
+            new R2P5(p).f6EC_Set((new R2P5(p).f6EC + (new R2P5(p).ForwardSpeed * (Mem.F32(Gv.FrameTime) * 1.5f))));
+            if (((int)(new R2P5(p).TypeId) == Mem.S32((Gv.Player_RemoteBodyType_800CE47C + (uint)(0 * 4)))))
             {
-                new R2P5(p).unk86C_Set(2630);
+                new R2P5(p).AnimId_Set(2630);
             }
             else
             {
-                if ((new R2P5(p).f6C0 > 0.0f))
+                if ((new R2P5(p).ForwardSpeed > 0.0f))
                 {
-                    if ((new R2P5(p).unk13B4 != Gv.Player_StateTableChar0))
+                    if ((new R2P5(p).StateTablePtr != Gv.Player_StateTableChar0))
                     {
-                        new R2P5(p).unk86C_Set(2630);
+                        new R2P5(p).AnimId_Set(2630);
                     }
                     else
                     {
-                        new R2P5(p).unk86C_Set(24104);
+                        new R2P5(p).AnimId_Set(24104);
                     }
                 }
                 else
                 {
-                    if ((new R2P5(p).unk13B4 == Gv.Player_StateTableChar0))
+                    if ((new R2P5(p).StateTablePtr == Gv.Player_StateTableChar0))
                     {
-                        new R2P5(p).unk86C_Set(24103);
+                        new R2P5(p).AnimId_Set(24103);
                     }
                     else
                     {
-                        new R2P5(p).unk86C_Set(2620);
+                        new R2P5(p).AnimId_Set(2620);
                     }
                 }
             }
@@ -5259,7 +5259,7 @@ public static partial class Game
             if (!((a != 0u))) goto _f4;
             Pad_UpdatePlayerControls(new Plr(a).PadInput.P, a, default(uint), default(uint));
             Mem.Set(Gv.FrameTime, save);
-            if (!(((new GameB6(gm).unk24 != 0) || (new GameB6(gm).unk78 != 0)))) goto _f5;
+            if (!(((new GameB6(gm).IsTeamPlay != 0) || (new GameB6(gm).TagObjectiveMode_78 != 0)))) goto _f5;
             Player_BuildSpinMarkerMatrix_0022C480(a);
             _f5: ;
             if (!((Mem.S32(Gv.GamePaused) == 0))) goto _f6;
@@ -5449,7 +5449,7 @@ public static partial class Game
             int want = (-1);
             int r = 0;
             int b = 0;
-            if (((new GameB6(Gv.Settings_MatchRules).unk24 != 0) || (new GameB6(Gv.Settings_MatchRules).unk78 != 0)))
+            if (((new GameB6(Gv.Settings_MatchRules).IsTeamPlay != 0) || (new GameB6(Gv.Settings_MatchRules).TagObjectiveMode_78 != 0)))
             {
                 want = (int)(new Plr(Player_FindByPawn(p)).PlayerEntryPtr.unk92);
             }
@@ -5480,7 +5480,7 @@ public static partial class Game
                 {
                     Player_DrawLaserBeamWorld((a + (uint)744));
                 }
-                if (((((new GameB6(Gv.Settings_MatchRules).unk24 != 0) || (new GameB6(Gv.Settings_MatchRules).unk78 != 0)) && ((int)(new Plr(a).PlayerEntryPtr.unk92) == want)) && (Player_FindByPawn(p) != a)))
+                if (((((new GameB6(Gv.Settings_MatchRules).IsTeamPlay != 0) || (new GameB6(Gv.Settings_MatchRules).TagObjectiveMode_78 != 0)) && ((int)(new Plr(a).PlayerEntryPtr.unk92) == want)) && (Player_FindByPawn(p) != a)))
                 {
                     Player_DrawTeamMarker(a);
                 }
@@ -6484,7 +6484,7 @@ public static partial class Game
             }
             else
             {
-                if (((new GStateB6(Gv.Settings).sub.unk54 != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk8F) != 0)))
+                if (((new GStateB6(Gv.Settings).sub.IsMonkeyTagMode != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk8F) != 0)))
                 {
                     k = Mem.S32(Gv.Player_RemoteBodyType_800CE47C);
                 }

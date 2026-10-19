@@ -390,7 +390,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DF84", (uint)m, (uint)on);
-            int p = (int)(new S10Menu(m).ctrl.port);
+            int p = (int)(new S10Menu(m).ctrl.Port);
             if ((on != 0))
             {
                 Pad_EnableStatusPoll(p);
@@ -436,7 +436,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((new S10Ctrl((Gv.Pad_Slots + (uint)(i * 548))).active != 0))
+                if ((new S10Ctrl((Gv.Pad_Slots + (uint)(i * 548))).IsConnected != 0))
                 {
                     if (((int)(new S10State(Gv.Settings).rec[(int)(i)].b0) == 0))
                     {
@@ -468,7 +468,7 @@ public static partial class Game
             Mem.Set(0x8015404Cu, (float)((float)(Mem.F32(0x8015404Cu)) + Mem.F32(Gv.FrameTime)));
             if ((Mem.F32(0x8015404Cu) >= 120.0f))
             {
-                new S10Game(Gv.Settings_MatchRules).unk24_Set(0);
+                new S10Game(Gv.Settings_MatchRules).IsTeamPlay_Set(0);
                 Match_EndForAllPlayers((Gv.Settings_MatchRules - (uint)6240));
                 return 1;
             }
@@ -515,7 +515,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E24C");
             int r = 0;
-            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) || (new S10Game(Gv.Settings_MatchRules).IsMatchOver != 0)) || (new S10Game(Gv.Settings_MatchRules).IsEndAcknowledged != 0)))
             {
                 r = 1;
             }
@@ -530,7 +530,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E284", (uint)a, (uint)m);
             Mem.Set((0x80146914u + (uint)(0 * 4)), 0);
-            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.Port));
             Rumble_Reset(new S10Menu(m).ctrl_);
             Rumble_SetEnabled(new S10Menu(m).ctrl_, 1);
             new S10Menu(m).ctx.f85C_Set(0);
@@ -545,7 +545,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E2E0");
             int r = 0;
-            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) || (new S10Game(Gv.Settings_MatchRules).IsMatchOver != 0)) || (new S10Game(Gv.Settings_MatchRules).IsEndAcknowledged != 0)))
             {
                 r = 1;
             }
@@ -585,7 +585,7 @@ public static partial class Game
                 else
                 {
                     uint s = 0u;
-                    switch ((int)(new S10Menu(m).ctrl.port))
+                    switch ((int)(new S10Menu(m).ctrl.Port))
                     {
                     case 0:
                     default:
@@ -638,7 +638,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E4D0", (uint)a, (uint)m);
-            new S10Item(a).f14_Set(Mem.U32((0x800E5D10u + (uint)(new S10Menu(m).ctrl.port * 4))));
+            new S10Item(a).f14_Set(Mem.U32((0x800E5D10u + (uint)(new S10Menu(m).ctrl.Port * 4))));
             return 0;
         }
     }
@@ -679,7 +679,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E56C", (uint)m);
-            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
         }
     }
 
@@ -689,7 +689,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E590", (uint)m);
-            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
             Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
@@ -701,7 +701,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E5BC");
             int r = 0;
-            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) || (new S10Game(Gv.Settings_MatchRules).IsMatchOver != 0)) || (new S10Game(Gv.Settings_MatchRules).IsEndAcknowledged != 0)))
             {
                 r = 1;
             }
@@ -777,7 +777,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E750");
             int r = 0;
-            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).IsTeamEndStarted != 0) || (new S10Game(Gv.Settings_MatchRules).IsMatchOver != 0)) || (new S10Game(Gv.Settings_MatchRules).IsEndAcknowledged != 0)))
             {
                 r = 1;
             }
@@ -909,7 +909,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EAC0", (uint)m);
-            int p = (int)(new S10Menu(m).ctrl.port);
+            int p = (int)(new S10Menu(m).ctrl.Port);
             Pad_EnableStatusPoll(p);
             CPak_DetectPort(p);
         }
@@ -921,7 +921,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EAF4", (uint)m);
-            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
             Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
@@ -932,7 +932,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EB20", (uint)a, (uint)m);
-            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
             MenuPanel_Open(Gv.MenuPanel_SharedList, 0x0044F754u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }
@@ -958,7 +958,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EBC4", (uint)a, (uint)m);
             Game_FadeOutToState(Gv.GameCtx, 8);
             Mem.Set(0x80154048u, 0);
-            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.Port));
             return 1;
         }
     }
@@ -1178,11 +1178,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EF94");
-            float v = (new O06G_v2(Gv.Settings_MatchRules).unk10 - Mem.F32(Gv.FrameTime));
-            new O06G_v2(Gv.Settings_MatchRules).unk10_Set(v);
+            float v = (new O06G_v2(Gv.Settings_MatchRules).MessageTimer - Mem.F32(Gv.FrameTime));
+            new O06G_v2(Gv.Settings_MatchRules).MessageTimer_Set(v);
             if ((v < 0.0f))
             {
-                new O06G_v2(Gv.Settings_MatchRules).unk10_Set(0.0f);
+                new O06G_v2(Gv.Settings_MatchRules).MessageTimer_Set(0.0f);
             }
             return 0;
         }

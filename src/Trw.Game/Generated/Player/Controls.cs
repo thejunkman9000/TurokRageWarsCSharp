@@ -1005,48 +1005,48 @@ public static partial class Game
             case 0:
                 osRecvMesg(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
                 osContGetReadData(0x8010EEA0u);
-                new B14Ctl(Gv.Pad_Combined).port_Set((sbyte)((-1)));
-                new B14Ctl(Gv.Pad_Combined).f0_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)(0));
-                new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)(0));
-                new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)(0));
-                new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)(0));
-                new B14Ctl(Gv.Pad_Combined).fB0_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fAC_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fB4_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fB8_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fBC_Set(0);
-                new B14Ctl(Gv.Pad_Combined).fC0_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f18_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f14_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f1C_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f20_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f24_Set(0);
-                new B14Ctl(Gv.Pad_Combined).f28_Set(0);
+                new B14Ctl(Gv.Pad_Combined).Port_Set((sbyte)((-1)));
+                new B14Ctl(Gv.Pad_Combined).IsConnected_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollStickX_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).PollStickY_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).StickX_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).StickY_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).Buttons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PrevButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PressedButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).TappedButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).DoubleTapButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).RepeatButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollHeldButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollPrevButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollPressedButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollTappedButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollDoubleTapButtons_Set(0);
+                new B14Ctl(Gv.Pad_Combined).PollRepeatButtons_Set(0);
                 for (i = 0; (i < 4); ++i)
                 {
                     Pad_ApplyStickDeadzone((Gv.Pad_Slots + (uint)(i * 548)), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).x), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).y), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).button));
-                    new B14Ctl(Gv.Pad_Combined).f0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f0));
-                    new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC4) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC4)));
-                    new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC5) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC5)));
-                    new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC6) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC6)));
-                    new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC7) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC7)));
-                    new B14Ctl(Gv.Pad_Combined).fB0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB0));
-                    new B14Ctl(Gv.Pad_Combined).fB4_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB4) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB4));
-                    new B14Ctl(Gv.Pad_Combined).fB8_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB8) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB8));
-                    new B14Ctl(Gv.Pad_Combined).fBC_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fBC) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fBC));
-                    new B14Ctl(Gv.Pad_Combined).fC0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fC0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC0));
-                    new B14Ctl(Gv.Pad_Combined).f18_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f18) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f18));
-                    new B14Ctl(Gv.Pad_Combined).f14_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f14) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f14));
-                    new B14Ctl(Gv.Pad_Combined).f1C_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f1C) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f1C));
-                    new B14Ctl(Gv.Pad_Combined).f20_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f20) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f20));
-                    new B14Ctl(Gv.Pad_Combined).f24_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f24) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f24));
-                    new B14Ctl(Gv.Pad_Combined).f28_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f28) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f28));
+                    new B14Ctl(Gv.Pad_Combined).IsConnected_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).IsConnected) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).IsConnected));
+                    new B14Ctl(Gv.Pad_Combined).PollStickX_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).PollStickX) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollStickX)));
+                    new B14Ctl(Gv.Pad_Combined).PollStickY_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).PollStickY) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollStickY)));
+                    new B14Ctl(Gv.Pad_Combined).StickX_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).StickX) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).StickX)));
+                    new B14Ctl(Gv.Pad_Combined).StickY_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).StickY) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).StickY)));
+                    new B14Ctl(Gv.Pad_Combined).Buttons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).Buttons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).Buttons));
+                    new B14Ctl(Gv.Pad_Combined).PressedButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PressedButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PressedButtons));
+                    new B14Ctl(Gv.Pad_Combined).TappedButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).TappedButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).TappedButtons));
+                    new B14Ctl(Gv.Pad_Combined).DoubleTapButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).DoubleTapButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).DoubleTapButtons));
+                    new B14Ctl(Gv.Pad_Combined).RepeatButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).RepeatButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).RepeatButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollHeldButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollHeldButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollHeldButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollPrevButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollPrevButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollPrevButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollPressedButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollPressedButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollPressedButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollTappedButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollTappedButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollTappedButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollDoubleTapButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollDoubleTapButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollDoubleTapButtons));
+                    new B14Ctl(Gv.Pad_Combined).PollRepeatButtons_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).PollRepeatButtons) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).PollRepeatButtons));
                 }
-                new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC4)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC5)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC6)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC7)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).PollStickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickX)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).PollStickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).PollStickY)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).StickX_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickX)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).StickY_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).StickY)) * Mem.F32(0x800C93E0u)))));
                 break;
             case 1:
                 osRecvMesg(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
@@ -1202,42 +1202,42 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00263D10", (uint)c);
-            int port = (int)(new B14Ctl(c).port);
+            int port = (int)(new B14Ctl(c).Port);
             int v = ((((int)(new B14PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
             int i = 0;
-            if (((v != 0) && (new B14Ctl(c).f0 == 0)))
+            if (((v != 0) && (new B14Ctl(c).IsConnected == 0)))
             {
-                new B14Ctl(c).port_Set((sbyte)(port));
-                new B14Ctl(c).f0_Set(0);
-                new B14Ctl(c).fC8_Set(0);
-                new B14Ctl(c).fCC_Set(0);
+                new B14Ctl(c).Port_Set((sbyte)(port));
+                new B14Ctl(c).IsConnected_Set(0);
+                new B14Ctl(c).HasRumblePak_Set(0);
+                new B14Ctl(c).IsRumbleEnabled_Set(0);
                 new B14Ctl(c).f220_Set(0);
-                new B14Ctl(c).f8_Set(0);
-                new B14Ctl(c).fC_Set(0);
-                new B14Ctl(c).f10_Set(0);
-                new B14Ctl(c).fC4_Set((byte)(0));
-                new B14Ctl(c).fC5_Set((byte)(0));
-                new B14Ctl(c).fC6_Set((byte)(0));
-                new B14Ctl(c).fC7_Set((byte)(0));
-                new B14Ctl(c).f14_Set(0);
-                new B14Ctl(c).f18_Set(0);
-                new B14Ctl(c).f1C_Set(0);
-                new B14Ctl(c).f20_Set(0);
-                new B14Ctl(c).f24_Set(0);
-                new B14Ctl(c).f28_Set(0);
+                new B14Ctl(c).RumbleListenerX_Set(0);
+                new B14Ctl(c).RumbleListenerY_Set(0);
+                new B14Ctl(c).RumbleListenerZ_Set(0);
+                new B14Ctl(c).PollStickX_Set((byte)(0));
+                new B14Ctl(c).PollStickY_Set((byte)(0));
+                new B14Ctl(c).StickX_Set((byte)(0));
+                new B14Ctl(c).StickY_Set((byte)(0));
+                new B14Ctl(c).PollPrevButtons_Set(0);
+                new B14Ctl(c).PollHeldButtons_Set(0);
+                new B14Ctl(c).PollPressedButtons_Set(0);
+                new B14Ctl(c).PollTappedButtons_Set(0);
+                new B14Ctl(c).PollDoubleTapButtons_Set(0);
+                new B14Ctl(c).PollRepeatButtons_Set(0);
                 for (i = 0; (i < 32); ++i)
                 {
-                    new B14Ctl(c).ent[(int)(i)].a_Set((byte)(0));
-                    new B14Ctl(c).ent[(int)(i)].b_Set((byte)(0));
-                    new B14Ctl(c).ent[(int)(i)].c_Set((byte)(48));
-                    new B14Ctl(c).ent[(int)(i)].d_Set((byte)(0));
+                    new B14Ctl(c).ButtonTimers[(int)(i)].a_Set((byte)(0));
+                    new B14Ctl(c).ButtonTimers[(int)(i)].b_Set((byte)(0));
+                    new B14Ctl(c).ButtonTimers[(int)(i)].c_Set((byte)(48));
+                    new B14Ctl(c).ButtonTimers[(int)(i)].d_Set((byte)(0));
                 }
-                new B14Ctl(c).f0_Set(((((int)(new B14PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
-                Mem.Set(new B14Ctl(c).fD0.P, 0);
-                Mem.Set(new B14Ctl(c).fD4.P, 0);
-                Rumble_InitSourcePool(new B14Ctl(c).blkA.P, new B14Ctl(c).blkB.P, (uint)(3), default(uint));
+                new B14Ctl(c).IsConnected_Set(((((int)(new B14PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
+                Mem.Set(new B14Ctl(c).RumbleIntensity.P, 0);
+                Mem.Set(new B14Ctl(c).RumblePwmAccum.P, 0);
+                Rumble_InitSourcePool(new B14Ctl(c).RumblePool.P, new B14Ctl(c).RumbleSourceBlock.P, (uint)(3), default(uint));
             }
-            new B14Ctl(c).f0_Set(v);
+            new B14Ctl(c).IsConnected_Set(v);
         }
     }
 
@@ -1456,36 +1456,36 @@ public static partial class Game
                 uint g = 0u;
                 float r = 0f;
                 float d = 0f;
-                if ((new B14Ctl(c).fC8 != 0))
+                if ((new B14Ctl(c).HasRumblePak != 0))
                 {
                     new B14W3(_fp).a_Set(0);
                     new B14W3(_fp).b_Set(0);
                     new B14W3(_fp).c_Set(0);
-                    if (((((new B14Ctl(c).fCC == 0) || (Mem.S32((g = Gv.GamePaused)) != 0)) || (Mem.S32(Gv.Debug_Freeze_8013B29C) != 0)) || (Mem.S32((g + (uint)((-6) * 4))) != 13)))
+                    if (((((new B14Ctl(c).IsRumbleEnabled == 0) || (Mem.S32((g = Gv.GamePaused)) != 0)) || (Mem.S32(Gv.Debug_Freeze_8013B29C) != 0)) || (Mem.S32((g + (uint)((-6) * 4))) != 13)))
                     {
-                        Mem.Set(new B14Ctl(c).fD0.P, 0);
-                        Rumble_ClearAll(new B14Ctl(c).blkA.P);
+                        Mem.Set(new B14Ctl(c).RumbleIntensity.P, 0);
+                        Rumble_ClearAll(new B14Ctl(c).RumblePool.P);
                     }
                     else
                     {
-                        Rumble_RemoveFinished(new B14Ctl(c).blkA.P);
-                        r = Rumble_GetIntensityAt(Gv.Rumble_Mgr, C.Tmp((uint)(new B14Ctl(c).f8), (uint)(new B14Ctl(c).fC), (uint)(new B14Ctl(c).f10)));
-                        Mem.Set(new B14Ctl(c).fD0.P, (r + Rumble_GetIntensityAt(new B14Ctl(c).blkA.P, C.Tmp((uint)(new B14W3(_fp).a), (uint)(new B14W3(_fp).b), (uint)(new B14W3(_fp).c)))));
+                        Rumble_RemoveFinished(new B14Ctl(c).RumblePool.P);
+                        r = Rumble_GetIntensityAt(Gv.Rumble_Mgr, C.Tmp((uint)(new B14Ctl(c).RumbleListenerX), (uint)(new B14Ctl(c).RumbleListenerY), (uint)(new B14Ctl(c).RumbleListenerZ)));
+                        Mem.Set(new B14Ctl(c).RumbleIntensity.P, (r + Rumble_GetIntensityAt(new B14Ctl(c).RumblePool.P, C.Tmp((uint)(new B14W3(_fp).a), (uint)(new B14W3(_fp).b), (uint)(new B14W3(_fp).c)))));
                     }
-                    if ((new B14Ctl(c).fC8 != 0))
+                    if ((new B14Ctl(c).HasRumblePak != 0))
                     {
-                        d = Mem.F32(new B14Ctl(c).fD0.P);
+                        d = Mem.F32(new B14Ctl(c).RumbleIntensity.P);
                         if ((d != 0.0f))
                         {
-                            Mem.Set(new B14Ctl(c).fD4.P, (Mem.F32(new B14Ctl(c).fD4.P) + d));
-                            if ((Mem.F32(0x800C93F8u) <= Mem.F32(new B14Ctl(c).fD4.P)))
+                            Mem.Set(new B14Ctl(c).RumblePwmAccum.P, (Mem.F32(new B14Ctl(c).RumblePwmAccum.P) + d));
+                            if ((Mem.F32(0x800C93F8u) <= Mem.F32(new B14Ctl(c).RumblePwmAccum.P)))
                             {
-                                Mem.Set(new B14Ctl(c).fD4.P, (Mem.F32(new B14Ctl(c).fD4.P) - Mem.F32(0x800C93F8u)));
-                                osMotorStart(new B14Ctl(c).pfs.P);
+                                Mem.Set(new B14Ctl(c).RumblePwmAccum.P, (Mem.F32(new B14Ctl(c).RumblePwmAccum.P) - Mem.F32(0x800C93F8u)));
+                                osMotorStart(new B14Ctl(c).MotorPfs.P);
                                 return;
                             }
                         }
-                        osMotorStop(new B14Ctl(c).pfs.P);
+                        osMotorStop(new B14Ctl(c).MotorPfs.P);
                     }
                 }
             }
@@ -1524,22 +1524,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00264268", (uint)c);
             uint pfs = 0u;
-            if ((((int)(Mem.U8(0x800D0E50u)) != 0) && (new B14Ctl(c).f0 != 0)))
+            if ((((int)(Mem.U8(0x800D0E50u)) != 0) && (new B14Ctl(c).IsConnected != 0)))
             {
                 func_00264268_b14_lock(1);
                 Pad_ReadController_00263760();
                 Mem.Set(Gv.Pad_SiPendingOp, (sbyte)(2));
-                new B14Ctl(c).fCC_Set(0);
-                Mem.Set(new B14Ctl(c).fD0.P, 0);
-                Mem.Set(new B14Ctl(c).fD4.P, 0);
-                Rumble_InitSourcePool(new B14Ctl(c).blkA.P, new B14Ctl(c).blkB.P, (uint)(3), default(uint));
-                pfs = new B14Ctl(c).pfs.P;
-                osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).port));
+                new B14Ctl(c).IsRumbleEnabled_Set(0);
+                Mem.Set(new B14Ctl(c).RumbleIntensity.P, 0);
+                Mem.Set(new B14Ctl(c).RumblePwmAccum.P, 0);
+                Rumble_InitSourcePool(new B14Ctl(c).RumblePool.P, new B14Ctl(c).RumbleSourceBlock.P, (uint)(3), default(uint));
+                pfs = new B14Ctl(c).MotorPfs.P;
+                osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).Port));
                 osMotorStop(pfs);
                 osMotorStop(pfs);
-                if ((osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).port)) == 0))
+                if ((osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).Port)) == 0))
                 {
-                    new B14Ctl(c).fC8_Set(1);
+                    new B14Ctl(c).HasRumblePak_Set(1);
                 }
                 Mem.Set(Gv.Pad_SiPendingOp, (sbyte)(2));
                 func_00264268_b14_unlock();
@@ -1553,7 +1553,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026437C", (uint)p);
-            uint f = (Mem.U32(new B14Pad(p).fB4.P) & (uint)(4096));
+            uint f = (Mem.U32(new B14Pad(p).PressedButtons.P) & (uint)(4096));
             return ((f != (uint)(0)) ? 1 : 0);
         }
     }
@@ -1564,7 +1564,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026438C", (uint)p);
-            uint f = (Mem.U32(new B14Pad(p).fB4.P) & (uint)(4096));
+            uint f = (Mem.U32(new B14Pad(p).PressedButtons.P) & (uint)(4096));
             return ((f != (uint)(0)) ? 1 : 0);
         }
     }
@@ -1575,7 +1575,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026439C", (uint)p);
-            return (uint)(((int)(Mem.U8((new B14Pad(p).fB4.P + (uint)2))) >> (int)7));
+            return (uint)(((int)(Mem.U8((new B14Pad(p).PressedButtons.P + (uint)2))) >> (int)7));
         }
     }
 
@@ -1585,7 +1585,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002643A8", (uint)p);
-            return (((new B14Pad(p).fC0 & (uint)(131586)) != (uint)(0)) ? 1 : 0);
+            return (((new B14Pad(p).RepeatButtons & (uint)(131586)) != (uint)(0)) ? 1 : 0);
         }
     }
 
@@ -1595,7 +1595,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002643C0", (uint)p);
-            return (((new B14Pad(p).fC0 & (uint)(262401)) != (uint)(0)) ? 1 : 0);
+            return (((new B14Pad(p).RepeatButtons & (uint)(262401)) != (uint)(0)) ? 1 : 0);
         }
     }
 
@@ -1605,7 +1605,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002643D8", (uint)p);
-            return (((new B14Pad(p).fC0 & (uint)(67592)) != (uint)(0)) ? 1 : 0);
+            return (((new B14Pad(p).RepeatButtons & (uint)(67592)) != (uint)(0)) ? 1 : 0);
         }
     }
 
@@ -1615,7 +1615,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002643F0", (uint)p);
-            return (((new B14Pad(p).fC0 & (uint)(525316)) != (uint)(0)) ? 1 : 0);
+            return (((new B14Pad(p).RepeatButtons & (uint)(525316)) != (uint)(0)) ? 1 : 0);
         }
     }
 
@@ -1625,7 +1625,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264408", (uint)p);
-            uint f = (Mem.U32(new B14Pad(p).fB4.P) & (uint)(16384));
+            uint f = (Mem.U32(new B14Pad(p).PressedButtons.P) & (uint)(16384));
             return ((f != (uint)(0)) ? 1 : 0);
         }
     }
@@ -1636,7 +1636,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264418", (uint)p);
-            return (uint)(((int)(Mem.U8((new B14Pad(p).fB4.P + (uint)2))) >> (int)7));
+            return (uint)(((int)(Mem.U8((new B14Pad(p).PressedButtons.P + (uint)2))) >> (int)7));
         }
     }
 
@@ -1670,18 +1670,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002644C8", (uint)p);
-            new B14Hist(p).fC6_Set(new B14Hist(p).fC4);
-            new B14Hist(p).fC7_Set(new B14Hist(p).fC5);
-            new B14Hist(p).fAC_Set(new B14Hist(p).fB0);
-            new B14Hist(p).fB0_Set(new B14Hist(p).f18);
-            new B14Hist(p).fB4_Set(new B14Hist(p).f1C);
-            new B14Hist(p).f1C_Set(0);
-            new B14Hist(p).fB8_Set(new B14Hist(p).f20);
-            new B14Hist(p).f20_Set(0);
-            new B14Hist(p).fBC_Set(new B14Hist(p).f24);
-            new B14Hist(p).f24_Set(0);
-            new B14Hist(p).fC0_Set(new B14Hist(p).f28);
-            new B14Hist(p).f28_Set(0);
+            new B14Hist(p).StickX_Set(new B14Hist(p).PollStickX);
+            new B14Hist(p).StickY_Set(new B14Hist(p).PollStickY);
+            new B14Hist(p).PrevButtons_Set(new B14Hist(p).Buttons);
+            new B14Hist(p).Buttons_Set(new B14Hist(p).PollHeldButtons);
+            new B14Hist(p).PressedButtons_Set(new B14Hist(p).PollPressedButtons);
+            new B14Hist(p).PollPressedButtons_Set(0);
+            new B14Hist(p).TappedButtons_Set(new B14Hist(p).PollTappedButtons);
+            new B14Hist(p).PollTappedButtons_Set(0);
+            new B14Hist(p).DoubleTapButtons_Set(new B14Hist(p).PollDoubleTapButtons);
+            new B14Hist(p).PollDoubleTapButtons_Set(0);
+            new B14Hist(p).RepeatButtons_Set(new B14Hist(p).PollRepeatButtons);
+            new B14Hist(p).PollRepeatButtons_Set(0);
         }
     }
 
@@ -1938,7 +1938,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264808", (uint)p, (uint)v);
-            new T808(p).unkCC_Set(v);
+            new T808(p).IsRumbleEnabled_Set(v);
             if ((v == 0))
             {
                 Rumble_Reset(p);
@@ -1970,7 +1970,7 @@ public static partial class Game
             int i = 0;
             for (i = 0, s = Gv.Pad_Slots; (i < 4); ++i, s += 548u)
             {
-                new B14Slot(s).fCC_Set(v);
+                new B14Slot(s).IsRumbleEnabled_Set(v);
                 if ((v == 0))
                 {
                     Rumble_Reset(s);
@@ -1994,7 +1994,7 @@ public static partial class Game
             uint s = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set((0x8010FC18u + (uint)(i * 4)), new B14Slot((Gv.Pad_Slots + (uint)(i * 548))).fCC);
+                Mem.Set((0x8010FC18u + (uint)(i * 4)), new B14Slot((Gv.Pad_Slots + (uint)(i * 548))).IsRumbleEnabled);
             }
             Rumble_ClearAll(Gv.Rumble_Mgr);
             for (j = 0, s = Gv.Pad_Slots; (j < 4); ++j, s += 548u)
@@ -2022,7 +2022,7 @@ public static partial class Game
                 }
                 for (j = 0; (j < 4); ++j)
                 {
-                    new B14Slot((Gv.Pad_Slots + (uint)(j * 548))).fCC_Set(Mem.S32((0x8010FC18u + (uint)(j * 4))));
+                    new B14Slot((Gv.Pad_Slots + (uint)(j * 548))).IsRumbleEnabled_Set(Mem.S32((0x8010FC18u + (uint)(j * 4))));
                 }
                 Rumble_ClearAll(Gv.Rumble_Mgr);
                 Mem.Set(0x800D0E58u, 0);
@@ -2901,36 +2901,36 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044BC58", (uint)c, (uint)port);
             int i = 0;
-            new S5Ctl(c).port_Set((sbyte)(port));
-            new S5Ctl(c).f0_Set(0);
-            new S5Ctl(c).fC8_Set(0);
-            new S5Ctl(c).fCC_Set(0);
+            new S5Ctl(c).Port_Set((sbyte)(port));
+            new S5Ctl(c).IsConnected_Set(0);
+            new S5Ctl(c).HasRumblePak_Set(0);
+            new S5Ctl(c).IsRumbleEnabled_Set(0);
             new S5Ctl(c).f220_Set(0);
-            new S5Ctl(c).f8_Set(0);
-            new S5Ctl(c).fC_Set(0);
-            new S5Ctl(c).f10_Set(0);
-            new S5Ctl(c).fC4_Set((byte)(0));
-            new S5Ctl(c).fC5_Set((byte)(0));
-            new S5Ctl(c).fC6_Set((byte)(0));
-            new S5Ctl(c).fC7_Set((byte)(0));
-            new S5Ctl(c).f14_Set(0);
-            new S5Ctl(c).f18_Set(0);
-            new S5Ctl(c).f1C_Set(0);
-            new S5Ctl(c).f20_Set(0);
-            new S5Ctl(c).f24_Set(0);
-            new S5Ctl(c).f28_Set(0);
+            new S5Ctl(c).RumbleListenerX_Set(0);
+            new S5Ctl(c).RumbleListenerY_Set(0);
+            new S5Ctl(c).RumbleListenerZ_Set(0);
+            new S5Ctl(c).PollStickX_Set((byte)(0));
+            new S5Ctl(c).PollStickY_Set((byte)(0));
+            new S5Ctl(c).StickX_Set((byte)(0));
+            new S5Ctl(c).StickY_Set((byte)(0));
+            new S5Ctl(c).PollPrevButtons_Set(0);
+            new S5Ctl(c).PollHeldButtons_Set(0);
+            new S5Ctl(c).PollPressedButtons_Set(0);
+            new S5Ctl(c).PollTappedButtons_Set(0);
+            new S5Ctl(c).PollDoubleTapButtons_Set(0);
+            new S5Ctl(c).PollRepeatButtons_Set(0);
             for (i = 0; (i < 32); ++i)
             {
-                new S5Ctl(c).ent[(int)(i)].a_Set((byte)(0));
-                new S5Ctl(c).ent[(int)(i)].b_Set((byte)(0));
-                new S5Ctl(c).ent[(int)(i)].c_Set((byte)(48));
-                new S5Ctl(c).ent[(int)(i)].d_Set((byte)(0));
+                new S5Ctl(c).ButtonTimers[(int)(i)].a_Set((byte)(0));
+                new S5Ctl(c).ButtonTimers[(int)(i)].b_Set((byte)(0));
+                new S5Ctl(c).ButtonTimers[(int)(i)].c_Set((byte)(48));
+                new S5Ctl(c).ButtonTimers[(int)(i)].d_Set((byte)(0));
             }
-            new S5Ctl(c).f0_Set(((((int)(new S5PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
-            new S5Ctl(c).fD0_Set(0);
-            new S5Ctl(c).fD4_Set(0);
-            Rumble_InitSourcePool(new S5Ctl(c).blkA.P, new S5Ctl(c).blkB.P, (uint)(3), default(uint));
-            return new S5Ctl(c).f0;
+            new S5Ctl(c).IsConnected_Set(((((int)(new S5PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
+            new S5Ctl(c).RumbleIntensity_Set(0);
+            new S5Ctl(c).RumblePwmAccum_Set(0);
+            Rumble_InitSourcePool(new S5Ctl(c).RumblePool.P, new S5Ctl(c).RumbleSourceBlock.P, (uint)(3), default(uint));
+            return new S5Ctl(c).IsConnected;
         }
     }
 }

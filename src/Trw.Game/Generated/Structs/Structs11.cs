@@ -3559,65 +3559,65 @@ public readonly struct GameB6
     // +0x0
     public U8x20 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public float unk14
+    public float TimeRemaining
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public float unk14_Set(float v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public float TimeRemaining_Set(float v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int unk18
+    public int FragLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int FragLimit_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int unk1C
+    public int IsMatchOver
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int IsMatchOver_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int unk20
+    public int IsEndAcknowledged
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int IsEndAcknowledged_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public int unk24
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int IsTeamEndStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsTeamEndStarted_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public S32x5 unk2C { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
+    public S32x5 TeamFrags { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0x40
-    public S32x5 unk40 { [MethodImpl(Inl)] get => new(P + 0x40u); }
+    public S32x5 TeamScores { [MethodImpl(Inl)] get => new(P + 0x40u); }
     // +0x54
-    public int unk54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int unk54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
-    public int unk58
+    public int KillLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x58u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value);
     }
-    [MethodImpl(Inl)] public int unk58_Set(int v) => Mem.Set(P + 0x58u, v);
+    [MethodImpl(Inl)] public int KillLimit_Set(int v) => Mem.Set(P + 0x58u, v);
     // +0x5C
     public U8x23 pad5C { [MethodImpl(Inl)] get => new(P + 0x5Cu); }
     // +0x73
@@ -3630,19 +3630,19 @@ public readonly struct GameB6
     // +0x74
     public U8x4 pad74 { [MethodImpl(Inl)] get => new(P + 0x74u); }
     // +0x78
-    public int unk78
+    public int TagObjectiveMode_78
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x78u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x78u, value);
     }
-    [MethodImpl(Inl)] public int unk78_Set(int v) => Mem.Set(P + 0x78u, v);
+    [MethodImpl(Inl)] public int TagObjectiveMode_78_Set(int v) => Mem.Set(P + 0x78u, v);
     // +0x7C
-    public int unk7C
+    public int TeamScoreLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x7Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x7Cu, value);
     }
-    [MethodImpl(Inl)] public int unk7C_Set(int v) => Mem.Set(P + 0x7Cu, v);
+    [MethodImpl(Inl)] public int TeamScoreLimit_Set(int v) => Mem.Set(P + 0x7Cu, v);
     // +0x80
     public U8x4 pad80 { [MethodImpl(Inl)] get => new(P + 0x80u); }
     // +0x84
@@ -3655,35 +3655,35 @@ public readonly struct GameB6
     // +0x88
     public U8x16 pad88 { [MethodImpl(Inl)] get => new(P + 0x88u); }
     // +0x98
-    public int unk98
+    public int IsBossMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x98u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x98u, value);
     }
-    [MethodImpl(Inl)] public int unk98_Set(int v) => Mem.Set(P + 0x98u, v);
+    [MethodImpl(Inl)] public int IsBossMode_Set(int v) => Mem.Set(P + 0x98u, v);
     // +0x9C
-    public int unk9C
+    public int TrialCounter_9C
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x9Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x9Cu, value);
     }
-    [MethodImpl(Inl)] public int unk9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
+    [MethodImpl(Inl)] public int TrialCounter_9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
     // +0xA0
-    public int unkA0
+    public int BossShieldPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value);
     }
-    [MethodImpl(Inl)] public int unkA0_Set(int v) => Mem.Set(P + 0xA0u, v);
+    [MethodImpl(Inl)] public int BossShieldPercent_Set(int v) => Mem.Set(P + 0xA0u, v);
     // +0xA4
     public U8x4 padA4 { [MethodImpl(Inl)] get => new(P + 0xA4u); }
     // +0xA8
-    public int unkA8
+    public int IsHumanWinner
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int unkA8_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int IsHumanWinner_Set(int v) => Mem.Set(P + 0xA8u, v);
 }
 
 /// <summary>struct GameFlags, 0x6C bytes, at a guest address.</summary>
@@ -3700,37 +3700,37 @@ public readonly struct GameFlags
     // +0x0
     public U8x28 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
-    public int unk1C
+    public int IsMatchOver
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int IsMatchOver_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int unk20
+    public int IsEndAcknowledged
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int IsEndAcknowledged_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
     public U8x48 pad24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
     // +0x54
-    public int unk54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int unk54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x16 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x68
-    public int unk68
+    public int MonkeyState_68
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x68u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x68u, value);
     }
-    [MethodImpl(Inl)] public int unk68_Set(int v) => Mem.Set(P + 0x68u, v);
+    [MethodImpl(Inl)] public int MonkeyState_68_Set(int v) => Mem.Set(P + 0x68u, v);
 }
 
 /// <summary>struct GameFlagsB, 0x28 bytes, at a guest address.</summary>
@@ -3769,26 +3769,26 @@ public readonly struct GameFlagsC
     // +0x0
     public U8x152 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x98
-    public int unk98
+    public int IsBossMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x98u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x98u, value);
     }
-    [MethodImpl(Inl)] public int unk98_Set(int v) => Mem.Set(P + 0x98u, v);
+    [MethodImpl(Inl)] public int IsBossMode_Set(int v) => Mem.Set(P + 0x98u, v);
     // +0x9C
-    public int pad9C
+    public int TrialCounter_9C
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x9Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x9Cu, value);
     }
-    [MethodImpl(Inl)] public int pad9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
+    [MethodImpl(Inl)] public int TrialCounter_9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
     // +0xA0
-    public int unkA0
+    public int BossShieldPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value);
     }
-    [MethodImpl(Inl)] public int unkA0_Set(int v) => Mem.Set(P + 0xA0u, v);
+    [MethodImpl(Inl)] public int BossShieldPercent_Set(int v) => Mem.Set(P + 0xA0u, v);
 }
 
 /// <summary>struct GameLocalizationState, 0x582 bytes, at a guest address.</summary>

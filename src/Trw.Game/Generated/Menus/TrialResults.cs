@@ -711,9 +711,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00438BD0");
             uint g = 0u;
-            new O05G(Gv.Settings_MatchRules).f78_Set(0);
-            new O05G((g = Gv.Settings_MatchRules)).f54_Set(0);
-            if ((new O05G(g).fA8 == 1))
+            new O05G(Gv.Settings_MatchRules).TagObjectiveMode_78_Set(0);
+            new O05G((g = Gv.Settings_MatchRules)).IsMonkeyTagMode_Set(0);
+            if ((new O05G(g).IsHumanWinner == 1))
             {
                 if ((Mem.S32(Gv.ArenaLevel) >= 35))
                 {

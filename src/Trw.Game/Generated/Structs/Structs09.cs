@@ -2202,21 +2202,21 @@ public readonly struct Controller_func_80217B3C_de
     [MethodImpl(Inl)] public static implicit operator uint(Controller_func_80217B3C_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Controller_func_80217B3C_de(uint p) => new(p);
     // +0x0
-    public S8x198 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x198 IsConnected { [MethodImpl(Inl)] get => new(P); }
     // +0xC6
-    public sbyte x
+    public sbyte StickX
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xC6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC6u, value);
     }
-    [MethodImpl(Inl)] public sbyte x_Set(sbyte v) => Mem.Set(P + 0xC6u, v);
+    [MethodImpl(Inl)] public sbyte StickX_Set(sbyte v) => Mem.Set(P + 0xC6u, v);
     // +0xC7
-    public sbyte y
+    public sbyte StickY
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xC7u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC7u, value);
     }
-    [MethodImpl(Inl)] public sbyte y_Set(sbyte v) => Mem.Set(P + 0xC7u, v);
+    [MethodImpl(Inl)] public sbyte StickY_Set(sbyte v) => Mem.Set(P + 0xC7u, v);
 }
 
 /// <summary>struct Controller_func_80259C5C_de, 0x12 bytes, at a guest address.</summary>
@@ -3406,64 +3406,64 @@ public readonly struct DefC_v3
     [MethodImpl(Inl)] public static implicit operator uint(DefC_v3 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator DefC_v3(uint p) => new(p);
     // +0x0
-    public int type
+    public int Kind
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int type_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int Kind_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x10 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0xE
-    public sbyte unkE
+    public sbyte SpawnParam_E
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public sbyte unkE_Set(sbyte v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public sbyte SpawnParam_E_Set(sbyte v) => Mem.Set(P + 0xEu, v);
     // +0xF
     public U8x1 padF { [MethodImpl(Inl)] get => new(P + 0xFu); }
     // +0x10
-    public sbyte unk10
+    public sbyte SpawnParam_10
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk10_Set(sbyte v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public sbyte SpawnParam_10_Set(sbyte v) => Mem.Set(P + 0x10u, v);
     // +0x11
     public U8x1 pad11 { [MethodImpl(Inl)] get => new(P + 0x11u); }
     // +0x12
-    public sbyte unk12
+    public sbyte SpawnParam_12
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x12u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk12_Set(sbyte v) => Mem.Set(P + 0x12u, v);
+    [MethodImpl(Inl)] public sbyte SpawnParam_12_Set(sbyte v) => Mem.Set(P + 0x12u, v);
     // +0x13
     public U8x5 pad13 { [MethodImpl(Inl)] get => new(P + 0x13u); }
     // +0x18
-    public int unk18
+    public int BaseHealth
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int BaseHealth_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
     public U8x36 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x40
-    public byte unk40
+    public byte InitParamB_40
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public byte unk40_Set(byte v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public byte InitParamB_40_Set(byte v) => Mem.Set(P + 0x40u, v);
     // +0x41
-    public byte unk41
+    public byte InitParamA_41
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x41u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x41u, value);
     }
-    [MethodImpl(Inl)] public byte unk41_Set(byte v) => Mem.Set(P + 0x41u, v);
+    [MethodImpl(Inl)] public byte InitParamA_41_Set(byte v) => Mem.Set(P + 0x41u, v);
 }
 
 /// <summary>struct DefC, 0xC bytes, at a guest address.</summary>

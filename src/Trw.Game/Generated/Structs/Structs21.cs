@@ -2928,12 +2928,12 @@ public readonly struct Obj74
     // +0x0
     public U8x116 pad_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x74
-    public uint f74
+    public uint RecordFlags
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x74u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x74u, value);
     }
-    [MethodImpl(Inl)] public uint f74_Set(uint v) => Mem.Set(P + 0x74u, v);
+    [MethodImpl(Inl)] public uint RecordFlags_Set(uint v) => Mem.Set(P + 0x74u, v);
 }
 
 /// <summary>struct Obj7588, 0x7589 bytes, at a guest address.</summary>

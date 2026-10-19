@@ -16,15 +16,15 @@ public static partial class Game
             {
                 return 1;
             }
-            if (((int)(new B01Actor(actor).unk108) != (int)((sbyte)(new B01State(state).unkCA))))
+            if (((int)(new B01Actor(actor).unk108) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
             {
                 goto L_zero;
             }
-            if (((int)(new B01Actor(actor).unk10A) != (int)((sbyte)(new B01State(state).unkCA))))
+            if (((int)(new B01Actor(actor).unk10A) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
             {
                 goto L_zero;
             }
-            if ((((int)(new B01State(state).unkCB) != 0) && !((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new B01State(state).AnimLoopCount) != 0) && !((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
             {
                 return 1;
             }
@@ -191,32 +191,32 @@ public static partial class Game
                 float c = 0f;
                 float f = 0f;
                 int v = 0;
-                new StateB(s).unkC_Set((-1));
+                new StateB(s).PartMask_Set((-1));
                 new StateB(s).unk100_Set((byte)(0));
                 new StateB(s).unk102_Set((short)((-1)));
                 c = a;
                 if ((def != 0u))
                 {
-                    t1 = (int)(new DefC_v3(def).unk12);
-                    t0 = (int)(new DefC_v3(def).unkE);
-                    a3 = (int)(new DefC_v3(def).unk10);
-                    switch (new DefC_v3(def).type)
+                    t1 = (int)(new DefC_v3(def).SpawnParam_12);
+                    t0 = (int)(new DefC_v3(def).SpawnParam_E);
+                    a3 = (int)(new DefC_v3(def).SpawnParam_10);
+                    switch (new DefC_v3(def).Kind)
                     {
                     case 1:
-                        v = new DefC_v3(def).unk18;
+                        v = new DefC_v3(def).BaseHealth;
                         c = (float)((uint)(v));
-                        a = (float)(new DefC_v3(def).unk41);
-                        b = (float)(new DefC_v3(def).unk40);
+                        a = (float)(new DefC_v3(def).InitParamA_41);
+                        b = (float)(new DefC_v3(def).InitParamB_40);
                         break;
                     case 4:
-                        v = new DefC_v3(def).unk18;
+                        v = new DefC_v3(def).BaseHealth;
                         c = (float)((uint)(v));
                         break;
                     case 7:
                         c = (float)(Mem.S16((def + (uint)24)));
                         break;
                     }
-                    if (((new DefC_v3(def).type == 1) || (new DefC_v3(def).type == 4)))
+                    if (((new DefC_v3(def).Kind == 1) || (new DefC_v3(def).Kind == 4)))
                     {
                         switch (Mem.S32(Gv.Settings_DifficultyMask))
                         {
@@ -239,11 +239,11 @@ public static partial class Game
                 new SpawnTail(sp).unk3_Set((sbyte)(t1));
                 new SpawnTail(sp).unk1_Set((sbyte)(t0));
                 new SpawnTail(sp).unk2_Set((sbyte)(a3));
-                new StateB(s).unk4_Set((int)(c));
-                new StateB(s).unk10_Set((sbyte)((int)(a)));
-                new StateB(s).unkCC_Set((sbyte)((int)(b)));
-                new StateB(s).unk4_Set((new StateB(s).unk4 << (int)8));
-                new StateB(s).unk8_Set(new StateB(s).unk4);
+                new StateB(s).HitPoints_Set((int)(c));
+                new StateB(s).InitParamA_10_Set((sbyte)((int)(a)));
+                new StateB(s).InitParamB_CC_Set((sbyte)((int)(b)));
+                new StateB(s).HitPoints_Set((new StateB(s).HitPoints << (int)8));
+                new StateB(s).MaxHitPoints_Set(new StateB(s).HitPoints);
             }
         }
         finally { Stack.Free(12); }
@@ -422,7 +422,7 @@ public static partial class Game
                 uint t = 0u;
                 float ang = 0f;
                 t = (uint)(Actor_GetStandingObject((uint)(a)));
-                if (((t != 0u) && (new ActorDef(new ActorB(t).DefPtr).type == 2)))
+                if (((t != 0u) && (new ActorDef(new ActorB(t).DefPtr).Kind == 2)))
                 {
                     Mem.Copy((_fp + 16u), new ActorB(a).Position.P, 12);
                     Actor_GetFrameMotion(t, _fp);
@@ -444,7 +444,7 @@ public static partial class Game
                     Vec_Add((_fp + 16u), (_fp + 16u), (_fp + 32u));
                     Collision_MoveActor((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
                     Mem.Copy(new ActorB(a).Velocity.P, _fp, 12);
-                    if ((((int)(new ActorB(t).Type) == 1) && (new ActorDef(new ActorB(t).DefPtr).type == 2)))
+                    if ((((int)(new ActorB(t).Type) == 1) && (new ActorDef(new ActorB(t).DefPtr).Kind == 2)))
                     {
                         Platform_Nop_00207730();
                     }
@@ -465,20 +465,20 @@ public static partial class Game
             float sp = 0f;
             int v = 0;
             int d = 0;
-            e = new StateB(s).cur_;
+            e = new StateB(s).StateEntryPtr;
             if ((e == 0u))
             {
                 return;
             }
-            if (((int)(new StateB(s).unk35) != (int)(new StateB(s).id)))
+            if (((int)(new StateB(s).AnimStateId) != (int)(new StateB(s).StateId)))
             {
                 f = new StateEntry(e).speed;
                 if ((f >= 0.0f))
                 {
-                    new StateB(s).unkC4_Set(f);
+                    new StateB(s).AnimSpeed_Set(f);
                 }
-                new StateB(s).unk38_Set(new StateB(s).unk3C);
-                new StateB(s).unk3C_Set(new StateEntry(e).flags);
+                new StateB(s).PrevStateFlags_Set(new StateB(s).StateFlags);
+                new StateB(s).StateFlags_Set(new StateEntry(e).flags);
                 new ActorB(a).AnimDone_10E_Set((sbyte)(0));
                 v = (int)(new StateEntry(e).anim);
                 if ((v != 0))
@@ -491,77 +491,77 @@ public static partial class Game
                     {
                         if ((Debug_IsDataPointer((uint)(v)) != 0))
                         {
-                            v = (int)(Anim_PickRandomWeighted(a, (uint)(v), (int)(new StateB(s).unkCA)));
+                            v = (int)(Anim_PickRandomWeighted(a, (uint)(v), (int)(new StateB(s).AnimClipIndex)));
                         }
                     }
                     if ((v != 0))
                     {
                         if ((v != (-1)))
                         {
-                            new StateB(s).unkCA_Set((sbyte)(Actor_LookupAnimType(a, v, (int)(new StateB(s).unkCA))));
-                            new StateB(s).unkC8_Set((short)(v));
-                            if (((int)(new ActorB(a).AnimClipId) == (int)(new StateB(s).unkCA)))
+                            new StateB(s).AnimClipIndex_Set((sbyte)(Actor_LookupAnimType(a, v, (int)(new StateB(s).AnimClipIndex))));
+                            new StateB(s).AnimId_Set((short)(v));
+                            if (((int)(new ActorB(a).AnimClipId) == (int)(new StateB(s).AnimClipIndex)))
                             {
                                 new ActorB(a).AnimTime_Set(0.0f);
                             }
                         }
-                        new StateB(s).unkCB_Set((byte)(0));
-                        new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
+                        new StateB(s).AnimLoopCount_Set((byte)(0));
+                        new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) & (uint)((~1))));
                     }
                 }
-                new StateB(s).unk35_Set(new StateB(s).id);
+                new StateB(s).AnimStateId_Set(new StateB(s).StateId);
             }
             else
             {
-                if ((((int)(new StateB(s).unkCA) == (-1)) || ((int)(new StateB(s).unkC8) == (-1))))
+                if ((((int)(new StateB(s).AnimClipIndex) == (-1)) || ((int)(new StateB(s).AnimId) == (-1))))
                 {
-                    new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
-                    new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) | (uint)(1)));
+                    new StateB(s).AnimLoopCount_Set((byte)(((int)(new StateB(s).AnimLoopCount) + 1)));
+                    new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) | (uint)(1)));
                 }
                 else
                 {
-                    if (((int)(new ActorB(a).AnimClipId) == (int)(new StateB(s).unkCA)))
+                    if (((int)(new ActorB(a).AnimClipId) == (int)(new StateB(s).AnimClipIndex)))
                     {
-                        if (!((new StateB(s).flags & (uint)(1)) != 0u))
+                        if (!((new StateB(s).Flags & (uint)(1)) != 0u))
                         {
                             d = ((int)(new ActorB(a).AnimClipLength) - new StateEntry(e).len);
                             if (((float)((uint)(d)) <= new ActorB(a).AnimTime))
                             {
-                                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
-                                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) | (uint)(1)));
+                                new StateB(s).AnimLoopCount_Set((byte)(((int)(new StateB(s).AnimLoopCount) + 1)));
+                                new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) | (uint)(1)));
                             }
                         }
                         if (((int)(new ActorB(a).AnimDone_10E) != 0))
                         {
                             new ActorB(a).AnimDone_10E_Set((sbyte)(0));
-                            if (!((new StateB(s).flags & (uint)(1)) != 0u))
+                            if (!((new StateB(s).Flags & (uint)(1)) != 0u))
                             {
-                                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
+                                new StateB(s).AnimLoopCount_Set((byte)(((int)(new StateB(s).AnimLoopCount) + 1)));
                             }
-                            new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
+                            new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) & (uint)((~1))));
                         }
                     }
                 }
             }
-            if (((new StateB(s).unk3C & (uint)(16)) != 0u))
+            if (((new StateB(s).StateFlags & (uint)(16)) != 0u))
             {
-                sp = new StateB(s).unkC4;
+                sp = new StateB(s).AnimSpeed;
             }
             else
             {
-                sp = (new StateB(s).unkC0 * new StateB(s).unkC4);
+                sp = (new StateB(s).AnimSpeedScale * new StateB(s).AnimSpeed);
             }
             Mem.Set(Gv.FrameTime, (float)((float)(Mem.F32(Gv.FrameTime)) * sp));
-            Anim_TryRequestClip(a, (int)(new StateB(s).unkCA), (int)(((new StateB(s).unk3C >> (int)5) & (uint)(1))));
-            if ((((int)(new StateB(s).unkCA) != (-1)) && ((int)(new ActorB(a).AnimRequestedClipId) != (int)(new StateB(s).unkCA))))
+            Anim_TryRequestClip(a, (int)(new StateB(s).AnimClipIndex), (int)(((new StateB(s).StateFlags >> (int)5) & (uint)(1))));
+            if ((((int)(new StateB(s).AnimClipIndex) != (-1)) && ((int)(new ActorB(a).AnimRequestedClipId) != (int)(new StateB(s).AnimClipIndex))))
             {
-                new StateB(s).unkCB_Set((byte)(0));
-                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
+                new StateB(s).AnimLoopCount_Set((byte)(0));
+                new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) & (uint)((~1))));
                 new ActorB(a).AnimDone_10E_Set((sbyte)(0));
             }
             if (((new ActorB(a).Flags & (uint)(134217728)) != 0u))
             {
-                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
+                new StateB(s).AnimLoopCount_Set((byte)(((int)(new StateB(s).AnimLoopCount) + 1)));
             }
         }
     }
@@ -583,17 +583,17 @@ public static partial class Game
             {
                 new ActorB(a).Flags_Set((uint)((uint)(new ActorB(a).Flags) | (uint)(256)));
             }
-            new StateB(s).prevId_Set((byte)(new StateB(s).id));
+            new StateB(s).PrevStateId_Set((byte)(new StateB(s).StateId));
             new ActorB(a).AnimChanged_Set((byte)(1));
             new ActorB(a).unk123_Set((byte)(1));
-            if (((new StateB(s).cur_ != 0u) && ((int)(new StateB(s).id) == id)))
+            if (((new StateB(s).StateEntryPtr != 0u) && ((int)(new StateB(s).StateId) == id)))
             {
                 return 1;
             }
             t = new StateB(s).table_;
             found = 0u;
-            new StateB(s).id_Set((sbyte)(id));
-            new StateB(s).unk40_Set(0);
+            new StateB(s).StateId_Set((sbyte)(id));
+            new StateB(s).StateTime_Set(0);
             while ((t != 0u))
             {
                 for (e = new StateTable(t).ent.P; (new StateEntry(e).id != (-1)); e += 32u)
@@ -614,14 +614,14 @@ public static partial class Game
             {
                 return 0;
             }
-            new StateB(s).cur__Set(found);
+            new StateB(s).StateEntryPtr_Set(found);
             new ActorB(a).EventBits_Set((uint)((uint)(new ActorB(a).EventBits) & (uint)(528482431)));
             if (!((new ActorB(a).Flags & (uint)(134217728)) != 0u))
             {
-                new StateB(s).unkCB_Set((byte)(0));
-                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
+                new StateB(s).AnimLoopCount_Set((byte)(0));
+                new StateB(s).Flags_Set((uint)((uint)(new StateB(s).Flags) & (uint)((~1))));
             }
-            if ((new StateB(s).unkFC != 0u))
+            if ((new StateB(s).SoundLoopPtr != 0u))
             {
                 ActorSound_StopLoop(a, s);
             }
@@ -629,14 +629,14 @@ public static partial class Game
             {
                 Funcs.CallReg(new StateEntry(found).fn, a, s, 0u, 0u);
             }
-            new StateB(s).unk3C_Set(new StateEntry(found).flags);
-            if (((new StateB(s).unk3C & (uint)(4)) != 0u))
+            new StateB(s).StateFlags_Set(new StateEntry(found).flags);
+            if (((new StateB(s).StateFlags & (uint)(4)) != 0u))
             {
                 new ActorB(a).Velocity.x_Set((float)(0));
                 new ActorB(a).Velocity.y_Set((float)(0));
                 new ActorB(a).Velocity.z_Set((float)(0));
             }
-            return (((int)(new StateB(s).id) == id) ? 1 : 0);
+            return (((int)(new StateB(s).StateId) == id) ? 1 : 0);
         }
     }
 
@@ -875,11 +875,11 @@ public static partial class Game
                         {
                             return 9;
                         }
-                        if ((new GameFlagsC(Gv.Settings_MatchRules).unk98 != 0))
+                        if ((new GameFlagsC(Gv.Settings_MatchRules).IsBossMode != 0))
                         {
                             if (((int)(new ActorB(a).PlayerEntryPtr.unk80) == 11))
                             {
-                                if ((new GameFlagsC(Gv.Settings_MatchRules).unkA0 > 0))
+                                if ((new GameFlagsC(Gv.Settings_MatchRules).BossShieldPercent > 0))
                                 {
                                     return 9;
                                 }
@@ -917,38 +917,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002164A8", (uint)actor, (uint)state);
-            if (((new M1State(state).unkFC_ != 0u) && (new M1State(state).unkFC.unkC == (-1))))
+            if (((new M1State(state).unkFC_ != 0u) && (new M1State(state).SoundLoopPtr.unkC == (-1))))
             {
                 ActorSound_StopLoop((uint)(actor), (uint)(state));
             }
-            if (((int)(new M1State(state).unkCD) != 0))
+            if (((int)(new M1State(state).SkipFrames) != 0))
             {
-                new M1State(state).unkCD_Set((byte)(new M1State(state).unkCD - 1));
+                new M1State(state).SkipFrames_Set((byte)(new M1State(state).SkipFrames - 1));
                 Mem.Set(Gv.FrameTime, 0.0f);
                 return;
             }
             if (((new M1Actor(actor).unk19C != 0) && (new M1Actor(actor).def_ != 0u)))
             {
-                if ((new M1Actor(actor).DefPtr.kind == 2))
+                if ((new M1Actor(actor).DefPtr.Kind == 2))
                 {
-                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).Position.P, 12);
-                    new M1State(state).f60_Set(new M1Actor(actor).Yaw);
+                    Mem.Copy(new M1State(state).PrevPosition.P, new M1Actor(actor).Position.P, 12);
+                    new M1State(state).PrevYaw_Set(new M1Actor(actor).Yaw);
                 }
-                Mem.Copy(new M1State(state).v54.P, new M1Actor(actor).Position.P, 12);
-                new M1State(state).f40_Set((new M1State(state).f40 + Mem.F32(Gv.FrameTime)));
+                Mem.Copy(new M1State(state).FrameStartPosition.P, new M1Actor(actor).Position.P, 12);
+                new M1State(state).StateTime_Set((new M1State(state).StateTime + Mem.F32(Gv.FrameTime)));
                 if (((new M1Actor(actor).Flags & (uint)(65536)) != 0u))
                 {
                     Actor_RideMovingPlatform(actor);
                 }
-                if ((new M1State(state).fn108 != 0u))
+                if ((new M1State(state).UpdateCallback != 0u))
                 {
-                    Funcs.CallReg(new M1State(state).fn108, actor, state, 0u, 0u);
+                    Funcs.CallReg(new M1State(state).UpdateCallback, actor, state, 0u, 0u);
                 }
                 ActorState_UpdateAnim(actor, state);
-                if ((new M1Actor(actor).DefPtr.kind != 2))
+                if ((new M1Actor(actor).DefPtr.Kind != 2))
                 {
-                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).Position.P, 12);
-                    new M1State(state).f60_Set(new M1Actor(actor).Yaw);
+                    Mem.Copy(new M1State(state).PrevPosition.P, new M1Actor(actor).Position.P, 12);
+                    new M1State(state).PrevYaw_Set(new M1Actor(actor).Yaw);
                 }
             }
         }
@@ -1088,9 +1088,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002171FC", (uint)actor, (uint)state, (uint)a2, (uint)a3);
-            if ((new ActorState(state).fn110 != 0u))
+            if ((new ActorState(state).DamageCallback != 0u))
             {
-                Funcs.CallReg(new ActorState(state).fn110, actor, state, a2, a3);
+                Funcs.CallReg(new ActorState(state).DamageCallback, actor, state, a2, a3);
             }
         }
     }
@@ -4758,9 +4758,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DFB8", (uint)a);
             uint info = new Actor_v2(a).info_;
-            if ((new ActorInfo_v2(info).kind == 1))
+            if ((new ActorInfo_v2(info).Kind == 1))
             {
-                return (((new Actor_v2(a).f174 <= 0) || ((new ActorInfo_v2(info).f4C & (uint)(2048)) != (uint)(0))) ? 1 : 0);
+                return (((new Actor_v2(a).f174 <= 0) || ((new ActorInfo_v2(info).CreatureFlags & (uint)(2048)) != (uint)(0))) ? 1 : 0);
             }
             return 0;
         }
@@ -6387,7 +6387,7 @@ public static partial class Game
                 uint t = 0u;
                 Vec_Sub(_fp, new Entity(e).Position.P, target);
                 dist = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
-                if ((new ActorDef(new Entity(e).DefPtr).type == 1))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 1))
                 {
                     t = (uint)(new Entity(e).TypeId);
                     if ((((((((t == (uint)(1102)) || (t == (uint)(1107))) || (t == (uint)(1105))) || (t == (uint)(1104))) || (t == (uint)(1108))) || (t == (uint)(1109))) || (t == (uint)(1110))))
@@ -6422,7 +6422,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028E83C", (uint)e, (uint)target);
                 float dist = 0f;
                 uint t = 0u;
-                if ((((int)(Mem.U8(e)) == 1) && (new ActorDef(new Entity(e).DefPtr).type == 7)))
+                if ((((int)(Mem.U8(e)) == 1) && (new ActorDef(new Entity(e).DefPtr).Kind == 7)))
                 {
                     Vec_Sub(_fp, new Entity(e).Position.P, target);
                     dist = ((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
@@ -6433,7 +6433,7 @@ public static partial class Game
                     }
                     return 255;
                 }
-                if ((new ActorDef(new Entity(e).DefPtr).type == 1))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 1))
                 {
                     t = (uint)(new Entity(e).TypeId);
                     if ((((((((t == (uint)(1102)) || (t == (uint)(1107))) || (t == (uint)(1105))) || (t == (uint)(1104))) || (t == (uint)(1108))) || (t == (uint)(1109))) || (t == (uint)(1110))))

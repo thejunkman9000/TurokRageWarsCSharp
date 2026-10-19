@@ -1859,12 +1859,12 @@ public readonly struct Q2G
     // +0x0
     public U8x20 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public float f14
+    public float TimeRemaining
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public float f14_Set(float v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public float TimeRemaining_Set(float v) => Mem.Set(P + 0x14u, v);
 }
 
 /// <summary>struct Q2IdRow, 0x24 bytes, at a guest address.</summary>
@@ -2851,12 +2851,12 @@ public readonly struct Q2Scr
     // +0x0
     public U8x60 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x3C
-    public int f3C
+    public int IsHolding
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public int f3C_Set(int v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public int IsHolding_Set(int v) => Mem.Set(P + 0x3Cu, v);
 }
 
 /// <summary>struct Q2Tex, 0x1C bytes, at a guest address.</summary>

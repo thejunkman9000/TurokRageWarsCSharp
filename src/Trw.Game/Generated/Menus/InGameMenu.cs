@@ -243,12 +243,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004439B4", (uint)a, (uint)b);
-            if ((new O06G_v3(Gv.Settings_MatchRules).unk54 != 0))
+            if ((new O06G_v3(Gv.Settings_MatchRules).IsMonkeyTagMode != 0))
             {
                 byte v = new O06C_v7(new O06B_v8(new O06A_v3(b).unk1C_).unk5D8_).unk8F;
                 if (((int)(v) == 1))
                 {
-                    new O06G_v3(Gv.Settings_MatchRules).unk74_Set((int)(v));
+                    new O06G_v3(Gv.Settings_MatchRules).MonkeyEvent_74_Set((int)(v));
                 }
             }
             if ((Mem.S32(0x80145070u) == 1))
@@ -284,7 +284,7 @@ public static partial class Game
                 }
             }
             r = 0;
-            if ((((new O06G(Gv.Settings_MatchRules).unk28 != 0) || (new O06G(Gv.Settings_MatchRules).unk1C != 0)) || (new O06G(Gv.Settings_MatchRules).unk20 != 0)))
+            if ((((new O06G(Gv.Settings_MatchRules).IsTeamEndStarted != 0) || (new O06G(Gv.Settings_MatchRules).IsMatchOver != 0)) || (new O06G(Gv.Settings_MatchRules).IsEndAcknowledged != 0)))
             {
                 r = 1;
             }

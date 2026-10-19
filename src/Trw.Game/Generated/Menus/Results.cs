@@ -763,8 +763,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042D1BC");
-            new O04GFlags(Gv.Settings_MatchRules).unk78_Set(0);
-            new O04GFlags(Gv.Settings_MatchRules).unk54_Set(0);
+            new O04GFlags(Gv.Settings_MatchRules).TagObjectiveMode_78_Set(0);
+            new O04GFlags(Gv.Settings_MatchRules).IsMonkeyTagMode_Set(0);
             if (((Gauntlet_IsActive() == 0) || (MatchSetup_PickRandomArena() == 0)))
             {
                 Menu_GotoScreen(20);
@@ -782,8 +782,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042D214");
-            new O04GFlags(Gv.Settings_MatchRules).unk78_Set(0);
-            new O04GFlags(Gv.Settings_MatchRules).unk54_Set(0);
+            new O04GFlags(Gv.Settings_MatchRules).TagObjectiveMode_78_Set(0);
+            new O04GFlags(Gv.Settings_MatchRules).IsMonkeyTagMode_Set(0);
             Menu_GotoScreen(15);
         }
     }

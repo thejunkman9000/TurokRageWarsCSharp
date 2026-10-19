@@ -3319,9 +3319,9 @@ public static partial class Game
             if (!(((fl & 256) != 0))) goto _f6;
             info = new B19bObj(o).info_;
             s2 = 0;
-            if (!(((new B19bInfo(info).flags & (uint)(mask)) != 0u))) goto _f7;
-            if (!((((((sflag != 0) && !((fl & 2) != 0)) && ((int)(new B19bObj(o).AnimChanged) == 0)) && !((fl & 1024) != 0)) && (new B19bInfo(info).kind != 3)))) goto _f8;
-            if (!((new B19bInfo(info).kind != 14))) goto _f9;
+            if (!(((new B19bInfo(info).Flags & (uint)(mask)) != 0u))) goto _f7;
+            if (!((((((sflag != 0) && !((fl & 2) != 0)) && ((int)(new B19bObj(o).AnimChanged) == 0)) && !((fl & 1024) != 0)) && (new B19bInfo(info).Kind != 3)))) goto _f8;
+            if (!((new B19bInfo(info).Kind != 14))) goto _f9;
             if (!((Actor_IsAlwaysActive_0024D150(o) == 0))) goto _f10;
             if (!(((((((Mem.F32((bB + (uint)(0 * 4))) > new B19bObj(o).Bounds) && (Mem.F32((bB + (uint)((-3) * 4))) < new B19bObj(o).fF4)) && (Mem.F32((bB + (uint)(2 * 4))) > new B19bObj(o).fF0)) && (Mem.F32((bB + (uint)((-1) * 4))) < new B19bObj(o).fFC)) && (Mem.F32((bB + (uint)(1 * 4))) > new B19bObj(o).fEC)) && (Mem.F32((bB + (uint)((-2) * 4))) < new B19bObj(o).fF8)))) goto _f11;
             if (!((s5 != 0))) goto _f12;
@@ -3342,7 +3342,7 @@ public static partial class Game
             goto _f16;
             _f8: ;
             L_L4: ;
-            if (!((new B19bInfo(info).kind == 14))) goto _f17;
+            if (!((new B19bInfo(info).Kind == 14))) goto _f17;
             L_L5: ;
             if (!((Camera_GetDistanceTo((uint)(s5), (int)((o + (uint)8))) < Mem.F32((0x800CA2F8u + (uint)(1 * 4)))))) goto _f18;
             s2 = 1;
@@ -3358,13 +3358,13 @@ public static partial class Game
             _f16: ;
             _f7: ;
             if (!(((Flyby_IsInWindow() != 0) && (Mem.S32(0x800D2930u) != 0)))) goto _f21;
-            if (!(!((new B19bInfo(info).flags & (uint)(512)) != 0u))) goto _f22;
+            if (!(!((new B19bInfo(info).Flags & (uint)(512)) != 0u))) goto _f22;
             s2 = 0;
             _f22: ;
             goto _f23;
             _f21: ;
-            if (!(!((new B19bInfo(info).flags & (uint)(256)) != 0u))) goto _f24;
-            kind = new B19bInfo(info).kind;
+            if (!(!((new B19bInfo(info).Flags & (uint)(256)) != 0u))) goto _f24;
+            kind = new B19bInfo(info).Kind;
             if (!(((kind != 11) && (kind != 14)))) goto _f25;
             s2 = 0;
             _f25: ;
@@ -3380,7 +3380,7 @@ public static partial class Game
             new B19bObj(o).Flags_Set(v);
             if (!((s2 != 0))) goto _f28;
             Mem.Set((o + 256u), (int)((uint)(Mem.S32((o + 256u))) | 2147483648u));
-            if (!((new B19bInfo(info).kind != 14))) goto _f29;
+            if (!((new B19bInfo(info).Kind != 14))) goto _f29;
             Actor_ResetPoseMatrices(o);
             if (!((Actor_IsAlwaysActive_0024D150(o) != 0))) goto _f30;
             t0 = new B19bWorld(w).AlwaysActiveActorCount;
@@ -3402,7 +3402,7 @@ public static partial class Game
             new B19bWorld(w).ActorCount_Set((t2 + 1));
             _f34: ;
             t3 = new B19bWorld(w).Class1ActorCount;
-            if (!(((t3 < 64) && (new B19bObj(o).DefPtr.kind == 1)))) goto _f35;
+            if (!(((t3 < 64) && (new B19bObj(o).DefPtr.Kind == 1)))) goto _f35;
             new B19bWorld(w).Class1Actors.Set((int)(t3), o);
             u = new B19bWorld(w).Class1ActorCount;
             new B19bObj(o).ActiveListIndex_Set((sbyte)(u));
@@ -3414,7 +3414,7 @@ public static partial class Game
             new B19bWorld(w).ColliderActorCount_Set((t4 + 1));
             _f36: ;
             t5 = new B19bWorld(w).Class5ActorCount;
-            if (!(((t5 < 16) && (new B19bObj(o).DefPtr.kind == 5)))) goto _f37;
+            if (!(((t5 < 16) && (new B19bObj(o).DefPtr.Kind == 5)))) goto _f37;
             new B19bWorld(w).Class5Actors.Set((int)(t5), o);
             new B19bWorld(w).Class5ActorCount_Set((t5 + 1));
             _f37: ;
@@ -5202,7 +5202,7 @@ public static partial class Game
                     uint e = (new Level(lv).Entities + (uint)(bit * 744));
                     def = new Entity(e).DefPtr;
                 }
-                if (((uint)((new ActorDef(def).type - 9)) < (uint)(2)))
+                if (((uint)((new ActorDef(def).Kind - 9)) < (uint)(2)))
                 {
                     if (((Mem.U32((def + (uint)4)) & (uint)(512)) != 0u))
                     {
@@ -5830,7 +5830,7 @@ public static partial class Game
                 new Level(lv).ActorCount_Set((c + 1));
             }
             d = new Level(lv).Class1ActorCount;
-            if (((d < 64) && (new ActorDef(new Entity(e).DefPtr).type == 1)))
+            if (((d < 64) && (new ActorDef(new Entity(e).DefPtr).Kind == 1)))
             {
                 new Level(lv).Class1Actors.Set((int)(d), e);
                 j = new Level(lv).Class1ActorCount;
@@ -5844,7 +5844,7 @@ public static partial class Game
                 new Level(lv).ColliderActorCount_Set((f + 1));
             }
             g = new Level(lv).Class5ActorCount;
-            if (((g < 16) && (new ActorDef(new Entity(e).DefPtr).type == 5)))
+            if (((g < 16) && (new ActorDef(new Entity(e).DefPtr).Kind == 5)))
             {
                 new Level(lv).Class5Actors.Set((int)(g), e);
                 new Level(lv).Class5ActorCount_Set((g + 1));
@@ -5884,7 +5884,7 @@ public static partial class Game
             while ((i < n))
             {
                 e = (new Level(lv).Entities + (uint)(i * 744));
-                if (((((e != @ref) && ((a == (-1)) || ((int)(new Entity(e).TypeId) == a))) && ((type == (-1)) || (new ActorDef(new Entity(e).DefPtr).type == type))) && ((needFlag == 0) || (new Entity(e).HitPoints != 0))))
+                if (((((e != @ref) && ((a == (-1)) || ((int)(new Entity(e).TypeId) == a))) && ((type == (-1)) || (new ActorDef(new Entity(e).DefPtr).Kind == type))) && ((needFlag == 0) || (new Entity(e).HitPoints != 0))))
                 {
                     float dx = (new Entity(@ref).Position.x - new Entity(e).Position.x);
                     float dy = (new Entity(@ref).Position.y - new Entity(e).Position.y);
@@ -6030,7 +6030,7 @@ public static partial class Game
             for (i = 0; (i < n); ++i)
             {
                 uint e = (new Level(lv).Entities + (uint)(i * 744));
-                if ((new ActorDef(new Entity(e).DefPtr).type == 3))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 3))
                 {
                     Level_SetEntitySavedFlag(lv, e, 1);
                 }
@@ -6049,7 +6049,7 @@ public static partial class Game
             for (i = 0; (i < n); ++i)
             {
                 uint e = (new Level(lv).Entities + (uint)(i * 744));
-                if ((new ActorDef(new Entity(e).DefPtr).type == 3))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 3))
                 {
                     Level_SetEntitySavedFlag(lv, e, 0);
                 }
@@ -6555,7 +6555,7 @@ public static partial class Game
             }
             for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
-                if ((new ActorDef(new Entity(e).DefPtr).type == 14))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 14))
                 {
                     new Level(lv).Class14Entities.Set((int)(n), e);
                     ++n;
@@ -6585,7 +6585,7 @@ public static partial class Game
             }
             for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
-                if ((new ActorDef(new Entity(e).DefPtr).type == 3))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 3))
                 {
                     if (((int)(Level_GetTypeIdByIndex(Gv.LevelMgr, (int)(Mem.S16((new Entity(e).DefPtr + (uint)40))))) == 3031))
                     {
@@ -6595,7 +6595,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((new ActorDef(new Entity(e).DefPtr).type == 10))
+                    if ((new ActorDef(new Entity(e).DefPtr).Kind == 10))
                     {
                         switch ((int)(new Entity(e).TypeId))
                         {
@@ -6635,7 +6635,7 @@ public static partial class Game
             }
             for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
-                if ((new ActorDef(new Entity(e).DefPtr).type == 3))
+                if ((new ActorDef(new Entity(e).DefPtr).Kind == 3))
                 {
                     if (((int)(Mem.S16((new Entity(e).DefPtr + (uint)40))) == 3030))
                     {
@@ -6644,7 +6644,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((new ActorDef(new Entity(e).DefPtr).type == 10))
+                    if ((new ActorDef(new Entity(e).DefPtr).Kind == 10))
                     {
                         if (((int)(new Entity(e).TypeId) == 1614))
                         {

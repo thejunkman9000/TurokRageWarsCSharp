@@ -12,34 +12,34 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00244D60");
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk8_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn0C_Set(0u);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn10_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnFinishFn_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnWindowEndFn_Set(0u);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk14_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk18_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk24_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk28_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f30_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f34_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f40_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f44_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f48_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).StartClock_24_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).StartTime_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowEnd_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowStarted_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowEndDone_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFinished_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk4C_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f50_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f54_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unk58_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f5C_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f64_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkB8_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).AreTrackEventsEnabled_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ResetPlayerOnStart_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLastInChain_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).RecordFlag8_B8_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkBC_Set((-1));
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkC0_Set((-1));
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkC4_Set(0);
@@ -47,18 +47,18 @@ public static partial class Game
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkCC_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkD0_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkD4_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fD8_Set((-1));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fDC_Set((-1));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE0_Set((-1));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE4_Set(0u);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE8_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set((-1));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set((-1));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set((-1));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).DeferredFinishFn_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).DeferredWindowEndFn_Set(0u);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkEC_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkF0_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkF4_Set(0);
             new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkF8_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).unkFC_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f100_Set((float)(0));
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FovOverride_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping_Set(0);
             Flyby_SetViewportFull();
             Flyby_ClearText();
         }
@@ -78,10 +78,10 @@ public static partial class Game
                 uint pl = 0u;
                 uint snd = 0u;
                 uint tgt = 0u;
-                id = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fD8;
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f40 == 0))
+                id = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId;
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowStarted == 0))
                 {
-                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f54 != 0))
+                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ResetPlayerOnStart != 0))
                     {
                         pl = Mem.U32((Gv.PlayerListHead + (uint)(0 * 4)));
                         if ((pl != 0u))
@@ -108,17 +108,17 @@ public static partial class Game
                             Level_Load(snd, (uint)(id), (uint)(((r != 0) ? 1 : 0)), default(uint));
                         }
                     }
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f5C_Set(Flyby_HasNoChainedFlyby());
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f50_Set(1);
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fD8_Set((-1));
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f40_Set(1);
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLastInChain_Set(Flyby_HasNoChainedFlyby());
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).AreTrackEventsEnabled_Set(1);
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set((-1));
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowStarted_Set(1);
                     tgt = Mem.U32((Gv.PlayerListHead + (uint)(18 * 4)));
                     if ((tgt != 0u))
                     {
-                        new B10Tgt(tgt).f29C_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f108));
-                        new B10Tgt(tgt).f2A0_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f10C));
-                        new B10Tgt(tgt).f2A4_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f110));
-                        new B10Tgt(tgt).f2A8_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f114));
+                        new B10Tgt(tgt).f29C_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportWidth));
+                        new B10Tgt(tgt).f2A0_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportHeight));
+                        new B10Tgt(tgt).f2A4_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportX));
+                        new B10Tgt(tgt).f2A8_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportY));
                     }
                 }
             }
@@ -132,40 +132,40 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00244FA4");
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fDC == (-1)))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex == (-1)))
             {
                 return 0;
             }
             {
-                Flyby_LoadAndStart((uint)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fDC), default(uint), default(uint), default(uint));
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fDC_Set((-1));
+                Flyby_LoadAndStart((uint)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex), default(uint), default(uint), default(uint));
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set((-1));
                 if ((Flyby_IsActive() != 0))
                 {
                     if ((Flyby_IsHolding() != 0))
                     {
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                     }
                     else
                     {
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A0u))));
-                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f30 <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C))
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A0u))));
+                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                         {
                             Flyby_OnWindowStart();
                         }
-                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C))
+                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime))
                         {
-                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104 == 1))
+                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 1))
                             {
-                                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C));
+                                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime));
                             }
                             else
                             {
-                                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C);
-                                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4 != 0))
+                                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime);
+                                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd != 0))
                                 {
-                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(1);
-                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4_Set(0);
+                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(1);
+                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd_Set(0);
                                 }
                             }
                         }
@@ -192,29 +192,29 @@ public static partial class Game
                     {
                         if ((Flyby_IsHolding() != 0))
                         {
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                         }
                         else
                         {
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A4u))));
-                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f30 <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C))
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A4u))));
+                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                             {
                                 Flyby_OnWindowStart();
                             }
-                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C))
+                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime))
                             {
-                                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104 == 1))
+                                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 1))
                                 {
-                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C));
+                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime));
                                 }
                                 else
                                 {
-                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C);
-                                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4 != 0))
+                                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime);
+                                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd != 0))
                                     {
-                                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(1);
-                                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4_Set(0);
+                                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(1);
+                                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd_Set(0);
                                     }
                                 }
                             }
@@ -223,66 +223,66 @@ public static partial class Game
                     Flyby_FireTrackEvents();
                 }
                 Flyby_RunPending();
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60 != 0))
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut != 0))
                 {
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f64_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f64) - ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A8u)) * 2.0f)));
-                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f64 < Mem.F32(0x800C88ACu)))
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel) - ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88A8u)) * 2.0f)));
+                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel < Mem.F32(0x800C88ACu)))
                     {
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f64_Set((float)(0));
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel_Set((float)(0));
                         if ((Flyby_IsActive() != 0))
                         {
                             Flyby_RunEndCallback((uint)(1), default(uint), default(uint), default(uint));
                             Flyby_Finish();
-                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0 != 0u))
+                            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr != 0u))
                             {
-                                ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0);
+                                ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr);
                             }
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
                         }
                         return;
                     }
                 }
                 Flyby_RunPending();
-                if ((((((Flyby_IsActive() != 0) && !(Flyby_IsHolding() != 0)) && (Mem.S32((0x80145074u + (uint)(0 * 4))) == 0)) && (Mem.S32((0x80145074u + (uint)(1581 * 4))) == 0)) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104 == 0)))
+                if ((((((Flyby_IsActive() != 0) && !(Flyby_IsHolding() != 0)) && (Mem.S32((0x80145074u + (uint)(0 * 4))) == 0)) && (Mem.S32((0x80145074u + (uint)(1581 * 4))) == 0)) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 0)))
                 {
-                    if (((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f34) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f44 == 0)))
+                    if (((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowEnd) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowEndDone == 0)))
                     {
-                        uint fn = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn10;
+                        uint fn = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnWindowEndFn;
                         if ((fn != 0u))
                         {
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn10_Set(0u);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnWindowEndFn_Set(0u);
                             Funcs.CallReg(fn, 0u, 0u, 0u, 0u);
                         }
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f44_Set(1);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsWindowEndDone_Set(1);
                     }
-                    if (((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f48 == 0)))
+                    if (((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime) && (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFinished == 0)))
                     {
                         uint fn_2 = 0u;
-                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0 != 0u))
+                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr != 0u))
                         {
-                            ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0);
+                            ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr);
                         }
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-                        fn_2 = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn0C;
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+                        fn_2 = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnFinishFn;
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
                         if ((fn_2 != 0u))
                         {
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn0C_Set(0u);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnFinishFn_Set(0u);
                             Funcs.CallReg(fn_2, 0u, 0u, 0u, 0u);
                         }
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f48_Set(1);
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFinished_Set(1);
                     }
                 }
                 Flyby_RunPending();
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38 != 0))
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive != 0))
                 {
                     Resource_SetLoadFlags(10);
                 }
@@ -305,7 +305,7 @@ public static partial class Game
             float k = 0f;
             float t = 0f;
             float fx2 = 0f;
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0 > 0))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount > 0))
             {
                 half = (Mem.S32(Gv.ScreenWidth) / 2);
                 Text_BeginFontPass();
@@ -332,9 +332,9 @@ public static partial class Game
                 Text_SetScale(fx, fy);
                 Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), 1);
                 Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), 1);
-                for (i = 0; (i < new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0); ++i)
+                for (i = 0; (i < new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount); ++i)
                 {
-                    Text_Draw((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ent.P + (uint)(i * 40)), half, y, 255, 1, 1, Mem.F32(0x800C88B8u), Mem.F32(0x800C88B8u));
+                    Text_Draw((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLines.P + (uint)(i * 40)), half, y, 255, 1, 1, Mem.F32(0x800C88B8u), Mem.F32(0x800C88B8u));
                     t = ((float)(step) * fy);
                     fx2 = ((float)((Mem.S32(Gv.ScreenWidth) / 284)) * Mem.F32(0x800C88BCu));
                     fy = ((float)((Mem.S32(Gv.ScreenHeight) / 222)) * Mem.F32(0x800C88BCu));
@@ -352,10 +352,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245608", (uint)id, (uint)f1, (uint)f2);
             int r = Flyby_QueueById((int)(uint)(id));
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE0 == id))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FlybyId == id))
             {
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE4_Set(f1);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE8_Set(f2);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).DeferredFinishFn_Set(f1);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).DeferredWindowEndFn_Set(f2);
             }
             else
             {
@@ -382,15 +382,15 @@ public static partial class Game
             {
                 Flyby_RunEndCallback((uint)(1), default(uint), default(uint), default(uint));
                 Flyby_Finish();
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0 != 0u))
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr != 0u))
                 {
-                    ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0);
+                    ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr);
                 }
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
             }
         }
     }
@@ -406,10 +406,10 @@ public static partial class Game
                 if ((Flyby_CanFadeOut() != 0))
                 {
                     uint p = Mem.U32(Gv.FlybyCtlPtr);
-                    if ((new B10Ctl(p).f60 == 0))
+                    if ((new B10Ctl(p).IsFadingOut == 0))
                     {
-                        new B10Ctl(p).f60_Set(1);
-                        new B10Ctl(p).f64_Set(Mem.F32(0x800C88C0u));
+                        new B10Ctl(p).IsFadingOut_Set(1);
+                        new B10Ctl(p).FadeOutLevel_Set(Mem.F32(0x800C88C0u));
                     }
                 }
             }
@@ -432,7 +432,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024575C");
-            return ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fDC != (-1)) ? 1 : 0);
+            return ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex != (-1)) ? 1 : 0);
         }
     }
 
@@ -442,7 +442,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245774");
-            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38;
+            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive;
         }
     }
 
@@ -454,9 +454,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00245788");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
             int r = 0;
-            if ((new B10Ctl(p).f38 != 0))
+            if ((new B10Ctl(p).IsActive != 0))
             {
-                if (((new B10Ctl(p).f1C >= new B10Ctl(p).f30) && (new B10Ctl(p).f1C <= new B10Ctl(p).f34)))
+                if (((new B10Ctl(p).Clock >= new B10Ctl(p).WindowStart) && (new B10Ctl(p).Clock <= new B10Ctl(p).WindowEnd)))
                 {
                     r = 1;
                 }
@@ -472,11 +472,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002457D0");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
-            if ((new B10Ctl(p).f38 == 0))
+            if ((new B10Ctl(p).IsActive == 0))
             {
                 return 1;
             }
-            return ((new B10Ctl(p).f1C > new B10Ctl(p).f34) ? 1 : 0);
+            return ((new B10Ctl(p).Clock > new B10Ctl(p).WindowEnd) ? 1 : 0);
         }
     }
 
@@ -501,7 +501,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245840");
-            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C;
+            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding;
         }
     }
 
@@ -511,7 +511,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245854", _a0);
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38 != 0))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive != 0))
             {
                 Flyby_UpdateCamera((uint)(_a0));
             }
@@ -524,7 +524,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245884", _a0);
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38 != 0))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive != 0))
             {
                 Flyby_DrawOverlay((uint)(_a0));
             }
@@ -567,7 +567,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002458E8");
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
         }
     }
 
@@ -582,7 +582,7 @@ public static partial class Game
             {
                 return 0;
             }
-            v = (new Obj74(Mem.U32(Gv.FlybyCtlPtr)).f74 & (uint)(2));
+            v = (new Obj74(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & (uint)(2));
             return ((v != (uint)(0)) ? 1 : 0);
         }
     }
@@ -594,11 +594,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245930");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
-            if ((new B10Ctl(p).f38 == 0))
+            if ((new B10Ctl(p).IsActive == 0))
             {
                 return 0;
             }
-            return new B10Ctl(p).fAC;
+            return new B10Ctl(p).RecordValue_AC;
         }
     }
 
@@ -609,11 +609,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245958");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
-            if ((new B10Ctl(p).f38 == 0))
+            if ((new B10Ctl(p).IsActive == 0))
             {
                 return 0;
             }
-            return new B10Ctl(p).fA8;
+            return new B10Ctl(p).RecordValue_A8;
         }
     }
 
@@ -635,16 +635,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00245990");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
             float t = 0f;
-            if ((new B10Ctl(p).f38 == 0))
+            if ((new B10Ctl(p).IsActive == 0))
             {
                 return Mem.F32(0x800C88C4u);
             }
-            t = new B10Ctl(p).f100;
+            t = new B10Ctl(p).FovOverride;
             if ((t > Mem.F32(0x800C88C8u)))
             {
                 return t;
             }
-            return Flyby_EvalFieldOfView(new B10Ctl(p).f1C);
+            return Flyby_EvalFieldOfView(new B10Ctl(p).Clock);
         }
     }
 
@@ -654,7 +654,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002459F0");
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f100_Set(v);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FovOverride_Set(v);
         }
     }
 
@@ -664,7 +664,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245A00");
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f100_Set((float)(0));
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FovOverride_Set((float)(0));
         }
     }
 
@@ -674,7 +674,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245A10", (uint)a);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104_Set(a);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping_Set(a);
         }
     }
 
@@ -685,10 +685,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245A20");
             uint p = Mem.U32(Gv.FlybyCtlPtr);
-            new B10Ctl(p).f10C_Set(Mem.S32(Gv.ScreenHeight));
-            new B10Ctl(p).f108_Set(Mem.S32(Gv.ScreenWidth));
-            new B10Ctl(p).f110_Set(0);
-            new B10Ctl(p).f114_Set(0);
+            new B10Ctl(p).ViewportHeight_Set(Mem.S32(Gv.ScreenHeight));
+            new B10Ctl(p).ViewportWidth_Set(Mem.S32(Gv.ScreenWidth));
+            new B10Ctl(p).ViewportX_Set(0);
+            new B10Ctl(p).ViewportY_Set(0);
         }
     }
 
@@ -699,10 +699,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245A4C", (uint)a, (uint)b, (uint)c, (uint)d);
             uint p = Mem.U32(Gv.FlybyCtlPtr);
-            new B10Ctl(p).f10C_Set(b);
-            new B10Ctl(p).f108_Set(a);
-            new B10Ctl(p).f110_Set(c);
-            new B10Ctl(p).f114_Set(d);
+            new B10Ctl(p).ViewportHeight_Set(b);
+            new B10Ctl(p).ViewportWidth_Set(a);
+            new B10Ctl(p).ViewportX_Set(c);
+            new B10Ctl(p).ViewportY_Set(d);
         }
     }
 
@@ -712,8 +712,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245A68", (uint)src);
-            LibC_StrCopy((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ent.P + (uint)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0 * 40)), src);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0_Set((int)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0 + 1));
+            LibC_StrCopy((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLines.P + (uint)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount * 40)), src);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount_Set((int)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount + 1));
         }
     }
 
@@ -723,7 +723,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AB8");
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1E0_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount_Set(0);
         }
     }
 
@@ -733,7 +733,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AC8");
-            return (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fA0 * Mem.F32(0x800C88CCu));
+            return (new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FarPlane * Mem.F32(0x800C88CCu));
         }
     }
 
@@ -743,7 +743,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AE8");
-            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB0;
+            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FogColor;
         }
     }
 
@@ -753,7 +753,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AFC");
-            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fE0;
+            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).FlybyId;
         }
     }
 
@@ -772,15 +772,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245B18");
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0 != 0u))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr != 0u))
             {
-                ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0);
+                ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr);
             }
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
         }
     }
 
@@ -828,25 +828,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245BB0");
-            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f48 == 0))
+            if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFinished == 0))
             {
                 uint fn = 0u;
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0 != 0u))
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr != 0u))
                 {
-                    ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0);
+                    ResourcePool_Release(0, new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr);
                 }
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).p0_Set(0u);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f4_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f60_Set(0);
-                fn = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn0C;
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathResourcePtr_Set(0u);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut_Set(0);
+                fn = new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnFinishFn;
                 if ((fn != 0u))
                 {
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fn0C_Set(0u);
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).OnFinishFn_Set(0u);
                     Funcs.CallReg(fn, 0u, 0u, 0u, 0u);
                 }
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f48_Set(1);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsFinished_Set(1);
             }
         }
     }
@@ -861,28 +861,28 @@ public static partial class Game
             {
                 if ((Flyby_IsHolding() != 0))
                 {
-                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
+                    new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                     return;
                 }
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f20_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C);
-                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88D0u))));
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f30 <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C))
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).PrevClock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock);
+                new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C88D0u))));
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).WindowStart <= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                 {
                     Flyby_OnWindowStart();
                 }
-                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C))
+                if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock >= new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime))
                 {
-                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f104 == 1))
+                    if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsLooping == 1))
                     {
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C));
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set((float)((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock) - new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime));
                     }
                     else
                     {
-                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f1C_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f2C);
-                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4 != 0))
+                        new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).Clock_Set(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).EndTime);
+                        if ((new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd != 0))
                         {
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(1);
-                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).fB4_Set(0);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(1);
+                            new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd_Set(0);
                         }
                     }
                 }
@@ -896,7 +896,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245D04");
-            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).f38;
+            return new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).IsActive;
         }
     }
 
@@ -2314,10 +2314,10 @@ public static partial class Game
                 int seg = 0;
                 int i = 0;
                 uint n = 0u;
-                while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0))
+                while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
                 {
                     seg = i;
-                    n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), seg), 0);
+                    n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 0);
                     cnt = new O01Node(n).unk4;
                     keys = (n + (uint)8);
                     cumBefore = cumAfter;
@@ -2329,7 +2329,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    if ((seg == (new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0 - 1)))
+                    if ((seg == (new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0 - 1)))
                     {
                         if ((cumAfter < t))
                         {
@@ -2345,7 +2345,7 @@ public static partial class Game
                     }
                     i = (seg + 1);
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), seg), 2);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 2);
                 if ((new O01Node(n).unk0 != 0))
                 {
                     t = cumBefore;
@@ -2373,10 +2373,10 @@ public static partial class Game
                 int seg = 0;
                 int i = 0;
                 uint n = 0u;
-                while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0))
+                while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
                 {
                     seg = i;
-                    n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), seg), 1);
+                    n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 1);
                     cnt = new O01Node(n).unk4;
                     keys = (n + (uint)8);
                     cumBefore = cumAfter;
@@ -2388,7 +2388,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    if ((seg == (new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0 - 1)))
+                    if ((seg == (new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0 - 1)))
                     {
                         if ((cumAfter < t))
                         {
@@ -2404,7 +2404,7 @@ public static partial class Game
                     }
                     i = (seg + 1);
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), seg), 2);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 2);
                 if ((new O01Node(n).unk4 != 0))
                 {
                     t = cumBefore;
@@ -2425,7 +2425,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00401564", (uint)@out);
-                uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 1);
+                uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 1);
                 uint keys = (n + (uint)8);
                 int cnt = new O01Node(n).unk4;
                 uint k = 0u;
@@ -2493,7 +2493,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040170C");
-            uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 1);
+            uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 1);
             uint keys = (n + (uint)8);
             int cnt = new O01Node(n).unk4;
             float u = 0f;
@@ -2653,7 +2653,7 @@ public static partial class Game
                 int r = 0;
                 float fs0 = 0f;
                 float fs1 = 0f;
-                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     return;
                 }
@@ -2661,59 +2661,59 @@ public static partial class Game
                 {
                     return;
                 }
-                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f1C < new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f30))
+                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock < new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).WindowStart))
                 {
                     return;
                 }
-                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f34 < new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f1C))
+                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).WindowEnd < new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock))
                 {
                     return;
                 }
-                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk1E0 > 0))
+                if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).TextLineCount > 0))
                 {
                     Flyby_DrawText();
                 }
-                Flyby_EvalCameraPos(_fp, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f1C);
-                Flyby_EvalTargetPos((_fp + 16u), new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).f1C);
+                Flyby_EvalCameraPos(_fp, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock);
+                Flyby_EvalTargetPos((_fp + 16u), new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                 fs0 = Mem.F32(0x800E0B70u);
                 Vec_Scale(_fp, _fp, fs0);
                 Vec_Scale((_fp + 16u), (_fp + 16u), fs0);
                 new Q01Out_v2(arg0).f28_Set(0.0f);
                 Vec_Sub((_fp + 32u), (_fp + 16u), _fp);
-                if (((((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk74 & 1) != 0) && (new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk18_ != 0u)) || ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk74 & 2) != 0)))
+                if (((((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 1) != 0) && (new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr != 0u)) || ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 2) != 0)))
                 {
                     s3 = Mem.U32(Gv.PlayerListHead);
-                    if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk74 & 1) != 0))
+                    if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 1) != 0))
                     {
-                        if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk18_ != 0u))
+                        if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr != 0u))
                         {
-                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.P, new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk18_).pos.P, 12);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).fFC_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk18_).f6C + Mem.F32(0x800E0B74u)));
+                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).pos.P, 12);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).f6C + Mem.F32(0x800E0B74u)));
                         }
                     }
-                    if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).unk74 & 2) != 0))
+                    if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 2) != 0))
                     {
                         if ((s3 != 0u))
                         {
-                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.P, new Q01Obj_v2(s3).pos.P, 12);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).fFC_Set(new Q01Obj_v2(s3).f6C);
+                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(s3).pos.P, 12);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set(new Q01Obj_v2(s3).f6C);
                         }
                         else
                         {
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.x_Set(0);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.y_Set(0);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.z_Set(0);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).fFC_Set(0.0f);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.x_Set(0);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.y_Set(0);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.z_Set(0);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set(0.0f);
                         }
                     }
                     Math_MtxIdentity((_fp + 128u));
-                    Math_MtxMakeRotateXYZ((_fp + 128u), 0.0f, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).fFC, 0.0f);
+                    Math_MtxMakeRotateXYZ((_fp + 128u), 0.0f, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw, 0.0f);
                     Math_MtxTransformPoint((_fp + 128u), (_fp + 16u), (_fp + 192u));
                     Mem.Copy((_fp + 16u), (_fp + 192u), 12);
                     Math_MtxTransformPoint((_fp + 128u), _fp, (_fp + 192u));
                     Mem.Copy(_fp, (_fp + 192u), 12);
-                    Vec_Add((_fp + 16u), (_fp + 16u), new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.P);
-                    Vec_Add(_fp, _fp, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).vF0.P);
+                    Vec_Add((_fp + 16u), (_fp + 16u), new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P);
+                    Vec_Add(_fp, _fp, new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P);
                     Vec_Sub((_fp + 32u), (_fp + 16u), _fp);
                     if ((s3 != 0u))
                     {
@@ -2922,18 +2922,18 @@ public static partial class Game
                 float ft = 0f;
                 float t = 0f;
                 float v = 0f;
-                if ((new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).unk38 != 0))
+                if ((new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).IsActive != 0))
                 {
                     s1 = Cpu.TruncU32(new Q01Out(arg0).f2A4);
                     s0 = Cpu.TruncU32(new Q01Out(arg0).f2A8);
                     s3 = Cpu.TruncU32(((float)(s1) + new Q01Out(arg0).f29C));
                     s2 = Cpu.TruncU32(((float)(s0) + new Q01Out(arg0).f2A0));
-                    Flyby_EvalFadeColor((_fp + 16u), new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).f1C);
-                    ft = Flyby_EvalFadeAlpha(new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).f1C);
+                    Flyby_EvalFadeColor((_fp + 16u), new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).Clock);
+                    ft = Flyby_EvalFadeAlpha(new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                     Mem.Copy(_fp, (_fp + 16u), 12);
-                    if ((new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).unk60 != 0))
+                    if ((new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).IsFadingOut != 0))
                     {
-                        t = new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).f64;
+                        t = new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).FadeOutLevel;
                         if ((t < 0.0f))
                         {
                             t = 0.0f;
@@ -3038,10 +3038,10 @@ public static partial class Game
                     }
                     if ((found != (-1)))
                     {
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk18_Set(arg);
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkD8_Set(k0);
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkDC_Set(found);
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk58_Set(1);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr_Set(arg);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(k0);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set(found);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(1);
                     }
                     ResourcePool_Unref(0, r);
                 }
@@ -3088,17 +3088,17 @@ public static partial class Game
                     {
                         if (((new O01Rec(e).unkC & 3) == 0))
                         {
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkD8_Set(new O01Rec(e).unk0);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).unk0);
                         }
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkE0_Set(a);
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkDC_Set(i);
-                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk58_Set(1);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set(a);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set(i);
+                        new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(1);
                         break;
                     }
                 }
                 ResourcePool_Unref(0, r);
                 Flyby_ClearText();
-                return new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkD8;
+                return new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId;
             }
         }
         finally { Stack.Free(4); }
@@ -3138,10 +3138,10 @@ public static partial class Game
                         e = (ents + (uint)(i * 76));
                         if ((Str_Compare((uint)(a), (e + (uint)24)) == 0))
                         {
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkE0_Set(new O01Rec(e).unk8);
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkD8_Set(new O01Rec(e).unk0);
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkDC_Set(i);
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk58_Set(1);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set(new O01Rec(e).unk8);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).unk0);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set(i);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(1);
                             break;
                         }
                     }
@@ -3194,7 +3194,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040332C");
             int any = 0;
             int i = 0;
-            uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 2);
+            uint n = Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 2);
             int cnt = new O01Node(n).unk4;
             uint ents = (n + (uint)8);
             uint e = 0u;
@@ -3259,7 +3259,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403458");
-            float now = new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).unk1C;
+            float now = new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).Clock;
             int flag = 0;
             uint n = 0u;
             uint e = 0u;
@@ -3269,14 +3269,14 @@ public static partial class Game
             int i = 0;
             if ((Flyby_IsActive() != 0))
             {
-                if ((new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).unk50 != 0))
+                if ((new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).AreTrackEventsEnabled != 0))
                 {
-                    n = Chunk_Get(new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).tree, 2);
+                    n = Chunk_Get(new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 2);
                     cnt = new O01Node(n).unk4;
                     ents = (n + (uint)8);
                     if ((cnt != 0))
                     {
-                        if ((new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).unk34 <= now))
+                        if ((new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).WindowEnd <= now))
                         {
                             flag = 1;
                         }
@@ -3305,7 +3305,7 @@ public static partial class Game
                             if ((func_00403458_O01KindOk(k) != 0))
                             {
                                 Flyby_QueueByTrigger(0, k);
-                                new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).unk58_Set(0);
+                                new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(0);
                             }
                             else
                             {
@@ -3331,7 +3331,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00403658_getA");
                 uint n = 0u;
-                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     new O01Vec3((_fp + 32u)).x_Set((float)(0));
                     new O01Vec3((_fp + 32u)).y_Set((float)(0));
@@ -3339,7 +3339,7 @@ public static partial class Game
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), 0), 0);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 0);
                 Mem.Copy((_fp + 16u), C.Seq(Flyby_EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
@@ -3357,7 +3357,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00403658_getB");
                 uint n = 0u;
-                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     new O01Vec3((_fp + 32u)).x_Set(10.0f);
                     new O01Vec3((_fp + 32u)).y_Set((float)(0));
@@ -3365,7 +3365,7 @@ public static partial class Game
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), 0), 1);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 1);
                 Mem.Copy((_fp + 16u), C.Seq(Flyby_EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
@@ -3382,7 +3382,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00403658");
-                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     new O01Vec3((_fp + 80u)).x_Set((float)(0));
                     new O01Vec3((_fp + 80u)).y_Set((float)(0));
@@ -3413,7 +3413,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004037D4");
-            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unkB4_Set(1);
+            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).HoldAtEnd_Set(1);
         }
     }
 
@@ -3473,7 +3473,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0040385C");
                 uint n = 0u;
-                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     new O01Vec3((_fp + 32u)).x_Set((float)(0));
                     new O01Vec3((_fp + 32u)).y_Set((float)(0));
@@ -3481,7 +3481,7 @@ public static partial class Game
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), 0), 0);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 0);
                 Mem.Copy((_fp + 16u), C.Seq(Flyby_EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
@@ -3500,7 +3500,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0040390C");
                 uint n = 0u;
-                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).unk38 == 0))
+                if ((new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsActive == 0))
                 {
                     new O01Vec3((_fp + 32u)).x_Set(Mem.F32(0x800E0CACu));
                     new O01Vec3((_fp + 32u)).y_Set((float)(0));
@@ -3508,7 +3508,7 @@ public static partial class Game
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), 0), 1);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 1);
                 Mem.Copy((_fp + 16u), C.Seq(Flyby_EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
@@ -3525,9 +3525,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004039C4");
             float sum = 0.0f;
             int i = 0;
-            while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0))
+            while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
             {
-                uint n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), i), 0);
+                uint n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), i), 0);
                 n = (n + (uint)(new O01Node(n).unk4 * 36));
                 sum = (float)((float)(sum) + Mem.F32(n));
                 ++i;
@@ -3542,7 +3542,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403A64");
-            return new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0)).unk0;
+            return new O01Node(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0;
         }
     }
 
@@ -3552,7 +3552,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403A90", (uint)a);
-            return Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), a), 0);
+            return Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 0);
         }
     }
 
@@ -3562,7 +3562,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403ADC");
-            return Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 1);
+            return Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 1);
         }
     }
 
@@ -3652,7 +3652,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403CBC", (uint)a);
-            return Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), a);
+            return Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a);
         }
     }
 
@@ -3662,7 +3662,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403CFC", (uint)a);
-            return new O01Node(Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), a), 2)).unk0;
+            return new O01Node(Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).unk0;
         }
     }
 
@@ -3672,7 +3672,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403D4C", (uint)a);
-            return new O01Node(Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), a), 2)).unk4;
+            return new O01Node(Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).unk4;
         }
     }
 
@@ -3682,7 +3682,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403D9C", (uint)a);
-            return Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 0), a), 1);
+            return Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 1);
         }
     }
 
@@ -3692,7 +3692,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403DE8");
-            return Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).tree, 3);
+            return Chunk_Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 3);
         }
     }
 

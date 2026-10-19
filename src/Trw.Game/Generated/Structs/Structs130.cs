@@ -3748,23 +3748,23 @@ public readonly struct func_8044E9A0_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_8044E9A0_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8044E9A0_S1(uint p) => new(p);
     // +0x0
-    public S8x159164 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159164 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DBC
-    public int unk26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int unk26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public S8x1 pad26DBC { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
+    public S8x1 IsResetting { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DC1
-    public byte unk26DC1
+    public byte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public byte unk26DC1_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public byte FadeMode_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
 }
 
 /// <summary>struct lldiv_t, 0x10 bytes, at a guest address.</summary>

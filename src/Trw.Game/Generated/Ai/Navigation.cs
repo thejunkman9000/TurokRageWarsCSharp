@@ -233,7 +233,7 @@ public static partial class Game
                             {
                                 a = Mem.U32((_fp + (uint)(k * 4)));
                                 st = new B2Obj(a).StateBlock.P;
-                                info = new B2Obj(a).DefPtr.info.P;
+                                info = new B2Obj(a).DefPtr.Params.P;
                                 if (((int)(new B2Sub(st).unk34) == 4))
                                 {
                                     t = LevelPath_GetHeader(Gv.LevelMgr, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
@@ -256,11 +256,11 @@ public static partial class Game
                                 {
                                     Mem.Copy((_fp + 136u), new B2Obj(a).HomePosition.P, 12);
                                     Mem.Copy((_fp + 152u), new B2Obj(a).HomePosition.P, 12);
-                                    new Vec3f((_fp + 152u)).y_Set((float)((float)(new Vec3f((_fp + 152u)).y) + new B2Info(info).unk2C));
-                                    if (((int)(new B2Info(info).unk4) != 0))
+                                    new Vec3f((_fp + 152u)).y_Set((float)((float)(new Vec3f((_fp + 152u)).y) + new B2Info(info).TravelHeight));
+                                    if (((int)(new B2Info(info).BaseHealth) != 0))
                                     {
-                                        new Vec3f((_fp + 152u)).x_Set((float)((float)(new Vec3f((_fp + 152u)).x) + (new B2Info(info).unk30 * sinf(new B2Info(info).unk34))));
-                                        new Vec3f((_fp + 152u)).z_Set((float)((float)(new Vec3f((_fp + 152u)).z) + (new B2Info(info).unk30 * cosf(new B2Info(info).unk34))));
+                                        new Vec3f((_fp + 152u)).x_Set((float)((float)(new Vec3f((_fp + 152u)).x) + (new B2Info(info).TravelDistance * sinf(new B2Info(info).TravelYaw))));
+                                        new Vec3f((_fp + 152u)).z_Set((float)((float)(new Vec3f((_fp + 152u)).z) + (new B2Info(info).TravelDistance * cosf(new B2Info(info).TravelYaw))));
                                     }
                                     d = Vec_Distance(r, (_fp + 136u));
                                     if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))

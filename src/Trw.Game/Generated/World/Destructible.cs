@@ -20,13 +20,13 @@ public static partial class Game
             uint v = 0u;
             byte lim = 0;
             float f = 0f;
-            info = new M1Actor(actor).DefPtr.info.P;
+            info = new M1Actor(actor).DefPtr.Params.P;
             best = 0;
-            if (((new M1Info(info).flags & (uint)(1)) != 0u))
+            if (((new M1Info(info).Flags & (uint)(1)) != 0u))
             {
                 ok = (int)((((new M1Ev(ev).flags >> (int)9) ^ (uint)(1)) & (uint)(1)));
             }
-            if (((new M1Info(info).flags & (uint)(2)) != 0u))
+            if (((new M1Info(info).Flags & (uint)(2)) != 0u))
             {
                 if (((new M1Ev(ev).flags & (uint)(512)) != 0u))
                 {
@@ -35,30 +35,30 @@ public static partial class Game
             }
             if ((ok != 0))
             {
-                rem = (new M1State(state).unk4 - new M1Ev(ev).unk4);
+                rem = (new M1State(state).HitPoints - new M1Ev(ev).unk4);
                 if ((rem < 0))
                 {
                     rem = 0;
                 }
-                f = (((float)(rem) / (float)(new M1State(state).unk8)) * 100.0f);
+                f = (((float)(rem) / (float)(new M1State(state).MaxHitPoints)) * 100.0f);
                 lim = (byte)(100);
-                new M1State(state).unk4_Set(rem);
+                new M1State(state).HitPoints_Set(rem);
                 v = Cpu.TruncU32(f);
                 for (i = 0; (i < 4); ++i)
                 {
-                    byte b = new M1Info(info).b50[(int)(i)];
+                    byte b = new M1Info(info).DamageStagePercents_50[(int)(i)];
                     if (((((int)(b) < (int)(lim)) && ((int)(b) != 0)) && ((int)((byte)(v)) < (int)(b))))
                     {
                         lim = b;
                         best = i;
                     }
                 }
-                new M1State(state).unk124.i_Set((int)(new M1Info(info).unk48.b[(int)(best)]));
-                new M1State(state).unk128.i_Set((int)(new M1Info(info).unk4C.b[(int)(best)]));
-                new M1Actor(actor).ModelIndex_Set(new M1Info(info).unk48.b[(int)(best)]);
-                if ((new M1State(state).unk4 == 0))
+                new M1State(state).ClassVar_124.i_Set((int)(new M1Info(info).YawRange_48.b[(int)(best)]));
+                new M1State(state).ClassVar_128.i_Set((int)(new M1Info(info).Range_4C.b[(int)(best)]));
+                new M1Actor(actor).ModelIndex_Set(new M1Info(info).YawRange_48.b[(int)(best)]);
+                if ((new M1State(state).HitPoints == 0))
                 {
-                    Actor_DispatchEvent(actor, state, (((new M1Actor(actor).DefPtr.info.flags & (uint)(64)) != 0u) ? 2 : 1));
+                    Actor_DispatchEvent(actor, state, (((new M1Actor(actor).DefPtr.Params.Flags & (uint)(64)) != 0u) ? 2 : 1));
                 }
             }
         }
@@ -70,12 +70,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020520C", (uint)arg0, (uint)state);
-            new ActorState(state).table_Set(0x800CD670u);
-            new ActorState(state).fn108_Set(0x002052C4u);
-            new ActorState(state).fn10C_Set(0x00205628u);
-            new ActorState(state).fn110_Set((0x00205094u + (uint)12));
-            new ActorState(state).unk124_Set(0);
-            Mem.Set(new ActorState(state).unk128.P, (int)((sbyte)(Mem.U8((arg0 + (uint)3)))));
+            new ActorState(state).StateTablePtr_Set(0x800CD670u);
+            new ActorState(state).UpdateCallback_Set(0x002052C4u);
+            new ActorState(state).DrawCallback_Set(0x00205628u);
+            new ActorState(state).DamageCallback_Set((0x00205094u + (uint)12));
+            new ActorState(state).ClassVar_124_Set(0);
+            Mem.Set(new ActorState(state).ClassVar_128.P, (int)((sbyte)(Mem.U8((arg0 + (uint)3)))));
         }
     }
 
@@ -161,25 +161,25 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00205324", (uint)actor, (uint)state);
             uint info = 0u;
             int mode = 0;
-            info = new M1Actor(actor).DefPtr.info.P;
+            info = new M1Actor(actor).DefPtr.Params.P;
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             Level_FireEntityTriggers(actor, 262144, (int)(actor));
-            if (!((new M1State(state).unk4 == 0))) goto _f0;
+            if (!((new M1State(state).HitPoints == 0))) goto _f0;
             new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~65536))));
             _f0: ;
-            if (!((new M1Info(info).unk18 == 0))) goto _f1;
+            if (!((new M1Info(info).MessageIndex_18 == 0))) goto _f1;
             new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~8192))));
             new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~256))));
             _f1: ;
             mode = Mem.S32((Gv.LevelMgr + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
-            if (!((new M1Info(info).unk20.i != (-1)))) goto _f3;
-            Audio_PlaySound((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).Position.P, 0, (-1));
+            if (!((new M1Info(info).BreakSoundId_20.i != (-1)))) goto _f3;
+            Audio_PlaySound((int)(new M1Info(info).BreakSoundId_20.h[(int)(1)]), new M1Actor(actor).Position.P, 0, (-1));
             _f3: ;
-            if (!((new M1Info(info).unk1C != (-1)))) goto _f4;
-            Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).Position.P);
+            if (!((new M1Info(info).BreakEffectId_1C != (-1)))) goto _f4;
+            Effect_SpawnForObject(actor, new M1Info(info).BreakEffectId_1C, new M1Actor(actor).Position.P);
             _f4: ;
-            Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new M1Info(info).unk24.i), (uint)(new M1Info(info).unk28.i));
+            Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new M1Info(info).ClassFlags.i), (uint)(new M1Info(info).ModeBytes_28.i));
             Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));
             if (!((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != mode))) goto _f5;
             goto L_L;
@@ -200,7 +200,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00205494", (uint)actor, (uint)state);
             uint def = new Actor(actor).DefPtr;
-            if ((((int)(new ActorState(state).unkCB) != 0) && ((new B01Def(def).flags14 & (uint)(4)) != 0u)))
+            if ((((int)(new ActorState(state).AnimLoopCount) != 0) && ((new B01Def(def).Params & (uint)(4)) != 0u)))
             {
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
@@ -214,7 +214,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002054D0", (uint)actor);
-            return new B01Actor(actor).def.unk40;
+            return new B01Actor(actor).def.InitParamB_40;
         }
     }
 
@@ -227,22 +227,22 @@ public static partial class Game
             uint info = (new B01Actor(actor).def_ + (uint)20);
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
             Level_FireEntityTriggers(actor, 262144, (int)(actor));
-            if ((new B01Info(info).unk2C == 0))
+            if ((new B01Info(info).TravelHeight == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
             }
             if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) == 4))
             {
-                if ((new B01Info(info).unk34.i != (-1)))
+                if ((new B01Info(info).TravelYaw.i != (-1)))
                 {
-                    Audio_PlaySound((int)((uint)((int)(new B01Info(info).unk34.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                    Audio_PlaySound((int)((uint)((int)(new B01Info(info).TravelYaw.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 }
-                if ((new B01Info(info).unk30 != (-1)))
+                if ((new B01Info(info).TravelDistance != (-1)))
                 {
-                    Effect_SpawnForObject(actor, new B01Info(info).unk30, new B01Actor(actor).pos.P);
+                    Effect_SpawnForObject(actor, new B01Info(info).TravelDistance, new B01Actor(actor).pos.P);
                 }
-                Actor_DropItemsOnce(actor, state, (uint)(8), (uint)(new B01Info(info).unk38), (uint)(new B01Info(info).unk3C));
+                Actor_DropItemsOnce(actor, state, (uint)(8), (uint)(new B01Info(info).TravelTime_38), (uint)(new B01Info(info).TravelTurn_3C));
             }
         }
     }
@@ -254,7 +254,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002055EC", (uint)actor, (uint)state);
             uint def = new Actor(actor).DefPtr;
-            if ((((int)(new ActorState(state).unkCB) != 0) && ((new B01Def(def).flags14 & (uint)(32)) != 0u)))
+            if ((((int)(new ActorState(state).AnimLoopCount) != 0) && ((new B01Def(def).Params & (uint)(32)) != 0u)))
             {
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
@@ -268,10 +268,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00205628", (uint)obj, (uint)state, (uint)evt);
-            new B01Actor(obj).unk17C_Set((1 << (int)new ActorState(state).unk124));
+            new B01Actor(obj).unk17C_Set((1 << (int)new ActorState(state).ClassVar_124));
             if ((new B01Evt(evt).unk0 != 0))
             {
-                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorState(state).unk128.P));
+                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorState(state).ClassVar_128.P));
             }
         }
     }

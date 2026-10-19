@@ -382,10 +382,10 @@ AiBrain	0x240	SecondaryFireTicks_240	low	while >0 Ai_UpdateFiring ORs 0x4000 int
 AiBrain	0x244	AimWobble	high	random-walk yaw offset updated by Ai_UpdateAimWobble, passed to Ai_TurnTowardPoint
 AiBrain	0x248	AimPitch	medium	pitch to target written by Ai_ComputeAimPitch; Ai_TurnTowardPoint uses 248+250 for weapon mode != 2
 AiBrain	0x24C	AimPitchAlt	medium	pitch written by Ai_ComputeAimPitch; used (24C+254) when owner.unk594 == 2
-AiBrain	0x250	LobPitchOffset_250	low	added to AimPitch in Ai_TurnTowardPoint; set by lob-aim solver
-AiBrain	0x254	LobPitchOffsetAlt_254	low	added to AimPitchAlt in Ai_TurnTowardPoint; set by lob-aim solver
+AiBrain	0x250	LobPitchOffset	medium	added to AimPitch in Ai_TurnTowardPoint; set by lob-aim solver
+AiBrain	0x254	LobPitchOffsetAlt	medium	added to AimPitchAlt in Ai_TurnTowardPoint; set by lob-aim solver
 AiBrain	0x258	AimPoint	medium	Vec3f target position set by Ai_ThinkSelectTarget; Ai_IsArcBlocked/lob solver aim at it
-AiBrain	0x264	AimHorizDistance	medium	horizontal distance to AimPoint; Ai_IsArcBlocked divides by it (0 = no shot)
+AiBrain	0x264	AimDistance	medium	horizontal distance to AimPoint; Ai_IsArcBlocked divides by it (0 = no shot)
 AiBrain	0x278	LobPitch	medium	launch pitch for arcing weapons (bisection in Ai_ThinkSolveLobAim; sin/cos in Ai_IsArcBlocked)
 AiBrain	0x28C	PreferredTargetPtr_28C	low	player actor ref Ai_ThinkSelectTarget prefers when visible and nearer (BrainB.target)
 AiBrain	0x2D8	StrafeTimer	medium	countdown in attack states; at 0 re-rolls StrafeDir and EngageDistSq
@@ -530,3 +530,291 @@ Level	0x1B918	PvsCellSizeX	medium	divisor for the PVS cell column
 Level	0x1B91C	PvsCellSizeZ	medium	divisor for the PVS cell row
 Level	0x1B928	IsCameraInPvsGrid	medium	Level_StreamVisibleCells sets 1 when the camera cell is inside the grid, else 0
 Level	0x1B92C	HasPvsGrid	medium	Level_Load sets 1 when the section-12 header has nonzero size words; gates the PVS lookup
+FlybyCtl	0x0	PathResourcePtr	high	Flyby_LoadAndStart stores the ResourceCache_Hash entry; Flyby_Abort/Finish/Stop free it with ResourcePool_Release
+FlybyCtl	0x4	PathDataPtr	high	LoadAndStart = *entry; Flyby_Eval*/GetSegment* walk it with Chunk_Get(tree, 0..3) (segments, fade, events, fov tracks)
+FlybyCtl	0xC	OnFinishFn	high	callback called and cleared once by Flyby_Finish / Update when clock >= EndTime; taken from DeferredFinishFn on a fresh start
+FlybyCtl	0x10	OnWindowEndFn	high	callback called and cleared by Flyby_RunEndCallback / Update when clock >= WindowEnd; taken from DeferredWindowEndFn
+FlybyCtl	0x18	AnchorObjPtr	medium	Flyby_QueueByTrigger stores the trigger object; LoadAndStart/UpdateCamera copy its pos (+8) and +0x6C into AnchorPos/AnchorYaw when RecordFlags & 1
+FlybyCtl	0x1C	Clock	high	flyby time: += FrameTime*speed in Update/Advance/RunPending; compared to WindowStart/WindowEnd/EndTime; passed to Flyby_Eval* tracks
+FlybyCtl	0x20	PrevClock	high	set to Clock before each advance (Update, Advance, RunPending)
+FlybyCtl	0x24	StartClock_24	low	LoadAndStart writes the start time here along with Clock/PrevClock; no reader found
+FlybyCtl	0x28	StartTime	medium	LoadAndStart: min(0, fade-track key times); Clock/PrevClock start from it
+FlybyCtl	0x2C	EndTime	high	LoadAndStart: max(path duration, fade-track key times); Clock wraps (loop) or clamps/holds at it; Finish when reached
+FlybyCtl	0x30	WindowStart	high	camera-path window start (0); Flyby_OnWindowStart when Clock passes it; Flyby_IsInWindow lower bound
+FlybyCtl	0x34	WindowEnd	high	sum of segment durations; Flyby_IsInWindow upper bound, IsPastWindow, OnWindowEndFn trigger, track events flush
+FlybyCtl	0x38	IsActive	high	Flyby_IsActive returns it; LoadAndStart sets 1, Abort/Finish/Stop clear it
+FlybyCtl	0x3C	IsHolding	high	Flyby_IsHolding; set when a non-looping flyby reaches EndTime with HoldAtEnd; Flyby_ClearHold; PauseOptions sets/reads it
+FlybyCtl	0x40	IsWindowStarted	high	Flyby_OnWindowStart runs its body only while 0, then sets 1; cleared on load
+FlybyCtl	0x44	IsWindowEndDone	high	once flag for OnWindowEndFn (Flyby_RunEndCallback, Update)
+FlybyCtl	0x48	IsFinished	high	once flag for Flyby_Finish / end-of-flyby callback in Update
+FlybyCtl	0x50	AreTrackEventsEnabled	medium	0 on load, 1 in Flyby_OnWindowStart; Flyby_FireTrackEvents only runs while set
+FlybyCtl	0x54	ResetPlayerOnStart	medium	copy of IsFreshRequest at load; Flyby_OnWindowStart then resets player 0 movement, camera texts and rumble
+FlybyCtl	0x58	IsFreshRequest	medium	set 1 by Flyby_QueueByTrigger/ById/ByName, 0 by FireTrackEvents for chained flybys; LoadAndStart: fresh = start at StartTime with callbacks, else start at WindowStart
+FlybyCtl	0x5C	IsLastInChain	medium	Flyby_OnWindowStart stores Flyby_HasNoChainedFlyby() (no event entry starts another flyby)
+FlybyCtl	0x60	IsFadingOut	high	Flyby_StartFadeOut sets 1; Update ramps FadeOutLevel down and stops the flyby; DrawOverlay scales the fade colour
+FlybyCtl	0x64	FadeOutLevel	high	StartFadeOut sets start value; Update -= dt*k*2; DrawOverlay multiplies the fade colour/alpha by it
+FlybyCtl	0x68	RecordLevelId	medium	first word of the 0x4C flyby index record copied by LoadAndStart (record +0 = level id, also put in PendingLevelId by the Queue functions)
+FlybyCtl	0x6C	RecordTriggerKey_6C	low	record +4, matched against the trigger selector +4 in Flyby_QueueByTrigger (copied block)
+FlybyCtl	0x70	RecordId	medium	record +8 = flyby id; LoadAndStart copies it to FlybyId; Flyby_QueueById matches it
+FlybyCtl	0x74	RecordFlags	high	record +0xC: bit1 anchor to trigger object, bit2 anchor to player 0 (Flyby_IsInWindowFlag2 -> Player_DrawAll draws own model), bit8 -> +0xB8
+FlybyCtl	0x80	RecordName	medium	record +0x18 string compared by Flyby_QueueByName (copied into the block by LoadAndStart)
+FlybyCtl	0xA0	FarPlane	high	Flyby_GetFarPlane returns fA0 * const (record +0x38)
+FlybyCtl	0xA4	LetterboxDivisor_A4	low	Flyby_DrawLetterbox divides the screen height by it (record +0x3C)
+FlybyCtl	0xA8	RecordValue_A8	low	Flyby_GetFieldA8 returns it when active (record +0x40); only registry callers
+FlybyCtl	0xAC	RecordValue_AC	low	Flyby_GetFieldAC returns it when active (record +0x44); only registry callers
+FlybyCtl	0xB0	FogColor	high	Flyby_GetFogColor; func_00235AD0 uses it as the fog colour inside the window (record +0x48)
+FlybyCtl	0xB4	HoldAtEnd	high	set by Flyby_SetFlagB4_004037D4; at EndTime a non-looping flyby sets IsHolding and clears this
+FlybyCtl	0xB8	RecordFlag8_B8	low	LoadAndStart (fresh start): RecordFlags & 8, cleared for ids 10..80, 400..403 and 159; no reader found
+FlybyCtl	0xD8	PendingLevelId	high	Queue functions store record +0 (level id); Flyby_OnWindowStart loads it with Level_Load then sets -1; PauseOptions sets -1
+FlybyCtl	0xDC	PendingIndex	high	index of the queued index record (-1 = none); Flyby_IsPending, Flyby_RunPending -> Flyby_LoadAndStart(index)
+FlybyCtl	0xE0	FlybyId	high	Flyby_GetId; set by QueueById/ByName and LoadAndStart (record id); Flyby_DeferCallbacks compares it
+FlybyCtl	0xE4	DeferredFinishFn	high	Flyby_DeferCallbacks stores f1 when the id matches; LoadAndStart moves it to OnFinishFn
+FlybyCtl	0xE8	DeferredWindowEndFn	high	Flyby_DeferCallbacks stores f2; LoadAndStart moves it to OnWindowEndFn
+FlybyCtl	0xF0	AnchorPos	high	Vec3 copied from the anchor object / player 0 position; Flyby_UpdateCamera adds it to camera and target points
+FlybyCtl	0xFC	AnchorYaw	high	anchor object +0x6C (+const); Flyby_UpdateCamera rotates the path about Y by it
+FlybyCtl	0x100	FovOverride	high	Flyby_SetFieldOfView / ClearFieldOfView; Flyby_GetFieldOfView returns it when > threshold
+FlybyCtl	0x104	IsLooping	high	Flyby_SetLoop; ==1 makes Clock wrap at EndTime; Update skips end callbacks while set
+FlybyCtl	0x108	ViewportWidth	high	Flyby_SetViewport(a,...)/SetViewportFull = ScreenWidth; copied to the target view +0x29C in OnWindowStart
+FlybyCtl	0x10C	ViewportHeight	high	Flyby_SetViewport b / ScreenHeight; copied to target view +0x2A0
+FlybyCtl	0x110	ViewportX	medium	Flyby_SetViewport c (0 for full); copied to target view +0x2A4 (DrawOverlay uses it as rect left)
+FlybyCtl	0x114	ViewportY	medium	Flyby_SetViewport d (0 for full); copied to target view +0x2A8 (rect top)
+FlybyCtl	0x118	TextLines	high	5 x 40-byte strings; Flyby_AddTextLine copies into ent[TextLineCount], Flyby_DrawText draws them
+FlybyCtl	0x1E0	TextLineCount	high	Flyby_AddTextLine increments, Flyby_ClearText zeroes, Flyby_DrawText / UpdateCamera test > 0
+PadState	0x0	IsConnected	high	Pad_InitSlot/Pad_InitSlot2 set from ContStatus errno bit3 (no-response) ^1; ApplyStickDeadzone skips when 0; Combined ORs all slots
+PadState	0x4	Port	high	controller port index (osMotorInit port arg, ContStatus index); Combined sets -1
+PadState	0x8	RumbleListenerX	medium	Rumble_Update passes {+8,+C,+10} as 12-byte position to Rumble_GetIntensityAt(Rumble_Mgr) (distance falloff vs sources); zeroed on init
+PadState	0xC	RumbleListenerY	medium	see +0x8 (middle component of rumble listener position)
+PadState	0x10	RumbleListenerZ	medium	see +0x8 (last component of rumble listener position)
+PadState	0x14	PollPrevButtons	high	func_00263E1C: f14 = old f18 each poll; used for release/tap detection
+PadState	0x18	PollHeldButtons	high	func_00263E1C: raw buttons + stick-direction bits 0x10000-0x80000 held this poll; latched into +0xB0
+PadState	0x1C	PollPressedButtons	high	func_00263E1C ORs newly pressed bits; Pad_LatchButtons copies to +0xB4 and clears
+PadState	0x20	PollTappedButtons	medium	func_00263E1C sets bit on release after <17 frames held; latched to +0xB8 and cleared
+PadState	0x24	PollDoubleTapButtons	medium	func_00263E1C sets bit on second press within 30 frames; latched to +0xBC and cleared
+PadState	0x28	PollRepeatButtons	high	func_00263E1C: set on press and on auto-repeat countdown while held, cleared on release; latched to +0xC0
+PadState	0x2C	ButtonTimers	high	32 x {tapCount, framesSincePress, repeatCountdown(init 0x30), holdFrames} per button bit (func_00263E1C, Pad_InitSlot)
+PadState	0xAC	PrevButtons	high	Pad_LatchButtons: fAC = old fB0; MenuInput_ProcessPad reads as 'prev' for edge detection
+PadState	0xB0	Buttons	high	Pad_LatchButtons: fB0 = f18 (held, latched per frame); MenuInput 'cur'; player controls read +0xB0
+PadState	0xB4	PressedButtons	high	latched from +0x1C; Pad_IsStartPressed (0x1000), Pad_IsConfirm (A bit), Pad_IsCancel (0x4000); global Pad_PressedButtons = Combined+0xB4
+PadState	0xB8	TappedButtons	medium	latched from +0x20 by Pad_LatchButtons; read by Pad_UpdatePlayerControls
+PadState	0xBC	DoubleTapButtons	medium	latched from +0x24 by Pad_LatchButtons; read by Pad_UpdatePlayerControls
+PadState	0xC0	RepeatButtons	high	latched from +0x28; Pad_IsLeft/Right/Up/Down test it (menu auto-repeat navigation)
+PadState	0xC4	PollStickX	high	func_00263E1C stores deadzoned clamped stick X (s8); Combined sums slots; MenuInput_PostStick reads
+PadState	0xC5	PollStickY	high	func_00263E1C stores deadzoned clamped stick Y (s8); MenuInput_PostStick reads
+PadState	0xC6	StickX	high	Pad_LatchButtons: fC6 = fC4; Pad_UpdatePlayerControls reads +0xC6 for movement
+PadState	0xC7	StickY	high	Pad_LatchButtons: fC7 = fC5; Pad_UpdatePlayerControls reads +0xC7
+PadState	0xC8	HasRumblePak	high	Rumble_Reset sets 1 when osMotorInit succeeds; Rumble_Update gates motor on it
+PadState	0xCC	IsRumbleEnabled	high	Rumble_SetEnabled/SetEnabledAll write it; Suspend/Resume save/restore; Rumble_Update clears rumble when 0
+PadState	0xD0	RumbleIntensity	high	float: Rumble_Update = GetIntensityAt(global mgr, listener) + GetIntensityAt(own pool)
+PadState	0xD4	RumblePwmAccum	medium	float accumulator += intensity; when >= threshold subtract and osMotorStart else osMotorStop
+PadState	0xD8	MotorPfs	high	OSPfs passed to osMotorInit/osMotorStart/osMotorStop
+PadState	0x140	RumblePool	high	per-pad rumble source pool: Rumble_InitSourcePool/ClearAll/RemoveFinished/GetIntensityAt; Event_Rumble targets player pad+0x140
+PadState	0x16C	RumbleSourceBlock	medium	0xB4-byte storage for 3 rumble sources handed to Rumble_InitSourcePool with +0x140
+AiBrain	0x268	LobSolveStep	high	Ai_ThinkSolveLobAim: 0 = start, 1..10 primary bisection steps, 11..20 alt-fire steps, reset on weapon change/failure
+AiBrain	0x26C	LobSolveWeapon	high	Ai_ThinkSolveLobAim caches owner WeaponIndex; mismatch resets LobSolveStep
+AiBrain	0x270	IsSolvingPrimaryLob	medium	set for lobbing weapons (10,12,9); when done writes LobPitchOffset (+0x250 = +0x278 - +0x248)
+AiBrain	0x274	IsSolvingAltLob	medium	set for weapons 6,8,9; when done writes LobPitchOffsetAlt (+0x254 = +0x278 - +0x24C)
+AiBrain	0x27C	LobPitchHigh	medium	bisection upper bound: 90 - band*45, replaced by LobPitch when arc lands too far/high
+AiBrain	0x280	LobPitchLow	medium	bisection lower bound: 45 - band*45 or LobPitch; LobPitch = (High+Low)/2
+AiBrain	0x284	LobPitchBand	high	0..3 45-degree band of the direct pitch (>45,>0,>-45,else); decremented when Ai_IsArcBlocked
+SoundVoice	0x0	Index	high	voice slot index; VoiceSoundHandles[idx] in SndVoice_Stop/SetPitch/GetState; set by SndPool_Init/SndQueue_Update
+SoundVoice	0x4	Handle	high	caller handle (AllocVoice a4 / SndQueue_Add a3); Sound_StopByHandle matches it; set -1 when stopped
+SoundVoice	0x8	SndpSoundId	high	alSndpAllocate result (AllocVoice w8, SndQueue_Update); != -1 is the active-voice test in every SndPool_* loop
+SoundVoice	0xC	VoiceId	high	unique id from SndMgr.NextEmitterId++; Sound_FindVoiceById / Sound_ApplyVoiceAndPlay; -1 when free
+SoundVoice	0x10	StartFrame	high	SndMgr.FrameCounter at alloc/start; stop skips alSndpStop when equal; queue drops nodes after 16 frames
+SoundVoice	0x14	QueueDelay	high	SndInfo_GetDelay in SndQueue_Add; SndQueue_Update counts it down before starting the voice
+SoundVoice	0x18	Volume	high	M04VP.vol, 32000 initial; SndVoice_InitVolume/UpdateVolume volume * gain -> alSndpSetVol; flag 4 stops at 0
+SoundVoice	0x1C	BaseVolume	medium	M04VP.wC, set to the same initial volume as +0x18 (32000 / envelope start); not read in C code
+SoundVoice	0x20	InfoByteE_20	low	SndInfo_GetByteE_0025E574 (info+0xE s8) copied in SndQueue_Add / AllocVoice; no reader found
+SoundVoice	0x24	PitchRatio	high	M04VP.v14: SndVoice_InitPitch semitone->ratio table D_800D0B2C; RampVoicePitch result * doppler * scale -> alSndpSetPitch
+SoundVoice	0x28	Pan	high	pan 0..127 (64 centre); SndVoice_InitPan/UpdatePan envelope or Sound_ComputePan -> alSndpSetPan
+SoundVoice	0x2C	DistanceGain	high	M04VP.scale: distance attenuation from listener per falloff mode; SndVoice_Update stops voice when <= threshold
+SoundVoice	0x30	InitialGain	medium	M04VP.f20: gain at start (distance gain or 1.0); UpdateVolume uses it for non-3D (flag 0x400 clear) voices
+SoundVoice	0x34	DopplerPitch	high	M04Chaser.val: SndVoice_UpdateDoppler raises/lowers by distance change; SndVoice_SetPitch pitch * this * PitchScale
+SoundVoice	0x38	Priority	high	SndInfo_GetPriority; SndPool_FindFreeVoice steals the lowest; SndQueue keeps nodes sorted by it; 0 when freed
+SoundVoice	0x3A	SampleIndex	high	SndInfo_GetSampleIndex; SndPool_StopSameSample key; SndQueue_Update allocates bank sample [idx]
+SoundVoice	0x3C	CallerTag_3C	low	short copy of caller arg a3 (AllocVoice tag param, SndQueue_Add a3); passed as FindFreeVoice arg 1, unused there
+SoundVoice	0x40	PendingVoiceId	medium	queue node: id taken from NextEmitterId when delay ends / RequeueVoice arg; becomes VoiceId when started
+SoundVoice	0x44	Position	high	Vec3f sound position; SndVoice_SetSource copies it; distance/pan computed from it
+SoundVoice	0x50	SourcePosPtr	high	pointer to a moving Vec3f; SndVoice_Update copies *ptr into Position each frame; zeroed on stop/DetachAllSources
+SoundVoice	0x54	FalloffMode	high	SndInfo_GetFalloffMode; switch (0 x^6, 1 x^2, 2 linear) in SndVoice_InitVolume/UpdateVolume
+SoundVoice	0x58	DistanceSq	medium	M04Chaser.dist2: squared listener distance this frame (SndVoice_UpdateDoppler); init 0
+SoundVoice	0x5C	PrevDistanceSq	medium	M04Chaser.prevDist2: previous frame distance for doppler direction; init 0
+SoundVoice	0x60	PitchEnvelope	medium	M04Emitter.env (12-byte envelope rec) from Sound_GetPitchEnvelope in SndVoice_InitPitch
+SoundVoice	0x6C	PitchLevel	medium	M04Emitter.envA / View.pitch: current pitch-envelope value stepped toward target in RampVoicePitch
+SoundVoice	0x70	PitchStep	medium	M04Emitter.envSlope0 / View.pitchStep: per-frame pitch envelope step
+SoundVoice	0x74	VolumeEnvelope	high	M04Emitter.env2: Sound_GetVolumeEnvelope record (SndVoice_InitVolume), stepped in UpdateVolume
+SoundVoice	0x80	VolumeLevel	high	M04Emitter.env2A: current volume-envelope factor; reaching 0 stops the voice (UpdateVolume)
+SoundVoice	0x84	VolumeStep	high	M04Emitter.env2Slope: per-frame volume envelope step
+SoundVoice	0x88	HasPanEnvelope	high	set 1/0 by SndVoice_InitPan/InitParams; UpdatePan steps the pan envelope when set
+SoundVoice	0x8C	PanEnvelope	high	SndEnv copied from Sound_GetPanEnvelope (SndVoice_InitPan)
+SoundVoice	0x98	PanLevel	high	current pan envelope value; UpdatePan steps it by PanStep and writes Pan
+SoundVoice	0x9C	PanStep	high	(start-target)/frames of the pan envelope (SndVoice_InitPan)
+SoundVoice	0xA0	PlayDelay	medium	AllocVoice sets it from info+2; SndVoice_Update counts it down and sets flag 0x10 (deferred play); StopByHandle clears
+SoundVoice	0xA4	Flags	high	SndInfo flags: 4 stop at vol 0, 8 played, 0x10 deferred, 0x40 unique sample, 0x200/0x400 3D, 0x800; StopByFlags mask
+SoundVoice	0xA8	SoundId	high	SndMgr.CurrentSoundId via SndVoice_SetTag; StopByTag/IsTagPlaying; <256 vs 3D pan, 2220 doppler sound
+SoundVoice	0xAC	IsStopping	high	set 1 by SndVoice_Stop / Stop* loops; SndVoice_Update stops the voice when set; RequeueVoice only if 0
+SoundVoice	0xB0	MgrPtr	high	owning SndMgr (player, snd handle table, frame counter); set in SndPool_Init/SndVoice_Init
+SoundVoice	0xB4	Owner	medium	SndMgr.CurrentOwner at alloc; SndPool_FindByTagAndOwner / StopByOwner compare it; -1 when free
+SoundVoice	0xB8	PitchScale	high	from SndMgr+0x2BBC at alloc, 1.0 init; SndVoice_SetPitch and RampVoicePitch multiply pitch by it
+SoundVoice	0xBC	IsZoneBound	medium	1 if SoundId in table D_800D0D14; SndVoice_Update stops it when SndMgr+0x134 (ambient zone) != SoundId
+SoundVoice	0xC0	IsNonPositional	medium	copy of SndMgr.PosFlag_2BAC; when set no 3D pan/attenuation and doppler resets (InitPan/UpdateVolume/Doppler)
+SoundVoice	0xC4	IsDuckable	medium	1 unless SoundId in table D_800D0D24; UpdateVolume scales volume down when SndMgr+0x2BB8 is set
+SoundVoice	0xC8	VolumeScale	high	per-sound multiplier from table 0x800D0A30 (flyby lowers it) in InitVolume; final alSndpSetVol factor
+MusicSequencer	0x0	MgrPtr	high	owning SndMgr; Seq_* read Heap/MusicVolume/SongIndexTable through it
+MusicSequencer	0x4	IsStarted_4	low	set 1 in Seq_Update when a song starts; no reader found
+MusicSequencer	0x8	ResourceTablePtr	medium	set from the loaded sound resource (+4) at SndMgr init; word[1] passed to alCSPSetBank
+MusicSequencer	0xC	SongDataPtr	high	Chunk_Get song data from Seq_LoadSong; alCSeqNew(CSeq, this)
+MusicSequencer	0x10	CSeqPtr	high	ALCSeq heap block (248 bytes) from Seq_InitPlayer; alCSeqNew / alCSPSetSeq
+MusicSequencer	0x14	PlayerPtr	high	ALCSPlayer (124 bytes, alCSPNew); alCSPPlay/Stop/SetVol/SetBank
+MusicSequencer	0x18	State	high	Seq_Update state switch: 16 idle, 32 fading, 64 load, 128 playing, 256 load retry
+MusicSequencer	0x1C	Flags	high	2 fading out, 4 fade finished, 8 tested by Seq_Update; Seq_FadeOut/UpdateFade
+MusicSequencer	0x20	FadeVolume	high	int volume during fade-out, decreased by FadeStep each frame; low half sent to alCSPSetVol; stop at 0
+MusicSequencer	0x24	SongVolume	high	song node w0 (default 50); volume = this * SndMgr.MusicVolume in Seq_StartSong/UpdateVolume
+MusicSequencer	0x28	SongId	medium	song key to load (Seq_LoadSong); compared with Seq_PlayingSongId; -1 on Seq_Stop, 0 when ended
+MusicSequencer	0x2C	Volume	high	current applied volume; alCSPSetVol(vol * k) in Seq_SetVolume/UpdateVolume
+MusicSequencer	0x30	FadeTime	medium	song node h4 (default constant), clamped in Seq_FadeOut; FadeStep = FadeVolume / (time*k)
+MusicSequencer	0x34	FadeStep	high	per-frame decrement of FadeVolume (Seq_FadeOut / Seq_UpdateFade)
+MusicSequencer	0x38	IsDucked	high	Seq_Duck sets 1, Seq_Unduck 0; volume then multiplied by DuckLevel
+MusicSequencer	0x3C	DuckLevel	high	current duck multiplier moved toward DuckTarget in Seq_UpdateFade; applied in Seq_UpdateVolume
+MusicSequencer	0x40	DuckTarget	high	target duck level: Seq_Duck 0, Seq_Unduck constant; read in Seq_UpdateFade
+GameCtx	0x0	FrameSlots	high	3 x 0x140 frame/gfx-task slots; Video_AdvanceFrameSlot picks slots+idx*320, the boot message loop maps slot messages (+0xF0/+0x230/+0x370)
+GameCtx	0x3C0	CurFrameSlotPtr	high	= global Gfx_FrameCtxPtr; set to slots+idx*320 by Video_AdvanceFrameSlot/Video_SubmitGfxTasks
+GameCtx	0x3C4	LevelDataKey_3C4	low	Game_Init: Resource_ReadRomTableWord(0x18) & 0x3FFFFFFF, passed to Scene_LoadLevelData_0044C410(LevelMgr, it)
+GameCtx	0x3C8	Level	high	inline level object (= global LevelMgr); Level_UpdateFrame(g+0x3C8) in State_DrawScene/State_DrawLevel
+GameCtx	0x1BCF8	TextMgr	medium	inline text/font block: Text_InitFont(g+0x1BCF8) in Game_Init, BossBar_DrawAll(g+0x1BCF8) every frame; global Text_Colors sits at its +0xA0
+GameCtx	0x25580	PlayerPool	high	= global PlayerPool; Player_InitPool(g+0x25580, n, 0) in Game_InitCameras/State_LoadScene
+GameCtx	0x255C8	ViewMgr	high	= global ViewMgr; CameraManager_Init(g+0x255C8, n) in Game_InitCameras/State_LoadScene
+GameCtx	0x26825	IsMultiplayer	medium	Settings+0x1D (global Settings_IsMultiplayer); Game_StartMatchLevel goes straight to state 13 when set and the demo is active
+GameCtx	0x26826	MaxPlayers	medium	Settings+0x1E byte; State_PlayInit passes it to Game_InitCameras as the player/view count
+GameCtx	0x26D8C	DefaultLight	medium	Game_ColdBootInit: Light_SetDefaultDirection(g+0x26D8C) (normalised direction + enabled=1)
+GameCtx	0x26DB0	StateTime	high	float time in the current state; State_ExitOnTimeoutOrPress/State_DrawScene compare it to timeouts, reset to 0 on state change
+GameCtx	0x26DB4	PrevStateId	high	Game_BeginTransition/Game_UpdateFade/State_ExitOnFlybyEndOrStart store the old StateId here when switching to 20; -1 at cold boot
+GameCtx	0x26DB8	StateId	high	= global GameState; Game_StateDispatch indexes the state table D_800D29DC by it; 20 = transition, 13 = play
+GameCtx	0x26DBC	NextStateId	high	target state set by Game_FadeOutToState/Game_BeginTransition/Game_FadeToLevel; State_TransitionUpdate copies it into StateId
+GameCtx	0x26DC0	IsResetting	medium	set 1 (with IsSoundDisabled) on the reset (pre-NMI) message in Game_Init before fading to 20; speeds up Game_UpdateFade; cleared by Game_StartFadeIn
+GameCtx	0x26DC1	FadeMode	high	0 none, 1 fading in, 2 fading out (Game_UpdateFade); set by Game_StartFadeIn/Game_FadeOutToState/Game_FadeToLevel
+GameCtx	0x26DC4	FadeLevel	high	float fade value stepped by Game_UpdateFade; State_DrawFade turns it into the black overlay alpha
+GameCtx	0x26DC8	BootFlag_26DC8	low	set 1 by Game_ColdBootInit, 0 by Boot_StartGameThread after starting the game thread; no readers found
+GameCtx	0x26DD0	IsSoundDisabled	high	= global Audio_SoundDisabled; Audio_Play* do nothing while set; set on reset, 0 at cold boot; State_TransitionUpdate checks it
+GameCtx	0x26DD4	IsPaused	high	= global GamePaused; Game_TickPlayClock/Game_CheckEndFlybyHold skip while set; PauseMenu_Open sets 1
+GameCtx	0x26DD8	StartPointId	high	placed-object id validated by Level_FindPlacedObjects in Game_FadeToLevel/Game_StartMatchLevel; = Level_GetRestartLevelId on restart; Player_PlaceAtSpawn reads it; flyby id+601
+GameCtx	0x26DDC	IsLevelWarp_26DDC	low	set 1 by Game_FadeToLevel, 0 by Game_StartMatchLevel/Match_EnterState0C_0044EA24; no readers found
+MatchRules	0x10	MessageTimer	medium	float counted down to 0 by LegacyMenu_TickTimedMessage
+MatchRules	0x14	TimeRemaining	high	match clock: MatchSetup_ApplySettingsLegacy sets minutes*900 (-1 = none), Match_UpdateClock subtracts FrameTime and ends the match at 0; medals scale it by 1/15 to seconds
+MatchRules	0x18	FragLimit	high	Match_IsFragLimitReached compares player/team frags with it (0 = no limit)
+MatchRules	0x1C	IsMatchOver	high	set 1 by Match_EndForAllPlayers; stops the clock; cleared by Match_CheckEndAcknowledged and match setup
+MatchRules	0x20	IsEndAcknowledged	medium	Match_CheckEndAcknowledged_0022A67C sets 1 once a player acknowledged the end; Match_EndForAllPlayers only runs while 0
+MatchRules	0x24	IsTeamPlay	high	= global TeamPlayEnabled; team paths in Match_Is*LimitReached, friendly-fire check in Player_AdjustIncomingDamage
+MatchRules	0x28	IsTeamEndStarted	medium	Match_EndForAllPlayers in team play sets it 1 the first time and puts every player in state 21
+MatchRules	0x2C	TeamFrags	high	s32[5] per-team frags compared with FragLimit in team play; zeroed by MatchSetup_ApplySettingsLegacy
+MatchRules	0x40	TeamScores	high	s32[5] per-team scores compared with TeamScoreLimit by Match_IsTeamScoreLimitReached
+MatchRules	0x54	IsMonkeyTagMode	medium	= global Settings_MonkeyTagMode; gates stats+0x8F monkey handling (AI goal, monkey sounds, pickup 3030)
+MatchRules	0x58	KillLimit	high	Match_IsKillLimitReached sums one player's kills of every other player against it (0 = none)
+MatchRules	0x68	MonkeyState_68	low	>0 in monkey mode makes the monkey AI avoid enemies; Match_FindMonkeyPlayer returns none when set
+MatchRules	0x6C	RuleValue_6C	low	set to 2560 by MatchSetup_ApplySettingsLegacy; no readers found
+MatchRules	0x70	MonkeySoundSet	medium	switch 0/1/2 picks monkey sound 6305/6505/6405 in PlayerState_EnterJump/Weapon_UpdateHolster
+MatchRules	0x74	MonkeyEvent_74	low	set 2 when the monkey takes pickup 3030; set from stats+0x8F in InGameMenu_OnExitSelect_004439B4
+MatchRules	0x78	TagObjectiveMode_78	low	global Match_MonkeyTagMode; set from a MatchSetup_ApplySettingsLegacy arg; AI objective via Match_FindTaggedPlayer, pickup 3031 respawn gate; cleared by results
+MatchRules	0x7C	TeamScoreLimit	high	Match_IsTeamScoreLimitReached: 0 = none, else TeamScores[i] >= it ends the match
+MatchRules	0x80	IsTokenHeld_80	low	set 1 when pickup 3031 is taken (Pickup_ApplySpecial); ItemSpawner_SpawnPickup skips 3031 while set in mode 0x78
+MatchRules	0x98	IsBossMode	medium	set by MatchSetup_AddTrialBots for boss arenas; with character 11 enables the shield (0xA0) in Player_ApplyDamage/Model_DrawCharacterParts (global calls it Match_FragTagMode)
+MatchRules	0x9C	TrialCounter_9C	low	set 0 by MatchSetup_AddTrialBots case 3; >=3 wins in Match_UpdateClock when all are dead; Ai_CheckRespawn compares it with 3
+MatchRules	0xA0	BossShieldPercent	medium	starts at 100, reduced by damage>>8 in Player_ApplyDamage, shown by BossBar_SetPercent1 in Ai_UpdateBrain
+MatchRules	0xA4	BossShieldRegenTimer	medium	set 75/60 when the shield breaks, counted down in Ai_UpdateBrain; at 0 the shield resets to 100 (-1 = idle)
+MatchRules	0xA8	IsHumanWinner	medium	set 1 when the limit was reached by a human player (index<4) or the wanted team, else 0 (Match_Is*LimitReached); read by results/MissionTree
+MatchRules	0xAC	IsDemoActive	high	= global Demo_Active (0x8014694C); cleared by Match_Reset; State_DrawScene ends the attract demo through it
+ActorState	0x0	Flags	medium	bit 1 = current anim finished (ActorState_UpdateAnim sets/clears, Actor_DispatchEvent clears); platforms test 0x10000/0x20000, AnimProp sets 0x200
+ActorState	0x4	HitPoints	high	= actor +0x174; ActorState_InitHealth stores hp<<8; Destructible_OnDamage/Turret_OnDamage subtract the event damage
+ActorState	0x8	MaxHitPoints	high	ActorState_InitHealth copies +0x4 here; Destructible_OnDamage computes percent = HitPoints/MaxHitPoints*100
+ActorState	0xC	PartMask	medium	= actor +0x17C (bone/part mask); ActorState_InitHealth sets -1 (all parts)
+ActorState	0x10	InitParamA_10	low	ActorState_InitHealth stores def +0x41 (kind 1) or a constant default
+ActorState	0x2C	StateTablePtr	high	*_Init set it to the class state table (0x800CD670...); Actor_DispatchEvent walks its entries/next chain
+ActorState	0x30	StateEntryPtr	high	Actor_DispatchEvent stores the found state entry; ActorState_UpdateAnim reads speed/flags/anim from it; Platform/ItemSpawner_Update call its callback
+ActorState	0x34	StateId	high	Actor_DispatchEvent sets the event/state id; ==/!= checks in Turret/Objective/Platform code
+ActorState	0x35	AnimStateId	medium	ActorState_UpdateAnim applies the entry anim when it differs from StateId then copies StateId; -1 forces re-apply
+ActorState	0x36	PrevStateId	high	Actor_DispatchEvent copies the old StateId here; Objective_UpdateTriggered compares it with StateId
+ActorState	0x37	SubMode_37	low	Turret_UpdateSlide/Platform_UpdateSink mode byte (== mode checks, set to mode); Turret/Platform_Restore zero it
+ActorState	0x38	PrevStateFlags	medium	ActorState_UpdateAnim copies StateFlags here before loading the new entry flags
+ActorState	0x3C	StateFlags	high	loaded from the state entry flags (Actor_DispatchEvent/UpdateAnim); bit 4 zeroes velocity, 0x10 absolute anim speed, bit 5 anim loop arg
+ActorState	0x40	StateTime	high	Actor_DispatchEvent zeroes it; ActorState_Update adds FrameTime; compared with wait times (Platform_UpdateRaised, Objective_DrawFade)
+ActorState	0x44	Timer_44	low	Platform_UpdateSink zeroes / adds FrameTime and compares with params +0x5C
+ActorState	0x48	PrevPosition	medium	ActorState_Update copies the actor position after the update (before it for def kind 2)
+ActorState	0x54	FrameStartPosition	medium	ActorState_Update copies the actor position at frame start; Platform_UpdatePosition lerps/offsets from it
+ActorState	0x60	PrevYaw	medium	ActorState_Update copies actor Yaw alongside PrevPosition
+ActorState	0x64	Timer_64	low	per-class timer: ItemSpawner respawn wait (Random 45..60), Platform rise progress (+= dt/time), Toggle/Turret timers
+ActorState	0x80	TargetPtr	medium	Turret_FindNearestEnemy stores the found actor (0 = none); Turret_TrackTarget reads it
+ActorState	0x94	PathCursor	medium	= actor +0x204 (LevelPath cursor, Actor_Init); Platform_Restore tests its first byte ==1
+ActorState	0x9C	HomeYaw	medium	turret/platform base yaw: Turret_BuildMatrix quaternion from it, Yaw - HomeYaw; Platform yaw = HomeYaw + t*params turn
+ActorState	0xA0	HomePosition	high	= actor +0x210; ActorState_Init copies the spawn position; Platform_UpdatePosition lerps toward it
+ActorState	0xC0	AnimSpeedScale	medium	ActorState_UpdateAnim: FrameTime *= AnimSpeedScale*AnimSpeed unless StateFlags 0x10
+ActorState	0xC4	AnimSpeed	medium	ActorState_UpdateAnim loads the state entry speed (when >= 0)
+ActorState	0xC8	AnimId	medium	ActorState_UpdateAnim stores the entry/picked anim id; -1 = none
+ActorState	0xCA	AnimClipIndex	medium	Actor_LookupAnimType result; requested via Anim_TryRequestClip, compared with actor AnimClipId (Actor_IsAnimAtFraction)
+ActorState	0xCB	AnimLoopCount	medium	ActorState_UpdateAnim increments when the clip finishes, zeroed on state/clip change; !=0 = anim done (turret, destructible, item spawner)
+ActorState	0xCC	InitParamB_CC	low	ActorState_InitHealth stores def +0x40 (kind 1), forced 0 / constant by difficulty
+ActorState	0xCD	SkipFrames	medium	ActorState_Update: while nonzero decrements it, sets FrameTime 0 and skips the update
+ActorState	0xFC	SoundLoopPtr	medium	ActorState_Update/Actor_DispatchEvent call ActorSound_StopLoop when set (+0xC == -1)
+ActorState	0x108	UpdateCallback	high	called by ActorState_Update each frame (actor, state); *_Init set Weapon_Update, Destructible_Update, ItemSpawner_Update, Objective_Update
+ActorState	0x10C	DrawCallback	high	= actor +0x27C; *_Init set Weapon_DrawViewModel, Destructible_DrawDamageStage, AnimProp_DrawEventParts, Objective_DrawFade
+ActorState	0x110	DamageCallback	high	ActorState_CallHandler calls it; Destructible_Init sets Destructible_OnDamage, Turret_Init Turret_OnDamage
+ActorState	0x11C	TransformCallback	high	= actor +0x28C; Turret_Init sets Turret_BuildMatrix
+ActorState	0x120	PartMatrixCallback	medium	Turret_Init sets Turret_AdjustPartMatrix
+ActorState	0x124	ClassVar_124	low	per-class union: turret pitch (float), destructible damage stage / model, item spawner spawned count, anim prop anim id
+ActorState	0x128	ClassVar_128	low	per-class union: destructible stage draw param, item spawner remaining count, turret slide value, objective trigger flag
+ActorState	0x12C	ClassVar_12C	low	per-class union: platform shake y / objective state / turret init 200
+ActorState	0x130	ClassVec_130	low	per-class Vec3f: turret base axis (Turret_Init 0,1,0), platform rotation angles (Platform_BuildMatrix rotate Z/X), shake offsets
+ActorState	0x13C	ClassVar_13C	low	per-class float: platform spin/bob phase (Platform_Update += params rate*dt, sinf)
+ActorDef	0x0	Kind	high	class kind (1 creature, 2 moving, 4/7 breakable...); Actor_HasDefFlag* / ActorState_InitHealth / ActorState_Update switch on it
+ActorDef	0x4	Flags	medium	Level_BuildActiveActorLists tests (flags & mask), 0x100, 0x200; Actor_HasDefFlag4x04 bit 2
+ActorDef	0xE	SpawnParam_E	low	ActorState_InitHealth copies the byte to the spawn record +1
+ActorDef	0x10	SpawnParam_10	low	ActorState_InitHealth copies the byte to the spawn record +2
+ActorDef	0x12	SpawnParam_12	low	ActorState_InitHealth copies the byte to the spawn record +3
+ActorDef	0x14	Params	medium	embedded per-class parameter block (decomp def->info, object ActorDefParams; first word = flags, Actor_HasDefFlag14x*)
+ActorDef	0x18	BaseHealth	medium	kind 1/4 hit points (ActorState_InitHealth scales by difficulty then <<8); Params +0x4
+ActorDef	0x38	ClassFlags	medium	Params +0x24 flag word (B01Def.flags38; platforms/item spawners test bits)
+ActorDef	0x40	InitParamB_40	low	kind 1 byte stored to state +0xCC by ActorState_InitHealth
+ActorDef	0x41	InitParamA_41	low	kind 1 byte stored to state +0x10 by ActorState_InitHealth
+ActorDef	0x4C	CreatureFlags	medium	kind 1 flag word: Actor_HasDefFlag4Cx* / Actor_IsDeadOrDefFlag4Cx* (0x800 etc.)
+ActorDefParams	0x0	Flags	high	ActorDef +0x14 flag word: Actor_HasDefFlag14x*; Destructible_OnDamage damage-type bits 1/2; ItemSpawner bit 1
+ActorDefParams	0x4	BaseHealth	medium	ActorDef +0x18 (ActorState_InitHealth hit points for kind 1/4); some *_Init copy it to the state
+ActorDefParams	0x8	Count_8	low	ItemSpawner_Restore copies it to the remaining-count state var; Toggle uses the byte as anim fraction
+ActorDefParams	0xA	MaxCount_A	low	ItemSpawner_UpdateWaiting compares the spawned count with it
+ActorDefParams	0xC	RangeMin_C	low	ItemSpawner_EnterWaiting Random_Symmetric(+0xC, +0x10) wait; Turret_EnterDestroyed drop-item arg
+ActorDefParams	0x10	RangeMax_10	low	upper bound / second drop arg paired with +0xC
+ActorDefParams	0x14	SpawnTypeIndex_14	low	ItemSpawner_SpawnItem Level_GetTypeIdByIndex(+0x14); -1 checks
+ActorDefParams	0x16	SpawnDefIndex_16	low	ItemSpawner_SpawnItem Level_GetDefinition(+0x16); Objective_CheckLockedTouch tests !=0
+ActorDefParams	0x18	MessageIndex_18	low	Objective_CheckLockedTouch indexes Event_HudMessageTable by it; Destructible_EnterBroken tests ==0
+ActorDefParams	0x1C	BreakEffectId_1C	low	Destructible_EnterBroken Effect_SpawnForObject(actor, +0x1C) when != -1
+ActorDefParams	0x20	BreakSoundId_20	low	Destructible_EnterBroken Audio_PlaySound(h[1]) when != -1
+ActorDefParams	0x24	ClassFlags	medium	flag word tested by platforms (0x40, 0x800, 0xC00000, 0x4000000) and item spawners (0x10)
+ActorDefParams	0x28	ModeBytes_28	low	Platform_UpdatePosition switches on its bytes 0..2; Destructible drop-item arg
+ActorDefParams	0x2C	TravelHeight	medium	platform travel y offset (Platform_UpdatePosition, AiNav_LinkPlatformNodes add it to y)
+ActorDefParams	0x30	TravelDistance	medium	platform horizontal travel: x += it*sin(+0x34), z += it*cos(+0x34)
+ActorDefParams	0x34	TravelYaw	medium	direction angle of TravelDistance (Platform_UpdatePosition, AiNav_LinkPlatformNodes)
+ActorDefParams	0x38	TravelTime_38	low	Platform_UpdateRising/Lowering progress += FrameTime / it; Destructible drop-item arg
+ActorDefParams	0x3C	TravelTurn_3C	low	Platform_UpdatePosition yaw = HomeYaw + t*it
+ActorDefParams	0x40	PartId_40	low	Turret_AdjustPartMatrix compares the hit part with it; Turret_BuildMatrix tests == -1
+ActorDefParams	0x44	TurnRate_44	low	Actor_TurnClamped rate / turret pitch approach rate (Turret_TrackTarget); platform bob amplitude
+ActorDefParams	0x48	YawRange_48	low	Turret_TrackTarget arc (< 2pi, half used as limit); Destructible stage model bytes; Platform spin rate
+ActorDefParams	0x4C	Range_4C	low	Turret_TrackTarget target distance limit; Destructible stage bytes; Platform_UpdateLowered wait time
+ActorDefParams	0x50	DamageStagePercents_50	low	Destructible_OnDamage picks the stage whose percent byte is the smallest above the health percent; Platform raised wait
+ActorDefParams	0x54	SightRange_54	low	Turret_FindNearestEnemy/TrackTarget distance compare; Platform_UpdateSink time limit
+ActorDefParams	0x5C	SlideHeight_5C	low	Turret_UpdateSlide y offset; Platform_UpdateSink duration
+ActorDefParams	0x60	SlideDistance_60	low	Turret_UpdateSlide horizontal offset (x += it*sin(+0x64))
+ActorDefParams	0x64	SlideYaw_64	low	Turret_UpdateSlide direction angle (Math_MtxMakeRotateY(-it))
+ActorDefParams	0x68	SlideSpeed_68	low	Turret_UpdateSlide speed / length of (+0x60,+0x5C)
+ActorDefParams	0x6C	RestoreDelay_6C	low	Turret_Restore copies it to state timer +0x64
+ActorDefParams	0x70	SlideModeA_70	low	Turret_TrackTarget passes it as the Turret_UpdateSlide mode
+ActorDefParams	0x71	SlideModeB_71	low	Turret_TrackTarget passes it as the other Turret_UpdateSlide mode
+WeaponState	0x30	StateEntryPtr	high	weapon actor state block (player +0x458): current state entry; Weapon_Update calls its +0x8 callback
+WeaponState	0x34	StateId	high	state/event id (Weapon_UpdateMinigun != 4); same slot as ActorState.StateId
+WeaponState	0x35	AnimStateId	medium	same slot as ActorState.AnimStateId; weapon code sets -1 to re-apply the anim
+WeaponState	0x64	FireSoundTimer_64	low	Weapon_UpdateMinigunFire/EmaciatorFire count it down and re-arm (1.125 / 2.5)
+WeaponState	0xCB	AnimLoopCount	medium	!=0 = fire/draw anim finished (Weapon_UpdateHolster); Weapon_TryFire zeroes it
+WeaponState	0x124	SpinAngle	medium	Weapon_UpdateMinigun adds 2*SpinSpeed*FrameTime
+WeaponState	0x128	SpinSpeed	medium	Weapon_UpdateMinigun decays it to zero; ChestBurster/Inflator idle read it
+WeaponState	0x130	RefireTime	high	Weapon_Update counts it down; Weapon_CanFire refuses while > 0
+WeaponState	0x13C	FireMode	high	1 = primary, 2 = alternate: idle states switch via Profile_HasAltFire, fall back to 1 when out of ammo; Weapon_CanFire ammo checks
+WeaponState	0x144	AltReady_144	low	Weapon_UpdateIdleBoomerang sets 1; Weapon_CanFire weapon 1 needs it != 0
+WeaponState	0x148	AltFireCooldown	medium	Weapon_Update counts it down; Weapon_CanFire weapon 9 refuses alt mode while > 0
+Player	0x16C0	ClimbLookYaw	medium	Player_UpdateClimbState accumulates TurnInput*0.0625 clamped to [-1,1]; ViewYawOffset approaches it*45 deg; zeroed on climb start

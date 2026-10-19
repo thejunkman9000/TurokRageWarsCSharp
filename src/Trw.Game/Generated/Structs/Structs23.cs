@@ -2265,21 +2265,21 @@ public readonly struct P3Obj38
     // +0x0
     public U8x56 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x38
-    public int unk38
+    public int IsDucked
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int unk38_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int IsDucked_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
     public U8x4 pad1 { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x40
-    public float unk40
+    public float DuckTarget
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public float unk40_Set(float v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public float DuckTarget_Set(float v) => Mem.Set(P + 0x40u, v);
 }
 
 /// <summary>struct P3QArr, 0x10 bytes, at a guest address.</summary>
@@ -2800,37 +2800,37 @@ public readonly struct P4Game
     // +0x0
     public U8x159152 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB0
-    public int f26DB0
+    public int StateTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB0u, value);
     }
-    [MethodImpl(Inl)] public int f26DB0_Set(int v) => Mem.Set(P + 0x26DB0u, v);
+    [MethodImpl(Inl)] public int StateTime_Set(int v) => Mem.Set(P + 0x26DB0u, v);
     // +0x26DB4
     public U8x4 pad26DB4 { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
     // +0x26DB8
-    public int f26DB8
+    public int StateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int f26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_Set(int v) => Mem.Set(P + 0x26DB8u, v);
     // +0x26DBC
-    public int f26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int f26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
     public U8x16 pad26DC0 { [MethodImpl(Inl)] get => new(P + 0x26DC0u); }
     // +0x26DD0
-    public int f26DD0
+    public int IsSoundDisabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD0u, value);
     }
-    [MethodImpl(Inl)] public int f26DD0_Set(int v) => Mem.Set(P + 0x26DD0u, v);
+    [MethodImpl(Inl)] public int IsSoundDisabled_Set(int v) => Mem.Set(P + 0x26DD0u, v);
 }
 
 /// <summary>union P4Gfx, 0x8 bytes, at a guest address.</summary>
@@ -3709,12 +3709,12 @@ public readonly struct P4ThrOwner
     // +0x0
     public U8x159176 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x26DC8
-    public int f26DC8
+    public int BootFlag_26DC8
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DC8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC8u, value);
     }
-    [MethodImpl(Inl)] public int f26DC8_Set(int v) => Mem.Set(P + 0x26DC8u, v);
+    [MethodImpl(Inl)] public int BootFlag_26DC8_Set(int v) => Mem.Set(P + 0x26DC8u, v);
 }
 
 /// <summary>struct P4Tree, 0x84 bytes, at a guest address.</summary>

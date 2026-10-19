@@ -3751,92 +3751,92 @@ public readonly struct O04GFlags
     // +0x0
     public U8x20 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public float unk14
+    public float TimeRemaining
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public float unk14_Set(float v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public float TimeRemaining_Set(float v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int unk18
+    public int FragLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int FragLimit_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int unk1C
+    public int IsMatchOver
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int IsMatchOver_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
     public U8x4 pad20 { [MethodImpl(Inl)] get => new(P + 0x20u); }
     // +0x24
-    public int unk24
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int IsTeamEndStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsTeamEndStarted_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public S32x5 unk2C { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
+    public S32x5 TeamFrags { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0x40
-    public S32x5 unk40 { [MethodImpl(Inl)] get => new(P + 0x40u); }
+    public S32x5 TeamScores { [MethodImpl(Inl)] get => new(P + 0x40u); }
     // +0x54
-    public int unk54
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int unk54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
-    public int unk58
+    public int KillLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x58u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value);
     }
-    [MethodImpl(Inl)] public int unk58_Set(int v) => Mem.Set(P + 0x58u, v);
+    [MethodImpl(Inl)] public int KillLimit_Set(int v) => Mem.Set(P + 0x58u, v);
     // +0x5C
     public U8x16 pad5C { [MethodImpl(Inl)] get => new(P + 0x5Cu); }
     // +0x6C
-    public int unk6C
+    public int RuleValue_6C
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public int unk6C_Set(int v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public int RuleValue_6C_Set(int v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
     public U8x8 pad70 { [MethodImpl(Inl)] get => new(P + 0x70u); }
     // +0x78
-    public int unk78
+    public int TagObjectiveMode_78
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x78u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x78u, value);
     }
-    [MethodImpl(Inl)] public int unk78_Set(int v) => Mem.Set(P + 0x78u, v);
+    [MethodImpl(Inl)] public int TagObjectiveMode_78_Set(int v) => Mem.Set(P + 0x78u, v);
     // +0x7C
-    public int unk7C
+    public int TeamScoreLimit
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x7Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x7Cu, value);
     }
-    [MethodImpl(Inl)] public int unk7C_Set(int v) => Mem.Set(P + 0x7Cu, v);
+    [MethodImpl(Inl)] public int TeamScoreLimit_Set(int v) => Mem.Set(P + 0x7Cu, v);
     // +0x80
-    public int unk80
+    public int IsTokenHeld_80
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public int unk80_Set(int v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public int IsTokenHeld_80_Set(int v) => Mem.Set(P + 0x80u, v);
     // +0x84
     public U8x12 pad84 { [MethodImpl(Inl)] get => new(P + 0x84u); }
     // +0x90
@@ -3849,40 +3849,40 @@ public readonly struct O04GFlags
     // +0x94
     public U8x4 pad94 { [MethodImpl(Inl)] get => new(P + 0x94u); }
     // +0x98
-    public int unk98
+    public int IsBossMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x98u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x98u, value);
     }
-    [MethodImpl(Inl)] public int unk98_Set(int v) => Mem.Set(P + 0x98u, v);
+    [MethodImpl(Inl)] public int IsBossMode_Set(int v) => Mem.Set(P + 0x98u, v);
     // +0x9C
-    public int unk9C
+    public int TrialCounter_9C
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x9Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x9Cu, value);
     }
-    [MethodImpl(Inl)] public int unk9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
+    [MethodImpl(Inl)] public int TrialCounter_9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
     // +0xA0
-    public int unkA0
+    public int BossShieldPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value);
     }
-    [MethodImpl(Inl)] public int unkA0_Set(int v) => Mem.Set(P + 0xA0u, v);
+    [MethodImpl(Inl)] public int BossShieldPercent_Set(int v) => Mem.Set(P + 0xA0u, v);
     // +0xA4
-    public int unkA4
+    public int BossShieldRegenTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA4u, value);
     }
-    [MethodImpl(Inl)] public int unkA4_Set(int v) => Mem.Set(P + 0xA4u, v);
+    [MethodImpl(Inl)] public int BossShieldRegenTimer_Set(int v) => Mem.Set(P + 0xA4u, v);
     // +0xA8
-    public int unkA8
+    public int IsHumanWinner
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int unkA8_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int IsHumanWinner_Set(int v) => Mem.Set(P + 0xA8u, v);
 }
 
 /// <summary>struct O04Gfx, 0x8 bytes, at a guest address.</summary>

@@ -268,7 +268,7 @@
 0x80146848	Settings_ResolutionMode	medium	byte at settings 801462C8+0x580, copied from D_800E28DB on resolution change, preserved by GameSave_Apply
 0x80146890	Audio_SoundDisabled	high	all Audio_Play* functions do nothing while it is nonzero
 0x80146918	Match_MonkeyTagMode	medium	match flag (801468A0+0x78): monkey role (stats+0x8F) drawing/handing, AI objective; cleared by results
-0x80146938	Match_FragTagMode	medium	match flag (801468A0+0x98): frag-tag priority (stats+0x94) in AI sight, end reason, character class/max health
+0x80146938	MatchRules_IsBossMode	medium	MatchRules+0x98: boss mode (boss shield, BossBar, trial bot setup) [was Match_FragTagMode]
 0x8014694C	Demo_Active	high	set to 1 by AttractDemo_Setup/State_DemoInit; frontend idle and rumble check it
 0x80146958	Credits_SkipRequested	high	Start during credits sets it (skip to end), credits init clears it
 0x801469E8	Sched_Main	high	main scheduler created by Sched_Create; clients added and tasks submitted to it

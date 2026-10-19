@@ -1254,23 +1254,23 @@ public readonly struct Shared_Legacy_func_80294608_S1
     [MethodImpl(Inl)] public static implicit operator uint(Shared_Legacy_func_80294608_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Shared_Legacy_func_80294608_S1(uint p) => new(p);
     // +0x0
-    public S8x159160 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x159160 FrameSlots { [MethodImpl(Inl)] get => new(P); }
     // +0x26DB8
-    public int unk26DB8
+    public int StateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_Set(int v) => Mem.Set(P + 0x26DB8u, v);
     // +0x26DBC
-    public S8x28 pad26DB8 { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
+    public S8x28 NextStateId { [MethodImpl(Inl)] get => new(P + 0x26DBCu); }
     // +0x26DD8
-    public int unk26DD8
+    public int StartPointId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD8u, value);
     }
-    [MethodImpl(Inl)] public int unk26DD8_Set(int v) => Mem.Set(P + 0x26DD8u, v);
+    [MethodImpl(Inl)] public int StartPointId_Set(int v) => Mem.Set(P + 0x26DD8u, v);
 }
 
 /// <summary>struct Shared_MenuCache, 0x14 bytes, at a guest address.</summary>

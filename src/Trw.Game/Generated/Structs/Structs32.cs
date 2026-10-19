@@ -4756,93 +4756,93 @@ public readonly struct Shape_func_80291208_de
     // +0x0
     public U8x960 padding_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x3C0
-    public uint field_3C0
+    public uint CurFrameSlotPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x3C0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3C0u, value);
     }
-    [MethodImpl(Inl)] public uint field_3C0_Set(uint v) => Mem.Set(P + 0x3C0u, v);
+    [MethodImpl(Inl)] public uint CurFrameSlotPtr_Set(uint v) => Mem.Set(P + 0x3C0u, v);
     // +0x3C4
-    public int field_3C4
+    public int LevelDataKey_3C4
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3C4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3C4u, value);
     }
-    [MethodImpl(Inl)] public int field_3C4_Set(int v) => Mem.Set(P + 0x3C4u, v);
+    [MethodImpl(Inl)] public int LevelDataKey_3C4_Set(int v) => Mem.Set(P + 0x3C4u, v);
     // +0x3C8
     public U8x156765 padding_3C8 { [MethodImpl(Inl)] get => new(P + 0x3C8u); }
     // +0x26825
-    public byte field_26825
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26825u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26825u, value);
     }
-    [MethodImpl(Inl)] public byte field_26825_Set(byte v) => Mem.Set(P + 0x26825u, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x26825u, v);
     // +0x26826
     public U8x1418 padding_26826 { [MethodImpl(Inl)] get => new(P + 0x26826u); }
     // +0x26DB0
-    public float field_26DB0
+    public float StateTime
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x26DB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB0u, value);
     }
-    [MethodImpl(Inl)] public float field_26DB0_Set(float v) => Mem.Set(P + 0x26DB0u, v);
+    [MethodImpl(Inl)] public float StateTime_Set(float v) => Mem.Set(P + 0x26DB0u, v);
     // +0x26DB4
-    public U8x4 unknown_26DB4 { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
+    public U8x4 PrevStateId { [MethodImpl(Inl)] get => new(P + 0x26DB4u); }
     // +0x26DB8
-    public int field_26DB8
+    public int StateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DB8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DB8u, value);
     }
-    [MethodImpl(Inl)] public int field_26DB8_Set(int v) => Mem.Set(P + 0x26DB8u, v);
+    [MethodImpl(Inl)] public int StateId_Set(int v) => Mem.Set(P + 0x26DB8u, v);
     // +0x26DBC
-    public int field_26DBC
+    public int NextStateId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DBCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DBCu, value);
     }
-    [MethodImpl(Inl)] public int field_26DBC_Set(int v) => Mem.Set(P + 0x26DBCu, v);
+    [MethodImpl(Inl)] public int NextStateId_Set(int v) => Mem.Set(P + 0x26DBCu, v);
     // +0x26DC0
-    public byte field_26DC0
+    public byte IsResetting
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26DC0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC0u, value);
     }
-    [MethodImpl(Inl)] public byte field_26DC0_Set(byte v) => Mem.Set(P + 0x26DC0u, v);
+    [MethodImpl(Inl)] public byte IsResetting_Set(byte v) => Mem.Set(P + 0x26DC0u, v);
     // +0x26DC1
-    public byte field_26DC1
+    public byte FadeMode
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x26DC1u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC1u, value);
     }
-    [MethodImpl(Inl)] public byte field_26DC1_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
+    [MethodImpl(Inl)] public byte FadeMode_Set(byte v) => Mem.Set(P + 0x26DC1u, v);
     // +0x26DC2
     public U8x2 padding_26DC2 { [MethodImpl(Inl)] get => new(P + 0x26DC2u); }
     // +0x26DC4
-    public float field_26DC4
+    public float FadeLevel
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x26DC4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DC4u, value);
     }
-    [MethodImpl(Inl)] public float field_26DC4_Set(float v) => Mem.Set(P + 0x26DC4u, v);
+    [MethodImpl(Inl)] public float FadeLevel_Set(float v) => Mem.Set(P + 0x26DC4u, v);
     // +0x26DC8
-    public U8x4 unknown_26DC8 { [MethodImpl(Inl)] get => new(P + 0x26DC8u); }
+    public U8x4 BootFlag_26DC8 { [MethodImpl(Inl)] get => new(P + 0x26DC8u); }
     // +0x26DCC
     public U8x4 unknown_26DCC { [MethodImpl(Inl)] get => new(P + 0x26DCCu); }
     // +0x26DD0
-    public U8x4 unknown_26DD0 { [MethodImpl(Inl)] get => new(P + 0x26DD0u); }
+    public U8x4 IsSoundDisabled { [MethodImpl(Inl)] get => new(P + 0x26DD0u); }
     // +0x26DD4
-    public int field_26DD4
+    public int IsPaused
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x26DD4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26DD4u, value);
     }
-    [MethodImpl(Inl)] public int field_26DD4_Set(int v) => Mem.Set(P + 0x26DD4u, v);
+    [MethodImpl(Inl)] public int IsPaused_Set(int v) => Mem.Set(P + 0x26DD4u, v);
     // +0x26DD8
-    public U8x4 unknown_26DD8 { [MethodImpl(Inl)] get => new(P + 0x26DD8u); }
+    public U8x4 StartPointId { [MethodImpl(Inl)] get => new(P + 0x26DD8u); }
     // +0x26DDC
-    public U8x4 unknown_26DDC { [MethodImpl(Inl)] get => new(P + 0x26DDCu); }
+    public U8x4 IsLevelWarp_26DDC { [MethodImpl(Inl)] get => new(P + 0x26DDCu); }
 }
 
 /// <summary>struct Shape_func_8029192C_de, 0x11C bytes, at a guest address.</summary>

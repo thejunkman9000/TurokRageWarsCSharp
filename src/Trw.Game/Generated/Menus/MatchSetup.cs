@@ -453,14 +453,14 @@ public static partial class Game
                 switch (((int)(Mem.U8(((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)k4) + (uint)5))) - 12))
                 {
                 case 0:
-                    new O04GFlags(G).unk98_Set(1);
+                    new O04GFlags(G).IsBossMode_Set(1);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
                     new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(2));
-                    new O04GFlags(G).unkA0_Set(100);
-                    new O04GFlags(G).unkA4_Set((-1));
+                    new O04GFlags(G).BossShieldPercent_Set(100);
+                    new O04GFlags(G).BossShieldRegenTimer_Set((-1));
                     break;
                 case 1:
-                    new O04GFlags(G).unk98_Set(1);
+                    new O04GFlags(G).IsBossMode_Set(1);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
                     new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
                     break;
@@ -472,7 +472,7 @@ public static partial class Game
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
                     if ((s7 == 0))
                     {
-                        new O04GFlags(G).unk98_Set(1);
+                        new O04GFlags(G).IsBossMode_Set(1);
                         new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
                         s7 = 1;
                     }
@@ -482,8 +482,8 @@ public static partial class Game
                     }
                     break;
                 case 3:
-                    new O04GFlags(G).unk98_Set(1);
-                    new O04GFlags(G).unk9C_Set(0);
+                    new O04GFlags(G).IsBossMode_Set(1);
+                    new O04GFlags(G).TrialCounter_9C_Set(0);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
                     new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
                     s6 = 1;
@@ -891,24 +891,24 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043DFC0", 0u, (uint)b, (uint)c, (uint)d);
             int i = 0;
-            new S10Game(Gv.Settings_MatchRules).unk54_Set(c);
-            new S10Game(Gv.Settings_MatchRules).unk24_Set(d);
-            new S10Game(Gv.Settings_MatchRules).unk80_Set(0);
-            new S10Game(Gv.Settings_MatchRules).unk14_Set((a * 900.0f));
-            new S10Game(Gv.Settings_MatchRules).unk6C_Set(2560);
-            new S10Game(Gv.Settings_MatchRules).unk18_Set(b);
-            new S10Game(Gv.Settings_MatchRules).unk1C_Set(0);
-            new S10Game(Gv.Settings_MatchRules).unk78_Set(e);
+            new S10Game(Gv.Settings_MatchRules).IsMonkeyTagMode_Set(c);
+            new S10Game(Gv.Settings_MatchRules).IsTeamPlay_Set(d);
+            new S10Game(Gv.Settings_MatchRules).IsTokenHeld_80_Set(0);
+            new S10Game(Gv.Settings_MatchRules).TimeRemaining_Set((a * 900.0f));
+            new S10Game(Gv.Settings_MatchRules).RuleValue_6C_Set(2560);
+            new S10Game(Gv.Settings_MatchRules).FragLimit_Set(b);
+            new S10Game(Gv.Settings_MatchRules).IsMatchOver_Set(0);
+            new S10Game(Gv.Settings_MatchRules).TagObjectiveMode_78_Set(e);
             for (i = 0; (i < 5); ++i)
             {
-                new S10Game(Gv.Settings_MatchRules).unk2C.Set((int)(i), 0);
-                new S10Game(Gv.Settings_MatchRules).unk40.Set((int)(i), 0);
+                new S10Game(Gv.Settings_MatchRules).TeamFrags.Set((int)(i), 0);
+                new S10Game(Gv.Settings_MatchRules).TeamScores.Set((int)(i), 0);
             }
-            new S10Game(Gv.Settings_MatchRules).unk28_Set(0);
-            new S10Game(Gv.Settings_MatchRules).unk20_Set(0);
-            if ((new S10Game(Gv.Settings_MatchRules).unk14 == 0.0f))
+            new S10Game(Gv.Settings_MatchRules).IsTeamEndStarted_Set(0);
+            new S10Game(Gv.Settings_MatchRules).IsEndAcknowledged_Set(0);
+            if ((new S10Game(Gv.Settings_MatchRules).TimeRemaining == 0.0f))
             {
-                new S10Game(Gv.Settings_MatchRules).unk14_Set((-1.0f));
+                new S10Game(Gv.Settings_MatchRules).TimeRemaining_Set((-1.0f));
             }
         }
     }

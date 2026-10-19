@@ -1617,7 +1617,7 @@ public static partial class Game
             {
                 return;
             }
-            if ((new O04GFlags(Gv.Settings_MatchRules).unkA8 == 0))
+            if ((new O04GFlags(Gv.Settings_MatchRules).IsHumanWinner == 0))
             {
                 return;
             }

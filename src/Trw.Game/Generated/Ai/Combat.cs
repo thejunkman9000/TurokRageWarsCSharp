@@ -146,7 +146,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209AE8", (uint)ctl);
-            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.info.unk18 * Mem.F32(0x800C6D80u));
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.MessageIndex_18 * Mem.F32(0x800C6D80u));
             switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
             {
             case 1:
@@ -1612,24 +1612,24 @@ public static partial class Game
                 uint t = 0u;
                 uint e = 0u;
                 id = 0;
-                mode = (int)(new S1Ctl(c).owner.WeaponIndex);
-                if ((mode != new S1Ctl(c).unk26C))
+                mode = (int)(new S1Ctl(c).OwnerPtr.WeaponIndex);
+                if ((mode != new S1Ctl(c).LobSolveWeapon))
                 {
-                    new S1Ctl(c).unk268_Set(0);
-                    new S1Ctl(c).unk26C_Set(mode);
+                    new S1Ctl(c).LobSolveStep_Set(0);
+                    new S1Ctl(c).LobSolveWeapon_Set(mode);
                 }
                 if ((c == 0u))
                 {
                     return 1;
                 }
-                if ((new S1Ctl(c).unk268 == 0))
+                if ((new S1Ctl(c).LobSolveStep == 0))
                 {
-                    Mem.Copy(_fp, new S1Ctl(c).owner.Position.P, 12);
-                    Mem.Copy((_fp + 16u), new S1Ctl(c).v258.P, 12);
+                    Mem.Copy(_fp, new S1Ctl(c).OwnerPtr.Position.P, 12);
+                    Mem.Copy((_fp + 16u), new S1Ctl(c).AimPoint.P, 12);
                     new Vec3f((_fp + 16u)).x_Set((new Vec3f((_fp + 16u)).x - new Vec3f(_fp).x));
                     new Vec3f((_fp + 16u)).y_Set((new Vec3f((_fp + 16u)).y - new Vec3f(_fp).y));
                     new Vec3f((_fp + 16u)).z_Set((new Vec3f((_fp + 16u)).z - new Vec3f(_fp).z));
-                    new S1Ctl(c).unk264_Set(sqrtf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z))));
+                    new S1Ctl(c).AimDistance_Set(sqrtf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z))));
                     dy = new Vec3f((_fp + 16u)).y;
                     new Vec3f((_fp + 16u)).y_Set(0.0f);
                     hd = sqrtf(((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
@@ -1637,91 +1637,91 @@ public static partial class Game
                     {
                     case 10:
                     case 12:
-                        new S1Ctl(c).unk268_Set(1);
-                        new S1Ctl(c).unk270_Set(1);
-                        new S1Ctl(c).unk274_Set(0);
+                        new S1Ctl(c).LobSolveStep_Set(1);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(1);
+                        new S1Ctl(c).IsSolvingAltLob_Set(0);
                         break;
                     case 6:
                     case 8:
-                        new S1Ctl(c).unk268_Set(11);
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk274_Set(1);
+                        new S1Ctl(c).LobSolveStep_Set(11);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).IsSolvingAltLob_Set(1);
                         break;
                     case 9:
-                        new S1Ctl(c).unk268_Set(1);
-                        new S1Ctl(c).unk270_Set(1);
-                        new S1Ctl(c).unk274_Set(1);
+                        new S1Ctl(c).LobSolveStep_Set(1);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(1);
+                        new S1Ctl(c).IsSolvingAltLob_Set(1);
                         break;
                     default:
                         if ((hd == 0.0f))
                         {
                             if ((dy < 0.0f))
                             {
-                                new S1Ctl(c).unk248_Set((-90.0f));
+                                new S1Ctl(c).AimPitch_Set((-90.0f));
                             }
                             else
                             {
-                                new S1Ctl(c).unk248_Set(90.0f);
+                                new S1Ctl(c).AimPitch_Set(90.0f);
                             }
                         }
                         else
                         {
-                            new S1Ctl(c).unk248_Set((Math_Atan2(dy, hd) * 57.2957763f));
+                            new S1Ctl(c).AimPitch_Set((Math_Atan2(dy, hd) * 57.2957763f));
                         }
-                        new S1Ctl(c).unk24C_Set(new S1Ctl(c).unk248);
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk274_Set(0);
-                        new S1Ctl(c).unk254_Set(new S1Ctl(c).unk250_Set(0.0f));
+                        new S1Ctl(c).AimPitchAlt_Set(new S1Ctl(c).AimPitch);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).IsSolvingAltLob_Set(0);
+                        new S1Ctl(c).LobPitchOffsetAlt_Set(new S1Ctl(c).LobPitchOffset_Set(0.0f));
                         return 1;
                     }
                     if ((hd == 0.0f))
                     {
                         if ((dy < 0.0f))
                         {
-                            new S1Ctl(c).unk278_Set((-90.0f));
+                            new S1Ctl(c).LobPitch_Set((-90.0f));
                         }
                         else
                         {
-                            new S1Ctl(c).unk278_Set(90.0f);
+                            new S1Ctl(c).LobPitch_Set(90.0f);
                         }
                     }
                     else
                     {
-                        new S1Ctl(c).unk278_Set((Math_Atan2(dy, hd) * 57.2957763f));
+                        new S1Ctl(c).LobPitch_Set((Math_Atan2(dy, hd) * 57.2957763f));
                     }
-                    new S1Ctl(c).unk24C_Set(new S1Ctl(c).unk278);
-                    if ((new S1Ctl(c).unk278 > 45.0f))
+                    new S1Ctl(c).AimPitchAlt_Set(new S1Ctl(c).LobPitch);
+                    if ((new S1Ctl(c).LobPitch > 45.0f))
                     {
-                        new S1Ctl(c).unk284_Set(0);
+                        new S1Ctl(c).LobPitchBand_Set(0);
                     }
                     else
                     {
-                        if ((new S1Ctl(c).unk278 > 0.0f))
+                        if ((new S1Ctl(c).LobPitch > 0.0f))
                         {
-                            new S1Ctl(c).unk284_Set(1);
+                            new S1Ctl(c).LobPitchBand_Set(1);
                         }
                         else
                         {
-                            if ((new S1Ctl(c).unk278 > (-45.0f)))
+                            if ((new S1Ctl(c).LobPitch > (-45.0f)))
                             {
-                                new S1Ctl(c).unk284_Set(2);
+                                new S1Ctl(c).LobPitchBand_Set(2);
                             }
                             else
                             {
-                                new S1Ctl(c).unk284_Set(3);
+                                new S1Ctl(c).LobPitchBand_Set(3);
                             }
                         }
                     }
-                    new S1Ctl(c).unk27C_Set((90.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                    new S1Ctl(c).unk280_Set(new S1Ctl(c).unk278);
-                    new S1Ctl(c).unk278_Set(((new S1Ctl(c).unk27C + new S1Ctl(c).unk280) * 0.5f));
-                    if ((new S1Ctl(c).unk270 != 0))
+                    new S1Ctl(c).LobPitchHigh_Set((90.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                    new S1Ctl(c).LobPitchLow_Set(new S1Ctl(c).LobPitch);
+                    new S1Ctl(c).LobPitch_Set(((new S1Ctl(c).LobPitchHigh + new S1Ctl(c).LobPitchLow) * 0.5f));
+                    if ((new S1Ctl(c).IsSolvingPrimaryLob != 0))
                     {
-                        new S1Ctl(c).unk24C_Set(new S1Ctl(c).unk278);
+                        new S1Ctl(c).AimPitchAlt_Set(new S1Ctl(c).LobPitch);
                     }
                     return 0;
                 }
-                if ((new S1Ctl(c).unk268 < 11))
+                if ((new S1Ctl(c).LobSolveStep < 11))
                 {
                     switch (mode)
                     {
@@ -1741,9 +1741,9 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((new S1Ctl(c).unk268 < 21))
+                    if ((new S1Ctl(c).LobSolveStep < 21))
                     {
-                        new S1Ctl(c).unk270_Set(0);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
                         switch (mode)
                         {
                         case 6:
@@ -1758,167 +1758,167 @@ public static partial class Game
                         }
                     }
                 }
-                if ((new S1Ctl(c).unk268 < 21))
+                if ((new S1Ctl(c).LobSolveStep < 21))
                 {
                     p = Mem.U32(0x801315F4u);
                     t = Chunk_Get(p, 1);
                     n = (int)(Mem.U32((t + (uint)(1 * 4))));
                     if ((Sort_FindEqualRange((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 28u), (_fp + 32u)) == 0))
                     {
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk274_Set(0);
-                        new S1Ctl(c).unk268_Set(0);
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).IsSolvingAltLob_Set(0);
+                        new S1Ctl(c).LobSolveStep_Set(0);
                         return 1;
                     }
                     e = (Chunk_Get(p, 2) + (uint)8);
                     e = (uint)(e + (uint)(Mem.S32((_fp + 28u)) * 60));
                     speed = Random_PackedRange(new S1Elem(e).rec.speed.P);
                     grav = Random_PackedRange(new S1Elem(e).rec.grav.P);
-                    Mem.Copy(_fp, new S1Ctl(c).owner.Position.P, 12);
-                    Mem.Copy((_fp + 16u), new S1Ctl(c).v258.P, 12);
+                    Mem.Copy(_fp, new S1Ctl(c).OwnerPtr.Position.P, 12);
+                    Mem.Copy((_fp + 16u), new S1Ctl(c).AimPoint.P, 12);
                     new Vec3f((_fp + 16u)).x_Set((new Vec3f((_fp + 16u)).x - new Vec3f(_fp).x));
                     new Vec3f((_fp + 16u)).y_Set((new Vec3f((_fp + 16u)).y - new Vec3f(_fp).y));
                     new Vec3f((_fp + 16u)).z_Set((new Vec3f((_fp + 16u)).z - new Vec3f(_fp).z));
-                    new S1Ctl(c).unk264_Set(sqrtf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z))));
+                    new S1Ctl(c).AimDistance_Set(sqrtf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z))));
                     dy = new Vec3f((_fp + 16u)).y;
                     new Vec3f((_fp + 16u)).y_Set(0.0f);
                     hd = sqrtf(((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
-                    cs = cosf((new S1Ctl(c).unk278 * 0.0174532942f));
+                    cs = cosf((new S1Ctl(c).LobPitch * 0.0174532942f));
                     cs2 = (cs * cs);
-                    tn = Math_Tan((new S1Ctl(c).unk278 * 0.0174532942f));
+                    tn = Math_Tan((new S1Ctl(c).LobPitch * 0.0174532942f));
                     h = ((tn * hd) + ((grav * (hd * hd)) / (((speed * speed) * 2.0f) * cs2)));
                     if ((((dy - 1.0f) <= h) && (h <= (dy + 1.0f))))
                     {
-                        if (((Ai_IsArcBlocked(c, speed, grav) != 0) && (new S1Ctl(c).unk284 > 0)))
+                        if (((Ai_IsArcBlocked(c, speed, grav) != 0) && (new S1Ctl(c).LobPitchBand > 0)))
                         {
-                            new S1Ctl(c).unk284_Set((new S1Ctl(c).unk284 - 1));
-                            new S1Ctl(c).unk27C_Set((90.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                            new S1Ctl(c).unk280_Set((45.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                            if ((new S1Ctl(c).unk270 != 0))
+                            new S1Ctl(c).LobPitchBand_Set((new S1Ctl(c).LobPitchBand - 1));
+                            new S1Ctl(c).LobPitchHigh_Set((90.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                            new S1Ctl(c).LobPitchLow_Set((45.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                            if ((new S1Ctl(c).IsSolvingPrimaryLob != 0))
                             {
-                                new S1Ctl(c).unk268_Set(1);
+                                new S1Ctl(c).LobSolveStep_Set(1);
                             }
                             else
                             {
-                                new S1Ctl(c).unk268_Set(11);
+                                new S1Ctl(c).LobSolveStep_Set(11);
                             }
                             return 0;
                         }
-                        if (((new S1Ctl(c).unk270 != 0) && (new S1Ctl(c).unk274 != 0)))
+                        if (((new S1Ctl(c).IsSolvingPrimaryLob != 0) && (new S1Ctl(c).IsSolvingAltLob != 0)))
                         {
-                            new S1Ctl(c).unk250_Set((new S1Ctl(c).unk278 - new S1Ctl(c).unk248));
-                            new S1Ctl(c).unk268_Set(11);
-                            new S1Ctl(c).unk270_Set(0);
-                            if ((new S1Ctl(c).unk24C > 45.0f))
+                            new S1Ctl(c).LobPitchOffset_Set((new S1Ctl(c).LobPitch - new S1Ctl(c).AimPitch));
+                            new S1Ctl(c).LobSolveStep_Set(11);
+                            new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                            if ((new S1Ctl(c).AimPitchAlt > 45.0f))
                             {
-                                new S1Ctl(c).unk284_Set(0);
+                                new S1Ctl(c).LobPitchBand_Set(0);
                             }
                             else
                             {
-                                if ((new S1Ctl(c).unk24C > 0.0f))
+                                if ((new S1Ctl(c).AimPitchAlt > 0.0f))
                                 {
-                                    new S1Ctl(c).unk284_Set(1);
+                                    new S1Ctl(c).LobPitchBand_Set(1);
                                 }
                                 else
                                 {
-                                    if ((new S1Ctl(c).unk24C > (-45.0f)))
+                                    if ((new S1Ctl(c).AimPitchAlt > (-45.0f)))
                                     {
-                                        new S1Ctl(c).unk284_Set(2);
+                                        new S1Ctl(c).LobPitchBand_Set(2);
                                     }
                                     else
                                     {
-                                        new S1Ctl(c).unk284_Set(3);
+                                        new S1Ctl(c).LobPitchBand_Set(3);
                                     }
                                 }
                             }
-                            new S1Ctl(c).unk27C_Set((90.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                            new S1Ctl(c).unk280_Set((45.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
+                            new S1Ctl(c).LobPitchHigh_Set((90.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                            new S1Ctl(c).LobPitchLow_Set((45.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
                             return 0;
                         }
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk274_Set(0);
-                        new S1Ctl(c).unk250_Set((new S1Ctl(c).unk278 - new S1Ctl(c).unk248));
-                        new S1Ctl(c).unk268_Set((new S1Ctl(c).unk268 + 1));
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).IsSolvingAltLob_Set(0);
+                        new S1Ctl(c).LobPitchOffset_Set((new S1Ctl(c).LobPitch - new S1Ctl(c).AimPitch));
+                        new S1Ctl(c).LobSolveStep_Set((new S1Ctl(c).LobSolveStep + 1));
                         return 1;
                     }
-                    if (((new S1Ctl(c).unk268 + 1) == 11))
+                    if (((new S1Ctl(c).LobSolveStep + 1) == 11))
                     {
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk250_Set((new S1Ctl(c).unk278 - new S1Ctl(c).unk248));
-                        new S1Ctl(c).unk268_Set((new S1Ctl(c).unk268 + 1));
-                        if ((new S1Ctl(c).unk24C > 45.0f))
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).LobPitchOffset_Set((new S1Ctl(c).LobPitch - new S1Ctl(c).AimPitch));
+                        new S1Ctl(c).LobSolveStep_Set((new S1Ctl(c).LobSolveStep + 1));
+                        if ((new S1Ctl(c).AimPitchAlt > 45.0f))
                         {
-                            new S1Ctl(c).unk284_Set(0);
+                            new S1Ctl(c).LobPitchBand_Set(0);
                         }
                         else
                         {
-                            if ((new S1Ctl(c).unk24C > 0.0f))
+                            if ((new S1Ctl(c).AimPitchAlt > 0.0f))
                             {
-                                new S1Ctl(c).unk284_Set(1);
+                                new S1Ctl(c).LobPitchBand_Set(1);
                             }
                             else
                             {
-                                if ((new S1Ctl(c).unk24C > (-45.0f)))
+                                if ((new S1Ctl(c).AimPitchAlt > (-45.0f)))
                                 {
-                                    new S1Ctl(c).unk284_Set(2);
+                                    new S1Ctl(c).LobPitchBand_Set(2);
                                 }
                                 else
                                 {
-                                    new S1Ctl(c).unk284_Set(3);
+                                    new S1Ctl(c).LobPitchBand_Set(3);
                                 }
                             }
                         }
-                        new S1Ctl(c).unk27C_Set((90.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                        new S1Ctl(c).unk280_Set((45.0f - ((float)(new S1Ctl(c).unk284) * 45.0f)));
-                        if ((new S1Ctl(c).unk274 == 0))
+                        new S1Ctl(c).LobPitchHigh_Set((90.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                        new S1Ctl(c).LobPitchLow_Set((45.0f - ((float)(new S1Ctl(c).LobPitchBand) * 45.0f)));
+                        if ((new S1Ctl(c).IsSolvingAltLob == 0))
                         {
-                            new S1Ctl(c).unk268_Set(0);
+                            new S1Ctl(c).LobSolveStep_Set(0);
                         }
-                        return ((new S1Ctl(c).unk274 == 0) ? 1 : 0);
+                        return ((new S1Ctl(c).IsSolvingAltLob == 0) ? 1 : 0);
                     }
-                    if (((new S1Ctl(c).unk268 + 1) >= 21))
+                    if (((new S1Ctl(c).LobSolveStep + 1) >= 21))
                     {
-                        new S1Ctl(c).unk270_Set(0);
-                        new S1Ctl(c).unk274_Set(0);
-                        new S1Ctl(c).unk254_Set((new S1Ctl(c).unk278 - new S1Ctl(c).unk24C));
-                        new S1Ctl(c).unk268_Set((new S1Ctl(c).unk268 + 1));
+                        new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                        new S1Ctl(c).IsSolvingAltLob_Set(0);
+                        new S1Ctl(c).LobPitchOffsetAlt_Set((new S1Ctl(c).LobPitch - new S1Ctl(c).AimPitchAlt));
+                        new S1Ctl(c).LobSolveStep_Set((new S1Ctl(c).LobSolveStep + 1));
                         return 1;
                     }
                     if ((h < (dy - 1.0f)))
                     {
-                        switch (new S1Ctl(c).unk284)
+                        switch (new S1Ctl(c).LobPitchBand)
                         {
                         case 0:
-                            new S1Ctl(c).unk27C_Set(new S1Ctl(c).unk278);
+                            new S1Ctl(c).LobPitchHigh_Set(new S1Ctl(c).LobPitch);
                             break;
                         case 1:
                         case 2:
                         case 3:
-                            new S1Ctl(c).unk280_Set(new S1Ctl(c).unk278);
+                            new S1Ctl(c).LobPitchLow_Set(new S1Ctl(c).LobPitch);
                             break;
                         }
                     }
                     else
                     {
-                        switch (new S1Ctl(c).unk284)
+                        switch (new S1Ctl(c).LobPitchBand)
                         {
                         case 0:
-                            new S1Ctl(c).unk280_Set(new S1Ctl(c).unk278);
+                            new S1Ctl(c).LobPitchLow_Set(new S1Ctl(c).LobPitch);
                             break;
                         case 1:
                         case 2:
                         case 3:
-                            new S1Ctl(c).unk27C_Set(new S1Ctl(c).unk278);
+                            new S1Ctl(c).LobPitchHigh_Set(new S1Ctl(c).LobPitch);
                             break;
                         }
                     }
-                    new S1Ctl(c).unk278_Set(((new S1Ctl(c).unk27C + new S1Ctl(c).unk280) * 0.5f));
-                    new S1Ctl(c).unk268_Set((new S1Ctl(c).unk268 + 1));
+                    new S1Ctl(c).LobPitch_Set(((new S1Ctl(c).LobPitchHigh + new S1Ctl(c).LobPitchLow) * 0.5f));
+                    new S1Ctl(c).LobSolveStep_Set((new S1Ctl(c).LobSolveStep + 1));
                     return 0;
                 }
-                new S1Ctl(c).unk268_Set(0);
-                new S1Ctl(c).unk270_Set(0);
-                new S1Ctl(c).unk274_Set(0);
+                new S1Ctl(c).LobSolveStep_Set(0);
+                new S1Ctl(c).IsSolvingPrimaryLob_Set(0);
+                new S1Ctl(c).IsSolvingAltLob_Set(0);
                 return 1;
             }
         }
@@ -1949,11 +1949,11 @@ public static partial class Game
                 {
                     return 0;
                 }
-                if ((new B2Ctl(ctl).AimHorizDistance == 0.0f))
+                if ((new B2Ctl(ctl).AimDistance == 0.0f))
                 {
                     return 0;
                 }
-                k = (Mem.F32(0x800C6F30u) / new B2Ctl(ctl).AimHorizDistance);
+                k = (Mem.F32(0x800C6F30u) / new B2Ctl(ctl).AimDistance);
                 new Vec3f((_fp + 32u)).x_Set(((new B2Ctl(ctl).AimPoint.x - new B2Ctl(ctl).OwnerPtr.Position.x) * k));
                 new Vec3f((_fp + 32u)).x_Set((float)((float)(new Vec3f((_fp + 32u)).x) * (speed * cosf(new B2Ctl(ctl).LobPitch))));
                 new Vec3f((_fp + 32u)).z_Set(((new B2Ctl(ctl).AimPoint.z - new B2Ctl(ctl).OwnerPtr.Position.z) * k));
@@ -1962,7 +1962,7 @@ public static partial class Game
                 new Vec3f((_fp + 48u)).x_Set(0.0f);
                 new Vec3f((_fp + 48u)).y_Set(grav);
                 new Vec3f((_fp + 48u)).z_Set(0.0f);
-                h = ((speed * cosf(new B2Ctl(ctl).LobPitch)) / new B2Ctl(ctl).AimHorizDistance);
+                h = ((speed * cosf(new B2Ctl(ctl).LobPitch)) / new B2Ctl(ctl).AimDistance);
                 if ((h == 0.0f))
                 {
                     return 0;

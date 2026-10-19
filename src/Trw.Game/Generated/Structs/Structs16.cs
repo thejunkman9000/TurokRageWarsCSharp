@@ -3735,71 +3735,71 @@ public readonly struct O01Ctx
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public uint tree
+    public uint PathDataPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint tree_Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint PathDataPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x16 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x18
-    public int unk18
+    public int AnchorObjPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int AnchorObjPtr_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
     public U8x28 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x38
-    public int unk38
+    public int IsActive
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int unk38_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int IsActive_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
     public U8x28 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x58
-    public int unk58
+    public int IsFreshRequest
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x58u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value);
     }
-    [MethodImpl(Inl)] public int unk58_Set(int v) => Mem.Set(P + 0x58u, v);
+    [MethodImpl(Inl)] public int IsFreshRequest_Set(int v) => Mem.Set(P + 0x58u, v);
     // +0x5C
     public U8x88 pad5C { [MethodImpl(Inl)] get => new(P + 0x5Cu); }
     // +0xB4
-    public int unkB4
+    public int HoldAtEnd
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int unkB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int HoldAtEnd_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
     public U8x32 padB8 { [MethodImpl(Inl)] get => new(P + 0xB8u); }
     // +0xD8
-    public int unkD8
+    public int PendingLevelId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public int unkD8_Set(int v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public int PendingLevelId_Set(int v) => Mem.Set(P + 0xD8u, v);
     // +0xDC
-    public int unkDC
+    public int PendingIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public int unkDC_Set(int v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public int PendingIndex_Set(int v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public int unkE0
+    public int FlybyId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xE0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE0u, value);
     }
-    [MethodImpl(Inl)] public int unkE0_Set(int v) => Mem.Set(P + 0xE0u, v);
+    [MethodImpl(Inl)] public int FlybyId_Set(int v) => Mem.Set(P + 0xE0u, v);
 }
 
 /// <summary>struct O01CtxD, 0x5C bytes, at a guest address.</summary>
@@ -3816,48 +3816,48 @@ public readonly struct O01CtxD
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public uint tree
+    public uint PathDataPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint tree_Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint PathDataPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x20 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x1C
-    public float unk1C
+    public float Clock
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public float unk1C_Set(float v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public float Clock_Set(float v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
     public U8x20 pad20 { [MethodImpl(Inl)] get => new(P + 0x20u); }
     // +0x34
-    public float unk34
+    public float WindowEnd
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float WindowEnd_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
     public U8x24 pad38 { [MethodImpl(Inl)] get => new(P + 0x38u); }
     // +0x50
-    public int unk50
+    public int AreTrackEventsEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x50u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x50u, value);
     }
-    [MethodImpl(Inl)] public int unk50_Set(int v) => Mem.Set(P + 0x50u, v);
+    [MethodImpl(Inl)] public int AreTrackEventsEnabled_Set(int v) => Mem.Set(P + 0x50u, v);
     // +0x54
     public U8x4 pad54 { [MethodImpl(Inl)] get => new(P + 0x54u); }
     // +0x58
-    public int unk58
+    public int IsFreshRequest
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x58u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value);
     }
-    [MethodImpl(Inl)] public int unk58_Set(int v) => Mem.Set(P + 0x58u, v);
+    [MethodImpl(Inl)] public int IsFreshRequest_Set(int v) => Mem.Set(P + 0x58u, v);
 }
 
 /// <summary>struct O01CtxG, 0xA8 bytes, at a guest address.</summary>

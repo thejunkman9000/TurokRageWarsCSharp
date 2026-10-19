@@ -161,7 +161,7 @@ public static partial class Game
                     UiNode_SetVisible((uint)(a0), 1);
                     Flyby_QueueById((Mem.S32(Gv.ArenaLevel) + 601));
                     Mem.Set((Mem.U32(Gv.FlybyCtlPtr) + (uint)216), (-1));
-                    new O3Scr3C(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(st);
+                    new O3Scr3C(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(st);
                     break;
                 case 1:
                     Menu_ConsumeEvent();
@@ -243,13 +243,13 @@ public static partial class Game
                 Menu_EnableInput();
                 return 0;
             }
-            s0 = new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).f3C;
+            s0 = new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).IsHolding;
             if (((s0 == 1) && (Flyby_IsInWindow() == s0)))
             {
                 UiNode_SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w68, 0);
                 UiNode_SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w44, 0);
                 UiNode_SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w4C, 0);
-                new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).f3C_Set(0);
+                new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
             }
             g = Gv.Menu_ScreenRequest_Pending;
             if ((Mem.S32((g + (uint)(0 * 4))) == 1))

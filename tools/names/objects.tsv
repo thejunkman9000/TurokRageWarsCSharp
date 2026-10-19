@@ -1,8 +1,18 @@
 # object	alias struct view types (comma separated)	base object	note   (tools/rename/fields.py, docs/NAMING.md)
 Actor	Actor_func_80214624_de,Actor_func_80214DD4_de,B10Obj,B15Flags,B19bObj,B2Obj,Entity,Field_s32_2E0,Obj,P4Ent2,PlrObj,Q4Fx,S6Actor		actor header, 0x2E8 bytes (shared by every actor; players extend it)
-Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView,B2Actor,CloseAttackActor,RespawnPlayer,S11Obj,S5Actor	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
+Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView,B2Actor,CloseAttackActor,RespawnPlayer,S11Obj,S5Actor,M2Own,R2P5	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
 PlayerMenu	O05Lobby,Q03Lob		from fields_lobby.tsv
 MenuManager	Shared_MenuManager,SndMgr_v2,S410Mgr,Menu_func_802991D4_de,P4SlotTbl,B21Menu		from fields_menu1.tsv
 SoundManager	SndMgr		from fields_sound.tsv
-AiBrain	B2Ctl,Brain,BrainB		from fields_b2ctl.tsv
+AiBrain	B2Ctl,Brain,BrainB,S1Ctl		from fields_b2ctl.tsv
 Level	Level,O01G,O01G2,O01GE,B09World,SessMgr,PathTbl,M04World,M04WorldB,O3Lv,O01G_v2,B18Mgr,B10Gx,B21Ctx,B19Owner,B19bWorld,S6World_v2,S5Scene,Owner_func_8044D794_de,P4Mgr5,P4Mgr,P4Mgr2,P4Rsrc,P4Owner,P4Obj94,Obj_v3,Obj_v4,Obj_v7,State_func_8044D5C4_de,Level_v2,State_func_8044D528_de,State_func_8044D0F0_de,State_func_8044D054_de,func_8044DE04_S1,func_8044DC48_S1,Track_func_8044D220_de,S7Track,Level_func_8044CD8C_de,World_func_8044C108_de_v2,func_8044CBE0_S1_v2		from fields_level.tsv
+FlybyCtl	B10Ctl,O01Ctx,O01CtxD,O3Scr3C,Obj74,Q01Anim_v2,Q01Anim_v3,Q2Scr		from fields_flyby.tsv
+PadState	B14Ctl,S5Ctl,B14Pad,B14Hist,B14Slot,B14Slot_v2,T808,S10Ctrl,B22Pad,Controller_func_80217B3C_de		from fields_pad.tsv
+SoundVoice	SndVoice,M04Emitter,M04Chaser,View_func_8025AB94_de		from fields_snd.tsv
+MusicSequencer	SndSeq,P3Obj38		from fields_snd_2.tsv
+GameCtx	B21Game,P4Game,S7Match,P4ThrOwner,Shape_func_80291208_de,Shared_Legacy_func_80294608_S1,func_80292FA4_S1,func_80293268_S2,func_80293318_S1,func_80293574_S1,func_80293774_S1,func_80293808_S1,func_8029382C_S1,func_80293904_S1,func_8029397C_S1,func_80293C20_S1,func_802947DC_S1,func_80294AC4_S1,func_8044E9A0_S1		from fields_game.tsv
+MatchRules	GameB6,B01Game,B04GF,B04GF2,B07Game,B15Dbg,B2GameFlags,GameFlags,GameFlagsC,Glob24b,M2G,O04GFlags,O05G,O06G,O06G_v2,O06G_v3,Q2G,R07Blk,S10Game,S7Blk,func_80293268_S1,State_func_8044DD50_de		from fields_game_2.tsv
+ActorState	ActorState,B01State,M1State,B2State,StateB		from fields_astate.tsv
+ActorDef	ActorDef,M1Def,B01Def,B2Def,DefC_v3,ActorInfo_v2,B19bInfo		from fields_astate_2.tsv
+ActorDefParams	M1Info,B01Info,B2Info,S5Info,ActorInfo		from fields_astate_3.tsv
+WeaponState	M2St		from fields_astate_4.tsv

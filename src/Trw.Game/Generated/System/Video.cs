@@ -101,8 +101,8 @@ public static partial class Game
             idx = (Mem.U32(Gv.Video_FrameCount) % Mem.U32(Gv.Video_FrameSlotCount));
             Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
             Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
-            new B21Game(g).curSlot__Set((new B21Game(g).slots.P + (uint)(idx * 320)));
-            new B21Slot((new B21Game(g).slots.P + (uint)(idx * 320))).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            new B21Game(g).curSlot__Set((new B21Game(g).FrameSlots.P + (uint)(idx * 320)));
+            new B21Slot((new B21Game(g).FrameSlots.P + (uint)(idx * 320))).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             u = new B21Game(g).curSlot_;
             new B21Slot(u).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
@@ -121,7 +121,7 @@ public static partial class Game
             idx = (Mem.U32(Gv.Video_FrameCount) % Mem.U32(Gv.Video_FrameSlotCount));
             Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
             Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
-            s = new B21Game(g).curSlot__Set((new B21Game(g).slots.P + (uint)(idx * 320)));
+            s = new B21Game(g).curSlot__Set((new B21Game(g).FrameSlots.P + (uint)(idx * 320)));
             new B21Slot(s).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             t = new B21Game(g).curSlot_;
             new B21Slot(t).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
