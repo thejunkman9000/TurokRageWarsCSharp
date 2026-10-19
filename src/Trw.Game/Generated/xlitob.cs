@@ -27,10 +27,10 @@ public static partial class Game
                 int @base = 0;
                 int i = 0;
                 ulong ullval = 0UL;
-                digs = 0x800D9330u;
+                digs = Gv.Str_0123456789abcdef;
                 if (((int)(type) == 88))
                 {
-                    digs = 0x800D9344u;
+                    digs = Gv.Str_0123456789ABCDEF;
                 }
                 @base = (((int)(type) == 111) ? 8 : ((((int)(type) != 120) && ((int)(type) != 88)) ? 10 : 16));
                 i = 24;

@@ -225,7 +225,7 @@ public static partial class Objective
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204468", (uint)actor, (uint)state);
-            new ActorStateView(state).StateTablePtr_Set(0x800CD4C4u);
+            new ActorStateView(state).StateTablePtr_Set(Gv.Objective_StateTable);
             new ActorStateView(state).UpdateCallback_Set(0x002043E0u);
             new ActorStateView(state).ClassVar_124_Set(0);
             Mem.Set(new ActorStateView(state).ClassVar_128.P, 0);

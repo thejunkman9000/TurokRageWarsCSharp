@@ -293,7 +293,7 @@ public static partial class GameSave
             {
                 size = ((int)(Mem.U32(Gv.GameSave_DataSize)) + 1552);
             }
-            r = ResourcePool.Alloc(0, size, (uint)(51), (int)(0x800E0D90u));
+            r = ResourcePool.Alloc(0, size, (uint)(51), (int)(Gv.Str_SingleSaveBlock));
             Mem.Set(slot, (int)(r));
             p = (uint)(Mem.S32(r));
             Mem.Set(@out, p);

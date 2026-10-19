@@ -3503,7 +3503,7 @@ public static partial class Anim
                     return 0;
                 }
                 clip = (int)(Resource.GetCartridgeKey((uint)(table), (uint)(key), id, _fp));
-                new AnimView(anim).resource_Set(ResourceCache.Hash(0, (uint)(clip), clip, (uint)(Mem.S32(_fp)), 4, anim, 0x0025F58Cu, 0x800C92A0u, 0));
+                new AnimView(anim).resource_Set(ResourceCache.Hash(0, (uint)(clip), clip, (uint)(Mem.S32(_fp)), 4, anim, 0x0025F58Cu, Gv.Str_Animation, 0));
                 if ((Anim.IsClipLoaded(anim) == 0))
                 {
                     return 0;
@@ -4531,7 +4531,7 @@ public static partial class Anim
                     goto L_fail;
                 }
                 t = (int)(Resource.GetCartridgeKey((uint)(a), (uint)(b), id, _fp));
-                new B14Anim3(o).h_Set((int)(ResourceCache.Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 4, o, 0x0025F58Cu, 0x800C92A0u, 0)));
+                new B14Anim3(o).h_Set((int)(ResourceCache.Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 4, o, 0x0025F58Cu, Gv.Str_Animation, 0)));
                 if ((Anim.IsClipLoaded(o) != 0))
                 {
                     tree = (uint)(Anim.GetClipData(o));

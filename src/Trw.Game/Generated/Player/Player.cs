@@ -1579,7 +1579,7 @@ public static partial class Player
                 {
                     if ((new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr == Gv.Flashlight_LightDef2))
                     {
-                        new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr_Set(0x800CE428u);
+                        new B05Fx(new B05P14(p).FlashlightLight3Ptr).DefPtr_Set(Gv.Flashlight_LightDefAlt);
                     }
                     else
                     {
@@ -3665,7 +3665,7 @@ public static partial class Player
                     Player.SetState(p, (int)(a), 2);
                     if ((new B05P12(p).ViewPtr != 0u))
                     {
-                        View.Hud_PostMessage(Gv.ViewMgr, new B05P12(p).ViewPtr, 0x800C7A40u);
+                        View.Hud_PostMessage(Gv.ViewMgr, new B05P12(p).ViewPtr, Gv.Str_FlyModeOff);
                     }
                 }
             }
@@ -3690,7 +3690,7 @@ public static partial class Player
             high = ((new B05P11(p).CrouchOffset > 5.12f) ? 1 : 0);
             if ((high != 0))
             {
-                Player.UpdateViewTurn(p, a, 0x800CE7FCu);
+                Player.UpdateViewTurn(p, a, Gv.Player_CrouchViewTurnParams);
             }
             else
             {
@@ -3833,7 +3833,7 @@ public static partial class Player
             high = ((new B05P16(p).CrouchOffset > 5.12f) ? 1 : 0);
             if ((high != 0))
             {
-                Player.UpdateViewTurn(p, a, 0x800CE7FCu);
+                Player.UpdateViewTurn(p, a, Gv.Player_CrouchViewTurnParams);
             }
             else
             {
@@ -3842,11 +3842,11 @@ public static partial class Player
             high = ((new B05P16(p).CrouchOffset > 5.12f) ? 1 : 0);
             if ((high != 0))
             {
-                Player.UpdateGroundMovement(p, a, 0x800CE7C0u);
+                Player.UpdateGroundMovement(p, a, Gv.Player_CrouchMoveParams);
             }
             else
             {
-                Player.UpdateGroundMovement(p, a, 0x800CE730u);
+                Player.UpdateGroundMovement(p, a, Gv.Player_WalkMoveParams);
             }
             if (((((((new B05P16(p).ZoomMode == 0) && !(new B05P16(p).AirTime > 11.25f)) && !((new B05A16(a).flags38 & (uint)(786432)) != 0u)) && ((new B05Def16(new B05A16(a).def).flags14 & (uint)(2)) != 0u)) && ((new B05P16(p).ButtonsPressed & (uint)(16)) != 0u)) && (new B05P16(p).StunTime <= 0.0f)))
             {
@@ -4166,7 +4166,7 @@ public static partial class Player
             }
             MathUtil.ApproachProportional((p + 1836u), 0.0f, 0.25f);
             Player.UpdateViewTurn(p, q, Gv.Player_ViewTurnParams);
-            Player.UpdateGroundMovement(p, q, 0x800CE82Cu);
+            Player.UpdateGroundMovement(p, q, Gv.Player_SurfaceSwimMoveParams);
             if (!((new M2Q(q).flags38 & (uint)(8192)) != 0u))
             {
                 Player.StubStop938_00218464();
@@ -4279,11 +4279,11 @@ public static partial class Player
             {
                 new Plr(a).StateId_Set((short)(12));
             }
-            Player.UpdateViewTurn(a, b, 0x800CE874u);
+            Player.UpdateViewTurn(a, b, Gv.Player_UnderwaterViewTurnParams);
             new Plr(a).SwayPitch_Set(((2.0f * sinf((new Plr(a).StateTime * 0.069813177f))) * 0.0174532942f));
             new Plr(a).SwayYaw_Set(((2.0f * sinf((new Plr(a).StateTime * 0.0872664749f))) * 0.0174532942f));
             new Plr(a).SwayRoll_Set(((2.0f * sinf((new Plr(a).StateTime * 0.104719765f))) * 0.0174532942f));
-            Player.UpdateSwimMovement(a, b, 0x800CE850u);
+            Player.UpdateSwimMovement(a, b, Gv.Player_UnderwaterSwimParams);
             if ((!((new Plr(b).GroundFlags & (uint)(4096)) != 0u) && (2.0f < new Plr(a).StateTime)))
             {
                 Player.StubStop938_00218464();
@@ -5222,7 +5222,7 @@ public static partial class Player
             int s1 = (n * 5864);
             int s2 = (n * 816);
             int i = 0;
-            blk = ResourcePool.Alloc(0, (s1 + s2), (uint)(35), (int)(0x800C7C58u));
+            blk = ResourcePool.Alloc(0, (s1 + s2), (uint)(35), (int)(Gv.Str_Players));
             new PlrGroup(g).unk0__Set(blk);
             new PlrGroup(g).Count_Set(n);
             @base = (uint)(Mem.S32((blk + (uint)(0 * 4))));
@@ -5400,7 +5400,7 @@ public static partial class Player
                 if (!((new Pawn(pw).IsThirdPerson == 0))) goto _f5;
                 e = (a + (uint)744);
                 if (!(((new PlrObj(e).Flags & (uint)(262144)) != 0u))) goto _f6;
-                r = ResourceCache.Hash(0, (uint)(new PlrObj(e).AnimDataKey), new PlrObj(e).AnimDataKey, (uint)(new PlrObj(e).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                r = ResourceCache.Hash(0, (uint)(new PlrObj(e).AnimDataKey), new PlrObj(e).AnimDataKey, (uint)(new PlrObj(e).AnimDataSize), 4, (uint)(0), (uint)(0), Gv.Str_PlayerAnimObjectInfo, 1);
                 if (!((r != 0u))) goto _f7;
                 other = new PlrObj(e).unk1D8_;
                 Actor.UpdateTransformAndBounds(e, (int)(Chunk.Get((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
@@ -5422,7 +5422,7 @@ public static partial class Player
                 if (!((pw != 0u))) goto _f11;
                 L_blk: ;
                 if (!(((new Plr(a).Flags & (uint)(262144)) != 0u))) goto _f12;
-                r2 = ResourceCache.Hash(0, (uint)(new Plr(a).AnimDataKey), new Plr(a).AnimDataKey, (uint)(new Plr(a).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                r2 = ResourceCache.Hash(0, (uint)(new Plr(a).AnimDataKey), new Plr(a).AnimDataKey, (uint)(new Plr(a).AnimDataSize), 4, (uint)(0), (uint)(0), Gv.Str_PlayerAnimObjectInfo, 1);
                 if (!((r2 != 0u))) goto _f13;
                 Actor.UpdateTransformAndBounds(a, (int)(Chunk.Get((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
                 ResourcePool.Unref(0, r2);
@@ -7789,7 +7789,7 @@ public static partial class Player
                 new func_804499B0_de_S3(@object).TagKillVictimPtr_Set(0);
                 new func_804499B0_de_S3(@object).ModeKillVictimPtr_12C8_2_Set(0);
                 new func_804499B0_de_S3(@object).KillFeedTail_Set(0);
-                new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
+                new func_804499B0_de_S3(@object).unk13B4__Set(Gv.Player_StateTableDefault);
                 new func_804499B0_de_S3(@object).AttachedFxPtr_11E8_Set(0);
                 Player.ResetFields(@object);
                 new func_804499B0_de_S3(@object).IsInfraRedOn_Set(0);
@@ -7853,7 +7853,7 @@ public static partial class Player
                 new func_804499B0_de_S3(@object).TagKillVictimPtr_Set(0);
                 new func_804499B0_de_S3(@object).ModeKillVictimPtr_12C8_2_Set(0);
                 new func_804499B0_de_S3(@object).KillFeedTail_Set(0);
-                new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
+                new func_804499B0_de_S3(@object).unk13B4__Set(Gv.Player_StateTableDefault);
                 new func_804499B0_de_S3(@object).AttachedFxPtr_11E8_Set(0);
                 Player.ResetFields(@object);
                 new func_804499B0_de_S3(@object).IsInfraRedOn_Set(0);
@@ -7918,7 +7918,7 @@ public static partial class Player
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).TagKillVictimPtr.P, 0);
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).ModeKillVictimPtr_12C8.P, 0);
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).KillFeedTail.P, 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).StateTablePtr.P, (int)(0x800CE8C8u));
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).StateTablePtr.P, (int)(Gv.Player_StateTableDefault));
             Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3072u), 0);
             Player.ResetFields(player);
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsInfraRedOn.P, 0);

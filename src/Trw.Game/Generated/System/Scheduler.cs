@@ -133,10 +133,10 @@ public static partial class Sched
                             if ((Mem.S32(Gv.Sched_PreNmiCountdown) <= 0))
                             {
                                 osViSetYScale(1.0f);
-                                mode = 0x800D87E0u;
+                                mode = Gv.osViModeNtscHpn1;
                                 if ((Mem.S32(Gv.VideoResolution) == 0))
                                 {
-                                    mode = 0x800D8560u;
+                                    mode = Gv.osViModeNtscLpn1;
                                 }
                                 osViSetMode(mode);
                                 osViBlack((byte)(1));

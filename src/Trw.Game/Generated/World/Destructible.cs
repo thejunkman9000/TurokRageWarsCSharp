@@ -71,7 +71,7 @@ public static partial class Destructible
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020520C", (uint)arg0, (uint)state);
-            new ActorStateView(state).StateTablePtr_Set(0x800CD670u);
+            new ActorStateView(state).StateTablePtr_Set(Gv.Destructible_StateTable);
             new ActorStateView(state).UpdateCallback_Set(0x002052C4u);
             new ActorStateView(state).DrawCallback_Set(0x00205628u);
             new ActorStateView(state).DamageCallback_Set((0x00205094u + (uint)12));

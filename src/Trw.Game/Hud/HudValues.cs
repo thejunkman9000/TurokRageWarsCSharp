@@ -46,7 +46,7 @@ public sealed class HudValues : IHudValues
         try { Read(view); } catch (Mem.GuestFault) { } catch (IndexOutOfRangeException) { }
     }
 
-    private static bool Ram(uint a, int n) => a >= 0x80000000u && a + (uint)n <= 0x80800000u && Mem.IsMapped(a);
+    private static bool Ram(uint a, int n) => a >= 0x80000000u && a + (uint)n <= Gv.Ram_End && Mem.IsMapped(a);
 
     private void Read(HudView view)
     {

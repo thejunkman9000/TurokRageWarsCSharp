@@ -380,7 +380,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293518");
-            sprintf(Gv.Boot_BuildDateString, 0x800CA4F0u, 0x800CA4F8u, 0x800CA504u, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            sprintf(Gv.Boot_BuildDateString, Gv.Str_SS, Gv.Str_Oct131999, Gv.Str_145739, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             __osSetFpcCsr((uint)(((int)(__osGetFpcCsr()) | 1024)));
             Game_Init(Gv.GameCtx, default(uint), default(uint), default(uint));
         }

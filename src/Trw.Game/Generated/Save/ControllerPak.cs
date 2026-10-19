@@ -377,7 +377,7 @@ public static partial class CPak
             {
                 Resource.SetLoadFlags(1);
             }
-            h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(0x800E0D00u));
+            h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(Gv.Str_MempakReadTempData));
             buf = (uint)(Mem.S32(h));
             Pad.TryAcquire(1);
             Pad.ReadController_00263760();
@@ -424,7 +424,7 @@ public static partial class CPak
                 {
                     return (-2);
                 }
-                h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(0x800E0D18u));
+                h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(Gv.Str_MempakWriteTempData));
                 buf = (uint)(Mem.S32(h));
                 i = 0;
                 do
@@ -543,7 +543,7 @@ public static partial class CPak
             if (Dbg.On) Dbg.Enter("func_00404D84");
             uint h = 0u;
             uint p = 0u;
-            h = ResourcePool.Alloc(0, 2064, (uint)(35), (int)(0x800E0CF0u));
+            h = ResourcePool.Alloc(0, 2064, (uint)(35), (int)(Gv.Str_MempakPakstate));
             p = (uint)(Mem.S32(h));
             Mem.Set(Gv.CPak_DirectoryHandle, (int)(h));
             Mem.Set(Gv.CPak_DirectoryPtr, p);
@@ -693,7 +693,7 @@ public static partial class CPak
             {
                 Resource.SetLoadFlags(1);
             }
-            h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(0x800E0D00u));
+            h = ResourcePool.Alloc(0, rsize, (uint)(35), (int)(Gv.Str_MempakReadTempData));
             buf = (uint)(Mem.S32(h));
             Pad.TryAcquire(1);
             Pad.ReadController_00263760();

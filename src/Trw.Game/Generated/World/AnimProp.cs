@@ -27,7 +27,7 @@ public static partial class AnimProp
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206604", (uint)actor, (uint)state);
-            new B01State(state).StateTablePtr_Set(0x800CD840u);
+            new B01State(state).StateTablePtr_Set(Gv.AnimProp_StateTable);
             new B01State(state).UpdateCallback_Set(0x00206724u);
             new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(16777216)));
             new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(33554432)));

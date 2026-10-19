@@ -79,7 +79,7 @@ public static class HudTagger
         try
         {
             uint c = Mem.U32(MatchInfo.CameraListHead);
-            for (int i = 0; i < 8 && c >= 0x80000000u && c < 0x807FF000u; i++, c = Mem.U32(c + 4)) l.Add(c);
+            for (int i = 0; i < 8 && c >= 0x80000000u && c < Gv.Ram_PtrScanLimit_807FF000; i++, c = Mem.U32(c + 4)) l.Add(c);
         }
         catch (Mem.GuestFault) { }
         cams = l.ToArray(); camsTick = t;

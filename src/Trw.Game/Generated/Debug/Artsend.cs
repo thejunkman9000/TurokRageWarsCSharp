@@ -204,7 +204,7 @@ public static partial class Artsend
                 Mem.Set(Gv.Artsend_PalettePtr, 0u);
                 Mem.Set(Gv.Artsend_TexturePtr, 0u);
                 v0 = (int)(Resource.GetCartridgeKey((uint)(new B21Ctx(c).TextureSetsIndex), (uint)(new B21Ctx(c).TextureSetsIndexKey), new B21RecX(Gv.Artsend_TextureIndex).TextureIndex, _fp));
-                obj = ResourceCache.Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
+                obj = ResourceCache.Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, Gv.Str_ArtsendTexture, 1);
                 s3 = Mem.U32(obj);
                 s2 = Chunk.Get(s3, 1);
                 s5 = Chunk.Get(s3, 2);
@@ -236,11 +236,11 @@ public static partial class Artsend
                             break;
                         }
                     }
-                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, 0x800CA5E0u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, Gv.Str_TexDFrmDOfD, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, 0x800CA5F8u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, Gv.Str_TexDFrmDOfD2, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 Mem.Set(Gv.Artsend_Dirty_8014D068, 0);
             }

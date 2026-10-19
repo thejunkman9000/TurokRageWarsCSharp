@@ -1825,7 +1825,7 @@ public static partial class CameraManager
             int buf = 0;
             size = (n * 3800);
             new PoolRef(p).unk8_Set(n);
-            r = ResourcePool.Alloc(0, size, (uint)(35), (int)((0x800C83C0u + (uint)(1 * 4))));
+            r = ResourcePool.Alloc(0, size, (uint)(35), (int)((Gv.Str_O2 + (uint)(1 * 4))));
             new PoolRef(p).unk0__Set(r);
             buf = Mem.S32((r + (uint)(0 * 4)));
             new PoolRef(p).unk4_Set(buf);
@@ -1841,7 +1841,7 @@ public static partial class CameraManager
             if (Dbg.On) Dbg.Enter("func_0023A180", (uint)o, (uint)n);
             uint blk = 0u;
             new Player_v3(o).f_F20_Set(n);
-            blk = ResourcePool.Alloc(0, (n << (int)6), (uint)(35), (int)(0x800C83CCu));
+            blk = ResourcePool.Alloc(0, (n << (int)6), (uint)(35), (int)(Gv.Str_CameraTexts));
             new Player_v3(o).f_F18__Set(blk);
             memset(new Player_v3(o).LivesMover_Set(new MemBlk(blk).data), 0, (uint)((n << (int)6)));
         }
@@ -1957,7 +1957,7 @@ public static partial class CameraManager
             {
                 size = (n * 3800);
                 new S5Cams(m).ViewCount_Set(n);
-                new S5Cams(m).ViewsHandle_Set(ResourcePool.Alloc(0, size, (uint)(35), (int)((0x800C83C0u + (uint)4))));
+                new S5Cams(m).ViewsHandle_Set(ResourcePool.Alloc(0, size, (uint)(35), (int)((Gv.Str_O2 + (uint)4))));
                 new S5Cams(m).data__Set(Mem.U32(new S5Cams(m).ViewsHandle));
                 memset(new S5Cams(m).data_, 0, (uint)(size));
                 for (i = 0; (i < new S5Cams(m).ViewCount); ++i)
@@ -1969,7 +1969,7 @@ public static partial class CameraManager
                 new S5Cams(m).IsDefaultListener_Set(0);
             }
             new S5Cams(m).RecordPoolCount_F20_Set(16);
-            new S5Cams(m).RecordPoolHandle_F18_Set(ResourcePool.Alloc(0, 1024, (uint)(35), (int)(0x800C83CCu)));
+            new S5Cams(m).RecordPoolHandle_F18_Set(ResourcePool.Alloc(0, 1024, (uint)(35), (int)(Gv.Str_CameraTexts)));
             new S5Cams(m).data2__Set(Mem.U32(new S5Cams(m).RecordPoolHandle_F18));
             memset(new S5Cams(m).data2_, 0, (uint)(1024));
             for (i = 0; (i < new S5Cams(m).RecordPoolCount_F20); ++i)

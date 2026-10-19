@@ -518,14 +518,14 @@ public static partial class Actor
             if (!((Mem.U32(flags) & bit) != 0u))
             {
                 Mem.Set(flags, (uint)((uint)(Mem.U32(flags)) | bit));
-                for (e = 0x800CE240u; (new B04Ent(e).mask != (uint)(0)); e += 8u)
+                for (e = Gv.Actor_DropTableMask1; (new B04Ent(e).mask != (uint)(0)); e += 8u)
                 {
                     if (((m1 & new B04Ent(e).mask) != 0u))
                     {
                         Pickup.SpawnDropAtNavNode(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(RandomGen.Symmetric(450f, 600f))));
                     }
                 }
-                for (e = 0x800CE348u; (new B04Ent(e).mask != (uint)(0)); e += 8u)
+                for (e = Gv.Actor_DropTableMask2; (new B04Ent(e).mask != (uint)(0)); e += 8u)
                 {
                     if (((m2 & new B04Ent(e).mask) != 0u))
                     {
@@ -1549,7 +1549,7 @@ public static partial class Actor
                 goto L_null;
                 _f9: ;
                 if (!(((pl + (uint)744) == o))) goto _f10;
-                tab = 0x800CFB04u;
+                tab = Gv.Weapon_ClassCallbacks;
                 goto L_call;
                 _f10: ;
                 pl = (uint)(pl + (uint)(5864 * 1));
@@ -1603,7 +1603,7 @@ public static partial class Actor
                 int start = 0;
                 if (((new B10Obj(o).Flags & (uint)(262144)) != 0u))
                 {
-                    r = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimDataKey), new B10Obj(o).AnimDataKey, (uint)(new B10Obj(o).AnimDataSize), 0, (uint)(0), (uint)(0), 0x800C8954u, 1);
+                    r = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimDataKey), new B10Obj(o).AnimDataKey, (uint)(new B10Obj(o).AnimDataSize), 0, (uint)(0), (uint)(0), Gv.Str_CGameObjectInstanceLookupAIAnimTypeAnimObjec, 1);
                     if ((r != 0u))
                     {
                         node = Chunk.Get(Mem.U32(r), 1);
@@ -1676,12 +1676,12 @@ public static partial class Actor
                 new B10Obj(o).LoadedModelSize_Set(0);
                 new B10Obj(o).Flags_Set((uint)((uint)(new B10Obj(o).Flags) & 4294705151u));
                 t = Resource.GetCartridgeKeyNoSize((uint)(a1), a2, (int)(new B10Obj(o).TypeIndex));
-                r1 = ResourceCache.Hash(0, (uint)(t), t, (uint)(24), 0, (uint)(0), (uint)(0), 0x800C898Cu, 1);
+                r1 = ResourceCache.Hash(0, (uint)(t), t, (uint)(24), 0, (uint)(0), (uint)(0), Gv.Str_AnimObjectIndex, 1);
                 if ((r1 != 0u))
                 {
                     s0 = (int)(Mem.U32(r1));
                     new B10Obj(o).ModelTableKey_Set(Resource.GetCartridgeKeyNoSize((uint)(s0), t, 1));
-                    r2 = Resource.LoadIndexTable(0, _fp, new B10Obj(o).ModelTableKey, 0x800C89A0u, 1);
+                    r2 = Resource.LoadIndexTable(0, _fp, new B10Obj(o).ModelTableKey, Gv.Str_AnimModelsIndex, 1);
                     if ((r2 != 0u))
                     {
                         new B10Obj(o).ModelCount_Set(Mem.U8((Mem.U32(_fp) + (uint)3)));
@@ -1690,7 +1690,7 @@ public static partial class Actor
                     }
                     new B10Obj(o).AnimDataKey_Set((int)(Resource.GetCartridgeKey((uint)(s0), (uint)(t), 0, (o + 208u))));
                     new B10Obj(o).AnimClipsKey_Set(Resource.GetCartridgeKeyNoSize((uint)(s0), t, 2));
-                    r3 = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimDataKey), new B10Obj(o).AnimDataKey, (uint)(new B10Obj(o).AnimDataSize), 0, (uint)(0), (uint)(0), 0x800C89B4u, 1);
+                    r3 = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimDataKey), new B10Obj(o).AnimDataKey, (uint)(new B10Obj(o).AnimDataSize), 0, (uint)(0), (uint)(0), Gv.Str_CGameObjectInstanceResetAnimObjectInfo, 1);
                     if ((r3 != 0u))
                     {
                         s1 = (int)(Mem.U32(r3));
@@ -2037,7 +2037,7 @@ public static partial class Actor
                         return;
                     }
                 }
-                r = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimClipsKey), new B10Obj(o).AnimClipsKey, (uint)(((((int)(new B10Obj(o).AnimCount) * 4) + 15) & (~7))), 4, (uint)(0), (uint)(0), 0x800C8A24u, 0);
+                r = ResourceCache.Hash(0, (uint)(new B10Obj(o).AnimClipsKey), new B10Obj(o).AnimClipsKey, (uint)(((((int)(new B10Obj(o).AnimCount) * 4) + 15) & (~7))), 4, (uint)(0), (uint)(0), Gv.Str_AnimationsIndex, 0);
                 s3 = (o + 260u);
                 if ((r != 0u))
                 {
@@ -2925,7 +2925,7 @@ public static partial class Actor
                         }
                         if (((p + (uint)744) == a))
                         {
-                            d = 0x800CFB04u;
+                            d = Gv.Weapon_ClassCallbacks;
                             goto L_have;
                         }
                     }
@@ -3009,11 +3009,11 @@ public static partial class Actor
             {
                 if ((new ObjView(a).AnimDataKey != 0))
                 {
-                    h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
+                    h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 0, (uint)(0), (uint)(0), (Gv.Str_800C8AD0 + (uint)4), arg);
                 }
                 else
                 {
-                    h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
+                    h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 0, (uint)(0), (uint)(0), (Gv.Str_800C8AD0 + (uint)4), arg);
                 }
                 if ((h != 0u))
                 {
@@ -3360,7 +3360,7 @@ public static partial class Actor
             uint h = 0u;
             if (((new ObjView(a).Flags & (uint)(262144)) != 0u))
             {
-                h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C8BD8u, 1);
+                h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 4, (uint)(0), (uint)(0), Gv.Str_CGameObjectInstanceGetUnitScaleMultiplierAni, 1);
                 if ((h != 0u))
                 {
                     r = Trunc16ToF32(new B11Node(Chunk.Get((uint)(Mem.S32(h)), 0)).unk1E);
@@ -3384,7 +3384,7 @@ public static partial class Actor
             }
             if ((idx != new ObjView(a).LoadedModelIndex))
             {
-                h = ResourceCache.Hash(0, (uint)(new ObjView(a).ModelTableKey), new ObjView(a).ModelTableKey, (uint)(new ObjView(a).ModelTableSize), 0, (uint)(0), 0u, 0x800C8C18u, 1);
+                h = ResourceCache.Hash(0, (uint)(new ObjView(a).ModelTableKey), new ObjView(a).ModelTableKey, (uint)(new ObjView(a).ModelTableSize), 0, (uint)(0), 0u, Gv.Str_AnimModelIndex, 1);
                 if ((h != 0u))
                 {
                     new ObjView(a).LoadedModelKey_Set((int)(Resource.GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new ObjView(a).ModelTableKey), (idx % Mem.S32((uint)(Mem.S32(h)))), (a + 224u))));
@@ -3394,7 +3394,7 @@ public static partial class Actor
             }
             if ((new ObjView(a).LoadedModelKey != 0))
             {
-                return ResourceCache.Hash(0, (uint)(new ObjView(a).LoadedModelKey), new ObjView(a).LoadedModelKey, (uint)(new ObjView(a).LoadedModelSize), 0, (uint)(0), 0x0026D814u, 0x800C8C2Cu, 0);
+                return ResourceCache.Hash(0, (uint)(new ObjView(a).LoadedModelKey), new ObjView(a).LoadedModelKey, (uint)(new ObjView(a).LoadedModelSize), 0, (uint)(0), 0x0026D814u, Gv.Str_AnimatedModel, 0);
             }
             return 0u;
         }
@@ -3428,7 +3428,7 @@ public static partial class Actor
             int r = 0;
             if (((new ObjView(a).Flags & (uint)(262144)) != 0u))
             {
-                h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C8920u, 1);
+                h = ResourceCache.Hash(0, (uint)(new ObjView(a).AnimDataKey), new ObjView(a).AnimDataKey, (uint)(new ObjView(a).AnimDataSize), 4, (uint)(0), (uint)(0), Gv.Str_CGameObjectInstanceGetAnimTypeAnimObjectInfo, 1);
                 if ((h != 0u))
                 {
                     r = new B11Node(Chunk.Get((uint)(Mem.S32(h)), 1)).unk8[(int)(i)];
@@ -3532,7 +3532,7 @@ public static partial class Actor
                     }
                     if (((p + (uint)744) == a))
                     {
-                        return 0x800CFB04u;
+                        return Gv.Weapon_ClassCallbacks;
                     }
                 }
             }

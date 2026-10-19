@@ -240,7 +240,7 @@ public static partial class Game
             new OSMesgQueue(mq).validCount_Set((int)(new OSMesgQueue(mq).validCount + 1));
             if ((new OSMesgQueue(mq).mtqueue.next_ != 0u))
             {
-                __osEnqueueThread(0x800D9298u, __osPopThread(mq, default(uint), default(uint), default(uint)));
+                __osEnqueueThread(Gv.__osRunQueue, __osPopThread(mq, default(uint), default(uint), default(uint)));
             }
         }
     }

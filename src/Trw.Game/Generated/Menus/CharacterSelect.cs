@@ -2997,11 +2997,11 @@ public static partial class MenuModel
                         if (((int)(Mem.U16(e)) == id))
                         {
                             h = Resource.GetCartridgeKeyNoSize((uint)(new O3Lv(lv).ObjectsIndex), new O3Lv(lv).ObjectsIndexKey, i);
-                            q = ResourceCache.Hash(0, (uint)(h), h, (uint)(24), 0, (uint)(0), (uint)(0), 0x800E1490u, one);
+                            q = ResourceCache.Hash(0, (uint)(h), h, (uint)(24), 0, (uint)(0), (uint)(0), Gv.Str_AnimObjectIndex2, one);
                             if ((q != 0u))
                             {
                                 r = (int)(Resource.GetCartridgeKey((uint)(Mem.S32(q)), (uint)(h), 0, _fp));
-                                w = ResourceCache.Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800E14A4u, one);
+                                w = ResourceCache.Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), Gv.Str_AnimObjectInfo2, one);
                                 new_var = b;
                                 if ((w != 0u))
                                 {

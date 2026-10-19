@@ -301,11 +301,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_00443AD4", (uint)a);
             if ((Mem.S32(Gv.Settings_MonkeyTagMode) != 0))
             {
-                new O06A_v2(a).Data_Set(0x800D7BE8u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_FragVerbLabelTagged);
             }
             else
             {
-                new O06A_v2(a).Data_Set(0x800D7BE4u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_FragVerbLabelFragged);
             }
             return 0;
         }
@@ -512,13 +512,13 @@ public static partial class InGameMenu
             switch (Mem.U32(Gv.Settings_DifficultyMask))
             {
             case (uint)(8):
-                new O06A(a).Data_Set(0x800D75D4u);
+                new O06A(a).Data_Set(Gv.InGameMenu_DifficultyLabelEasy);
                 break;
             case (uint)(16):
-                new O06A(a).Data_Set(0x800D75D8u);
+                new O06A(a).Data_Set(Gv.InGameMenu_DifficultyLabelNormal);
                 break;
             case (uint)(32):
-                new O06A(a).Data_Set(0x800D75DCu);
+                new O06A(a).Data_Set(Gv.InGameMenu_DifficultyLabelHard);
                 break;
             }
             return 0;
@@ -563,10 +563,10 @@ public static partial class InGameMenu
             switch ((int)(new O06C_v4(p).ControlType))
             {
             case 0:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75E0u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_ControlTypeLabelExpert);
                 break;
             case 1:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75E4u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_ControlTypeLabelArcade);
                 break;
             }
             return 0;
@@ -612,12 +612,12 @@ public static partial class InGameMenu
             {
                 if (((int)(new O06C_v6(p).ControlSide) == 1))
                 {
-                    new O06A_v5(a).ItemLabelPtr_Set(0x800D75ECu);
+                    new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_ControlSideLabelLeft);
                 }
             }
             else
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75F0u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_ControlSideLabelRight);
             }
             return 0;
         }
@@ -661,10 +661,10 @@ public static partial class InGameMenu
             switch ((int)(new O06C_v5(p).LookSpring))
             {
             case 0:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75F8u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_LookSpringLabelOff);
                 break;
             case 1:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75F4u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_LookSpringLabelOn);
                 break;
             }
             return 0;
@@ -709,10 +709,10 @@ public static partial class InGameMenu
             switch ((int)(new O06C_v3(p).AutoAim))
             {
             case 0:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D7600u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_AutoAimLabelOff);
                 break;
             case 1:
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D75FCu);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_AutoAimLabelOn);
                 break;
             }
             return 0;
@@ -739,13 +739,13 @@ public static partial class InGameMenu
             switch ((int)(Mem.U8(Gv.Settings_BloodColor)))
             {
             case 0:
-                new O06A_v2(a).Data_Set(0x800D7604u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_BloodColorLabelOff);
                 break;
             case 1:
-                new O06A_v2(a).Data_Set(0x800D7608u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_BloodColorLabelRed);
                 break;
             case 2:
-                new O06A_v2(a).Data_Set(0x800D760Cu);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_BloodColorLabelGreen);
                 break;
             }
             return 0;
@@ -780,10 +780,10 @@ public static partial class InGameMenu
             switch ((int)(Mem.U8(Gv.Settings_TwoPlayerLayout)))
             {
             case 0:
-                new O06A(a).Data_Set(0x800D7610u);
+                new O06A(a).Data_Set(Gv.InGameMenu_TwoPlayerLayoutLabelHorz);
                 break;
             case 1:
-                new O06A(a).Data_Set(0x800D7614u);
+                new O06A(a).Data_Set(Gv.InGameMenu_TwoPlayerLayoutLabelVert);
                 break;
             }
             return 0;
@@ -799,20 +799,20 @@ public static partial class InGameMenu
             uint h = (uint)(((int)(Mem.U16(Gv.Settings_Opacity)) >> (int)4));
             if ((h == (uint)(0)))
             {
-                new O06A_v2(a).Data_Set(0x800D7618u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_OpacityLabelClear);
             }
             else
             {
                 if ((h == (uint)(16)))
                 {
-                    new O06A_v2(a).Data_Set(0x800D761Cu);
+                    new O06A_v2(a).Data_Set(Gv.InGameMenu_OpacityLabelOpaque);
                 }
                 else
                 {
                     int s = 0;
                     new O06A_v2(a).Data_Set(Gv.InGameMenu_OpacityLabelTable);
                     s = Mem.S32((Gv.InGameMenu_OpacityLabelTable + (uint)(0 * 4)));
-                    StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), 0x800E2780u, (int)(h), default(int));
+                    StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), Gv.Str_02d2, (int)(h), default(int));
                 }
             }
             return 0;
@@ -877,7 +877,7 @@ public static partial class InGameMenu
             n = (((int)(new O06C_v13(p).StickHorzSensitivity) - 128) / 8);
             if ((n == 0))
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D7624u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickHorzLabelNorm);
             }
             else
             {
@@ -885,13 +885,13 @@ public static partial class InGameMenu
                 {
                     s = Mem.S32((Gv.InGameMenu_StickHorzLabelTable + (uint)(0 * 4)));
                     new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickHorzLabelTable);
-                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, n, default(int));
+                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_02d3, n, default(int));
                 }
                 else
                 {
                     s = Mem.S32((Gv.InGameMenu_StickHorzLabelTable + (uint)(0 * 4)));
                     new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickHorzLabelTable);
-                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2790u, n, default(int));
+                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_03d, n, default(int));
                 }
             }
             return 0;
@@ -938,7 +938,7 @@ public static partial class InGameMenu
             n = (((int)(new O06C_v9(p).StickVertSensitivity) - 128) / 8);
             if ((n == 0))
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D762Cu);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickVertLabelNorm);
             }
             else
             {
@@ -946,13 +946,13 @@ public static partial class InGameMenu
                 {
                     s = Mem.S32((Gv.InGameMenu_StickVertLabelTable + (uint)(0 * 4)));
                     new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickVertLabelTable);
-                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, n, default(int));
+                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_02d3, n, default(int));
                 }
                 else
                 {
                     s = Mem.S32((Gv.InGameMenu_StickVertLabelTable + (uint)(0 * 4)));
                     new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_StickVertLabelTable);
-                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2790u, n, default(int));
+                    StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_03d, n, default(int));
                 }
             }
             return 0;
@@ -977,11 +977,11 @@ public static partial class InGameMenu
             }
             if (((int)(new O06C_v2(p).WeaponSelectMode) == 1))
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D7634u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_WeaponSelectLabelQuick);
             }
             else
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800D7638u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_WeaponSelectLabelNorm);
             }
             return 0;
         }
@@ -1072,14 +1072,14 @@ public static partial class InGameMenu
             Resource.SetLoadFlags((Resource.GetLoadFlags() + 2));
             if ((h == (uint)(0)))
             {
-                new O06A_v2(a).Data_Set(0x800D7650u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_BrightnessLabelNorm);
             }
             else
             {
                 int s = 0;
                 new O06A_v2(a).Data_Set(Gv.InGameMenu_BrightnessLabelTable);
                 s = Mem.S32((Gv.InGameMenu_BrightnessLabelTable + (uint)(0 * 4)));
-                StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2788u, (int)(h), default(int));
+                StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_02d3, (int)(h), default(int));
             }
             return 0;
         }
@@ -1457,7 +1457,7 @@ public static partial class InGameMenu
                     break;
                 }
                 s = Mem.U32(new O06A_v2(a).Data);
-                sprintf(((s - (uint)6) + (uint)MenuItem.GetTextLength(a)), 0x800E27D0u, (uint)((int)(((float)(v) / div))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                sprintf(((s - (uint)6) + (uint)MenuItem.GetTextLength(a)), Gv.Str_06d, (uint)((int)(((float)(v) / div))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 if ((Mem.S32(Gv.InGameMenu_FogAllRegions) == 0))
                 {
                     return 0;
@@ -1589,11 +1589,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_004453E0", (uint)a);
             if ((Mem.S32(Gv.InGameMenu_FogAllRegions) != 0))
             {
-                new O06A_v2(a).Data_Set(0x800E62DCu);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_FogRegionsLabelAll);
             }
             else
             {
-                new O06A_v2(a).Data_Set(0x800E62F0u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_FogRegionsLabelSingle);
             }
             return 0;
         }
@@ -1891,19 +1891,19 @@ public static partial class InGameMenu
             n = (((int)(Mem.U8(Gv.Settings_SpeechVolume)) - 128) / 8);
             if ((n == 0))
             {
-                new O06A_v2(a).Data_Set(0x800D7DE0u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelNorm);
             }
             else
             {
                 if ((n == 15))
                 {
-                    new O06A_v2(a).Data_Set(0x800D7DDCu);
+                    new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelMax);
                 }
                 else
                 {
                     if ((n == (-16)))
                     {
-                        new O06A_v2(a).Data_Set(0x800D7DD8u);
+                        new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelOff);
                     }
                     else
                     {
@@ -1911,13 +1911,13 @@ public static partial class InGameMenu
                         {
                             s = Mem.S32((Gv.InGameMenu_SpeechVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_2d2, n, default(int));
                         }
                         else
                         {
                             s = Mem.S32((Gv.InGameMenu_SpeechVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_SpeechVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_3d2, n, default(int));
                         }
                     }
                 }
@@ -1958,19 +1958,19 @@ public static partial class InGameMenu
             n = (((int)(Mem.U8(Gv.Settings_MusicVolume)) - 128) / 8);
             if ((n == 0))
             {
-                new O06A_v2(a).Data_Set(0x800D7DC0u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelNorm);
             }
             else
             {
                 if ((n == 15))
                 {
-                    new O06A_v2(a).Data_Set(0x800D7DBCu);
+                    new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelMax);
                 }
                 else
                 {
                     if ((n == (-16)))
                     {
-                        new O06A_v2(a).Data_Set(0x800D7DB8u);
+                        new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelOff);
                     }
                     else
                     {
@@ -1978,13 +1978,13 @@ public static partial class InGameMenu
                         {
                             s = Mem.S32((Gv.InGameMenu_MusicVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_2d2, n, default(int));
                         }
                         else
                         {
                             s = Mem.S32((Gv.InGameMenu_MusicVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_3d2, n, default(int));
                         }
                     }
                 }
@@ -2021,19 +2021,19 @@ public static partial class InGameMenu
             n = (((int)(Mem.U8(Gv.Settings_SfxVolume)) - 128) / 8);
             if ((n == 0))
             {
-                new O06A_v2(a).Data_Set(0x800D7DD0u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelNorm);
             }
             else
             {
                 if ((n == 15))
                 {
-                    new O06A_v2(a).Data_Set(0x800D7DCCu);
+                    new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelMax);
                 }
                 else
                 {
                     if ((n == (-16)))
                     {
-                        new O06A_v2(a).Data_Set(0x800D7DC8u);
+                        new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelOff);
                     }
                     else
                     {
@@ -2041,13 +2041,13 @@ public static partial class InGameMenu
                         {
                             s = Mem.S32((Gv.InGameMenu_SfxVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E0u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_2d2, n, default(int));
                         }
                         else
                         {
                             s = Mem.S32((Gv.InGameMenu_SfxVolumeLabelTable + (uint)(0 * 4)));
                             new O06A_v2(a).Data_Set(Gv.InGameMenu_SfxVolumeLabelTable);
-                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E27E8u, n, default(int));
+                            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_3d2, n, default(int));
                         }
                     }
                 }
@@ -2107,14 +2107,14 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_00445ECC", (uint)a);
             if ((Mem.S32(Gv.InGameMenu_MusicTrack) == 0))
             {
-                new O06A_v2(a).Data_Set(0x800D7DE8u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicTrackLabelNone);
             }
             else
             {
                 int s = 0;
                 new O06A_v2(a).Data_Set(Gv.InGameMenu_MusicTrackLabelTable);
                 s = Mem.S32((Gv.InGameMenu_MusicTrackLabelTable + (uint)(0 * 4)));
-                StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), 0x800E27F0u, Mem.S32(Gv.InGameMenu_MusicTrack), default(int));
+                StrUtil.Sprintf((uint)(((s - 2) + MenuItem.GetTextLength(a))), Gv.Str_2d3, Mem.S32(Gv.InGameMenu_MusicTrack), default(int));
             }
             return 0;
         }
@@ -2176,11 +2176,11 @@ public static partial class InGameMenu
             }
             if ((new O06B_v6(new O06A_v5(b).PanelPlayerPtr).CameraMode == 1))
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800E6090u);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_PersonLabel1st);
             }
             else
             {
-                new O06A_v5(a).ItemLabelPtr_Set(0x800E60ACu);
+                new O06A_v5(a).ItemLabelPtr_Set(Gv.InGameMenu_PersonLabel3rd);
             }
             return 0;
         }
@@ -2205,11 +2205,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_00446090", (uint)a);
             if ((Mem.S32(Gv.Settings_ShowViewWeapon) != 0))
             {
-                new O06A_v2(a).Data_Set(0x800E60E4u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ViewWeaponLabelVisible);
             }
             else
             {
-                new O06A_v2(a).Data_Set(0x800E60C8u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ViewWeaponLabelHidden);
             }
             return 0;
         }
@@ -2234,11 +2234,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_0044610C", (uint)a);
             if ((Mem.S32(Gv.InGameMenu_ShadowsEnabled) != 0))
             {
-                new O06A_v2(a).Data_Set(0x800E6100u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ShadowsLabelOn);
             }
             else
             {
-                new O06A_v2(a).Data_Set(0x800E611Cu);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ShadowsLabelOff);
             }
             return 0;
         }
@@ -2315,11 +2315,11 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_00446230", (uint)a);
             if ((Mem.S32(Gv.Artsend_Mode) != 0))
             {
-                new O06A_v2(a).Data_Set(0x800E6058u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ArtsendModeLabelOn);
             }
             else
             {
-                new O06A_v2(a).Data_Set(0x800E6074u);
+                new O06A_v2(a).Data_Set(Gv.InGameMenu_ArtsendModeLabelOff);
             }
             return 0;
         }

@@ -1440,12 +1440,12 @@ public static partial class Pickup
                 int n = 0;
                 if ((idx != new ObjH(a).LoadedModelIndex))
                 {
-                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (Gv.ResLabel_SimpObjectBase + (uint)4), 1);
                     if ((h != 0u))
                     {
                         n = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(h)), new ObjH(a).ModelTableKey, 1);
                         ResourcePool.Release(0, h);
-                        p = Resource.LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        p = Resource.LoadIndexTable(0, _fp, n, Gv.Str_SimpModelsIndex, 1);
                         if ((p != 0u))
                         {
                             new ObjH(a).LoadedModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
@@ -1456,7 +1456,7 @@ public static partial class Pickup
                 }
                 if ((new ObjH(a).LoadedModelKey != 0))
                 {
-                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, Gv.Str_SimpModel, 0);
                 }
                 return 0u;
             }
@@ -1492,12 +1492,12 @@ public static partial class Pickup
                 int n = 0;
                 if ((idx != new ObjH(a).LoadedModelIndex))
                 {
-                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (Gv.ResLabel_SimpObjectBase + (uint)4), 1);
                     if ((h != 0u))
                     {
                         n = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(h)), new ObjH(a).ModelTableKey, 1);
                         ResourcePool.Release(0, h);
-                        p = Resource.LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        p = Resource.LoadIndexTable(0, _fp, n, Gv.Str_SimpModelsIndex, 1);
                         if ((p != 0u))
                         {
                             new ObjH(a).LoadedModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
@@ -1508,7 +1508,7 @@ public static partial class Pickup
                 }
                 if ((new ObjH(a).LoadedModelKey != 0))
                 {
-                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, Gv.Str_SimpModel, 0);
                 }
                 return 0u;
             }
@@ -1526,7 +1526,7 @@ public static partial class Pickup
             if ((h != 0u))
             {
                 Model.PreloadTextures(h);
-                q = Resource.Request((uint)(0), (uint)(Mem.S32(Gv.Model_VariantKeyBits)), h, (uint)(new ObjH(a).LevelBlockPtr), (uint)(8), a, 0x0024F8CCu, 0x800C8ED0u, (uint)(0));
+                q = Resource.Request((uint)(0), (uint)(Mem.S32(Gv.Model_VariantKeyBits)), h, (uint)(new ObjH(a).LevelBlockPtr), (uint)(8), a, 0x0024F8CCu, Gv.Str_LitVertices, (uint)(0));
                 if ((q != 0u))
                 {
                     ResourcePool.Unref(0, q);
@@ -1667,12 +1667,12 @@ public static partial class Pickup
                 int n = 0;
                 if ((idx != new ObjH(a).LoadedModelIndex))
                 {
-                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    h = ResourceCache.Hash(0, (uint)(new ObjH(a).ModelTableKey), new ObjH(a).ModelTableKey, (uint)(24), 0, (uint)(0), 0u, (Gv.ResLabel_SimpObjectBase + (uint)4), 1);
                     if ((h != 0u))
                     {
                         n = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(h)), new ObjH(a).ModelTableKey, 1);
                         ResourcePool.Release(0, h);
-                        p = Resource.LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        p = Resource.LoadIndexTable(0, _fp, n, Gv.Str_SimpModelsIndex, 1);
                         if ((p != 0u))
                         {
                             new ObjH(a).LoadedModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
@@ -1683,7 +1683,7 @@ public static partial class Pickup
                 }
                 if ((new ObjH(a).LoadedModelKey != 0))
                 {
-                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                    return ResourceCache.Hash(0, (uint)(new ObjH(a).LoadedModelKey), new ObjH(a).LoadedModelKey, (uint)(new ObjH(a).LoadedModelSize), 0, (uint)(0), 0x0026D7F4u, Gv.Str_SimpModel, 0);
                 }
                 return 0u;
             }
@@ -2982,7 +2982,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AD90C", (uint)id);
             int i = 0;
-            uint p = 0x800D31D0u;
+            uint p = Gv.Items_SpecialWeaponTable;
             for (i = 3; (i != (-1)); --i)
             {
                 if (((int)(new Row18(p).id) == id))
@@ -3002,7 +3002,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AD940", (uint)id);
             int i = 0;
-            uint p = 0x800D3230u;
+            uint p = Gv.Items_AmmoTable;
             for (i = 5; (i != (-1)); --i)
             {
                 if (((int)(new Row14(p).id) == id))
@@ -3022,7 +3022,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AD974", (uint)id);
             int i = 0;
-            uint p = 0x800D32A8u;
+            uint p = Gv.Items_HealthTable;
             for (i = 7; (i != (-1)); --i)
             {
                 if (((int)(new Row18(p).id) == id))
@@ -3042,7 +3042,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AD9A8", (uint)id);
             int i = 0;
-            uint p = 0x800D3368u;
+            uint p = Gv.Items_LifeForceTable;
             for (i = 1; (i != (-1)); --i)
             {
                 if (((int)(new Row14(p).id) == id))
@@ -3062,7 +3062,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002AD9DC", (uint)id);
             int i = 0;
-            uint p = 0x800D33C0u;
+            uint p = Gv.Items_ItemTable;
             for (i = 15; (i != (-1)); --i)
             {
                 if (((int)(new Row10(p).id) == id))
@@ -3082,7 +3082,7 @@ public static partial class Pickup
         {
             if (Dbg.On) Dbg.Enter("func_002ADA10", (uint)id);
             int i = 0;
-            uint p = 0x800D3390u;
+            uint p = Gv.Items_SpecialTable;
             for (i = 2; (i != (-1)); --i)
             {
                 if (((int)(new Row10(p).id) == id))
@@ -7331,7 +7331,7 @@ public static partial class Weapon
         {
             if (Dbg.On) Dbg.Enter("func_00232A38", (uint)a0, (uint)state);
             float k = 1f;
-            new ActorStateView(state).StateTablePtr_Set(0x800CF298u);
+            new ActorStateView(state).StateTablePtr_Set(Gv.Weapon_StateTable);
             new ActorStateView(state).UpdateCallback_Set(0x0022FC10u);
             new ActorStateView(state).DrawCallback_Set(0x0023292Cu);
             Mem.Set((state + (uint)292), 0);

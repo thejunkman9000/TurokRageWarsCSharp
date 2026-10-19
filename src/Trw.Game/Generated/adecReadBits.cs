@@ -195,7 +195,7 @@ public static partial class Game
                 short i = 0;
                 int rv = 0;
                 uint seg = 0u;
-                seg = 0x800D9594u;
+                seg = Gv.Adec_HuffSegTable;
                 if (!(((int)(Mem.S16(Gv.Adec_HeaderDone)) == 0))) goto _f0;
                 Mem.Set(Gv.Adec_HeaderDone, (short)(1));
                 if (!(((int)((short)(adecReadBits(new AdecStream(st).band.P, (ushort)(6), (ushort)(16), (short)(0), st))) <= 0))) goto _f1;
@@ -284,7 +284,7 @@ public static partial class Game
             int nn = 0;
             int half = (n >> (int)1);
             uint tab = 0u;
-            uint ctx = 0x800D9370u;
+            uint ctx = Gv.Adec_MdctCtx;
             float x = 0f;
             for (i = 0; (i < half); ++i)
             {

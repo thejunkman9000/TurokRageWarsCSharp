@@ -394,7 +394,7 @@ public static partial class Toggle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204BB4", (uint)actor, (uint)state);
-            new ActorStateView(state).StateTablePtr_Set(0x800CD5D0u);
+            new ActorStateView(state).StateTablePtr_Set(Gv.Toggle_StateTable);
             new ActorStateView(state).UpdateCallback_Set(0x00204C34u);
         }
     }

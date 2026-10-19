@@ -409,7 +409,7 @@ public static partial class Turret
         {
             if (Dbg.On) Dbg.Enter("func_0020388C", (uint)actor, (uint)state);
             float new_var = 0f;
-            new B01State(state).StateTablePtr_Set(0x800CD3C0u);
+            new B01State(state).StateTablePtr_Set(Gv.Turret_StateTable);
             new B01State(state).UpdateCallback_Set(0x002039F8u);
             new B01State(state).DamageCallback_Set(0x00203E78u);
             new B01State(state).TransformCallback_Set(0x00202E4Cu);

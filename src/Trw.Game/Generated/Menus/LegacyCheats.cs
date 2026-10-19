@@ -2479,37 +2479,37 @@ public static partial class LegacyCheats
                 new Q4Z(o).Data_Set(Gv.Menu_BlankLabelText);
                 break;
             case 0:
-                new Q4Z(o).Data_Set(0x800D7BB8u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelPortOfAdia);
                 break;
             case 1:
-                new Q4Z(o).Data_Set(0x800D7BBCu);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelRiverOfSouls);
                 break;
             case 2:
-                new Q4Z(o).Data_Set(0x800D7BC0u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelDeathMarshes);
                 break;
             case 3:
-                new Q4Z(o).Data_Set(0x800D7BC4u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelLairOfTheBlindOnes);
                 break;
             case 4:
-                new Q4Z(o).Data_Set(0x800D7BC8u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelHiveOfTheMantids);
                 break;
             case 5:
-                new Q4Z(o).Data_Set(0x800D7BCCu);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelPrimagensLightship);
                 break;
             case 6:
-                new Q4Z(o).Data_Set(0x800D7BD4u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelBlindOneBoss);
                 break;
             case 7:
-                new Q4Z(o).Data_Set(0x800D7BD0u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelQueenBoss);
                 break;
             case 8:
-                new Q4Z(o).Data_Set(0x800D7BD8u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelMotherBoss);
                 break;
             case 9:
-                new Q4Z(o).Data_Set(0x800D7BDCu);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelPrimagenBoss);
                 break;
             case 10:
-                new Q4Z(o).Data_Set(0x800D7BE0u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_WarpLabelCredits);
                 break;
             }
             return 0;
@@ -2576,11 +2576,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.U32(Gv.Settings) & (uint)(1)) != 0u))
             {
-                new Q4Z(o).Data_Set(0x800D7B38u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_InvincibilityLabelOn);
             }
             else
             {
-                new Q4Z(o).Data_Set(0x800D7B3Cu);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_InvincibilityLabelOff);
             }
             return 0;
         }
@@ -2611,11 +2611,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.U32(Gv.Settings) & (uint)(2)) != 0u))
             {
-                new Q4Z(o).Data_Set(0x800D7B40u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_InfiniteLivesLabelOn);
             }
             else
             {
-                new Q4Z(o).Data_Set(0x800D7B44u);
+                new Q4Z(o).Data_Set(Gv.LegacyCheats_InfiniteLivesLabelOff);
             }
             return 0;
         }
@@ -2883,11 +2883,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 4) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B48u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllWeaponsLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B4Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllWeaponsLabelOff);
             }
             return 0;
         }
@@ -2920,11 +2920,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 8) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B50u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_UnlimitedAmmoLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B54u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_UnlimitedAmmoLabelOff);
             }
             return 0;
         }
@@ -2957,11 +2957,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 16) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B58u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllSpecialObjectsLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B5Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllSpecialObjectsLabelOff);
             }
             return 0;
         }
@@ -2994,11 +2994,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 32) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B60u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BigHeadModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B64u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BigHeadModeLabelOff);
             }
             return 0;
         }
@@ -3031,11 +3031,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 64) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B68u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_TinyModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B6Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_TinyModeLabelOff);
             }
             return 0;
         }
@@ -3068,11 +3068,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 128) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B70u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_StickModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B74u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_StickModeLabelOff);
             }
             return 0;
         }
@@ -3105,11 +3105,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 256) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B78u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BigHandsFeetModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B7Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BigHandsFeetModeLabelOff);
             }
             return 0;
         }
@@ -3142,11 +3142,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 512) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B80u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_PenAndInkModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B84u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_PenAndInkModeLabelOff);
             }
             return 0;
         }
@@ -3179,11 +3179,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 1024) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B88u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_GouraudModeLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B8Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_GouraudModeLabelOff);
             }
             return 0;
         }
@@ -3216,11 +3216,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 2048) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B90u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_JuansCheatLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B94u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_JuansCheatLabelOff);
             }
             return 0;
         }
@@ -3253,11 +3253,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 4096) != 0))
             {
-                new O06A(a).Data_Set(0x800D7B98u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_ZachAttackLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7B9Cu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_ZachAttackLabelOff);
             }
             return 0;
         }
@@ -3290,11 +3290,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 8192) != 0))
             {
-                new O06A(a).Data_Set(0x800D7BA0u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllMapLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7BA4u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_AllMapLabelOff);
             }
             return 0;
         }
@@ -3327,11 +3327,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 16384) != 0))
             {
-                new O06A(a).Data_Set(0x800D7BA8u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BlackoutLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7BACu);
+                new O06A(a).Data_Set(Gv.LegacyCheats_BlackoutLabelOff);
             }
             return 0;
         }
@@ -3364,11 +3364,11 @@ public static partial class LegacyCheats
             }
             if (((Mem.S32(Gv.Settings) & 32768) != 0))
             {
-                new O06A(a).Data_Set(0x800D7BB0u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_FrootyStripesLabelOn);
             }
             else
             {
-                new O06A(a).Data_Set(0x800D7BB4u);
+                new O06A(a).Data_Set(Gv.LegacyCheats_FrootyStripesLabelOff);
             }
             return 0;
         }

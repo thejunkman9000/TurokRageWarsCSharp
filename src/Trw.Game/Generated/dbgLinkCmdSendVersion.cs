@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("dbgLinkCmdSendVersion");
                 int ret = 0;
-                uint str = 0x800CB480u;
+                uint str = Gv.Str_N64V100;
                 uint p = 0u;
                 uint v = 0u;
                 uint w = 0u;

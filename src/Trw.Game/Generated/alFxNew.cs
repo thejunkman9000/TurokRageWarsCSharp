@@ -22,25 +22,25 @@ public static partial class Game
             switch ((int)(new ALSynConfigFx(c).fxType))
             {
             case 1:
-                param = 0x800D80B0u;
+                param = Gv.SMALLROOM_PARAMS;
                 break;
             case 2:
-                param = 0x800D8118u;
+                param = Gv.BIGROOM_PARAMS;
                 break;
             case 5:
-                param = 0x800D81A0u;
+                param = Gv.ECHO_PARAMS;
                 break;
             case 3:
-                param = 0x800D81C8u;
+                param = Gv.CHORUS_PARAMS;
                 break;
             case 4:
-                param = 0x800D81F0u;
+                param = Gv.FLANGE_PARAMS;
                 break;
             case 6:
                 param = new ALSynConfigFx(c).params_;
                 break;
             default:
-                param = 0x800D8218u;
+                param = Gv.NULL_PARAMS;
                 break;
             }
             j = (ushort)(0);

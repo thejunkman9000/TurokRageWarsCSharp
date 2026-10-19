@@ -19,17 +19,17 @@ public static partial class Game
             new OSViContext((Gv.ViContexts + (uint)(0 * 48))).buffer_Set((uint)(2147483648u));
             if ((Mem.U32((uint)(2147484416u)) == (uint)(0)))
             {
-                new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D84C0u);
+                new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(Gv.osViModePalLan1);
             }
             else
             {
                 if ((Mem.U32((uint)(2147484416u)) == (uint)(2)))
                 {
-                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D8510u);
+                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(Gv.osViModeMpalLan1);
                 }
                 else
                 {
-                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D8470u);
+                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(Gv.osViModeNtscLan1);
                 }
             }
             new OSViContext(Mem.U32(Gv.__osViNext)).state_Set((ushort)(32));

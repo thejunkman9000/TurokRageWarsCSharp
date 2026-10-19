@@ -247,13 +247,13 @@ public static partial class Video
             w11c = new B21Slot(s).DisplayListSize;
             new B21Task(t).TaskType_Set(1);
             new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
-            new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
+            new B21Task(t).UcodeBootSize_Set(((int)(Gv.Str_J) - (int)(Gv.Rsp_BootUcode)));
             new B21Task(t).UcodeSize_Set(4096);
             new B21Task(t).UcodeDataSize_Set(2048);
             new B21Task(t).YieldDataPtr_Set((int)(Gv.Rsp_YieldBuffer));
             new B21Task(t).YieldDataSize_Set(3072);
             new B21Task(t).UcodePtr_Set((int)((Gv.Rsp_UcodeTextBase_800DCD00 + (uint)16)));
-            new B21Task(t).UcodeDataPtr_Set((int)(0x800E0050u));
+            new B21Task(t).UcodeDataPtr_Set((int)(Gv.gspF3DEX_NoN_fifoDataStart));
             new B21Task(t).TaskFlags_Set(0);
             new B21Task(t).DramStackPtr_Set(0);
             new B21Task(t).DramStackSize_Set(0);
@@ -279,13 +279,13 @@ public static partial class Video
                 w120 = new B21Slot(s).DisplayList2Size;
                 new B21Task(t).TaskType_Set(1);
                 new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
-                new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
+                new B21Task(t).UcodeBootSize_Set(((int)(Gv.Str_J) - (int)(Gv.Rsp_BootUcode)));
                 new B21Task(t).UcodeSize_Set(4096);
                 new B21Task(t).UcodeDataSize_Set(2048);
                 new B21Task(t).YieldDataPtr_Set((int)(Gv.Rsp_YieldBuffer));
                 new B21Task(t).YieldDataSize_Set(3072);
-                new B21Task(t).UcodePtr_Set((int)(0x800DE0A0u));
-                new B21Task(t).UcodeDataPtr_Set((int)(0x800E0470u));
+                new B21Task(t).UcodePtr_Set((int)(Gv.Str_J2));
+                new B21Task(t).UcodeDataPtr_Set((int)(Gv.gspL3DEX_fifoDataStart));
                 new B21Task(t).TaskFlags_Set(0);
                 new B21Task(t).DramStackPtr_Set(0);
                 new B21Task(t).DramStackSize_Set(0);
@@ -515,7 +515,7 @@ public static partial class Video
                     }
                     Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(Gv.VideoResolution_Lo8));
                 }
-                switch (Mem.S32(0x80000300u))
+                switch (Mem.S32(Gv.osTvType))
                 {
                 case 1:
                     e = (Gv.Video_ModeTable + (uint)(Mem.S32(Gv.VideoResolution) * 28));
@@ -559,7 +559,7 @@ public static partial class Video
             int b = 0;
             int c = 0;
             int d = 0;
-            switch (Mem.S32(0x80000300u))
+            switch (Mem.S32(Gv.osTvType))
             {
             case 0:
             case 2:
@@ -666,13 +666,13 @@ public static partial class Video
             {
             case 0:
             default:
-                return 0x800D763Cu;
+                return Gv.Video_ResolutionLabelLoRez;
             case 1:
-                return 0x800D7640u;
+                return Gv.Video_ResolutionLabelHiRez;
             case 2:
-                return 0x800D7644u;
+                return Gv.Video_ResolutionLabelHiRezLetterbox;
             case 3:
-                return 0x800D764Cu;
+                return Gv.Video_ResolutionLabelLoRezLetterbox;
             }
             return 0u;
         }
@@ -714,7 +714,7 @@ public static partial class Video
             int mode = 0;
             int low = 0;
             uint n = 0u;
-            switch (Mem.S32(0x80000300u))
+            switch (Mem.S32(Gv.osTvType))
             {
             case 0:
                 mode = 1;

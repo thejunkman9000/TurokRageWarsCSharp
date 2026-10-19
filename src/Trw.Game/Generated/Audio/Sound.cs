@@ -21585,7 +21585,7 @@ public static partial class SndFx
             new SndFxView(fx).State_Set(0);
             new SndFxView(fx).unk14_Set(0);
             new SndFxView(fx).Pan_18_Set(64);
-            new SndFxView(fx).SndpSoundId_Set((int)(alSndpAllocate(Sound.GetPlayer(new SndFxView(fx).OwnerPtr), 0x800D0D78u)));
+            new SndFxView(fx).SndpSoundId_Set((int)(alSndpAllocate(Sound.GetPlayer(new SndFxView(fx).OwnerPtr), Gv.SndFx_StreamSound)));
         }
     }
 
@@ -23409,7 +23409,7 @@ public static partial class Sound
                 new M04SynCfg(_fp).v1_Set(37);
                 new M04SynCfg(_fp).v2_Set(256);
                 new M04SynCfg(_fp).v7_Set((sbyte)(6));
-                new M04SynCfg(_fp).tab_Set(0x800D0964u);
+                new M04SynCfg(_fp).tab_Set(Gv.Sound_CustomReverbParams);
                 new M04AiCfg((_fp + 40u)).rate_Set(22050);
                 new M04AiCfg((_fp + 40u)).one_Set(1);
                 new M04SynCfg(_fp).v4_Set(0);

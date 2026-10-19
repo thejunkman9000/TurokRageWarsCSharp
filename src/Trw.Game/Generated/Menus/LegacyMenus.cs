@@ -76,81 +76,81 @@ public static partial class LegacyMenu
             case 2:
                 if ((Mem.U8(Gv.Settings_ChargeDartRifleOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D40u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelChargeDartRifleOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D44u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelChargeDartRifleOff);
                 }
                 break;
             case 3:
                 if ((Mem.U8(Gv.Settings_FirestormOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D48u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelFirestormOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D4Cu);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelFirestormOff);
                 }
                 break;
             case 4:
                 if ((Mem.U8(Gv.Settings_AssaultRifleOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D50u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelAssaultRifleOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D54u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelAssaultRifleOff);
                 }
                 break;
             case 5:
                 if ((Mem.U8(Gv.Settings_PlasmaRifleOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D58u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelPlasmaRifleOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D5Cu);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelPlasmaRifleOff);
                 }
                 break;
             case 6:
                 if ((Mem.U8(Gv.Settings_CerebralBoreOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D60u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelCerebralBoreOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D64u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelCerebralBoreOff);
                 }
                 break;
             case 7:
                 if ((Mem.U8(Gv.Settings_GrenadeLauncherOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D68u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelGrenadeLauncherOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D6Cu);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelGrenadeLauncherOff);
                 }
                 break;
             case 8:
                 if ((Mem.U8(Gv.Settings_ScorpionLauncherOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D70u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelScorpionLauncherOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D74u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelScorpionLauncherOff);
                 }
                 break;
             case 9:
                 if ((Mem.U8(Gv.Settings_TorpedoLauncherOn) != 0))
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D78u);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelTorpedoLauncherOn);
                 }
                 else
                 {
-                    new O06A_v28(a).Data_Set(0x800D7D7Cu);
+                    new O06A_v28(a).Data_Set(Gv.LegacyMenu_WeaponLabelTorpedoLauncherOff);
                 }
                 break;
             }
@@ -483,7 +483,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E21C", (uint)a);
-            new S10Item(a).Data_Set(0x800D76C8u);
+            new S10Item(a).Data_Set(Gv.LegacyMenu_BlueScoreLabel);
             return 0;
         }
     }
@@ -494,7 +494,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E230", (uint)a);
-            new S10Item(a).Data_Set(0x800D76CCu);
+            new S10Item(a).Data_Set(Gv.LegacyMenu_RedScoreLabel);
             return 0;
         }
     }
@@ -575,13 +575,13 @@ public static partial class LegacyMenu
             int n = (int)(new S10Menu(m).PlayerPtr.PlayerEntryPtr.b83);
             if ((n == 0))
             {
-                new S10Item(a).Data_Set(0x800D7680u);
+                new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelMin);
             }
             else
             {
                 if ((n == 10))
                 {
-                    new S10Item(a).Data_Set(0x800D7684u);
+                    new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelMax);
                 }
                 else
                 {
@@ -590,20 +590,20 @@ public static partial class LegacyMenu
                     {
                     case 0:
                     default:
-                        new S10Item(a).Data_Set(0x800D7670u);
+                        new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelPort1);
                         break;
                     case 1:
-                        new S10Item(a).Data_Set(0x800D7674u);
+                        new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelPort2);
                         break;
                     case 2:
-                        new S10Item(a).Data_Set(0x800D7678u);
+                        new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelPort3);
                         break;
                     case 3:
-                        new S10Item(a).Data_Set(0x800D767Cu);
+                        new S10Item(a).Data_Set(Gv.LegacyMenu_Setting83LabelPort4);
                         break;
                     }
                     s = Mem.U32(new S10Item(a).Data);
-                    StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 2)), 0x800E2320u, n, default(int));
+                    StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 2)), Gv.Str_02d, n, default(int));
                 }
             }
             return 0;
@@ -664,10 +664,10 @@ public static partial class LegacyMenu
             switch ((int)(new S10Menu(m).PlayerPtr.PlayerEntryPtr.b7B))
             {
             case 0:
-                new S10Item(a).Data_Set(0x800D7688u);
+                new S10Item(a).Data_Set(Gv.LegacyMenu_Setting7BLabel0);
                 break;
             case 1:
-                new S10Item(a).Data_Set(0x800D768Cu);
+                new S10Item(a).Data_Set(Gv.LegacyMenu_Setting7BLabel1);
                 break;
             }
             return 0;
@@ -843,14 +843,14 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043E924", (uint)a, (uint)m);
             if ((Mem.F32(Gv.Settings_GameSpeed) == 1.0f))
             {
-                new S10Item(a).Data_Set(0x800D7E08u);
+                new S10Item(a).Data_Set(Gv.LegacyMenu_PlayerSpeedLabelDefault);
             }
             else
             {
                 uint s = 0u;
-                new S10Item(a).Data_Set(0x800D7E04u);
+                new S10Item(a).Data_Set(Gv.LegacyMenu_PlayerSpeedLabel);
                 s = Mem.U32(new S10Item(a).Data);
-                StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 3)), 0x800E2328u, (Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) - 5), default(int));
+                StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 3)), Gv.Str_3d, (Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) - 5), default(int));
             }
             return 0;
         }

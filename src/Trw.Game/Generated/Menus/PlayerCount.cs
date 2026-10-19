@@ -92,7 +92,7 @@ public static partial class PlayerCount
             new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).OpenDelay_Set(3);
             new O04Sub2C(UiTree.FindNode((uint)(a), (uint)(925), default(uint), default(uint))).unk38_Set((int)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P));
             new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount_Set(1);
-            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, 0x800E1B60u, (uint)(1), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, Gv.Str_D3, (uint)(1), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
     }
@@ -207,7 +207,7 @@ public static partial class PlayerCount
                     new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount_Set((new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount + 1));
                 }
             }
-            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, 0x800E1B60u, (uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, Gv.Str_D3, (uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             Audio.PlaySound2D(3713);
             return 0;
         }
@@ -228,7 +228,7 @@ public static partial class PlayerCount
             {
                 new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount_Set((new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount - 1));
             }
-            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, 0x800E1B60u, (uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, Gv.Str_D3, (uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             Audio.PlaySound2D(3713);
             return 0;
         }

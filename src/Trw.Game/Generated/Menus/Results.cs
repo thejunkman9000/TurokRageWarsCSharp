@@ -255,7 +255,7 @@ public static partial class Results
                     {
                         v = ((Mem.S32((Gv.Stats_ShotsHitTable + (uint)(sel * 4))) * 100) / cnt);
                     }
-                    StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)), 0x800E1B24u, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)), Gv.Str_D2, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)));
                 }
                 if ((Mem.S32((Gv.ArenaType + (uint)(0 * 4))) == 3))
@@ -1185,7 +1185,7 @@ public static partial class Results
             int n = Player.GetIndex(Gv.PlayerPool, new O06B_v2(b).PlayerPtr);
             int h = (int)(new O06R((Gv.Settings_PlayerRecords + (uint)(n * 150))).Captures_6);
             int s = Mem.S32(new O06A_v7(a).unk14_);
-            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2730u, h, default(int));
+            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_04d2, h, default(int));
             return 0;
         }
     }
@@ -1199,7 +1199,7 @@ public static partial class Results
             int n = Player.GetIndex(Gv.PlayerPool, new O06B_v2(b).PlayerPtr);
             int h = (int)(new O06R((Gv.Settings_PlayerRecords + (uint)(n * 150))).Frags);
             int s = Mem.S32(new O06A_v7(a).unk14_);
-            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2730u, h, default(int));
+            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_04d2, h, default(int));
             return 0;
         }
     }
@@ -1213,7 +1213,7 @@ public static partial class Results
             int n = Player.GetIndex(Gv.PlayerPool, new O06B_v2(b).PlayerPtr);
             int h = (int)(new O06R((Gv.Settings_PlayerRecords + (uint)(n * 150))).Deaths);
             int s = Mem.S32(new O06A_v7(a).unk14_);
-            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2730u, h, default(int));
+            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_04d2, h, default(int));
             return 0;
         }
     }
@@ -1227,7 +1227,7 @@ public static partial class Results
             int n = Player.GetIndex(Gv.PlayerPool, new O06B_v2(b).PlayerPtr);
             int h = (int)(new O06R((Gv.Settings_PlayerRecords + (uint)(n * 150))).SelfDeaths_0);
             int s = Mem.S32(new O06X_v2(new O06A_v11(a).TemplatePtr).unk10_);
-            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), 0x800E2730u, h, default(int));
+            StrUtil.Sprintf((uint)(((s - 4) + MenuItem.GetTextLength(a))), Gv.Str_04d2, h, default(int));
             return 0;
         }
     }

@@ -2456,7 +2456,7 @@ public static partial class Hud
                     Hud.DrawNumber((int)(ft0), (fs1 - (fs0 * 7f)), fs0f, fs0, fs1f, 1, 1, 0);
                     Hud.DrawNumber((int)(fs2), (fs1 + (2.0f * fs0)), fs0f, fs0, fs1f, 1, 0, 2);
                     TextUtil.BeginFontPass();
-                    TextUtil.Draw(0x800C7CC8u, (int)((fs1 - (fs0 * 6f))), (int)((fs0f - (fs1f * 12f))), 255, 0, 0, fs0, fs1f);
+                    TextUtil.Draw(Gv.Str_800C7CC8, (int)((fs1 - (fs0 * 6f))), (int)((fs0f - (fs1f * 12f))), 255, 0, 0, fs0, fs1f);
                 }
             }
         }

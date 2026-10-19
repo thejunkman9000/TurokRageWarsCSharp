@@ -199,16 +199,16 @@ public static partial class ItemSpawner
                     {
                         if (((new S5Info(info).Flags & (uint)(32)) != 0u))
                         {
-                            s5 = (int)((short)((int)(RandomGen.PickWeighted(0x800CD764u))));
+                            s5 = (int)((short)((int)(RandomGen.PickWeighted(Gv.ItemSpawner_MpAmmoWeights))));
                         }
                         if (((new S5Info(info).Flags & (uint)(64)) != 0u))
                         {
-                            s6 = (int)((short)((int)(RandomGen.PickWeighted(0x800CD784u))));
+                            s6 = (int)((short)((int)(RandomGen.PickWeighted(Gv.ItemSpawner_MpHealthWeights))));
                         }
                         if (((new S5Info(info).Flags & (uint)(128)) != 0u))
                         {
                             RandomGen.WeightedClear((_fp + 136u));
-                            for (e = 0x800CD798u; ((int)(new S5Ent(e).id) != (-1)); e += 4u)
+                            for (e = Gv.ItemSpawner_MpSpecialWeights; ((int)(new S5Ent(e).id) != (-1)); e += 4u)
                             {
                                 if ((func_00205720_canSpawnTbl((int)(new S5Ent(e).id)) != 0))
                                 {
@@ -240,10 +240,10 @@ public static partial class ItemSpawner
                         if (((new S5Info(info).Flags & (uint)(64)) != 0u))
                         {
                             RandomGen.WeightedClear((_fp + 32u));
-                            e2 = 0x800CD768u;
+                            e2 = Gv.ItemSpawner_HealthWeights;
                             if ((Mem.S32(Gv.Game_Flag_8013B290) != 0))
                             {
-                                e2 = 0x800CD778u;
+                                e2 = Gv.ItemSpawner_HealthWeightsAlt;
                             }
                             for (; ((int)(Mem.S16(e2)) != (-1)); e2 = (uint)(e2 + (uint)(2 * 2)))
                             {
@@ -256,7 +256,7 @@ public static partial class ItemSpawner
                         }
                         if (((new S5Info(info).Flags & (uint)(128)) != 0u))
                         {
-                            s3 = (int)((short)((int)(RandomGen.PickWeighted(0x800CD794u))));
+                            s3 = (int)((short)((int)(RandomGen.PickWeighted(Gv.ItemSpawner_SpSpecialWeights))));
                         }
                     }
                     RandomGen.WeightedClear((_fp + 32u));
@@ -291,7 +291,7 @@ public static partial class ItemSpawner
         {
             if (Dbg.On) Dbg.Enter("func_00205EC4", (uint)actor, (uint)state);
             uint def = new ActorView(actor).DefPtr;
-            new ActorStateView(state).StateTablePtr_Set(0x800CD79Cu);
+            new ActorStateView(state).StateTablePtr_Set(Gv.ItemSpawner_StateTable);
             new ActorStateView(state).UpdateCallback_Set(0x00206018u);
             if ((((int)(new ActorView(actor).TypeId) == 1604) || ((new B01Def(def).Params & (uint)(8)) != 0u)))
             {

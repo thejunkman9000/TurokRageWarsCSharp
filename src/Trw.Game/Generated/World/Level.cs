@@ -2552,7 +2552,7 @@ public static partial class Level
                 else
                 {
                     new B19Owner(ow).IsCameraInPvsGrid_Set(1);
-                    new B19Owner(ow).f1B6B0__Set(Resource.LoadByCartridgeKey((uint)(0), (uint)(new B19Owner(ow).PvsIndex), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).PvsIndexKey), ow, 0x00285130u, 0x800CA310u));
+                    new B19Owner(ow).f1B6B0__Set(Resource.LoadByCartridgeKey((uint)(0), (uint)(new B19Owner(ow).PvsIndex), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).PvsIndexKey), ow, 0x00285130u, Gv.Str_VisInfo));
                     ResourcePool.TouchAndRef(0, new B19Owner(ow).f1B6B0_);
                     Pvs.Load((ow + (uint)112308), ci, cj, (uint)(Mem.S32(new B19Owner(ow).f1B6B0_)), (cam + 296u));
                 }
@@ -2577,7 +2577,7 @@ public static partial class Level
                             if ((found != 0))
                             {
                                 int t = (int)(Resource.GetCartridgeKey((uint)(new B19Owner(ow).CellsIndex), (uint)(new B19Owner(ow).CellsIndexKey), idx, _fp));
-                                h = ResourceCache.Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, 0x800CA300u, 0);
+                                h = ResourceCache.Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, Gv.Str_GridSection, 0);
                                 if ((h != 0u))
                                 {
                                     if ((Mem.S32(Mem.U32(h)) != 0))
@@ -4416,7 +4416,7 @@ public static partial class Level
                 if ((idx != (-1)))
                 {
                     p = Resource.GetCartridgeKey(new LevelView(lv).unk58_, new LevelView(lv).unk28_, idx, _fp);
-                    return (int)(ResourceCache.Hash(0, p, (int)(p), (uint)(Mem.S32(_fp)), a2, (uint)(0), 0x00285130u, 0x800CA2C8u, a3));
+                    return (int)(ResourceCache.Hash(0, p, (int)(p), (uint)(Mem.S32(_fp)), a2, (uint)(0), 0x00285130u, Gv.Str_BinaryBlock, a3));
                 }
                 return 0;
             }
@@ -5201,8 +5201,8 @@ public static partial class Level
                 uint b = 0u;
                 int n = 0;
                 r = Resource.GetCartridgeKeyNoSize(new LevelView(lv).unk4C_, (int)(new LevelView(lv).unk1C_), idx);
-                h = Resource.LoadIndexTableSync(0, _fp, r, 0x800CA200u);
-                b = Resource.LoadByCartridgeKey((uint)(0), (uint)(Mem.S32(_fp)), (uint)(8), (uint)(r), lv, (uint)(0), (0x800CA370u + (uint)(1 * 4)));
+                h = Resource.LoadIndexTableSync(0, _fp, r, Gv.Str_LevelIndex);
+                b = Resource.LoadByCartridgeKey((uint)(0), (uint)(Mem.S32(_fp)), (uint)(8), (uint)(r), lv, (uint)(0), (Gv.ResLabel_LevelNameBase + (uint)(1 * 4)));
                 n = new Blk_v2(b).size;
                 if ((maxSize < n))
                 {
@@ -6144,7 +6144,7 @@ public static partial class Level
                             continue;
                         }
                         key = (int)(Resource.GetCartridgeKey((uint)(new Level_func_8044CD8C_de(level).CellsIndex), (uint)(new Level_func_8044CD8C_de(level).CellsIndexKey), (col + (row * width)), _fp));
-                        block = ResourceCache.Hash(0, (uint)(key), key, (uint)(Mem.S32(_fp)), 4, level, 0x0028795Cu, 0x800CA300u, 1);
+                        block = ResourceCache.Hash(0, (uint)(key), key, (uint)(Mem.S32(_fp)), 4, level, 0x0028795Cu, Gv.Str_GridSection, 1);
                         if ((block == 0u))
                         {
                             continue;
@@ -6214,7 +6214,7 @@ public static partial class Level
             int temp_a1 = 0;
             if ((Level.IsRestartPending() == 0))
             {
-                temp_v0 = ResourceCache.Hash(0, (uint)(new State_func_8044D054_de(arg0).SaveDataKey), new State_func_8044D054_de(arg0).SaveDataKey, (uint)(new State_func_8044D054_de(arg0).SaveDataSize), 0, (uint)(0), 0x00285130u, 0x800CA1A0u, 1);
+                temp_v0 = ResourceCache.Hash(0, (uint)(new State_func_8044D054_de(arg0).SaveDataKey), new State_func_8044D054_de(arg0).SaveDataKey, (uint)(new State_func_8044D054_de(arg0).SaveDataSize), 0, (uint)(0), 0x00285130u, Gv.Str_LoadSavePersistentData, 1);
                 memcpy_Recompiled(Gv.LevelPersistBuffer, (uint)(Mem.S32(temp_v0)), (uint)(22528), default(uint));
                 ResourcePool.Release((int)(0u), temp_v0);
                 new State_func_8044D054_de(arg0).IsSaveDataLoaded_Set(1);
@@ -6232,7 +6232,7 @@ public static partial class Level
             int id = 0;
             if ((Level.IsRestartPending() == 0))
             {
-                resource = ResourceCache.Hash(0, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataKey), new State_func_8044D0F0_de(state).EntityFlagDataKey, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataSize), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
+                resource = ResourceCache.Hash(0, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataKey), new State_func_8044D0F0_de(state).EntityFlagDataKey, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataSize), 0, (uint)(0), 0x00285130u, Gv.Str_GamePersistentData, 1);
                 memcpy_Recompiled(Gv.Level_EntityFlagData, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
                 ResourcePool.Release(0, resource);
             }
@@ -7295,7 +7295,7 @@ public static partial class Prop
                 h = (int)(Prop.AcquireModel(o, a1));
                 if ((h != 0))
                 {
-                    r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, Gv.Str_LitVertices2, (uint)(0));
                     if ((r != 0u))
                     {
                         Resource.MarkUsedInFrame(0, r);
@@ -7356,7 +7356,7 @@ public static partial class Prop
                 h = (int)(Prop.AcquireModel(o, (int)(new B12Obj(o).DefPtr.NearModelIndex)));
                 if ((h != 0))
                 {
-                    r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, Gv.Str_LitVertices2, (uint)(0));
                     if ((r != 0u))
                     {
                         Resource.MarkUsedInFrame(0, r);
@@ -7410,11 +7410,11 @@ public static partial class Prop
                 uint p = 0u;
                 int i = 0;
                 int cnt = 0;
-                h = ResourceCache.Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
+                h = ResourceCache.Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 4, (uint)(0), (uint)(0), Gv.Str_StatObjectIndex, 0);
                 if ((h != 0u))
                 {
                     r = (int)(Resource.GetCartridgeKey(Mem.U32(h), (uint)(new B12Obj(o).ModelResourceKey), 3, _fp));
-                    n = ResourceCache.Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
+                    n = ResourceCache.Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), Gv.Str_StaticEvents, 0);
                     if ((n != 0u))
                     {
                         @base = Mem.U32(n);
@@ -7456,12 +7456,12 @@ public static partial class Prop
                 }
                 if ((key != new B12Obj(o).LoadedModelIndex))
                 {
-                    h = ResourceCache.Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
+                    h = ResourceCache.Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 0, (uint)(0), 0u, Gv.Str_StatObjectIndex, 1);
                     if ((h != 0u))
                     {
                         s2 = Resource.GetCartridgeKeyNoSize((uint)((int)(Mem.U32(h))), new B12Obj(o).ModelResourceKey, 1);
                         ResourcePool.Release(0, h);
-                        n = Resource.LoadIndexTable(0, _fp, s2, 0x800C8F70u, 1);
+                        n = Resource.LoadIndexTable(0, _fp, s2, Gv.Str_StatModelsIndex, 1);
                         if ((n != 0u))
                         {
                             new B12Obj(o).LoadedModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
@@ -7472,7 +7472,7 @@ public static partial class Prop
                 }
                 if ((new B12Obj(o).LoadedModelKey != 0))
                 {
-                    return ResourceCache.Hash(0, (uint)(new B12Obj(o).LoadedModelKey), new B12Obj(o).LoadedModelKey, (uint)(new B12Obj(o).LoadedModelSize), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
+                    return ResourceCache.Hash(0, (uint)(new B12Obj(o).LoadedModelKey), new B12Obj(o).LoadedModelKey, (uint)(new B12Obj(o).LoadedModelSize), 0, (uint)(0), 0x0026D7D4u, Gv.Str_StatModel, 0);
                 }
                 return 0u;
             }
@@ -7494,7 +7494,7 @@ public static partial class Prop
                 if ((h != 0))
                 {
                     Model.PreloadTextures((uint)(h));
-                    r = (int)(Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
+                    r = (int)(Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, Gv.Str_LitVertices2, (uint)(0)));
                     if ((r != 0))
                     {
                         ResourcePool.Unref(0, (uint)(r));
@@ -7587,7 +7587,7 @@ public static partial class Prop
                 new B12Obj(o).PinnedModelHandle_Set(h);
                 Mem.Set(@out, h);
                 @out = Model.CollectTextureHandles((uint)(h), a1, (@out + (uint)(1 * 4)));
-                r = (int)(Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
+                r = (int)(Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, Gv.Str_LitVertices2, (uint)(1)));
                 if ((r != 0))
                 {
                     Mem.Set(@out, r);
@@ -7614,7 +7614,7 @@ public static partial class Prop
             int len = 0;
             if ((h != 0))
             {
-                r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                r = Resource.Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, Gv.Str_LitVertices2, (uint)(0));
                 if ((r != 0u))
                 {
                     Resource.MarkUsedInFrame(0, r);

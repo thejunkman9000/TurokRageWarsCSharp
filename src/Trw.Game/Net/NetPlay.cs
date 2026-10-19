@@ -173,7 +173,7 @@ public static class NetPlay
         }
         if (t == testDesyncTick)         // TRW_NET_TEST_DESYNC=<tick>: corrupt one byte of (unused) RAM on this peer, to see the desync check fire
         {
-            Mem.Set(0x807FFFF0, (byte)(Mem.U8(0x807FFFF0) ^ 0x5A));
+            Mem.Set(Gv.Net_DesyncTestByte, (byte)(Mem.U8(Gv.Net_DesyncTestByte) ^ 0x5A));
             Console.Error.WriteLine($"[net] test: corrupted RAM 807FFFF0 after tick {t}");
         }
         if (cfg.ExitAfterTicks > 0 && t >= cfg.ExitAfterTicks) finished = true;

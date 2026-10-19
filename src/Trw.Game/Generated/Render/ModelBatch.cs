@@ -571,17 +571,17 @@ public static partial class ModelBatch
                 int z = 0;
                 uint rec = 0u;
                 int k = 0;
-                t = ResourceCache.Hash(0, (uint)(a0), a0, (uint)(24), 0, (uint)(0), 0u, 0x800C975Cu, 1);
+                t = ResourceCache.Hash(0, (uint)(a0), a0, (uint)(24), 0, (uint)(0), 0u, Gv.Str_SimpObjectIndex, 1);
                 if ((t != 0u))
                 {
                     x = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(t)), a0, 1);
                     ResourcePool.Unref(0, t);
-                    u = Resource.LoadIndexTable(0, _fp, x, 0x800C9770u, 1);
+                    u = Resource.LoadIndexTable(0, _fp, x, Gv.Str_SimpModelsIndex2, 1);
                     if ((u != 0u))
                     {
                         y = (int)(Resource.GetCartridgeKey(Mem.U32(_fp), (uint)(x), (a3 % Mem.S32(Mem.U32(_fp))), (_fp + 4u)));
                         ResourcePool.Unref(0, u);
-                        v = ResourceCache.Hash(0, (uint)(y), y, (uint)(Mem.S32((_fp + 4u))), 0, (uint)(0), 0x0026D7F4u, 0x800C9784u, a5);
+                        v = ResourceCache.Hash(0, (uint)(y), y, (uint)(Mem.S32((_fp + 4u))), 0, (uint)(0), 0x0026D7F4u, Gv.Str_SimpModel2, a5);
                         if ((v != 0u))
                         {
                             z = (int)(Chunk.Get((uint)(Mem.S32(v)), 0));

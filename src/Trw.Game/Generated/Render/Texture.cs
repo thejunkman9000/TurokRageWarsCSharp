@@ -662,7 +662,7 @@ public static partial class Image
             pal = 0u;
             s6 = (int)(pal);
             s2 = (int)(pal);
-            Mem.Set((Gv.Image_ArchivePath - (uint)4), (int)(FileIo.Open(Gv.Image_ArchivePath, 0x800E10E0u, default(uint), default(uint))));
+            Mem.Set((Gv.Image_ArchivePath - (uint)4), (int)(FileIo.Open(Gv.Image_ArchivePath, Gv.Str_Rb, default(uint), default(uint))));
             r = (Mem.U32((Gv.Image_ArchivePath + (uint)604)) + (uint)(idx * 28));
             s3 = (int)(pal);
             if (!(((int)(new Q01Rec(r).bits) == 8))) goto _f1;
@@ -3332,10 +3332,10 @@ public static partial class Texture
                             {
                             case 2:
                             default:
-                                list = 0x800D10A0u;
+                                list = Gv.Texture_LoadDl16b;
                                 break;
                             case 3:
-                                list = 0x800D1138u;
+                                list = Gv.Texture_LoadDl32b;
                                 break;
                             case 1:
                                 {
@@ -3343,10 +3343,10 @@ public static partial class Texture
                                     Mem.Set(new Gfx_s(_gbi_53).words.P, (((((uint)(227) & (uint)(((1 << (int)8) - 1))) << (int)24) | (((uint)(((32 - 17) - 2)) & (uint)(((1 << (int)8) - 1))) << (int)8)) | (((uint)((2 - 1)) & (uint)(((1 << (int)8) - 1))) << (int)0)));
                                     Mem.Set((new Gfx_s(_gbi_53).words.P + 4u), ((uint)(1) << (int)17));
                                 }
-                                list = 0x800D0FA0u;
+                                list = Gv.Texture_LoadDlCI;
                                 if (((wrapS & 1) != 0))
                                 {
-                                    list = 0x800D1020u;
+                                    list = Gv.Texture_LoadDlCIMirrorS;
                                 }
                                 break;
                             case 0:
@@ -3355,10 +3355,10 @@ public static partial class Texture
                                     Mem.Set(new Gfx_s(_gbi_54).words.P, (((((uint)(227) & (uint)(((1 << (int)8) - 1))) << (int)24) | (((uint)(((32 - 17) - 2)) & (uint)(((1 << (int)8) - 1))) << (int)8)) | (((uint)((2 - 1)) & (uint)(((1 << (int)8) - 1))) << (int)0)));
                                     Mem.Set((new Gfx_s(_gbi_54).words.P + 4u), ((uint)(0) << (int)17));
                                 }
-                                list = 0x800D0FA0u;
+                                list = Gv.Texture_LoadDlCI;
                                 if (((wrapS & 1) != 0))
                                 {
-                                    list = 0x800D1020u;
+                                    list = Gv.Texture_LoadDlCIMirrorS;
                                 }
                                 break;
                             }

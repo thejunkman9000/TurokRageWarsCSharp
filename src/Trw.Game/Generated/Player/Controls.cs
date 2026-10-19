@@ -2000,7 +2000,7 @@ public static partial class Pad
             osCreateMesgQueue(Gv.Pad_SiMesgQueue, Gv.Pad_SiMesgBuf, 1);
             osCreateMesgQueue(Gv.Pad_LockQueue, Gv.Pad_LockMesgBuf, 1);
             osSetEventMesg((uint)(5), Gv.Pad_SiMesgQueue, (uint)(1));
-            osContInit(Gv.Pad_SiMesgQueue, 0x800D0E51u, Gv.Pad_ContStatus);
+            osContInit(Gv.Pad_SiMesgQueue, Gv.Pad_ContBitPattern, Gv.Pad_ContStatus);
             osGetThreadId(0u);
             Mem.Set(Gv.Pad_LockOwnerThreadId, (-1));
             osSendMesg(Gv.Pad_LockQueue, 0u, 1);

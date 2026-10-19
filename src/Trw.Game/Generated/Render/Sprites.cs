@@ -1923,7 +1923,7 @@ public static partial class Sprite
                 flags = (int)((int)(flags) | 4);
                 L_done: ;
                 p = Resource.GetCartridgeKey(new LevelView(lv).unk5C_, new LevelView(lv).unk2C_, idx, _fp);
-                return (int)(ResourceCache.Hash(0, p, (int)(p), (uint)(Mem.S32(_fp)), flags, lv, fn, 0x800CA2D8u, a3));
+                return (int)(ResourceCache.Hash(0, p, (int)(p), (uint)(Mem.S32(_fp)), flags, lv, fn, Gv.Str_Graphicset, a3));
                 return 0;
             }
         }

@@ -32,7 +32,7 @@ public static class GameSprites
     private static readonly Dictionary<int, Sprite> cache = new();
     private static readonly object gate = new();
 
-    private static bool Ram(uint a, uint n) => a >= 0x80000000u && a + n <= 0x80800000u && n < 0x800000 && Mem.IsMapped(a) && Mem.IsMapped(a + n - 1);
+    private static bool Ram(uint a, uint n) => a >= 0x80000000u && a + n <= Gv.Ram_End && n < 0x800000 && Mem.IsMapped(a) && Mem.IsMapped(a + n - 1);
 
     /// <summary>The RAM address of sprite <paramref name="id"/>'s data (0 = not loaded).</summary>
     public static uint Locate(int id)

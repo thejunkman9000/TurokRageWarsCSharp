@@ -77,7 +77,7 @@ public static partial class Decal
                 {
                     uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_11).w0_Set(3724541952u);
-                    new DlCmd(_g_11).w1_Set((uint)(0x800D2E60u));
+                    new DlCmd(_g_11).w1_Set((uint)(Gv.Decal_SetupDl));
                 }
                 for (i = 0; (i < 10); ++i)
                 {
@@ -189,7 +189,7 @@ public static partial class Decal
                 {
                     uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_11).w0_Set(3724541952u);
-                    new DlCmd(_g_11).w1_Set((uint)(0x800D2F18u));
+                    new DlCmd(_g_11).w1_Set((uint)(Gv.LaserDot_SetupDl));
                 }
                 {
                     uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);

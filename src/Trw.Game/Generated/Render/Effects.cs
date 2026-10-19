@@ -20,7 +20,7 @@ public static partial class Actor
                 uint owner = 0u;
                 if (((new ActorView(actor).Flags & (uint)(262144)) != 0u))
                 {
-                    p = ResourceCache.Hash(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                    p = ResourceCache.Hash(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), Gv.Str_PlayerAnimObjectInfo, 1);
                     if ((p != 0u))
                     {
                         owner = new ActorView(actor).OwnerPtr;
@@ -4606,8 +4606,8 @@ public static partial class Effects
             new S7Tabs(o).unk9C_Set(0);
             Effects.Text_FontInitHook();
             TextUtil.LoadFontTexture(default(uint), default(uint), default(uint), default(uint));
-            TextUtil.BuildCharMap((int)(o), 0x800D3080u, 117, new S7Tabs(o).CharMapA.P);
-            TextUtil.BuildCharMap((int)(o), 0x800D2F94u, 117, new S7Tabs(o).CharMapB.P);
+            TextUtil.BuildCharMap((int)(o), Gv.Str_800D3080, 117, new S7Tabs(o).CharMapA.P);
+            TextUtil.BuildCharMap((int)(o), Gv.Str_800D2F94, 117, new S7Tabs(o).CharMapB.P);
         }
     }
 
@@ -8140,12 +8140,12 @@ public static partial class Particle
                 }
                 if ((new B18Actor(o).ModelKey == 0))
                 {
-                    p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ParticleDefPtr.ModelSetKey), new B18Actor(o).ParticleDefPtr.ModelSetKey, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
+                    p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ParticleDefPtr.ModelSetKey), new B18Actor(o).ParticleDefPtr.ModelSetKey, (uint)(24), 0, (uint)(0), 0u, Gv.Str_SimpPartObjectIndex, 1);
                     if ((p != 0u))
                     {
                         s1 = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(p)), new B18Actor(o).ParticleDefPtr.ModelSetKey, 1);
                         ResourcePool.Release(0, p);
-                        q = Resource.LoadIndexTable(0, (_fp + 12u), s1, 0x800C9E40u, 1);
+                        q = Resource.LoadIndexTable(0, (_fp + 12u), s1, Gv.Str_SimpPartModelsIndex, 1);
                         if ((q != 0u))
                         {
                             new B18Actor(o).ModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
@@ -8157,7 +8157,7 @@ public static partial class Particle
                         return;
                     }
                 }
-                p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ModelKey), new B18Actor(o).ModelKey, (uint)(new B18Actor(o).ModelSize), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
+                p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ModelKey), new B18Actor(o).ModelKey, (uint)(new B18Actor(o).ModelSize), 0, (uint)(0), 0x0026D7F4u, Gv.Str_SimpPartModel, 1);
                 if ((p != 0u))
                 {
                     Model.QueueBatched(p, s3, 0, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 24) + 224))), (uint)(0), (-1));

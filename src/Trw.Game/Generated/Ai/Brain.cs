@@ -328,7 +328,7 @@ public static partial class Ai
                 new B2Ctl(ctl).EnemyDistances.Set((int)(i), 0);
             }
             new B2Ctl(ctl).IsFollowTargetReached_238_Set(0);
-            Ai.SetStateTable(ctl, 0x800CE040u);
+            Ai.SetStateTable(ctl, Gv.Brain_StateTable);
             Ai.SetState(ctl, 2);
             new B2Ctl(ctl).AimWobble_Set((float)(0));
             new B2Ctl(ctl).IsFireRequested_Set(0);

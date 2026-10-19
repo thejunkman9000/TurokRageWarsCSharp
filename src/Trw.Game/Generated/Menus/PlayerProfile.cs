@@ -9202,7 +9202,7 @@ public static partial class ProfileStats
             i = 0;
             if ((new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur_ == 0u))
             {
-                new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((0x800E14F8u + (uint)4));
+                new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((Gv.Str_O3 + (uint)4));
             }
             else
             {
@@ -9216,7 +9216,7 @@ public static partial class ProfileStats
                         }
                         else
                         {
-                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((0x800E14F8u + (uint)4));
+                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((Gv.Str_O3 + (uint)4));
                         }
                         break;
                     }

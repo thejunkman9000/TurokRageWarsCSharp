@@ -1866,11 +1866,11 @@ public static partial class PakMenu
                 {
                     pad = (int)(new O01OwnF(own).unk20.unk4);
                 }
-                Mem.Copy(_fp, 0x800E0DA8u, 4);
+                Mem.Copy(_fp, Gv.Str_800E0DA8, 4);
                 bp = new O01B4(_fp).c.P;
                 if ((Mem.S32(Gv.PakMenu_IsSaving) != 0))
                 {
-                    new O01ItemF(item).unk14__Set(0x800D7780u);
+                    new O01ItemF(item).unk14__Set(Gv.PakMenu_FreePagesLabel);
                     if ((CPak.GetFreePages(pad, (_fp + 4u)) == 0))
                     {
                         if ((Mem.S32(Gv.PakMenu_IsPlayerNote) != 0))
@@ -1902,13 +1902,13 @@ public static partial class PakMenu
                 {
                     if ((Mem.S32(Gv.PakMenu_BootMode) != 0))
                     {
-                        t = 0x800D7798u;
+                        t = Gv.PakMenu_FreePagesLabelBoot;
                     }
                     else
                     {
                         if ((Mem.S32(Gv.PakMenu_IsLoading) != 0))
                         {
-                            t = 0x800D7780u;
+                            t = Gv.PakMenu_FreePagesLabel;
                         }
                         else
                         {
@@ -3445,9 +3445,9 @@ public static partial class PakMenu
             else
             {
                 v = (int)(new O01Owner(own).PadPtr.Port);
-                new O01Item(item).unk14__Set(0x800D7710u);
-                buf = new O01Text(0x800D7710u).buf_;
-                StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
+                new O01Item(item).unk14__Set(Gv.PakMenu_PlayerLabel);
+                buf = new O01Text(Gv.PakMenu_PlayerLabel).buf_;
+                StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 1)), Gv.Str_1d, (v + 1), default(int));
             }
             return 0;
         }
@@ -3465,11 +3465,11 @@ public static partial class PakMenu
             {
                 if ((Mem.S32(Gv.PakMenu_IsPlayerNote) != 0))
                 {
-                    new O01Item(item).unk14__Set(0x800D7768u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_TitleLoadPlayer);
                 }
                 else
                 {
-                    new O01Item(item).unk14__Set(0x800D7770u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_TitleLoadGame);
                 }
             }
             else
@@ -3478,7 +3478,7 @@ public static partial class PakMenu
                 {
                     if (((uint)(d) < (uint)(16)))
                     {
-                        new O01Item(item).unk14__Set(0x800D777Cu);
+                        new O01Item(item).unk14__Set(Gv.PakMenu_TitleSaveNoteRow);
                         return 0;
                     }
                     if ((c == 21))
@@ -3489,11 +3489,11 @@ public static partial class PakMenu
                     {
                         if ((Mem.S32(Gv.PakMenu_IsPlayerNote) != 0))
                         {
-                            new O01Item(item).unk14__Set(0x800D776Cu);
+                            new O01Item(item).unk14__Set(Gv.PakMenu_TitleSavePlayer);
                         }
                         else
                         {
-                            new O01Item(item).unk14__Set(0x800D7774u);
+                            new O01Item(item).unk14__Set(Gv.PakMenu_TitleSaveGame);
                         }
                     }
                 }
@@ -3501,7 +3501,7 @@ public static partial class PakMenu
                 {
                     if ((Mem.S32(Gv.PakMenu_BootMode) != 0))
                     {
-                        new O01Item(item).unk14__Set(0x800D778Cu);
+                        new O01Item(item).unk14__Set(Gv.PakMenu_TitleBootCheck);
                     }
                 }
             }
@@ -3551,11 +3551,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040A4CC", (uint)item);
             if ((Mem.S32(Gv.PakMenu_GameNoteIsLoad) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D77CCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_GameNoteTitleLoad);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D77D0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_GameNoteTitleDelete);
             }
             return 0;
         }
@@ -3571,13 +3571,13 @@ public static partial class PakMenu
             {
             default:
             case (uint)(0):
-                new O01Item(item).unk14__Set(0x800D77D4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_DifficultyLabelEasy);
                 break;
             case (uint)(16):
-                new O01Item(item).unk14__Set(0x800D77D8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_DifficultyLabelNormal);
                 break;
             case (uint)(32):
-                new O01Item(item).unk14__Set(0x800D77DCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_DifficultyLabelHard);
                 break;
             }
             return 0;
@@ -3605,7 +3605,7 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040A5B8", (uint)item);
             int v = (int)(new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).PlayerLives);
             uint buf = new O01Item(item).unk14.buf_;
-            StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 2)), 0x800E0DB0u, v, default(int));
+            StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 2)), Gv.Str_2d, v, default(int));
             return 0;
         }
     }
@@ -3684,11 +3684,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040A6D4", (uint)item);
             if ((Mem.S32(Gv.PakMenu_GameNoteIsLoad) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7810u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_PromptLoad);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D7814u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_PromptDelete);
             }
             return 0;
         }
@@ -3761,17 +3761,17 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040A7E8", (uint)item);
             if ((Mem.S32(Gv.PakMenu_NoteLoadMode) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D77ECu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_PlayerNoteTitleLoad);
             }
             else
             {
                 if ((Mem.S32(Gv.PakMenu_NoteIsForeign) != 0))
                 {
-                    new O01Item(item).unk14__Set(0x800D77F4u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_PlayerNoteTitleDeleteForeign);
                 }
                 else
                 {
-                    new O01Item(item).unk14__Set(0x800D77F0u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_PlayerNoteTitleDelete);
                 }
             }
             return 0;
@@ -3865,11 +3865,11 @@ public static partial class PakMenu
             int i = 0;
             if ((Mem.S32(Gv.PakMenu_NoteIsForeign) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D77FCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_TypeLabelForeign);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D7804u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_TypeLabel);
                 switch ((int)(Mem.S8((Gv.PakMenu_NoteCharacter + (uint)0))))
                 {
                 default:
@@ -3918,7 +3918,7 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040AA20", (uint)item);
             int v = (int)(Mem.U16(Gv.PakMenu_NoteStat_8015371C));
             uint buf = new O01Item(item).unk14.buf_;
-            StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 4)), 0x800E0DC4u, v, default(int));
+            StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 4)), Gv.Str_04d, v, default(int));
             return 0;
         }
     }
@@ -3931,17 +3931,17 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040AA78", (uint)item);
             if ((Mem.S32(Gv.PakMenu_NoteLoadMode) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7810u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_PromptLoad);
             }
             else
             {
                 if ((Mem.S32(Gv.PakMenu_NoteIsForeign) != 0))
                 {
-                    new O01Item(item).unk14__Set(0x800D7818u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_PromptDeleteForeign);
                 }
                 else
                 {
-                    new O01Item(item).unk14__Set(0x800D7814u);
+                    new O01Item(item).unk14__Set(Gv.PakMenu_PromptDelete);
                 }
             }
             return 0;
@@ -4153,7 +4153,7 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D781Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgHeaderError);
                 break;
             case 5:
             case 6:
@@ -4161,7 +4161,7 @@ public static partial class PakMenu
             case 10:
             case 12:
             case 15:
-                new O01Item(item).unk14__Set(0x800D7820u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgHeaderImportant);
                 break;
             }
             return 0;
@@ -4178,52 +4178,52 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D782Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakFullLine1);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D7840u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakLine1);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D7854u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleBootLine1);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D787Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleSaveLine1);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7868u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleLoadLine1);
                 break;
             case 5:
-                new O01Item(item).unk14__Set(0x800D7890u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg5Line1);
                 break;
             case 6:
-                new O01Item(item).unk14__Set(0x800D78A4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakAtBootLine1);
                 break;
             case 7:
-                new O01Item(item).unk14__Set(0x800D78B8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakChangedLine1);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D78CCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoControllerLine1);
                 break;
             case 9:
-                new O01Item(item).unk14__Set(0x800D78E0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgGameLoadedLine1);
                 break;
             case 10:
-                new O01Item(item).unk14__Set(0x800D78F4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPlayerSavedLine1);
                 break;
             case 11:
-                new O01Item(item).unk14__Set(0x800D7908u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg11Line1);
                 break;
             case 12:
-                new O01Item(item).unk14__Set(0x800D791Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoteDeletedLine1);
                 break;
             case 13:
-                new O01Item(item).unk14__Set(0x800D7930u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgSaveFailedLine1);
                 break;
             case 14:
-                new O01Item(item).unk14__Set(0x800D7944u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgDeleteFailedLine1);
                 break;
             case 15:
-                new O01Item(item).unk14__Set(0x800D7958u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakRepairedLine1);
                 break;
             }
             return 0;
@@ -4240,52 +4240,52 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7830u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakFullLine2);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D7844u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakLine2);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D7858u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleBootLine2);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D7880u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleSaveLine2);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D786Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleLoadLine2);
                 break;
             case 5:
-                new O01Item(item).unk14__Set(0x800D7894u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg5Line2);
                 break;
             case 6:
-                new O01Item(item).unk14__Set(0x800D78A8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakAtBootLine2);
                 break;
             case 7:
-                new O01Item(item).unk14__Set(0x800D78BCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakChangedLine2);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D78D0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoControllerLine2);
                 break;
             case 9:
-                new O01Item(item).unk14__Set(0x800D78E4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgGameLoadedLine2);
                 break;
             case 10:
-                new O01Item(item).unk14__Set(0x800D78F8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPlayerSavedLine2);
                 break;
             case 11:
-                new O01Item(item).unk14__Set(0x800D790Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg11Line2);
                 break;
             case 12:
-                new O01Item(item).unk14__Set(0x800D7920u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoteDeletedLine2);
                 break;
             case 13:
-                new O01Item(item).unk14__Set(0x800D7934u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgSaveFailedLine2);
                 break;
             case 14:
-                new O01Item(item).unk14__Set(0x800D7948u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgDeleteFailedLine2);
                 break;
             case 15:
-                new O01Item(item).unk14__Set(0x800D795Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakRepairedLine2);
                 break;
             }
             return 0;
@@ -4302,52 +4302,52 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7834u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakFullLine3);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D7848u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakLine3);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D785Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleBootLine3);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D7884u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleSaveLine3);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7870u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleLoadLine3);
                 break;
             case 5:
-                new O01Item(item).unk14__Set(0x800D7898u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg5Line3);
                 break;
             case 6:
-                new O01Item(item).unk14__Set(0x800D78ACu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakAtBootLine3);
                 break;
             case 7:
-                new O01Item(item).unk14__Set(0x800D78C0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakChangedLine3);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D78D4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoControllerLine3);
                 break;
             case 9:
-                new O01Item(item).unk14__Set(0x800D78E8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgGameLoadedLine3);
                 break;
             case 10:
-                new O01Item(item).unk14__Set(0x800D78FCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPlayerSavedLine3);
                 break;
             case 11:
-                new O01Item(item).unk14__Set(0x800D7910u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg11Line3);
                 break;
             case 12:
-                new O01Item(item).unk14__Set(0x800D7924u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoteDeletedLine3);
                 break;
             case 13:
-                new O01Item(item).unk14__Set(0x800D7938u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgSaveFailedLine3);
                 break;
             case 14:
-                new O01Item(item).unk14__Set(0x800D794Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgDeleteFailedLine3);
                 break;
             case 15:
-                new O01Item(item).unk14__Set(0x800D7960u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakRepairedLine3);
                 break;
             }
             return 0;
@@ -4364,52 +4364,52 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7838u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakFullLine4);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D784Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakLine4);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D7860u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleBootLine4);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D7888u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleSaveLine4);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7874u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleLoadLine4);
                 break;
             case 5:
-                new O01Item(item).unk14__Set(0x800D789Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg5Line4);
                 break;
             case 6:
-                new O01Item(item).unk14__Set(0x800D78B0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakAtBootLine4);
                 break;
             case 7:
-                new O01Item(item).unk14__Set(0x800D78C4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakChangedLine4);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D78D8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoControllerLine4);
                 break;
             case 9:
-                new O01Item(item).unk14__Set(0x800D78ECu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgGameLoadedLine4);
                 break;
             case 10:
-                new O01Item(item).unk14__Set(0x800D7900u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPlayerSavedLine4);
                 break;
             case 11:
-                new O01Item(item).unk14__Set(0x800D7914u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg11Line4);
                 break;
             case 12:
-                new O01Item(item).unk14__Set(0x800D7928u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoteDeletedLine4);
                 break;
             case 13:
-                new O01Item(item).unk14__Set(0x800D793Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgSaveFailedLine4);
                 break;
             case 14:
-                new O01Item(item).unk14__Set(0x800D7950u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgDeleteFailedLine4);
                 break;
             case 15:
-                new O01Item(item).unk14__Set(0x800D7964u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakRepairedLine4);
                 break;
             }
             return 0;
@@ -4426,52 +4426,52 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D783Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakFullLine5);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D7850u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakLine5);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D7864u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleBootLine5);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D788Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleSaveLine5);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7878u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgRumbleLoadLine5);
                 break;
             case 5:
-                new O01Item(item).unk14__Set(0x800D78A0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg5Line5);
                 break;
             case 6:
-                new O01Item(item).unk14__Set(0x800D78B4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoPakAtBootLine5);
                 break;
             case 7:
-                new O01Item(item).unk14__Set(0x800D78C8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakChangedLine5);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D78DCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoControllerLine5);
                 break;
             case 9:
-                new O01Item(item).unk14__Set(0x800D78F0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgGameLoadedLine5);
                 break;
             case 10:
-                new O01Item(item).unk14__Set(0x800D7904u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPlayerSavedLine5);
                 break;
             case 11:
-                new O01Item(item).unk14__Set(0x800D7918u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgMsg11Line5);
                 break;
             case 12:
-                new O01Item(item).unk14__Set(0x800D792Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgNoteDeletedLine5);
                 break;
             case 13:
-                new O01Item(item).unk14__Set(0x800D7940u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgSaveFailedLine5);
                 break;
             case 14:
-                new O01Item(item).unk14__Set(0x800D7954u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgDeleteFailedLine5);
                 break;
             case 15:
-                new O01Item(item).unk14__Set(0x800D7968u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgPakRepairedLine5);
                 break;
             }
             return 0;
@@ -4502,10 +4502,10 @@ public static partial class PakMenu
             case 13:
             case 14:
             case 15:
-                new O01Item(item).unk14__Set(0x800D7824u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgOkLabel);
                 break;
             case 8:
-                new O01Item(item).unk14__Set(0x800D7828u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_MsgOkLabelNoController);
                 break;
             }
             return 0;
@@ -4578,11 +4578,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040B45C", (uint)item);
             if ((Mem.S32(Gv.PakMenu_RepairFailed) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7970u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairFailedLine1);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D797Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairPromptLine1);
             }
             return 0;
         }
@@ -4596,11 +4596,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040B490", (uint)item);
             if ((Mem.S32(Gv.PakMenu_RepairFailed) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7974u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairFailedLine2);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D7980u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairPromptLine2);
             }
             return 0;
         }
@@ -4624,13 +4624,13 @@ public static partial class PakMenu
             }
             if ((Mem.S32(Gv.PakMenu_RepairFailed) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7978u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairFailedLine3);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D7984u);
-                buf = new O01Text(0x800D7984u).buf_;
-                StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
+                new O01Item(item).unk14__Set(Gv.PakMenu_RepairPromptLine3);
+                buf = new O01Text(Gv.PakMenu_RepairPromptLine3).buf_;
+                StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 2)), Gv.Str_1d2, (v + 1), default(int));
             }
             return 0;
         }
@@ -4748,11 +4748,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040B74C", (uint)item);
             if ((Mem.S32(Gv.PakMenu_IsLoading) != 0))
             {
-                new O01Item(item).unk14__Set(0x800D7990u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ContinueLabelLoad);
             }
             else
             {
-                new O01Item(item).unk14__Set(0x800D7994u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ContinueLabelSave);
             }
             return 0;
         }
@@ -4859,19 +4859,19 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7998u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmRepairLine1);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D79ACu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmPakFullLine1);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D79C0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoRoomForGameLine1);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D79D4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmOverwriteLine1);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D79E8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmDeleteCorruptLine1);
                 break;
             }
             return 0;
@@ -4888,19 +4888,19 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D799Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmRepairLine2);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D79B0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmPakFullLine2);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D79C4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoRoomForGameLine2);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D79D8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmOverwriteLine2);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D79ECu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmDeleteCorruptLine2);
                 break;
             }
             return 0;
@@ -4917,19 +4917,19 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D79A0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmRepairLine3);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D79B4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmPakFullLine3);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D79C8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoRoomForGameLine3);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D79DCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmOverwriteLine3);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D79F0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmDeleteCorruptLine3);
                 break;
             }
             return 0;
@@ -4946,19 +4946,19 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D79A4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmRepairLine4);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D79B8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmPakFullLine4);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D79CCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoRoomForGameLine4);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D79E0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmOverwriteLine4);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D79F4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmDeleteCorruptLine4);
                 break;
             }
             return 0;
@@ -4975,19 +4975,19 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D79A8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmRepairLine5);
                 break;
             case 1:
-                new O01Item(item).unk14__Set(0x800D79BCu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmPakFullLine5);
                 break;
             case 2:
-                new O01Item(item).unk14__Set(0x800D79D0u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoRoomForGameLine5);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D79E4u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmOverwriteLine5);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D79F8u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmDeleteCorruptLine5);
                 break;
             }
             return 0;
@@ -5004,17 +5004,17 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7A08u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmYesLabel);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D7A08u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmYesLabel);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7A08u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmYesLabel);
                 break;
             case 1:
             case 2:
-                new O01Item(item).unk14__Set(0x800D7A00u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmYesLabelNoRoom);
                 break;
             }
             return 0;
@@ -5031,17 +5031,17 @@ public static partial class PakMenu
             {
             default:
             case 0:
-                new O01Item(item).unk14__Set(0x800D7A0Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoLabel);
                 break;
             case 3:
-                new O01Item(item).unk14__Set(0x800D7A0Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoLabel);
                 break;
             case 4:
-                new O01Item(item).unk14__Set(0x800D7A0Cu);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoLabel);
                 break;
             case 1:
             case 2:
-                new O01Item(item).unk14__Set(0x800D7A04u);
+                new O01Item(item).unk14__Set(Gv.PakMenu_ConfirmNoLabelNoRoom);
                 break;
             }
             return 0;

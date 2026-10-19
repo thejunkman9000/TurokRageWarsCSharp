@@ -149,7 +149,7 @@ public static partial class UiFont
                 {
                     g = Gv.Image_ArchiveCtx_220_80153BD0;
                     o2 = ((uint)(Mem.S32((g + (uint)(22 * 4)))) + (uint)(idx * 1180));
-                    Mem.Set((g + (uint)((-136) * 4)), (int)(FileIo.Open((g - (uint)(135 * 4)), 0x800E10E0u, default(uint), default(uint))));
+                    Mem.Set((g + (uint)((-136) * 4)), (int)(FileIo.Open((g - (uint)(135 * 4)), Gv.Str_Rb, default(uint), default(uint))));
                     sz = new S705Obj(o2).meta.size;
                     new S705Obj(o2).off.Set((int)(0), (int)(ResourcePool.Malloc((uint)(sz))));
                     {

@@ -390,8 +390,8 @@ public static partial class PlayerState
             float z = 0.0f;
             Player.EaseEyeHeight(actor);
             MathUtil.ApproachProportional((actor + (uint)1836), z, 0.25f);
-            Player.UpdateViewTurn(actor, state, 0x800CE7FCu);
-            Player.UpdateGroundMovement(actor, state, 0x800CE7C0u);
+            Player.UpdateViewTurn(actor, state, Gv.Player_CrouchViewTurnParams);
+            Player.UpdateGroundMovement(actor, state, Gv.Player_CrouchMoveParams);
             if (!((Mem.U32((actor + (uint)1708)) & (uint)(16)) != 0u))
             {
                 Player.SetState(actor, (int)(state), 2);
@@ -532,7 +532,7 @@ public static partial class PlayerState
             Player.UpdateViewTurn(actor, state, Gv.Player_ViewTurnParams);
             if (!((Mem.U32((actor + (uint)1632)) & (uint)(32768)) != 0u))
             {
-                Player.UpdateGroundMovement(actor, state, 0x800CE730u);
+                Player.UpdateGroundMovement(actor, state, Gv.Player_WalkMoveParams);
             }
             x = Mem.F32((state + (uint)32));
             if ((x <= 0.0f))
@@ -605,7 +605,7 @@ public static partial class PlayerState
             if (Dbg.On) Dbg.Enter("func_0022CE68", (uint)p, (uint)o);
             MathUtil.ApproachProportional((p + 1836u), 0.0f, 0.25f);
             Player.UpdateViewTurn(p, o, Gv.Player_ViewTurnParams);
-            Player.UpdateGroundMovement(p, o, 0x800CE79Cu);
+            Player.UpdateGroundMovement(p, o, Gv.Player_State08MoveParams);
             if ((new ObjDef_v2(o).VelocityY <= 0.0f))
             {
                 if ((Actor.IsOnGround(o) != 0))

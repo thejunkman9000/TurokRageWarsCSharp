@@ -65,7 +65,7 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2B24", (uint)o, (uint)n);
             new AnimObj(o).Value_Set(n);
-            StrUtil.FormatInto(new AnimObj(o).Text.P, 0x800CAF20u, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            StrUtil.FormatInto(new AnimObj(o).Text.P, Gv.Str_D, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
         }
     }
 

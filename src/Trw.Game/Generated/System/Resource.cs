@@ -2208,7 +2208,7 @@ public static partial class Resource
                 new AllocMsg((_fp + 24u)).type_Set((short)(3));
                 new AllocMsg((_fp + 24u)).size_Set(size);
                 new AllocMsg((_fp + 24u)).mq__Set(_fp);
-                blk = ResourcePool.Alloc(0, (int)((new_var + hdr)), (uint)(3), (int)(0x800C86F0u));
+                blk = ResourcePool.Alloc(0, (int)((new_var + hdr)), (uint)(3), (int)(Gv.Str_VirtualRegion));
                 new AllocMsg((_fp + 24u)).hdr__Set(new MemBlk(blk).data);
                 new AllocMsg((_fp + 24u)).hdr.blk__Set(blk);
                 new AllocMsg((_fp + 24u)).hdr.f8_Set(a2);
@@ -3914,7 +3914,7 @@ public static partial class Resource
             uint m2 = 0u;
             uint n = 0u;
             int cnt = 0;
-            n = ResourceCache.Hash(0, (uint)(id), id, (uint)(4), 0, (uint)(0), (uint)(0), 0x800C8F90u, arg4);
+            n = ResourceCache.Hash(0, (uint)(id), id, (uint)(4), 0, (uint)(0), (uint)(0), Gv.Str_Header, arg4);
             if (!(n != 0u))
             {
                 return 0u;
@@ -3961,7 +3961,7 @@ public static partial class Resource
             uint m2 = 0u;
             uint n = 0u;
             int cnt = 0;
-            n = ResourceCache.Hash(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), 0x800C8F90u, 1);
+            n = ResourceCache.Hash(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), Gv.Str_Header, 1);
             cnt = Mem.S32(Mem.U32(n));
             mask = __osDisableInt();
             if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
@@ -4779,7 +4779,7 @@ public static partial class Resource
             if (Dbg.On) Dbg.Enter("func_00265984", (uint)off);
             uint p = 0u;
             int r = 0;
-            p = ResourceCache.Hash(0, (uint)(2667076), 2667076, (uint)(32), 16, (uint)(0), (uint)(0), 0x800C9478u, 1);
+            p = ResourceCache.Hash(0, (uint)(2667076), 2667076, (uint)(32), 16, (uint)(0), (uint)(0), Gv.Str_ROMLookupTable, 1);
             r = Mem.S32((uint)((Mem.S32(p) + off)));
             ResourcePool.Unref(0, p);
             return r;
@@ -4869,11 +4869,11 @@ public static partial class Resource
                 if (!(((new Obj_v2(o).unk14_ == 0u) || (new Obj_v2(o).IndexedCacheId != id)))) goto _f0;
                 Resource.ReleaseIndexedCache(o);
                 if (!((new Obj_v2(o).LevelDataIndexKey != 0))) goto _f1;
-                h = ResourceCache.Hash(0, (uint)(new Obj_v2(o).LevelDataIndexKey), new Obj_v2(o).LevelDataIndexKey, (uint)(new Obj_v2(o).LevelDataIndexSize), 16, (uint)(0), 0u, 0x800CA380u, 1);
+                h = ResourceCache.Hash(0, (uint)(new Obj_v2(o).LevelDataIndexKey), new Obj_v2(o).LevelDataIndexKey, (uint)(new Obj_v2(o).LevelDataIndexSize), 16, (uint)(0), 0u, Gv.Str_CSceneGetBLLevelDataBllevelDataIndex, 1);
                 if (!((h != 0u))) goto _f2;
                 p = (int)(Resource.GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).LevelDataIndexKey), id, _fp));
                 ResourcePool.Release(0, h);
-                r = ResourceCache.Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                r = ResourceCache.Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, Gv.Str_CSceneGetBLLevelDataBllevelData, 1);
                 new Obj_v2(o).unk14__Set(r);
                 if (!((r != 0u))) goto _f3;
                 new Obj_v2(o).IndexedCacheId_Set(id);
@@ -4913,12 +4913,12 @@ public static partial class Resource
                     Resource.ReleaseIndexedCache(o);
                     if ((new Obj_v2(o).LevelDataIndexKey != 0))
                     {
-                        h = ResourceCache.Hash(0, (uint)(new Obj_v2(o).LevelDataIndexKey), new Obj_v2(o).LevelDataIndexKey, (uint)(new Obj_v2(o).LevelDataIndexSize), 16, (uint)(0), 0u, 0x800CA380u, 1);
+                        h = ResourceCache.Hash(0, (uint)(new Obj_v2(o).LevelDataIndexKey), new Obj_v2(o).LevelDataIndexKey, (uint)(new Obj_v2(o).LevelDataIndexSize), 16, (uint)(0), 0u, Gv.Str_CSceneGetBLLevelDataBllevelDataIndex, 1);
                         if ((h != 0u))
                         {
                             p = (int)(Resource.GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).LevelDataIndexKey), id, _fp));
                             ResourcePool.Release(0, h);
-                            r = ResourceCache.Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                            r = ResourceCache.Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, Gv.Str_CSceneGetBLLevelDataBllevelData, 1);
                             new Obj_v2(o).unk14__Set(r);
                             if ((r != 0u))
                             {

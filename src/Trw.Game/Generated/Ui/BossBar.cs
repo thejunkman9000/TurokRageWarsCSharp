@@ -558,7 +558,7 @@ public static partial class BossBar
             new ScriptCtx(c).unk40_Set(a);
             new ScriptCtx(c).unk3C_Set(b);
             new ScriptCtx(c).unk44_Set(100);
-            ScreenMover.Start(c, 0x800D318Cu);
+            ScreenMover.Start(c, Gv.BossBar_MoverPathBar1);
         }
     }
 
@@ -571,7 +571,7 @@ public static partial class BossBar
             new ScriptHolder(h).s.unk40_Set(a);
             new ScriptHolder(h).s.unk3C_Set(b);
             new ScriptHolder(h).s.unk44_Set(100);
-            ScreenMover.Start(new ScriptHolder(h).s.P, 0x800D31A0u);
+            ScreenMover.Start(new ScriptHolder(h).s.P, Gv.BossBar_MoverPathBar2);
         }
     }
 

@@ -3347,7 +3347,7 @@ public static partial class Menu
             Menu.InitFileAndMath();
             ScratchHeap.Init(12288);
             Menu.Init(35, 0x0043C500u);
-            Image.OpenArchives(0x800CAF30u, default(uint), default(uint), default(uint));
+            Image.OpenArchives(Gv.Str_DATATScredDataExp, default(uint), default(uint), default(uint));
             CursorGroup.RegisterType();
             ColorCycle.RegisterType();
             PopupPanel.RegisterType();

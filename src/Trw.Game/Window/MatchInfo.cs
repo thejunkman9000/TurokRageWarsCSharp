@@ -28,7 +28,7 @@ internal static class MatchInfo
         public string Name;
     }
 
-    private static bool Ram(uint a, int n) => a >= 0x80000000u && a + (uint)n <= 0x80800000u && Mem.IsMapped(a) && Mem.IsMapped(a + (uint)n - 1);
+    private static bool Ram(uint a, int n) => a >= 0x80000000u && a + (uint)n <= Gv.Ram_End && Mem.IsMapped(a) && Mem.IsMapped(a + (uint)n - 1);
 
     /// <summary>The players of the running match (empty outside a level). Safe to call from any thread; values may be a frame old.</summary>
     public static List<Player> Players()

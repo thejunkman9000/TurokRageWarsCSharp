@@ -3023,7 +3023,7 @@ public static partial class Flyby
                     }
                     else
                     {
-                        r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
+                        r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, Gv.Str_CinemaDirectory, 1);
                     }
                     n = (Mem.S32(Mem.U32(Gv.Flyby_IndexTablePtr)) - 1);
                     e = (uint)((Mem.S32(r) + 8));
@@ -3077,7 +3077,7 @@ public static partial class Flyby
                 }
                 else
                 {
-                    r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
+                    r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, Gv.Str_CinemaDirectory, 1);
                 }
                 ents = (uint)((Mem.S32(r) + 8));
                 i = 0;
@@ -3129,7 +3129,7 @@ public static partial class Flyby
                     }
                     else
                     {
-                        r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
+                        r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, Gv.Str_CinemaDirectory, 1);
                     }
                     i = 0;
                     n = (Mem.S32(Mem.U32(Gv.Flyby_IndexTablePtr)) - 1);
@@ -3614,7 +3614,7 @@ public static partial class Flyby
                 uint p = Resource.GetCartridgeKey((uint)(new O01G_v2(Gv.LevelMgr).CinemasIndex), (uint)(new O01G_v2(Gv.LevelMgr).CinemasIndexKey), 0, _fp);
                 if ((p != 0u))
                 {
-                    r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
+                    r = ResourceCache.Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, Gv.Str_CinemaDirectory, 1);
                 }
                 else
                 {

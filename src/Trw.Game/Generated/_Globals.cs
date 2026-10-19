@@ -4,6 +4,10 @@ namespace Trw.Game;
 /// <summary>Named guest RAM addresses of the game's globals (docs/NAMING.md). Use them where the code had the raw address.</summary>
 public static class Gv
 {
+    /// <summary>libultra boot word (0=PAL,1=NTSC,2=MPAL); GameBoot sets NTSC, Video/__osViInit switch on it [high]</summary>
+    public const uint osTvType = 0x80000300u;
+    /// <summary>libultra boot word: RDRAM size; GameBoot sets 0x800000, Memory reads/compares it against 8MB [high]</summary>
+    public const uint osMemSize = 0x80000318u;
     /// <summary>start of the constant data region (size 0x655C); Debug_IsDataPointer range-checks addresses against it [high]</summary>
     public const uint RodataSegment = 0x800C6AB0u;
     /// <summary>const Vec3f {0,1,0} copied by Vector_FromUpToVector as the reference up vector [high]</summary>
@@ -22,34 +26,174 @@ public static class Gv
     public const uint Hud_CrosshairScaleC = 0x800C7684u;
     /// <summary>const f32 1.0 passed as size to Hud_DrawIconSprite by Hud_DrawCrosshair [medium]</summary>
     public const uint Hud_CrosshairSize = 0x800C7688u;
+    /// <summary>ROM string "Fly Mode Off" [high]</summary>
+    public const uint Str_FlyModeOff = 0x800C7A40u;
+    /// <summary>ROM string "Players" [high]</summary>
+    public const uint Str_Players = 0x800C7C58u;
+    /// <summary>ROM string "player anim object info" [high]</summary>
+    public const uint Str_PlayerAnimObjectInfo = 0x800C7CB0u;
+    /// <summary>ROM string ":" [high]</summary>
+    public const uint Str_800C7CC8 = 0x800C7CC8u;
     /// <summary>const f32[] {66.56 target, 0.001 threshold}; Player_UpdateSinkOffset reads [0] as target, compares -d with [1] [medium]</summary>
     public const uint Player_SinkParams = 0x800C7EE8u;
+    /// <summary>ROM string "O" [high]</summary>
+    public const uint Str_O2 = 0x800C83C0u;
+    /// <summary>ROM string "Camera Texts" [high]</summary>
+    public const uint Str_CameraTexts = 0x800C83CCu;
+    /// <summary>ROM string "Virtual Region" [high]</summary>
+    public const uint Str_VirtualRegion = 0x800C86F0u;
+    /// <summary>ROM string "anim object info" [high]</summary>
+    public const uint Str_AnimObjectInfo = 0x800C87F8u;
+    /// <summary>ROM string "CGameObjectInstance__GetAnimType: anim object info" [high]</summary>
+    public const uint Str_CGameObjectInstanceGetAnimTypeAnimObjectInfo = 0x800C8920u;
+    /// <summary>ROM string "CGameObjectInstance__LookupAIAnimType: anim object info" [high]</summary>
+    public const uint Str_CGameObjectInstanceLookupAIAnimTypeAnimObjec = 0x800C8954u;
+    /// <summary>ROM string "anim object index" [high]</summary>
+    public const uint Str_AnimObjectIndex = 0x800C898Cu;
+    /// <summary>ROM string "anim models index" [high]</summary>
+    public const uint Str_AnimModelsIndex = 0x800C89A0u;
+    /// <summary>ROM string "CGameObjectInstance__Reset: anim object info" [high]</summary>
+    public const uint Str_CGameObjectInstanceResetAnimObjectInfo = 0x800C89B4u;
+    /// <summary>ROM string "animations index" [high]</summary>
+    public const uint Str_AnimationsIndex = 0x800C8A24u;
+    /// <summary>ROM string "?" [high]</summary>
+    public const uint Str_800C8AD0 = 0x800C8AD0u;
+    /// <summary>ROM string "CGameObjectInstance__GetUnitScaleMultiplier: anim object inf" [high]</summary>
+    public const uint Str_CGameObjectInstanceGetUnitScaleMultiplierAni = 0x800C8BD8u;
+    /// <summary>ROM string "anim model index" [high]</summary>
+    public const uint Str_AnimModelIndex = 0x800C8C18u;
+    /// <summary>ROM string "animated model" [high]</summary>
+    public const uint Str_AnimatedModel = 0x800C8C2Cu;
+    /// <summary>base of a rodata pair: float 0.1 then ROM string 'simp object' at +4 passed as the debug label to ResourceCache_Hash by Items AcquireModel/get_h [medium]</summary>
+    public const uint ResLabel_SimpObjectBase = 0x800C8E98u;
+    /// <summary>ROM string "simp models index" [high]</summary>
+    public const uint Str_SimpModelsIndex = 0x800C8EB0u;
+    /// <summary>ROM string "simp model" [high]</summary>
+    public const uint Str_SimpModel = 0x800C8EC4u;
+    /// <summary>ROM string "lit vertices" [high]</summary>
+    public const uint Str_LitVertices = 0x800C8ED0u;
+    /// <summary>ROM string "lit vertices" [high]</summary>
+    public const uint Str_LitVertices2 = 0x800C8F30u;
+    /// <summary>ROM string "stat object index" [high]</summary>
+    public const uint Str_StatObjectIndex = 0x800C8F4Cu;
+    /// <summary>ROM string "static events" [high]</summary>
+    public const uint Str_StaticEvents = 0x800C8F60u;
+    /// <summary>ROM string "stat models index" [high]</summary>
+    public const uint Str_StatModelsIndex = 0x800C8F70u;
+    /// <summary>ROM string "stat model" [high]</summary>
+    public const uint Str_StatModel = 0x800C8F84u;
+    /// <summary>ROM string "header" [high]</summary>
+    public const uint Str_Header = 0x800C8F90u;
     /// <summary>rodata float 1.0; SndVoice_UpdateDoppler steps the chased pitch toward it and clamps at it [medium]</summary>
     public const uint SndVoice_PitchNeutral = 0x800C9044u;
+    /// <summary>ROM string "animation" [high]</summary>
+    public const uint Str_Animation = 0x800C92A0u;
+    /// <summary>ROM string "ROMLookupTable" [high]</summary>
+    public const uint Str_ROMLookupTable = 0x800C9478u;
+    /// <summary>ROM string "simp object index" [high]</summary>
+    public const uint Str_SimpObjectIndex = 0x800C975Cu;
+    /// <summary>ROM string "simp models index" [high]</summary>
+    public const uint Str_SimpModelsIndex2 = 0x800C9770u;
+    /// <summary>ROM string "simp model" [high]</summary>
+    public const uint Str_SimpModel2 = 0x800C9784u;
     /// <summary>const f32 table {1,0,1,0,...}; Matrix_MtxFromDirection copies 12 bytes from +4 as a default axis [low]</summary>
     public const uint Matrix_AxisConsts_800C97B0 = 0x800C97B0u;
     /// <summary>const f32[2] {1.5, 1.0}; MathLib_Accelerate scales by [0], MathLib_ApproachProportional compares with [1] [medium]</summary>
     public const uint MathLib_ApproachConsts = 0x800C9A50u;
+    /// <summary>ROM string "simp part object index" [high]</summary>
+    public const uint Str_SimpPartObjectIndex = 0x800C9E28u;
+    /// <summary>ROM string "simp part models index" [high]</summary>
+    public const uint Str_SimpPartModelsIndex = 0x800C9E40u;
+    /// <summary>ROM string "simp part model" [high]</summary>
+    public const uint Str_SimpPartModel = 0x800C9E58u;
+    /// <summary>ROM string "load save persistent data" [high]</summary>
+    public const uint Str_LoadSavePersistentData = 0x800CA1A0u;
+    /// <summary>ROM string "game persistent data" [high]</summary>
+    public const uint Str_GamePersistentData = 0x800CA1BCu;
+    /// <summary>ROM string "level index" [high]</summary>
+    public const uint Str_LevelIndex = 0x800CA200u;
+    /// <summary>ROM string "binary block" [high]</summary>
+    public const uint Str_BinaryBlock = 0x800CA2C8u;
+    /// <summary>ROM string "graphicset" [high]</summary>
+    public const uint Str_Graphicset = 0x800CA2D8u;
     /// <summary>const f32[2] {0.5, 3000}; Level_BuildActiveActorLists compares camera distance with [1] [medium]</summary>
     public const uint Level_ActivateDistConsts = 0x800CA2F8u;
+    /// <summary>ROM string "grid section" [high]</summary>
+    public const uint Str_GridSection = 0x800CA300u;
+    /// <summary>ROM string "Vis Info" [high]</summary>
+    public const uint Str_VisInfo = 0x800CA310u;
+    /// <summary>base of a rodata pair: float 127.0 then ROM string 'level name' at +4 passed as the label to Resource_LoadByCartridgeKey by Level_CopyLevelName [medium]</summary>
+    public const uint ResLabel_LevelNameBase = 0x800CA370u;
+    /// <summary>ROM string "CScene__GetBLLevelData: bllevel data index" [high]</summary>
+    public const uint Str_CSceneGetBLLevelDataBllevelDataIndex = 0x800CA380u;
+    /// <summary>ROM string "CScene__GetBLLevelData: bllevel data" [high]</summary>
+    public const uint Str_CSceneGetBLLevelDataBllevelData = 0x800CA3ACu;
+    /// <summary>ROM string "%s %s" [high]</summary>
+    public const uint Str_SS = 0x800CA4F0u;
+    /// <summary>ROM string "Oct 13 1999" [high]</summary>
+    public const uint Str_Oct131999 = 0x800CA4F8u;
+    /// <summary>ROM string "14:57:39" [high]</summary>
+    public const uint Str_145739 = 0x800CA504u;
     /// <summary>const f32 1.0; GameState_DrawFade skips the fade draw unless above it [medium]</summary>
     public const uint Fade_ClearThreshold = 0x800CA564u;
     /// <summary>const f32 255.0; GameState_DrawFade multiplies the fade t into an alpha byte [medium]</summary>
     public const uint Fade_AlphaScale = 0x800CA568u;
+    /// <summary>ROM string "Artsend Texture" [high]</summary>
+    public const uint Str_ArtsendTexture = 0x800CA5D0u;
+    /// <summary>ROM string "tex %d frm %d of %d, %s" [high]</summary>
+    public const uint Str_TexDFrmDOfD = 0x800CA5E0u;
+    /// <summary>ROM string "tex %d frm %d of %d" [high]</summary>
+    public const uint Str_TexDFrmDOfD2 = 0x800CA5F8u;
     /// <summary>const f64 table (+Inf 0x7FF0..., 1.0, ...) read by MathLib_Ldexp for overflow results [medium]</summary>
     public const uint MathLib_LdexpConsts = 0x800CA850u;
     /// <summary>const f32 {2pi, 2pi, pi}; MathLib_func_0029F1D4_wrap wraps an angle into range [medium]</summary>
     public const uint MathLib_AngleWrapConsts = 0x800CAE28u;
+    /// <summary>ROM string "%d" [high]</summary>
+    public const uint Str_D = 0x800CAF20u;
+    /// <summary>ROM string "..\DATA\TScredData.exp" [high]</summary>
+    public const uint Str_DATATScredDataExp = 0x800CAF30u;
+    /// <summary>ROM string "N64 V1.00" [high]</summary>
+    public const uint Str_N64V100 = 0x800CB480u;
     /// <summary>set 1 by DevLink_StartIoThread, toggled around writes in DevLink_IoThread; Bus_*BlockDma use DMA only when 0 (address also = .data start for Debug_IsDataPointer range) [medium]</summary>
     public const uint DevLink_IoThreadActive = 0x800CD390u;
     /// <summary>DevLink_* request functions set it to 1/2 and test == 2 (link state of the dev-host protocol) [medium]</summary>
     public const uint DevLink_State = 0x800CD394u;
+    /// <summary>state table set as StateTablePtr by Turret_Init (update Turret_Update) [medium]</summary>
+    public const uint Turret_StateTable = 0x800CD3C0u;
     /// <summary>Objective_Restore sets 1 around Actor_DispatchEvent; Objective_EnterTriggered skips firing triggers while set [medium]</summary>
     public const uint Objective_RestoringFlag = 0x800CD4C0u;
+    /// <summary>state table set as StateTablePtr by Objective_Init (update Objective_Update) [medium]</summary>
+    public const uint Objective_StateTable = 0x800CD4C4u;
+    /// <summary>state table set as StateTablePtr by Toggle_Init (update Toggle_Update) [medium]</summary>
+    public const uint Toggle_StateTable = 0x800CD5D0u;
+    /// <summary>state table set as StateTablePtr by Destructible_Init (update Destructible_Update) [medium]</summary>
+    public const uint Destructible_StateTable = 0x800CD670u;
     /// <summary>s16 pairs {item id, value} groups separated by -1; walked by ItemSpawner_SpawnItem [medium]</summary>
     public const uint ItemSpawner_ItemGroupTable = 0x800CD760u;
+    /// <summary>s16 {id, weight} list (-1 end; empty in this build) RandomGen_PickWeighted picks for spawner flag 0x20 in multiplayer [medium]</summary>
+    public const uint ItemSpawner_MpAmmoWeights = 0x800CD764u;
+    /// <summary>s16 {id, weight} list {6A5:1000, 6A6:500, 6A7:10, -1} for spawner flag 0x40 in single player (when Player_IsHurt) [medium]</summary>
+    public const uint ItemSpawner_HealthWeights = 0x800CD768u;
+    /// <summary>tail of ItemSpawner_HealthWeights {6A6:500, 6A7:10, -1} used instead when Game_Flag_8013B290 is set [medium]</summary>
+    public const uint ItemSpawner_HealthWeightsAlt = 0x800CD778u;
+    /// <summary>s16 {id, weight} list {6B8:1000, 6BA:500, 6BB:10, -1} RandomGen_PickWeighted picks for spawner flag 0x40 in multiplayer [medium]</summary>
+    public const uint ItemSpawner_MpHealthWeights = 0x800CD784u;
+    /// <summary>s16 {id, weight} list (-1 end; empty) RandomGen_PickWeighted picks for spawner flag 0x80 in single player [medium]</summary>
+    public const uint ItemSpawner_SpSpecialWeights = 0x800CD794u;
+    /// <summary>s16 {id, weight} list (-1 end; empty) filtered by canSpawnTbl for spawner flag 0x80 in multiplayer [medium]</summary>
+    public const uint ItemSpawner_MpSpecialWeights = 0x800CD798u;
+    /// <summary>state table set as StateTablePtr by ItemSpawner_Init (update ItemSpawner_Update) [medium]</summary>
+    public const uint ItemSpawner_StateTable = 0x800CD79Cu;
+    /// <summary>state table set as StateTablePtr by AnimProp_Init (update AnimProp_Update) [medium]</summary>
+    public const uint AnimProp_StateTable = 0x800CD840u;
     /// <summary>u32[22][2] per weapon and fire slot; Combat_UpdateFiring switches on the entry [medium]</summary>
     public const uint Combat_FireModeTable = 0x800CDA40u;
+    /// <summary>AI state table installed by Brain_ResetBrain via Ai_SetStateTable before Ai_SetState(ctl, 2) [medium]</summary>
+    public const uint Brain_StateTable = 0x800CE040u;
+    /// <summary>8-byte {mask, object id} rows (0 end; 1:6A5, 2:6A6 ... others 0x898) Actor_DropItemsOnce spawns for bits set in m1 [medium]</summary>
+    public const uint Actor_DropTableMask1 = 0x800CE240u;
+    /// <summary>8-byte {mask, object id} rows ({1, 0x898}, 0 end) Actor_DropItemsOnce spawns for bits set in m2 [medium]</summary>
+    public const uint Actor_DropTableMask2 = 0x800CE348u;
     /// <summary>s32[] max ammo per ammo type (50,50,5,1,3,1,1,...); Items_AddAmmoCapped/GetAmmoCapacity/Player max-ammo read it [high]</summary>
     public const uint Ammo_CapacityTable = 0x800CE3E8u;
     /// <summary>Items_ApplySpecial stores Audio_IsSoundOn() when the monkey tag changes hands; saved sound state [low]</summary>
@@ -60,6 +204,8 @@ public static class Gv
     public const uint Flashlight_LightDef1 = 0x800CE418u;
     /// <summary>light def for the third flashlight light; Player_UpdateFlashlight also compares/sets light DefPtr to it [medium]</summary>
     public const uint Flashlight_LightDef2 = 0x800CE420u;
+    /// <summary>alternate light def Player_UpdateFlashlight swaps with Flashlight_LightDef2 on the third flashlight light when button 0x20 is pressed [medium]</summary>
+    public const uint Flashlight_LightDefAlt = 0x800CE428u;
     /// <summary>s32[] actor type ids (0x460...) indexed by character variant (def +0xC); Player_SetCharacter/DrawModel/MenuItem_DrawModel [medium]</summary>
     public const uint Player_VariantActorTypeTable = 0x800CE430u;
     /// <summary>s32[3] = {0x461,0x462,0x463}; Player_GetCharacterSoundId/Hud_DrawCrosshair/Player_UpdateState compare actor kind/unkE4 with entries [medium]</summary>
@@ -88,12 +234,28 @@ public static class Gv
     public const uint Hud_MoverPathSlot11 = 0x800CE6D8u;
     /// <summary>float bits (2.0) read as s32 and converted; Hud_DrawModel3D scales the matrix x column by it [medium]</summary>
     public const uint Hud_Model3DScaleX = 0x800CE72Cu;
+    /// <summary>float params {10.24, 30.72, 13.44 ...} passed to Player_UpdateGroundMovement by the walk state (standing) and Player_UpdateFall [medium]</summary>
+    public const uint Player_WalkMoveParams = 0x800CE730u;
+    /// <summary>float params (same leading values as walk) passed to Player_UpdateGroundMovement by PlayerState_UpdateState08 (airborne until landing) [medium]</summary>
+    public const uint Player_State08MoveParams = 0x800CE79Cu;
+    /// <summary>float params {5.12, 15.36 ...} passed to Player_UpdateGroundMovement by the walk state and state 04 when crouched (CrouchOffset &gt; 5.12) [medium]</summary>
+    public const uint Player_CrouchMoveParams = 0x800CE7C0u;
     /// <summary>float table {0.25,0.9,0.6,0.3,-pi/2,pi/2} passed to Player_UpdateViewTurn by the walk/stand/swim/fall states [medium]</summary>
     public const uint Player_ViewTurnParams = 0x800CE7E4u;
+    /// <summary>float params {0.25, 0.9, 0.6, 0.3 ...} passed to Player_UpdateViewTurn by the stand/walk/state-04 updates when crouched [medium]</summary>
+    public const uint Player_CrouchViewTurnParams = 0x800CE7FCu;
+    /// <summary>float params {7.68, 23.04 ...} passed to Player_UpdateGroundMovement by Player_UpdateSurfaceSwimState [medium]</summary>
+    public const uint Player_SurfaceSwimMoveParams = 0x800CE82Cu;
     /// <summary>s16 sound id played by Player_UpdateSurfaceSwimState every 11.25 time units while moving [medium]</summary>
     public const uint Player_SwimStrokeSoundId = 0x800CE84Eu;
+    /// <summary>float params passed to Player_UpdateSwimMovement by Player_UpdateUnderwaterState [medium]</summary>
+    public const uint Player_UnderwaterSwimParams = 0x800CE850u;
     /// <summary>s16 sound id played at the player position by Player_UpdateUnderwaterState [medium]</summary>
     public const uint Player_UnderwaterSoundId = 0x800CE872u;
+    /// <summary>float params {0.4, 0.5, 1.0, 0.25 ...} passed to Player_UpdateViewTurn by Player_UpdateUnderwaterState [medium]</summary>
+    public const uint Player_UnderwaterViewTurnParams = 0x800CE874u;
+    /// <summary>Shared_StateInfo[] {0022C884, 00224078 ...} stored as the player state table (+0x13B4) by Player_InitPool/Player_SetupSlot (Char0 table is 800CED30) [medium]</summary>
+    public const uint Player_StateTableDefault = 0x800CE8C8u;
     /// <summary>24-byte rows indexed by player weapon (p+0x650); row.unk0 = weapon kind read by all Weapon_UpdateIdle* [medium]</summary>
     public const uint Weapon_InfoTable = 0x800CE8DCu;
     /// <summary>Shared_StateInfo[] assigned to p-&gt;13B4 states when character==0 (Player_SetCharacter); compared in player state code [medium]</summary>
@@ -120,12 +282,16 @@ public static class Gv
     public const uint Weapon_MirrorViewY = 0x800CF284u;
     /// <summary>debug flag (0); Items_UpdateWeaponMatrix negates the view-model offset z when set [medium]</summary>
     public const uint Weapon_MirrorViewZ = 0x800CF288u;
+    /// <summary>base state table set as StateTablePtr by Weapon_Init (func_00232A38, first slot of Weapon_ClassCallbacks) [medium]</summary>
+    public const uint Weapon_StateTable = 0x800CF298u;
     /// <summary>s32 (20) degrees; Items_UpdateMinigunFire/UpdateChargeSpin approach the barrel spin to it [medium]</summary>
     public const uint Minigun_SpinDegrees = 0x800CF518u;
     /// <summary>s32 (8) degrees; Items_UpdateEmaciatorFire approaches the spin to it [medium]</summary>
     public const uint Emaciator_SpinDegrees = 0x800CF5BCu;
     /// <summary>float bits (30.0) step for MathUtil_ApproachLinear in Items_UpdateChestBursterAlt [medium]</summary>
     public const uint ChestBurster_AltStep = 0x800CF9E0u;
+    /// <summary>class callback table {Weapon_Init 00232A38, ...} of the player weapon sub-actor (player+0x2E8); returned/used by Actor_GetClassCallbacks, Actor_CallRestore, Actor_Init [high]</summary>
+    public const uint Weapon_ClassCallbacks = 0x800CFB04u;
     /// <summary>array of pointers to weapon definitions indexed by weapon id (WpnDesc info.type, ammo slot fields); read by Weapon_*/Player_* code [high]</summary>
     public const uint WeaponDefTable = 0x800D052Cu;
     /// <summary>s16[] ammo type per weapon; Items_GetAmmoType returns entry idx [high]</summary>
@@ -168,6 +334,8 @@ public static class Gv
     public const uint Sound_DmaCacheLoadCount = 0x800D0954u;
     /// <summary>set 1 at the end of Sound_Init; Sound_UpdateFrame/UpdateAmbientLoop require it [medium]</summary>
     public const uint Sound_Initialized = 0x800D0960u;
+    /// <summary>s32 reverb param table {6 sections, length 4800, ...} set as ALSynConfig params with fxType 6 (AL_FX_CUSTOM) by Sound_Init [medium]</summary>
+    public const uint Sound_CustomReverbParams = 0x800D0964u;
     /// <summary>M04Tab {key sound id, val volume scale} 8-byte rows; Sound_InitVolume matches SoundId and sets VolumeScale [medium]</summary>
     public const uint Sound_VolumeTable = 0x800D0A30u;
     /// <summary>float 26214400 (5120^2); Sound_GetDistanceGain returns 1 - d2/max and 0 beyond it [high]</summary>
@@ -188,12 +356,16 @@ public static class Gv
     public const uint LoopSound_LastPauseId = 0x800D0D58u;
     /// <summary>LoopSound_ResumeAll stores a resumed node id (debug) [medium]</summary>
     public const uint LoopSound_LastResumeId = 0x800D0D5Cu;
+    /// <summary>ALSound {envelope 800D0D60, keymap 800D0D70, wavetable 8010C060, pan 0x40, vol 0x3F} passed to alSndpAllocate by SndFx_Init [medium]</summary>
+    public const uint SndFx_StreamSound = 0x800D0D78u;
     /// <summary>Seq_Update sets it to the started sequence id (SndSeq+0x28), -1 on stop, 0 when the player finishes [medium]</summary>
     public const uint Seq_PlayingSongId = 0x800D0D90u;
     /// <summary>Sound_Update counts to 10 and resets (periodic work every 10 frames) [medium]</summary>
     public const uint Sound_UpdateTick = 0x800D0D94u;
     /// <summary>u8 set 1 by Controls_ResetSession; Controls_PollAll/LatchAll/Reset do nothing while 0 [high]</summary>
     public const uint Pad_Initialized = 0x800D0E50u;
+    /// <summary>u8 bit pattern of connected controllers written by osContInit(Pad_SiMesgQueue, &amp;this, Pad_ContStatus) in Controls_ResetSession (Pad_Initialized+1) [high]</summary>
+    public const uint Pad_ContBitPattern = 0x800D0E51u;
     /// <summary>u8 cleared then incremented per controller that Pad_InitSlot finds in Controls_ResetSession [high]</summary>
     public const uint Pad_ConnectedCount = 0x800D0E52u;
     /// <summary>60-frame countdown in Menu_UpdateFrontendFrame; at 0 resets to 60 and fires the periodic state kick (D_8010FBB8) [medium]</summary>
@@ -242,6 +414,14 @@ public static class Gv
     public const uint Gfx_RspInitDL = 0x800D0F10u;
     /// <summary>static display list of SetOtherMode_H defaults called by RenderMode_Load*Microcode/BeginFrameDisplayList [high]</summary>
     public const uint Gfx_RdpInitDL = 0x800D0F40u;
+    /// <summary>static display-list template (SETTILE/LOADBLOCK ...) Texture_EmitLoad uses for 4/8-bit (CI, with TLUT othermode) textures [medium]</summary>
+    public const uint Texture_LoadDlCI = 0x800D0FA0u;
+    /// <summary>variant of Texture_LoadDlCI chosen by Texture_EmitLoad when wrapS bit 0 (mirror) is set [medium]</summary>
+    public const uint Texture_LoadDlCIMirrorS = 0x800D1020u;
+    /// <summary>display-list template Texture_EmitLoad uses for 16-bit (pixel size 2, default) textures [medium]</summary>
+    public const uint Texture_LoadDl16b = 0x800D10A0u;
+    /// <summary>display-list template Texture_EmitLoad uses for 32-bit (pixel size 3) textures [medium]</summary>
+    public const uint Texture_LoadDl32b = 0x800D1138u;
     /// <summary>static display list (settile/loadblock) called by Texture_EmitLoad [medium]</summary>
     public const uint Texture_LoadBlockDL = 0x800D11D0u;
     /// <summary>static display list for the blob shadow, used by Model_EmitBlobDisplayList when a1 == 0 [medium]</summary>
@@ -502,10 +682,34 @@ public static class Gv
     public const uint Menu_IdleTimer = 0x800D2CA0u;
     /// <summary>Decals_Spawn allows one spawn per frame (returns early when set); Effects_UpdateFrame clears [medium]</summary>
     public const uint Decals_SpawnedThisFrame = 0x800D2E58u;
+    /// <summary>static display list (setothermode, geometry mode ...) called (gSPDisplayList) by Decals_DrawAll before the decals [medium]</summary>
+    public const uint Decal_SetupDl = 0x800D2E60u;
+    /// <summary>static display list called (gSPDisplayList) by Decals_DrawLaserDot before the laser dot [medium]</summary>
+    public const uint LaserDot_SetupDl = 0x800D2F18u;
     /// <summary>16-byte region Items_func_002A7F58_is_restorable refuses to restore [low]</summary>
     public const uint Restore_ExcludedBuffer_800D2F80 = 0x800D2F80u;
     /// <summary>returned by Text_GetFontTexture [medium]</summary>
     public const uint Text_FontTexturePtr = 0x800D2F90u;
+    /// <summary>ROM string "_" [high]</summary>
+    public const uint Str_800D2F94 = 0x800D2F94u;
+    /// <summary>ROM string "_" [high]</summary>
+    public const uint Str_800D3080 = 0x800D3080u;
+    /// <summary>ScreenMover path started by BossBar_ShowBar1 [medium]</summary>
+    public const uint BossBar_MoverPathBar1 = 0x800D318Cu;
+    /// <summary>ScreenMover path started by BossBar_ShowBar2 [medium]</summary>
+    public const uint BossBar_MoverPathBar2 = 0x800D31A0u;
+    /// <summary>4 24-byte Row18 rows {id ...} searched by Items_FindSpecialWeaponEntry [medium]</summary>
+    public const uint Items_SpecialWeaponTable = 0x800D31D0u;
+    /// <summary>rows searched by id by Items_FindAmmoEntry [medium]</summary>
+    public const uint Items_AmmoTable = 0x800D3230u;
+    /// <summary>rows searched by id by Items_FindHealthEntry [medium]</summary>
+    public const uint Items_HealthTable = 0x800D32A8u;
+    /// <summary>rows searched by id by Items_FindLifeForceEntry [medium]</summary>
+    public const uint Items_LifeForceTable = 0x800D3368u;
+    /// <summary>rows searched by id by Items_FindSpecialEntry [medium]</summary>
+    public const uint Items_SpecialTable = 0x800D3390u;
+    /// <summary>16 16-byte Row10 rows {id ...} searched by Items_FindItemEntry [medium]</summary>
+    public const uint Items_ItemTable = 0x800D33C0u;
     /// <summary>24-byte rows indexed by DropPackBase+DropPackIndex; Player_UpdateState drops packs, Items_FindAmmoPackEntry scans [medium]</summary>
     public const uint Ammo_PackTable = 0x800D34C0u;
     /// <summary>dbgLinkCmdLoadProgram sets 1 when a program load starts [medium]</summary>
@@ -786,14 +990,88 @@ public static class Gv
     public const uint Results_TagsHeader = 0x800D75B8u;
     /// <summary>pointer to ROM string 'FLAGS' stored as column header text by Results_Open (arena type 0) [high]</summary>
     public const uint Results_FlagsHeader = 0x800D75BCu;
+    /// <summary>text object -&gt; ROM text 'difficulty : easy', installed as the item label by InGameMenu_FormatDifficultyLabel [high]</summary>
+    public const uint InGameMenu_DifficultyLabelEasy = 0x800D75D4u;
+    /// <summary>text object -&gt; ROM text 'difficulty : normal', installed as the item label by InGameMenu_FormatDifficultyLabel [high]</summary>
+    public const uint InGameMenu_DifficultyLabelNormal = 0x800D75D8u;
+    /// <summary>text object -&gt; ROM text 'difficulty : hard', installed as the item label by InGameMenu_FormatDifficultyLabel [high]</summary>
+    public const uint InGameMenu_DifficultyLabelHard = 0x800D75DCu;
+    /// <summary>text object -&gt; ROM text 'control type : expert', installed as the item label by InGameMenu_FormatControlTypeLabel [high]</summary>
+    public const uint InGameMenu_ControlTypeLabelExpert = 0x800D75E0u;
+    /// <summary>text object -&gt; ROM text 'control type : arcade', installed as the item label by InGameMenu_FormatControlTypeLabel [high]</summary>
+    public const uint InGameMenu_ControlTypeLabelArcade = 0x800D75E4u;
+    /// <summary>text object -&gt; ROM text 'control side : left', installed as the item label by InGameMenu_FormatControlSideLabel [high]</summary>
+    public const uint InGameMenu_ControlSideLabelLeft = 0x800D75ECu;
+    /// <summary>text object -&gt; ROM text 'control side : right', installed as the item label by InGameMenu_FormatControlSideLabel [high]</summary>
+    public const uint InGameMenu_ControlSideLabelRight = 0x800D75F0u;
+    /// <summary>text object -&gt; ROM text 'look spring : on', installed as the item label by InGameMenu_FormatLookSpringLabel [high]</summary>
+    public const uint InGameMenu_LookSpringLabelOn = 0x800D75F4u;
+    /// <summary>text object -&gt; ROM text 'look spring : off', installed as the item label by InGameMenu_FormatLookSpringLabel [high]</summary>
+    public const uint InGameMenu_LookSpringLabelOff = 0x800D75F8u;
+    /// <summary>text object -&gt; ROM text 'auto aim : on', installed as the item label by InGameMenu_FormatAutoAimLabel [high]</summary>
+    public const uint InGameMenu_AutoAimLabelOn = 0x800D75FCu;
+    /// <summary>text object -&gt; ROM text 'auto aim : off', installed as the item label by InGameMenu_FormatAutoAimLabel [high]</summary>
+    public const uint InGameMenu_AutoAimLabelOff = 0x800D7600u;
+    /// <summary>text object -&gt; ROM text 'blood color : off', installed as the item label by InGameMenu_FormatBloodColorLabel [high]</summary>
+    public const uint InGameMenu_BloodColorLabelOff = 0x800D7604u;
+    /// <summary>text object -&gt; ROM text 'blood color : red', installed as the item label by InGameMenu_FormatBloodColorLabel [high]</summary>
+    public const uint InGameMenu_BloodColorLabelRed = 0x800D7608u;
+    /// <summary>text object -&gt; ROM text 'blood color : green', installed as the item label by InGameMenu_FormatBloodColorLabel [high]</summary>
+    public const uint InGameMenu_BloodColorLabelGreen = 0x800D760Cu;
+    /// <summary>text object -&gt; ROM text '2 plyr layout: horz', installed as the item label by InGameMenu_FormatTwoPlayerLayoutLabel [high]</summary>
+    public const uint InGameMenu_TwoPlayerLayoutLabelHorz = 0x800D7610u;
+    /// <summary>text object -&gt; ROM text '2 plyr layout: vert', installed as the item label by InGameMenu_FormatTwoPlayerLayoutLabel [high]</summary>
+    public const uint InGameMenu_TwoPlayerLayoutLabelVert = 0x800D7614u;
+    /// <summary>text object -&gt; ROM text 'opacity : clear', installed as the item label by InGameMenu_FormatOpacityLabel [high]</summary>
+    public const uint InGameMenu_OpacityLabelClear = 0x800D7618u;
+    /// <summary>text object -&gt; ROM text 'opacity : opaque', installed as the item label by InGameMenu_FormatOpacityLabel [high]</summary>
+    public const uint InGameMenu_OpacityLabelOpaque = 0x800D761Cu;
     /// <summary>label string-pointer table ('opacity      :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatOpacityLabel [high]</summary>
     public const uint InGameMenu_OpacityLabelTable = 0x800D7620u;
+    /// <summary>text object -&gt; ROM text 'control stick horz:norm', installed as the item label by InGameMenu_FormatStickHorzLabel [high]</summary>
+    public const uint InGameMenu_StickHorzLabelNorm = 0x800D7624u;
     /// <summary>label string-pointer table ('control stick horz:' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatStickHorzLabel [high]</summary>
     public const uint InGameMenu_StickHorzLabelTable = 0x800D7628u;
+    /// <summary>text object -&gt; ROM text 'control stick vert:norm', installed as the item label by InGameMenu_FormatStickVertLabel [high]</summary>
+    public const uint InGameMenu_StickVertLabelNorm = 0x800D762Cu;
     /// <summary>label string-pointer table ('control stick vert:' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatStickVertLabel [high]</summary>
     public const uint InGameMenu_StickVertLabelTable = 0x800D7630u;
+    /// <summary>text object -&gt; ROM text 'Weapon Select: quick', installed as the item label by InGameMenu_FormatWeaponSelectLabel [high]</summary>
+    public const uint InGameMenu_WeaponSelectLabelQuick = 0x800D7634u;
+    /// <summary>text object -&gt; ROM text 'Weapon Select: norm', installed as the item label by InGameMenu_FormatWeaponSelectLabel [high]</summary>
+    public const uint InGameMenu_WeaponSelectLabelNorm = 0x800D7638u;
+    /// <summary>text object -&gt; ROM text 'Resolution : lo-rez' returned by Video_GetResolutionLabel [high]</summary>
+    public const uint Video_ResolutionLabelLoRez = 0x800D763Cu;
+    /// <summary>text object -&gt; ROM text 'Resolution : hi-rez' returned by Video_GetResolutionLabel [high]</summary>
+    public const uint Video_ResolutionLabelHiRez = 0x800D7640u;
+    /// <summary>text object -&gt; ROM text 'Resolution :hi-rez-lb' returned by Video_GetResolutionLabel [high]</summary>
+    public const uint Video_ResolutionLabelHiRezLetterbox = 0x800D7644u;
+    /// <summary>text object -&gt; ROM text 'Resolution :lo-rez-lb' returned by Video_GetResolutionLabel [high]</summary>
+    public const uint Video_ResolutionLabelLoRezLetterbox = 0x800D764Cu;
+    /// <summary>text object -&gt; ROM text 'brightness : norm', installed as the item label by InGameMenu_FormatBrightnessLabel [high]</summary>
+    public const uint InGameMenu_BrightnessLabelNorm = 0x800D7650u;
     /// <summary>label string-pointer table ('brightness   :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatBrightnessLabel [high]</summary>
     public const uint InGameMenu_BrightnessLabelTable = 0x800D7654u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 0 and fills with %02d of sub+0x83 (1..9) [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelPort1 = 0x800D7670u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 1 and fills with %02d of sub+0x83 (1..9) [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelPort2 = 0x800D7674u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 2 and fills with %02d of sub+0x83 (1..9) [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelPort3 = 0x800D7678u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 3 and fills with %02d of sub+0x83 (1..9) [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelPort4 = 0x800D767Cu;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses when sub+0x83 == 0 [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelMin = 0x800D7680u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses when sub+0x83 == 10 [medium]</summary>
+    public const uint LegacyMenu_Setting83LabelMax = 0x800D7684u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting7BLabel_0043E520 uses when sub+0x7B == 0 [medium]</summary>
+    public const uint LegacyMenu_Setting7BLabel0 = 0x800D7688u;
+    /// <summary>text object (blank ROM text (empty in US)) LegacyMenu_SetSetting7BLabel_0043E520 uses when sub+0x7B == 1 [medium]</summary>
+    public const uint LegacyMenu_Setting7BLabel1 = 0x800D768Cu;
+    /// <summary>text object -&gt; ROM text 'blue blood score :' set by LegacyMenu_SetBlueScoreLabel [high]</summary>
+    public const uint LegacyMenu_BlueScoreLabel = 0x800D76C8u;
+    /// <summary>text object -&gt; ROM text 'red blood score :' set by LegacyMenu_SetRedScoreLabel [high]</summary>
+    public const uint LegacyMenu_RedScoreLabel = 0x800D76CCu;
     /// <summary>pointer to "RAGE WARS"; PakMenu note lookup/write uses it as the player note name [medium]</summary>
     public const uint Pak_PlayerNoteNamePtr = 0x800D7700u;
     /// <summary>pointer to the game note name ('TUROK 2') searched/written on the pak by PakMenu_CheckPortForSave/WriteGameNote/RefreshNoteItemFlags [high]</summary>
@@ -802,12 +1080,30 @@ public static class Gv
     public const uint CPak_CompanyCodeStrPtr = 0x800D7708u;
     /// <summary>pointer to "NRWE" (game code; company code "51" ptr at 800D7708); CPak_IsOwnNoteCode and note writes compare/pass it [high]</summary>
     public const uint Pak_GameCodePtr = 0x800D770Cu;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatPlayerLabel, which sprintfs the pad port + 1 at its end (not in boot mode) [medium]</summary>
+    public const uint PakMenu_PlayerLabel = 0x800D7710u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when loading a player note [medium]</summary>
+    public const uint PakMenu_TitleLoadPlayer = 0x800D7768u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving a player note [medium]</summary>
+    public const uint PakMenu_TitleSavePlayer = 0x800D776Cu;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when loading a game note [medium]</summary>
+    public const uint PakMenu_TitleLoadGame = 0x800D7770u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving a game note [medium]</summary>
+    public const uint PakMenu_TitleSaveGame = 0x800D7774u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving, for item codes 3..18 (note rows) [medium]</summary>
+    public const uint PakMenu_TitleSaveNoteRow = 0x800D777Cu;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatFreePagesLabel when saving/loading; free and needed page counts (%3d) are written into it [medium]</summary>
+    public const uint PakMenu_FreePagesLabel = 0x800D7780u;
     /// <summary>pointer to ROM string 'OTHER GAME' shown for notes with invalid name chars (PakMenu_FormatNoteLabel, PlayerProfile_ListPakNotes) [high]</summary>
     public const uint PakMenu_OtherGameLabel = 0x800D7784u;
     /// <summary>pointer to an empty ROM string copied into name and extension of an unused note slot by PakMenu_FormatNoteLabel [medium]</summary>
     public const uint PakMenu_BlankNoteLabel = 0x800D7788u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel in boot mode [medium]</summary>
+    public const uint PakMenu_TitleBootCheck = 0x800D778Cu;
     /// <summary>address of a (blank) entry of the pak-menu label pointer table 0x800D7778, stored into item word 5 in boot mode by PakMenu_FormatExitLabel [low]</summary>
     public const uint PakMenu_ExitLabelEntry_800D7794 = 0x800D7794u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatFreePagesLabel in boot mode [medium]</summary>
+    public const uint PakMenu_FreePagesLabelBoot = 0x800D7798u;
     /// <summary>pointer to the (blank in US) rank label PakMenu_FormatRankLabel uses when the note's frag count is &lt;50 [medium]</summary>
     public const uint PakMenu_RankLabelUnder50 = 0x800D779Cu;
     /// <summary>pointer to the (blank in US) rank label PakMenu_FormatRankLabel uses when the note's frag count is 50..149 [medium]</summary>
@@ -832,6 +1128,274 @@ public static class Gv
     public const uint PakMenu_RankLabel6500 = 0x800D77C4u;
     /// <summary>pointer to the (blank in US) rank label PakMenu_FormatRankLabel uses when the note's frag count is 9999+ [medium]</summary>
     public const uint PakMenu_RankLabel9999 = 0x800D77C8u;
+    /// <summary>text object (ROM text 'note info') set by PakMenu_FormatGameNoteTitle when PakMenu_GameNoteIsLoad [high]</summary>
+    public const uint PakMenu_GameNoteTitleLoad = 0x800D77CCu;
+    /// <summary>text object (ROM text 'delete note') set by PakMenu_FormatGameNoteTitle when deleting the game note [high]</summary>
+    public const uint PakMenu_GameNoteTitleDelete = 0x800D77D0u;
+    /// <summary>text object (ROM text 'difficulty : easy') set by PakMenu_FormatDifficultyLabel for save difficulty 0 [high]</summary>
+    public const uint PakMenu_DifficultyLabelEasy = 0x800D77D4u;
+    /// <summary>text object (ROM text 'difficulty :normal') set by PakMenu_FormatDifficultyLabel for save difficulty 16 [high]</summary>
+    public const uint PakMenu_DifficultyLabelNormal = 0x800D77D8u;
+    /// <summary>text object (ROM text 'difficulty : hard') set by PakMenu_FormatDifficultyLabel for save difficulty 32 [high]</summary>
+    public const uint PakMenu_DifficultyLabelHard = 0x800D77DCu;
+    /// <summary>text object (ROM text 'note info') set by PakMenu_FormatPlayerNoteTitle when PakMenu_NoteLoadMode [high]</summary>
+    public const uint PakMenu_PlayerNoteTitleLoad = 0x800D77ECu;
+    /// <summary>text object (ROM text 'delete note') set by PakMenu_FormatPlayerNoteTitle when deleting an own player note [high]</summary>
+    public const uint PakMenu_PlayerNoteTitleDelete = 0x800D77F0u;
+    /// <summary>text object (ROM text 'delete note') set by PakMenu_FormatPlayerNoteTitle when deleting a foreign note [high]</summary>
+    public const uint PakMenu_PlayerNoteTitleDeleteForeign = 0x800D77F4u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatPlayerTypeLabel for a foreign note [high]</summary>
+    public const uint PakMenu_TypeLabelForeign = 0x800D77FCu;
+    /// <summary>text object (ROM text 'type :') set by PakMenu_FormatPlayerTypeLabel for an own note; the character type text is copied in [high]</summary>
+    public const uint PakMenu_TypeLabel = 0x800D7804u;
+    /// <summary>text object (ROM text 'load?') set by PakMenu_FormatGameNotePrompt/FormatPlayerNotePrompt in load mode [high]</summary>
+    public const uint PakMenu_PromptLoad = 0x800D7810u;
+    /// <summary>text object (ROM text 'delete?') set by PakMenu_FormatGameNotePrompt/FormatPlayerNotePrompt in delete mode [high]</summary>
+    public const uint PakMenu_PromptDelete = 0x800D7814u;
+    /// <summary>text object (ROM text 'delete?') set by PakMenu_FormatPlayerNotePrompt when deleting a foreign note [high]</summary>
+    public const uint PakMenu_PromptDeleteForeign = 0x800D7818u;
+    /// <summary>text object (ROM text 'error') set by PakMenu_FormatMsgHeader for message ids 0..4,7,8,11,13,14 [high]</summary>
+    public const uint PakMenu_MsgHeaderError = 0x800D781Cu;
+    /// <summary>text object (ROM text 'important') set by PakMenu_FormatMsgHeader for message ids 5,6,9,10,12,15 [high]</summary>
+    public const uint PakMenu_MsgHeaderImportant = 0x800D7820u;
+    /// <summary>text object (ROM text 'ok') set by PakMenu_FormatMsgOkLabel for every message but 8 [high]</summary>
+    public const uint PakMenu_MsgOkLabel = 0x800D7824u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatMsgOkLabel for message 8 (no controller) [medium]</summary>
+    public const uint PakMenu_MsgOkLabelNoController = 0x800D7828u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 0 (PakMenu_OpenMsgPakFull) [medium]</summary>
+    public const uint PakMenu_MsgPakFullLine1 = 0x800D782Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 0 (PakMenu_OpenMsgPakFull) [medium]</summary>
+    public const uint PakMenu_MsgPakFullLine2 = 0x800D7830u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 0 (PakMenu_OpenMsgPakFull) [medium]</summary>
+    public const uint PakMenu_MsgPakFullLine3 = 0x800D7834u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 0 (PakMenu_OpenMsgPakFull) [medium]</summary>
+    public const uint PakMenu_MsgPakFullLine4 = 0x800D7838u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 0 (PakMenu_OpenMsgPakFull) [medium]</summary>
+    public const uint PakMenu_MsgPakFullLine5 = 0x800D783Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 1 (PakMenu_OpenMsgNoPak) [medium]</summary>
+    public const uint PakMenu_MsgNoPakLine1 = 0x800D7840u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 1 (PakMenu_OpenMsgNoPak) [medium]</summary>
+    public const uint PakMenu_MsgNoPakLine2 = 0x800D7844u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 1 (PakMenu_OpenMsgNoPak) [medium]</summary>
+    public const uint PakMenu_MsgNoPakLine3 = 0x800D7848u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 1 (PakMenu_OpenMsgNoPak) [medium]</summary>
+    public const uint PakMenu_MsgNoPakLine4 = 0x800D784Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 1 (PakMenu_OpenMsgNoPak) [medium]</summary>
+    public const uint PakMenu_MsgNoPakLine5 = 0x800D7850u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 2 (PakMenu_OpenMsgRumbleBoot) [medium]</summary>
+    public const uint PakMenu_MsgRumbleBootLine1 = 0x800D7854u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 2 (PakMenu_OpenMsgRumbleBoot) [medium]</summary>
+    public const uint PakMenu_MsgRumbleBootLine2 = 0x800D7858u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 2 (PakMenu_OpenMsgRumbleBoot) [medium]</summary>
+    public const uint PakMenu_MsgRumbleBootLine3 = 0x800D785Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 2 (PakMenu_OpenMsgRumbleBoot) [medium]</summary>
+    public const uint PakMenu_MsgRumbleBootLine4 = 0x800D7860u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 2 (PakMenu_OpenMsgRumbleBoot) [medium]</summary>
+    public const uint PakMenu_MsgRumbleBootLine5 = 0x800D7864u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 4 (PakMenu_OpenMsgRumbleLoad) [medium]</summary>
+    public const uint PakMenu_MsgRumbleLoadLine1 = 0x800D7868u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 4 (PakMenu_OpenMsgRumbleLoad) [medium]</summary>
+    public const uint PakMenu_MsgRumbleLoadLine2 = 0x800D786Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 4 (PakMenu_OpenMsgRumbleLoad) [medium]</summary>
+    public const uint PakMenu_MsgRumbleLoadLine3 = 0x800D7870u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 4 (PakMenu_OpenMsgRumbleLoad) [medium]</summary>
+    public const uint PakMenu_MsgRumbleLoadLine4 = 0x800D7874u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 4 (PakMenu_OpenMsgRumbleLoad) [medium]</summary>
+    public const uint PakMenu_MsgRumbleLoadLine5 = 0x800D7878u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 3 (PakMenu_OpenMsgRumbleSave) [medium]</summary>
+    public const uint PakMenu_MsgRumbleSaveLine1 = 0x800D787Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 3 (PakMenu_OpenMsgRumbleSave) [medium]</summary>
+    public const uint PakMenu_MsgRumbleSaveLine2 = 0x800D7880u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 3 (PakMenu_OpenMsgRumbleSave) [medium]</summary>
+    public const uint PakMenu_MsgRumbleSaveLine3 = 0x800D7884u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 3 (PakMenu_OpenMsgRumbleSave) [medium]</summary>
+    public const uint PakMenu_MsgRumbleSaveLine4 = 0x800D7888u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 3 (PakMenu_OpenMsgRumbleSave) [medium]</summary>
+    public const uint PakMenu_MsgRumbleSaveLine5 = 0x800D788Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 5 (PakMenu_OpenMsg5_0040AB98) [medium]</summary>
+    public const uint PakMenu_MsgMsg5Line1 = 0x800D7890u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 5 (PakMenu_OpenMsg5_0040AB98) [medium]</summary>
+    public const uint PakMenu_MsgMsg5Line2 = 0x800D7894u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 5 (PakMenu_OpenMsg5_0040AB98) [medium]</summary>
+    public const uint PakMenu_MsgMsg5Line3 = 0x800D7898u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 5 (PakMenu_OpenMsg5_0040AB98) [medium]</summary>
+    public const uint PakMenu_MsgMsg5Line4 = 0x800D789Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 5 (PakMenu_OpenMsg5_0040AB98) [medium]</summary>
+    public const uint PakMenu_MsgMsg5Line5 = 0x800D78A0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 6 (PakMenu_OpenMsgNoPakAtBoot) [medium]</summary>
+    public const uint PakMenu_MsgNoPakAtBootLine1 = 0x800D78A4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 6 (PakMenu_OpenMsgNoPakAtBoot) [medium]</summary>
+    public const uint PakMenu_MsgNoPakAtBootLine2 = 0x800D78A8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 6 (PakMenu_OpenMsgNoPakAtBoot) [medium]</summary>
+    public const uint PakMenu_MsgNoPakAtBootLine3 = 0x800D78ACu;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 6 (PakMenu_OpenMsgNoPakAtBoot) [medium]</summary>
+    public const uint PakMenu_MsgNoPakAtBootLine4 = 0x800D78B0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 6 (PakMenu_OpenMsgNoPakAtBoot) [medium]</summary>
+    public const uint PakMenu_MsgNoPakAtBootLine5 = 0x800D78B4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 7 (PakMenu_OpenMsgPakChanged) [medium]</summary>
+    public const uint PakMenu_MsgPakChangedLine1 = 0x800D78B8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 7 (PakMenu_OpenMsgPakChanged) [medium]</summary>
+    public const uint PakMenu_MsgPakChangedLine2 = 0x800D78BCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 7 (PakMenu_OpenMsgPakChanged) [medium]</summary>
+    public const uint PakMenu_MsgPakChangedLine3 = 0x800D78C0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 7 (PakMenu_OpenMsgPakChanged) [medium]</summary>
+    public const uint PakMenu_MsgPakChangedLine4 = 0x800D78C4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 7 (PakMenu_OpenMsgPakChanged) [medium]</summary>
+    public const uint PakMenu_MsgPakChangedLine5 = 0x800D78C8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 8 (PakMenu_OpenMsgNoController) [medium]</summary>
+    public const uint PakMenu_MsgNoControllerLine1 = 0x800D78CCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 8 (PakMenu_OpenMsgNoController) [medium]</summary>
+    public const uint PakMenu_MsgNoControllerLine2 = 0x800D78D0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 8 (PakMenu_OpenMsgNoController) [medium]</summary>
+    public const uint PakMenu_MsgNoControllerLine3 = 0x800D78D4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 8 (PakMenu_OpenMsgNoController) [medium]</summary>
+    public const uint PakMenu_MsgNoControllerLine4 = 0x800D78D8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 8 (PakMenu_OpenMsgNoController) [medium]</summary>
+    public const uint PakMenu_MsgNoControllerLine5 = 0x800D78DCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 9 (PakMenu_OpenMsgGameLoaded) [medium]</summary>
+    public const uint PakMenu_MsgGameLoadedLine1 = 0x800D78E0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 9 (PakMenu_OpenMsgGameLoaded) [medium]</summary>
+    public const uint PakMenu_MsgGameLoadedLine2 = 0x800D78E4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 9 (PakMenu_OpenMsgGameLoaded) [medium]</summary>
+    public const uint PakMenu_MsgGameLoadedLine3 = 0x800D78E8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 9 (PakMenu_OpenMsgGameLoaded) [medium]</summary>
+    public const uint PakMenu_MsgGameLoadedLine4 = 0x800D78ECu;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 9 (PakMenu_OpenMsgGameLoaded) [medium]</summary>
+    public const uint PakMenu_MsgGameLoadedLine5 = 0x800D78F0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 10 (PakMenu_OpenMsgPlayerSaved) [medium]</summary>
+    public const uint PakMenu_MsgPlayerSavedLine1 = 0x800D78F4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 10 (PakMenu_OpenMsgPlayerSaved) [medium]</summary>
+    public const uint PakMenu_MsgPlayerSavedLine2 = 0x800D78F8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 10 (PakMenu_OpenMsgPlayerSaved) [medium]</summary>
+    public const uint PakMenu_MsgPlayerSavedLine3 = 0x800D78FCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 10 (PakMenu_OpenMsgPlayerSaved) [medium]</summary>
+    public const uint PakMenu_MsgPlayerSavedLine4 = 0x800D7900u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 10 (PakMenu_OpenMsgPlayerSaved) [medium]</summary>
+    public const uint PakMenu_MsgPlayerSavedLine5 = 0x800D7904u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 11 (PakMenu_OpenMsg11_0040AC70) [medium]</summary>
+    public const uint PakMenu_MsgMsg11Line1 = 0x800D7908u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 11 (PakMenu_OpenMsg11_0040AC70) [medium]</summary>
+    public const uint PakMenu_MsgMsg11Line2 = 0x800D790Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 11 (PakMenu_OpenMsg11_0040AC70) [medium]</summary>
+    public const uint PakMenu_MsgMsg11Line3 = 0x800D7910u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 11 (PakMenu_OpenMsg11_0040AC70) [medium]</summary>
+    public const uint PakMenu_MsgMsg11Line4 = 0x800D7914u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 11 (PakMenu_OpenMsg11_0040AC70) [medium]</summary>
+    public const uint PakMenu_MsgMsg11Line5 = 0x800D7918u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 12 (PakMenu_OpenMsgNoteDeleted) [medium]</summary>
+    public const uint PakMenu_MsgNoteDeletedLine1 = 0x800D791Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 12 (PakMenu_OpenMsgNoteDeleted) [medium]</summary>
+    public const uint PakMenu_MsgNoteDeletedLine2 = 0x800D7920u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 12 (PakMenu_OpenMsgNoteDeleted) [medium]</summary>
+    public const uint PakMenu_MsgNoteDeletedLine3 = 0x800D7924u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 12 (PakMenu_OpenMsgNoteDeleted) [medium]</summary>
+    public const uint PakMenu_MsgNoteDeletedLine4 = 0x800D7928u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 12 (PakMenu_OpenMsgNoteDeleted) [medium]</summary>
+    public const uint PakMenu_MsgNoteDeletedLine5 = 0x800D792Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 13 (PakMenu_OpenMsgSaveFailed) [medium]</summary>
+    public const uint PakMenu_MsgSaveFailedLine1 = 0x800D7930u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 13 (PakMenu_OpenMsgSaveFailed) [medium]</summary>
+    public const uint PakMenu_MsgSaveFailedLine2 = 0x800D7934u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 13 (PakMenu_OpenMsgSaveFailed) [medium]</summary>
+    public const uint PakMenu_MsgSaveFailedLine3 = 0x800D7938u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 13 (PakMenu_OpenMsgSaveFailed) [medium]</summary>
+    public const uint PakMenu_MsgSaveFailedLine4 = 0x800D793Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 13 (PakMenu_OpenMsgSaveFailed) [medium]</summary>
+    public const uint PakMenu_MsgSaveFailedLine5 = 0x800D7940u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 14 (PakMenu_OpenMsgDeleteFailed) [medium]</summary>
+    public const uint PakMenu_MsgDeleteFailedLine1 = 0x800D7944u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 14 (PakMenu_OpenMsgDeleteFailed) [medium]</summary>
+    public const uint PakMenu_MsgDeleteFailedLine2 = 0x800D7948u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 14 (PakMenu_OpenMsgDeleteFailed) [medium]</summary>
+    public const uint PakMenu_MsgDeleteFailedLine3 = 0x800D794Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 14 (PakMenu_OpenMsgDeleteFailed) [medium]</summary>
+    public const uint PakMenu_MsgDeleteFailedLine4 = 0x800D7950u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 14 (PakMenu_OpenMsgDeleteFailed) [medium]</summary>
+    public const uint PakMenu_MsgDeleteFailedLine5 = 0x800D7954u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 15 (PakMenu_OpenMsgPakRepaired) [medium]</summary>
+    public const uint PakMenu_MsgPakRepairedLine1 = 0x800D7958u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 15 (PakMenu_OpenMsgPakRepaired) [medium]</summary>
+    public const uint PakMenu_MsgPakRepairedLine2 = 0x800D795Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 15 (PakMenu_OpenMsgPakRepaired) [medium]</summary>
+    public const uint PakMenu_MsgPakRepairedLine3 = 0x800D7960u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 15 (PakMenu_OpenMsgPakRepaired) [medium]</summary>
+    public const uint PakMenu_MsgPakRepairedLine4 = 0x800D7964u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 15 (PakMenu_OpenMsgPakRepaired) [medium]</summary>
+    public const uint PakMenu_MsgPakRepairedLine5 = 0x800D7968u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine1 when PakMenu_RepairFailed [medium]</summary>
+    public const uint PakMenu_RepairFailedLine1 = 0x800D7970u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine2 when PakMenu_RepairFailed [medium]</summary>
+    public const uint PakMenu_RepairFailedLine2 = 0x800D7974u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine3 when PakMenu_RepairFailed [medium]</summary>
+    public const uint PakMenu_RepairFailedLine3 = 0x800D7978u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine1 for the repair prompt [medium]</summary>
+    public const uint PakMenu_RepairPromptLine1 = 0x800D797Cu;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine2 for the repair prompt [medium]</summary>
+    public const uint PakMenu_RepairPromptLine2 = 0x800D7980u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine3 for the repair prompt (port number %1d appended) [medium]</summary>
+    public const uint PakMenu_RepairPromptLine3 = 0x800D7984u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatContinueLabel when PakMenu_IsLoading [medium]</summary>
+    public const uint PakMenu_ContinueLabelLoad = 0x800D7990u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatContinueLabel otherwise [medium]</summary>
+    public const uint PakMenu_ContinueLabelSave = 0x800D7994u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 0 (PakMenu_OpenConfirmRepair) [medium]</summary>
+    public const uint PakMenu_ConfirmRepairLine1 = 0x800D7998u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 0 (PakMenu_OpenConfirmRepair) [medium]</summary>
+    public const uint PakMenu_ConfirmRepairLine2 = 0x800D799Cu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 0 (PakMenu_OpenConfirmRepair) [medium]</summary>
+    public const uint PakMenu_ConfirmRepairLine3 = 0x800D79A0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 0 (PakMenu_OpenConfirmRepair) [medium]</summary>
+    public const uint PakMenu_ConfirmRepairLine4 = 0x800D79A4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 0 (PakMenu_OpenConfirmRepair) [medium]</summary>
+    public const uint PakMenu_ConfirmRepairLine5 = 0x800D79A8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 1 (PakMenu_OpenConfirmPakFull) [medium]</summary>
+    public const uint PakMenu_ConfirmPakFullLine1 = 0x800D79ACu;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 1 (PakMenu_OpenConfirmPakFull) [medium]</summary>
+    public const uint PakMenu_ConfirmPakFullLine2 = 0x800D79B0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 1 (PakMenu_OpenConfirmPakFull) [medium]</summary>
+    public const uint PakMenu_ConfirmPakFullLine3 = 0x800D79B4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 1 (PakMenu_OpenConfirmPakFull) [medium]</summary>
+    public const uint PakMenu_ConfirmPakFullLine4 = 0x800D79B8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 1 (PakMenu_OpenConfirmPakFull) [medium]</summary>
+    public const uint PakMenu_ConfirmPakFullLine5 = 0x800D79BCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame) [medium]</summary>
+    public const uint PakMenu_ConfirmNoRoomForGameLine1 = 0x800D79C0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame) [medium]</summary>
+    public const uint PakMenu_ConfirmNoRoomForGameLine2 = 0x800D79C4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame) [medium]</summary>
+    public const uint PakMenu_ConfirmNoRoomForGameLine3 = 0x800D79C8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame) [medium]</summary>
+    public const uint PakMenu_ConfirmNoRoomForGameLine4 = 0x800D79CCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame) [medium]</summary>
+    public const uint PakMenu_ConfirmNoRoomForGameLine5 = 0x800D79D0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 3 (PakMenu_OpenConfirmOverwrite) [medium]</summary>
+    public const uint PakMenu_ConfirmOverwriteLine1 = 0x800D79D4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 3 (PakMenu_OpenConfirmOverwrite) [medium]</summary>
+    public const uint PakMenu_ConfirmOverwriteLine2 = 0x800D79D8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 3 (PakMenu_OpenConfirmOverwrite) [medium]</summary>
+    public const uint PakMenu_ConfirmOverwriteLine3 = 0x800D79DCu;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 3 (PakMenu_OpenConfirmOverwrite) [medium]</summary>
+    public const uint PakMenu_ConfirmOverwriteLine4 = 0x800D79E0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 3 (PakMenu_OpenConfirmOverwrite) [medium]</summary>
+    public const uint PakMenu_ConfirmOverwriteLine5 = 0x800D79E4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt) [medium]</summary>
+    public const uint PakMenu_ConfirmDeleteCorruptLine1 = 0x800D79E8u;
+    /// <summary>text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt) [medium]</summary>
+    public const uint PakMenu_ConfirmDeleteCorruptLine2 = 0x800D79ECu;
+    /// <summary>text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt) [medium]</summary>
+    public const uint PakMenu_ConfirmDeleteCorruptLine3 = 0x800D79F0u;
+    /// <summary>text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt) [medium]</summary>
+    public const uint PakMenu_ConfirmDeleteCorruptLine4 = 0x800D79F4u;
+    /// <summary>text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt) [medium]</summary>
+    public const uint PakMenu_ConfirmDeleteCorruptLine5 = 0x800D79F8u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmYesLabel for confirm kinds 1/2 (pak full, no room for game) [medium]</summary>
+    public const uint PakMenu_ConfirmYesLabelNoRoom = 0x800D7A00u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmNoLabel for confirm kinds 1/2 [medium]</summary>
+    public const uint PakMenu_ConfirmNoLabelNoRoom = 0x800D7A04u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmYesLabel for confirm kinds 0/3/4 [medium]</summary>
+    public const uint PakMenu_ConfirmYesLabel = 0x800D7A08u;
+    /// <summary>text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmNoLabel for confirm kinds 0/3/4 [medium]</summary>
+    public const uint PakMenu_ConfirmNoLabel = 0x800D7A0Cu;
     /// <summary>pointer to the 11-char (blank in US) player-type label PakMenu_FormatPlayerTypeLabel copies for character id 0/1/4/6..13 and default; table at 0x800D7A18 [medium]</summary>
     public const uint PakMenu_CharTypeLabelDefault = 0x800D7A24u;
     /// <summary>pointer to the 11-char (blank in US) player-type label PakMenu_FormatPlayerTypeLabel copies for character id 5; table at 0x800D7A18 [medium]</summary>
@@ -854,6 +1418,96 @@ public static class Gv
     public const uint HudMsg_HeDroppedFlag = 0x800D7A84u;
     /// <summary>pointer to ROM string 'new cheat enabled' shown by Level_UpdateTransitionFade (Hud_SpawnTextLineC) [high]</summary>
     public const uint HudMsg_NewCheatEnabled = 0x800D7AC8u;
+    /// <summary>text object -&gt; ROM text 'invincibility : on' set by the LegacyCheats Invincibility label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_InvincibilityLabelOn = 0x800D7B38u;
+    /// <summary>text object -&gt; ROM text 'invincibility : off' set by the LegacyCheats Invincibility label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_InvincibilityLabelOff = 0x800D7B3Cu;
+    /// <summary>text object -&gt; ROM text 'infinite lives : on' set by the LegacyCheats InfiniteLives label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_InfiniteLivesLabelOn = 0x800D7B40u;
+    /// <summary>text object -&gt; ROM text 'infinite lives : off' set by the LegacyCheats InfiniteLives label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_InfiniteLivesLabelOff = 0x800D7B44u;
+    /// <summary>text object -&gt; ROM text 'all weapons : on' set by the LegacyCheats AllWeapons label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllWeaponsLabelOn = 0x800D7B48u;
+    /// <summary>text object -&gt; ROM text 'all weapons : off' set by the LegacyCheats AllWeapons label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllWeaponsLabelOff = 0x800D7B4Cu;
+    /// <summary>text object -&gt; ROM text 'unlimited ammo : on' set by the LegacyCheats UnlimitedAmmo label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_UnlimitedAmmoLabelOn = 0x800D7B50u;
+    /// <summary>text object -&gt; ROM text 'unlimited ammo : off' set by the LegacyCheats UnlimitedAmmo label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_UnlimitedAmmoLabelOff = 0x800D7B54u;
+    /// <summary>text object -&gt; ROM text 'all special objects : on' set by the LegacyCheats AllSpecialObjects label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllSpecialObjectsLabelOn = 0x800D7B58u;
+    /// <summary>text object -&gt; ROM text 'all special objects : off' set by the LegacyCheats AllSpecialObjects label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllSpecialObjectsLabelOff = 0x800D7B5Cu;
+    /// <summary>text object -&gt; ROM text 'big head mode : on' set by the LegacyCheats BigHeadMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BigHeadModeLabelOn = 0x800D7B60u;
+    /// <summary>text object -&gt; ROM text 'big head mode : off' set by the LegacyCheats BigHeadMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BigHeadModeLabelOff = 0x800D7B64u;
+    /// <summary>text object -&gt; ROM text 'tiny mode : on' set by the LegacyCheats TinyMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_TinyModeLabelOn = 0x800D7B68u;
+    /// <summary>text object -&gt; ROM text 'tiny mode : off' set by the LegacyCheats TinyMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_TinyModeLabelOff = 0x800D7B6Cu;
+    /// <summary>text object -&gt; ROM text 'stick mode : on' set by the LegacyCheats StickMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_StickModeLabelOn = 0x800D7B70u;
+    /// <summary>text object -&gt; ROM text 'stick mode : off' set by the LegacyCheats StickMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_StickModeLabelOff = 0x800D7B74u;
+    /// <summary>text object -&gt; ROM text 'big hands / feet mode : on' set by the LegacyCheats BigHandsFeetMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BigHandsFeetModeLabelOn = 0x800D7B78u;
+    /// <summary>text object -&gt; ROM text 'big hands / feet mode : off' set by the LegacyCheats BigHandsFeetMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BigHandsFeetModeLabelOff = 0x800D7B7Cu;
+    /// <summary>text object -&gt; ROM text 'pen and ink mode : on' set by the LegacyCheats PenAndInkMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_PenAndInkModeLabelOn = 0x800D7B80u;
+    /// <summary>text object -&gt; ROM text 'pen and ink mode : off' set by the LegacyCheats PenAndInkMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_PenAndInkModeLabelOff = 0x800D7B84u;
+    /// <summary>text object -&gt; ROM text 'gouraud mode : on' set by the LegacyCheats GouraudMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_GouraudModeLabelOn = 0x800D7B88u;
+    /// <summary>text object -&gt; ROM text 'gouraud mode : off' set by the LegacyCheats GouraudMode label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_GouraudModeLabelOff = 0x800D7B8Cu;
+    /// <summary>text object -&gt; ROM text 'juans cheat : on' set by the LegacyCheats JuansCheat label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_JuansCheatLabelOn = 0x800D7B90u;
+    /// <summary>text object -&gt; ROM text 'juans cheat : off' set by the LegacyCheats JuansCheat label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_JuansCheatLabelOff = 0x800D7B94u;
+    /// <summary>text object -&gt; ROM text 'zach attack cheat : on' set by the LegacyCheats ZachAttack label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_ZachAttackLabelOn = 0x800D7B98u;
+    /// <summary>text object -&gt; ROM text 'zach attack cheat : off' set by the LegacyCheats ZachAttack label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_ZachAttackLabelOff = 0x800D7B9Cu;
+    /// <summary>text object -&gt; ROM text 'all map : on' set by the LegacyCheats AllMap label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllMapLabelOn = 0x800D7BA0u;
+    /// <summary>text object -&gt; ROM text 'all map : off' set by the LegacyCheats AllMap label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_AllMapLabelOff = 0x800D7BA4u;
+    /// <summary>text object -&gt; ROM text 'blackout : on' set by the LegacyCheats Blackout label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BlackoutLabelOn = 0x800D7BA8u;
+    /// <summary>text object -&gt; ROM text 'blackout : off' set by the LegacyCheats Blackout label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_BlackoutLabelOff = 0x800D7BACu;
+    /// <summary>text object -&gt; ROM text 'frooty stripes : on' set by the LegacyCheats FrootyStripes label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_FrootyStripesLabelOn = 0x800D7BB0u;
+    /// <summary>text object -&gt; ROM text 'frooty stripes : off' set by the LegacyCheats FrootyStripes label fn by its Settings cheat bit [high]</summary>
+    public const uint LegacyCheats_FrootyStripesLabelOff = 0x800D7BB4u;
+    /// <summary>text object -&gt; ROM text 'warp: port of adia' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelPortOfAdia = 0x800D7BB8u;
+    /// <summary>text object -&gt; ROM text 'warp: river of souls' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelRiverOfSouls = 0x800D7BBCu;
+    /// <summary>text object -&gt; ROM text 'warp: death marshes' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelDeathMarshes = 0x800D7BC0u;
+    /// <summary>text object -&gt; ROM text 'warp:lair of the blind ones' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelLairOfTheBlindOnes = 0x800D7BC4u;
+    /// <summary>text object -&gt; ROM text 'warp: hive of the mantids' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelHiveOfTheMantids = 0x800D7BC8u;
+    /// <summary>text object -&gt; ROM text 'warp: primagen's lightship' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelPrimagensLightship = 0x800D7BCCu;
+    /// <summary>text object -&gt; ROM text 'warp: queen boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelQueenBoss = 0x800D7BD0u;
+    /// <summary>text object -&gt; ROM text 'warp: blind one boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelBlindOneBoss = 0x800D7BD4u;
+    /// <summary>text object -&gt; ROM text 'warp: mother boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelMotherBoss = 0x800D7BD8u;
+    /// <summary>text object -&gt; ROM text 'warp: primagen boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelPrimagenBoss = 0x800D7BDCu;
+    /// <summary>text object -&gt; ROM text 'warp: credits' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex [high]</summary>
+    public const uint LegacyCheats_WarpLabelCredits = 0x800D7BE0u;
+    /// <summary>text object -&gt; ROM text 'you fragged', installed as the item label by InGameMenu_FormatFragVerbLabel (Settings_MonkeyTagMode picks tagged) [high]</summary>
+    public const uint InGameMenu_FragVerbLabelFragged = 0x800D7BE4u;
+    /// <summary>text object -&gt; ROM text 'you tagged', installed as the item label by InGameMenu_FormatFragVerbLabel (Settings_MonkeyTagMode picks tagged) [high]</summary>
+    public const uint InGameMenu_FragVerbLabelTagged = 0x800D7BE8u;
     /// <summary>pointer to ROM string 'player 1' copied as the default name by MatchSetup_SetDefaultPlayerName (also compared by PlayerProfile_OpenPage) [high]</summary>
     public const uint MatchSetup_DefaultPlayerName1 = 0x800D7C70u;
     /// <summary>pointer to ROM string 'player 2' copied as the default name by MatchSetup_SetDefaultPlayerName [high]</summary>
@@ -862,14 +1516,70 @@ public static class Gv
     public const uint MatchSetup_DefaultPlayerName3 = 0x800D7C78u;
     /// <summary>pointer to ROM string 'player 4' copied as the default name by MatchSetup_SetDefaultPlayerName [high]</summary>
     public const uint MatchSetup_DefaultPlayerName4 = 0x800D7C7Cu;
+    /// <summary>text object -&gt; ROM text 'charge dart rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_ChargeDartRifleOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelChargeDartRifleOn = 0x800D7D40u;
+    /// <summary>text object -&gt; ROM text 'charge dart rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_ChargeDartRifleOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelChargeDartRifleOff = 0x800D7D44u;
+    /// <summary>text object -&gt; ROM text 'firestorm : on' set by LegacyMenu_SetWeaponLabel (Settings_FirestormOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelFirestormOn = 0x800D7D48u;
+    /// <summary>text object -&gt; ROM text 'firestorm :off' set by LegacyMenu_SetWeaponLabel (Settings_FirestormOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelFirestormOff = 0x800D7D4Cu;
+    /// <summary>text object -&gt; ROM text 'assault rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_AssaultRifleOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelAssaultRifleOn = 0x800D7D50u;
+    /// <summary>text object -&gt; ROM text 'assault rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_AssaultRifleOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelAssaultRifleOff = 0x800D7D54u;
+    /// <summary>text object -&gt; ROM text 'plasma rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_PlasmaRifleOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelPlasmaRifleOn = 0x800D7D58u;
+    /// <summary>text object -&gt; ROM text 'plasma rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_PlasmaRifleOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelPlasmaRifleOff = 0x800D7D5Cu;
+    /// <summary>text object -&gt; ROM text 'cerebral bore : on' set by LegacyMenu_SetWeaponLabel (Settings_CerebralBoreOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelCerebralBoreOn = 0x800D7D60u;
+    /// <summary>text object -&gt; ROM text 'cerebral bore :off' set by LegacyMenu_SetWeaponLabel (Settings_CerebralBoreOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelCerebralBoreOff = 0x800D7D64u;
+    /// <summary>text object -&gt; ROM text 'grenade launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_GrenadeLauncherOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelGrenadeLauncherOn = 0x800D7D68u;
+    /// <summary>text object -&gt; ROM text 'grenade launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_GrenadeLauncherOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelGrenadeLauncherOff = 0x800D7D6Cu;
+    /// <summary>text object -&gt; ROM text 'scorpion launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_ScorpionLauncherOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelScorpionLauncherOn = 0x800D7D70u;
+    /// <summary>text object -&gt; ROM text 'scorpion launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_ScorpionLauncherOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelScorpionLauncherOff = 0x800D7D74u;
+    /// <summary>text object -&gt; ROM text 'torpedo launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_TorpedoLauncherOn set) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelTorpedoLauncherOn = 0x800D7D78u;
+    /// <summary>text object -&gt; ROM text 'torpedo launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_TorpedoLauncherOn clear) [high]</summary>
+    public const uint LegacyMenu_WeaponLabelTorpedoLauncherOff = 0x800D7D7Cu;
+    /// <summary>text object -&gt; ROM text 'music volume : off', installed as the item label by InGameMenu_FormatMusicVolumeLabel [high]</summary>
+    public const uint InGameMenu_MusicVolumeLabelOff = 0x800D7DB8u;
+    /// <summary>text object -&gt; ROM text 'music volume : max', installed as the item label by InGameMenu_FormatMusicVolumeLabel [high]</summary>
+    public const uint InGameMenu_MusicVolumeLabelMax = 0x800D7DBCu;
+    /// <summary>text object -&gt; ROM text 'music volume : norm', installed as the item label by InGameMenu_FormatMusicVolumeLabel [high]</summary>
+    public const uint InGameMenu_MusicVolumeLabelNorm = 0x800D7DC0u;
     /// <summary>label string-pointer table ('music volume  :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatMusicVolumeLabel [high]</summary>
     public const uint InGameMenu_MusicVolumeLabelTable = 0x800D7DC4u;
+    /// <summary>text object -&gt; ROM text 'sfx volume : off', installed as the item label by InGameMenu_FormatSfxVolumeLabel [high]</summary>
+    public const uint InGameMenu_SfxVolumeLabelOff = 0x800D7DC8u;
+    /// <summary>text object -&gt; ROM text 'sfx volume : max', installed as the item label by InGameMenu_FormatSfxVolumeLabel [high]</summary>
+    public const uint InGameMenu_SfxVolumeLabelMax = 0x800D7DCCu;
+    /// <summary>text object -&gt; ROM text 'sfx volume : norm', installed as the item label by InGameMenu_FormatSfxVolumeLabel [high]</summary>
+    public const uint InGameMenu_SfxVolumeLabelNorm = 0x800D7DD0u;
     /// <summary>label string-pointer table ('sfx volume    :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatSfxVolumeLabel [high]</summary>
     public const uint InGameMenu_SfxVolumeLabelTable = 0x800D7DD4u;
+    /// <summary>text object -&gt; ROM text 'speech volume : off', installed as the item label by InGameMenu_FormatSpeechVolumeLabel [high]</summary>
+    public const uint InGameMenu_SpeechVolumeLabelOff = 0x800D7DD8u;
+    /// <summary>text object -&gt; ROM text 'speech volume : max', installed as the item label by InGameMenu_FormatSpeechVolumeLabel [high]</summary>
+    public const uint InGameMenu_SpeechVolumeLabelMax = 0x800D7DDCu;
+    /// <summary>text object -&gt; ROM text 'speech volume : norm', installed as the item label by InGameMenu_FormatSpeechVolumeLabel [high]</summary>
+    public const uint InGameMenu_SpeechVolumeLabelNorm = 0x800D7DE0u;
     /// <summary>label string-pointer table ('speech volume :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatSpeechVolumeLabel [high]</summary>
     public const uint InGameMenu_SpeechVolumeLabelTable = 0x800D7DE4u;
+    /// <summary>text object -&gt; ROM text 'music : none', installed as the item label by InGameMenu_FormatMusicTrackLabel [high]</summary>
+    public const uint InGameMenu_MusicTrackLabelNone = 0x800D7DE8u;
     /// <summary>label string-pointer table ('music         :' ...) installed as the menu item's label data and read [0] by InGameMenu_FormatMusicTrackLabel [high]</summary>
     public const uint InGameMenu_MusicTrackLabelTable = 0x800D7DECu;
+    /// <summary>text object -&gt; ROM text 'player speed :' (+%3d) set by LegacyMenu_SetPlayerSpeedLabel when the game speed is not 1 [high]</summary>
+    public const uint LegacyMenu_PlayerSpeedLabel = 0x800D7E04u;
+    /// <summary>text object -&gt; ROM text 'player speed : default' set by LegacyMenu_SetPlayerSpeedLabel when Settings_GameSpeed == 1 [high]</summary>
+    public const uint LegacyMenu_PlayerSpeedLabelDefault = 0x800D7E08u;
     /// <summary>pointer to ROM string 'low health' posted by Health_ApplyDamage [high]</summary>
     public const uint HudMsg_LowHealth = 0x800D7E10u;
     /// <summary>text object whose first string is " "; assigned as item label (unk14) when there is nothing to show (PakMenu/LegacyCheats formatters) [medium]</summary>
@@ -880,6 +1590,18 @@ public static class Gv
     public const uint Event_HudMessageTable = 0x800D7F84u;
     /// <summary>libultra ALGlobals pointer; set by alInit, cleared by alClose, -&gt;drvr used by al*New [high]</summary>
     public const uint alGlobals = 0x800D80A0u;
+    /// <summary>libaudio reverb params (3 sections, length 4000) alFxNew uses for fxType 1 AL_FX_SMALLROOM [high]</summary>
+    public const uint SMALLROOM_PARAMS = 0x800D80B0u;
+    /// <summary>libaudio reverb params (4 sections, length 4000) alFxNew uses for fxType 2 AL_FX_BIGROOM [high]</summary>
+    public const uint BIGROOM_PARAMS = 0x800D8118u;
+    /// <summary>libaudio reverb params (1 section, length 8000) alFxNew uses for fxType 5 AL_FX_ECHO [high]</summary>
+    public const uint ECHO_PARAMS = 0x800D81A0u;
+    /// <summary>libaudio reverb params (1 section, length 800) alFxNew uses for fxType 3 AL_FX_CHORUS [high]</summary>
+    public const uint CHORUS_PARAMS = 0x800D81C8u;
+    /// <summary>libaudio reverb params (1 section, length 800) alFxNew uses for fxType 4 AL_FX_FLANGE [high]</summary>
+    public const uint FLANGE_PARAMS = 0x800D81F0u;
+    /// <summary>libaudio all-zero reverb params alFxNew uses for unknown fxType (default case) [high]</summary>
+    public const uint NULL_PARAMS = 0x800D8218u;
     /// <summary>libaudio equal-power pan table (s16[128]) indexed by pan in alEnvmixer _pullSubFrame for ltgt/rtgt [high]</summary>
     public const uint eqpower = 0x800D8240u;
     /// <summary>libultra per-channel rumble init flags (symbol_addrs); set by osMotorInit, checked by osMotorStart/Stop [high]</summary>
@@ -900,14 +1622,32 @@ public static class Gv
     public const uint ViCurrentContextPtr = 0x800D8440u;
     /// <summary>libultra pointer to next OSViContext (set to &amp;vi[1] in __osViInit, used by __osViSwapContext) [high]</summary>
     public const uint __osViNext = 0x800D8444u;
+    /// <summary>libultra VI mode (type 2) set as __osViNext modep by __osViInit for NTSC (symbol_addrs.txt) [high]</summary>
+    public const uint osViModeNtscLan1 = 0x800D8470u;
+    /// <summary>libultra VI mode (type 0x10) set by __osViInit for PAL (symbol_addrs.txt) [high]</summary>
+    public const uint osViModePalLan1 = 0x800D84C0u;
+    /// <summary>libultra VI mode (type 0x1E) set by __osViInit for MPAL (symbol_addrs.txt) [high]</summary>
+    public const uint osViModeMpalLan1 = 0x800D8510u;
+    /// <summary>libultra VI mode (type 0, ctrl 0x320E, width 320) chosen by Sched_ThreadMain when VideoResolution == 0 [high]</summary>
+    public const uint osViModeNtscLpn1 = 0x800D8560u;
+    /// <summary>libultra VI mode (type 8, ctrl 0x324E, interlaced hi-res) chosen by Sched_ThreadMain for the hi-res resolutions [high]</summary>
+    public const uint osViModeNtscHpn1 = 0x800D87E0u;
     /// <summary>libultra global interrupt mask (__osSet/ResetGlobalIntMask) [high]</summary>
     public const uint __OSGlobalIntMask = 0x800D9288u;
+    /// <summary>libultra run queue (symbol_addrs.txt; __osThreadTail at 800D9290); __osLeoResume enqueues the popped thread on it [high]</summary>
+    public const uint __osRunQueue = 0x800D9298u;
     /// <summary>libultra faulted thread pointer (symbol_addrs) returned by __osGetCurrFaultedThread [high]</summary>
     public const uint __osFaultedThread = 0x800D92A4u;
     /// <summary>libultra OSTimer* list head (__osInsertTimer, __osTimerInterrupt) [high]</summary>
     public const uint __osTimerList = 0x800D92B0u;
+    /// <summary>ROM string "0123456789abcdef" [high]</summary>
+    public const uint Str_0123456789abcdef = 0x800D9330u;
+    /// <summary>ROM string "0123456789ABCDEF" [high]</summary>
+    public const uint Str_0123456789ABCDEF = 0x800D9344u;
     /// <summary>alAdecPull stores the adecNextFrame() result here and writes back 512 bytes from it [medium]</summary>
     public const uint Adec_CurFramePtr = 0x800D9360u;
+    /// <summary>MdctCtx {cos table 80151AC8, sin table 80151BC8, bit-reverse table 80152B80}; mdctFftInit fills the three tables [medium]</summary>
+    public const uint Adec_MdctCtx = 0x800D9370u;
     /// <summary>u16 table of (1&lt;&lt;n)-1 masks indexed by bit count in adecReadBits [high]</summary>
     public const uint Adec_BitMaskTable = 0x800D9380u;
     /// <summary>u16[17] sign bit (1 &lt;&lt; (n-1)) per bit count, tested by adecReadBits to sign-extend coefficients [high]</summary>
@@ -930,22 +1670,100 @@ public static class Gv
     public const uint Adec_ImdctTablesBuilt = 0x800D94F0u;
     /// <summary>u16 0..5 ring index of decoded frames (adecNextFrame wraps at 6, selects 512-byte buffer at 80151F80) [medium]</summary>
     public const uint Adec_FrameRingIndex = 0x800D94F2u;
+    /// <summary>20-byte AdecHuffSeg records (kind, pos ...) walked by adecDecodeFrame and passed to adecHuffDecode [medium]</summary>
+    public const uint Adec_HuffSegTable = 0x800D9594u;
     /// <summary>208-byte rspboot code (to 800DCD10) set as ucode_boot of audio and gfx tasks (AudioMgr_Init, Video_SubmitGfxTasks) [high]</summary>
     public const uint Rsp_BootUcode = 0x800DCC40u;
     /// <summary>Video_SubmitGfxTasks sets the task ucode to this + 16 (0x800DCD10, also where Rsp_BootUcode ends); the literal is only a base [low]</summary>
     public const uint Rsp_UcodeTextBase_800DCD00 = 0x800DCD00u;
+    /// <summary>ROM string "J" [high]</summary>
+    public const uint Str_J = 0x800DCD10u;
+    /// <summary>ROM string "J" [high]</summary>
+    public const uint Str_J2 = 0x800DE0A0u;
+    /// <summary>audio ucode text set as the audio task ucode (B12AiTask +0x28) by AudioMgr_Init, ucode size 4096 [high]</summary>
+    public const uint aspMainTextStart = 0x800DF230u;
+    /// <summary>ucode data of the main gfx task (Video_SubmitGfxTasks task 0); ROM id string 'RSP Gfx ucode F3DEX.NoN fifo 2.05' at 800E0188 [high]</summary>
+    public const uint gspF3DEX_NoN_fifoDataStart = 0x800E0050u;
+    /// <summary>ucode data of the second gfx task (Video_SubmitGfxTasks task 1, ucode text 800DE0A0); ROM id 'RSP Gfx ucode L3DEX fifo 2.05' at 800E05A8 [high]</summary>
+    public const uint gspL3DEX_fifoDataStart = 0x800E0470u;
+    /// <summary>audio ucode data set as the audio task ucode_data (B12AiTask +0x30) by AudioMgr_Init [high]</summary>
+    public const uint aspMainDataStart = 0x800E0860u;
+    /// <summary>ROM string "Cinema Directory" [high]</summary>
+    public const uint Str_CinemaDirectory = 0x800E0B2Cu;
     /// <summary>float constant 1.0 (ROM 3F800000) used as (1-w) in Flyby_EvalSpline [high]</summary>
     public const uint Flyby_SplineOne = 0x800E0B50u;
+    /// <summary>ROM string "Mempak pakstate" [high]</summary>
+    public const uint Str_MempakPakstate = 0x800E0CF0u;
+    /// <summary>ROM string "Mempak read temp data" [high]</summary>
+    public const uint Str_MempakReadTempData = 0x800E0D00u;
+    /// <summary>ROM string "Mempak write temp data" [high]</summary>
+    public const uint Str_MempakWriteTempData = 0x800E0D18u;
+    /// <summary>ROM string "display lists" [high]</summary>
+    public const uint Str_DisplayLists = 0x800E0D6Cu;
+    /// <summary>ROM string "fifo" [high]</summary>
+    public const uint Str_Fifo = 0x800E0D7Cu;
+    /// <summary>ROM string "audio heap" [high]</summary>
+    public const uint Str_AudioHeap = 0x800E0D84u;
+    /// <summary>ROM string "Single Save Block" [high]</summary>
+    public const uint Str_SingleSaveBlock = 0x800E0D90u;
     /// <summary>ROM string "%3d" passed to Str_Sprintf by PakMenu label formatters [high]</summary>
     public const uint FmtStr_3d = 0x800E0DA4u;
+    /// <summary>ROM string "   " [high]</summary>
+    public const uint Str_800E0DA8 = 0x800E0DA8u;
+    /// <summary>ROM string "%1d" [high]</summary>
+    public const uint Str_1d = 0x800E0DACu;
+    /// <summary>ROM string "%2d" [high]</summary>
+    public const uint Str_2d = 0x800E0DB0u;
+    /// <summary>ROM string "%04d" [high]</summary>
+    public const uint Str_04d = 0x800E0DC4u;
+    /// <summary>ROM string "%1d." [high]</summary>
+    public const uint Str_1d2 = 0x800E0DCCu;
+    /// <summary>ROM string "rb" [high]</summary>
+    public const uint Str_Rb = 0x800E10E0u;
     /// <summary>f32[2] (1024.0, 1024.0) scales t0/s0 into tile start coordinates in Sprites_DrawTexRectStrips [medium]</summary>
     public const uint Sprites_TexCoordScale = 0x800E1438u;
+    /// <summary>ROM string "anim object index" [high]</summary>
+    public const uint Str_AnimObjectIndex2 = 0x800E1490u;
+    /// <summary>ROM string "anim object info" [high]</summary>
+    public const uint Str_AnimObjectInfo2 = 0x800E14A4u;
+    /// <summary>ROM string "O" [high]</summary>
+    public const uint Str_O3 = 0x800E14F8u;
+    /// <summary>ROM string "[CHARACTER]" [high]</summary>
+    public const uint Str_CHARACTER = 0x800E19ECu;
+    /// <summary>ROM string "%d:%02d" [high]</summary>
+    public const uint Str_D02d = 0x800E19F8u;
+    /// <summary>ROM string "[TIME]" [high]</summary>
+    public const uint Str_TIME = 0x800E1A00u;
     /// <summary>ROM string "%d" passed to Str_FormatInto by Results_FillRows [high]</summary>
     public const uint FmtStr_d = 0x800E1B20u;
+    /// <summary>ROM string "%d%%" [high]</summary>
+    public const uint Str_D2 = 0x800E1B24u;
+    /// <summary>ROM string "%d" [high]</summary>
+    public const uint Str_D3 = 0x800E1B60u;
+    /// <summary>ROM string "%02d" [high]</summary>
+    public const uint Str_02d = 0x800E2320u;
+    /// <summary>ROM string "%3d" [high]</summary>
+    public const uint Str_3d = 0x800E2328u;
     /// <summary>ROM string "O"; every use passes +4 = "menu" as the ResourcePool_Alloc tag (MenuPanel_Open etc.) [medium]</summary>
     public const uint Str_O = 0x800E2518u;
+    /// <summary>ROM string "%04d" [high]</summary>
+    public const uint Str_04d2 = 0x800E2730u;
+    /// <summary>ROM string "%02d" [high]</summary>
+    public const uint Str_02d2 = 0x800E2780u;
+    /// <summary>ROM string "  %02d" [high]</summary>
+    public const uint Str_02d3 = 0x800E2788u;
+    /// <summary>ROM string " %03d" [high]</summary>
+    public const uint Str_03d = 0x800E2790u;
+    /// <summary>ROM string "%06d" [high]</summary>
+    public const uint Str_06d = 0x800E27D0u;
     /// <summary>format string "%03d" used by sprintf in the in-game light-colour menu items [high]</summary>
     public const uint Str_Fmt03d = 0x800E27D8u;
+    /// <summary>ROM string "  %2d" [high]</summary>
+    public const uint Str_2d2 = 0x800E27E0u;
+    /// <summary>ROM string " %3d" [high]</summary>
+    public const uint Str_3d2 = 0x800E27E8u;
+    /// <summary>ROM string "%2d" [high]</summary>
+    public const uint Str_2d3 = 0x800E27F0u;
     /// <summary>pointer to the flyby control block; every Flyby_* function reads/writes its fields [high]</summary>
     public const uint FlybyCtlPtr = 0x800E2830u;
     /// <summary>init 1; Flyby_SetFlag/ClearFlag/GetFlag; Flyby_QueueBy* return early when 0 [medium]</summary>
@@ -1294,6 +2112,26 @@ public static class Gv
     public const uint MenuItem_StyleTable = 0x800E5E74u;
     /// <summary>8 x 24-byte templates copied into each panel slot by MenuPanel_Init [medium]</summary>
     public const uint MenuPanel_SlotTemplates = 0x800E5F72u;
+    /// <summary>text object -&gt; ROM text 'artsend mode : on', installed as the item label by InGameMenu_FormatArtsendModeLabel [high]</summary>
+    public const uint InGameMenu_ArtsendModeLabelOn = 0x800E6058u;
+    /// <summary>text object -&gt; ROM text 'artsend mode : off', installed as the item label by InGameMenu_FormatArtsendModeLabel [high]</summary>
+    public const uint InGameMenu_ArtsendModeLabelOff = 0x800E6074u;
+    /// <summary>text object -&gt; ROM text 'person : 1st', installed as the item label by InGameMenu_FormatPersonLabel [high]</summary>
+    public const uint InGameMenu_PersonLabel1st = 0x800E6090u;
+    /// <summary>text object -&gt; ROM text 'person : 3rd', installed as the item label by InGameMenu_FormatPersonLabel [high]</summary>
+    public const uint InGameMenu_PersonLabel3rd = 0x800E60ACu;
+    /// <summary>text object -&gt; ROM text 'weapon :hidden', installed as the item label by InGameMenu_FormatWeaponVisibleLabel [high]</summary>
+    public const uint InGameMenu_ViewWeaponLabelHidden = 0x800E60C8u;
+    /// <summary>text object -&gt; ROM text 'weapon : vis', installed as the item label by InGameMenu_FormatWeaponVisibleLabel [high]</summary>
+    public const uint InGameMenu_ViewWeaponLabelVisible = 0x800E60E4u;
+    /// <summary>text object -&gt; ROM text '3d shadows : on', installed as the item label by InGameMenu_FormatShadowsLabel [high]</summary>
+    public const uint InGameMenu_ShadowsLabelOn = 0x800E6100u;
+    /// <summary>text object -&gt; ROM text '3d shadows : off', installed as the item label by InGameMenu_FormatShadowsLabel [high]</summary>
+    public const uint InGameMenu_ShadowsLabelOff = 0x800E611Cu;
+    /// <summary>text object -&gt; ROM text 'all regions', installed as the item label by InGameMenu_FormatFogAllRegionsLabel [high]</summary>
+    public const uint InGameMenu_FogRegionsLabelAll = 0x800E62DCu;
+    /// <summary>text object -&gt; ROM text 'single region', installed as the item label by InGameMenu_FormatFogAllRegionsLabel [high]</summary>
+    public const uint InGameMenu_FogRegionsLabelSingle = 0x800E62F0u;
     /// <summary>'affect all regions' toggle of the fog editor; EditFogValue copies to every region when set, label on/off [high]</summary>
     public const uint InGameMenu_FogAllRegions = 0x800E63ACu;
     /// <summary>sound options open saves Audio_IsSoundOn (current cue id); 'go back' replays it with Audio_PlayCue [medium]</summary>
@@ -1500,6 +2338,8 @@ public static class Gv
     public const uint PlayerFlags_80104418 = 0x80104418u;
     /// <summary>collision profile PickupPool_UpdatePickup uses for pickups whose def has flag 4 [medium]</summary>
     public const uint Collision_PickupCtxFlag4 = 0x80104438u;
+    /// <summary>only in a GameBoot comment as the end of the collision profile range copied by Collision_InitProfiles (inside profile 0x80104458) [low]</summary>
+    public const uint Collision_ProfilesRangeEnd_80104460 = 0x80104460u;
     /// <summary>pointer to the free node stack indexed by the node pool count (Resource pool alloc/release/PopFree) [medium]</summary>
     public const uint Resource_FreeNodeStackPtr = 0x80104564u;
     /// <summary>list head (second list at +20) for List_MoveToHead/List_Remove of cached resource nodes [medium]</summary>
@@ -2500,4 +3340,10 @@ public static class Gv
     public const uint Resource_PageFrames = 0x80156000u;
     /// <summary>end of game memory / heap base in Game_InitMemoryServices; IsHeapPointer upper bound [medium]</summary>
     public const uint Heap_Start = 0x8016E000u;
+    /// <summary>upper bound HudTagger uses when walking the camera list (pointer must be below it) [low]</summary>
+    public const uint Ram_PtrScanLimit_807FF000 = 0x807FF000u;
+    /// <summary>unused RAM byte near the top of RDRAM that NetPlay XORs (TRW_NET_TEST_DESYNC) to force a desync [medium]</summary>
+    public const uint Net_DesyncTestByte = 0x807FFFF0u;
+    /// <summary>end of the 8 MB RDRAM; Ram() bounds checks in GameSprites/HudValues/MatchInfo [medium]</summary>
+    public const uint Ram_End = 0x80800000u;
 }

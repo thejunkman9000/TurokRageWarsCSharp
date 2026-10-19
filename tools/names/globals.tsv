@@ -1247,3 +1247,426 @@
 0x801540F0	InGameMenu_BannerOpen	medium	1 while the in-game banner is open (OnBannerOpen), 0 on continue
 0x801540F4	InGameMenu_BannerWorld	medium	world of the start point shown by the in-game banner (LevelIdToWorld)
 0x8016E000	Heap_Start	medium	end of game memory / heap base in Game_InitMemoryServices; IsHeapPointer upper bound
+0x800C7A40	Str_FlyModeOff	high	ROM string "Fly Mode Off"
+0x800C7C58	Str_Players	high	ROM string "Players"
+0x800C7CB0	Str_PlayerAnimObjectInfo	high	ROM string "player anim object info"
+0x800C7CC8	Str_800C7CC8	high	ROM string ":"
+0x800C83C0	Str_O2	high	ROM string "O"
+0x800C83CC	Str_CameraTexts	high	ROM string "Camera Texts"
+0x800C86F0	Str_VirtualRegion	high	ROM string "Virtual Region"
+0x800C87F8	Str_AnimObjectInfo	high	ROM string "anim object info"
+0x800C8920	Str_CGameObjectInstanceGetAnimTypeAnimObjectInfo	high	ROM string "CGameObjectInstance__GetAnimType: anim object info"
+0x800C8954	Str_CGameObjectInstanceLookupAIAnimTypeAnimObjec	high	ROM string "CGameObjectInstance__LookupAIAnimType: anim object info"
+0x800C898C	Str_AnimObjectIndex	high	ROM string "anim object index"
+0x800C89A0	Str_AnimModelsIndex	high	ROM string "anim models index"
+0x800C89B4	Str_CGameObjectInstanceResetAnimObjectInfo	high	ROM string "CGameObjectInstance__Reset: anim object info"
+0x800C8A24	Str_AnimationsIndex	high	ROM string "animations index"
+0x800C8AD0	Str_800C8AD0	high	ROM string "?"
+0x800C8BD8	Str_CGameObjectInstanceGetUnitScaleMultiplierAni	high	ROM string "CGameObjectInstance__GetUnitScaleMultiplier: anim object inf"
+0x800C8C18	Str_AnimModelIndex	high	ROM string "anim model index"
+0x800C8C2C	Str_AnimatedModel	high	ROM string "animated model"
+0x800C8EB0	Str_SimpModelsIndex	high	ROM string "simp models index"
+0x800C8EC4	Str_SimpModel	high	ROM string "simp model"
+0x800C8ED0	Str_LitVertices	high	ROM string "lit vertices"
+0x800C8F30	Str_LitVertices2	high	ROM string "lit vertices"
+0x800C8F4C	Str_StatObjectIndex	high	ROM string "stat object index"
+0x800C8F60	Str_StaticEvents	high	ROM string "static events"
+0x800C8F70	Str_StatModelsIndex	high	ROM string "stat models index"
+0x800C8F84	Str_StatModel	high	ROM string "stat model"
+0x800C8F90	Str_Header	high	ROM string "header"
+0x800C92A0	Str_Animation	high	ROM string "animation"
+0x800C9478	Str_ROMLookupTable	high	ROM string "ROMLookupTable"
+0x800C975C	Str_SimpObjectIndex	high	ROM string "simp object index"
+0x800C9770	Str_SimpModelsIndex2	high	ROM string "simp models index"
+0x800C9784	Str_SimpModel2	high	ROM string "simp model"
+0x800C9E28	Str_SimpPartObjectIndex	high	ROM string "simp part object index"
+0x800C9E40	Str_SimpPartModelsIndex	high	ROM string "simp part models index"
+0x800C9E58	Str_SimpPartModel	high	ROM string "simp part model"
+0x800CA1A0	Str_LoadSavePersistentData	high	ROM string "load save persistent data"
+0x800CA1BC	Str_GamePersistentData	high	ROM string "game persistent data"
+0x800CA200	Str_LevelIndex	high	ROM string "level index"
+0x800CA2C8	Str_BinaryBlock	high	ROM string "binary block"
+0x800CA2D8	Str_Graphicset	high	ROM string "graphicset"
+0x800CA300	Str_GridSection	high	ROM string "grid section"
+0x800CA310	Str_VisInfo	high	ROM string "Vis Info"
+0x800CA380	Str_CSceneGetBLLevelDataBllevelDataIndex	high	ROM string "CScene__GetBLLevelData: bllevel data index"
+0x800CA3AC	Str_CSceneGetBLLevelDataBllevelData	high	ROM string "CScene__GetBLLevelData: bllevel data"
+0x800CA4F0	Str_SS	high	ROM string "%s %s"
+0x800CA4F8	Str_Oct131999	high	ROM string "Oct 13 1999"
+0x800CA504	Str_145739	high	ROM string "14:57:39"
+0x800CA5D0	Str_ArtsendTexture	high	ROM string "Artsend Texture"
+0x800CA5E0	Str_TexDFrmDOfD	high	ROM string "tex %d frm %d of %d, %s"
+0x800CA5F8	Str_TexDFrmDOfD2	high	ROM string "tex %d frm %d of %d"
+0x800CAF20	Str_D	high	ROM string "%d"
+0x800CAF30	Str_DATATScredDataExp	high	ROM string "..\DATA\TScredData.exp"
+0x800CB480	Str_N64V100	high	ROM string "N64 V1.00"
+0x800D2F94	Str_800D2F94	high	ROM string "_"
+0x800D3080	Str_800D3080	high	ROM string "_"
+0x800D9330	Str_0123456789abcdef	high	ROM string "0123456789abcdef"
+0x800D9344	Str_0123456789ABCDEF	high	ROM string "0123456789ABCDEF"
+0x800DCD10	Str_J	high	ROM string "J"
+0x800DE0A0	Str_J2	high	ROM string "J"
+0x800E0B2C	Str_CinemaDirectory	high	ROM string "Cinema Directory"
+0x800E0CF0	Str_MempakPakstate	high	ROM string "Mempak pakstate"
+0x800E0D00	Str_MempakReadTempData	high	ROM string "Mempak read temp data"
+0x800E0D18	Str_MempakWriteTempData	high	ROM string "Mempak write temp data"
+0x800E0D6C	Str_DisplayLists	high	ROM string "display lists"
+0x800E0D7C	Str_Fifo	high	ROM string "fifo"
+0x800E0D84	Str_AudioHeap	high	ROM string "audio heap"
+0x800E0D90	Str_SingleSaveBlock	high	ROM string "Single Save Block"
+0x800E0DA8	Str_800E0DA8	high	ROM string "   "
+0x800E0DAC	Str_1d	high	ROM string "%1d"
+0x800E0DB0	Str_2d	high	ROM string "%2d"
+0x800E0DC4	Str_04d	high	ROM string "%04d"
+0x800E0DCC	Str_1d2	high	ROM string "%1d."
+0x800E10E0	Str_Rb	high	ROM string "rb"
+0x800E1490	Str_AnimObjectIndex2	high	ROM string "anim object index"
+0x800E14A4	Str_AnimObjectInfo2	high	ROM string "anim object info"
+0x800E14F8	Str_O3	high	ROM string "O"
+0x800E19EC	Str_CHARACTER	high	ROM string "[CHARACTER]"
+0x800E19F8	Str_D02d	high	ROM string "%d:%02d"
+0x800E1A00	Str_TIME	high	ROM string "[TIME]"
+0x800E1B24	Str_D2	high	ROM string "%d%%"
+0x800E1B60	Str_D3	high	ROM string "%d"
+0x800E2320	Str_02d	high	ROM string "%02d"
+0x800E2328	Str_3d	high	ROM string "%3d"
+0x800E2730	Str_04d2	high	ROM string "%04d"
+0x800E2780	Str_02d2	high	ROM string "%02d"
+0x800E2788	Str_02d3	high	ROM string "  %02d"
+0x800E2790	Str_03d	high	ROM string " %03d"
+0x800E27D0	Str_06d	high	ROM string "%06d"
+0x800E27E0	Str_2d2	high	ROM string "  %2d"
+0x800E27E8	Str_3d2	high	ROM string " %3d"
+0x800E27F0	Str_2d3	high	ROM string "%2d"
+0x80000300	osTvType	high	libultra boot word (0=PAL,1=NTSC,2=MPAL); GameBoot sets NTSC, Video/__osViInit switch on it
+0x80000318	osMemSize	high	libultra boot word: RDRAM size; GameBoot sets 0x800000, Memory reads/compares it against 8MB
+0x800C8E98	ResLabel_SimpObjectBase	medium	base of a rodata pair: float 0.1 then ROM string 'simp object' at +4 passed as the debug label to ResourceCache_Hash by Items AcquireModel/get_h
+0x800CA370	ResLabel_LevelNameBase	medium	base of a rodata pair: float 127.0 then ROM string 'level name' at +4 passed as the label to Resource_LoadByCartridgeKey by Level_CopyLevelName
+0x800CD3C0	Turret_StateTable	medium	state table set as StateTablePtr by Turret_Init (update Turret_Update)
+0x800CD4C4	Objective_StateTable	medium	state table set as StateTablePtr by Objective_Init (update Objective_Update)
+0x800CD5D0	Toggle_StateTable	medium	state table set as StateTablePtr by Toggle_Init (update Toggle_Update)
+0x800CD670	Destructible_StateTable	medium	state table set as StateTablePtr by Destructible_Init (update Destructible_Update)
+0x800CD764	ItemSpawner_MpAmmoWeights	medium	s16 {id, weight} list (-1 end; empty in this build) RandomGen_PickWeighted picks for spawner flag 0x20 in multiplayer
+0x800CD768	ItemSpawner_HealthWeights	medium	s16 {id, weight} list {6A5:1000, 6A6:500, 6A7:10, -1} for spawner flag 0x40 in single player (when Player_IsHurt)
+0x800CD778	ItemSpawner_HealthWeightsAlt	medium	tail of ItemSpawner_HealthWeights {6A6:500, 6A7:10, -1} used instead when Game_Flag_8013B290 is set
+0x800CD784	ItemSpawner_MpHealthWeights	medium	s16 {id, weight} list {6B8:1000, 6BA:500, 6BB:10, -1} RandomGen_PickWeighted picks for spawner flag 0x40 in multiplayer
+0x800CD794	ItemSpawner_SpSpecialWeights	medium	s16 {id, weight} list (-1 end; empty) RandomGen_PickWeighted picks for spawner flag 0x80 in single player
+0x800CD798	ItemSpawner_MpSpecialWeights	medium	s16 {id, weight} list (-1 end; empty) filtered by canSpawnTbl for spawner flag 0x80 in multiplayer
+0x800CD79C	ItemSpawner_StateTable	medium	state table set as StateTablePtr by ItemSpawner_Init (update ItemSpawner_Update)
+0x800CD840	AnimProp_StateTable	medium	state table set as StateTablePtr by AnimProp_Init (update AnimProp_Update)
+0x800CE040	Brain_StateTable	medium	AI state table installed by Brain_ResetBrain via Ai_SetStateTable before Ai_SetState(ctl, 2)
+0x800CE240	Actor_DropTableMask1	medium	8-byte {mask, object id} rows (0 end; 1:6A5, 2:6A6 ... others 0x898) Actor_DropItemsOnce spawns for bits set in m1
+0x800CE348	Actor_DropTableMask2	medium	8-byte {mask, object id} rows ({1, 0x898}, 0 end) Actor_DropItemsOnce spawns for bits set in m2
+0x800CE428	Flashlight_LightDefAlt	medium	alternate light def Player_UpdateFlashlight swaps with Flashlight_LightDef2 on the third flashlight light when button 0x20 is pressed
+0x800CE730	Player_WalkMoveParams	medium	float params {10.24, 30.72, 13.44 ...} passed to Player_UpdateGroundMovement by the walk state (standing) and Player_UpdateFall
+0x800CE79C	Player_State08MoveParams	medium	float params (same leading values as walk) passed to Player_UpdateGroundMovement by PlayerState_UpdateState08 (airborne until landing)
+0x800CE7C0	Player_CrouchMoveParams	medium	float params {5.12, 15.36 ...} passed to Player_UpdateGroundMovement by the walk state and state 04 when crouched (CrouchOffset > 5.12)
+0x800CE7FC	Player_CrouchViewTurnParams	medium	float params {0.25, 0.9, 0.6, 0.3 ...} passed to Player_UpdateViewTurn by the stand/walk/state-04 updates when crouched
+0x800CE82C	Player_SurfaceSwimMoveParams	medium	float params {7.68, 23.04 ...} passed to Player_UpdateGroundMovement by Player_UpdateSurfaceSwimState
+0x800CE850	Player_UnderwaterSwimParams	medium	float params passed to Player_UpdateSwimMovement by Player_UpdateUnderwaterState
+0x800CE874	Player_UnderwaterViewTurnParams	medium	float params {0.4, 0.5, 1.0, 0.25 ...} passed to Player_UpdateViewTurn by Player_UpdateUnderwaterState
+0x800CE8C8	Player_StateTableDefault	medium	Shared_StateInfo[] {0022C884, 00224078 ...} stored as the player state table (+0x13B4) by Player_InitPool/Player_SetupSlot (Char0 table is 800CED30)
+0x800CF298	Weapon_StateTable	medium	base state table set as StateTablePtr by Weapon_Init (func_00232A38, first slot of Weapon_ClassCallbacks)
+0x800CFB04	Weapon_ClassCallbacks	high	class callback table {Weapon_Init 00232A38, ...} of the player weapon sub-actor (player+0x2E8); returned/used by Actor_GetClassCallbacks, Actor_CallRestore, Actor_Init
+0x800D0964	Sound_CustomReverbParams	medium	s32 reverb param table {6 sections, length 4800, ...} set as ALSynConfig params with fxType 6 (AL_FX_CUSTOM) by Sound_Init
+0x800D0D78	SndFx_StreamSound	medium	ALSound {envelope 800D0D60, keymap 800D0D70, wavetable 8010C060, pan 0x40, vol 0x3F} passed to alSndpAllocate by SndFx_Init
+0x800D0E51	Pad_ContBitPattern	high	u8 bit pattern of connected controllers written by osContInit(Pad_SiMesgQueue, &this, Pad_ContStatus) in Controls_ResetSession (Pad_Initialized+1)
+0x800D0FA0	Texture_LoadDlCI	medium	static display-list template (SETTILE/LOADBLOCK ...) Texture_EmitLoad uses for 4/8-bit (CI, with TLUT othermode) textures
+0x800D1020	Texture_LoadDlCIMirrorS	medium	variant of Texture_LoadDlCI chosen by Texture_EmitLoad when wrapS bit 0 (mirror) is set
+0x800D10A0	Texture_LoadDl16b	medium	display-list template Texture_EmitLoad uses for 16-bit (pixel size 2, default) textures
+0x800D1138	Texture_LoadDl32b	medium	display-list template Texture_EmitLoad uses for 32-bit (pixel size 3) textures
+0x800D2E60	Decal_SetupDl	medium	static display list (setothermode, geometry mode ...) called (gSPDisplayList) by Decals_DrawAll before the decals
+0x800D2F18	LaserDot_SetupDl	medium	static display list called (gSPDisplayList) by Decals_DrawLaserDot before the laser dot
+0x800D318C	BossBar_MoverPathBar1	medium	ScreenMover path started by BossBar_ShowBar1
+0x800D31A0	BossBar_MoverPathBar2	medium	ScreenMover path started by BossBar_ShowBar2
+0x800D31D0	Items_SpecialWeaponTable	medium	4 24-byte Row18 rows {id ...} searched by Items_FindSpecialWeaponEntry
+0x800D3230	Items_AmmoTable	medium	rows searched by id by Items_FindAmmoEntry
+0x800D32A8	Items_HealthTable	medium	rows searched by id by Items_FindHealthEntry
+0x800D3368	Items_LifeForceTable	medium	rows searched by id by Items_FindLifeForceEntry
+0x800D3390	Items_SpecialTable	medium	rows searched by id by Items_FindSpecialEntry
+0x800D33C0	Items_ItemTable	medium	16 16-byte Row10 rows {id ...} searched by Items_FindItemEntry
+0x800D75D4	InGameMenu_DifficultyLabelEasy	high	text object -> ROM text 'difficulty : easy', installed as the item label by InGameMenu_FormatDifficultyLabel
+0x800D75D8	InGameMenu_DifficultyLabelNormal	high	text object -> ROM text 'difficulty : normal', installed as the item label by InGameMenu_FormatDifficultyLabel
+0x800D75DC	InGameMenu_DifficultyLabelHard	high	text object -> ROM text 'difficulty : hard', installed as the item label by InGameMenu_FormatDifficultyLabel
+0x800D75E0	InGameMenu_ControlTypeLabelExpert	high	text object -> ROM text 'control type : expert', installed as the item label by InGameMenu_FormatControlTypeLabel
+0x800D75E4	InGameMenu_ControlTypeLabelArcade	high	text object -> ROM text 'control type : arcade', installed as the item label by InGameMenu_FormatControlTypeLabel
+0x800D75EC	InGameMenu_ControlSideLabelLeft	high	text object -> ROM text 'control side : left', installed as the item label by InGameMenu_FormatControlSideLabel
+0x800D75F0	InGameMenu_ControlSideLabelRight	high	text object -> ROM text 'control side : right', installed as the item label by InGameMenu_FormatControlSideLabel
+0x800D75F4	InGameMenu_LookSpringLabelOn	high	text object -> ROM text 'look spring : on', installed as the item label by InGameMenu_FormatLookSpringLabel
+0x800D75F8	InGameMenu_LookSpringLabelOff	high	text object -> ROM text 'look spring : off', installed as the item label by InGameMenu_FormatLookSpringLabel
+0x800D75FC	InGameMenu_AutoAimLabelOn	high	text object -> ROM text 'auto aim : on', installed as the item label by InGameMenu_FormatAutoAimLabel
+0x800D7600	InGameMenu_AutoAimLabelOff	high	text object -> ROM text 'auto aim : off', installed as the item label by InGameMenu_FormatAutoAimLabel
+0x800D7604	InGameMenu_BloodColorLabelOff	high	text object -> ROM text 'blood color : off', installed as the item label by InGameMenu_FormatBloodColorLabel
+0x800D7608	InGameMenu_BloodColorLabelRed	high	text object -> ROM text 'blood color : red', installed as the item label by InGameMenu_FormatBloodColorLabel
+0x800D760C	InGameMenu_BloodColorLabelGreen	high	text object -> ROM text 'blood color : green', installed as the item label by InGameMenu_FormatBloodColorLabel
+0x800D7610	InGameMenu_TwoPlayerLayoutLabelHorz	high	text object -> ROM text '2 plyr layout: horz', installed as the item label by InGameMenu_FormatTwoPlayerLayoutLabel
+0x800D7614	InGameMenu_TwoPlayerLayoutLabelVert	high	text object -> ROM text '2 plyr layout: vert', installed as the item label by InGameMenu_FormatTwoPlayerLayoutLabel
+0x800D7618	InGameMenu_OpacityLabelClear	high	text object -> ROM text 'opacity : clear', installed as the item label by InGameMenu_FormatOpacityLabel
+0x800D761C	InGameMenu_OpacityLabelOpaque	high	text object -> ROM text 'opacity : opaque', installed as the item label by InGameMenu_FormatOpacityLabel
+0x800D7624	InGameMenu_StickHorzLabelNorm	high	text object -> ROM text 'control stick horz:norm', installed as the item label by InGameMenu_FormatStickHorzLabel
+0x800D762C	InGameMenu_StickVertLabelNorm	high	text object -> ROM text 'control stick vert:norm', installed as the item label by InGameMenu_FormatStickVertLabel
+0x800D7634	InGameMenu_WeaponSelectLabelQuick	high	text object -> ROM text 'Weapon Select: quick', installed as the item label by InGameMenu_FormatWeaponSelectLabel
+0x800D7638	InGameMenu_WeaponSelectLabelNorm	high	text object -> ROM text 'Weapon Select: norm', installed as the item label by InGameMenu_FormatWeaponSelectLabel
+0x800D763C	Video_ResolutionLabelLoRez	high	text object -> ROM text 'Resolution : lo-rez' returned by Video_GetResolutionLabel
+0x800D7640	Video_ResolutionLabelHiRez	high	text object -> ROM text 'Resolution : hi-rez' returned by Video_GetResolutionLabel
+0x800D7644	Video_ResolutionLabelHiRezLetterbox	high	text object -> ROM text 'Resolution :hi-rez-lb' returned by Video_GetResolutionLabel
+0x800D764C	Video_ResolutionLabelLoRezLetterbox	high	text object -> ROM text 'Resolution :lo-rez-lb' returned by Video_GetResolutionLabel
+0x800D7650	InGameMenu_BrightnessLabelNorm	high	text object -> ROM text 'brightness : norm', installed as the item label by InGameMenu_FormatBrightnessLabel
+0x800D7670	LegacyMenu_Setting83LabelPort1	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 0 and fills with %02d of sub+0x83 (1..9)
+0x800D7674	LegacyMenu_Setting83LabelPort2	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 1 and fills with %02d of sub+0x83 (1..9)
+0x800D7678	LegacyMenu_Setting83LabelPort3	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 2 and fills with %02d of sub+0x83 (1..9)
+0x800D767C	LegacyMenu_Setting83LabelPort4	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses for pad port 3 and fills with %02d of sub+0x83 (1..9)
+0x800D7680	LegacyMenu_Setting83LabelMin	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses when sub+0x83 == 0
+0x800D7684	LegacyMenu_Setting83LabelMax	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting83Label_0043E364 uses when sub+0x83 == 10
+0x800D7688	LegacyMenu_Setting7BLabel0	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting7BLabel_0043E520 uses when sub+0x7B == 0
+0x800D768C	LegacyMenu_Setting7BLabel1	medium	text object (blank ROM text (empty in US)) LegacyMenu_SetSetting7BLabel_0043E520 uses when sub+0x7B == 1
+0x800D76C8	LegacyMenu_BlueScoreLabel	high	text object -> ROM text 'blue blood score :' set by LegacyMenu_SetBlueScoreLabel
+0x800D76CC	LegacyMenu_RedScoreLabel	high	text object -> ROM text 'red blood score :' set by LegacyMenu_SetRedScoreLabel
+0x800D7710	PakMenu_PlayerLabel	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatPlayerLabel, which sprintfs the pad port + 1 at its end (not in boot mode)
+0x800D7768	PakMenu_TitleLoadPlayer	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when loading a player note
+0x800D776C	PakMenu_TitleSavePlayer	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving a player note
+0x800D7770	PakMenu_TitleLoadGame	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when loading a game note
+0x800D7774	PakMenu_TitleSaveGame	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving a game note
+0x800D777C	PakMenu_TitleSaveNoteRow	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel when saving, for item codes 3..18 (note rows)
+0x800D7780	PakMenu_FreePagesLabel	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatFreePagesLabel when saving/loading; free and needed page counts (%3d) are written into it
+0x800D778C	PakMenu_TitleBootCheck	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatTitleLabel in boot mode
+0x800D7798	PakMenu_FreePagesLabelBoot	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatFreePagesLabel in boot mode
+0x800D77CC	PakMenu_GameNoteTitleLoad	high	text object (ROM text 'note info') set by PakMenu_FormatGameNoteTitle when PakMenu_GameNoteIsLoad
+0x800D77D0	PakMenu_GameNoteTitleDelete	high	text object (ROM text 'delete note') set by PakMenu_FormatGameNoteTitle when deleting the game note
+0x800D77D4	PakMenu_DifficultyLabelEasy	high	text object (ROM text 'difficulty : easy') set by PakMenu_FormatDifficultyLabel for save difficulty 0
+0x800D77D8	PakMenu_DifficultyLabelNormal	high	text object (ROM text 'difficulty :normal') set by PakMenu_FormatDifficultyLabel for save difficulty 16
+0x800D77DC	PakMenu_DifficultyLabelHard	high	text object (ROM text 'difficulty : hard') set by PakMenu_FormatDifficultyLabel for save difficulty 32
+0x800D77EC	PakMenu_PlayerNoteTitleLoad	high	text object (ROM text 'note info') set by PakMenu_FormatPlayerNoteTitle when PakMenu_NoteLoadMode
+0x800D77F0	PakMenu_PlayerNoteTitleDelete	high	text object (ROM text 'delete note') set by PakMenu_FormatPlayerNoteTitle when deleting an own player note
+0x800D77F4	PakMenu_PlayerNoteTitleDeleteForeign	high	text object (ROM text 'delete note') set by PakMenu_FormatPlayerNoteTitle when deleting a foreign note
+0x800D77FC	PakMenu_TypeLabelForeign	high	text object (blank ROM text (empty in US)) set by PakMenu_FormatPlayerTypeLabel for a foreign note
+0x800D7804	PakMenu_TypeLabel	high	text object (ROM text 'type :') set by PakMenu_FormatPlayerTypeLabel for an own note; the character type text is copied in
+0x800D7810	PakMenu_PromptLoad	high	text object (ROM text 'load?') set by PakMenu_FormatGameNotePrompt/FormatPlayerNotePrompt in load mode
+0x800D7814	PakMenu_PromptDelete	high	text object (ROM text 'delete?') set by PakMenu_FormatGameNotePrompt/FormatPlayerNotePrompt in delete mode
+0x800D7818	PakMenu_PromptDeleteForeign	high	text object (ROM text 'delete?') set by PakMenu_FormatPlayerNotePrompt when deleting a foreign note
+0x800D781C	PakMenu_MsgHeaderError	high	text object (ROM text 'error') set by PakMenu_FormatMsgHeader for message ids 0..4,7,8,11,13,14
+0x800D7820	PakMenu_MsgHeaderImportant	high	text object (ROM text 'important') set by PakMenu_FormatMsgHeader for message ids 5,6,9,10,12,15
+0x800D7824	PakMenu_MsgOkLabel	high	text object (ROM text 'ok') set by PakMenu_FormatMsgOkLabel for every message but 8
+0x800D7828	PakMenu_MsgOkLabelNoController	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatMsgOkLabel for message 8 (no controller)
+0x800D782C	PakMenu_MsgPakFullLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 0 (PakMenu_OpenMsgPakFull)
+0x800D7830	PakMenu_MsgPakFullLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 0 (PakMenu_OpenMsgPakFull)
+0x800D7834	PakMenu_MsgPakFullLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 0 (PakMenu_OpenMsgPakFull)
+0x800D7838	PakMenu_MsgPakFullLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 0 (PakMenu_OpenMsgPakFull)
+0x800D783C	PakMenu_MsgPakFullLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 0 (PakMenu_OpenMsgPakFull)
+0x800D7840	PakMenu_MsgNoPakLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 1 (PakMenu_OpenMsgNoPak)
+0x800D7844	PakMenu_MsgNoPakLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 1 (PakMenu_OpenMsgNoPak)
+0x800D7848	PakMenu_MsgNoPakLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 1 (PakMenu_OpenMsgNoPak)
+0x800D784C	PakMenu_MsgNoPakLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 1 (PakMenu_OpenMsgNoPak)
+0x800D7850	PakMenu_MsgNoPakLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 1 (PakMenu_OpenMsgNoPak)
+0x800D7854	PakMenu_MsgRumbleBootLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 2 (PakMenu_OpenMsgRumbleBoot)
+0x800D7858	PakMenu_MsgRumbleBootLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 2 (PakMenu_OpenMsgRumbleBoot)
+0x800D785C	PakMenu_MsgRumbleBootLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 2 (PakMenu_OpenMsgRumbleBoot)
+0x800D7860	PakMenu_MsgRumbleBootLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 2 (PakMenu_OpenMsgRumbleBoot)
+0x800D7864	PakMenu_MsgRumbleBootLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 2 (PakMenu_OpenMsgRumbleBoot)
+0x800D7868	PakMenu_MsgRumbleLoadLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 4 (PakMenu_OpenMsgRumbleLoad)
+0x800D786C	PakMenu_MsgRumbleLoadLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 4 (PakMenu_OpenMsgRumbleLoad)
+0x800D7870	PakMenu_MsgRumbleLoadLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 4 (PakMenu_OpenMsgRumbleLoad)
+0x800D7874	PakMenu_MsgRumbleLoadLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 4 (PakMenu_OpenMsgRumbleLoad)
+0x800D7878	PakMenu_MsgRumbleLoadLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 4 (PakMenu_OpenMsgRumbleLoad)
+0x800D787C	PakMenu_MsgRumbleSaveLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 3 (PakMenu_OpenMsgRumbleSave)
+0x800D7880	PakMenu_MsgRumbleSaveLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 3 (PakMenu_OpenMsgRumbleSave)
+0x800D7884	PakMenu_MsgRumbleSaveLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 3 (PakMenu_OpenMsgRumbleSave)
+0x800D7888	PakMenu_MsgRumbleSaveLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 3 (PakMenu_OpenMsgRumbleSave)
+0x800D788C	PakMenu_MsgRumbleSaveLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 3 (PakMenu_OpenMsgRumbleSave)
+0x800D7890	PakMenu_MsgMsg5Line1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 5 (PakMenu_OpenMsg5_0040AB98)
+0x800D7894	PakMenu_MsgMsg5Line2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 5 (PakMenu_OpenMsg5_0040AB98)
+0x800D7898	PakMenu_MsgMsg5Line3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 5 (PakMenu_OpenMsg5_0040AB98)
+0x800D789C	PakMenu_MsgMsg5Line4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 5 (PakMenu_OpenMsg5_0040AB98)
+0x800D78A0	PakMenu_MsgMsg5Line5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 5 (PakMenu_OpenMsg5_0040AB98)
+0x800D78A4	PakMenu_MsgNoPakAtBootLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 6 (PakMenu_OpenMsgNoPakAtBoot)
+0x800D78A8	PakMenu_MsgNoPakAtBootLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 6 (PakMenu_OpenMsgNoPakAtBoot)
+0x800D78AC	PakMenu_MsgNoPakAtBootLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 6 (PakMenu_OpenMsgNoPakAtBoot)
+0x800D78B0	PakMenu_MsgNoPakAtBootLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 6 (PakMenu_OpenMsgNoPakAtBoot)
+0x800D78B4	PakMenu_MsgNoPakAtBootLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 6 (PakMenu_OpenMsgNoPakAtBoot)
+0x800D78B8	PakMenu_MsgPakChangedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 7 (PakMenu_OpenMsgPakChanged)
+0x800D78BC	PakMenu_MsgPakChangedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 7 (PakMenu_OpenMsgPakChanged)
+0x800D78C0	PakMenu_MsgPakChangedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 7 (PakMenu_OpenMsgPakChanged)
+0x800D78C4	PakMenu_MsgPakChangedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 7 (PakMenu_OpenMsgPakChanged)
+0x800D78C8	PakMenu_MsgPakChangedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 7 (PakMenu_OpenMsgPakChanged)
+0x800D78CC	PakMenu_MsgNoControllerLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 8 (PakMenu_OpenMsgNoController)
+0x800D78D0	PakMenu_MsgNoControllerLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 8 (PakMenu_OpenMsgNoController)
+0x800D78D4	PakMenu_MsgNoControllerLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 8 (PakMenu_OpenMsgNoController)
+0x800D78D8	PakMenu_MsgNoControllerLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 8 (PakMenu_OpenMsgNoController)
+0x800D78DC	PakMenu_MsgNoControllerLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 8 (PakMenu_OpenMsgNoController)
+0x800D78E0	PakMenu_MsgGameLoadedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 9 (PakMenu_OpenMsgGameLoaded)
+0x800D78E4	PakMenu_MsgGameLoadedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 9 (PakMenu_OpenMsgGameLoaded)
+0x800D78E8	PakMenu_MsgGameLoadedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 9 (PakMenu_OpenMsgGameLoaded)
+0x800D78EC	PakMenu_MsgGameLoadedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 9 (PakMenu_OpenMsgGameLoaded)
+0x800D78F0	PakMenu_MsgGameLoadedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 9 (PakMenu_OpenMsgGameLoaded)
+0x800D78F4	PakMenu_MsgPlayerSavedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 10 (PakMenu_OpenMsgPlayerSaved)
+0x800D78F8	PakMenu_MsgPlayerSavedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 10 (PakMenu_OpenMsgPlayerSaved)
+0x800D78FC	PakMenu_MsgPlayerSavedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 10 (PakMenu_OpenMsgPlayerSaved)
+0x800D7900	PakMenu_MsgPlayerSavedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 10 (PakMenu_OpenMsgPlayerSaved)
+0x800D7904	PakMenu_MsgPlayerSavedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 10 (PakMenu_OpenMsgPlayerSaved)
+0x800D7908	PakMenu_MsgMsg11Line1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 11 (PakMenu_OpenMsg11_0040AC70)
+0x800D790C	PakMenu_MsgMsg11Line2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 11 (PakMenu_OpenMsg11_0040AC70)
+0x800D7910	PakMenu_MsgMsg11Line3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 11 (PakMenu_OpenMsg11_0040AC70)
+0x800D7914	PakMenu_MsgMsg11Line4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 11 (PakMenu_OpenMsg11_0040AC70)
+0x800D7918	PakMenu_MsgMsg11Line5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 11 (PakMenu_OpenMsg11_0040AC70)
+0x800D791C	PakMenu_MsgNoteDeletedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 12 (PakMenu_OpenMsgNoteDeleted)
+0x800D7920	PakMenu_MsgNoteDeletedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 12 (PakMenu_OpenMsgNoteDeleted)
+0x800D7924	PakMenu_MsgNoteDeletedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 12 (PakMenu_OpenMsgNoteDeleted)
+0x800D7928	PakMenu_MsgNoteDeletedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 12 (PakMenu_OpenMsgNoteDeleted)
+0x800D792C	PakMenu_MsgNoteDeletedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 12 (PakMenu_OpenMsgNoteDeleted)
+0x800D7930	PakMenu_MsgSaveFailedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 13 (PakMenu_OpenMsgSaveFailed)
+0x800D7934	PakMenu_MsgSaveFailedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 13 (PakMenu_OpenMsgSaveFailed)
+0x800D7938	PakMenu_MsgSaveFailedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 13 (PakMenu_OpenMsgSaveFailed)
+0x800D793C	PakMenu_MsgSaveFailedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 13 (PakMenu_OpenMsgSaveFailed)
+0x800D7940	PakMenu_MsgSaveFailedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 13 (PakMenu_OpenMsgSaveFailed)
+0x800D7944	PakMenu_MsgDeleteFailedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 14 (PakMenu_OpenMsgDeleteFailed)
+0x800D7948	PakMenu_MsgDeleteFailedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 14 (PakMenu_OpenMsgDeleteFailed)
+0x800D794C	PakMenu_MsgDeleteFailedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 14 (PakMenu_OpenMsgDeleteFailed)
+0x800D7950	PakMenu_MsgDeleteFailedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 14 (PakMenu_OpenMsgDeleteFailed)
+0x800D7954	PakMenu_MsgDeleteFailedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 14 (PakMenu_OpenMsgDeleteFailed)
+0x800D7958	PakMenu_MsgPakRepairedLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatMsgLine1 for message id 15 (PakMenu_OpenMsgPakRepaired)
+0x800D795C	PakMenu_MsgPakRepairedLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatMsgLine2 for message id 15 (PakMenu_OpenMsgPakRepaired)
+0x800D7960	PakMenu_MsgPakRepairedLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatMsgLine3 for message id 15 (PakMenu_OpenMsgPakRepaired)
+0x800D7964	PakMenu_MsgPakRepairedLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatMsgLine4 for message id 15 (PakMenu_OpenMsgPakRepaired)
+0x800D7968	PakMenu_MsgPakRepairedLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatMsgLine5 for message id 15 (PakMenu_OpenMsgPakRepaired)
+0x800D7970	PakMenu_RepairFailedLine1	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine1 when PakMenu_RepairFailed
+0x800D7974	PakMenu_RepairFailedLine2	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine2 when PakMenu_RepairFailed
+0x800D7978	PakMenu_RepairFailedLine3	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine3 when PakMenu_RepairFailed
+0x800D797C	PakMenu_RepairPromptLine1	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine1 for the repair prompt
+0x800D7980	PakMenu_RepairPromptLine2	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine2 for the repair prompt
+0x800D7984	PakMenu_RepairPromptLine3	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatRepairLine3 for the repair prompt (port number %1d appended)
+0x800D7990	PakMenu_ContinueLabelLoad	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatContinueLabel when PakMenu_IsLoading
+0x800D7994	PakMenu_ContinueLabelSave	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatContinueLabel otherwise
+0x800D7998	PakMenu_ConfirmRepairLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 0 (PakMenu_OpenConfirmRepair)
+0x800D799C	PakMenu_ConfirmRepairLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 0 (PakMenu_OpenConfirmRepair)
+0x800D79A0	PakMenu_ConfirmRepairLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 0 (PakMenu_OpenConfirmRepair)
+0x800D79A4	PakMenu_ConfirmRepairLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 0 (PakMenu_OpenConfirmRepair)
+0x800D79A8	PakMenu_ConfirmRepairLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 0 (PakMenu_OpenConfirmRepair)
+0x800D79AC	PakMenu_ConfirmPakFullLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 1 (PakMenu_OpenConfirmPakFull)
+0x800D79B0	PakMenu_ConfirmPakFullLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 1 (PakMenu_OpenConfirmPakFull)
+0x800D79B4	PakMenu_ConfirmPakFullLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 1 (PakMenu_OpenConfirmPakFull)
+0x800D79B8	PakMenu_ConfirmPakFullLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 1 (PakMenu_OpenConfirmPakFull)
+0x800D79BC	PakMenu_ConfirmPakFullLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 1 (PakMenu_OpenConfirmPakFull)
+0x800D79C0	PakMenu_ConfirmNoRoomForGameLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame)
+0x800D79C4	PakMenu_ConfirmNoRoomForGameLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame)
+0x800D79C8	PakMenu_ConfirmNoRoomForGameLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame)
+0x800D79CC	PakMenu_ConfirmNoRoomForGameLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame)
+0x800D79D0	PakMenu_ConfirmNoRoomForGameLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 2 (PakMenu_OpenConfirmNoRoomForGame)
+0x800D79D4	PakMenu_ConfirmOverwriteLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 3 (PakMenu_OpenConfirmOverwrite)
+0x800D79D8	PakMenu_ConfirmOverwriteLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 3 (PakMenu_OpenConfirmOverwrite)
+0x800D79DC	PakMenu_ConfirmOverwriteLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 3 (PakMenu_OpenConfirmOverwrite)
+0x800D79E0	PakMenu_ConfirmOverwriteLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 3 (PakMenu_OpenConfirmOverwrite)
+0x800D79E4	PakMenu_ConfirmOverwriteLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 3 (PakMenu_OpenConfirmOverwrite)
+0x800D79E8	PakMenu_ConfirmDeleteCorruptLine1	medium	text object (blank ROM text (empty in US)) line 1 set by PakMenu_FormatConfirmLine1 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt)
+0x800D79EC	PakMenu_ConfirmDeleteCorruptLine2	medium	text object (blank ROM text (empty in US)) line 2 set by PakMenu_FormatConfirmLine2 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt)
+0x800D79F0	PakMenu_ConfirmDeleteCorruptLine3	medium	text object (blank ROM text (empty in US)) line 3 set by PakMenu_FormatConfirmLine3 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt)
+0x800D79F4	PakMenu_ConfirmDeleteCorruptLine4	medium	text object (blank ROM text (empty in US)) line 4 set by PakMenu_FormatConfirmLine4 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt)
+0x800D79F8	PakMenu_ConfirmDeleteCorruptLine5	medium	text object (blank ROM text (empty in US)) line 5 set by PakMenu_FormatConfirmLine5 for confirm kind 4 (PakMenu_OpenConfirmDeleteCorrupt)
+0x800D7A00	PakMenu_ConfirmYesLabelNoRoom	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmYesLabel for confirm kinds 1/2 (pak full, no room for game)
+0x800D7A04	PakMenu_ConfirmNoLabelNoRoom	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmNoLabel for confirm kinds 1/2
+0x800D7A08	PakMenu_ConfirmYesLabel	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmYesLabel for confirm kinds 0/3/4
+0x800D7A0C	PakMenu_ConfirmNoLabel	medium	text object (blank ROM text (empty in US)) set by PakMenu_FormatConfirmNoLabel for confirm kinds 0/3/4
+0x800D7B38	LegacyCheats_InvincibilityLabelOn	high	text object -> ROM text 'invincibility : on' set by the LegacyCheats Invincibility label fn by its Settings cheat bit
+0x800D7B3C	LegacyCheats_InvincibilityLabelOff	high	text object -> ROM text 'invincibility : off' set by the LegacyCheats Invincibility label fn by its Settings cheat bit
+0x800D7B40	LegacyCheats_InfiniteLivesLabelOn	high	text object -> ROM text 'infinite lives : on' set by the LegacyCheats InfiniteLives label fn by its Settings cheat bit
+0x800D7B44	LegacyCheats_InfiniteLivesLabelOff	high	text object -> ROM text 'infinite lives : off' set by the LegacyCheats InfiniteLives label fn by its Settings cheat bit
+0x800D7B48	LegacyCheats_AllWeaponsLabelOn	high	text object -> ROM text 'all weapons : on' set by the LegacyCheats AllWeapons label fn by its Settings cheat bit
+0x800D7B4C	LegacyCheats_AllWeaponsLabelOff	high	text object -> ROM text 'all weapons : off' set by the LegacyCheats AllWeapons label fn by its Settings cheat bit
+0x800D7B50	LegacyCheats_UnlimitedAmmoLabelOn	high	text object -> ROM text 'unlimited ammo : on' set by the LegacyCheats UnlimitedAmmo label fn by its Settings cheat bit
+0x800D7B54	LegacyCheats_UnlimitedAmmoLabelOff	high	text object -> ROM text 'unlimited ammo : off' set by the LegacyCheats UnlimitedAmmo label fn by its Settings cheat bit
+0x800D7B58	LegacyCheats_AllSpecialObjectsLabelOn	high	text object -> ROM text 'all special objects : on' set by the LegacyCheats AllSpecialObjects label fn by its Settings cheat bit
+0x800D7B5C	LegacyCheats_AllSpecialObjectsLabelOff	high	text object -> ROM text 'all special objects : off' set by the LegacyCheats AllSpecialObjects label fn by its Settings cheat bit
+0x800D7B60	LegacyCheats_BigHeadModeLabelOn	high	text object -> ROM text 'big head mode : on' set by the LegacyCheats BigHeadMode label fn by its Settings cheat bit
+0x800D7B64	LegacyCheats_BigHeadModeLabelOff	high	text object -> ROM text 'big head mode : off' set by the LegacyCheats BigHeadMode label fn by its Settings cheat bit
+0x800D7B68	LegacyCheats_TinyModeLabelOn	high	text object -> ROM text 'tiny mode : on' set by the LegacyCheats TinyMode label fn by its Settings cheat bit
+0x800D7B6C	LegacyCheats_TinyModeLabelOff	high	text object -> ROM text 'tiny mode : off' set by the LegacyCheats TinyMode label fn by its Settings cheat bit
+0x800D7B70	LegacyCheats_StickModeLabelOn	high	text object -> ROM text 'stick mode : on' set by the LegacyCheats StickMode label fn by its Settings cheat bit
+0x800D7B74	LegacyCheats_StickModeLabelOff	high	text object -> ROM text 'stick mode : off' set by the LegacyCheats StickMode label fn by its Settings cheat bit
+0x800D7B78	LegacyCheats_BigHandsFeetModeLabelOn	high	text object -> ROM text 'big hands / feet mode : on' set by the LegacyCheats BigHandsFeetMode label fn by its Settings cheat bit
+0x800D7B7C	LegacyCheats_BigHandsFeetModeLabelOff	high	text object -> ROM text 'big hands / feet mode : off' set by the LegacyCheats BigHandsFeetMode label fn by its Settings cheat bit
+0x800D7B80	LegacyCheats_PenAndInkModeLabelOn	high	text object -> ROM text 'pen and ink mode : on' set by the LegacyCheats PenAndInkMode label fn by its Settings cheat bit
+0x800D7B84	LegacyCheats_PenAndInkModeLabelOff	high	text object -> ROM text 'pen and ink mode : off' set by the LegacyCheats PenAndInkMode label fn by its Settings cheat bit
+0x800D7B88	LegacyCheats_GouraudModeLabelOn	high	text object -> ROM text 'gouraud mode : on' set by the LegacyCheats GouraudMode label fn by its Settings cheat bit
+0x800D7B8C	LegacyCheats_GouraudModeLabelOff	high	text object -> ROM text 'gouraud mode : off' set by the LegacyCheats GouraudMode label fn by its Settings cheat bit
+0x800D7B90	LegacyCheats_JuansCheatLabelOn	high	text object -> ROM text 'juans cheat : on' set by the LegacyCheats JuansCheat label fn by its Settings cheat bit
+0x800D7B94	LegacyCheats_JuansCheatLabelOff	high	text object -> ROM text 'juans cheat : off' set by the LegacyCheats JuansCheat label fn by its Settings cheat bit
+0x800D7B98	LegacyCheats_ZachAttackLabelOn	high	text object -> ROM text 'zach attack cheat : on' set by the LegacyCheats ZachAttack label fn by its Settings cheat bit
+0x800D7B9C	LegacyCheats_ZachAttackLabelOff	high	text object -> ROM text 'zach attack cheat : off' set by the LegacyCheats ZachAttack label fn by its Settings cheat bit
+0x800D7BA0	LegacyCheats_AllMapLabelOn	high	text object -> ROM text 'all map : on' set by the LegacyCheats AllMap label fn by its Settings cheat bit
+0x800D7BA4	LegacyCheats_AllMapLabelOff	high	text object -> ROM text 'all map : off' set by the LegacyCheats AllMap label fn by its Settings cheat bit
+0x800D7BA8	LegacyCheats_BlackoutLabelOn	high	text object -> ROM text 'blackout : on' set by the LegacyCheats Blackout label fn by its Settings cheat bit
+0x800D7BAC	LegacyCheats_BlackoutLabelOff	high	text object -> ROM text 'blackout : off' set by the LegacyCheats Blackout label fn by its Settings cheat bit
+0x800D7BB0	LegacyCheats_FrootyStripesLabelOn	high	text object -> ROM text 'frooty stripes : on' set by the LegacyCheats FrootyStripes label fn by its Settings cheat bit
+0x800D7BB4	LegacyCheats_FrootyStripesLabelOff	high	text object -> ROM text 'frooty stripes : off' set by the LegacyCheats FrootyStripes label fn by its Settings cheat bit
+0x800D7BB8	LegacyCheats_WarpLabelPortOfAdia	high	text object -> ROM text 'warp: port of adia' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BBC	LegacyCheats_WarpLabelRiverOfSouls	high	text object -> ROM text 'warp: river of souls' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BC0	LegacyCheats_WarpLabelDeathMarshes	high	text object -> ROM text 'warp: death marshes' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BC4	LegacyCheats_WarpLabelLairOfTheBlindOnes	high	text object -> ROM text 'warp:lair of the blind ones' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BC8	LegacyCheats_WarpLabelHiveOfTheMantids	high	text object -> ROM text 'warp: hive of the mantids' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BCC	LegacyCheats_WarpLabelPrimagensLightship	high	text object -> ROM text 'warp: primagen's lightship' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BD0	LegacyCheats_WarpLabelQueenBoss	high	text object -> ROM text 'warp: queen boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BD4	LegacyCheats_WarpLabelBlindOneBoss	high	text object -> ROM text 'warp: blind one boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BD8	LegacyCheats_WarpLabelMotherBoss	high	text object -> ROM text 'warp: mother boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BDC	LegacyCheats_WarpLabelPrimagenBoss	high	text object -> ROM text 'warp: primagen boss' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BE0	LegacyCheats_WarpLabelCredits	high	text object -> ROM text 'warp: credits' set by LegacyCheats_SetWarpLabel by LegacyCheats_WarpIndex
+0x800D7BE4	InGameMenu_FragVerbLabelFragged	high	text object -> ROM text 'you fragged', installed as the item label by InGameMenu_FormatFragVerbLabel (Settings_MonkeyTagMode picks tagged)
+0x800D7BE8	InGameMenu_FragVerbLabelTagged	high	text object -> ROM text 'you tagged', installed as the item label by InGameMenu_FormatFragVerbLabel (Settings_MonkeyTagMode picks tagged)
+0x800D7D40	LegacyMenu_WeaponLabelChargeDartRifleOn	high	text object -> ROM text 'charge dart rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_ChargeDartRifleOn set)
+0x800D7D44	LegacyMenu_WeaponLabelChargeDartRifleOff	high	text object -> ROM text 'charge dart rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_ChargeDartRifleOn clear)
+0x800D7D48	LegacyMenu_WeaponLabelFirestormOn	high	text object -> ROM text 'firestorm : on' set by LegacyMenu_SetWeaponLabel (Settings_FirestormOn set)
+0x800D7D4C	LegacyMenu_WeaponLabelFirestormOff	high	text object -> ROM text 'firestorm :off' set by LegacyMenu_SetWeaponLabel (Settings_FirestormOn clear)
+0x800D7D50	LegacyMenu_WeaponLabelAssaultRifleOn	high	text object -> ROM text 'assault rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_AssaultRifleOn set)
+0x800D7D54	LegacyMenu_WeaponLabelAssaultRifleOff	high	text object -> ROM text 'assault rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_AssaultRifleOn clear)
+0x800D7D58	LegacyMenu_WeaponLabelPlasmaRifleOn	high	text object -> ROM text 'plasma rifle : on' set by LegacyMenu_SetWeaponLabel (Settings_PlasmaRifleOn set)
+0x800D7D5C	LegacyMenu_WeaponLabelPlasmaRifleOff	high	text object -> ROM text 'plasma rifle :off' set by LegacyMenu_SetWeaponLabel (Settings_PlasmaRifleOn clear)
+0x800D7D60	LegacyMenu_WeaponLabelCerebralBoreOn	high	text object -> ROM text 'cerebral bore : on' set by LegacyMenu_SetWeaponLabel (Settings_CerebralBoreOn set)
+0x800D7D64	LegacyMenu_WeaponLabelCerebralBoreOff	high	text object -> ROM text 'cerebral bore :off' set by LegacyMenu_SetWeaponLabel (Settings_CerebralBoreOn clear)
+0x800D7D68	LegacyMenu_WeaponLabelGrenadeLauncherOn	high	text object -> ROM text 'grenade launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_GrenadeLauncherOn set)
+0x800D7D6C	LegacyMenu_WeaponLabelGrenadeLauncherOff	high	text object -> ROM text 'grenade launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_GrenadeLauncherOn clear)
+0x800D7D70	LegacyMenu_WeaponLabelScorpionLauncherOn	high	text object -> ROM text 'scorpion launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_ScorpionLauncherOn set)
+0x800D7D74	LegacyMenu_WeaponLabelScorpionLauncherOff	high	text object -> ROM text 'scorpion launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_ScorpionLauncherOn clear)
+0x800D7D78	LegacyMenu_WeaponLabelTorpedoLauncherOn	high	text object -> ROM text 'torpedo launcher : on' set by LegacyMenu_SetWeaponLabel (Settings_TorpedoLauncherOn set)
+0x800D7D7C	LegacyMenu_WeaponLabelTorpedoLauncherOff	high	text object -> ROM text 'torpedo launcher :off' set by LegacyMenu_SetWeaponLabel (Settings_TorpedoLauncherOn clear)
+0x800D7DB8	InGameMenu_MusicVolumeLabelOff	high	text object -> ROM text 'music volume : off', installed as the item label by InGameMenu_FormatMusicVolumeLabel
+0x800D7DBC	InGameMenu_MusicVolumeLabelMax	high	text object -> ROM text 'music volume : max', installed as the item label by InGameMenu_FormatMusicVolumeLabel
+0x800D7DC0	InGameMenu_MusicVolumeLabelNorm	high	text object -> ROM text 'music volume : norm', installed as the item label by InGameMenu_FormatMusicVolumeLabel
+0x800D7DC8	InGameMenu_SfxVolumeLabelOff	high	text object -> ROM text 'sfx volume : off', installed as the item label by InGameMenu_FormatSfxVolumeLabel
+0x800D7DCC	InGameMenu_SfxVolumeLabelMax	high	text object -> ROM text 'sfx volume : max', installed as the item label by InGameMenu_FormatSfxVolumeLabel
+0x800D7DD0	InGameMenu_SfxVolumeLabelNorm	high	text object -> ROM text 'sfx volume : norm', installed as the item label by InGameMenu_FormatSfxVolumeLabel
+0x800D7DD8	InGameMenu_SpeechVolumeLabelOff	high	text object -> ROM text 'speech volume : off', installed as the item label by InGameMenu_FormatSpeechVolumeLabel
+0x800D7DDC	InGameMenu_SpeechVolumeLabelMax	high	text object -> ROM text 'speech volume : max', installed as the item label by InGameMenu_FormatSpeechVolumeLabel
+0x800D7DE0	InGameMenu_SpeechVolumeLabelNorm	high	text object -> ROM text 'speech volume : norm', installed as the item label by InGameMenu_FormatSpeechVolumeLabel
+0x800D7DE8	InGameMenu_MusicTrackLabelNone	high	text object -> ROM text 'music : none', installed as the item label by InGameMenu_FormatMusicTrackLabel
+0x800D7E04	LegacyMenu_PlayerSpeedLabel	high	text object -> ROM text 'player speed :' (+%3d) set by LegacyMenu_SetPlayerSpeedLabel when the game speed is not 1
+0x800D7E08	LegacyMenu_PlayerSpeedLabelDefault	high	text object -> ROM text 'player speed : default' set by LegacyMenu_SetPlayerSpeedLabel when Settings_GameSpeed == 1
+0x800D80B0	SMALLROOM_PARAMS	high	libaudio reverb params (3 sections, length 4000) alFxNew uses for fxType 1 AL_FX_SMALLROOM
+0x800D8118	BIGROOM_PARAMS	high	libaudio reverb params (4 sections, length 4000) alFxNew uses for fxType 2 AL_FX_BIGROOM
+0x800D81A0	ECHO_PARAMS	high	libaudio reverb params (1 section, length 8000) alFxNew uses for fxType 5 AL_FX_ECHO
+0x800D81C8	CHORUS_PARAMS	high	libaudio reverb params (1 section, length 800) alFxNew uses for fxType 3 AL_FX_CHORUS
+0x800D81F0	FLANGE_PARAMS	high	libaudio reverb params (1 section, length 800) alFxNew uses for fxType 4 AL_FX_FLANGE
+0x800D8218	NULL_PARAMS	high	libaudio all-zero reverb params alFxNew uses for unknown fxType (default case)
+0x800D8470	osViModeNtscLan1	high	libultra VI mode (type 2) set as __osViNext modep by __osViInit for NTSC (symbol_addrs.txt)
+0x800D84C0	osViModePalLan1	high	libultra VI mode (type 0x10) set by __osViInit for PAL (symbol_addrs.txt)
+0x800D8510	osViModeMpalLan1	high	libultra VI mode (type 0x1E) set by __osViInit for MPAL (symbol_addrs.txt)
+0x800D8560	osViModeNtscLpn1	high	libultra VI mode (type 0, ctrl 0x320E, width 320) chosen by Sched_ThreadMain when VideoResolution == 0
+0x800D87E0	osViModeNtscHpn1	high	libultra VI mode (type 8, ctrl 0x324E, interlaced hi-res) chosen by Sched_ThreadMain for the hi-res resolutions
+0x800D9298	__osRunQueue	high	libultra run queue (symbol_addrs.txt; __osThreadTail at 800D9290); __osLeoResume enqueues the popped thread on it
+0x800D9370	Adec_MdctCtx	medium	MdctCtx {cos table 80151AC8, sin table 80151BC8, bit-reverse table 80152B80}; mdctFftInit fills the three tables
+0x800D9594	Adec_HuffSegTable	medium	20-byte AdecHuffSeg records (kind, pos ...) walked by adecDecodeFrame and passed to adecHuffDecode
+0x800DF230	aspMainTextStart	high	audio ucode text set as the audio task ucode (B12AiTask +0x28) by AudioMgr_Init, ucode size 4096
+0x800E0050	gspF3DEX_NoN_fifoDataStart	high	ucode data of the main gfx task (Video_SubmitGfxTasks task 0); ROM id string 'RSP Gfx ucode F3DEX.NoN fifo 2.05' at 800E0188
+0x800E0470	gspL3DEX_fifoDataStart	high	ucode data of the second gfx task (Video_SubmitGfxTasks task 1, ucode text 800DE0A0); ROM id 'RSP Gfx ucode L3DEX fifo 2.05' at 800E05A8
+0x800E0860	aspMainDataStart	high	audio ucode data set as the audio task ucode_data (B12AiTask +0x30) by AudioMgr_Init
+0x800E6058	InGameMenu_ArtsendModeLabelOn	high	text object -> ROM text 'artsend mode : on', installed as the item label by InGameMenu_FormatArtsendModeLabel
+0x800E6074	InGameMenu_ArtsendModeLabelOff	high	text object -> ROM text 'artsend mode : off', installed as the item label by InGameMenu_FormatArtsendModeLabel
+0x800E6090	InGameMenu_PersonLabel1st	high	text object -> ROM text 'person : 1st', installed as the item label by InGameMenu_FormatPersonLabel
+0x800E60AC	InGameMenu_PersonLabel3rd	high	text object -> ROM text 'person : 3rd', installed as the item label by InGameMenu_FormatPersonLabel
+0x800E60C8	InGameMenu_ViewWeaponLabelHidden	high	text object -> ROM text 'weapon :hidden', installed as the item label by InGameMenu_FormatWeaponVisibleLabel
+0x800E60E4	InGameMenu_ViewWeaponLabelVisible	high	text object -> ROM text 'weapon : vis', installed as the item label by InGameMenu_FormatWeaponVisibleLabel
+0x800E6100	InGameMenu_ShadowsLabelOn	high	text object -> ROM text '3d shadows : on', installed as the item label by InGameMenu_FormatShadowsLabel
+0x800E611C	InGameMenu_ShadowsLabelOff	high	text object -> ROM text '3d shadows : off', installed as the item label by InGameMenu_FormatShadowsLabel
+0x800E62DC	InGameMenu_FogRegionsLabelAll	high	text object -> ROM text 'all regions', installed as the item label by InGameMenu_FormatFogAllRegionsLabel
+0x800E62F0	InGameMenu_FogRegionsLabelSingle	high	text object -> ROM text 'single region', installed as the item label by InGameMenu_FormatFogAllRegionsLabel
+0x80104460	Collision_ProfilesRangeEnd_80104460	low	only in a GameBoot comment as the end of the collision profile range copied by Collision_InitProfiles (inside profile 0x80104458)
+0x807FF000	Ram_PtrScanLimit_807FF000	low	upper bound HudTagger uses when walking the camera list (pointer must be below it)
+0x807FFFF0	Net_DesyncTestByte	medium	unused RAM byte near the top of RDRAM that NetPlay XORs (TRW_NET_TEST_DESYNC) to force a desync
+0x80800000	Ram_End	medium	end of the 8 MB RDRAM; Ram() bounds checks in GameSprites/HudValues/MatchInfo

@@ -1517,7 +1517,7 @@ public static partial class MissionTree
                 {
                 case 1:
                     LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, (uint)(UiString.Get(105)));
-                    StrUtil.ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, 0x800E19ECu, Mem.U32(new Q03Tbl70b((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex)].CharacterId)) * 112))).unk64));
+                    StrUtil.ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Gv.Str_CHARACTER, Mem.U32(new Q03Tbl70b((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex)].CharacterId)) * 112))).unk64));
                     break;
                 case 3:
                     LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, (uint)(UiString.Get(61)));
@@ -1528,14 +1528,14 @@ public static partial class MissionTree
                     v = Mem.S32(((Gv.ProfileTable_ArenaBestTimes + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400)));
                     if ((v > 0))
                     {
-                        StrUtil.FormatInto(_fp, 0x800E19F8u, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        StrUtil.FormatInto(_fp, Gv.Str_D02d, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
                     else
                     {
                         r = Arena.GetTreeRecord(idx, 3, 0);
-                        StrUtil.FormatInto(_fp, 0x800E19F8u, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        StrUtil.FormatInto(_fp, Gv.Str_D02d, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
-                    StrUtil.ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, 0x800E1A00u, _fp);
+                    StrUtil.ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, Gv.Str_TIME, _fp);
                     LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(Gv.ModeName_TimeTrial));
                     break;
                 case 4:

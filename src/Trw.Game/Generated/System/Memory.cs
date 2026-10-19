@@ -428,9 +428,9 @@ public static partial class FramePool
                 memset((uint)(Mem.S32((Gv.Gfx_FramebufferArray + (uint)(i * 4)))), 0, sz);
             }
             memset((uint)(Mem.S32(Gv.Gfx_ZBufferPtr)), 0, sz);
-            new Q01Pool(arg0).unk4__Set(ResourcePool.Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(Gv.Gfx_AuxDisplayListCapacity)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
-            new Q01Pool(arg0).unk8__Set(ResourcePool.Alloc(0, 32768, (uint)(35), (int)(0x800E0D7Cu)));
-            new Q01Pool(arg0).unk1C__Set(ResourcePool.Alloc(0, 139264, (uint)(35), (int)(0x800E0D84u)));
+            new Q01Pool(arg0).unk4__Set(ResourcePool.Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(Gv.Gfx_AuxDisplayListCapacity)) * 16), (uint)(35), (int)(Gv.Str_DisplayLists)));
+            new Q01Pool(arg0).unk8__Set(ResourcePool.Alloc(0, 32768, (uint)(35), (int)(Gv.Str_Fifo)));
+            new Q01Pool(arg0).unk1C__Set(ResourcePool.Alloc(0, 139264, (uint)(35), (int)(Gv.Str_AudioHeap)));
             Mem.Set(Gv.Gfx_DisplayListBuf0Ptr, new Q01Pool(arg0).DisplayListHandle.addr);
             Mem.Set(Gv.Gfx_DisplayList2Buf1Ptr, (Mem.S32(Gv.Gfx_DisplayListBuf0Ptr) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
             Mem.Set(Gv.Gfx_DisplayListBuf1Ptr, (Mem.S32(Gv.Gfx_DisplayList2Buf1Ptr) + (Mem.S32(Gv.Gfx_AuxDisplayListCapacity) * 8)));
@@ -2036,11 +2036,11 @@ public static partial class MemUtil
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00265370");
-            if ((Mem.U32(0x80000318u) > (uint)(8388607)))
+            if ((Mem.U32(Gv.osMemSize) > (uint)(8388607)))
             {
                 return (uint)(7340032);
             }
-            return Mem.U32(0x80000318u);
+            return Mem.U32(Gv.osMemSize);
         }
     }
 }

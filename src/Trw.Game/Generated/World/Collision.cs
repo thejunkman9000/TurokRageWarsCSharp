@@ -2889,7 +2889,7 @@ public static partial class Collision
                     ResourcePool.Unref(0, h);
                     return;
                 }
-                h2 = ResourceCache.Hash(0, (uint)(new M03FObj(o).wC4), new M03FObj(o).wC4, (uint)(new M03FObj(o).wD0), 4, (uint)(0), (uint)(0), 0x800C87F8u, 1);
+                h2 = ResourceCache.Hash(0, (uint)(new M03FObj(o).wC4), new M03FObj(o).wC4, (uint)(new M03FObj(o).wD0), 4, (uint)(0), (uint)(0), Gv.Str_AnimObjectInfo, 1);
                 bb = (o + 232u);
                 if ((h2 != 0u))
                 {

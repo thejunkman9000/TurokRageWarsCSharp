@@ -54,7 +54,7 @@ public static partial class AudioMgr
             Mem.Set(Gv.AudioMgr_MaxAcmdSize, new B12AiCfg(c2).MaxAcmdSize);
             i = (uint)(0);
             a20 = Gv.Rsp_BootUcode;
-            a24 = ((int)(0x800DCD10u - Gv.Rsp_BootUcode));
+            a24 = ((int)(Gv.Str_J - Gv.Rsp_BootUcode));
             tp = Gv.AudioMgr_Tasks;
             for (; (i < (uint)(3)); ++i)
             {
@@ -68,9 +68,9 @@ public static partial class AudioMgr
                 new B12AiTask(Mem.U32(tp)).f20__Set(a20);
                 new B12AiTask(Mem.U32(tp)).UcodeBootSize_Set(a24);
                 new B12AiTask(Mem.U32(tp)).TaskFlags_Set(0);
-                new B12AiTask(Mem.U32(tp)).f28__Set(0x800DF230u);
+                new B12AiTask(Mem.U32(tp)).f28__Set(Gv.aspMainTextStart);
                 new B12AiTask(Mem.U32(tp)).UcodeSize_Set(4096);
-                new B12AiTask(Mem.U32(tp)).f30__Set(0x800E0860u);
+                new B12AiTask(Mem.U32(tp)).f30__Set(Gv.aspMainDataStart);
                 new B12AiTask(Mem.U32(tp)).UcodeDataSize_Set(2048);
                 new B12AiTask(Mem.U32(tp)).YieldDataPtr_Set(0);
                 new B12AiTask(Mem.U32(tp)).YieldDataSize_Set(0);
