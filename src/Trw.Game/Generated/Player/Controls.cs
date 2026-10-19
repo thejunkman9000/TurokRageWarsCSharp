@@ -13,7 +13,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A870", (uint)g);
             uint a = 0u;
-            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
             {
                 Rumble_ClearAll((Mem.U32((a + (uint)1688)) + (uint)320));
                 Mem.Set((Mem.U32((a + (uint)1688)) + (uint)208), 0);

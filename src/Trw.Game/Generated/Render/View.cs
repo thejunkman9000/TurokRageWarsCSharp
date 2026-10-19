@@ -4039,7 +4039,7 @@ public static partial class Game
             new Player_v3(o).f_F20_Set(n);
             blk = ResourcePool_Alloc(0, (n << (int)6), (uint)(35), (int)(0x800C83CCu));
             new Player_v3(o).f_F18__Set(blk);
-            memset(new Player_v3(o).f_F1C_Set(new MemBlk(blk).data), 0, (uint)((n << (int)6)));
+            memset(new Player_v3(o).LivesMover_Set(new MemBlk(blk).data), 0, (uint)((n << (int)6)));
         }
     }
 

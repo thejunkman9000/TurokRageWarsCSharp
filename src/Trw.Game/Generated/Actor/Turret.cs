@@ -36,16 +36,16 @@ public static partial class Game
                 uint info = 0u;
                 float k = 0f;
                 float sn = 0f;
-                info = new M1Actor(actor).def.info.P;
+                info = new M1Actor(actor).DefPtr.info.P;
                 func_00202E4C_r01_mk(state, (_fp + 96u));
                 if ((new M1Info(info).unk40.i == (-1)))
                 {
-                    sn = sinf((new M1Actor(actor).f6C * 0.5f));
+                    sn = sinf((new M1Actor(actor).Yaw * 0.5f));
                     new M1Quat(_fp).x_Set(0.0f);
                     new M1Quat(_fp).y_Set(sn);
                     new M1Quat(_fp).z_Set(0.0f);
                     Mem.Set(Gv.Quat_SinScratch, sn);
-                    new M1Quat(_fp).w_Set(cosf((new M1Actor(actor).f6C * 0.5f)));
+                    new M1Quat(_fp).w_Set(cosf((new M1Actor(actor).Yaw * 0.5f)));
                 }
                 else
                 {
@@ -55,13 +55,13 @@ public static partial class Game
                 new M1Quat(_fp).z_Set(0.0f);
                 new M1Quat(_fp).y_Set(Mem.F32(Gv.Quat_SinScratch));
                 new M1Quat(_fp).w_Set(cosf((new M1State(state).f9C * Mem.F32(0x800C6B08u))));
-                Quat_Multiply((_fp + 16u), _fp, new M1Actor(actor).v5C.P);
+                Quat_Multiply((_fp + 16u), _fp, new M1Actor(actor).Rotation.P);
                 Quat_ToMatrix((_fp + 16u), (_fp + 32u));
-                Math_MtxScaleRows((_fp + 32u), new M1Actor(actor).f50, new M1Actor(actor).f54, new M1Actor(actor).f58);
+                Math_MtxScaleRows((_fp + 32u), new M1Actor(actor).Scale, new M1Actor(actor).f54, new M1Actor(actor).f58);
                 Vec_ClampLengthChecked(new M1Actor(actor).Position.P, 2.0E+4f);
                 Math_MtxTranslate((_fp + 32u), new M1Actor(actor).Position.x, new M1Actor(actor).Position.y, new M1Actor(actor).Position.z);
-                Math_MtxMulAffine(new M1Actor(actor).mtx74.P, (_fp + 96u), (_fp + 32u));
-                Math_MtxSwapRowsYZ(new M1Actor(actor).mtx74.P);
+                Math_MtxMulAffine(new M1Actor(actor).TransformMtx.P, (_fp + 96u), (_fp + 32u));
+                Math_MtxSwapRowsYZ(new M1Actor(actor).TransformMtx.P);
             }
         }
         finally { Stack.Free(160); }
@@ -76,7 +76,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00202FDC", (uint)actor, (uint)state, (uint)mode, (uint)tgt);
-                uint info = new M1Actor(actor).def.info.P;
+                uint info = new M1Actor(actor).DefPtr.info.P;
                 float t = new M1State(state).f64;
                 float k = 0f;
                 float fa = 0f;
@@ -195,7 +195,7 @@ public static partial class Game
                 best = 0.0f;
                 found = 0u;
                 p = Mem.U32(Gv.PlayerListHead);
-                info = new M1Actor(actor).def.info.P;
+                info = new M1Actor(actor).DefPtr.info.P;
                 if ((p != 0u))
                 {
                     k = Mem.F32(0x800C6B14u);
@@ -212,7 +212,7 @@ public static partial class Game
                                 ok = 1;
                                 if ((Mem.S32(Gv.TeamPlayEnabled) != 0))
                                 {
-                                    ok = (((int)(new M1Actor(o).stats.b92) != (int)(new M1Actor(p).stats.b92)) ? 1 : 0);
+                                    ok = (((int)(new M1Actor(o).PlayerEntryPtr.b92) != (int)(new M1Actor(p).PlayerEntryPtr.b92)) ? 1 : 0);
                                 }
                             }
                             if ((ok != 0))
@@ -305,10 +305,10 @@ public static partial class Game
                 float la = 0f;
                 int mode = 0;
                 s7 = 0;
-                info = new M1Actor(actor).def.info.P;
-                Mem.Set((_fp + 264u), (new M1Actor(actor).f6C - new M1State(state).f9C));
+                info = new M1Actor(actor).DefPtr.info.P;
+                Mem.Set((_fp + 264u), (new M1Actor(actor).Yaw - new M1State(state).f9C));
                 Math_WrapAngleInPlace((_fp + 264u), default(uint), default(uint), default(uint));
-                switch ((int)(new M1Actor(actor).unkE4))
+                switch ((int)(new M1Actor(actor).TypeId))
                 {
                 case 1035:
                     Ai_UpdateTargets(actor, state, _fp, 0, 1);
@@ -614,7 +614,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203C08", (uint)actor, (uint)state);
-            if ((((int)(new ActorState(state).unkCB) != 0) && ((new Actor(actor).flags & (uint)(524288)) != 0u)))
+            if ((((int)(new ActorState(state).unkCB) != 0) && ((new Actor(actor).Flags & (uint)(524288)) != 0u)))
             {
                 ActorPool_Free((uint)(actor));
             }
@@ -629,7 +629,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00203C40", (uint)actor, (uint)state, (uint)arg);
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8448)));
             }
         }
     }
@@ -746,12 +746,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203EB0", (uint)actor, (uint)unused, (uint)other);
-            uint owner = new Actor(actor).owner_;
+            uint owner = new Actor(actor).OwnerPtr;
             if (((owner == other) || (new Actor(other).Health == 0)))
             {
                 return 0;
             }
-            if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new Actor(owner).stats.unk92) == (int)(new Actor(other).stats.unk92))))
+            if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new Actor(owner).PlayerEntryPtr.unk92) == (int)(new Actor(other).PlayerEntryPtr.unk92))))
             {
                 return 0;
             }

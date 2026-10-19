@@ -4542,9 +4542,9 @@ public static partial class Game
                     {
                         saved = Mem.U32(Gv.Collision_ContactPtr);
                         Mem.Set(Gv.Collision_ContactPtr, _fp);
-                        new_var = Collision_GetFaceHeightAt(ctx, Cpu.U2F((uint)(new B10Obj(o).u8)), Cpu.U2F((uint)(new B10Obj(o).u10)));
+                        new_var = Collision_GetFaceHeightAt(ctx, Cpu.U2F((uint)(new B10Obj(o).Position)), Cpu.U2F((uint)(new B10Obj(o).u10)));
                         h = new_var;
-                        new B10Obj(o).u34_Set(arg1);
+                        new B10Obj(o).StandingOnPtr_Set(arg1);
                         fa = Actor_GetCollisionRadius_0024E454(o);
                         fb = Actor_GetRadius(o);
                         fc = Actor_GetHeight(o);
@@ -4557,21 +4557,21 @@ public static partial class Game
                         {
                             Mem.Copy(new B10A(a).dc.P, ctx, 220);
                             new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                            new B10Obj(o).f38_Set((uint)((uint)(new B10Obj(o).f38) | (uint)(16)));
+                            new B10Obj(o).GroundFlags_Set((uint)((uint)(new B10Obj(o).GroundFlags) | (uint)(16)));
                         }
                         else
                         {
                             new B10Obj(o).fC_Set(new Vec3f((_fp + 264u)).y);
-                            if ((new B10Obj(o).v1C.y < 0.0f))
+                            if ((new B10Obj(o).Velocity.y < 0.0f))
                             {
-                                new B10Obj(o).v1C.y_Set(0.0f);
+                                new B10Obj(o).Velocity.y_Set(0.0f);
                             }
                             new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(32)));
-                            if ((((int)(new B10Obj(o).type) == 1) && ((new B10Obj(o).flags100 & (uint)(3145728)) != 0u)))
+                            if ((((int)(new B10Obj(o).Type) == 1) && ((new B10Obj(o).Flags & (uint)(3145728)) != 0u)))
                             {
                                 new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(64)));
                             }
-                            new B10Obj(o).f38_Set(((new B10Obj(o).f38 & (uint)((~3))) | (uint)(2)));
+                            new B10Obj(o).GroundFlags_Set(((new B10Obj(o).GroundFlags & (uint)((~3))) | (uint)(2)));
                         }
                         Mem.Set(Gv.Collision_ContactPtr, saved);
                     }
@@ -4583,7 +4583,7 @@ public static partial class Game
                     if ((Collision_SweepVsFace(a, ctx, 1) != 0))
                     {
                         new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                        new B10Obj(o).f38_Set((uint)((uint)(new B10Obj(o).f38) | (uint)(16)));
+                        new B10Obj(o).GroundFlags_Set((uint)((uint)(new B10Obj(o).GroundFlags) | (uint)(16)));
                     }
                 }
                 if (((new B10A(a).f5C != 0.0f) || (new B10A(a).f64 != 0.0f)))
@@ -4600,7 +4600,7 @@ public static partial class Game
                     if ((r != 0))
                     {
                         new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                        Vec_Add(new B10Obj(o).v1C.P, new B10Obj(o).v1C.P, (a + 92u));
+                        Vec_Add(new B10Obj(o).Velocity.P, new B10Obj(o).Velocity.P, (a + 92u));
                     }
                 }
             }
@@ -4636,8 +4636,8 @@ public static partial class Game
                     {
                         saved = Mem.U32(Gv.Collision_ContactPtr);
                         Mem.Set(Gv.Collision_ContactPtr, _fp);
-                        h2 = (fa = Collision_GetFaceHeightAt(ctx, Cpu.U2F((uint)(new B10Obj(o).u8)), Cpu.U2F((uint)(new B10Obj(o).u10))));
-                        new B10Obj(o).u34_Set((int)(t));
+                        h2 = (fa = Collision_GetFaceHeightAt(ctx, Cpu.U2F((uint)(new B10Obj(o).Position)), Cpu.U2F((uint)(new B10Obj(o).u10))));
+                        new B10Obj(o).StandingOnPtr_Set((int)(t));
                         new_var = Actor_GetCollisionRadius_0024E454(o);
                         fa = new_var;
                         fb = Actor_GetRadius(o);
@@ -4651,21 +4651,21 @@ public static partial class Game
                         {
                             Mem.Copy(new B10A(a).dc.P, ctx, 220);
                             new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                            new B10Obj(o).f38_Set((uint)((uint)(new B10Obj(o).f38) | (uint)(16)));
+                            new B10Obj(o).GroundFlags_Set((uint)((uint)(new B10Obj(o).GroundFlags) | (uint)(16)));
                         }
                         else
                         {
                             new B10Obj(o).fC_Set(new Vec3f((_fp + 264u)).y);
-                            if ((new B10Obj(o).v1C.y < 0.0f))
+                            if ((new B10Obj(o).Velocity.y < 0.0f))
                             {
-                                new B10Obj(o).v1C.y_Set(0.0f);
+                                new B10Obj(o).Velocity.y_Set(0.0f);
                             }
                             new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(32)));
-                            if ((((int)(new B10Obj(o).type) == 1) && ((new B10Obj(o).flags100 & (uint)(3145728)) != 0u)))
+                            if ((((int)(new B10Obj(o).Type) == 1) && ((new B10Obj(o).Flags & (uint)(3145728)) != 0u)))
                             {
                                 new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(64)));
                             }
-                            new B10Obj(o).f38_Set(((new B10Obj(o).f38 & (uint)((~3))) | (uint)(2)));
+                            new B10Obj(o).GroundFlags_Set(((new B10Obj(o).GroundFlags & (uint)((~3))) | (uint)(2)));
                         }
                         Mem.Set(Gv.Collision_ContactPtr, saved);
                     }
@@ -4677,7 +4677,7 @@ public static partial class Game
                     if ((Collision_SweepVsFaceRadius(a, ctx, tp, h, 1) != 0))
                     {
                         new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                        new B10Obj(o).f38_Set((uint)((uint)(new B10Obj(o).f38) | (uint)(16)));
+                        new B10Obj(o).GroundFlags_Set((uint)((uint)(new B10Obj(o).GroundFlags) | (uint)(16)));
                     }
                 }
                 if (((new B10A(a).f5C != 0.0f) || (new B10A(a).f64 != 0.0f)))
@@ -4686,7 +4686,7 @@ public static partial class Game
                     if ((Collision_SweepVsCylinder(a, tp, h, new B10Buf(q).f4, new B10Buf(q).f34, 1, ctx, 1) != 0))
                     {
                         new B10A(a).f3C_Set((uint)((uint)(new B10A(a).f3C) | (uint)(8)));
-                        Vec_Add(new B10Obj(o).v1C.P, new B10Obj(o).v1C.P, (a + 92u));
+                        Vec_Add(new B10Obj(o).Velocity.P, new B10Obj(o).Velocity.P, (a + 92u));
                     }
                 }
             }
@@ -6039,7 +6039,7 @@ public static partial class Game
                                 for (i = 0; (i < 3); ++i)
                                 {
                                     new B10Ev(_fp).v[(int)((2 - i))].x_Set(new B10Pt(new B10Tri(tri).pt[(int)(i)]).x);
-                                    new B10Ev(_fp).v[(int)((2 - i))].y_Set((new B10Pt(new B10Tri(tri).pt[(int)(i)]).y + new B10Obj(o).v1C.x));
+                                    new B10Ev(_fp).v[(int)((2 - i))].y_Set((new B10Pt(new B10Tri(tri).pt[(int)(i)]).y + new B10Obj(o).Velocity.x));
                                     new B10Ev(_fp).v[(int)((2 - i))].z_Set(new B10Pt(new B10Tri(tri).pt[(int)(i)]).z);
                                 }
                                 Collision_ComputeFaceNormal(_fp);

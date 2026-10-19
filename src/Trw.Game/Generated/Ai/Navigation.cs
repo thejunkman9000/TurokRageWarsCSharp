@@ -211,7 +211,7 @@ public static partial class Game
                 for (; (i < Mem.S32(0x8011FFC8u)); ++i)
                 {
                     a0 = (Mem.U32(0x8011FFC0u) + (uint)(i * 744));
-                    if (((int)(new B2Obj(a0).unkE4) == 1602))
+                    if (((int)(new B2Obj(a0).TypeId) == 1602))
                     {
                         lp = (_fp + (uint)(nlist * 4));
                         Mem.Set(lp, a0);
@@ -232,8 +232,8 @@ public static partial class Game
                             do
                             {
                                 a = Mem.U32((_fp + (uint)(k * 4)));
-                                st = new B2Obj(a).sub.P;
-                                info = new B2Obj(a).def.info.P;
+                                st = new B2Obj(a).StateBlock.P;
+                                info = new B2Obj(a).DefPtr.info.P;
                                 if (((int)(new B2Sub(st).unk34) == 4))
                                 {
                                     t = LevelPath_GetHeader(Gv.LevelMgr, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
@@ -254,8 +254,8 @@ public static partial class Game
                                 }
                                 else
                                 {
-                                    Mem.Copy((_fp + 136u), new B2Obj(a).pos210.P, 12);
-                                    Mem.Copy((_fp + 152u), new B2Obj(a).pos210.P, 12);
+                                    Mem.Copy((_fp + 136u), new B2Obj(a).HomePosition.P, 12);
+                                    Mem.Copy((_fp + 152u), new B2Obj(a).HomePosition.P, 12);
                                     new Vec3f((_fp + 152u)).y_Set((float)((float)(new Vec3f((_fp + 152u)).y) + new B2Info(info).unk2C));
                                     if (((int)(new B2Info(info).unk4) != 0))
                                     {

@@ -2473,7 +2473,7 @@ public static partial class Game
                 Camera_LoadProjection2D(p);
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if ((new Plr(a).unk5DC_ == p))
+                    if ((new Plr(a).ViewPtr == p))
                     {
                         Hud_DrawPlayer(a, p, default(uint), default(uint));
                     }
@@ -2488,15 +2488,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B74C", (uint)a, (uint)unused);
-            new Plr(a).unk13B0_Set((new Plr(a).unk13B0 + 1));
-            if ((new Plr(a).unk13B0 == 5))
+            new Plr(a).MessageLineIndex_Set((new Plr(a).MessageLineIndex + 1));
+            if ((new Plr(a).MessageLineIndex == 5))
             {
-                new Plr(a).unk13B0_Set(0);
+                new Plr(a).MessageLineIndex_Set(0);
             }
-            LibC_StrCopy((new Plr(a).rec.P + (uint)(new Plr(a).unk13B0 * 21)), (uint)(unused));
-            if ((new Plr(a).unk5DC_ != 0u))
+            LibC_StrCopy((new Plr(a).MessageLines.P + (uint)(new Plr(a).MessageLineIndex * 21)), (uint)(unused));
+            if ((new Plr(a).ViewPtr != 0u))
             {
-                Hud_SpawnTextLineC(Gv.ViewMgr, new Plr(a).unk5DC_, (new Plr(a).rec.P + (uint)(new Plr(a).unk13B0 * 21)), x);
+                Hud_SpawnTextLineC(Gv.ViewMgr, new Plr(a).ViewPtr, (new Plr(a).MessageLines.P + (uint)(new Plr(a).MessageLineIndex * 21)), x);
             }
         }
     }
@@ -2717,9 +2717,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00233C78_findPlayer", (uint)a);
             uint p = 0u;
-            for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new Player_v2(p).next_)
+            for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new Player_v2(p).Next)
             {
-                if ((new Player_v2(p).pawn == a))
+                if ((new Player_v2(p).ViewPtr == a))
                 {
                     return p;
                 }
@@ -2741,7 +2741,7 @@ public static partial class Game
                 p = func_00233C78_findPlayer(a);
                 if ((p != 0u))
                 {
-                    if (((new Player_v2(p).flags38 & (uint)(4096)) != 0u))
+                    if (((new Player_v2(p).GroundFlags & (uint)(4096)) != 0u))
                     {
                         Mem.Set((_fp + (uint)0), new PawnFx(a).rgba[(int)(0)]);
                         Mem.Set((_fp + (uint)1), new PawnFx(a).rgba[(int)(1)]);

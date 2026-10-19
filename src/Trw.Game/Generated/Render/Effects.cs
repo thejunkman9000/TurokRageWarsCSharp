@@ -69,12 +69,12 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0022BC84", (uint)actor, (uint)arg1);
                 uint p = 0u;
                 uint owner = 0u;
-                if (((new Actor(actor).flags & (uint)(262144)) != 0u))
+                if (((new Actor(actor).Flags & (uint)(262144)) != 0u))
                 {
                     p = ResourceCache_Hash(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                     if ((p != 0u))
                     {
-                        owner = new Actor(actor).owner_;
+                        owner = new Actor(actor).OwnerPtr;
                         Actor_UpdateTransformAndBounds(actor, (int)(Chunk_Get(Mem.U32((p + (uint)0)), 0)));
                         if ((arg1 != 0))
                         {
@@ -109,7 +109,7 @@ public static partial class Game
                 float ang = 0f;
                 float s = 0f;
                 t = 0u;
-                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
+                if (((o != 0u) && ((int)(new Obj(o).Type) == 1)))
                 {
                     t = Mem.U32((o + (uint)496));
                     Actor_GetFacingQuat((_fp + 112u), (uint)(o));
@@ -143,8 +143,8 @@ public static partial class Game
                         return _ret;
                     }
                 }
-                Mem.Copy((_fp + 16u), new Obj(t).pos.P, 12);
-                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + new Obj(t).unk70));
+                Mem.Copy((_fp + 16u), new Obj(t).Position.P, 12);
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + new Obj(t).BottomOffset));
                 new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + (Actor_GetHeight(t) * Mem.F32(0x800C8D80u))));
                 Vec_Sub((_fp + 32u), (_fp + 16u), _fp);
                 Vec_Normalize((_fp + 32u));
@@ -157,7 +157,7 @@ public static partial class Game
                 new Quat4((_fp + 96u)).y_Set((new Vec3f((_fp + 80u)).y * s));
                 new Quat4((_fp + 96u)).z_Set((new Vec3f((_fp + 80u)).z * s));
                 new Quat4((_fp + 96u)).w_Set(cosf(ang));
-                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
+                if (((o != 0u) && ((int)(new Obj(o).Type) == 1)))
                 {
                     Quat_Multiply((_fp + 128u), (_fp + 112u), (_fp + 96u));
                 }
@@ -793,16 +793,16 @@ public static partial class Game
                 float y = 0f;
                 float px = 0f;
                 float py = 0f;
-                if (((new ActorX(a).ch118.w0 & (uint)(16)) != 0u))
+                if (((new ActorX(a).BlendClipSlot.w0 & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
-                    Mem.Copy((_fp + 16u), new ActorX(a).vel.P, 12);
+                    Mem.Copy((_fp + 16u), new ActorX(a).Velocity.P, 12);
                 }
                 Quat_FromDirection(_fp, (_fp + 16u));
-                t = new ActorX(a).ch118.w14;
+                t = new ActorX(a).BlendClipSlot.w14;
                 x = 0.0f;
                 if ((t == 0))
                 {
@@ -822,13 +822,13 @@ public static partial class Game
                     }
                 }
                 px = 0.0f;
-                if ((new ActorX(a).ch118.w14 == 0))
+                if ((new ActorX(a).BlendClipSlot.w14 == 0))
                 {
                     px = new ActorX(a).f180;
                 }
                 new Vec3f((_fp + 32u)).x_Set((-px));
                 py = 0.0f;
-                if ((new ActorX(a).ch118.w14 == 0))
+                if ((new ActorX(a).BlendClipSlot.w14 == 0))
                 {
                     py = new ActorX(a).f184;
                 }
@@ -850,7 +850,7 @@ public static partial class Game
                 Mem.Copy((_fp + 80u), (_fp + 96u), 12);
                 Mem.Set(Gv.Collision_ContactPtr, Gv.Collision_Contacts);
                 L_L: ;
-                Effect_SpawnFromTemplates(Gv.EffectMgr, a, new ActorX(a).tgt_, (uint)(new ActorX(a).u130), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).u5C & (uint)(2097158)))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, a, new ActorX(a).tgt_, (uint)(new ActorX(a).BlendWeight), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).Rotation & (uint)(2097158)))));
             }
         }
         finally { Stack.Free(440); }
@@ -868,17 +868,17 @@ public static partial class Game
                 int n = 0;
                 float f = 0f;
                 float tmp = 0f;
-                n = (int)(new ActorX(a).ch118.p2C.b18);
+                n = (int)(new ActorX(a).BlendClipSlot.p2C.b18);
                 f = Mem.F32(0x800C9C30u);
                 if ((n != 0))
                 {
-                    if ((new ActorX(a).f140 < (float)(n)))
+                    if ((new ActorX(a).FrameLightSets < (float)(n)))
                     {
-                        f = (new ActorX(a).f140 / (float)(n));
+                        f = (new ActorX(a).FrameLightSets / (float)(n));
                     }
                 }
                 f = (f * scale);
-                Mem.Copy((_fp + 32u), new ActorX(a).v174.P, 12);
+                Mem.Copy((_fp + 32u), new ActorX(a).HitPoints.P, 12);
                 if ((new ActorX(a).f1AC > 0.0f))
                 {
                     new Vec3f(_fp).x_Set(0.0f);
@@ -889,8 +889,8 @@ public static partial class Game
                     new ActorX(a).f19C_Set((float)((float)(new ActorX(a).f19C) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
                     tmp = new ActorX(a).f19C;
                     Vec_Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1AC) * f));
-                    Vec_Sub(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
-                    Vec_Add(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 64u));
+                    Vec_Sub(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 48u));
+                    Vec_Add(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 64u));
                 }
                 else
                 {
@@ -903,16 +903,16 @@ public static partial class Game
                     new Vec3f(_fp).y_Set(Mem.F32(0x800C9C38u));
                     Vec_Cross((_fp + 80u), _fp, (_fp + 32u));
                     Vec_Cross((_fp + 16u), (_fp + 80u), (_fp + 32u));
-                    Vec_Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f1A0) * new ActorX(a).f1B0) * f));
-                    new ActorX(a).f1A0_Set((float)((float)(new ActorX(a).f1A0) + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
-                    tmp = new ActorX(a).f1A0;
+                    Vec_Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).CollisionProfilePtr) * new ActorX(a).f1B0) * f));
+                    new ActorX(a).CollisionProfilePtr_Set((float)((float)(new ActorX(a).CollisionProfilePtr) + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
+                    tmp = new ActorX(a).CollisionProfilePtr;
                     Vec_Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1B0) * f));
-                    Vec_Sub(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
-                    Vec_Add(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 64u));
+                    Vec_Sub(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 48u));
+                    Vec_Add(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 64u));
                 }
                 else
                 {
-                    new ActorX(a).f1A0_Set((new ActorX(a).f1A0 + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
+                    new ActorX(a).CollisionProfilePtr_Set((new ActorX(a).CollisionProfilePtr + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
                 }
             }
         }
@@ -1192,18 +1192,18 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0027A9B8_vel_tail", (uint)a);
-                uint v = new ActorX(a).vel.P;
+                uint v = new ActorX(a).Velocity.P;
                 float s = 0f;
                 float lim = 0f;
                 float len = 0f;
-                s = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w10);
+                s = Trunc16ToF32(new DefC(new ActorX(a).BlendClipSlot.p30_).w10);
                 if ((s != 0.0f))
                 {
-                    Mem.Copy((_fp + 16u), new ActorX(a).v174.P, 12);
+                    Mem.Copy((_fp + 16u), new ActorX(a).HitPoints.P, 12);
                     Vec_Scale(_fp, (_fp + 16u), s);
                     Vec_Add(v, v, _fp);
-                    len = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
-                    lim = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w12);
+                    len = sqrtf_Recompiled((((new ActorX(a).Velocity.x * new ActorX(a).Velocity.x) + (new ActorX(a).Velocity.y * new ActorX(a).Velocity.y)) + (new ActorX(a).Velocity.z * new ActorX(a).Velocity.z)));
+                    lim = Trunc16ToF32(new DefC(new ActorX(a).BlendClipSlot.p30_).w12);
                     if ((s > 0.0f))
                     {
                         if (!(lim < len))
@@ -1248,8 +1248,8 @@ public static partial class Game
                 }
                 Vec_Normalize(_fp);
                 Quat_FromDirection((_fp + 48u), _fp);
-                Quat_FromDirection((_fp + 32u), new ActorX(a).v174.P);
-                speed = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
+                Quat_FromDirection((_fp + 32u), new ActorX(a).HitPoints.P);
+                speed = sqrtf_Recompiled((((new ActorX(a).Velocity.x * new ActorX(a).Velocity.x) + (new ActorX(a).Velocity.y * new ActorX(a).Velocity.y)) + (new ActorX(a).Velocity.z * new ActorX(a).Velocity.z)));
                 if ((dist < Mem.F32(0x800C9C9Cu)))
                 {
                     t = (dist - Mem.F32(0x800C9CA0u));
@@ -1272,8 +1272,8 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).x_Set((float)(0));
                 new Vec3f((_fp + 16u)).y_Set((float)(0));
                 new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C9CB4u));
-                Math_MtxTransformPoint((_fp + 80u), (_fp + 16u), new ActorX(a).v174.P);
-                Vec_Scale(new ActorX(a).vel.P, new ActorX(a).v174.P, speed);
+                Math_MtxTransformPoint((_fp + 80u), (_fp + 16u), new ActorX(a).HitPoints.P);
+                Vec_Scale(new ActorX(a).Velocity.P, new ActorX(a).HitPoints.P, speed);
                 func_0027A9B8_vel_tail(a);
             }
         }
@@ -1293,20 +1293,20 @@ public static partial class Game
                 float s = 0f;
                 float lim = 0f;
                 float len = 0f;
-                if (((new ActorX(a).p134_ != 0u) && (new ActorX(a).f140 > Mem.F32(0x800C9CB8u))))
+                if (((new ActorX(a).p134_ != 0u) && (new ActorX(a).FrameLightSets > Mem.F32(0x800C9CB8u))))
                 {
                     Particle_SteerTowardPoint(a, (new ActorX(a).p134_ + (uint)8));
                     return;
                 }
-                s = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w10);
+                s = Trunc16ToF32(new DefC(new ActorX(a).BlendClipSlot.p30_).w10);
                 if ((s != 0.0f))
                 {
-                    Mem.Copy((_fp + 16u), new ActorX(a).v174.P, 12);
+                    Mem.Copy((_fp + 16u), new ActorX(a).HitPoints.P, 12);
                     Vec_Scale(_fp, (_fp + 16u), s);
-                    Vec_Add(new ActorX(a).vel.P, new ActorX(a).vel.P, _fp);
-                    v = new ActorX(a).vel.P;
-                    len = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
-                    lim = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w12);
+                    Vec_Add(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, _fp);
+                    v = new ActorX(a).Velocity.P;
+                    len = sqrtf_Recompiled((((new ActorX(a).Velocity.x * new ActorX(a).Velocity.x) + (new ActorX(a).Velocity.y * new ActorX(a).Velocity.y)) + (new ActorX(a).Velocity.z * new ActorX(a).Velocity.z)));
+                    lim = Trunc16ToF32(new DefC(new ActorX(a).BlendClipSlot.p30_).w12);
                     if ((s > 0.0f))
                     {
                         if (!(lim < len))
@@ -1872,7 +1872,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0027B790_func_8027B790_distance", (uint)particle, (uint)player);
-                Mem.Copy(_fp, (new SharedPlayer_func_8022A398_de(player).views0.P + 8u), 12);
+                Mem.Copy(_fp, (new SharedPlayer_func_8022A398_de(player).Type.P + 8u), 12);
                 if (((int)(new Shared_Particle(particle).inst.type) != 1039))
                 {
                     new Vec3(_fp).y_Set((float)((float)(new Vec3(_fp).y) + (Actor_GetHeight(player) * 0.5f)));
@@ -9790,7 +9790,7 @@ public static partial class Game
                 for (i = 0; (i < cnt); ++i)
                 {
                     uint e = new B18Mgr(Gv.LevelMgr).ents[(int)(i)];
-                    if ((new B18Ent(e).unk174 > 0))
+                    if ((new B18Ent(e).HitPoints > 0))
                     {
                         Vec_Sub(_fp, new B18Ent(e).Position.P, new B18Ent(o).Position.P);
                         if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 65536.0f))
@@ -9818,7 +9818,7 @@ public static partial class Game
                 for (i = 0; (i < n); ++i)
                 {
                     uint e_2 = Mem.U32((arr + (uint)(i * 4)));
-                    if (((e_2 != o) && (((int)(new B18Ent(e_2).type) == 12) || ((int)(new B18Ent(e_2).type) == 34))))
+                    if (((e_2 != o) && (((int)(new B18Ent(e_2).TypeIndex) == 12) || ((int)(new B18Ent(e_2).TypeIndex) == 34))))
                     {
                         Vec_Sub(_fp, new B18Ent(e_2).Position.P, new B18Ent(o).Position.P);
                         if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 262144.0f))
@@ -10524,7 +10524,7 @@ public static partial class Game
                     Audio_PlaySound((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).Position.x), Cpu.F2U(new B19Plr(p).Position.y), Cpu.F2U(new B19Plr(p).Position.z)), (int)(new B19Plr(p).Position.P), (int)((uint)((-1))));
                     Player_AddDamageOverTime_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
                     Rumble_StartById(Gv.LevelMgr, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
-                    new B19Plr(p).f11EC_Set(Mem.F32(0x800C9F54u));
+                    new B19Plr(p).BurnTime_11EC_Set(Mem.F32(0x800C9F54u));
                 }
                 par = new B19Obj(o).parent_;
                 k = ((Particle_IsUnderwater(o) != 0) ? 12 : 10);

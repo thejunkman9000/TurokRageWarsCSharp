@@ -11,8 +11,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00278FD8", (uint)a);
-            new Actor(a).flags_Set((uint)((uint)(new Actor(a).flags) & (uint)((~8192))));
-            new Actor(a).flags_Set((uint)((uint)(new Actor(a).flags) & (uint)((~256))));
+            new Actor(a).Flags_Set((uint)((uint)(new Actor(a).Flags) & (uint)((~8192))));
+            new Actor(a).Flags_Set((uint)((uint)(new Actor(a).Flags) & (uint)((~256))));
         }
     }
 
@@ -23,7 +23,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00278FF4", (uint)a);
             Actor_ApplyAnimRootMotion(a);
-            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) | (uint)(8448)));
+            new ActorX(a).Flags_Set((uint)((uint)(new ActorX(a).Flags) | (uint)(8448)));
         }
     }
 
@@ -61,11 +61,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002790B8", (uint)a, (uint)d);
-            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) | (uint)(1073741824)));
+            new ActorX(a).Flags_Set((uint)((uint)(new ActorX(a).Flags) | (uint)(1073741824)));
             new B17Dst(d).pos.x_Set(new ActorX(a).Position.x);
             new B17Dst(d).pos.y_Set(new ActorX(a).Position.y);
             new B17Dst(d).pos.z_Set(new ActorX(a).Position.z);
-            new B17Dst(d).unk60_Set(new ActorX(a).unk6C);
+            new B17Dst(d).unk60_Set(new ActorX(a).Yaw);
         }
     }
 
@@ -94,10 +94,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00279130", (uint)a, (uint)p);
             ActorSound_StopLoop(a, (uint)(p));
             Mem.Set(p, (uint)((uint)(Mem.U32(p)) | (uint)(32)));
-            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~65536))));
-            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~8192))));
-            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~256))));
-            if (((new ActorX(a).flags & (uint)(524288)) != 0u))
+            new ActorX(a).Flags_Set((uint)((uint)(new ActorX(a).Flags) & (uint)((~65536))));
+            new ActorX(a).Flags_Set((uint)((uint)(new ActorX(a).Flags) & (uint)((~8192))));
+            new ActorX(a).Flags_Set((uint)((uint)(new ActorX(a).Flags) & (uint)((~256))));
+            if (((new ActorX(a).Flags & (uint)(524288)) != 0u))
             {
                 ActorPool_Free(a);
             }
@@ -160,7 +160,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279248", (uint)a);
-            new Actor(a).flags_Set((uint)((uint)(new Actor(a).flags) & (uint)((~65536))));
+            new Actor(a).Flags_Set((uint)((uint)(new Actor(a).Flags) & (uint)((~65536))));
         }
     }
 
@@ -170,7 +170,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279260", (uint)a);
-            new Actor(a).flags_Set((uint)((uint)(new Actor(a).flags) | (uint)(65536)));
+            new Actor(a).Flags_Set((uint)((uint)(new Actor(a).Flags) | (uint)(65536)));
         }
     }
 }

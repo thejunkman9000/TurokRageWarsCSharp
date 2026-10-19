@@ -2366,63 +2366,63 @@ public readonly struct Entity
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public short unk4s
+    public short TypeIndex
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public short unk4s_Set(short v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public short TypeIndex_Set(short v) => Mem.Set(P + 0x4u, v);
     // +0x6
     public U8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public Vec3f pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3f Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public int unk14
+    public int RegionPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int RegionPtr_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public uint def_
+    public uint DefPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public uint def__Set(uint v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public uint DefPtr_Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public Vec3f vel { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public Vec3f Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x28
     public U8x188 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0xE4
-    public ushort unkE4
+    public ushort TypeId
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xE4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE4u, value);
     }
-    [MethodImpl(Inl)] public ushort unkE4_Set(ushort v) => Mem.Set(P + 0xE4u, v);
+    [MethodImpl(Inl)] public ushort TypeId_Set(ushort v) => Mem.Set(P + 0xE4u, v);
     // +0xE6
     public U8x26 padE6 { [MethodImpl(Inl)] get => new(P + 0xE6u); }
     // +0x100
-    public uint flags
+    public uint Flags
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x100u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x100u, value);
     }
-    [MethodImpl(Inl)] public uint flags_Set(uint v) => Mem.Set(P + 0x100u, v);
+    [MethodImpl(Inl)] public uint Flags_Set(uint v) => Mem.Set(P + 0x100u, v);
     // +0x104
     public U8x112 pad104 { [MethodImpl(Inl)] get => new(P + 0x104u); }
     // +0x174
-    public int unk174
+    public int HitPoints
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x174u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x174u, value);
     }
-    [MethodImpl(Inl)] public int unk174_Set(int v) => Mem.Set(P + 0x174u, v);
+    [MethodImpl(Inl)] public int HitPoints_Set(int v) => Mem.Set(P + 0x174u, v);
     // +0x178
     public U8x4 pad178 { [MethodImpl(Inl)] get => new(P + 0x178u); }
     // +0x17C
-    public F32x6 box { [MethodImpl(Inl)] get => new(P + 0x17Cu); }
+    public F32x6 PartMask { [MethodImpl(Inl)] get => new(P + 0x17Cu); }
     // +0x194
     public U8x8 pad194 { [MethodImpl(Inl)] get => new(P + 0x194u); }
     // +0x19C
@@ -2453,12 +2453,12 @@ public readonly struct Entity
     // +0x1CC
     public U8x114 pad1CC { [MethodImpl(Inl)] get => new(P + 0x1CCu); }
     // +0x23E
-    public sbyte unk23E
+    public sbyte ActiveListIndex
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x23Eu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x23Eu, value);
     }
-    [MethodImpl(Inl)] public sbyte unk23E_Set(sbyte v) => Mem.Set(P + 0x23Eu, v);
+    [MethodImpl(Inl)] public sbyte ActiveListIndex_Set(sbyte v) => Mem.Set(P + 0x23Eu, v);
     // +0x23F
     public U8x169 pad23F { [MethodImpl(Inl)] get => new(P + 0x23Fu); }
 }

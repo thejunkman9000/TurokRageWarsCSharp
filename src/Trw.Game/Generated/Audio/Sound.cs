@@ -107,7 +107,7 @@ public static partial class Game
             uint p = 0u;
             if (((Mem.S32(Gv.Debug_Freeze_8013B29C) == 0) && (Mem.S32(Gv.GamePaused) == 0)))
             {
-                p = ((new Plr(a).unk5DC_ != 0u) ? new Pawn(new Plr(a).unk5DC_).pos128.P : (a + (uint)8));
+                p = ((new Plr(a).ViewPtr != 0u) ? new Pawn(new Plr(a).ViewPtr).pos128.P : (a + (uint)8));
                 LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(Mem.S32((a + (uint)4544))));
                 Mem.Set((a + (uint)4544), (int)(LoopSound_Start((uint)((int)(LoopSound_GetPool())), b, p, (int)(p), (int)(a))));
             }
@@ -120,8 +120,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022AFFC", (uint)actor);
-            LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Actor(actor).unk11C0));
-            new Actor(actor).unk11C0_Set(0);
+            LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Actor(actor).LoopSound2Handle));
+            new Actor(actor).LoopSound2Handle_Set(0);
         }
     }
 

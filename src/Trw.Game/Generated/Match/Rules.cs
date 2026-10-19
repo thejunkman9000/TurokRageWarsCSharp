@@ -2572,14 +2572,14 @@ public static partial class Game
                 {
                     int lim_2 = new GameB6(Gv.Settings_MatchRules).unk18;
                     uint gp_2 = (Gv.Settings_MatchRules - (uint)1496);
-                    if (((int)(new Plr(a).stats.unk4) >= lim_2))
+                    if (((int)(new Plr(a).PlayerEntryPtr.unk4) >= lim_2))
                     {
                         int t_2 = (int)(new GStateB6(gp_2).unkD);
                         if ((t_2 == 0))
                         {
                             return 1;
                         }
-                        if ((new Plr(a).unk5D4 < 4))
+                        if ((new Plr(a).PlayerIndex < 4))
                         {
                             new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
                             return 1;
@@ -2625,7 +2625,7 @@ public static partial class Game
                 {
                     if ((i != idx))
                     {
-                        sum = (int)((int)(sum) + (int)(new Plr(a).stats.unk1C[(int)(i)]));
+                        sum = (int)((int)(sum) + (int)(new Plr(a).PlayerEntryPtr.unk1C[(int)(i)]));
                         if ((sum >= new GameB6(Gv.Settings_MatchRules).unk58))
                         {
                             gp = (Gv.Settings_MatchRules - (uint)1496);
@@ -2634,7 +2634,7 @@ public static partial class Game
                             {
                                 return 1;
                             }
-                            if ((new Plr(a).unk5D4 < 4))
+                            if ((new Plr(a).PlayerIndex < 4))
                             {
                                 new GameB6(Gv.Settings_MatchRules).unkA8_Set(1);
                                 return 1;
@@ -2762,12 +2762,12 @@ public static partial class Game
             _f11: ;
             r = a;
             if (!((r != 0u))) goto _f16;
-            if (!(((int)(new Plr(r).stats.unk94) != 0))) goto _f17;
+            if (!(((int)(new Plr(r).PlayerEntryPtr.unk94) != 0))) goto _f17;
             ++total;
             if (!((new Plr(r).Health == 0))) goto _f18;
             ++dead;
             _f18: ;
-            if (!(((int)(new Plr(r).stats.unk80) == 14))) goto _f19;
+            if (!(((int)(new Plr(r).PlayerEntryPtr.unk80) == 14))) goto _f19;
             flag = 1;
             _f19: ;
             _f17: ;
@@ -2818,24 +2818,24 @@ public static partial class Game
                     best = (((uint)(i) != idx) ? 1 : 0);
                     if ((best != 0))
                     {
-                        switch ((int)(new Plr(a).stats.unk92))
+                        switch ((int)(new Plr(a).PlayerEntryPtr.unk92))
                         {
                         case 255:
                             return 0;
                         case 0:
-                            s0 = (int)((int)(s0) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                            s0 = (int)((int)(s0) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                             break;
                         case 1:
-                            s1 = (int)((int)(s1) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                            s1 = (int)((int)(s1) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                             break;
                         case 2:
-                            s2 = (int)((int)(s2) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                            s2 = (int)((int)(s2) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                             break;
                         case 3:
-                            s3 = (int)((int)(s3) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                            s3 = (int)((int)(s3) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                             break;
                         case 4:
-                            s4 = (int)((int)(s4) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                            s4 = (int)((int)(s4) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                             break;
                         }
                     }
@@ -2892,9 +2892,9 @@ public static partial class Game
             {
                 return 0u;
             }
-            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
             {
-                if (((int)(new Actor(a).stats.unk8F) == 1))
+                if (((int)(new Actor(a).PlayerEntryPtr.unk8F) == 1))
                 {
                     return a;
                 }
@@ -2914,9 +2914,9 @@ public static partial class Game
             if ((((((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)) && (Mem.S32(Gv.Debug_Freeze_8013B29C) == 0)) && (new GameFlags(Gv.Settings_MatchRules).unk20 == 0)) && (new GameFlags(Gv.Settings_MatchRules).unk1C != 0)))
             {
                 count = 0;
-                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                 {
-                    if (((int)(new Actor(a).stats.unk8E) == 1))
+                    if (((int)(new Actor(a).PlayerEntryPtr.unk8E) == 1))
                     {
                         ++count;
                     }
@@ -2947,7 +2947,7 @@ public static partial class Game
                     if ((new GameB6(Gv.Settings_MatchRules).unk28 == 0))
                     {
                         new GameB6(Gv.Settings_MatchRules).unk28_Set(1);
-                        for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+                        for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                         {
                             Player_SetState(a, (int)(a), 21);
                         }
@@ -2956,16 +2956,16 @@ public static partial class Game
                 else
                 {
                     new GameB6(Gv.Settings_MatchRules).unk1C_Set(1);
-                    for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+                    for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                     {
                         Player_SetState(a, (int)(a), 21);
                     }
                 }
                 new GameB6(Gv.Settings_MatchRules).unk1C_Set(1);
-                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
                 {
                     Mem.Set((a + (uint)2140), 0);
-                    new Actor(a).stats.unk8E_Set((byte)(1));
+                    new Actor(a).PlayerEntryPtr.unk8E_Set((byte)(1));
                 }
             }
         }
@@ -2978,9 +2978,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A82C", (uint)g);
             uint a = 0u;
-            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
             {
-                if ((((int)(new Actor(a).stats.unk8F) == 1) || ((int)(Mem.U8((new Actor(a).stats_ + (uint)144))) == 1)))
+                if ((((int)(new Actor(a).PlayerEntryPtr.unk8F) == 1) || ((int)(Mem.U8((new Actor(a).stats_ + (uint)144))) == 1)))
                 {
                     return a;
                 }
@@ -3009,7 +3009,7 @@ public static partial class Game
                 {
                     if (((uint)(i) != idx))
                     {
-                        sum = (int)((int)(sum) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
+                        sum = (int)((int)(sum) + (int)(new Plr(a).PlayerEntryPtr.unk3C[(int)(i)]));
                         if ((max < sum))
                         {
                             max = sum;
@@ -3042,7 +3042,7 @@ public static partial class Game
             int i = 0;
             if ((n < (uint)(8)))
             {
-                for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).next_)
+                for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).Next)
                 {
                     if (((int)(Mem.U8((new Actor(p).stats_ + (uint)144))) == 0))
                     {
@@ -3065,7 +3065,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022C59C", (uint)group);
             uint p = 0u;
-            for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).next_)
+            for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).Next)
             {
                 if (((int)(Mem.U8((new Actor(p).stats_ + (uint)144))) == 1))
                 {
@@ -3082,7 +3082,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022C5CC", (uint)group);
             uint p = 0u;
-            for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).next_)
+            for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).Next)
             {
                 Mem.Set((new Actor(p).stats_ + (uint)143), (byte)(0));
                 Player_ApplyCharacterClass(p);
@@ -3098,9 +3098,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022C610", (uint)g);
             uint p = 0u;
             int n = 0;
-            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).Next)
             {
-                if (((int)(new Player_v3(p).def.f90) == 0))
+                if (((int)(new Player_v3(p).PlayerEntryPtr.f90) == 0))
                 {
                     ++n;
                 }
@@ -3117,9 +3117,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022C640", (uint)g);
             uint p = 0u;
             int n = 0;
-            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).Next)
             {
-                if ((new Player_v3(p).f5D0 != 0))
+                if ((new Player_v3(p).CameraMode != 0))
                 {
                     ++n;
                 }

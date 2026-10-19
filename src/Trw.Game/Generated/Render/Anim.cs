@@ -72,9 +72,9 @@ public static partial class Game
                 int fp = 0;
                 int s1 = 0;
                 float f = 0f;
-                if ((((new B10Obj(o).flags100 & (uint)(67108864)) != 0u) || (list == (int)((o + 260u)))))
+                if ((((new B10Obj(o).Flags & (uint)(67108864)) != 0u) || (list == (int)((o + 260u)))))
                 {
-                    switch ((int)(new B10Obj(o).hE4))
+                    switch ((int)(new B10Obj(o).TypeId))
                     {
                     case 1102:
                     case 1105:
@@ -109,14 +109,14 @@ public static partial class Game
                                 {
                                     if ((s2 == 0u))
                                     {
-                                        s2 = Actor_AcquireModel(o, (int)(new B10Obj(o).b1));
+                                        s2 = Actor_AcquireModel(o, (int)(new B10Obj(o).ModelIndex));
                                         if ((s2 == 0u))
                                         {
                                             goto L_skip;
                                         }
                                         s5 = Chunk_Get((uint)((int)(Mem.U32(s2))), 5);
                                     }
-                                    s1 = (Mem.S32((uint)(((((int)(new B10Le(e).h4) * Mem.S32(s5)) + (int)(s5)) + 116))) & new B10Obj(o).f17C);
+                                    s1 = (Mem.S32((uint)(((((int)(new B10Le(e).h4) * Mem.S32(s5)) + (int)(s5)) + 116))) & new B10Obj(o).PartMask);
                                 }
                                 L_skip: ;
                                 if ((s1 != 0))
@@ -2027,11 +2027,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B64C", (uint)a, (uint)v);
-            new Obj(a).unk10A_Set((short)(v));
-            new Obj(a).unk10E_Set((byte)(0));
-            if (((int)(new Obj(a).unk108) != v))
+            new Obj(a).AnimRequestedClipId_Set((short)(v));
+            new Obj(a).AnimDone_10E_Set((byte)(0));
+            if (((int)(new Obj(a).AnimClipId) != v))
             {
-                new Obj(a).unk10F_Set((byte)(1));
+                new Obj(a).AnimChanged_Set((byte)(1));
             }
         }
     }
@@ -2042,10 +2042,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B66C", (uint)a);
-            new Obj(a).unk10F_Set((byte)(1));
-            new Obj(a).unk104_Set(0);
-            new Obj(a).unk10E_Set((byte)(0));
-            new Obj(a).flags_Set((uint)((uint)(new Obj(a).flags) & (uint)((~1024))));
+            new Obj(a).AnimChanged_Set((byte)(1));
+            new Obj(a).AnimTime_Set(0);
+            new Obj(a).AnimDone_10E_Set((byte)(0));
+            new Obj(a).Flags_Set((uint)((uint)(new Obj(a).Flags) & (uint)((~1024))));
         }
     }
 
@@ -2070,7 +2070,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B6E4", (uint)a, (uint)b, (uint)c);
-            if (((b < 0) || ((c == 0) && ((new Obj(a).flags & (uint)(1024)) != 0u))))
+            if (((b < 0) || ((c == 0) && ((new Obj(a).Flags & (uint)(1024)) != 0u))))
             {
                 return 0;
             }
@@ -2116,9 +2116,9 @@ public static partial class Game
                 new Vec3f((_fp + 80u)).x_Set(Mem.F32(((_fp + 64u) + (uint)(0 * 4))));
                 new Vec3f((_fp + 80u)).y_Set(Mem.F32(((_fp + 64u) + (uint)(2 * 4))));
                 new Vec3f((_fp + 80u)).z_Set(Mem.F32(((_fp + 64u) + (uint)(1 * 4))));
-                Math_MtxMakeRotateY(_fp, Cpu.U2F((uint)(new Obj(o).unk6C.i)));
+                Math_MtxMakeRotateY(_fp, Cpu.U2F((uint)(new Obj(o).Yaw.i)));
                 Math_MtxTransformPoint(_fp, (_fp + 80u), (_fp + 96u));
-                new Vec3f((_fp + 96u)).x_Set((float)((float)(new Vec3f((_fp + 96u)).x) * new Obj(o).unk50));
+                new Vec3f((_fp + 96u)).x_Set((float)((float)(new Vec3f((_fp + 96u)).x) * new Obj(o).Scale));
                 new Vec3f((_fp + 96u)).y_Set((float)((float)(new Vec3f((_fp + 96u)).y) * new Obj(o).unk54));
                 new Vec3f((_fp + 96u)).z_Set((float)((float)(new Vec3f((_fp + 96u)).z) * new Obj(o).unk58));
                 Mem.Copy(_ret, (_fp + 96u), 12);
@@ -2148,7 +2148,7 @@ public static partial class Game
                     {
                         if ((t >= 6))
                         {
-                            Math_MtxTransformPoint(new Obj(a).unk74.P, new B11Rec((list + (uint)(i * 28))).pos.P, _fp);
+                            Math_MtxTransformPoint(new Obj(a).TransformMtx.P, new B11Rec((list + (uint)(i * 28))).pos.P, _fp);
                             Event_Send(a, a, (int)(new B11Rec((list + (uint)(i * 28))).type), (-1), _fp, new B11Rec((list + (uint)(i * 28))).unk14.P);
                         }
                     }
@@ -2172,12 +2172,12 @@ public static partial class Game
                 Mem.Set(((_fp + 32u) + (uint)(0 * 4)), (Mem.F32(((_fp + 16u) + (uint)(0 * 4))) - Mem.F32((_fp + (uint)(0 * 4)))));
                 Mem.Set(((_fp + 32u) + (uint)(1 * 4)), 0.0f);
                 Mem.Set(((_fp + 32u) + (uint)(2 * 4)), (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) - Mem.F32((_fp + (uint)(1 * 4)))));
-                Math_MtxMakeRotateY((_fp + 80u), Cpu.U2F((uint)(new Obj(a).unk6C.i)));
+                Math_MtxMakeRotateY((_fp + 80u), Cpu.U2F((uint)(new Obj(a).Yaw.i)));
                 Math_MtxTransformPoint((_fp + 80u), (_fp + 32u), (_fp + 48u));
-                new Vec3f((_fp + 64u)).x_Set((new Obj(a).pos.x + (Mem.F32(((_fp + 48u) + (uint)(0 * 4))) * new Obj(a).unk50)));
-                new Vec3f((_fp + 64u)).y_Set(new Obj(a).pos.y);
-                new Vec3f((_fp + 64u)).z_Set((new Obj(a).pos.z + (Mem.F32(((_fp + 48u) + (uint)(2 * 4))) * new Obj(a).unk58)));
-                Collision_LocatePoint_0024E78C(a, (_fp + 64u), new Obj(a).pos.P, (a + 20u));
+                new Vec3f((_fp + 64u)).x_Set((new Obj(a).Position.x + (Mem.F32(((_fp + 48u) + (uint)(0 * 4))) * new Obj(a).Scale)));
+                new Vec3f((_fp + 64u)).y_Set(new Obj(a).Position.y);
+                new Vec3f((_fp + 64u)).z_Set((new Obj(a).Position.z + (Mem.F32(((_fp + 48u) + (uint)(2 * 4))) * new Obj(a).unk58)));
+                Collision_LocatePoint_0024E78C(a, (_fp + 64u), new Obj(a).Position.P, (a + 20u));
             }
         }
         finally { Stack.Free(144); }

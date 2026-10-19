@@ -603,11 +603,11 @@ public static partial class Game
             uint e = 0u;
             ushort a2 = 0;
             short idx = 0;
-            s0v = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            s0v = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
             if (!((Player_IsDying(p) != 0))) goto _f0;
             s0v = 0;
             _f0: ;
-            if (!(((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new B04Act(p).stats.unk8F) == 1)))) goto _f1;
+            if (!(((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk8F) == 1)))) goto _f1;
             s0v = 0;
             new B04Roster(o).w0_Set(3);
             _f1: ;
@@ -617,15 +617,15 @@ public static partial class Game
             k = new B04Roster(o).w0;
             if (!(((k == 0) || (k == 3)))) goto _f3;
             if (!((s0v == 0))) goto _f4;
-            if (!(((new B04Act(p).unkCC0 != (-1)) && (new B04Roster(o).w388 != 8)))) goto _f5;
+            if (!(((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Roster(o).w388 != 8)))) goto _f5;
             WeaponMenu_BuildSlots(o, 0, p);
             new B04Roster(o).w0_Set(1);
             _f5: ;
             goto _f6;
             _f4: ;
-            new B04Act(p).unkCC0_Set((-1));
+            new B04Act(p).WeaponMenuSelection_Set((-1));
             WeaponMenu_BuildSlots(o, s0v, p);
-            new B04Act(p).unk11B4_Set(1);
+            new B04Act(p).IsStickCaptured_Set(1);
             new B04Roster(o).w0_Set(1);
             goto L_blk15;
             _f6: ;
@@ -651,11 +651,11 @@ public static partial class Game
             new B04Roster(o).w37C_Set(v);
             _f13: ;
             idx = (short)(a2);
-            if (!(((int)(idx) != (int)(new B04Act(p).unk62E)))) goto _f14;
-            new B04Act(p).unk770_Set((short)(a2));
-            if (!(!((new B04Act(p).flags38 & (uint)(4096)) != 0u))) goto _f15;
+            if (!(((int)(idx) != (int)(new B04Act(p).WeaponIndex)))) goto _f14;
+            new B04Act(p).PendingWeaponIndex_Set((short)(a2));
+            if (!(!((new B04Act(p).GroundFlags & (uint)(4096)) != 0u))) goto _f15;
             t = (int)(new B04W2(Mem.U32((Gv.WeaponDefTable + (uint)(idx * 4)))).unkC);
-            if (!(((t != s0v) && ((int)(new B04Act(p).pr[(int)(t)].a) != 0)))) goto _f16;
+            if (!(((t != s0v) && ((int)(new B04Act(p).WeaponSlots[(int)(t)].a) != 0)))) goto _f16;
             Mem.Set((e + (uint)28), t);
             _f16: ;
             _f15: ;
@@ -730,34 +730,34 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00217F4C", (uint)o, (uint)p, (uint)a2);
             float t = 0f;
             int a0 = 0;
-            if (!((((((uint)((new B04Act(p).unk5E0 - 17)) >= (uint)(2)) && (new B04Act(p).unkCCC == 0)) && !(new B04Act(p).unk11D8 > 0.0f)) && (Flyby_IsActive() == 0)))) goto _f0;
-            new B04Menu(o).w380_Set((((int)(new B04Act(p).stats.unk82) == 1) ? 1 : 0));
-            if (!((new B04Act(p).unk5E0 == 14))) goto _f1;
+            if (!((((((uint)((new B04Act(p).CharacterId - 17)) >= (uint)(2)) && (new B04Act(p).TeamMenuState == 0)) && !(new B04Act(p).StunTime > 0.0f)) && (Flyby_IsActive() == 0)))) goto _f0;
+            new B04Menu(o).w380_Set((((int)(new B04Act(p).PlayerEntryPtr.unk82) == 1) ? 1 : 0));
+            if (!((new B04Act(p).CharacterId == 14))) goto _f1;
             if (!(((int)(new B04Act(p).unk48C) != 0))) goto _f2;
-            if (!(((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
-            new B04Act(p).unk770_Set((short)(Player_PickRandomWeapon(p)));
+            if (!(((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
+            new B04Act(p).PendingWeaponIndex_Set((short)(Player_PickRandomWeapon(p)));
             _f3: ;
             goto L_blk15;
             _f2: ;
             goto _f4;
             _f1: ;
-            if (!((((new B04Act(p).wpn.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).stats.unk82) != 0)))) goto _f5;
-            new B04Act(p).unk770_Set((short)((int)(Player_PickNextWeapon(p, default(uint), default(uint), default(uint)))));
+            if (!((((new B04Act(p).ControllerPtr.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).PlayerEntryPtr.unk82) != 0)))) goto _f5;
+            new B04Act(p).PendingWeaponIndex_Set((short)((int)(Player_PickNextWeapon(p, default(uint), default(uint), default(uint)))));
             goto _f6;
             _f5: ;
-            if (!((((int)(new B04Act(p).stats.unk82) != 1) || ((new B04Act(p).unkCC0 != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
+            if (!((((int)(new B04Act(p).PlayerEntryPtr.unk82) != 1) || ((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
             WeaponMenu_UpdateSelection(o, p);
             _f7: ;
             _f6: ;
             L_blk15: ;
-            if (!(((int)(new B04Act(p).unk770) != (int)(new B04Act(p).unk62E)))) goto _f8;
-            a0 = new B04Act(p).unk11B0;
+            if (!(((int)(new B04Act(p).PendingWeaponIndex) != (int)(new B04Act(p).WeaponIndex)))) goto _f8;
+            a0 = new B04Act(p).WeaponRumbleHandle;
             if (!((a0 != 0))) goto _f9;
             Rumble_SetLink((uint)(a0), (uint)(0), default(uint), default(uint));
-            new B04Act(p).unk11B0_Set(0);
+            new B04Act(p).WeaponRumbleHandle_Set(0);
             _f9: ;
             new B04Act(p).unk11F0_Set(0);
-            new B04Act(p).unk11F8_Set((-1));
+            new B04Act(p).WeaponSpinFrame_Set((-1));
             _f8: ;
             switch (new B04Menu(o).w0) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
             _f11: ;
@@ -779,7 +779,7 @@ public static partial class Game
             _f12: ;
             if (!((WeaponMenu_ShouldClose(o, p) != 0))) goto _f18;
             new B04Menu(o).w388_Set((-1));
-            new B04Act(p).unk11B4_Set(0);
+            new B04Act(p).IsStickCaptured_Set(0);
             new B04Menu(o).w0_Set(3);
             _f13: ;
             t = (new B04Menu(o).f8 - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7330u)));
@@ -795,7 +795,7 @@ public static partial class Game
             new B04Menu(o).f14_Set((new B04Menu(o).f14 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7334u))));
             goto _f21;
             _f20: ;
-            new B04Act(p).unk11B4_Set(0);
+            new B04Act(p).IsStickCaptured_Set(0);
             _f21: ;
             _f4: ;
             _f0: ;
@@ -929,7 +929,7 @@ public static partial class Game
                 new B04Obj(o).unk4_Set((new B04Obj(o).unk4 - Mem.F32(Gv.FrameTime)));
                 return 0;
             }
-            if (((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))
+            if (((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)) != 0u))
             {
                 return 0;
             }
@@ -1230,10 +1230,10 @@ public static partial class Game
             TeamMenu_Close(o);
             return;
             _f1: ;
-            wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
             k = new B04Mn3(o).w0;
             if (!(((k == 0) || (k == 3)))) goto _f2;
-            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f3;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk92) == 255)))) goto _f3;
             TeamMenu_BuildSlots(o);
             new B04Mn3(o).w0_Set(1);
             goto L_blk9;
@@ -1242,7 +1242,7 @@ public static partial class Game
             _f2: ;
             L_blk9: ;
             Mem.Set((p + (uint)1648), Mem.F32(0x800C7388u));
-            new B04Act(p).unk11B4_Set(1);
+            new B04Act(p).IsStickCaptured_Set(1);
             Mem.Set((p + (uint)4536), 1);
             v = TeamMenu_StickDirection4(p);
             if (!((v != new B04Mn3(o).w70))) goto _f5;
@@ -1257,7 +1257,7 @@ public static partial class Game
             if (!((v != new B04Mn3(o).w6C))) goto _f10;
             new B04Mn3(o).w6C_Set(v);
             _f10: ;
-            new B04Act(p).stats.unk92_Set((byte)(a1));
+            new B04Act(p).PlayerEntryPtr.unk92_Set((byte)(a1));
             goto L_blk17;
             _f9: ;
             _f7: ;
@@ -1280,9 +1280,9 @@ public static partial class Game
             _f14: ;
             if (!((TeamMenu_ShouldClose(o, p) != 0))) goto _f17;
             new B04Mn3(o).w0_Set(3);
-            new B04Act(p).unk11B4_Set(0);
+            new B04Act(p).IsStickCaptured_Set(0);
             Mem.Set((p + (uint)4536), 0);
-            switch ((int)(new B04Act(p).stats.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
+            switch ((int)(new B04Act(p).PlayerEntryPtr.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
             _f19: ;
             Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
             a0 = 742;
@@ -1540,10 +1540,10 @@ public static partial class Game
             int k = 0;
             uint e = 0u;
             ushort a1 = 0;
-            wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
             k = new B04MenuL(o).kind;
             if (!(((k == 0) || (k == 3)))) goto _f0;
-            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f1;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk92) == 255)))) goto _f1;
             TeamMenu_BuildSlots(o);
             new B04MenuL(o).kind_Set(1);
             goto L_blk5;
@@ -1567,7 +1567,7 @@ public static partial class Game
             if (!((v != new B04MenuL(o).unk6C))) goto _f7;
             new B04MenuL(o).unk6C_Set(v);
             _f7: ;
-            new B04Act(p).stats.unk92_Set((byte)(a1));
+            new B04Act(p).PlayerEntryPtr.unk92_Set((byte)(a1));
             goto L_blk13;
             _f5: ;
             goto _f8;

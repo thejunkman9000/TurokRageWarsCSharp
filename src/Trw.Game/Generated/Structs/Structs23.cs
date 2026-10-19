@@ -2740,7 +2740,7 @@ public readonly struct P4Ent2
     // +0x0
     public U8x24 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x18
-    public P4Sub sub
+    public P4Sub DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -2754,12 +2754,12 @@ public readonly struct P4Ent2
     // +0x1C
     public U8x200 pad1c { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0xE4
-    public ushort id
+    public ushort TypeId
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xE4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE4u, value);
     }
-    [MethodImpl(Inl)] public ushort id_Set(ushort v) => Mem.Set(P + 0xE4u, v);
+    [MethodImpl(Inl)] public ushort TypeId_Set(ushort v) => Mem.Set(P + 0xE4u, v);
     // +0xE6
     public U8x514 pad_e6 { [MethodImpl(Inl)] get => new(P + 0xE6u); }
 }

@@ -2166,10 +2166,10 @@ public static partial class Game
                 {
                     Player_Restart(var_s0);
                     temp_v0 = (int)(Funcs.CallReg(0x002866F8u, Gv.LevelMgr, (var_s0 + 8u), 0u, 0u));
-                    new Node_func_80449E18_de(var_s0).unk2FC_Set(temp_v0);
-                    new Node_func_80449E18_de(var_s0).unk14_Set(temp_v0);
+                    new Node_func_80449E18_de(var_s0).WeaponActorRegion_Set(temp_v0);
+                    new Node_func_80449E18_de(var_s0).RegionPtr_Set(temp_v0);
                     Player_UpdateViewCamera(var_s0, var_s0, default(uint), default(uint));
-                    temp_a0 = new Node_func_80449E18_de(var_s0).unk5DC;
+                    temp_a0 = new Node_func_80449E18_de(var_s0).ViewPtr;
                     if ((temp_a0 != 0))
                     {
                         Flyby_Hook_00245854((uint)(temp_a0));

@@ -1,3 +1,271 @@
 # object	offset	name	confidence	note   (tools/rename/fields.py)
 Player	0x8	Position	high	Vec3f world position (Plr.pos)
 Player	0x5E4	Health	high	health in 1/256 units (damage fix: 100 -> 97 -> 57 ...)
+Actor	0x0	Type	high	Actor_Init sets 1; type==1 gates character-only fields (Actor_IsOnGround, Actor_GetFloorY, Event_SetActorBit)
+Actor	0x1	ModelIndex	medium	Actor_AcquireModel(a, +0x1) picks the model variant; Destructible_OnDamage sets it from its break table
+Actor	0x3	ShadeParam_3	low	last arg of Light_ShadeVertices/Model_DrawCharacterParts; Player_SetBodyModel sets it from class stats +0x81
+Actor	0x4	TypeIndex	high	Actor_Init stores the level type-table index; Actor_GetTypeId = Level_GetTypeIdByIndex(+0x4); resource key source in Actor_ResetAnimObject
+Actor	0x8	Position	high	Vec3f world position; Actor_Init copies pos_in; root motion adds to x/z
+Actor	0x14	RegionPtr	high	current floor region; Collision_GetFloorHeightAt(+0x14); Actor_MoveWithCollision fires region leave/enter triggers when it changes
+Actor	0x18	DefPtr	high	ActorDef/ObjDef pointer (word 0 = class kind selecting the state table); Actor_HasDefFlag*, Actor_GetHeight switch
+Actor	0x1C	Velocity	high	Vec3f; Actor_Init copies v1C_in; collision pushes zero it; ActorB/Entity views call it vel
+Actor	0x34	StandingOnPtr	high	Actor_GetStandingObject/Actor_GetGroundObjectRaw return it (type 1, ground flags &3); written by collision push
+Actor	0x38	GroundFlags	medium	Actor_IsOnGround = &7; bit 0x1000 = in water (Player_UpdateUnderwaterState); collision push sets bit 0x10
+Actor	0x3C	FloorMaterial_3C	low	Actor_GetField3C (type 1, else -1); Event_PlaySoundIfVariant plays only when it equals the sound variant (surface type?)
+Actor	0x40	FloorY	high	Actor_GetFloorY returns it for type 1 (else pos.y); used by shadow and fall landing
+Actor	0x50	Scale	high	Vec3f; Actor_BuildDefaultTransform Math_MtxScaleRows(+0x50,+0x54,+0x58); Actor_GetAverageScale; Player_ApplyCharacterClass sets it
+Actor	0x5C	Rotation	high	quaternion (16 bytes); Actor_Init stores Player_GetBodyLean result; Player_GetViewQuat copies it
+Actor	0x6C	Yaw	high	facing angle; Actor_Init f6c arg; Math_MtxMakeRotateY(+0x6C); root motion subtracts the turn and wraps it
+Actor	0x70	BottomOffset	medium	Actor_GetBottomOffset returns it for type 1; Actor_GetAutoAimQuat adds it to y; Actor_Init clears it
+Actor	0x74	TransformMtx	high	64-byte matrix; Actor_Init Math_MtxIdentity(o+0x74); Actor_BuildDefaultTransform writes it; Math_TransformAabb source
+Actor	0xB4	BoneMatricesPtr	medium	current per-bone matrices (Actor_FindNearestHitBox indexes i*64); passed to Light_ShadeVertices/Model_Draw*
+Actor	0xB8	PrevBoneMatricesPtr	medium	Actor_ResetPoseMatrices moves +0xB4 here; Actor_FindNearestHitBox falls back to it
+Actor	0xC4	AnimDataKey	medium	Actor_ResetAnimObject Resource_GetCartridgeKey(...,0,&+0xD0); hashed by Actor_LookupAnimType/Actor_RefreshPoseMatrices
+Actor	0xC8	AnimClipsKey	medium	Resource_GetCartridgeKeyNoSize(...,2); Actor_ApplyAnimRootMotion hashes it and passes it to Anim_SwitchClip
+Actor	0xCC	ModelTableKey	medium	Resource_GetCartridgeKeyNoSize(...,1); Actor_AcquireModel hashes it with size +0xD4
+Actor	0xD0	AnimDataSize	medium	size out-param of the +0xC4 key; passed as size to ResourceCache_Hash with +0xC4
+Actor	0xD4	ModelTableSize	medium	(count*4+15)&~7 of the model index table; size for the +0xCC hash
+Actor	0xD8	LoadedModelIndex	medium	Actor_AcquireModel caches the loaded model index (reset -1)
+Actor	0xDC	LoadedModelKey	medium	Actor_AcquireModel stores the selected model's cartridge key; 0 = none
+Actor	0xE0	LoadedModelSize	medium	size out-param (a+0xE0) of the +0xDC key, used by its ResourceCache_Hash
+Actor	0xE4	TypeId	high	class/type id (202, 311, 1615...); Actor_Init stores type2; Actor_GetTypeId; Level_FindNearestEntity filters on it
+Actor	0xE6	AnimCount	medium	byte 7 of anim chunk 1; Sprite_FindIndex count in Actor_LookupAnimType; sizes the +0xC8 clip table
+Actor	0xE7	ModelCount	medium	low byte of the model index table count (Actor_ResetAnimObject)
+Actor	0xE8	Bounds	high	world AABB (6 floats 0xE8..0xFF); Math_TransformAabb(+0x74, box, +0xE8); culled in Level_BuildActiveActorLists
+Actor	0x100	Flags	high	main actor flags (0x8 vertex-lit, 0x400 blend active, 0x10000 collides, 0x40000 model loaded, 0x300000 player body ...)
+Actor	0x104	AnimTime	medium	start of the main clip slot (Anim_InitClipSlot(o+0x104)); Anim_ResetPlayback clears it; compared with the clip length
+Actor	0x108	AnimClipId	medium	current clip; Anim_RequestClip marks changed when the request differs from +0x108
+Actor	0x10A	AnimRequestedClipId	medium	Anim_RequestClip / Actor_ResetAnimObject store the requested clip
+Actor	0x10C	AnimClipLength	medium	ActorState_UpdateAnim (+0x10C - len); func_0020486C compares h10C*scale with +0x104
+Actor	0x10E	AnimDone_10E	low	cleared by Anim_RequestClip/Anim_ResetPlayback, set by root motion in level mode 4; ActorState_UpdateAnim tests !=0
+Actor	0x10F	AnimChanged	medium	Anim_RequestClip/Anim_ResetPlayback set 1 when the clip changes; Actor_ApplyAnimRootMotion tests it
+Actor	0x118	BlendClipSlot	medium	second clip slot (Anim_InitClipSlot); Anim_SwitchClip/Anim_SampleTrack target for the transition blend
+Actor	0x12C	BlendFrames	medium	Actor_ApplyAnimRootMotion stores the root-chunk blend length; blend ends when +0x134 exceeds it
+Actor	0x130	BlendWeight	medium	cubic blend factor; Vec_Lerp/Math_LerpAngle weight in Actor_ApplyAnimRootMotion
+Actor	0x134	BlendTime	medium	reset 0 at blend start, += FrameTime each frame (Actor_ApplyAnimRootMotion)
+Actor	0x138	BlendTangentIn_138	low	byte from the blend curve (cv+5) used as a cubic tangent
+Actor	0x139	BlendTangentOut_139	low	byte from the blend curve (cv+7) used as a cubic tangent
+Actor	0x140	FrameLightSets	medium	2x24-byte light sets indexed by FrameParity (seg + parity*24 to Light_ShadeVertices); Actor_Init copies Model_DefaultLights
+Actor	0x158	FrameLightSet1	medium	second (odd-frame) light set; Actor_Init copies Model_DefaultLights for flag 8
+Actor	0x170	StateBlock	high	368-byte per-class state block (ActorState_Init memsets o+0x170; ActorState_Update(a, a+0x170); callbacks get o+0x170)
+Actor	0x174	HitPoints	medium	<=0 means dead (Actor_GetHeight, Actor_IsDeadOrDefFlag4Cx*); Player_ApplyCharacterClass sets 2560 (1/256 units)
+Actor	0x17C	PartMask	medium	bone/part bitmask; Actor_DrawBonePart and Actor_FindNearestHitBox test (mask & +0x17C)
+Actor	0x1A0	CollisionProfilePtr	medium	Actor_MoveWithCollision passes it (flag 0x10000) to Collision_MoveActor; Actor_IsAlwaysActive tests its flags
+Actor	0x1D8	OwnerPtr	high	owner/controller (player struct for a body actor, AI controller); preserved by ActorState_Init; Ai_Enter* read it
+Actor	0x1F4	PrevRegionPtr	medium	Actor_MoveWithCollision stores the old +0x14 when the region changes
+Actor	0x204	PathCursor	medium	LevelPath_InitCursor(o+0x204, a5, pos) in Actor_Init
+Actor	0x210	HomePosition	medium	ActorState_Init copies the actor position here (state+0xA0); AiNav_LinkPlatformNodes reads it
+Actor	0x238	StateCode_238	low	ushort (init -1 by ActorState_Init); Actor_MoveWithCollision zeroes a collision param when it is 11020..11027
+Actor	0x23A	SpawnAnim_23A	low	Actor_ResetAnimObject stores the chosen clip; Actor_Init uses -value as the anim arg
+Actor	0x23B	RestoreCount	medium	Actor_CallRestore increments it
+Actor	0x23E	ActiveListIndex	medium	Level_AddActiveActor/Level_BuildActiveActorLists store the actor's slot index
+Actor	0x27C	DrawCallback	high	ActorState_Init sets Actor_DrawDefault; Actor_Init sets Actor_DrawModelVertexLit for flag 8; menu sets MenuPage_DrawItemModel*
+Actor	0x284	CollisionCallback	high	Actor_MoveWithCollision calls it (o, o+0x170, profile) after Collision_MoveActor
+Actor	0x28C	TransformCallback	high	ActorState_Init sets Actor_BuildDefaultTransform; Actor_UpdateTransformAndBounds calls it
+Actor	0x294	Pitch_294	low	Actor_GetFacingQuat builds a sin/cos(+0x294*k) quaternion
+Actor	0x2E0	EventBits	medium	Event_SetActorBit/Event_ClearActorBit (1<<bit); Actor_SetFlag2E0Bit2; Actor_Init sets 0x17800074
+Actor	0x2E4	DynamicKeyBase	medium	Actor_Init sets Resource_NextDynamicKey()<<10
+Player	0x2E8	WeaponActor	medium	embedded actor for the held weapon: Player_SetWeaponModel sets its model type from WeaponDefTable[0x62E]; Actor_DispatchEvent(p+0x2E8, p+0x458)
+Player	0x2F0	WeaponActorPos	medium	weapon actor +0x8 position; Player_SyncBodyActor/AnimateBodies copy the player Position into it
+Player	0x2FC	WeaponActorRegion	medium	weapon actor +0x14; Player_SyncBodyActor copies the player region index +0x14 into it
+Player	0x344	WeaponActorRotation	medium	weapon actor +0x5C quaternion; copied from the player body quaternion +0x5C
+Player	0x354	WeaponActorYaw	medium	weapon actor +0x6C; copied from player yaw +0x6C (Player_UpdateLaunchArc also sets it)
+Player	0x3E8	WeaponActorFlags	medium	weapon actor +0x100 flags; Player_AnimateBodies sets/clears bit 0x200
+Player	0x458	WeaponActorState	medium	weapon actor state block (actor +0x170) passed with 0x2E8 to Actor_DispatchEvent (Player_UpdateState, Player_BecomeMonkey, Player_ActivateAndSpawn)
+Player	0x484	WeaponAnimInfoPtr_484	low	Player_InitWeapons stores WeaponDef[pending 0x770]->+0x54; Player_SetWeaponModel passes its +0x10 as the model anim
+Player	0x578	WeaponDefParam_578	low	Player_InitWeapons stores WeaponDef[0x62E]->+0x58 (multiplayer only)
+Player	0x594	FireMode	medium	Weapon_GetAmmoSlot/Player_GetWeaponAmmo pick weapon def ammo slot +0x20 when ==1 else +0x24; Weapon_FireShot/UpdateAltFire write it
+Player	0x5D0	CameraMode	high	Player_UpdateViewCamera: 1 = eye view, 2 = orbit; InGameMenu_OnPersonSelect toggles 1<->2; Player_InitSlot sets 1; Match_CountActivePlayers counts !=0
+Player	0x5D4	PlayerIndex	high	slot index: ProfileTable[+0x5D4*400], pad profile D_8010F328[+0x5D4], per-slot counters D_80102AE0[]; frag/kill limit checks <4
+Player	0x5D8	PlayerEntryPtr	medium	pointer to the player's match entry/settings record (+0x80 class, +0x8F monkey, +0x92 team, +0x1C kills, active flag); Shared_HudPlayer calls it owner
+Player	0x5DC	ViewPtr	high	player's view/camera object (decomp 'view'): Player_UpdateViewCamera, Player_GetByViewIndex, MenuPanel_Open(view+0x554)
+Player	0x5E0	CharacterId	high	Player_LookupCharacterDef/Player_ApplyCharacterClass use char id +0x5E0; start of the 0x70-byte block saved by Level_SavePlayersForRestart
+Player	0x5E8	LifeForce	high	Pickup_GiveLifeForce adds the amount; every 100 gives +1 at 0x5EA
+Player	0x5EA	Lives	high	Player_InitLivesForMode sets 1 or 3; Pickup_GiveLifeForce raises it (max 9); Player_OnDeathFlybyDone checks last life ==1
+Player	0x5EC	SpawnPointId	high	respawn key: Player_Respawn/BecomeMonkey call Player_PlaceAtSpawn(p, +0x5EC); region flag 0x4000000 updates it; compared with Level_StartPointId
+Player	0x5F0	CheckpointId_5F0	low	region flag 0x8000000 sets it together with 0x5EC and D_8013B2C8 (func_00220EB0); Player_Tick writes it
+Player	0x5F4	Ammo	high	s16 ammo counts per ammo type: Player_GetWeaponAmmo, Player_GiveAmmo, Player_DrainAmmo, Hud_DrawAmmo, Weapon_FireShot
+Player	0x602	WeaponSlots	high	22 x {owned, menu order} byte pairs: Player_InitWeapons clears, Player_PickFallbackWeapon/PickNextWeapon walk +0x603, weapon-cycle checks ownership
+Player	0x62E	WeaponIndex	high	current weapon (WeaponDefTable index); Weapon_Update compares with pending 0x770
+Player	0x630	PrevWeaponIndex_630	low	Player_InitWeapons sets it to the start weapon (16/17/0/current); no other readers found
+Player	0x632	LastWeaponIndex_632	low	Player_InitWeapons sets it like 0x630; no other readers found
+Player	0x650	StateId	high	player state id (PlayerState table +0x13B4), set by Player_SetState
+Player	0x652	PrevStateId	high	Player_SetState stores the previous 0x650 here; PlayerState_EnterLedgeClimb checks ==15
+Player	0x658	StateTime	high	time in state: zeroed by Player_SetState, Player_UpdateDeathAnim respawns after it passes a limit, bob phase in swim states
+Player	0x660	PrevStateFlags	high	Player_SetState copies the old 0x664 here; PlayerState_UpdateFall tests bit 0x8000
+Player	0x664	StateFlags	high	Player_SetState loads it from state entry +0xC; bit 0x8000 tested by death/ledge/flyby code
+Player	0x66C	TimeStep	medium	Player_Tick sets FrameTime * 0x784; Player_UpdateGroundMovement/SwimMovement scale the step by it
+Player	0x670	InvulnerableTime	medium	Player_ApplyDamage skips damage while > 0; Player_SetAllTimer670 sets it for all players; blocks status effects and team/weapon menus
+Player	0x678	FlashlightTime	high	m_FlashlightTime: Player_TickFlashlightTime counts down, pickups add, Player_UpdateFlashlight keeps lights while > 0
+Player	0x67C	FlashlightLight1Ptr	medium	Player_UpdateFlashlight light handle placed 204.8 ahead (m_pDLFlashlight1)
+Player	0x680	FlashlightLight2Ptr	medium	Player_UpdateFlashlight light handle placed 614.4 ahead (m_pDLFlashlight2)
+Player	0x684	FlashlightLight3Ptr	medium	Player_UpdateFlashlight third light handle at distance 0
+Player	0x688	PadInput	high	translated pad block: Pad_UpdatePlayerControls(p+0x688), Pad_InitPlayerInput/Pad_ClearPlayerInput
+Player	0x698	ControllerPtr	high	PadInput +0x10 raw controller (Rumble_SetEnabled, Player_ClearAllPadInput uses +0x140; decomp 'controller')
+Player	0x69C	TurnInput	medium	PadInput +0x14; Player_UpdateViewTurn turns body yaw +0x6C by it * 80 deg
+Player	0x6A0	PitchInput	medium	PadInput +0x18; Player_UpdateViewTurn tilts view pitch 0x724 by -it * 80
+Player	0x6A4	StrafeInput	medium	PadInput +0x1C; drives strafe speed 0x6C4 (ground/swim movement, state 07 sign)
+Player	0x6A8	ForwardInput	medium	PadInput +0x20; drives forward speed 0x6C0 (ground/swim/fly movement)
+Player	0x6AC	ButtonsHeld	high	PadInput +0x24 held button bits (decomp 'held'/'input'): fire 0x2000, alt 0x4000 in weapon states
+Player	0x6B0	ButtonsPressed	high	PadInput +0x28 newly pressed bits (decomp 'pressed'): jump 0x10, weapon cycle 0x200, 0x800 toggle
+Player	0x6B8	ButtonsTapped_6B8	low	PadInput +0x30 bits copied from controller +0xBC; bits 1/2 trigger side dodges, 0x8 dash in mounted state
+Player	0x6C0	ForwardSpeed	high	forward speed accelerated from 0x6A8 (Player_UpdateGroundMovement); climb moves vertically by it
+Player	0x6C4	StrafeSpeed	high	sideways speed from 0x6A4; state 07 sets it to +/-k
+Player	0x6C8	MoveSpeed	high	Player_Tick stores sqrt(0x6C0^2 + 0x6C4^2); footstep/swim states test it
+Player	0x6D0	IsOnGround	medium	Player_Tick stores the ground-contact result; Player_ResetFields sets 1; walk footsteps need it
+Player	0x6D4	DodgeForwardSpeed_6D4	low	Player_UpdateGroundMovement: burst from pressed bits 8/4, decays to zero, added along heading
+Player	0x6D8	DodgeSideSpeed_6D8	low	Player_UpdateGroundMovement: burst from 0x6B8 bits 1/2, decays, added sideways
+Player	0x6DC	DodgeCooldown	medium	Player_UpdateGroundMovement/SwimMovement: counts down by FrameTime, raised on each dodge
+Player	0x6E0	ClimbDirection_6E0	low	Player_UpdateClimbState multiplies by it and negates it; PlayerState_EnterLedgeHang sets a constant
+Player	0x6E4	AirTime	medium	Player_Tick adds FrameTime while off ground (zeroed on ground, climbing, in water); Player_TryJump refuses above a limit
+Player	0x6E8	MoveVelocity	high	movement velocity Vec3f: ground/swim/fly movement Vec_Add into it; reset in Player_ResetFields/ResetMovement
+Player	0x6F4	BodyHeight	medium	Player_ResetFields sets class def +0xF4; Player_UpdateHeightOffset raises it unless the ceiling test blocks
+Player	0x6F8	LastGroundPos	medium	Player_CheckFellOutOfWorld stores the position while on ground; Player_ResetFields copies pos
+Player	0x708	ViewPitchBase	medium	subtracted from view pitch in Player_GetViewQuat/Actor_BuildModelMatrix (decomp 'pitchBase'); copied to 0x70C by Player_ResetField70C
+Player	0x718	CrouchOffset	high	Player_IsCrouched: > 5.12; Player_UpdateCrouch moves it toward 40.96 (decomp 'crouch')
+Player	0x720	SwimSinkOffset	medium	Player_UpdateSinkOffset moves it toward 66.56 in states 9..12 (decomp 'duck'); subtracted from eye height
+Player	0x724	ViewPitch	high	view X-axis angle in Player_GetViewQuat; Player_UpdateViewTurn approaches it from tilt input; Player_ApplyLookPitchToBone
+Player	0x728	ViewYawOffset	medium	added to body yaw +0x6C for the view Y-axis rotation (Player_GetViewQuat, climb state)
+Player	0x72C	ViewRoll	medium	view Z-axis angle in Player_GetViewQuat; swim movement banks it; death anim drives it to 75 deg
+Player	0x730	SwayPitch	medium	bob/sway added to 0x724 (decomp 'sway[0]'); underwater sin waves, decayed by Player_SettleViewBob
+Player	0x734	SwayYaw	medium	bob/sway added to 0x728 (decomp 'sway[1]')
+Player	0x738	SwayRoll	medium	bob/sway added to 0x72C (decomp 'sway[2]')
+Player	0x73C	EyeOffsetX	medium	eye offset x (decomp 'eye[0]'); Player_SettleViewBob sways it by -sin(heading)
+Player	0x740	EyeHeight	high	Player_EaseEyeHeight eases it toward def +0xF4 * k; eye offset y (decomp 'eye[1]')
+Player	0x744	EyeOffsetZ	medium	eye offset z (decomp 'eye[2]'); Player_SettleViewBob sways it by -cos(heading)
+Player	0x758	BobAmplitude	medium	Player_SettleViewBob: amplitude of the eye-height / sideways bob, clamped and decayed
+Player	0x75C	BobFrequency	medium	Player_SettleViewBob: bob angle = StateTime * it * k, clamped and decayed
+Player	0x770	PendingWeaponIndex	high	weapon to switch to: Weapon_Update raises the switch event when != 0x62E; weapon-cycle button / fallback set it
+Player	0x780	EyeHeightOffset	medium	Player_ApproachField780 eases it toward an object +0x2C; added to eye height in Actor_BuildModelMatrix (decomp 'eyeOffset')
+Player	0x784	TimeScale	medium	Actor_ApplyGameSpeed multiplies it by Game Speed; Player_Tick uses FrameTime * it for 0x66C
+Player	0x788	LockOnState	high	Player_UpdateAiming lock-on state 0/1/2; Ai_ClassifyTarget/Weapon_CanFire test ==2
+Player	0x78C	LockOnTime	medium	Player_UpdateAiming timer toward lock (reset on target change)
+Player	0x794	LockOnTargetPtr	medium	Player_UpdateAiming locked target actor; Ai_ClassifyTarget compares with self; Weapon_FireShot uses it
+Player	0x798	CrosshairSpriteId	medium	Hud_DrawCrosshair sprite id (==730 check)
+Player	0x79C	CrosshairPos	medium	smoothed crosshair point (Player_UpdateAiming spring, Hud_DrawCrosshair draws at it)
+Player	0x7A8	CrosshairVelocity	medium	spring velocity for 0x79C in Player_UpdateAiming
+Player	0x7B4	LockCandidatePtr	medium	Player_UpdateAiming candidate target being timed before it becomes 0x794
+Player	0x7B8	CrosshairSprite2Id_7B8	low	Hud_DrawCrosshair reads it as a sprite id (second marker)
+Player	0x7BC	CrosshairAnimTime	medium	Hud_DrawCrosshair adds FrameTime; passed as the sprite frame
+Player	0x7C0	CrosshairPos2	medium	second smoothed crosshair point (Player_UpdateAiming, Hud_DrawCrosshair)
+Player	0x7CC	CrosshairVelocity2	medium	spring velocity for 0x7C0 in Player_UpdateAiming
+Player	0x7D8	AimRotation_7D8	low	Player_UpdateAiming copies a 16-byte quaternion here
+Player	0x7E8	ZoomMode	medium	Player_UpdateZoom: kept only while the weapon def +0x8 > 0, cleared on weapon change, blocks Player_TryJump; movement tests ==2
+Player	0x7EC	ZoomAmount	medium	approaches 0.7 while zoomed (Player_UpdateZoom); scales turn rate and the view camera (decomp 'zoom')
+Player	0x7F0	ZoomTarget_7F0	low	Player_UpdateZoom writes it; cleared by Player_ResetFields
+Player	0x7F4	LaunchTime	medium	Player_UpdateLaunchArc (state 0x23) adds FrameTime; ratio over +0x7FC->+0x5E*15 ticks
+Player	0x7F8	LaunchYaw	medium	PlayerState_EnterState23 stores Vec_GetYaw toward the launcher target; Player_UpdateLaunchArc turns toward it
+Player	0x7FC	LaunchTargetPtr	medium	PlayerState_EnterState23 stores the launcher object (target point +0x34..+0x40)
+Player	0x800	LaunchStartX	medium	PlayerState_EnterState23 records the start position x; lerped in Player_UpdateLaunchArc
+Player	0x804	LaunchStartY	medium	start position y of the launch arc
+Player	0x808	LaunchStartZ	medium	start position z of the launch arc
+Player	0x80C	MountPtr	medium	object the player rides in states 36/37 (Player_UpdateMountedState sends event 0x2E to it); ApplyDamage/DrainAmmo test != 0
+Player	0x840	UnderwaterTime	medium	Player_UpdateDrowning accumulates it; Player_ApplyGroundFlags resets it out of water
+Player	0x848	IsDrowning	medium	Player_UpdateDrowning sets it past the air limit; cleared by PlayerState_EnterUnderwater/ResetFields
+Player	0x84C	AmmoDrainCounter	medium	Player_DrainAmmo: (+0x84C + 1) % n gates each ammo decrement
+Player	0x850	IsEventFlybyActive	medium	Player_StartEventFlyby stores whether the flyby is allowed; death updates skip their own view pitch/respawn while set
+Player	0x860	DyingTime	medium	PlayerState_EnterDying15 clears, UpdateDying15 adds FrameTime until the delay
+Player	0x86C	AnimId	high	animation id: Player_SetState loads it from the state entry; Weapon_FireShot / walk / climb states pick ids
+Player	0x878	ZoomEffectBlock_878	low	0xC0-byte block reset by Player_Restart (+0x0/+0x4 = -1); Player_UpdateZoom sets its +0xB4 state to 3
+Player	0x938	WeaponMenu	medium	embedded weapon menu: Player_InitSlot calls WeaponMenu_Init(p+0x938); WeaponMenu_* use +0x37C cursor and +0x388 (0xCC0)
+Player	0xCB8	WeaponMenuFlag_CB8	low	weapon-menu block (player+0x938) w380 = stats.unk82==1; Player_HandleWeaponCycleButton tests it with menu state +0x938
+Player	0xCC0	WeaponMenuSelection	medium	weapon-menu w388: -1 none / 8; WeaponMenu_Update/UpdateSelection compare, Pickup_GiveSpecialWeapon writes
+Player	0xCCC	TeamMenuState	medium	head of team-menu block passed to TeamMenu_Update/Hud_DrawTeamMenu; WeaponMenu_Update requires ==0
+Player	0xD40	Inventory	high	4-slot usable-item inventory: Inventory_Update/Draw/Clear/AddItem(player+0xD40)
+Player	0xE2C	Ammo0Mover	medium	ScreenMover (0x3C) started by Hud_DrawAmmo when ammo 0x5F4 changes; stepped in Hud_DrawPlayer
+Player	0xE64	Ammo0Shown	medium	Hud_DrawAmmo cached value of ammo 0x5F4 (mover+0x38)
+Player	0xE68	Ammo1Mover	medium	ScreenMover for ammo 0x5F6 in Hud_DrawAmmo
+Player	0xEA0	Ammo1Shown	medium	Hud_DrawAmmo cached value of ammo 0x5F6
+Player	0xEA4	Ammo2Mover	medium	ScreenMover for ammo 0x5F8 in Hud_DrawAmmo
+Player	0xEDC	Ammo2Shown	medium	Hud_DrawAmmo cached value of ammo 0x5F8
+Player	0xEE0	HealthMover	medium	ScreenMover; Hud_DrawPlayer draws health (0x5E4+255>>8) at its x/y (+0xEF0/+0xEF4)
+Player	0xF1C	LivesMover	medium	ScreenMover restarted when S16 lives 0x5EA changes; Hud_DrawPlayer draws that number
+Player	0xF54	LivesShown	medium	cached 0x5EA value for LivesMover; Player_UpdateAll resets to -1
+Player	0xF58	HudMover_F58	low	ScreenMover stepped each frame in Hud_DrawPlayer; cached +0xF90
+Player	0xF90	HudMoverShown_F90	low	cached value of mover 0xF58; Player_UpdateAll sets -1
+Player	0x1048	FragsMover	medium	ScreenMover restarted when frags (stats+4, or team score) change in Hud_DrawPlayer
+Player	0x1080	FragsShown	medium	cached frag value for FragsMover
+Player	0x1084	TagsMover	medium	ScreenMover for stats+6 (tag kills, bumped in Player_StateHandler in frag-tag mode)
+Player	0x10BC	TagsShown	medium	cached stats+6 value for TagsMover (-1 = none)
+Player	0x10C0	ModeScoreMover_10C0	low	ScreenMover for per-team mode score (global+64+team*4) in Hud_DrawPlayer
+Player	0x10F8	ModeScoreShown_10F8	low	cached value for mover 0x10C0
+Player	0x1104	HealthFlashState_1104	low	Hud_DrawPlayer sets 2 when health drops, 0 when flash done
+Player	0x1130	HealthFlashLevel_1130	low	Hud_DrawPlayer float grown by health lost, clamped, decays
+Player	0x1134	HealthShown	medium	Hud_DrawPlayer last health value compared with 0x5E4
+Player	0x1140	PowerupHudState_1140	low	Hud_DrawPlayer widget state (2 = active) for powerup timer (flag 0x10000)
+Player	0x116C	PowerupHudBar_116C	low	Hud_DrawPlayer bar fraction from PowerupTime 0x1230
+Player	0x1170	PowerupHudValue_1170	low	Hud_DrawPlayer cached powerup timer value
+Player	0x117C	StatusHudState_117C	low	Hud_DrawPlayer widget state for powerup/embryo timer (uses 0x11E4)
+Player	0x11A8	StatusHudBar_11A8	low	Hud_DrawPlayer bar fraction for status timer widget
+Player	0x11AC	StatusHudValue_11AC	low	Hud_DrawPlayer cached status timer value
+Player	0x11B0	WeaponRumbleHandle	medium	WeaponMenu_Update: Rumble_SetLink(handle,0) then 0 when weapon changes
+Player	0x11B4	IsStickCaptured	medium	set 1 while weapon/team menu open; Pad_UpdatePlayerControls skips stick movement when !=0; reset by ResetMovement/states
+Player	0x11B8	IsButtonsCaptured_11B8	low	set 1 by menus alongside 0x11B4, cleared in Player_ResetFields/ResetMovement
+Player	0x11BC	LoopSound1Handle	high	Player_PlayLoopSound1/StopLoopSound1: LoopSound_Start/Stop handle
+Player	0x11C0	LoopSound2Handle	high	Player_PlayLoopSound2/StopLoopSound2, Weapon_Enter*Fire check ==0 before starting fire loop
+Player	0x11C4	SwimSoundTimer	medium	Player_UpdateUnderwaterState: += dt, at >45 plays swim sounds and resets to rand(15)
+Player	0x11CC	FragsHudBlink_11CC	low	Hud_DrawPlayer counter reset when frags change, modulo blink
+Player	0x11D0	ModeScoreHudBlink_11D0	low	Hud_DrawPlayer counter for mover 0x10C0
+Player	0x11D4	TagsHudBlink_11D4	low	Hud_DrawPlayer counter for mover 0x1084
+Player	0x11D8	StunTime	medium	Player_ApplyStatusEffect adds x*15 (cap 75) with red fade; >0 blocks jump/fire/alt-fire/weapon menu/AI; Player_Tick decays, clears flag 0x4000
+Player	0x11DC	SlowTime	medium	Pickup_ApplySpecial powerup 1 adds 195 to other players + flag 0x2000; Player_AddField11DC; Player_Tick decays and clears 0x2000
+Player	0x11E0	HitSlowScale_11E0	low	Player_StateHandler adds on hit events 1029/1242 (clamped); Player_Tick scales FrameTime by it, decays
+Player	0x11E4	EmbryoTimer	high	Player_ImplantEmbryo sets, Player_UpdateEmbryo counts down and kills on expiry
+Player	0x11EC	BurnTime_11EC	low	Particle_TouchPlayer (particle 1039, DoT 30/3s) sets; Player_Tick decays; Model_DrawPlayerParts reads
+Player	0x11F4	WeaponSpinSpeed	medium	Weapon_UpdateIdleBoomerang ramps 1..2 (+0.05 / -0.5)
+Player	0x11F8	WeaponSpinFrame	medium	(frame+speed)%8 in Weapon_UpdateIdleBoomerang; Weapon_DrawViewModel shade id; -1 on weapon change
+Player	0x11FC	MarkerTime	medium	Player_PlaceAttractMarker sets; >0 = marker active (HasMarker, DrawWorldEffects, DeflectByFields); cleared on death
+Player	0x1200	MarkerPos	high	Vec3f marker position copied from aim hit 0x1458; DeflectByFields/FindNearestMarker distance
+Player	0x120C	IsMarkerAttract	medium	PlaceAttractMarker arg; 0 negates deflection (repel) and picks model 3205 vs 3204
+Player	0x1210	IsInWeaponStance	medium	Player_IsInWeaponStance returns it; Enter/LeaveWeaponStance (state 39) set/clear; laser beam drawn when set
+Player	0x1214	WeaponStanceTimer_1214	low	cleared with 0x1210 in Enter/LeaveWeaponStance and ApplyStatusEffect
+Player	0x1218	HitEventPending_1218	low	damage code toggles it; Actor_BuildPoseMatrices reads then clears
+Player	0x121C	DropPackBase	medium	death handler: index base into pickup record table D_800D34C0 (base+index)*24
+Player	0x1220	DropPackIndex	medium	death handler: toggles 0/1, selects DroppedPacks slot and pickup id 3033+..
+Player	0x1224	DroppedPacks	medium	2 pickup handles spawned on death (PickupPool_Spawn); Pickup_DispatchEffect clears entry when taken
+Player	0x122C	PowerupFlags	medium	random powerup bit (Pickup_ApplySpecial 3032) plus status bits 0x2000 slow, 0x4000 stun, 0x8000 immune; Player_Tick clears
+Player	0x1230	PowerupTime	medium	Pickup_ApplySpecial sets duration per powerup; Player_Tick counts down
+Player	0x1234	PowerupPulseSpeed_1234	low	Player_Tick phase-step speed used with PowerupPhase, negated at bounds
+Player	0x1238	PowerupPhase	medium	-1/0..3 stage machine in Player_Tick for powerup 0x20; reset -1 on pickup/death
+Player	0x123C	PowerupTintR	medium	Pickup_ApplySpecial sets 0/255; Player_DrawBody reads as tint
+Player	0x123D	PowerupTintG	medium	Pickup_ApplySpecial sets 0/255; Player_DrawBody reads
+Player	0x123E	PowerupTintB	medium	Pickup_ApplySpecial sets 0/255; Player_DrawBody reads
+Player	0x1240	PowerupTintAlpha	medium	set 255 on pickup, Player_Tick fades by 0x1244; Player_DrawBody reads
+Player	0x1244	PowerupTintFadeRate	medium	= alpha/PowerupTime in Pickup_ApplySpecial; Player_Tick subtracts from 0x1240
+Player	0x1248	DamageOverTimeSlots	medium	5 x 24-byte PlrEnt slots: Player_AddDamageOverTime, ClearTimedEffects
+Player	0x12C0	BodyScale	medium	Player_Inflate/Shrink/RecoverScale; kill at limits; Actor_BuildPoseMatrices reads
+Player	0x12C4	TagKillVictimPtr	medium	Player_StateHandler: killer stores victim when victim is tagged (frag-tag mode), tags++
+Player	0x12C8	ModeKillVictimPtr_12C8	low	Player_StateHandler stores victim in the other special mode (global+120)
+Player	0x12CC	KillFeedVictims	medium	8-entry ring of victim player ptrs written by killer in Player_StateHandler; Hud_DrawPlayer prints names
+Player	0x12EC	KilledByPtr	medium	Player_StateHandler sets victim's killer; Player_Tick clears
+Player	0x12F0	KillMessageIndex_12F0	low	Player_StateHandler sets Random%7 on victim
+Player	0x12F4	KillFeedAlphas	medium	8-entry ring set 255 per kill-feed entry; Hud_DrawPlayer fades
+Player	0x1334	KillFeedTail	medium	kill-feed ring start index (Hud_DrawPlayer, SetupSlot sets 0)
+Player	0x1338	KillFeedHead	medium	kill-feed ring write index (mod 8) in Player_StateHandler; SetupSlot sets -1
+Player	0x133C	RespawnsLeft	medium	Player_InitLivesForMode/StartRun set from profile lives or arena record; HUD draws value-1
+Player	0x1344	MessageLines	medium	5 x 21-char message ring; Hud_ShowPlayerMessage StrCopy
+Player	0x13B0	MessageLineIndex	medium	Hud_ShowPlayerMessage ring index, wraps at 5
+Player	0x13B4	StateTablePtr	medium	player state table ptr; compared with Gv.Player_StateTableChar0; SetupSlot sets 0x800CE8C8
+Player	0x13B8	IsAmmo0HudDirty	medium	Weapon_EnterDraw/EquipPending set 1; Hud_DrawAmmo restarts Ammo0Mover and clears
+Player	0x13BC	IsAmmo1HudDirty	medium	same as 0x13B8 for Ammo1Mover
+Player	0x13C0	IsAmmo2HudDirty	medium	same as 0x13B8 for Ammo2Mover
+Player	0x13C4	DeathFallDir_13C4	low	byte 1/2 from killer facing vs victim position in Player_StateHandler; used by death state
+Player	0x13C8	IsGibbed	medium	set when health-dmg < -7679 or blast in death; suppresses death scream; Player_DrawBody reads
+Player	0x13D4	ToggleFlag_13D4	low	Player_Tick toggles on pad button 0x800; Player_ToggleField13D4
+Player	0x13D8	ShockAttackerPtr	medium	set from hit event 297 source; Player_UpdateShockedState credits damage to it then clears
+Player	0x13E0	EmbryoOwnerPtr	medium	Player_ImplantEmbryo stores implanter; damage credited on burst; cleared when implanter dies
+Player	0x13EC	EmbryoMessageText	medium	32-byte sprintf buffer with implanter name in Player_ImplantEmbryo
+Player	0x1450	IsComputer	high	bot flag (C header s1005_types.h names it computer); gates AI brain use, lives init, HUD
+Player	0x1454	BrainPtr	high	AI brain pointer used by all Ai_* functions
+Player	0x1458	AimHitPos	medium	aim-trace output (Weapon_FireShot passes +0x1458); copied to MarkerPos
+Player	0x1464	LaserTargetPos	medium	Player_BuildLaserBeamMatrices beam end point
+Player	0x1470	AimHitNormal	medium	PlaceAttractMarker Math_MtxFromDirection(+0x1470)
+Player	0x147C	HasAimHit	medium	PlaceAttractMarker returns early when 0
+Player	0x1480	LaserBeamMtxs	medium	2 x 0x40 fixed matrices indexed by FrameParity in Player_BuildLaserBeamMatrices
+Player	0x1500	LaserSightMtxs_1500	low	second 2 x 0x40 beam matrix pair in Player_BuildLaserBeamMatrices
+Player	0x1600	MarkerMtx	medium	fixed matrix built by PlaceAttractMarker/UpdateMarkerMatrix, drawn by DrawMarker
+Player	0x16C4	PullTargetPos	medium	Player_PullToPoint copies Vec3 then state 17; PlayerState_UpdatePull reads
+Player	0x16D0	HoldEffect_16D0	low	Player_HoldByEffect stores arg then state 16
+Player	0x16D4	IsInfraRedOn	medium	Pickup_ToggleInfraRed toggles; Player_Tick copies to camera; suppresses hit direction
+Player	0x16D8	HitShake	medium	ushort capped 100 by Player_AddShake; Player_Tick decays and copies to camera
+Player	0x16E0	Next	high	next player in group list (all Match_*/Player_* loops)

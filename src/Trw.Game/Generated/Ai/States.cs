@@ -679,7 +679,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002123DC", (uint)actor);
-            uint brain = new Actor(new Actor(actor).owner_).brain_;
+            uint brain = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new Brain(brain).unk220_Set(0);
             Ai_ResetRouteBias(brain);
             new Brain(brain).unk2D8_Set(((Random_Next() % 4) + 12));
@@ -693,7 +693,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212450", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2D8_Set(((Random_Next() % 4) + 12));
@@ -711,7 +711,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212524", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             new BrainB(b).unk2D8_Set(((Random_Next() % 4) + 2));
             new BrainB(b).unk2DC_Set((Random_Next() % 2));
@@ -729,7 +729,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002125F0", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2D8_Set(((Random_Next() % 4) + 12));
@@ -757,7 +757,7 @@ public static partial class Game
                 int i = 0;
                 uint type = 0u;
                 t = new BrainB(b).unk64.owner_;
-                me = new ActorB(t).brain.unk4;
+                me = new ActorB(t).BrainPtr.unk4;
                 Mem.Copy((_fp + 512u), new ActorB(t).Position.P, 12);
                 for (i = 0; (i < 64); ++i)
                 {
@@ -796,7 +796,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002127F4", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2FC_Set(0);
@@ -809,7 +809,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212828", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             uint to = 0u;
             int id = 0;
             if ((new BrainB(b).unk64_ == 0u))
@@ -818,7 +818,7 @@ public static partial class Game
                 return;
             }
             to = new BrainB(b).unk64.owner_;
-            id = new ActorB(to).brain.unk4;
+            id = new ActorB(to).BrainPtr.unk4;
             new BrainB(b).unkC_Set(id);
             if ((id != new BrainB(b).unk10))
             {
@@ -845,7 +845,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021290C", (uint)actor);
-            uint brain = new Actor(new Actor(actor).owner_).brain_;
+            uint brain = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new Brain(brain).unk220_Set(0);
             Ai_ResetRouteBias(brain);
             new Brain(brain).unk2FC_Set(0);
@@ -859,7 +859,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212948", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             int c = 0;
             if ((new BrainB(b).unk64_ == 0u))
             {
@@ -876,7 +876,7 @@ public static partial class Game
                     return;
                 }
             }
-            if ((Mem.F32(0x800C71B8u) < Vec_DistanceSq(new BrainB(b).unk64.owner.Position.P, new BrainB(b).actor.Position.P)))
+            if ((Mem.F32(0x800C71B8u) < Vec_DistanceSq(new BrainB(b).unk64.OwnerPtr.Position.P, new BrainB(b).actor.Position.P)))
             {
                 Ai_SetState(b, new BrainB(b).unk230);
                 return;
@@ -897,7 +897,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212A40", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             new BrainB(b).unkC_Set((-1));
             Ai_ResetRouteBias(b);
@@ -911,7 +911,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212A7C", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             uint L = Gv.AiNavGraph;
             uint r = 0u;
             int i = 0;
@@ -937,7 +937,7 @@ public static partial class Game
             Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
             Ai_FollowPath(b);
             Ai_SteerToPoint(b);
-            busy = (((new BrainB(b).actor.flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+            busy = (((new BrainB(b).actor.GroundFlags & (uint)(12288)) != (uint)(0)) ? 1 : 0);
             if (((new BrainB(b).unk4 == new BrainB(b).unkC) && !(busy != 0)))
             {
                 Ai_ThinkChooseGoal(b);
@@ -951,7 +951,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212BD0", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2FC_Set(0);
@@ -964,7 +964,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212C04", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             uint t = Match_FindTaggedPlayer(Gv.PlayerPool);
             if ((t == new BrainB(b).actor_))
             {
@@ -993,7 +993,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212C90", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2FC_Set(0);
@@ -1006,7 +1006,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212CC4", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             uint t = Match_FindTaggedPlayer(Gv.PlayerPool);
             if (((t == 0u) || (t != new BrainB(b).actor_)))
             {
@@ -1014,7 +1014,7 @@ public static partial class Game
             }
             else
             {
-                b = new Actor(new Actor(actor).owner_).brain_;
+                b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
                 Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
                 Ai_DistanceToNode(b, new BrainB(b).unkC);
                 Ai_FollowPath(b);
@@ -1029,7 +1029,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212D58", (uint)actor, _a1);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk2FC_Set(0);
@@ -1074,7 +1074,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212D94", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             int v = 0;
             if ((new BrainB(b).unk64_ == 0u))
             {
@@ -1082,7 +1082,7 @@ public static partial class Game
             }
             else
             {
-                v = new BrainB(new BrainB(b).unk64.owner.brain_).unk4;
+                v = new BrainB(new BrainB(b).unk64.OwnerPtr.brain_).unk4;
                 if ((v != new BrainB(b).unk10))
                 {
                     new BrainB(b).unk10_Set(v);
@@ -1100,7 +1100,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212E04", (uint)actor, _a1, _a2);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             uint L = Gv.AiNavGraph;
             int s = 0;
             if ((new BrainB(b).unk224 == (-1)))

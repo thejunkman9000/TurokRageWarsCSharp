@@ -123,7 +123,7 @@ public static partial class Game
                         flag = 1;
                     }
                 }
-                if (((((((Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new Entity(e).box[(int)(0)]) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new Entity(e).box[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new Entity(e).box[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new Entity(e).box[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new Entity(e).box[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new Entity(e).box[(int)(4)])))
+                if (((((((Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new Entity(e).PartMask[(int)(0)]) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new Entity(e).PartMask[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new Entity(e).PartMask[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new Entity(e).PartMask[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new Entity(e).PartMask[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new Entity(e).PartMask[(int)(4)])))
                 {
                 }
                 else
@@ -267,9 +267,9 @@ public static partial class Game
             e = new NodeOwner(o).head_;
             while ((e != 0u))
             {
-                if (((((((new Probe_v2(p).box[(int)(3)] > new Entity(e).box[(int)(0)]) && (new Probe_v2(p).box[(int)(0)] < new Entity(e).box[(int)(3)])) && (new Probe_v2(p).box[(int)(5)] > new Entity(e).box[(int)(2)])) && (new Probe_v2(p).box[(int)(2)] < new Entity(e).box[(int)(5)])) && (new Probe_v2(p).box[(int)(4)] > new Entity(e).box[(int)(1)])) && (new Probe_v2(p).box[(int)(1)] < new Entity(e).box[(int)(4)])))
+                if (((((((new Probe_v2(p).box[(int)(3)] > new Entity(e).PartMask[(int)(0)]) && (new Probe_v2(p).box[(int)(0)] < new Entity(e).PartMask[(int)(3)])) && (new Probe_v2(p).box[(int)(5)] > new Entity(e).PartMask[(int)(2)])) && (new Probe_v2(p).box[(int)(2)] < new Entity(e).PartMask[(int)(5)])) && (new Probe_v2(p).box[(int)(4)] > new Entity(e).PartMask[(int)(1)])) && (new Probe_v2(p).box[(int)(1)] < new Entity(e).PartMask[(int)(4)])))
                 {
-                    if ((Frustum_OverlapsBox(new Probe_v2(p).unk2F0.P, (new Entity(e).box.P + (uint)(0 * 4))) != 0))
+                    if ((Frustum_OverlapsBox(new Probe_v2(p).unk2F0.P, (new Entity(e).PartMask.P + (uint)(0 * 4))) != 0))
                     {
                         f = Mem.F32((e + (uint)456));
                         Mem.Set(Gv.Model_ColorOverrideMode, 0);
@@ -302,7 +302,7 @@ public static partial class Game
             while ((e != 0u))
             {
                 Pickup_ClearDisplayList(e);
-                if (((((((((((new Entity(e).flags19C & (uint)(196608)) == (uint)(131072)) && (Actor_IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new Entity(e).box[(int)(0)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new Entity(e).box[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new Entity(e).box[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new Entity(e).box[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new Entity(e).box[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new Entity(e).box[(int)(4)])))
+                if (((((((((((new Entity(e).flags19C & (uint)(196608)) == (uint)(131072)) && (Actor_IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new Entity(e).PartMask[(int)(0)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new Entity(e).PartMask[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new Entity(e).PartMask[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new Entity(e).PartMask[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new Entity(e).PartMask[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new Entity(e).PartMask[(int)(4)])))
                 {
                     c = new Level(lv).cnt944;
                     if ((c != 512))

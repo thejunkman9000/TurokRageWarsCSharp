@@ -771,19 +771,19 @@ public static partial class Game
                 uint temp_v1_2 = 0u;
                 uint var_s0 = 0u;
                 uint var_s0_2 = 0u;
-                Rumble_SetEnabled(new Shared_ActorView(arg0).controller, 0);
-                if (!(((int)(new Shared_ActorView(arg0).action) == 39))) goto _f0;
+                Rumble_SetEnabled(new Shared_ActorView(arg0).ControllerPtr, 0);
+                if (!(((int)(new Shared_ActorView(arg0).StateId) == 39))) goto _f0;
                 Player_SetState(arg0, (int)(arg1), 2);
                 _f0: ;
-                new Shared_ActorView(arg0).field1218_Set(0);
+                new Shared_ActorView(arg0).HitEventPending_1218_Set(0);
                 Level_FireEntityTriggers(arg1, 1, (int)(arg1));
                 Object_ReleaseHandles_0044ACCC(arg0);
                 Player_ClearTimedEffectsB_0022B520((uint)((int)(arg0)));
-                new Shared_ActorView(arg0).stun_Set(0);
-                new Shared_ActorView(arg0).field11FC_Set(0);
+                new Shared_ActorView(arg0).StunTime_Set(0);
+                new Shared_ActorView(arg0).MarkerTime_Set(0);
                 Particle_RemoveOwnedReturning(Gv.EffectMgr, (uint)((int)(arg0)), default(uint), default(uint));
                 flow = new Shared_GlobalRuntimeState(Gv.PlayerListHead).flow.P;
-                if (!(((new Shared_GlobalFlowState(flow).active != 0) && (C.Seq((object?)((var_s3 = 0)), (((int)(new Shared_ActorView(arg0).controls.mode) == 14) ? 1 : 0)) != 0)))) goto _f1;
+                if (!(((new Shared_GlobalFlowState(flow).active != 0) && (C.Seq((object?)((var_s3 = 0)), (((int)(new Shared_ActorView(arg0).PlayerEntryPtr.mode) == 14) ? 1 : 0)) != 0)))) goto _f1;
                 new Shared_GlobalFlowState(flow).count_Set((new Shared_GlobalFlowState(flow).count + 1));
                 playersGlobal = Gv.PlayerPool;
                 if (!((new Shared_GlobalPlayers(playersGlobal).count > 0))) goto _f2;
@@ -795,11 +795,11 @@ public static partial class Game
                 temp_s0 = (new Shared_GlobalPlayers(playersGlobal).players_ + (uint)var_s4);
                 if (!(((int)(new Shared_PlayerSettingsRecord(var_s1).active) != 0))) goto _f6;
                 if (!((new Shared_PlayerSettingsView(settingsBase).state == 1))) goto _f7;
-                new Shared_ActorView(temp_s0).actorState_Set(new Shared_PlayerSettingsView(settingsBase).state);
+                new Shared_ActorView(temp_s0).CameraMode_Set(new Shared_PlayerSettingsView(settingsBase).state);
                 Player_InitSlot(temp_s0, (int)(new Shared_PlayerSettingsRecord(var_s1).character), 1);
-                temp_v0 = new Shared_ActorView(temp_s0).model;
+                temp_v0 = new Shared_ActorView(temp_s0).DefPtr;
                 new Shared_ModelView(temp_v0).flags_Set((new Shared_ModelView(temp_v0).flags & (~4)));
-                Actor_DispatchEvent(new Shared_ActorView(temp_s0).weapon.P, new Shared_ActorView(temp_s0).ammoData.P, 2);
+                Actor_DispatchEvent(new Shared_ActorView(temp_s0).WeaponActor.P, new Shared_ActorView(temp_s0).WeaponActorState.P, 2);
                 Player_PlaceAtSpawn(temp_s0, (uint)(new Shared_PlayerSettingsView(settingsBase).effect), (uint)(0), (uint)(0));
                 List_Remove(new Shared_GlobalPlayers(playersGlobal).controller.P, (uint)((int)(temp_s0)), default(uint), default(uint));
                 List_Add((playersGlobal + 32u), (uint)((int)(temp_s0)));
@@ -831,7 +831,7 @@ public static partial class Game
                 _f5: ;
                 _f2: ;
                 if (!((Mem.S32(0x8014693Cu) < 3))) goto _f17;
-                new Shared_ActorView(arg0).special_Set(0);
+                new Shared_ActorView(arg0).IsGibbed_Set(0);
                 Player_SetState(arg0, (int)(arg1), 46);
                 return;
                 goto _f18;
@@ -842,50 +842,50 @@ public static partial class Game
                 _f1: ;
                 L_block_17: ;
                 if (!(((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))) goto _f20;
-                if (!(((((int)(new Shared_ActorView(arg0).ammo[(int)(0)]) > 0) || ((int)(new Shared_ActorView(arg0).ammo[(int)(1)]) > 0)) || ((int)(new Shared_ActorView(arg0).ammo[(int)(2)]) > 0)))) goto _f21;
-                temp_v1 = new Shared_ActorView(arg0).mode;
+                if (!(((((int)(new Shared_ActorView(arg0).Ammo[(int)(0)]) > 0) || ((int)(new Shared_ActorView(arg0).Ammo[(int)(1)]) > 0)) || ((int)(new Shared_ActorView(arg0).Ammo[(int)(2)]) > 0)))) goto _f21;
+                temp_v1 = new Shared_ActorView(arg0).PlayerIndex;
                 var_s3_2 = 0;
                 switch (temp_v1) { case (uint)(0): goto _f23; case (uint)(1): goto _f25; case (uint)(2): goto _f26; case (uint)(3): goto _f27; case (uint)(4): goto _f28; case (uint)(5): goto _f29; case (uint)(6): goto _f30; case (uint)(7): goto _f31; default: goto _f24; }
                 _f23: ;
                 _f24: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3033);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3033);
                 goto _f22;
                 _f25: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3035);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3035);
                 goto _f22;
                 _f26: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3037);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3037);
                 goto _f22;
                 _f27: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3039);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3039);
                 goto _f22;
                 _f28: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3041);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3041);
                 goto _f22;
                 _f29: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3043);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3043);
                 goto _f22;
                 _f30: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3045);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3045);
                 goto _f22;
                 _f31: ;
-                var_s1_2 = (new Shared_ActorView(arg0).projectileIndex + 3047);
+                var_s1_2 = (new Shared_ActorView(arg0).DropPackIndex + 3047);
                 goto _f22;
                 _f22: ;
                 Level_FindTypeIndexById(Gv.LevelMgr, var_s1_2);
-                temp_v1_2 = new Shared_ActorView(arg0).projectiles[(int)(new Shared_ActorView(arg0).projectileIndex)];
+                temp_v1_2 = new Shared_ActorView(arg0).DroppedPacks[(int)(new Shared_ActorView(arg0).DropPackIndex)];
                 if (!((temp_v1_2 != 0u))) goto _f32;
                 new Shared_ProjectileView(temp_v1_2).flags_Set((ushort)(((int)(new Shared_ProjectileView(temp_v1_2).flags) | 1)));
-                temp_a1 = new Shared_ActorView(arg0).projectiles[(int)(new Shared_ActorView(arg0).projectileIndex)];
+                temp_a1 = new Shared_ActorView(arg0).DroppedPacks[(int)(new Shared_ActorView(arg0).DropPackIndex)];
                 if (!((((int)(new Shared_ProjectileView(temp_a1).flags) & 8) != 0))) goto _f33;
                 PickupPool_Release(temp_a1);
                 goto _f34;
                 _f33: ;
                 PropTree_SetBit(Gv.LevelMgr, temp_a1, 1);
-                Level_FireRegionTriggers((uint)(new Shared_ProjectileView(new Shared_ActorView(arg0).projectiles[(int)(new Shared_ActorView(arg0).projectileIndex)]).source), 1024, (int)(arg0));
+                Level_FireRegionTriggers((uint)(new Shared_ProjectileView(new Shared_ActorView(arg0).DroppedPacks[(int)(new Shared_ActorView(arg0).DropPackIndex)]).source), 1024, (int)(arg0));
                 _f34: ;
                 _f32: ;
-                temp_v1_3 = new Shared_ActorView(arg0).kind;
+                temp_v1_3 = new Shared_ActorView(arg0).TypeId;
                 if (!(((int)(temp_v1_3) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))))) goto _f35;
                 var_s3_2 = 0;
                 goto _f36;
@@ -896,7 +896,7 @@ public static partial class Game
                 _f37: ;
                 switch ((Random_NextLcg() % 3)) { case 0: goto _f40; case 1: goto _f41; case 2: goto _f42; default: goto _f39; }
                 _f40: ;
-                temp_s0_2 = new Shared_ActorView(arg0).ammo[(int)(0)];
+                temp_s0_2 = new Shared_ActorView(arg0).Ammo[(int)(0)];
                 var_a0 = 0;
                 if (!(((int)(temp_s0_2) != 0))) goto _f43;
                 temp_v0_2 = Random_NextLcg();
@@ -909,14 +909,14 @@ public static partial class Game
                 _f43: ;
                 if (!((var_a0 != 0))) goto _f46;
                 var_s3_2 = 1;
-                temp_v0_4 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).projectileBase + new Shared_ActorView(arg0).projectileIndex) * 24));
+                temp_v0_4 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).unkC_Set((short)(var_a0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).unkE_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_4).unk10_Set((short)(0));
                 _f46: ;
                 goto _f39;
                 _f41: ;
-                temp_s0_3 = new Shared_ActorView(arg0).ammo[(int)(1)];
+                temp_s0_3 = new Shared_ActorView(arg0).Ammo[(int)(1)];
                 var_a0_2 = 0;
                 if (!(((int)(temp_s0_3) != 0))) goto _f47;
                 temp_v0_5 = Random_NextLcg();
@@ -929,14 +929,14 @@ public static partial class Game
                 _f47: ;
                 if (!((var_a0_2 != 0))) goto _f50;
                 var_s3_2 = 1;
-                temp_v0_7 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).projectileBase + new Shared_ActorView(arg0).projectileIndex) * 24));
+                temp_v0_7 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).unkE_Set((short)(var_a0_2));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).unkC_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_7).unk10_Set((short)(0));
                 _f50: ;
                 goto _f39;
                 _f42: ;
-                temp_s0_4 = new Shared_ActorView(arg0).ammo[(int)(2)];
+                temp_s0_4 = new Shared_ActorView(arg0).Ammo[(int)(2)];
                 var_a0_3 = 0;
                 if (!(((int)(temp_s0_4) != 0))) goto _f51;
                 temp_v0_8 = Random_NextLcg();
@@ -949,7 +949,7 @@ public static partial class Game
                 _f51: ;
                 if (!((var_a0_3 != 0))) goto _f54;
                 var_s3_2 = 1;
-                temp_v0_10 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).projectileBase + new Shared_ActorView(arg0).projectileIndex) * 24));
+                temp_v0_10 = (0x800D34C0u + (uint)((new Shared_ActorView(arg0).DropPackBase + new Shared_ActorView(arg0).DropPackIndex) * 24));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).unk10_Set((short)(var_a0_3));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).unkC_Set((short)(0));
                 new Shared__struct_D_800D34C0_0x18(temp_v0_10).unkE_Set((short)(0));
@@ -970,15 +970,15 @@ public static partial class Game
                 temp_v0_11 = PickupPool_Spawn(0x80131600u, 0u, var_s1_2, (_fp + 32u), (_fp + 16u), 0, (float)(0));
                 if (!((temp_v0_11 != 0u))) goto _f57;
                 new Vec3((_fp + 16u)).y_Set((float)((float)(new Vec3((_fp + 16u)).y) + new Shared_HeightBonuses(0x800C7458u).spawn));
-                new Shared_ActorView(arg0).projectiles.Set((int)(new Shared_ActorView(arg0).projectileIndex), temp_v0_11);
+                new Shared_ActorView(arg0).DroppedPacks.Set((int)(new Shared_ActorView(arg0).DropPackIndex), temp_v0_11);
                 _f57: ;
                 goto _f58;
                 _f55: ;
-                new Shared_ActorView(arg0).projectiles.Set((int)(new Shared_ActorView(arg0).projectileIndex), 0u);
+                new Shared_ActorView(arg0).DroppedPacks.Set((int)(new Shared_ActorView(arg0).DropPackIndex), 0u);
                 _f58: ;
-                new Shared_ActorView(arg0).projectileIndex_Set(((new Shared_ActorView(arg0).projectileIndex == 0) ? 1 : 0));
+                new Shared_ActorView(arg0).DropPackIndex_Set(((new Shared_ActorView(arg0).DropPackIndex == 0) ? 1 : 0));
                 _f21: ;
-                if (!((((int)(new Shared_ActorView(arg0).controls.transientFlag) != 0) && (C.Seq((object?)((laterFlow = new Shared_GlobalRuntimeState(Gv.PlayerListHead).flow.P)), ((new Shared_GlobalFlowState(laterFlow).transition != 0) ? 1 : 0)) != 0)))) goto _f59;
+                if (!((((int)(new Shared_ActorView(arg0).PlayerEntryPtr.transientFlag) != 0) && (C.Seq((object?)((laterFlow = new Shared_GlobalRuntimeState(Gv.PlayerListHead).flow.P)), ((new Shared_GlobalFlowState(laterFlow).transition != 0) ? 1 : 0)) != 0)))) goto _f59;
                 if (!((Mem.U32(Gv.Level_TagObjectiveEntityPtr) != 0u))) goto _f60;
                 Actor_DispatchEvent(Mem.U32(Gv.Level_TagObjectiveEntityPtr), new Shared_SpecialObjectView(Mem.U32(Gv.Level_TagObjectiveEntityPtr)).segment.P, 1);
                 new Shared_SpecialObjectView(Mem.U32(Gv.Level_TagObjectiveEntityPtr)).reset_Set(0);
@@ -987,7 +987,7 @@ public static partial class Game
                 var_s0 = new Shared_GlobalRuntimeState(Gv.PlayerListHead).actorList;
                 if (!((var_s0 != 0u))) goto _f61;
                 _f62: ;
-                temp_a1_2 = new Shared_ActorView(var_s0).message;
+                temp_a1_2 = new Shared_ActorView(var_s0).ViewPtr;
                 if (!((temp_a1_2 != 0u))) goto _f65;
                 Hud_PostMessage(Gv.ViewMgr, temp_a1_2, Mem.U32(0x800D70E0u));
                 _f65: ;
@@ -997,16 +997,16 @@ public static partial class Game
                 _f64: ;
                 _f61: ;
                 _f60: ;
-                new Shared_ActorView(arg0).controls.transientFlag_Set((byte)(0u));
-                new Shared_ActorView(arg0).controls.resetFlag_Set((sbyte)(0));
+                new Shared_ActorView(arg0).PlayerEntryPtr.transientFlag_Set((byte)(0u));
+                new Shared_ActorView(arg0).PlayerEntryPtr.resetFlag_Set((sbyte)(0));
                 _f59: ;
                 var_s0_2 = new Shared_GlobalRuntimeState(Gv.PlayerListHead).actorList;
                 if (!((var_s0_2 != 0u))) goto _f66;
                 _f67: ;
-                if (!(((var_s0_2 != arg0) && (new Shared_ActorView(var_s0_2).parent == arg0)))) goto _f70;
-                temp_a1_3 = new Shared_ActorView(var_s0_2).message;
-                new Shared_ActorView(var_s0_2).pending_Set(0);
-                new Shared_ActorView(var_s0_2).parent_Set(0u);
+                if (!(((var_s0_2 != arg0) && (new Shared_ActorView(var_s0_2).EmbryoOwnerPtr == arg0)))) goto _f70;
+                temp_a1_3 = new Shared_ActorView(var_s0_2).ViewPtr;
+                new Shared_ActorView(var_s0_2).EmbryoTimer_Set(0);
+                new Shared_ActorView(var_s0_2).EmbryoOwnerPtr_Set(0u);
                 if (!((temp_a1_3 != 0u))) goto _f71;
                 Hud_SpawnTextLineC(Gv.ViewMgr, temp_a1_3, Mem.U32(0x800D71E4u), 1.0f);
                 _f71: ;
@@ -1017,17 +1017,17 @@ public static partial class Game
                 _f69: ;
                 _f66: ;
                 _f20: ;
-                new Shared_ActorView(arg0).field1238_Set((-1));
-                new Shared_ActorView(arg0).field1230_Set(0);
-                new Shared_ActorView(arg0).field1234_Set(0);
-                new Shared_ActorView(arg0).field1240_Set(0);
-                new Shared_ActorView(arg0).field122C_Set((int)(((uint)(new Shared_ActorView(arg0).field122C) & 4294901760u)));
+                new Shared_ActorView(arg0).PowerupPhase_Set((-1));
+                new Shared_ActorView(arg0).PowerupTime_Set(0);
+                new Shared_ActorView(arg0).PowerupPulseSpeed_1234_Set(0);
+                new Shared_ActorView(arg0).PowerupTintAlpha_Set(0);
+                new Shared_ActorView(arg0).PowerupFlags_Set((int)(((uint)(new Shared_ActorView(arg0).PowerupFlags) & 4294901760u)));
                 if (!(((arg2 & 16384) != 0))) goto _f72;
-                if (!(((uint)((new Shared_ActorView(arg0).state - 17)) < 2u))) goto _f73;
-                new Shared_ActorView(arg0).special_Set(1);
+                if (!(((uint)((new Shared_ActorView(arg0).CharacterId - 17)) < 2u))) goto _f73;
+                new Shared_ActorView(arg0).IsGibbed_Set(1);
                 _f73: ;
                 _f72: ;
-                if (!((new Shared_ActorView(arg0).special == 0))) goto _f74;
+                if (!((new Shared_ActorView(arg0).IsGibbed == 0))) goto _f74;
                 var_a0_4 = (short)(700);
                 if (!((arg3 != 31))) goto _f75;
                 var_a0_4 = (short)(Player_GetCharacterSoundId(arg0, 5015));
@@ -1038,7 +1038,7 @@ public static partial class Game
                 Audio_PlaySound((int)((short)(2555)), new Shared_ActorView(arg0).Position.P, (int)(new Shared_ActorView(arg0).Position.P), (-1));
                 _f76: ;
                 Audio_PlaySound2D(530);
-                if (!((((new Shared_ActorView(arg0).special != 0) || (C.Seq((object?)((temp_v1_5 = new Shared_ActorView(arg0).kind)), (((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(0 * 4)))) ? 1 : 0)) != 0)) || ((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(1 * 4))))))) goto _f77;
+                if (!((((new Shared_ActorView(arg0).IsGibbed != 0) || (C.Seq((object?)((temp_v1_5 = new Shared_ActorView(arg0).TypeId)), (((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(0 * 4)))) ? 1 : 0)) != 0)) || ((int)(temp_v1_5) == Mem.S32((0x800CE478u + (uint)(1 * 4))))))) goto _f77;
                 new Vec3((_fp + 32u)).x_Set(new Vec3(new Shared_ActorView(arg0).Position.P).x);
                 new Vec3((_fp + 32u)).y_Set((new Vec3(new Shared_ActorView(arg0).Position.P).y + new Shared_HeightBonuses(0x800C7458u).projectile));
                 var_s1_3 = 1;
@@ -1072,8 +1072,8 @@ public static partial class Game
                 Player_SetState(arg0, (int)(arg1), arg3);
                 return;
                 _f82: ;
-                if (!((new Shared_ActorView(arg0).state != 17))) goto _f83;
-                if (!((((int)(new Shared_ActorView(arg0).action) == 10) && ((arg2 & 16384) != 0)))) goto _f84;
+                if (!((new Shared_ActorView(arg0).CharacterId != 17))) goto _f83;
+                if (!((((int)(new Shared_ActorView(arg0).StateId) == 10) && ((arg2 & 16384) != 0)))) goto _f84;
                 Player_SetState(arg0, (int)(arg1), 42);
                 return;
                 _f84: ;
@@ -1083,14 +1083,14 @@ public static partial class Game
                 _f85: ;
                 _f83: ;
                 var_v0_4 = 1;
-                if (!(!(new Shared_ActorView(arg0).speed > Mem.F32(0x800C7464u)))) goto _f86;
+                if (!(!(new Shared_ActorView(arg0).CrouchOffset > Mem.F32(0x800C7464u)))) goto _f86;
                 var_v0_4 = 0;
                 _f86: ;
                 if (!((var_v0_4 != 0))) goto _f87;
                 Player_SetState(arg0, (int)(arg1), 28);
                 return;
                 _f87: ;
-                temp_v1_9 = (int)(new Shared_ActorView(arg0).action);
+                temp_v1_9 = (int)(new Shared_ActorView(arg0).StateId);
                 if (!(((temp_v1_9 ^ 15) == 0))) goto _f88;
                 Player_SetState(arg0, (int)(arg1), 33);
                 return;
@@ -1119,11 +1119,11 @@ public static partial class Game
                 Player_SetState(arg0, (int)(arg1), 25);
                 return;
                 _f94: ;
-                if (!(((new Shared_ActorView(arg0).state != 17) && ((int)(new Shared_ActorView(arg0).specialState) == 1)))) goto _f95;
+                if (!(((new Shared_ActorView(arg0).CharacterId != 17) && ((int)(new Shared_ActorView(arg0).DeathFallDir_13C4) == 1)))) goto _f95;
                 Player_SetState(arg0, (int)(arg1), 30);
                 return;
                 _f95: ;
-                if (!(((int)(new Shared_ActorView(arg0).specialState) == 2))) goto _f96;
+                if (!(((int)(new Shared_ActorView(arg0).DeathFallDir_13C4) == 2))) goto _f96;
                 Player_SetState(arg0, (int)(arg1), 29);
                 return;
                 _f96: ;
@@ -4270,26 +4270,26 @@ public static partial class Game
             float K = 0f;
             float f = 0f;
             float t = 0f;
-            if ((new Plr(a).unk6C8 == 0.0f))
+            if ((new Plr(a).MoveSpeed == 0.0f))
             {
-                new Plr(a).unk650_Set((short)(11));
+                new Plr(a).StateId_Set((short)(11));
             }
             else
             {
-                new Plr(a).unk650_Set((short)(12));
+                new Plr(a).StateId_Set((short)(12));
             }
             Player_UpdateViewTurn(a, b, 0x800CE874u);
-            new Plr(a).unk730_Set(((2.0f * sinf((new Plr(a).unk658 * 0.069813177f))) * 0.0174532942f));
-            new Plr(a).unk734_Set(((2.0f * sinf((new Plr(a).unk658 * 0.0872664749f))) * 0.0174532942f));
-            new Plr(a).unk738_Set(((2.0f * sinf((new Plr(a).unk658 * 0.104719765f))) * 0.0174532942f));
+            new Plr(a).SwayPitch_Set(((2.0f * sinf((new Plr(a).StateTime * 0.069813177f))) * 0.0174532942f));
+            new Plr(a).SwayYaw_Set(((2.0f * sinf((new Plr(a).StateTime * 0.0872664749f))) * 0.0174532942f));
+            new Plr(a).SwayRoll_Set(((2.0f * sinf((new Plr(a).StateTime * 0.104719765f))) * 0.0174532942f));
             Player_UpdateSwimMovement(a, b, 0x800CE850u);
-            if ((!((new Plr(b).flags38 & (uint)(4096)) != 0u) && (2.0f < new Plr(a).unk658)))
+            if ((!((new Plr(b).GroundFlags & (uint)(4096)) != 0u) && (2.0f < new Plr(a).StateTime)))
             {
                 Player_StubStop938_00218464();
                 new Plr(b).unk20_Set(0);
                 Audio_PlaySound((int)((uint)((short)(734))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
-                new Plr(a).unk840_Set(0);
-                if (((new Plr(b).flags38 & (uint)(3)) != 0u))
+                new Plr(a).UnderwaterTime_Set(0);
+                if (((new Plr(b).GroundFlags & (uint)(3)) != 0u))
                 {
                     Player_SetState(a, (int)(b), 2);
                 }
@@ -4299,11 +4299,11 @@ public static partial class Game
                 }
             }
             v = 0;
-            if ((new Plr(a).unk86C == 4420))
+            if ((new Plr(a).AnimId == 4420))
             {
-                v = (((int)(new Plr(a).unk10E) == 0) ? 1 : 0);
+                v = (((int)(new Plr(a).AnimDone_10E) == 0) ? 1 : 0);
             }
-            if (((int)(new Plr(a).unkE4) == Mem.S32(Gv.Player_RemoteBodyType_800CE47C)))
+            if (((int)(new Plr(a).TypeId) == Mem.S32(Gv.Player_RemoteBodyType_800CE47C)))
             {
                 k = 2210;
             }
@@ -4313,7 +4313,7 @@ public static partial class Game
                 {
                     goto L_skip;
                 }
-                f = new Plr(a).unk6C0;
+                f = new Plr(a).ForwardSpeed;
                 if ((1.02400005f <= f))
                 {
                     k = 2210;
@@ -4327,13 +4327,13 @@ public static partial class Game
                     }
                 }
             }
-            new Plr(a).unk86C_Set(k);
+            new Plr(a).AnimId_Set(k);
             L_skip: ;
-            t = (new Plr(a).unk11C4 + Mem.F32(Gv.FrameTime));
-            new Plr(a).unk11C4_Set(t);
-            if (((5.11999989f < new Plr(a).unk6C8) && (45.0f < t)))
+            t = (new Plr(a).SwimSoundTimer + Mem.F32(Gv.FrameTime));
+            new Plr(a).SwimSoundTimer_Set(t);
+            if (((5.11999989f < new Plr(a).MoveSpeed) && (45.0f < t)))
             {
-                new Plr(a).unk11C4_Set(Random_Float(15.0f));
+                new Plr(a).SwimSoundTimer_Set(Random_Float(15.0f));
                 Audio_PlaySound((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 Audio_PlaySound((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(new Plr(b).Position.x), Cpu.F2U(new Plr(b).Position.y), Cpu.F2U(new Plr(b).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
             }
@@ -4770,9 +4770,9 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             uint c = 0u;
-            if ((new Plr(a).unk14 != 0))
+            if ((new Plr(a).RegionPtr != 0))
             {
-                r = Level_GetRegion(Gv.LevelMgr, (uint)(new Plr(a).unk14));
+                r = Level_GetRegion(Gv.LevelMgr, (uint)(new Plr(a).RegionPtr));
                 if ((r != 0u))
                 {
                     flags = new RecB6(r).unk44;
@@ -4782,7 +4782,7 @@ public static partial class Game
             {
                 ok = 0;
             }
-            t = (new Plr(a).flags664 & 32768);
+            t = (new Plr(a).StateFlags & 32768);
             if ((t != 0))
             {
                 ok = 0;
@@ -4811,17 +4811,17 @@ public static partial class Game
             {
                 ok = 0;
             }
-            new Plr(a).unk850_Set(ok);
+            new Plr(a).IsEventFlybyActive_Set(ok);
             if ((ok != 0))
             {
                 if ((ev == 50))
                 {
                     Mem.Set(0x800CF228u, 1);
-                    if ((new Plr(a).unk5DC_ != 0u))
+                    if ((new Plr(a).ViewPtr != 0u))
                     {
                         for (i = 0; (i < 4); ++i)
                         {
-                            Mem.Set((0x80102AD8u + (uint)i), new Pawn(new Plr(a).unk5DC_).unk520[(int)(i)]);
+                            Mem.Set((0x80102AD8u + (uint)i), new Pawn(new Plr(a).ViewPtr).unk520[(int)(i)]);
                         }
                     }
                 }
@@ -4832,7 +4832,7 @@ public static partial class Game
             c = Level_FindDefinition(Gv.LevelMgr, (-1), 3141);
             if ((c != 0u))
             {
-                new Plr(a).unk50_Set(new PlrCls(c).unkFC);
+                new Plr(a).Scale_Set(new PlrCls(c).unkFC);
                 new Plr(a).unk54_Set(new PlrCls(c).unk100);
                 new Plr(a).unk58_Set(new PlrCls(c).unk104);
             }
@@ -4855,9 +4855,9 @@ public static partial class Game
                 Player_UpdateViewTurn(a, b, Gv.Player_ViewTurnParams);
                 if ((new Plr(a).unk7FC_ != 0u))
                 {
-                    new Plr(a).unk7F4_Set((new Plr(a).unk7F4 + Mem.F32(Gv.FrameTime)));
-                    Mem.Set((_fp + 12u), new Plr(a).unk6C);
-                    Mem.Set((_fp + 16u), new Plr(a).unk7F8);
+                    new Plr(a).LaunchTime_Set((new Plr(a).LaunchTime + Mem.F32(Gv.FrameTime)));
+                    Mem.Set((_fp + 12u), new Plr(a).Yaw);
+                    Mem.Set((_fp + 16u), new Plr(a).LaunchYaw);
                     if ((Mem.F32((_fp + 16u)) != Mem.F32((_fp + 12u))))
                     {
                         Math_WrapAngleInPlace((_fp + 12u), default(uint), default(uint), default(uint));
@@ -4896,16 +4896,16 @@ public static partial class Game
                         }
                         Math_WrapAngleInPlace((_fp + 12u), default(uint), default(uint), default(uint));
                     }
-                    new Plr(a).unk354_Set(Mem.F32((_fp + 12u)));
-                    new Plr(a).unk6C_Set(Mem.F32((_fp + 12u)));
-                    n = (float)(((int)(new Plr(a).unk7FC.unk5E) * 15));
-                    if ((new Plr(a).unk7F4 < n))
+                    new Plr(a).WeaponActorYaw_Set(Mem.F32((_fp + 12u)));
+                    new Plr(a).Yaw_Set(Mem.F32((_fp + 12u)));
+                    n = (float)(((int)(new Plr(a).LaunchTargetPtr.unk5E) * 15));
+                    if ((new Plr(a).LaunchTime < n))
                     {
-                        r = (new Plr(a).unk7F4 / n);
-                        new Vec3f(_fp).x_Set((new Plr(a).unk800 + ((new Plr(a).unk7FC.unk34 - new Plr(a).unk800) * r)));
-                        new Vec3f(_fp).z_Set((new Plr(a).unk808 + ((new Plr(a).unk7FC.unk3C - new Plr(a).unk808) * r)));
-                        new Vec3f(_fp).y_Set(((new Plr(a).unk804 + ((new Plr(a).unk7FC.unk38 - new Plr(a).unk804) * r)) + (new Plr(a).unk7FC.unk40 * ((r - (r * r)) * 4.0f))));
-                        Mem.Copy(new Plr(a).unk6E8.P, _fp, 12);
+                        r = (new Plr(a).LaunchTime / n);
+                        new Vec3f(_fp).x_Set((new Plr(a).LaunchStartX + ((new Plr(a).LaunchTargetPtr.unk34 - new Plr(a).LaunchStartX) * r)));
+                        new Vec3f(_fp).z_Set((new Plr(a).LaunchStartZ + ((new Plr(a).LaunchTargetPtr.unk3C - new Plr(a).LaunchStartZ) * r)));
+                        new Vec3f(_fp).y_Set(((new Plr(a).LaunchStartY + ((new Plr(a).LaunchTargetPtr.unk38 - new Plr(a).LaunchStartY) * r)) + (new Plr(a).LaunchTargetPtr.unk40 * ((r - (r * r)) * 4.0f))));
+                        Mem.Copy(new Plr(a).MoveVelocity.P, _fp, 12);
                         return;
                     }
                 }
@@ -5173,7 +5173,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00226524", (uint)a, (uint)b);
                 float d = 0f;
                 Player_UpdateViewTurn(a, b, Gv.Player_ViewTurnParams);
-                if ((new Plr(a).unk1210 != 0))
+                if ((new Plr(a).IsInWeaponStance != 0))
                 {
                     Player_ComputeAutoAim(_fp, a, (_fp + 44u), (_fp + 16u));
                     if ((Mem.U32((_fp + 44u)) != 0u))
@@ -5187,15 +5187,15 @@ public static partial class Game
                                 Mem.Set((_fp + 48u), Vec_GetYaw((_fp + 32u)));
                                 Math_WrapAngleInPlace((_fp + 48u), default(uint), default(uint), default(uint));
                                 Math_WrapAngleInPlace((b + 108u), default(uint), default(uint), default(uint));
-                                if (((new Plr(b).unk6C > Mem.F32(0x800C7C40u)) && (Mem.F32((_fp + 48u)) < Mem.F32(0x800C7C44u))))
+                                if (((new Plr(b).Yaw > Mem.F32(0x800C7C40u)) && (Mem.F32((_fp + 48u)) < Mem.F32(0x800C7C44u))))
                                 {
                                     Mem.Set((_fp + 48u), (float)((float)(Mem.F32((_fp + 48u))) + Mem.F32(0x800C7C48u)));
                                 }
                                 else
                                 {
-                                    if (((Mem.F32((_fp + 48u)) > Mem.F32(0x800C7C4Cu)) && (new Plr(b).unk6C < Mem.F32(0x800C7C50u))))
+                                    if (((Mem.F32((_fp + 48u)) > Mem.F32(0x800C7C4Cu)) && (new Plr(b).Yaw < Mem.F32(0x800C7C50u))))
                                     {
-                                        new Plr(b).unk6C_Set((float)((float)(new Plr(b).unk6C) + Mem.F32(0x800C7C54u)));
+                                        new Plr(b).Yaw_Set((float)((float)(new Plr(b).Yaw) + Mem.F32(0x800C7C54u)));
                                     }
                                 }
                                 Math_ApproachProportional((b + 108u), Mem.F32((_fp + 48u)), Cpu.U2F((uint)(Mem.S32(0x800CF230u))));
@@ -5257,7 +5257,7 @@ public static partial class Game
             gm = new Game2B6(0x8014687Cu).game.P;
             _f2: ;
             if (!((a != 0u))) goto _f4;
-            Pad_UpdatePlayerControls(new Plr(a).unk688.P, a, default(uint), default(uint));
+            Pad_UpdatePlayerControls(new Plr(a).PadInput.P, a, default(uint), default(uint));
             Mem.Set(Gv.FrameTime, save);
             if (!(((new GameB6(gm).unk24 != 0) || (new GameB6(gm).unk78 != 0)))) goto _f5;
             Player_BuildSpinMarkerMatrix_0022C480(a);
@@ -5273,7 +5273,7 @@ public static partial class Game
             a = new PlrGroup(g).head_;
             _f7: ;
             if (!((a != 0u))) goto _f9;
-            if (!(((Flyby_IsActive() != 0) && ((new Plr(a).unk6B0 & (uint)(32768)) != 0u)))) goto _f10;
+            if (!(((Flyby_IsActive() != 0) && ((new Plr(a).ButtonsPressed & (uint)(32768)) != 0u)))) goto _f10;
             goto L_blk;
             _f10: ;
             if (!((Pad_IsStartPressed(new Plr(a).unk698_) != 0))) goto _f11;
@@ -5283,15 +5283,15 @@ public static partial class Game
             goto _f13;
             _f12: ;
             if (!((((Menu_IsFrontendActive() == 0) && (MenuPanel_CountOpen(Gv.MenuPanel_SharedList) == 0)) && (new Plr(a).Health != 0)))) goto _f14;
-            if (!(((new Plr(a).unk5DC_ != 0u) && (new Pawn(new Plr(a).unk5DC_).unk564 == 0)))) goto _f15;
+            if (!(((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).unk564 == 0)))) goto _f15;
             h = (Gv.MenuPanel_SharedList + (uint)4740);
             if (!(((new HudSubB6(h).unk1C == 0) || ((int)(Mem.U8((Gv.MenuPanel_SharedList + (uint)3273))) == 0)))) goto _f16;
             Mem.Set((Gv.MenuPanel_SharedList + (uint)4728), 1);
             Audio_DuckMusic();
             Audio_DisableAmbient();
             Player_StubStop938_00218464();
-            new Plr(a).unkF54_Set((-1));
-            new Plr(a).unkF90_Set((-1));
+            new Plr(a).LivesShown_Set((-1));
+            new Plr(a).HudMoverShown_F90_Set((-1));
             PauseMenu_ShowTwin(default(uint), default(uint), default(uint), default(uint));
             _f16: ;
             _f15: ;
@@ -5326,48 +5326,48 @@ public static partial class Game
             }
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                if (((Flyby_IsInWindow() != 0) || ((int)(new Plr(a).unk5EA) == 0)))
+                if (((Flyby_IsInWindow() != 0) || ((int)(new Plr(a).Lives) == 0)))
                 {
-                    LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Plr(a).unk11BC));
-                    new Plr(a).unk11BC_Set(0);
-                    LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Plr(a).unk11C0));
-                    new Plr(a).unk11C0_Set(0);
+                    LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Plr(a).LoopSound1Handle));
+                    new Plr(a).LoopSound1Handle_Set(0);
+                    LoopSound_Stop((uint)((int)(LoopSound_GetPool())), (uint)(new Plr(a).LoopSound2Handle));
+                    new Plr(a).LoopSound2Handle_Set(0);
                 }
                 else
                 {
                     if ((Mem.S32(Gv.GamePaused) == 0))
                     {
-                        if ((new Plr(a).unk5DC_ == 0u))
+                        if ((new Plr(a).ViewPtr == 0u))
                         {
                             v = 0;
                         }
                         else
                         {
-                            v = ((new Pawn(new Plr(a).unk5DC_).unk564 != 0) ? 1 : 0);
+                            v = ((new Pawn(new Plr(a).ViewPtr).unk564 != 0) ? 1 : 0);
                         }
                         if ((v == 0))
                         {
                             e = (a + (uint)744);
-                            saved = new Plr(a).unk86C;
+                            saved = new Plr(a).AnimId;
                             f = Mem.F32(Gv.FrameTime);
-                            new Plr(a).flags3E8_Set((uint)((uint)(new Plr(a).flags3E8) | (uint)(512)));
-                            new PlrObj(e).unk2E0_Set(16);
-                            new PlrObj(e).flags100_Set((uint)((uint)(new PlrObj(e).flags100) & 4294836223u));
+                            new Plr(a).WeaponActorFlags_Set((uint)((uint)(new Plr(a).WeaponActorFlags) | (uint)(512)));
+                            new PlrObj(e).EventBits_Set(16);
+                            new PlrObj(e).Flags_Set((uint)((uint)(new PlrObj(e).Flags) & 4294836223u));
                             Actor_RunStateUpdate(e);
-                            if ((new Plr(a).unk11D8 <= 0.0f))
+                            if ((new Plr(a).StunTime <= 0.0f))
                             {
                                 Actor_Advance(e, default(uint), default(uint), default(uint));
                             }
                             Mem.Set(Gv.FrameTime, f);
-                            if ((saved != new Plr(a).unk86C))
+                            if ((saved != new Plr(a).AnimId))
                             {
-                                new Plr(a).unk10E_Set((sbyte)(0));
+                                new Plr(a).AnimDone_10E_Set((sbyte)(0));
                             }
-                            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).Position.P, 12);
-                            new Plr(a).unk354_Set(new Plr(a).unk6C);
-                            new Plr(a).unk2FC_Set(new Plr(a).unk14);
-                            Mem.Copy(new Plr(a).unk344.P, new Plr(a).unk5C.P, 16);
-                            new Plr(a).flags3E8_Set((uint)((uint)(new Plr(a).flags3E8) & (uint)((~512))));
+                            Mem.Copy(new Plr(a).WeaponActorPos.P, new Plr(a).Position.P, 12);
+                            new Plr(a).WeaponActorYaw_Set(new Plr(a).Yaw);
+                            new Plr(a).WeaponActorRegion_Set(new Plr(a).RegionPtr);
+                            Mem.Copy(new Plr(a).WeaponActorRotation.P, new Plr(a).Rotation.P, 16);
+                            new Plr(a).WeaponActorFlags_Set((uint)((uint)(new Plr(a).WeaponActorFlags) & (uint)((~512))));
                         }
                     }
                 }
@@ -5393,20 +5393,20 @@ public static partial class Game
                 a = new PlrGroup(g).head_;
                 _f0: ;
                 if (!((a != 0u))) goto _f2;
-                pw = new Plr(a).unk5DC_;
+                pw = new Plr(a).ViewPtr;
                 if (!((pw != 0u))) goto _f3;
                 if (!((pw == p))) goto _f4;
                 if (!((new Pawn(pw).unk24 == 0))) goto _f5;
                 e = (a + (uint)744);
-                if (!(((new PlrObj(e).flags100 & (uint)(262144)) != 0u))) goto _f6;
-                r = ResourceCache_Hash(0, (uint)(new PlrObj(e).unkC4), new PlrObj(e).unkC4, (uint)(new PlrObj(e).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                if (!(((new PlrObj(e).Flags & (uint)(262144)) != 0u))) goto _f6;
+                r = ResourceCache_Hash(0, (uint)(new PlrObj(e).AnimDataKey), new PlrObj(e).AnimDataKey, (uint)(new PlrObj(e).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r != 0u))) goto _f7;
                 other = new PlrObj(e).unk1D8_;
                 Actor_UpdateTransformAndBounds(e, (int)(Chunk_Get((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
-                if (!((new Plr(other).unk5DC_ != 0u))) goto _f8;
-                new Vec3f(_fp).x_Set((new Pawn(new Plr(other).unk5DC_).pos128.x - new PlrObj(e).pos.x));
+                if (!((new Plr(other).ViewPtr != 0u))) goto _f8;
+                new Vec3f(_fp).x_Set((new Pawn(new Plr(other).ViewPtr).pos128.x - new PlrObj(e).Position.x));
                 new Vec3f(_fp).y_Set((float)(0));
-                new Vec3f(_fp).z_Set((new Pawn(new Plr(other).unk5DC_).pos128.z - new PlrObj(e).pos.z));
+                new Vec3f(_fp).z_Set((new Pawn(new Plr(other).ViewPtr).pos128.z - new PlrObj(e).Position.z));
                 Shadow_DrawBlob(e, _fp, (uint)(1), default(uint));
                 _f8: ;
                 ResourcePool_Unref(0, r);
@@ -5420,8 +5420,8 @@ public static partial class Game
                 _f4: ;
                 if (!((pw != 0u))) goto _f11;
                 L_blk: ;
-                if (!(((new Plr(a).flags100 & (uint)(262144)) != 0u))) goto _f12;
-                r2 = ResourceCache_Hash(0, (uint)(new Plr(a).unkC4), new Plr(a).unkC4, (uint)(new Plr(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                if (!(((new Plr(a).Flags & (uint)(262144)) != 0u))) goto _f12;
+                r2 = ResourceCache_Hash(0, (uint)(new Plr(a).AnimDataKey), new Plr(a).AnimDataKey, (uint)(new Plr(a).AnimDataSize), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r2 != 0u))) goto _f13;
                 Actor_UpdateTransformAndBounds(a, (int)(Chunk_Get((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
                 ResourcePool_Unref(0, r2);
@@ -5451,19 +5451,19 @@ public static partial class Game
             int b = 0;
             if (((new GameB6(Gv.Settings_MatchRules).unk24 != 0) || (new GameB6(Gv.Settings_MatchRules).unk78 != 0)))
             {
-                want = (int)(new Plr(Player_FindByPawn(p)).stats.unk92);
+                want = (int)(new Plr(Player_FindByPawn(p)).PlayerEntryPtr.unk92);
             }
             Model_ClearBatchQueue();
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
                 b = 0;
-                if ((new Plr(a).unk11FC > 0.0f))
+                if ((new Plr(a).MarkerTime > 0.0f))
                 {
                     b = 1;
                 }
                 if ((b != 0))
                 {
-                    if ((new Plr(a).unk120C != 0))
+                    if ((new Plr(a).IsMarkerAttract != 0))
                     {
                         r = Level_FindTypeIndexById(Gv.LevelMgr, 3204);
                     }
@@ -5476,11 +5476,11 @@ public static partial class Game
                         Model_QueueByIndex(Level_GetModelKey(Gv.LevelMgr, r), (int)((a + (uint)5632)), (int)(Gv.Model_DefaultLights), 0, (-1));
                     }
                 }
-                if ((((new Plr(a).unk5DC_ != 0u) && (new Plr(a).unk1210 != 0)) && (new Plr(a).unk5DC_ == p)))
+                if ((((new Plr(a).ViewPtr != 0u) && (new Plr(a).IsInWeaponStance != 0)) && (new Plr(a).ViewPtr == p)))
                 {
                     Player_DrawLaserBeamWorld((a + (uint)744));
                 }
-                if (((((new GameB6(Gv.Settings_MatchRules).unk24 != 0) || (new GameB6(Gv.Settings_MatchRules).unk78 != 0)) && ((int)(new Plr(a).stats.unk92) == want)) && (Player_FindByPawn(p) != a)))
+                if (((((new GameB6(Gv.Settings_MatchRules).unk24 != 0) || (new GameB6(Gv.Settings_MatchRules).unk78 != 0)) && ((int)(new Plr(a).PlayerEntryPtr.unk92) == want)) && (Player_FindByPawn(p) != a)))
                 {
                     Player_DrawTeamMarker(a);
                 }
@@ -5506,16 +5506,16 @@ public static partial class Game
                 float d = 0f;
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if ((new Plr(a).unk5D0 != 0))
+                    if ((new Plr(a).CameraMode != 0))
                     {
                         c = 0;
-                        if ((new Plr(a).unk11FC > 0.0f))
+                        if ((new Plr(a).MarkerTime > 0.0f))
                         {
                             c = 1;
                         }
                         if ((c != 0))
                         {
-                            Vec_Sub(_fp, new Plr(a).unk1200.P, new AimB6(b).pos.P);
+                            Vec_Sub(_fp, new Plr(a).MarkerPos.P, new AimB6(b).pos.P);
                             d2 = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                             Vec_Normalize(_fp);
                             any = 1;
@@ -5526,7 +5526,7 @@ public static partial class Game
                                 {
                                     f = (f * Mem.F32(Gv.FrameTime));
                                 }
-                                if ((new Plr(a).unk120C == 0))
+                                if ((new Plr(a).IsMarkerAttract == 0))
                                 {
                                     f = (-f);
                                 }
@@ -5569,28 +5569,28 @@ public static partial class Game
             }
             if (((int)(Mem.U8(Gv.Settings_GameMode)) != 1))
             {
-                max = new Desc(Mem.U32(new SharedPlayer_func_80229554_de(player).views18.P)).caps[(int)(type)];
+                max = new Desc(Mem.U32(new SharedPlayer_func_80229554_de(player).DefPtr.P)).caps[(int)(type)];
             }
             else
             {
                 max = Mem.S32((0x800CE3E8u + (uint)(type * 4)));
-                if ((Mem.S32(new SharedPlayer_func_80229554_de(player).views1450.P) == 0))
+                if ((Mem.S32(new SharedPlayer_func_80229554_de(player).IsComputer.P) == 0))
                 {
                     if ((type == 0))
                     {
-                        max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).views1C.P + 1464u)) * 400))).bonus0));
+                        max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).Velocity.P + 1464u)) * 400))).bonus0));
                     }
                     else
                     {
                         if ((type == 1))
                         {
-                            max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).views1C.P + 1464u)) * 400))).bonus1));
+                            max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).Velocity.P + 1464u)) * 400))).bonus1));
                         }
                         else
                         {
                             if ((type == 2))
                             {
-                                max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).views1C.P + 1464u)) * 400))).bonus2));
+                                max = (int)((int)(max) + (int)(new Profile_func_80229554_de((Gv.ProfileTable + (uint)(Mem.S32((new SharedPlayer_func_80229554_de(player).Velocity.P + 1464u)) * 400))).bonus2));
                             }
                         }
                     }
@@ -5804,7 +5804,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00229BE0", (uint)a, (uint)@base);
             int off = 0;
-            if (((int)(new Plr(a).unkE4) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(2 * 4)))))
+            if (((int)(new Plr(a).TypeId) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(2 * 4)))))
             {
                 switch (Mem.S32(0x80146910u))
                 {
@@ -5825,22 +5825,22 @@ public static partial class Game
             }
             else
             {
-                if (((int)(new Plr(a).unkE4) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))))
+                if (((int)(new Plr(a).TypeId) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))))
                 {
                     off = 400;
                 }
                 else
                 {
-                    if (((int)(new Plr(a).unkE4) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4)))))
+                    if (((int)(new Plr(a).TypeId) == Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4)))))
                     {
                         off = 1000;
                     }
                     else
                     {
-                        switch ((int)(new Plr(a).stats.unk80))
+                        switch ((int)(new Plr(a).PlayerEntryPtr.unk80))
                         {
                         default:
-                            new Plr(a).stats.unk80_Set((sbyte)(0));
+                            new Plr(a).PlayerEntryPtr.unk80_Set((sbyte)(0));
                             goto case 0;
                         case 0:
                             off = 0;
@@ -6051,7 +6051,7 @@ public static partial class Game
             uint a = 0u;
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                new Plr(a).unk70_Set(0);
+                new Plr(a).BottomOffset_Set(0);
                 new Plr(a).unk358_Set(0);
                 if ((Actor_IsAlwaysActive_0024D150(a) != 0))
                 {
@@ -6078,7 +6078,7 @@ public static partial class Game
             Model_ClearBatchQueue();
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                if ((((new Plr(a).unk5DC_ != p) || (new Pawn(p).unk24 == 1)) || (Flyby_IsInWindowFlag2_002458F8() != 0)))
+                if ((((new Plr(a).ViewPtr != p) || (new Pawn(p).unk24 == 1)) || (Flyby_IsInWindowFlag2_002458F8() != 0)))
                 {
                     Player_DrawModelPass(a, p);
                 }
@@ -6098,7 +6098,7 @@ public static partial class Game
             {
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if ((((new Plr(a).unk5DC_ == p) && (new Pawn(p).unk24 == 0)) && ((int)(new Plr(a).unkE4) != Mem.S32(Gv.Player_RemoteBodyType_800CE47C))))
+                    if ((((new Plr(a).ViewPtr == p) && (new Pawn(p).unk24 == 0)) && ((int)(new Plr(a).TypeId) != Mem.S32(Gv.Player_RemoteBodyType_800CE47C))))
                     {
                         Player_DrawViewWeapon(a, p);
                     }
@@ -6218,7 +6218,7 @@ public static partial class Game
             int i = 0;
             if ((idx < (uint)(8)))
             {
-                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_, ++i)
+                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next, ++i)
                 {
                     if (((uint)(i) == idx))
                     {
@@ -6242,7 +6242,7 @@ public static partial class Game
             {
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((new Plr(a).unk5DC_ != 0u) && (new Pawn(new Plr(a).unk5DC_).unk564 == 0)))
+                    if (((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).unk564 == 0)))
                     {
                         if (((uint)(cnt) == n))
                         {
@@ -6265,8 +6265,8 @@ public static partial class Game
             uint a = new ActorGroup(g).head_;
             while ((a != 0u))
             {
-                new Actor(a).unk670_Set(v);
-                a = new Actor(a).next_;
+                new Actor(a).InvulnerableTime_Set(v);
+                a = new Actor(a).Next;
             }
         }
     }
@@ -6279,9 +6279,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022A8E0", (uint)g);
             uint a = 0u;
             int n = 0;
-            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).Next)
             {
-                if ((((int)(Mem.S16((a + (uint)1534))) != 0) && (new Actor(a).unk1450 == 0)))
+                if ((((int)(Mem.S16((a + (uint)1534))) != 0) && (new Actor(a).IsComputer == 0)))
                 {
                     ++n;
                 }
@@ -6297,24 +6297,24 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A94C", (uint)a);
             uint e = (a + (uint)744);
-            int saved = new Plr(a).unk86C;
+            int saved = new Plr(a).AnimId;
             float f = Mem.F32(Gv.FrameTime);
-            new PlrObj(e).unk2E0_Set(16);
-            new PlrObj(e).flags100_Set((uint)((uint)(new PlrObj(e).flags100) & 4294836223u));
+            new PlrObj(e).EventBits_Set(16);
+            new PlrObj(e).Flags_Set((uint)((uint)(new PlrObj(e).Flags) & 4294836223u));
             Actor_RunStateUpdate(e);
-            if ((new Plr(a).unk11D8 <= 0.0f))
+            if ((new Plr(a).StunTime <= 0.0f))
             {
                 Actor_Advance(e, default(uint), default(uint), default(uint));
             }
             Mem.Set(Gv.FrameTime, f);
-            if ((saved != new Plr(a).unk86C))
+            if ((saved != new Plr(a).AnimId))
             {
-                new Plr(a).unk10E_Set((sbyte)(0));
+                new Plr(a).AnimDone_10E_Set((sbyte)(0));
             }
-            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).Position.P, 12);
-            new Plr(a).unk354_Set(new Plr(a).unk6C);
-            new Plr(a).unk2FC_Set(new Plr(a).unk14);
-            Mem.Copy(new Plr(a).unk344.P, new Plr(a).unk5C.P, 16);
+            Mem.Copy(new Plr(a).WeaponActorPos.P, new Plr(a).Position.P, 12);
+            new Plr(a).WeaponActorYaw_Set(new Plr(a).Yaw);
+            new Plr(a).WeaponActorRegion_Set(new Plr(a).RegionPtr);
+            Mem.Copy(new Plr(a).WeaponActorRotation.P, new Plr(a).Rotation.P, 16);
         }
     }
 
@@ -6374,9 +6374,9 @@ public static partial class Game
                 uint pt = _fp;
                 uint p = 0u;
                 Mem.Copy(_fp, v, 12);
-                if ((new Plr(a).unk5DC_ != 0u))
+                if ((new Plr(a).ViewPtr != 0u))
                 {
-                    p = new Pawn(new Plr(a).unk5DC_).m160.P;
+                    p = new Pawn(new Plr(a).ViewPtr).m160.P;
                 }
                 else
                 {
@@ -6411,8 +6411,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B720", (uint)p);
-            new Player_v3(p).f11DC_Set((float)((float)(new Player_v3(p).f11DC) + (a * Mem.F32(0x800C7E08u))));
-            new Player_v3(p).f122C_Set((uint)((uint)(new Player_v3(p).f122C) | (uint)(8192)));
+            new Player_v3(p).SlowTime_Set((float)((float)(new Player_v3(p).SlowTime) + (a * Mem.F32(0x800C7E08u))));
+            new Player_v3(p).PowerupFlags_Set((uint)((uint)(new Player_v3(p).PowerupFlags) | (uint)(8192)));
         }
     }
 
@@ -6432,7 +6432,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BA90", (uint)p);
-            uint w = new Player_v3(p).pawn_;
+            uint w = new Player_v3(p).ViewPtr;
             if ((w != 0u))
             {
                 return ((new Pawn_v2(w).f564 != 0) ? 1 : 0);
@@ -6450,8 +6450,8 @@ public static partial class Game
             int k = 0;
             uint c = 0u;
             uint new_var = 0u;
-            k = new Plr((new_var = a)).unk5E0;
-            if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new Plr(new_var).stats.unk8F) == 1)))
+            k = new Plr((new_var = a)).CharacterId;
+            if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new Plr(new_var).PlayerEntryPtr.unk8F) == 1)))
             {
                 k = 19;
             }
@@ -6465,7 +6465,7 @@ public static partial class Game
                 }
             }
             new Plr(new_var).unk18__Set(c);
-            new Plr(new_var).unk50_Set(new PlrCls(c).unkFC);
+            new Plr(new_var).Scale_Set(new PlrCls(c).unkFC);
             new Plr(new_var).unk54_Set(new PlrCls(c).unk100);
             new Plr(new_var).unk58_Set(new PlrCls(c).unk104);
         }
@@ -6484,17 +6484,17 @@ public static partial class Game
             }
             else
             {
-                if (((new GStateB6(Gv.Settings).sub.unk54 != 0) && ((int)(new Plr(a).stats.unk8F) != 0)))
+                if (((new GStateB6(Gv.Settings).sub.unk54 != 0) && ((int)(new Plr(a).PlayerEntryPtr.unk8F) != 0)))
                 {
                     k = Mem.S32(Gv.Player_RemoteBodyType_800CE47C);
                 }
                 else
                 {
-                    k = Mem.S32((0x800CE430u + (uint)(new Plr(a).unk18.unkC * 4)));
-                    new Plr(a).unk3_Set(new Plr(a).stats.unk81);
+                    k = Mem.S32((0x800CE430u + (uint)(new Plr(a).DefPtr.unkC * 4)));
+                    new Plr(a).ShadeParam_3_Set(new Plr(a).PlayerEntryPtr.unk81);
                 }
             }
-            Level_SetActorType(Gv.LevelMgr, a, k, new Plr(a).unk86C);
+            Level_SetActorType(Gv.LevelMgr, a, k, new Plr(a).AnimId);
         }
     }
 
@@ -6539,13 +6539,13 @@ public static partial class Game
             short r = 0;
             if (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0))
             {
-                if ((((int)(Mem.U8((Gv.Settings_IsMultiplayer - (uint)16))) == 1) && (new Actor(actor).unk1450 == 0)))
+                if ((((int)(Mem.U8((Gv.Settings_IsMultiplayer - (uint)16))) == 1) && (new Actor(actor).IsComputer == 0)))
                 {
-                    Mem.Set((actor + (uint)4924), (((int)((byte)(Profile_GetCharacterLives((Gv.ProfileTable + (uint)(new Actor(actor).unk5D4 * 400)), (int)(new Actor(actor).stats.unk80)))) >> (int)1) + 1));
+                    Mem.Set((actor + (uint)4924), (((int)((byte)(Profile_GetCharacterLives((Gv.ProfileTable + (uint)(new Actor(actor).PlayerIndex * 400)), (int)(new Actor(actor).PlayerEntryPtr.unk80)))) >> (int)1) + 1));
                 }
                 if (((int)(Mem.U8((Gv.Settings_GameMode + (uint)0))) == 4))
                 {
-                    if ((new Actor(actor).unk1450 == 0))
+                    if ((new Actor(actor).IsComputer == 0))
                     {
                         if ((Mem.U32(Gv.ArenaTreeRecordPtr) != 0u))
                         {
@@ -6710,12 +6710,12 @@ public static partial class Game
                 float target = 0f;
                 float d = 0f;
                 target = 0.0f;
-                if (!(((int)((ushort)(((int)(new Player_v3(p).state) - 9))) < 4))) goto _f0;
+                if (!(((int)((ushort)(((int)(new Player_v3(p).StateId) - 9))) < 4))) goto _f0;
                 target = Mem.F32((0x800C7EE8u + (uint)(0 * 4)));
                 _f0: ;
-                Mem.Set(_fp, new Player_v3(p).f720);
+                Mem.Set(_fp, new Player_v3(p).SwimSinkOffset);
                 Math_ApproachProportional(_fp, target, 0.25f);
-                d = (Mem.F32(_fp) - new Player_v3(p).f720);
+                d = (Mem.F32(_fp) - new Player_v3(p).SwimSinkOffset);
                 if (!((d < (float)(0)))) goto _f1;
                 if (!(((-d) < Mem.F32((0x800C7EE8u + (uint)(1 * 4)))))) goto _f2;
                 goto L_zero;
@@ -6727,7 +6727,7 @@ public static partial class Game
                 d = (float)(0);
                 _f4: ;
                 _f3: ;
-                new Player_v3(p).f720_Set((float)((float)(new Player_v3(p).f720) + d));
+                new Player_v3(p).SwimSinkOffset_Set((float)((float)(new Player_v3(p).SwimSinkOffset) + d));
             }
         }
         finally { Stack.Free(4); }
@@ -6748,7 +6748,7 @@ public static partial class Game
                 float v3 = 0f;
                 float v4 = 0f;
                 float t = 0f;
-                d = ((((Mem.F32((new Actor(actor).def_ + (uint)244)) - Mem.F32((actor + (uint)1920))) - Mem.F32((actor + (uint)1816))) - Mem.F32((actor + (uint)1824))) - Mem.F32((actor + (uint)1780)));
+                d = ((((Mem.F32((new Actor(actor).DefPtr + (uint)244)) - Mem.F32((actor + (uint)1920))) - Mem.F32((actor + (uint)1816))) - Mem.F32((actor + (uint)1824))) - Mem.F32((actor + (uint)1780)));
                 if ((d > (float)(0)))
                 {
                     v1 = Actor_GetCollisionRadius_0024E454(o);
@@ -6824,7 +6824,7 @@ public static partial class Game
             float x = 0f;
             if (((v >= (int)(Mem.S8((cfg + (uint)24)))) && (v <= (int)(Mem.S8((cfg + (uint)25))))))
             {
-                owner = new Actor(Mem.U32((obj + (uint)8))).owner_;
+                owner = new Actor(Mem.U32((obj + (uint)8))).OwnerPtr;
                 x = (-Mem.F32((owner + (uint)1828)));
                 if (((int)(Mem.S16((owner + (uint)1616))) == 15))
                 {
@@ -6842,7 +6842,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022E250", (uint)actor, (uint)a1, (uint)a2);
-            Player_ApplyHitStatusEffect(new Actor(actor).owner_, (int)(actor), a1, (uint)(a2));
+            Player_ApplyHitStatusEffect(new Actor(actor).OwnerPtr, (int)(actor), a1, (uint)(a2));
         }
     }
 
@@ -6961,11 +6961,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022E630", (uint)p);
-            if ((((int)(new Player_v3(p).state) == 3) && ((new Player_v3(p).f86C == 24105) || (new Player_v3(p).f86C == 24153))))
+            if ((((int)(new Player_v3(p).StateId) == 3) && ((new Player_v3(p).AnimId == 24105) || (new Player_v3(p).AnimId == 24153))))
             {
                 return 1;
             }
-            return (((((int)(new Player_v3(p).state) == 3) && (new Player_v3(p).f86C >= 2010)) && (new Player_v3(p).f86C < 2015)) ? 1 : 0);
+            return (((((int)(new Player_v3(p).StateId) == 3) && (new Player_v3(p).AnimId >= 2010)) && (new Player_v3(p).AnimId < 2015)) ? 1 : 0);
         }
     }
 
@@ -7149,9 +7149,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002392DC", (uint)pw);
             uint p = 0u;
-            for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new Player_v3(p).next_)
+            for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new Player_v3(p).Next)
             {
-                if ((new Player_v3(p).pawn_ == pw))
+                if ((new Player_v3(p).ViewPtr == pw))
                 {
                     return p;
                 }
@@ -7879,48 +7879,48 @@ public static partial class Game
             int computer = 0;
             byte team = 0;
             computer = (int)(new Record_func_80449EE4_de(record).computer);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views1C.P + 1460u), 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views1450.P, computer);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).Velocity.P + 1460u), 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsComputer.P, computer);
             if ((computer != 0))
             {
                 Pad_InitPlayerInput((player + (uint)1672), (int)(0x8010EEB8u));
-                Mem.Set((new SharedPlayer_func_80449EE4_de(player).views1C.P + 1464u), (int)(new Record_func_80449EE4_de(record).slot));
+                Mem.Set((new SharedPlayer_func_80449EE4_de(player).Velocity.P + 1464u), (int)(new Record_func_80449EE4_de(record).slot));
             }
             else
             {
                 Pad_InitPlayerInput((player + (uint)1672), (int)((Gv.Pad_Slots + (uint)(slot * 548))));
-                Mem.Set((new SharedPlayer_func_80449EE4_de(player).views1C.P + 1464u), slot);
+                Mem.Set((new SharedPlayer_func_80449EE4_de(player).Velocity.P + 1464u), slot);
             }
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views5D8.P, (int)(record));
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).PlayerEntryPtr.P, (int)(record));
             team = new Record_func_80449EE4_de(record).team;
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3028u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3032u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 4u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 8u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 636u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 640u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views1C.P + 444u), (uint)((int)(player)));
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3028u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3032u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 4u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 8u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 636u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 640u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).Velocity.P + 444u), (uint)((int)(player)));
             Mem.Set((player + (uint)3), (sbyte)(team));
-            Ai_InitForActor((uint)(Mem.S32(new SharedPlayer_func_80449EE4_de(player).views1454.P)), player);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views13C8.P, 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3124u), (slot * 2));
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3128u), 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views122C.P, 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3044u), 0);
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3120u), 0);
+            Ai_InitForActor((uint)(Mem.S32(new SharedPlayer_func_80449EE4_de(player).BrainPtr.P)), player);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsGibbed.P, 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3124u), (slot * 2));
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3128u), 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).PowerupFlags.P, 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3044u), 0);
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3120u), 0);
             for (i = 0; (i < 8); ++i)
             {
-                Mem.Set((new SharedPlayer_func_80449EE4_de(player).views12CC.P + (uint)(i * 4)), 0);
-                Mem.Set((new SharedPlayer_func_80449EE4_de(player).views12F4.P + (uint)(i * 4)), 0);
+                Mem.Set((new SharedPlayer_func_80449EE4_de(player).KillFeedVictims.P + (uint)(i * 4)), 0);
+                Mem.Set((new SharedPlayer_func_80449EE4_de(player).KillFeedAlphas.P + (uint)(i * 4)), 0);
             }
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views1338.P, (-1));
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views12C4.P, 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views12C8.P, 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views1334.P, 0);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views13B4.P, (int)(0x800CE8C8u));
-            Mem.Set((new SharedPlayer_func_80449EE4_de(player).views5E8.P + 3072u), 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).KillFeedHead.P, (-1));
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).TagKillVictimPtr.P, 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).ModeKillVictimPtr_12C8.P, 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).KillFeedTail.P, 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).StateTablePtr.P, (int)(0x800CE8C8u));
+            Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3072u), 0);
             Player_ResetFields(player);
-            Mem.Set(new SharedPlayer_func_80449EE4_de(player).views16D4.P, 0);
+            Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsInfraRedOn.P, 0);
             new func_8044AB34_S1(player).unk16D8_Set((short)(0));
             Inventory_Clear((player + (uint)3392), default(uint), default(uint), default(uint));
         }

@@ -1363,11 +1363,11 @@ public static partial class Game
                         Mem.Set(0x801540E0u, (int)(((ta * tb) * (((tt + 1.0f) * 50.0f) + 50.0f))));
                         if (((int)(new Q4Win(w).id) == new Q4IdS(idp).id))
                         {
-                            new Q4Fx(fx).f27C_Set(0x00443298u);
+                            new Q4Fx(fx).DrawCallback_Set(0x00443298u);
                         }
                         else
                         {
-                            new Q4Fx(fx).f27C_Set(0x00443274u);
+                            new Q4Fx(fx).DrawCallback_Set(0x00443274u);
                         }
                         if ((Resource_GetLoadFlags() == 0))
                         {
@@ -1375,7 +1375,7 @@ public static partial class Game
                         }
                         if ((new Q4X(x).id == 11))
                         {
-                            Level_SetActorType(Gv.LevelMgr, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).f18).h0C * 4))), 1);
+                            Level_SetActorType(Gv.LevelMgr, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).DefPtr).h0C * 4))), 1);
                         }
                         if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 4))
                         {
@@ -1405,15 +1405,15 @@ public static partial class Game
                                 new Q4Gfx(q_4).w1_Set((uint)(8192));
                             }
                         }
-                        Mem.Copy(new Q4Fx(fx).v50.P, (_fp + 48u), 12);
-                        Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
+                        Mem.Copy(new Q4Fx(fx).Scale.P, (_fp + 48u), 12);
+                        Mem.Copy(new Q4Fx(fx).Position.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Actor_ResetPoseMatrices(fx);
-                        Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
+                        Mem.Copy(new Q4Fx(fx).Position.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Actor_Advance(fx, default(uint), default(uint), default(uint));
-                        new Q4Fx(fx).f6C_Set((new Q4Fx(fx).f6C + (new Q4Part(p).f2C * Mem.F32(Gv.FrameTime))));
-                        Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
+                        new Q4Fx(fx).Yaw_Set((new Q4Fx(fx).Yaw + (new Q4Part(p).f2C * Mem.F32(Gv.FrameTime))));
+                        Mem.Copy(new Q4Fx(fx).Position.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Model_ClearBatchQueue();
                         Actor_Draw(fx, new Q4Win(w).cam_, default(uint), default(uint));

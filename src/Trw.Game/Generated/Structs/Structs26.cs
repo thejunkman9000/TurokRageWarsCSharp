@@ -3202,29 +3202,29 @@ public readonly struct Q4Fx
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public Q4V3 pos8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Q4V3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x4 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
-    public uint f18
+    public uint DefPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public uint f18_Set(uint v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public uint DefPtr_Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
     public U8x52 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x50
-    public Q4V3 v50 { [MethodImpl(Inl)] get => new(P + 0x50u); }
+    public Q4V3 Scale { [MethodImpl(Inl)] get => new(P + 0x50u); }
     // +0x5C
     public U8x16 pad5C { [MethodImpl(Inl)] get => new(P + 0x5Cu); }
     // +0x6C
-    public float f6C
+    public float Yaw
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public float f6C_Set(float v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public float Yaw_Set(float v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
     public U8x340 pad70 { [MethodImpl(Inl)] get => new(P + 0x70u); }
     // +0x1C4
@@ -3232,12 +3232,12 @@ public readonly struct Q4Fx
     // +0x1D0
     public U8x172 pad1D0 { [MethodImpl(Inl)] get => new(P + 0x1D0u); }
     // +0x27C
-    public uint f27C
+    public uint DrawCallback
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x27Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x27Cu, value);
     }
-    [MethodImpl(Inl)] public uint f27C_Set(uint v) => Mem.Set(P + 0x27Cu, v);
+    [MethodImpl(Inl)] public uint DrawCallback_Set(uint v) => Mem.Set(P + 0x27Cu, v);
     // +0x280
     public U8x104 pad280 { [MethodImpl(Inl)] get => new(P + 0x280u); }
 }

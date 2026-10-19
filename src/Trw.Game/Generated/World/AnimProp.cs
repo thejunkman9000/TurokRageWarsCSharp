@@ -48,14 +48,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002066A4", (uint)actor, (uint)state);
-            new ActorState(state).unk124_Set(new ActorDef(new Actor(actor).def_).info.unk4);
+            new ActorState(state).unk124_Set(new ActorDef(new Actor(actor).DefPtr).info.unk4);
             Actor_DispatchEvent(actor, state, 0);
             Mem.Set(new ActorState(state).unk128.P, Mem.F32(0x800C6BD0u));
             Mem.Set(new ActorState(state).unk12C.P, Mem.F32(0x800C6BD0u));
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             }
         }
     }
@@ -129,8 +129,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002067BC", (uint)actor);
-            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+            new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+            new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
         }
     }
@@ -151,7 +151,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020682C", (uint)actor, (uint)state);
-            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
+            new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8448)));
             if ((Flyby_IsInWindow() != 0))
             {
                 new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
@@ -178,7 +178,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002068C8", (uint)actor, (uint)unused, (uint)arg);
             Flyby_QueueByTrigger((int)(actor), (uint)(arg));
-            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
+            new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8448)));
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
         }
     }

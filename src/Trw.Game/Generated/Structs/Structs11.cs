@@ -419,14 +419,14 @@ public readonly struct Field_s32_2E0
     [MethodImpl(Inl)] public static implicit operator uint(Field_s32_2E0 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Field_s32_2E0(uint p) => new(p);
     // +0x0
-    public S8x736 pad { [MethodImpl(Inl)] get => new(P); }
+    public S8x736 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x2E0
-    public int value
+    public int EventBits
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2E0u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, EventBits);
     }
-    [MethodImpl(Inl)] public int value_Set(int v) => Mem.Set(P + 0x2E0u, v);
+    [MethodImpl(Inl)] public int EventBits_Set(int v) => Mem.Set(P + 0x2E0u, v);
 }
 
 /// <summary>struct Field_s32_788, 0x78C bytes, at a guest address.</summary>

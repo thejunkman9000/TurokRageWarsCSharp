@@ -48,9 +48,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022E578", (uint)g, (uint)v);
             uint p = 0u;
             float sum = 0.0f;
-            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).Next)
             {
-                if ((new Player_v3(p).pawn_ != 0u))
+                if ((new Player_v3(p).ViewPtr != 0u))
                 {
                     sum = (float)((float)(sum) + Vec_Distance(v, new Player_v3(p).Position.P));
                 }

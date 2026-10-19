@@ -507,9 +507,9 @@ public static partial class Game
                                 if ((st == 1))
                                 {
                                     n = AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4);
-                                    if ((Vec_Distance(new B2Node(n).unk40.pos.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CB8u)))
+                                    if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CB8u)))
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(n).unk40.pos.P, 12);
+                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(n).unk40.Position.P, 12);
                                         new B2Actor(o).unk6B0_Set((uint)((uint)(new B2Actor(o).unk6B0) | (uint)(16)));
                                         new B2Ctl(ctl).unk314_Set(2);
                                         return;
@@ -525,7 +525,7 @@ public static partial class Game
                                     {
                                         flag = ((Mem.S32(new B2T(t).p18_) == 2) ? 1 : 0);
                                     }
-                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.pos.P);
+                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.Position.P);
                                     len = sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                                     if (((flag != 0) && (len < Mem.F32(0x800C6CBCu))))
                                     {
@@ -533,7 +533,7 @@ public static partial class Game
                                     }
                                     else
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.pos.P, 12);
+                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.Position.P, 12);
                                         return;
                                     }
                                 }
@@ -551,7 +551,7 @@ public static partial class Game
                                     }
                                     cur = AiNav_GetNode(m, new B2Ctl(ctl).q[(int)(0)]);
                                     n = AiNav_FindSearchNode(m, new B2Ctl(ctl).q[(int)(0)]);
-                                    if ((Vec_Distance(new B2Node(n).unk40.pos.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CC0u)))
+                                    if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CC0u)))
                                     {
                                         Mem.Copy(new B2Ctl(ctl).v2C.P, cur, 12);
                                         new B2Actor(o).unk6B0_Set((uint)((uint)(new B2Actor(o).unk6B0) | (uint)(16)));
@@ -1133,13 +1133,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00209B64", (uint)@ref);
             uint a = new ActorRef(@ref).actor_;
-            float v = (new ActorDef(new Actor(a).def_).info.unk14 * Mem.F32(0x800C6D8Cu));
-            switch ((int)(new Actor(a).stats.unk93))
+            float v = (new ActorDef(new Actor(a).DefPtr).info.unk14 * Mem.F32(0x800C6D8Cu));
+            switch ((int)(new Actor(a).PlayerEntryPtr.unk93))
             {
             case 1:
                 break;
             default:
-                new Actor(new ActorRef(@ref).actor_).stats.unk93_Set((byte)(0));
+                new Actor(new ActorRef(@ref).actor_).PlayerEntryPtr.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D90u));
@@ -2625,11 +2625,11 @@ public static partial class Game
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
-                if (((new ActorB(cur).unk122C & (uint)(32)) != 0u))
+                if (((new ActorB(cur).PowerupFlags & (uint)(32)) != 0u))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
-                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).actor.stats.unk92) == (int)(new ActorB(cur).stats.unk92))))
+                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).actor.PlayerEntryPtr.unk92) == (int)(new ActorB(cur).PlayerEntryPtr.unk92))))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
@@ -2650,7 +2650,7 @@ public static partial class Game
                 cur = 0u;
                 curDist = 0.0f;
             }
-            if (((new BrainB(b).target_ != 0u) && ((new BrainB(b).target.flags & (uint)(3145728)) != 0u)))
+            if (((new BrainB(b).target_ != 0u) && ((new BrainB(b).target.Flags & (uint)(3145728)) != 0u)))
             {
                 tgt = new BrainB(b).target.owner_;
                 tgtDist = Vec_Distance(from, new ActorB(tgt).Position.P);
@@ -2921,7 +2921,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < new BrainB(s).count); ++i)
             {
-                if (((new ActorB(new BrainB(s).actors[(int)(i)]).flags & (uint)(3145728)) != 0u))
+                if (((new ActorB(new BrainB(s).actors[(int)(i)]).Flags & (uint)(3145728)) != 0u))
                 {
                     float v = (float)(new BrainB(s).value[(int)(i)]);
                     if ((((v < min) || (min == Mem.F32(0x800C7004u))) && (new BrainB(s).valid[(int)(i)] != 0)))
@@ -3173,7 +3173,7 @@ public static partial class Game
             for (i = 0, g = Gv.PlayerPool, gf = new GameB(g).gf.P; (i < 8); ++i)
             {
                 a = Player_GetByIndex(g, (uint)(i));
-                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).stats.unk92) != (int)(new BrainB(b).actor.stats.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
+                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).PlayerEntryPtr.unk92) != (int)(new BrainB(b).actor.PlayerEntryPtr.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
                 {
                     new BrainB(b).actors.Set((int)(n), a);
                     new BrainB(b).value.Set((int)(n), (int)(Vec_Distance(new BrainB(b).actor.Position.P, new ActorB(a).Position.P)));
@@ -3294,7 +3294,7 @@ public static partial class Game
             float new_var = 0f;
             t = new ActorB(new BrainB(b).actors[(int)(idx)]).owner_;
             hit = 0;
-            if (((new ActorB(t).unk122C & (uint)(32)) != 0u))
+            if (((new ActorB(t).PowerupFlags & (uint)(32)) != 0u))
             {
                 return 0;
             }
@@ -3351,23 +3351,23 @@ public static partial class Game
             }
             if ((Mem.S32(Gv.Match_FragTagMode) != 0))
             {
-                if (((((int)(new BrainB(b).actor.stats.unk94) ^ 0) != 0) && ((int)(new BrainB(b).actor.stats.unk80) == 12)))
+                if (((((int)(new BrainB(b).actor.PlayerEntryPtr.unk94) ^ 0) != 0) && ((int)(new BrainB(b).actor.PlayerEntryPtr.unk80) == 12)))
                 {
                     hit = 1;
                 }
             }
             if ((hit != 0))
             {
-                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).stats.unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).PlayerEntryPtr.unk8F) != 0)))
                 {
                     new BrainB(b).value.Set((int)(idx), (int)(((float)(new BrainB(b).value[(int)(idx)]) * Mem.F32(0x800C705Cu))));
                 }
-                if ((new ActorB(t).unk1450 == 0))
+                if ((new ActorB(t).IsComputer == 0))
                 {
                     new_var = (float)(new BrainB(b).value[(int)(idx)]);
                     new BrainB(b).value.Set((int)(idx), (int)((new_var * Mem.F32(0x800C7060u))));
                 }
-                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).unk4, new ActorB(t).brain.unk4) != 0))
+                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).unk4, new ActorB(t).BrainPtr.unk4) != 0))
                 {
                     return 1;
                 }
@@ -4440,7 +4440,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212FBC", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             new BrainB(b).unk224_Set((-1));
         }
@@ -4455,7 +4455,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00212FD4", (uint)actor, _a1);
-                uint b = new ActorB(actor).owner.brain_;
+                uint b = new ActorB(actor).OwnerPtr.brain_;
                 uint L = Gv.AiNavGraph;
                 float d = 0f;
                 int i = 0;
@@ -4637,7 +4637,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002131AC", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk68__Set(0u);
             new BrainB(b).unk238_Set(0);
             new BrainB(b).unk220_Set(0);
@@ -4651,7 +4651,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002131D8", (uint)actor);
-            uint b = new Actor(new Actor(actor).owner_).brain_;
+            uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk220_Set(0);
             Ai_ResetRouteBias(b);
             new BrainB(b).unk320_Set((-1));
@@ -4699,11 +4699,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021321C", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             uint a = 0u;
             int busy = 0;
             int t = 0;
-            if (((int)(new BrainB(b).actor.stats.unk8F) == 0))
+            if (((int)(new BrainB(b).actor.PlayerEntryPtr.unk8F) == 0))
             {
                 Ai_SetState(b, 2);
                 return;
@@ -4713,12 +4713,12 @@ public static partial class Game
             if ((new BrainB(b).unk320 == 0))
             {
                 a = new BrainB(b).actor_;
-                t = (int)(new ActorB(a).unk650);
+                t = (int)(new ActorB(a).StateId);
                 t = (int)((int)(t) ^ 15);
-                busy = (((new ActorB(a).flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+                busy = (((new ActorB(a).GroundFlags & (uint)(12288)) != (uint)(0)) ? 1 : 0);
                 if (((t != 0) && !(busy != 0)))
                 {
-                    new ActorB(a).unk6B0_Set((uint)((uint)(new ActorB(a).unk6B0) | (uint)(16)));
+                    new ActorB(a).ButtonsPressed_Set((uint)((uint)(new ActorB(a).ButtonsPressed) | (uint)(16)));
                 }
             }
             if ((new BrainB(b).unk320 < 0))
@@ -4727,7 +4727,7 @@ public static partial class Game
             }
             if ((Ai_DistanceToNode(b, new BrainB(b).unkC) < Mem.F32(0x800C71E0u)))
             {
-                new BrainB(b).actor.unk6B0_Set((uint)((uint)(new BrainB(b).actor.unk6B0) | (uint)(16)));
+                new BrainB(b).actor.ButtonsPressed_Set((uint)((uint)(new BrainB(b).actor.ButtonsPressed) | (uint)(16)));
             }
             Ai_FollowPath(b);
             Ai_SteerToPoint(b);
@@ -4943,7 +4943,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00213500", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             uint st = 0u;
             uint a = 0u;
             uint L = 0u;
@@ -4998,12 +4998,12 @@ public static partial class Game
             {
                 busy2 = ((new BrainB(b).unk314 != 0) ? 1 : 0);
                 a = new BrainB(b).actor_;
-                t = (int)(new ActorB(a).unk650);
+                t = (int)(new ActorB(a).StateId);
                 t = (int)((int)(t) ^ 15);
-                busy = (((new ActorB(a).flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+                busy = (((new ActorB(a).GroundFlags & (uint)(12288)) != (uint)(0)) ? 1 : 0);
                 if ((((t != 0) && !(busy != 0)) && !(busy2 != 0)))
                 {
-                    new ActorB(a).unk6B0_Set((uint)((uint)(new ActorB(a).unk6B0) | (uint)(16)));
+                    new ActorB(a).ButtonsPressed_Set((uint)((uint)(new ActorB(a).ButtonsPressed) | (uint)(16)));
                 }
             }
             if ((new BrainB(b).unk320 < 0))
@@ -5022,7 +5022,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002136EC", (uint)actor);
-            uint b = new ActorB(actor).owner.brain_;
+            uint b = new ActorB(actor).OwnerPtr.brain_;
             uint st = 0u;
             uint L = 0u;
             int i = 0;
@@ -5144,13 +5144,13 @@ public static partial class Game
                 var_s1 = 5;
                 goto _f7;
                 _f6: ;
-                if (!(((int)(new Actor_func_80214624_de(arg2).unkE4) == 1615))) goto _f8;
+                if (!(((int)(new Actor_func_80214624_de(arg2).TypeId) == 1615))) goto _f8;
                 var_s1 = 7;
                 goto _f9;
                 _f8: ;
                 var_s1 = 0;
                 if (!(!(Mem.S32(Gv.Game_Flag_8013B290) != 0))) goto _f10;
-                if (!((((!((new Actor_func_80214624_de(arg2).unk100 & 3145728) != 0) || (new Actor_func_80214624_de(arg2).unk1D8.unk794_ != arg0)) || (C.Seq((object?)((var_s1 = 1)), ((new Actor_func_80214624_de(arg2).unk1D8.unk788 != 2) ? 1 : 0)) != 0)) && (!((new Actor_func_80214624_de(arg0).unk2E0 & 2) != 0) || (C.Seq((object?)((var_s1 = 1)), (((int)(new Actor_func_80214624_de(arg0).unkE4) == 202) ? 1 : 0)) != 0))))) goto _f11;
+                if (!((((!((new Actor_func_80214624_de(arg2).Flags & 3145728) != 0) || (new Actor_func_80214624_de(arg2).OwnerPtr.unk794_ != arg0)) || (C.Seq((object?)((var_s1 = 1)), ((new Actor_func_80214624_de(arg2).OwnerPtr.unk788 != 2) ? 1 : 0)) != 0)) && (!((new Actor_func_80214624_de(arg0).EventBits & 2) != 0) || (C.Seq((object?)((var_s1 = 1)), (((int)(new Actor_func_80214624_de(arg0).TypeId) == 202) ? 1 : 0)) != 0))))) goto _f11;
                 var_s1 = 0;
                 _f11: ;
                 _f10: ;
@@ -5161,8 +5161,8 @@ public static partial class Game
                 _f1: ;
                 switch (var_s1) { case 6: goto _f13; case 4: goto _f14; case 3: goto _f15; case 7: goto _f16; case 1: goto _f17; default: goto _f18; }
                 _f13: ;
-                Mem.Copy(_fp, new Actor_func_80214624_de(arg0).pos.P, 12);
-                Mem.Set((_fp + 28u), new Actor_func_80214624_de(arg0).unk14);
+                Mem.Copy(_fp, new Actor_func_80214624_de(arg0).Position.P, 12);
+                Mem.Set((_fp + 28u), new Actor_func_80214624_de(arg0).RegionPtr);
                 goto _f12;
                 _f14: ;
                 temp_v0 = LevelPath_GetCursorPoint((arg1 + 148u), default(uint), default(uint), default(uint));
@@ -5177,29 +5177,29 @@ public static partial class Game
                 func_00214624_approach(arg0, arg2, new Plan(arg1).unk80_, _fp, (_fp + 28u));
                 goto _f12;
                 _f17: ;
-                temp_v0_2 = Collision_StubAimTraceObj_00240688(arg0, new Plan(arg1).unk84, new Actor_func_80214624_de(arg2).pos.P, new Actor_func_80214624_de(arg2).unk14, new Plan(arg1).unk30.unkC, _fp);
+                temp_v0_2 = Collision_StubAimTraceObj_00240688(arg0, new Plan(arg1).unk84, new Actor_func_80214624_de(arg2).Position.P, new Actor_func_80214624_de(arg2).RegionPtr, new Plan(arg1).unk30.unkC, _fp);
                 Mem.Set((_fp + 28u), temp_v0_2);
                 if (!((temp_v0_2 == 0))) goto _f19;
                 _f18: ;
-                Mem.Copy(_fp, new Actor_func_80214624_de(arg2).pos.P, 12);
-                Mem.Set((_fp + 28u), new Actor_func_80214624_de(arg2).unk14);
+                Mem.Copy(_fp, new Actor_func_80214624_de(arg2).Position.P, 12);
+                Mem.Set((_fp + 28u), new Actor_func_80214624_de(arg2).RegionPtr);
                 _f19: ;
                 goto _f12;
                 _f12: ;
                 if (!((Collision_StubAimTrace_00240650((int)(arg0), _fp, Mem.S32((_fp + 28u)), new Plan(arg1).unk30.unkC, (_fp + 16u)) != 0))) goto _f20;
-                if (!((Collision_IsPointInFaceXZ((uint)(new Actor_func_80214624_de(arg0).unk14), new Vec3((_fp + 16u)).x, new Vec3((_fp + 16u)).z) != 0))) goto _f21;
+                if (!((Collision_IsPointInFaceXZ((uint)(new Actor_func_80214624_de(arg0).RegionPtr), new Vec3((_fp + 16u)).x, new Vec3((_fp + 16u)).z) != 0))) goto _f21;
                 new Plan(arg1).unk90_Set(new Vec3((_fp + 16u)).y);
                 goto _f22;
                 _f21: ;
                 new Plan(arg1).unk90_Set((new Vec3((_fp + 16u)).y + Mem.F32((0x800C7250u + (uint)(0 * 4)))));
                 _f22: ;
-                Vec_Sub((_fp + 16u), (_fp + 16u), new Actor_func_80214624_de(arg0).pos.P);
+                Vec_Sub((_fp + 16u), (_fp + 16u), new Actor_func_80214624_de(arg0).Position.P);
                 new Plan(arg1).unk8C_Set((Vec_GetYaw((_fp + 16u)) + Mem.F32((0x800C7250u + (uint)(1 * 4)))));
                 return 1;
                 _f20: ;
                 if (!((var_s1 == 1))) goto _f23;
                 new Plan(arg1).unk90_Set(new Vec3(_fp).y);
-                new Plan(arg1).unk8C_Set((new Actor_func_80214624_de(arg0).unk6C + Actor_AngleToPoint(arg0, _fp)));
+                new Plan(arg1).unk8C_Set((new Actor_func_80214624_de(arg0).Yaw + Actor_AngleToPoint(arg0, _fp)));
                 return 1;
                 _f23: ;
                 return 0;
@@ -5220,7 +5220,7 @@ public static partial class Game
                 float temp_f20 = 0f;
                 if ((temp_a2 != 0u))
                 {
-                    Vec_Sub(_fp, new Actor_func_80214624_de(arg2).pos.P, new Actor_func_80214624_de(temp_a2).pos.P);
+                    Vec_Sub(_fp, new Actor_func_80214624_de(arg2).Position.P, new Actor_func_80214624_de(temp_a2).Position.P);
                     new Vec3(_fp).y_Set((float)(0));
                     Vec_Normalize(_fp);
                 }
@@ -5232,7 +5232,7 @@ public static partial class Game
                 }
                 temp_f20 = Actor_GetRadius(arg2);
                 Vec_Scale(_fp, _fp, ((temp_f20 + Actor_GetRadius(arg0)) + Mem.F32(0x800C724Cu)));
-                Vec_Add((_fp + 16u), new Actor_func_80214624_de(arg2).pos.P, _fp);
+                Vec_Add((_fp + 16u), new Actor_func_80214624_de(arg2).Position.P, _fp);
                 Collision_LocatePoint_0024E78C(arg2, (_fp + 16u), posp, roomp);
             }
         }
@@ -5498,7 +5498,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00214DD4_func_80214DD4_place_beside", (uint)arg0, (uint)target, (uint)anchor, (uint)outPos);
                 if ((anchor != 0u))
                 {
-                    Vec_Sub(_fp, new Actor_func_80214DD4_de(target).pos.P, new Actor_func_80214DD4_de(anchor).pos.P);
+                    Vec_Sub(_fp, new Actor_func_80214DD4_de(target).Position.P, new Actor_func_80214DD4_de(anchor).Position.P);
                     new Vec3(_fp).y_Set(0.0f);
                     Vec_Normalize(_fp);
                 }
@@ -5509,7 +5509,7 @@ public static partial class Game
                     new Vec3(_fp).z_Set(0.0f);
                 }
                 Vec_Scale(_fp, _fp, ((Actor_GetRadius(target) + Actor_GetRadius(arg0)) + Mem.F32(0x800C725Cu)));
-                Vec_Add((_fp + 16u), new Actor_func_80214DD4_de(target).pos.P, _fp);
+                Vec_Add((_fp + 16u), new Actor_func_80214DD4_de(target).Position.P, _fp);
                 Collision_LocatePoint_0024E78C(target, (_fp + 16u), outPos, outRoom);
             }
         }
@@ -5919,7 +5919,7 @@ public static partial class Game
                 {
                     return 1;
                 }
-                if ((((new Field_s32_2E0(self).value & 2) != 0) && ((int)(new Owner_func_8020388C_de(self).id) != 202)))
+                if ((((new Field_s32_2E0(self).EventBits & 2) != 0) && ((int)(new Owner_func_8020388C_de(self).id) != 202)))
                 {
                     return 1;
                 }
@@ -6778,27 +6778,27 @@ public static partial class Game
             {
                 return 2;
             }
-            if ((new ActorDef(new B04Act(t).def_).type == 5))
+            if ((new ActorDef(new B04Act(t).DefPtr).type == 5))
             {
                 return 5;
             }
-            if (((int)(new B04Act(t).unkE4) == 1615))
+            if (((int)(new B04Act(t).TypeId) == 1615))
             {
                 return 7;
             }
             if ((Mem.S32(Gv.Game_Flag_8013B290) == 0))
             {
-                if (((new B04Act(t).flags & (uint)(3145728)) != 0u))
+                if (((new B04Act(t).Flags & (uint)(3145728)) != 0u))
                 {
                     uint o = new B04Act(t).owner_;
-                    if (((new B04Act(o).unk794_ == self) && (new B04Act(o).unk788 == 2)))
+                    if (((new B04Act(o).unk794_ == self) && (new B04Act(o).LockOnState == 2)))
                     {
                         return 1;
                     }
                 }
-                if (((new B04Act(self).unk2E0 & (uint)(2)) != 0u))
+                if (((new B04Act(self).EventBits & (uint)(2)) != 0u))
                 {
-                    if (((int)(new B04Act(self).unkE4) != 202))
+                    if (((int)(new B04Act(self).TypeId) != 202))
                     {
                         return 1;
                     }

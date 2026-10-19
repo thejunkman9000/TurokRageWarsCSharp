@@ -20,7 +20,7 @@ public static partial class Game
             uint v = 0u;
             byte lim = 0;
             float f = 0f;
-            info = new M1Actor(actor).def.info.P;
+            info = new M1Actor(actor).DefPtr.info.P;
             best = 0;
             if (((new M1Info(info).flags & (uint)(1)) != 0u))
             {
@@ -55,10 +55,10 @@ public static partial class Game
                 }
                 new M1State(state).unk124.i_Set((int)(new M1Info(info).unk48.b[(int)(best)]));
                 new M1State(state).unk128.i_Set((int)(new M1Info(info).unk4C.b[(int)(best)]));
-                new M1Actor(actor).unk1_Set(new M1Info(info).unk48.b[(int)(best)]);
+                new M1Actor(actor).ModelIndex_Set(new M1Info(info).unk48.b[(int)(best)]);
                 if ((new M1State(state).unk4 == 0))
                 {
-                    Actor_DispatchEvent(actor, state, (((new M1Actor(actor).def.info.flags & (uint)(64)) != 0u) ? 2 : 1));
+                    Actor_DispatchEvent(actor, state, (((new M1Actor(actor).DefPtr.info.flags & (uint)(64)) != 0u) ? 2 : 1));
                 }
             }
         }
@@ -161,15 +161,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00205324", (uint)actor, (uint)state);
             uint info = 0u;
             int mode = 0;
-            info = new M1Actor(actor).def.info.P;
+            info = new M1Actor(actor).DefPtr.info.P;
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             Level_FireEntityTriggers(actor, 262144, (int)(actor));
             if (!((new M1State(state).unk4 == 0))) goto _f0;
-            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~65536))));
+            new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~65536))));
             _f0: ;
             if (!((new M1Info(info).unk18 == 0))) goto _f1;
-            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~8192))));
-            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
+            new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~8192))));
+            new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~256))));
             _f1: ;
             mode = Mem.S32((Gv.LevelMgr + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
@@ -187,8 +187,8 @@ public static partial class Game
             goto _f6;
             _f2: ;
             L_L: ;
-            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
-            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) | (uint)(134217728)));
+            new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~256))));
+            new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) | (uint)(134217728)));
             _f6: ;
         }
     }
@@ -199,11 +199,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00205494", (uint)actor, (uint)state);
-            uint def = new Actor(actor).def_;
+            uint def = new Actor(actor).DefPtr;
             if ((((int)(new ActorState(state).unkCB) != 0) && ((new B01Def(def).flags14 & (uint)(4)) != 0u)))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             }
         }
     }
@@ -253,11 +253,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002055EC", (uint)actor, (uint)state);
-            uint def = new Actor(actor).def_;
+            uint def = new Actor(actor).DefPtr;
             if ((((int)(new ActorState(state).unkCB) != 0) && ((new B01Def(def).flags14 & (uint)(32)) != 0u)))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             }
         }
     }

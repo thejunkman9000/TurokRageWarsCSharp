@@ -121,9 +121,9 @@ public static partial class Game
                 float d = 0f;
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((new Plr(a).unk5D0 != 0) && (new Plr(a).unk11FC != 0.0f)))
+                    if (((new Plr(a).CameraMode != 0) && (new Plr(a).MarkerTime != 0.0f)))
                     {
-                        Vec_Sub(_fp, v, new Plr(a).unk1200.P);
+                        Vec_Sub(_fp, v, new Plr(a).MarkerPos.P);
                         d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                         if (((best == 0u) || (d < min)))
                         {
@@ -164,7 +164,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B450", (uint)p);
-            return ((new Player_v3(p).f11FC > 0.0f) ? 1 : 0);
+            return ((new Player_v3(p).MarkerTime > 0.0f) ? 1 : 0);
         }
     }
 
@@ -197,7 +197,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022BC04", (uint)a);
             int k = 0;
-            if ((new Plr(a).unk1450 == 0))
+            if ((new Plr(a).IsComputer == 0))
             {
                 goto L_l1;
             }
@@ -214,7 +214,7 @@ public static partial class Game
                 k = 23;
             }
             L_l2: ;
-            Level_SetActorType(Gv.LevelMgr, (a + (uint)744), ((int)(new PlrDef(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
+            Level_SetActorType(Gv.LevelMgr, (a + (uint)744), ((int)(new PlrDef(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(a).WeaponIndex * 4)))).unk4) + k), new Plr(a).WeaponAnimInfoPtr_484.unk10);
         }
     }
 
@@ -284,13 +284,13 @@ public static partial class Game
             _f10: ;
             _f11: ;
             _f12: ;
-            return (((int)(new Player_v3(p).s5F4[(int)(new WeaponInfo2(w).req.idx)]) >= (int)(new WeaponInfo2(w).req.min)) ? 1 : 0);
+            return (((int)(new Player_v3(p).Ammo[(int)(new WeaponInfo2(w).req.idx)]) >= (int)(new WeaponInfo2(w).req.min)) ? 1 : 0);
             _f13: ;
-            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 3) ? 1 : 0);
+            return (((int)(new Player_v3(p).Ammo[(int)(0)]) >= 3) ? 1 : 0);
             _f14: ;
-            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 5) ? 1 : 0);
+            return (((int)(new Player_v3(p).Ammo[(int)(0)]) >= 5) ? 1 : 0);
             _f15: ;
-            if (!(((int)(new Player_v3(p).s5F4[(int)(2)]) != 0))) goto _f24;
+            if (!(((int)(new Player_v3(p).Ammo[(int)(2)]) != 0))) goto _f24;
             _f16: ;
             _f17: ;
             _f18: ;
@@ -314,7 +314,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022F760", (uint)actor);
-            uint owner = new Actor(actor).owner_;
+            uint owner = new Actor(actor).OwnerPtr;
             uint dl = 0u;
             if ((new OW(owner).f1214 != 0))
             {
@@ -412,7 +412,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022F95C", (uint)p);
             int prio = 0;
             int w = 0;
-            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).WeaponIndex) << (int)1)) + (uint)1539)));
             if ((prio < 0))
             {
                 prio = 0;
@@ -431,7 +431,7 @@ public static partial class Game
                         break;
                     }
                 }
-                if ((((w < 22) && (Player_CanUseWeapon(p, w) != 0)) && ((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11))))
+                if ((((w < 22) && (Player_CanUseWeapon(p, w) != 0)) && ((w != 6) || ((int)(new Plr(p).Ammo[(int)(0)]) >= 11))))
                 {
                     if (((Mem.S32((p + (uint)5200)) == 0) || (w < 18)))
                     {
@@ -440,7 +440,7 @@ public static partial class Game
                 }
                 ++prio;
             }
-            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).WeaponIndex) << (int)1)) + (uint)1539)));
             if ((prio < 0))
             {
                 prio = 0;
@@ -461,7 +461,7 @@ public static partial class Game
                 }
                 if (((w < 22) && (Player_CanUseWeapon(p, w) != 0)))
                 {
-                    if (((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11)))
+                    if (((w != 6) || ((int)(new Plr(p).Ammo[(int)(0)]) >= 11)))
                     {
                         return w;
                     }
@@ -574,7 +574,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((new Actor(actor).unk1450 != 0))
+            if ((new Actor(actor).IsComputer != 0))
             {
                 return 1;
             }
@@ -583,7 +583,7 @@ public static partial class Game
             {
                 return 1;
             }
-            r = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
+            r = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new Actor(actor).PlayerIndex * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
             if ((r == 0))
             {
                 Audio_PlaySound2D(3405);

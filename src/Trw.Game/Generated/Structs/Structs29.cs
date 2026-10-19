@@ -4922,13 +4922,13 @@ public readonly struct S6Actor
     [MethodImpl(Inl)] public static implicit operator uint(S6Actor v) => v.P;
     [MethodImpl(Inl)] public static explicit operator S6Actor(uint p) => new(p);
     // +0x0
-    public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x8 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public S6V3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public S6V3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public S8x4 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public S8x4 RegionPtr { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
-    public S32Ptr def
+    public S32Ptr DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -4940,9 +4940,9 @@ public readonly struct S6Actor
     }
     [MethodImpl(Inl)] public uint def__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public S8x444 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x444 Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x1D8
-    public S6Actor nearest
+    public S6Actor OwnerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x1D8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1D8u, value.P);

@@ -142,25 +142,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020486C_r01_check", (uint)actor, (uint)state);
-            if (((int)(new M1Actor(actor).unkE6) == 1))
+            if (((int)(new M1Actor(actor).AnimCount) == 1))
             {
                 return 1;
             }
-            if ((((int)(new M1Actor(actor).h108) != (int)((sbyte)(new M1State(state).unkCA))) || ((int)(new M1Actor(actor).h10A) != (int)((sbyte)(new M1State(state).unkCA)))))
+            if ((((int)(new M1Actor(actor).AnimClipId) != (int)((sbyte)(new M1State(state).unkCA))) || ((int)(new M1Actor(actor).AnimRequestedClipId) != (int)((sbyte)(new M1State(state).unkCA)))))
             {
                 return 0;
             }
-            if ((((int)(new M1State(state).unkCB) != 0) && !((new M1Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new M1State(state).unkCB) != 0) && !((new M1Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
                 return 1;
             }
-            if ((((int)(new M1Actor(actor).h10C) < 3) && ((new M1Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new M1Actor(actor).AnimClipLength) < 3) && ((new M1Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
-                return ((((float)(new M1Actor(actor).h12C) * scale) <= new M1Actor(actor).f134) ? 1 : 0);
+                return ((((float)(new M1Actor(actor).BlendFrames) * scale) <= new M1Actor(actor).BlendTime) ? 1 : 0);
             }
             else
             {
-                return ((((float)(new M1Actor(actor).h10C) * scale) <= new M1Actor(actor).f104) ? 1 : 0);
+                return ((((float)(new M1Actor(actor).AnimClipLength) * scale) <= new M1Actor(actor).AnimTime) ? 1 : 0);
             }
             return 0;
         }
@@ -174,7 +174,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020486C", (uint)actor, (uint)state);
-                uint info = new M1Actor(actor).def.info.P;
+                uint info = new M1Actor(actor).DefPtr.info.P;
                 float t = 0f;
                 if (((int)(new M1Info(info).b8) != (-1)))
                 {

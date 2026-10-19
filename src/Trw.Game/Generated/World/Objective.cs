@@ -15,14 +15,14 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020402C", (uint)actor, (uint)state);
-                uint info = new M1Actor(actor).def.info.P;
+                uint info = new M1Actor(actor).DefPtr.info.P;
                 uint pl = 0u;
                 uint blk = 0u;
                 uint blk2 = 0u;
                 uint st = 0u;
                 int d = 0;
                 int id = 0;
-                switch ((int)(new M1Actor(actor).unkE4))
+                switch ((int)(new M1Actor(actor).TypeId))
                 {
                 case 1614:
                     pl = Match_FindMonkeyPlayer(Gv.PlayerPool);
@@ -35,7 +35,7 @@ public static partial class Game
                             if (((int)(new M1Stats(st).b8F) == 1))
                             {
                                 new M1Stats(st).b8F_Set((byte)(0));
-                                new M1Actor(pl).stats.b90_Set((byte)(1));
+                                new M1Actor(pl).PlayerEntryPtr.b90_Set((byte)(1));
                                 new M1Blk(blk).unk74_Set(1);
                                 new M1State(state).unk12C.i_Set(1);
                                 Audio_PlaySound2D(3597);
@@ -56,7 +56,7 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((int)(new M1Actor(pl).stats.b8F) == 0))
+                    if (((int)(new M1Actor(pl).PlayerEntryPtr.b8F) == 0))
                     {
                         return;
                     }
@@ -69,14 +69,14 @@ public static partial class Game
                         return;
                     }
                     {
-                        new M1Actor(pl).stats.b8F_Set((byte)(0));
-                        new M1Actor(pl).stats.b90_Set((byte)(1));
-                        new M1Actor(pl).stats.h8_Set((ushort)(new M1Actor(pl).stats.h8 + 1));
+                        new M1Actor(pl).PlayerEntryPtr.b8F_Set((byte)(0));
+                        new M1Actor(pl).PlayerEntryPtr.b90_Set((byte)(1));
+                        new M1Actor(pl).PlayerEntryPtr.h8_Set((ushort)(new M1Actor(pl).PlayerEntryPtr.h8 + 1));
                         Match_AdjustTeamScore(pl, pl, (uint)(3), default(uint));
                         blk2 = new M1World(Gv.PlayerPool).blk.P;
                         new M1Blk(blk2).unk84_Set(0);
                         new M1Blk(blk2).unk80_Set(0);
-                        switch ((int)(new M1Actor(pl).stats.b92))
+                        switch ((int)(new M1Actor(pl).PlayerEntryPtr.b92))
                         {
                         case 0:
                             id = 742;
@@ -100,9 +100,9 @@ public static partial class Game
                         L_after: ;
                         for (pl = Mem.U32(Gv.PlayerListHead); (pl != 0u); pl = new M1Actor(pl).next_)
                         {
-                            if ((new M1Actor(pl).pawn != 0u))
+                            if ((new M1Actor(pl).ViewPtr != 0u))
                             {
-                                Hud_PostMessage(Gv.ViewMgr, new M1Actor(pl).pawn, (uint)(Mem.S32(0x800D70DCu)));
+                                Hud_PostMessage(Gv.ViewMgr, new M1Actor(pl).ViewPtr, (uint)(Mem.S32(0x800D70DCu)));
                             }
                         }
                     }
@@ -112,14 +112,14 @@ public static partial class Game
                 {
                     if (((new M1Info(info).flags & (uint)(2)) != 0u))
                     {
-                        new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~8192))));
-                        new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
+                        new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~8192))));
+                        new M1Actor(actor).Flags_Set((uint)((uint)(new M1Actor(actor).Flags) & (uint)((~256))));
                     }
                     if ((new M1State(state).unk128.i != 0))
                     {
                         Actor_DispatchEvent(actor, state, 0);
                     }
-                    if (((int)(new M1Actor(actor).unkE4) == 1612))
+                    if (((int)(new M1Actor(actor).TypeId) == 1612))
                     {
                         Actor_DispatchEvent(actor, state, 2);
                     }
@@ -229,13 +229,13 @@ public static partial class Game
             new ActorState(state).unk124_Set(0);
             Mem.Set(new ActorState(state).unk128.P, 0);
             Mem.Set(new ActorState(state).unk12C.P, 0);
-            if (((new ActorDef(new Actor(actor).def_).info.flags & (uint)(1)) != 0u))
+            if (((new ActorDef(new Actor(actor).DefPtr).info.flags & (uint)(1)) != 0u))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(65536)));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(65536)));
             }
             else
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~65536))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~65536))));
             }
         }
     }
@@ -276,14 +276,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020459C", (uint)actor);
-            int v = (int)(new ActorDef(new Actor(actor).def_).info.unkC);
+            int v = (int)(new ActorDef(new Actor(actor).DefPtr).info.unkC);
             if ((v != 0))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8192)));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8192)));
             }
             else
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
             }
             return v;
         }
@@ -307,15 +307,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204620", (uint)actor);
-            int v = (int)(new B01Def(new Actor(actor).def_).unk28);
+            int v = (int)(new B01Def(new Actor(actor).DefPtr).unk28);
             if ((v != 0))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8192)));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8192)));
             }
             else
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             }
             return v;
         }
@@ -368,8 +368,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00204738", (uint)actor);
             if ((Mem.F32((actor + (uint)432)) > 30.0f))
             {
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
-                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~8192))));
+                new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) & (uint)((~256))));
             }
         }
     }

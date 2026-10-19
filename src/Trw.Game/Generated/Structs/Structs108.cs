@@ -2513,106 +2513,106 @@ public readonly struct SharedPlayer_func_8044972C_de
     [MethodImpl(Inl)] public static implicit operator uint(SharedPlayer_func_8044972C_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SharedPlayer_func_8044972C_de(uint p) => new(p);
     // +0x0
-    public SharedPlayer_func_8044972C_de_views0 views0 { [MethodImpl(Inl)] get => new(P); }
+    public SharedPlayer_func_8044972C_de_views0 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x18
-    public SharedPlayer_func_8044972C_de_views18 views18 { [MethodImpl(Inl)] get => new(P + 0x18u); }
+    public SharedPlayer_func_8044972C_de_views18 DefPtr { [MethodImpl(Inl)] get => new(P + 0x18u); }
     // +0x1C
-    public SharedPlayer_func_8044972C_de_views1C views1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public SharedPlayer_func_8044972C_de_views1C Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x5D8
-    public SharedPlayer_func_8044972C_de_views5D8 views5D8 { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
+    public SharedPlayer_func_8044972C_de_views5D8 PlayerEntryPtr { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
     // +0x5DC
-    public SharedPlayer_func_8044972C_de_views5DC views5DC { [MethodImpl(Inl)] get => new(P + 0x5DCu); }
+    public SharedPlayer_func_8044972C_de_views5DC ViewPtr { [MethodImpl(Inl)] get => new(P + 0x5DCu); }
     // +0x5E4
     public SharedPlayer_func_8044972C_de_views5E4 Health { [MethodImpl(Inl)] get => new(P + 0x5E4u); }
     // +0x5E8
-    public SharedPlayer_func_8044972C_de_views5E8 views5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
+    public SharedPlayer_func_8044972C_de_views5E8 LifeForce { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x122C
-    public SharedPlayer_func_8044972C_de_views122C views122C { [MethodImpl(Inl)] get => new(P + 0x122Cu); }
+    public SharedPlayer_func_8044972C_de_views122C PowerupFlags { [MethodImpl(Inl)] get => new(P + 0x122Cu); }
     // +0x1230
-    public float fxTime
+    public float PowerupTime
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1230u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1230u, value);
     }
-    [MethodImpl(Inl)] public float fxTime_Set(float v) => Mem.Set(P + 0x1230u, v);
+    [MethodImpl(Inl)] public float PowerupTime_Set(float v) => Mem.Set(P + 0x1230u, v);
     // +0x1234
-    public float fxSpeed
+    public float PowerupPulseSpeed_1234
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1234u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1234u, value);
     }
-    [MethodImpl(Inl)] public float fxSpeed_Set(float v) => Mem.Set(P + 0x1234u, v);
+    [MethodImpl(Inl)] public float PowerupPulseSpeed_1234_Set(float v) => Mem.Set(P + 0x1234u, v);
     // +0x1238
-    public int fxStage
+    public int PowerupPhase
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1238u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1238u, value);
     }
-    [MethodImpl(Inl)] public int fxStage_Set(int v) => Mem.Set(P + 0x1238u, v);
+    [MethodImpl(Inl)] public int PowerupPhase_Set(int v) => Mem.Set(P + 0x1238u, v);
     // +0x123C
-    public S8x4 pad123C { [MethodImpl(Inl)] get => new(P + 0x123Cu); }
+    public S8x4 PowerupTintR { [MethodImpl(Inl)] get => new(P + 0x123Cu); }
     // +0x1240
-    public float unk1240
+    public float PowerupTintAlpha
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1240u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1240u, value);
     }
-    [MethodImpl(Inl)] public float unk1240_Set(float v) => Mem.Set(P + 0x1240u, v);
+    [MethodImpl(Inl)] public float PowerupTintAlpha_Set(float v) => Mem.Set(P + 0x1240u, v);
     // +0x1244
-    public float unk1244
+    public float PowerupTintFadeRate
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1244u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1244u, value);
     }
-    [MethodImpl(Inl)] public float unk1244_Set(float v) => Mem.Set(P + 0x1244u, v);
+    [MethodImpl(Inl)] public float PowerupTintFadeRate_Set(float v) => Mem.Set(P + 0x1244u, v);
     // +0x1248
-    public S8x124 pad1248 { [MethodImpl(Inl)] get => new(P + 0x1248u); }
+    public S8x124 DamageOverTimeSlots { [MethodImpl(Inl)] get => new(P + 0x1248u); }
     // +0x12C4
-    public SharedPlayer_func_8044972C_de_views12C4 views12C4 { [MethodImpl(Inl)] get => new(P + 0x12C4u); }
+    public SharedPlayer_func_8044972C_de_views12C4 TagKillVictimPtr { [MethodImpl(Inl)] get => new(P + 0x12C4u); }
     // +0x12C8
-    public SharedPlayer_func_8044972C_de_views12C8 views12C8 { [MethodImpl(Inl)] get => new(P + 0x12C8u); }
+    public SharedPlayer_func_8044972C_de_views12C8 ModeKillVictimPtr_12C8 { [MethodImpl(Inl)] get => new(P + 0x12C8u); }
     // +0x12CC
-    public SharedPlayer_func_8044972C_de_views12CC views12CC { [MethodImpl(Inl)] get => new(P + 0x12CCu); }
+    public SharedPlayer_func_8044972C_de_views12CC KillFeedVictims { [MethodImpl(Inl)] get => new(P + 0x12CCu); }
     // +0x12EC
-    public int unk12EC
+    public int KilledByPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x12ECu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12ECu, value);
     }
-    [MethodImpl(Inl)] public int unk12EC_Set(int v) => Mem.Set(P + 0x12ECu, v);
+    [MethodImpl(Inl)] public int KilledByPtr_Set(int v) => Mem.Set(P + 0x12ECu, v);
     // +0x12F0
-    public S8x4 pad12F0 { [MethodImpl(Inl)] get => new(P + 0x12F0u); }
+    public S8x4 KillMessageIndex_12F0 { [MethodImpl(Inl)] get => new(P + 0x12F0u); }
     // +0x12F4
-    public SharedPlayer_func_8044972C_de_views12F4 views12F4 { [MethodImpl(Inl)] get => new(P + 0x12F4u); }
+    public SharedPlayer_func_8044972C_de_views12F4 KillFeedAlphas { [MethodImpl(Inl)] get => new(P + 0x12F4u); }
     // +0x1314
     public S8x32 pad1314 { [MethodImpl(Inl)] get => new(P + 0x1314u); }
     // +0x1334
-    public SharedPlayer_func_8044972C_de_views1334 views1334 { [MethodImpl(Inl)] get => new(P + 0x1334u); }
+    public SharedPlayer_func_8044972C_de_views1334 KillFeedTail { [MethodImpl(Inl)] get => new(P + 0x1334u); }
     // +0x1338
-    public SharedPlayer_func_8044972C_de_views1338 views1338 { [MethodImpl(Inl)] get => new(P + 0x1338u); }
+    public SharedPlayer_func_8044972C_de_views1338 KillFeedHead { [MethodImpl(Inl)] get => new(P + 0x1338u); }
     // +0x133C
-    public SharedPlayer_func_8044972C_de_views133C views133C { [MethodImpl(Inl)] get => new(P + 0x133Cu); }
+    public SharedPlayer_func_8044972C_de_views133C RespawnsLeft { [MethodImpl(Inl)] get => new(P + 0x133Cu); }
     // +0x1340
     public SharedPlayer_func_8044972C_de_views1340 views1340 { [MethodImpl(Inl)] get => new(P + 0x1340u); }
     // +0x1344
-    public S8x112 pad1344 { [MethodImpl(Inl)] get => new(P + 0x1344u); }
+    public S8x112 MessageLines { [MethodImpl(Inl)] get => new(P + 0x1344u); }
     // +0x13B4
-    public SharedPlayer_func_8044972C_de_views13B4 views13B4 { [MethodImpl(Inl)] get => new(P + 0x13B4u); }
+    public SharedPlayer_func_8044972C_de_views13B4 StateTablePtr { [MethodImpl(Inl)] get => new(P + 0x13B4u); }
     // +0x13B8
-    public S8x16 pad13B8 { [MethodImpl(Inl)] get => new(P + 0x13B8u); }
+    public S8x16 IsAmmo0HudDirty { [MethodImpl(Inl)] get => new(P + 0x13B8u); }
     // +0x13C8
-    public SharedPlayer_func_8044972C_de_views13C8 views13C8 { [MethodImpl(Inl)] get => new(P + 0x13C8u); }
+    public SharedPlayer_func_8044972C_de_views13C8 IsGibbed { [MethodImpl(Inl)] get => new(P + 0x13C8u); }
     // +0x13CC
     public S8x8 pad13CC { [MethodImpl(Inl)] get => new(P + 0x13CCu); }
     // +0x13D4
-    public int unk13D4
+    public int ToggleFlag_13D4
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13D4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13D4u, value);
     }
-    [MethodImpl(Inl)] public int unk13D4_Set(int v) => Mem.Set(P + 0x13D4u, v);
+    [MethodImpl(Inl)] public int ToggleFlag_13D4_Set(int v) => Mem.Set(P + 0x13D4u, v);
     // +0x13D8
-    public SharedPlayer_func_8044972C_de_views13D8 views13D8 { [MethodImpl(Inl)] get => new(P + 0x13D8u); }
+    public SharedPlayer_func_8044972C_de_views13D8 ShockAttackerPtr { [MethodImpl(Inl)] get => new(P + 0x13D8u); }
     // +0x13DC
     public S8x12 pad13DC { [MethodImpl(Inl)] get => new(P + 0x13DCu); }
     // +0x13E8
@@ -2623,38 +2623,38 @@ public readonly struct SharedPlayer_func_8044972C_de
     }
     [MethodImpl(Inl)] public int messageIndex_Set(int v) => Mem.Set(P + 0x13E8u, v);
     // +0x13EC
-    public S8x100 pad13EC { [MethodImpl(Inl)] get => new(P + 0x13ECu); }
+    public S8x100 EmbryoMessageText { [MethodImpl(Inl)] get => new(P + 0x13ECu); }
     // +0x1450
-    public SharedPlayer_func_8044972C_de_views1450 views1450 { [MethodImpl(Inl)] get => new(P + 0x1450u); }
+    public SharedPlayer_func_8044972C_de_views1450 IsComputer { [MethodImpl(Inl)] get => new(P + 0x1450u); }
     // +0x1454
-    public SharedPlayer_func_8044972C_de_views1454 views1454 { [MethodImpl(Inl)] get => new(P + 0x1454u); }
+    public SharedPlayer_func_8044972C_de_views1454 BrainPtr { [MethodImpl(Inl)] get => new(P + 0x1454u); }
     // +0x1458
-    public S8x12 pad1458 { [MethodImpl(Inl)] get => new(P + 0x1458u); }
+    public S8x12 AimHitPos { [MethodImpl(Inl)] get => new(P + 0x1458u); }
     // +0x1464
-    public SharedPlayer_func_8044972C_de_views1464 views1464 { [MethodImpl(Inl)] get => new(P + 0x1464u); }
+    public SharedPlayer_func_8044972C_de_views1464 LaserTargetPos { [MethodImpl(Inl)] get => new(P + 0x1464u); }
     // +0x1470
-    public S8x16 pad1470 { [MethodImpl(Inl)] get => new(P + 0x1470u); }
+    public S8x16 AimHitNormal { [MethodImpl(Inl)] get => new(P + 0x1470u); }
     // +0x1480
-    public SharedPlayer_func_8044972C_de_views1480 views1480 { [MethodImpl(Inl)] get => new(P + 0x1480u); }
+    public SharedPlayer_func_8044972C_de_views1480 LaserBeamMtxs { [MethodImpl(Inl)] get => new(P + 0x1480u); }
     // +0x1500
-    public SharedPlayer_func_8044972C_de_views1500 views1500 { [MethodImpl(Inl)] get => new(P + 0x1500u); }
+    public SharedPlayer_func_8044972C_de_views1500 LaserSightMtxs_1500 { [MethodImpl(Inl)] get => new(P + 0x1500u); }
     // +0x1580
     public SharedPlayer_func_8044972C_de_views1580 views1580 { [MethodImpl(Inl)] get => new(P + 0x1580u); }
     // +0x1600
-    public S8x212 pad1600 { [MethodImpl(Inl)] get => new(P + 0x1600u); }
+    public S8x212 MarkerMtx { [MethodImpl(Inl)] get => new(P + 0x1600u); }
     // +0x16D4
-    public SharedPlayer_func_8044972C_de_views16D4 views16D4 { [MethodImpl(Inl)] get => new(P + 0x16D4u); }
+    public SharedPlayer_func_8044972C_de_views16D4 IsInfraRedOn { [MethodImpl(Inl)] get => new(P + 0x16D4u); }
     // +0x16D8
-    public ushort unk16D8
+    public ushort HitShake
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x16D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16D8u, value);
     }
-    [MethodImpl(Inl)] public ushort unk16D8_Set(ushort v) => Mem.Set(P + 0x16D8u, v);
+    [MethodImpl(Inl)] public ushort HitShake_Set(ushort v) => Mem.Set(P + 0x16D8u, v);
     // +0x16DA
     public S8x6 pad16DA { [MethodImpl(Inl)] get => new(P + 0x16DAu); }
     // +0x16E0
-    public SharedPlayer_func_8044972C_de_views16E0 views16E0 { [MethodImpl(Inl)] get => new(P + 0x16E0u); }
+    public SharedPlayer_func_8044972C_de_views16E0 Next { [MethodImpl(Inl)] get => new(P + 0x16E0u); }
 }
 
 /// <summary>union SharedPlayer_func_8044972C_de_views0, 0x18 bytes, at a guest address.</summary>

@@ -4032,25 +4032,25 @@ public readonly struct B14Pl
     // +0x8
     public B14W3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public int f14
+    public int RegionPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int f14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int RegionPtr_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
     public U8x84 pad18 { [MethodImpl(Inl)] get => new(P + 0x18u); }
     // +0x6C
-    public float f6C
+    public float Yaw
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public float f6C_Set(float v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public float Yaw_Set(float v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
     public U8x1392 pad70 { [MethodImpl(Inl)] get => new(P + 0x70u); }
     // +0x5E0
-    public B14Blk70 blk { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
+    public B14Blk70 CharacterId { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
     // +0x650
     public U8x4248 pad650 { [MethodImpl(Inl)] get => new(P + 0x650u); }
 }

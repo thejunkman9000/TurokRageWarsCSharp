@@ -2033,11 +2033,11 @@ public static partial class Game
                 int w = 0;
                 int pick = 0;
                 int t = 0;
-                if ((new CtlB(c).actor.unk1450 == 0))
+                if ((new CtlB(c).actor.IsComputer == 0))
                 {
                     return;
                 }
-                if ((new CtlB(c).actor.unk5E0 == 14))
+                if ((new CtlB(c).actor.CharacterId == 14))
                 {
                     Ai_PickRandomWeapon(c);
                     return;
@@ -2046,7 +2046,7 @@ public static partial class Game
                 cur = 0;
                 for (i = (uint)(0); (i < (uint)(8)); ++i)
                 {
-                    w = Mem.S32(((new CtlB(c).actor.def_ + (uint)(i << (int)2)) + (uint)76));
+                    w = Mem.S32(((new CtlB(c).actor.DefPtr + (uint)(i << (int)2)) + (uint)76));
                     w = (int)((int)(w) - 1219);
                     if ((w < 0))
                     {
@@ -2062,7 +2062,7 @@ public static partial class Game
                     }
                     if (((uint)(w) >= (uint)(2)))
                     {
-                        t = (int)(new CtlB(c).actor.stats.unk93);
+                        t = (int)(new CtlB(c).actor.PlayerEntryPtr.unk93);
                         if ((t == 1))
                         {
                             goto L_b17;
@@ -2081,7 +2081,7 @@ public static partial class Game
                                 goto L_add;
                             }
                         }
-                        new CtlB(c).actor.stats.unk93_Set((byte)(0));
+                        new CtlB(c).actor.PlayerEntryPtr.unk93_Set((byte)(0));
                         L_b14: ;
                         if (((int)(new WpnDesc(Mem.U32((Gv.WeaponDefTable + (uint)(w * 4)))).info.type) == 1))
                         {
@@ -2100,14 +2100,14 @@ public static partial class Game
                     L_add: ;
                     Mem.Set((_fp + (uint)(n * 4)), w);
                     ++n;
-                    if ((w == (int)(new CtlB(c).actor.unk62E)))
+                    if ((w == (int)(new CtlB(c).actor.WeaponIndex)))
                     {
                         cur = 1;
                     }
                 }
                 if ((cur != 0))
                 {
-                    if ((((int)(new CtlB(c).actor.unk62E) == 4) && (new CtlB(c).actor.unk594 == 2)))
+                    if ((((int)(new CtlB(c).actor.WeaponIndex) == 4) && (new CtlB(c).actor.FireMode == 2)))
                     {
                         return;
                     }
@@ -2123,8 +2123,8 @@ public static partial class Game
                 if ((n != (uint)(0)))
                 {
                     pick = Mem.S32((_fp + (uint)(((uint)(Random_Next()) % n) * 4)));
-                    new CtlB(c).actor.unk770_Set((short)(pick));
-                    if ((pick != (int)(new CtlB(c).actor.unk62E)))
+                    new CtlB(c).actor.PendingWeaponIndex_Set((short)(pick));
+                    if ((pick != (int)(new CtlB(c).actor.WeaponIndex)))
                     {
                         new CtlB(c).unk2E4_Set(0);
                     }
@@ -2140,7 +2140,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00210018", (uint)@ref);
-            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).def_ + (uint)140));
+            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).DefPtr + (uint)140));
             return 1;
         }
     }
@@ -2151,7 +2151,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00210040", (uint)@ref);
-            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).def_ + (uint)172));
+            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).DefPtr + (uint)172));
             return 1;
         }
     }
@@ -2162,7 +2162,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00210068", (uint)@ref);
-            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).def_ + (uint)204));
+            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).DefPtr + (uint)204));
             return 1;
         }
     }
@@ -2173,7 +2173,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00210090", (uint)@ref);
-            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).def_ + (uint)172));
+            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).DefPtr + (uint)172));
             return 1;
         }
     }
@@ -2184,7 +2184,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002100B8", (uint)@ref);
-            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).def_ + (uint)172));
+            Ai_PickWeapon(@ref, (new Actor(new ActorRef(@ref).actor_).DefPtr + (uint)172));
             return 1;
         }
     }
@@ -2203,8 +2203,8 @@ public static partial class Game
                     w = Player_PickRandomWeapon(new CtlB(c).actor_);
                 }
                 while ((w >= 16));
-                new CtlB(c).actor.unk770_Set((short)(w));
-                if ((w != (int)(new CtlB(c).actor.unk62E)))
+                new CtlB(c).actor.PendingWeaponIndex_Set((short)(w));
+                if ((w != (int)(new CtlB(c).actor.WeaponIndex)))
                 {
                     new CtlB(c).unk2E4_Set(0);
                 }

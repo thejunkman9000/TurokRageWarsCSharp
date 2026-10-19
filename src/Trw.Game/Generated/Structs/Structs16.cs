@@ -3097,7 +3097,7 @@ public readonly struct Node_func_80449E18_de
     [MethodImpl(Inl)] public static implicit operator uint(Node_func_80449E18_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Node_func_80449E18_de(uint p) => new(p);
     // +0x0
-    public S8x8 p0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x8 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x8
     public int Position
     {
@@ -3108,14 +3108,14 @@ public readonly struct Node_func_80449E18_de
     // +0xC
     public S8x8 p1 { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x14
-    public int unk14
+    public int RegionPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int RegionPtr_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public Shape_func_802764D4_de_2 unk18
+    public Shape_func_802764D4_de_2 DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -3127,7 +3127,7 @@ public readonly struct Node_func_80449E18_de
     }
     [MethodImpl(Inl)] public uint unk18__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public S8x4 p2 { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x4 Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x20
     public Node_func_80449E18_de unk20
     {
@@ -3143,25 +3143,25 @@ public readonly struct Node_func_80449E18_de
     // +0x24
     public S8x728 p3 { [MethodImpl(Inl)] get => new(P + 0x24u); }
     // +0x2FC
-    public int unk2FC
+    public int WeaponActorRegion
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2FCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2FCu, value);
     }
-    [MethodImpl(Inl)] public int unk2FC_Set(int v) => Mem.Set(P + 0x2FCu, v);
+    [MethodImpl(Inl)] public int WeaponActorRegion_Set(int v) => Mem.Set(P + 0x2FCu, v);
     // +0x300
     public S8x732 p4 { [MethodImpl(Inl)] get => new(P + 0x300u); }
     // +0x5DC
-    public int unk5DC
+    public int ViewPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5DCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5DCu, value);
     }
-    [MethodImpl(Inl)] public int unk5DC_Set(int v) => Mem.Set(P + 0x5DCu, v);
+    [MethodImpl(Inl)] public int ViewPtr_Set(int v) => Mem.Set(P + 0x5DCu, v);
     // +0x5E0
-    public S8x4352 p5 { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
+    public S8x4352 CharacterId { [MethodImpl(Inl)] get => new(P + 0x5E0u); }
     // +0x16E0
-    public Node_func_80449E18_de unk16E0
+    public Node_func_80449E18_de Next
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x16E0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16E0u, value.P);

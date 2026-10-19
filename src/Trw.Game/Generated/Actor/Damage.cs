@@ -875,9 +875,9 @@ public static partial class Game
                 uint o = 0u;
                 int r = 0;
                 r = 0;
-                if ((((int)(Mem.U8(act)) == 1) && ((new Actor(act).flags & (uint)(3145728)) != 0u)))
+                if ((((int)(Mem.U8(act)) == 1) && ((new Actor(act).Flags & (uint)(3145728)) != 0u)))
                 {
-                    o = new Actor(act).owner_;
+                    o = new Actor(act).OwnerPtr;
                     if (((act == (o + (uint)744)) && ((((int)(new B15O(o).unk62E) == 0) || ((int)(new B15O(o).unk62E) == 17)) || ((int)(new B15O(o).unk62E) == 16))))
                     {
                         Mem.Copy(_fp, pos, 12);

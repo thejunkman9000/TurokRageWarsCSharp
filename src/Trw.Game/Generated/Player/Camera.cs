@@ -340,13 +340,13 @@ public static partial class Game
                 float new_var = 0f;
                 float roll0 = 0f;
                 float pitch0 = 0f;
-                yaw0 = ((new Plr(a).unk724 + new Plr(a).unk730) - new Plr(a).unk708);
+                yaw0 = ((new Plr(a).ViewPitch + new Plr(a).SwayPitch) - new Plr(a).ViewPitchBase);
                 K = Mem.F32(0x800C7C60u);
-                pitch = ((new Plr(a).unk72C + new Plr(a).unk738) * K);
-                new_var = (new Plr(a).unk728 + new Plr(a).unk734);
+                pitch = ((new Plr(a).ViewRoll + new Plr(a).SwayRoll) * K);
+                new_var = (new Plr(a).ViewYawOffset + new Plr(a).SwayYaw);
                 roll = new_var;
-                r = new Plr(a).unk6C;
-                Mem.Copy((_fp + 48u), new Plr(a).unk5C.P, 16);
+                r = new Plr(a).Yaw;
+                Mem.Copy((_fp + 48u), new Plr(a).Rotation.P, 16);
                 Mem.Set(Gv.Quat_SinScratch, sinf(pitch));
                 new Vec4f((_fp + 32u)).x_Set(0.0f);
                 new Vec4f((_fp + 32u)).y_Set(0.0f);
