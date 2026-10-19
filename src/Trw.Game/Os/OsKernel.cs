@@ -203,6 +203,7 @@ public static partial class Game
         TraceOs($"osCreateMesgQueue {mq:X8} count={count}");
         Mem.Set(mq, 0u); Mem.Set(mq + 4, 0u);
         Mem.Set(mq + MQ_VALID, 0); Mem.Set(mq + MQ_FIRST, 0); Mem.Set(mq + MQ_COUNT, count); Mem.Set(mq + MQ_MSG, msg);
+        SiQueueRecreated(mq);
     }
 
     private static int SendCommon(uint mq, uint m, int flags, bool jam)

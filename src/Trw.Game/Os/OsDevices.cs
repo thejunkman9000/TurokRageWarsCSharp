@@ -175,10 +175,21 @@ public static partial class Game
         return 0;
     }
 
-    public static int osContStartReadData(uint mq) { PostFromHost(mq, 0); return 0; }
+    // A controller read / query completes on the SI ~1 ms after it starts (the interrupt posts to the queue then); here it posts at once. The game's
+    // ResetSession (back to the main menu) sets "no read pending" and re-creates the queue: if the scheduler's pad poll started a read in between,
+    // its completion was in the old queue and got wiped, and the next poll waited for it forever (the menu freeze). On hardware the completion
+    // arrives after the re-creation. So a read whose result has not been fetched is posted again when its queue is re-created.
+    private static uint siInflightMq;
+    internal static void SiQueueRecreated(uint mq)
+    {
+        if (mq != 0 && mq == siInflightMq) { Console.Error.WriteLine($"[si] queue {mq:X8} re-created with a read in flight: completion re-posted"); PostFromHost(mq, 0); }
+    }
+
+    public static int osContStartReadData(uint mq) { siInflightMq = mq; PostFromHost(mq, 0); return 0; }
 
     public static void osContGetReadData(uint pad)
     {
+        siInflightMq = 0;
         Mem.Fill(pad, 4 * 6, 0);
         for (int i = 0; i < 4; i++)
         {
@@ -192,10 +203,11 @@ public static partial class Game
         }
     }
 
-    public static int osContStartQuery(uint mq) { PostFromHost(mq, 0); return 0; }
+    public static int osContStartQuery(uint mq) { siInflightMq = mq; PostFromHost(mq, 0); return 0; }
 
     public static void osContGetQuery(uint status)
     {
+        siInflightMq = 0;
         Mem.Fill(status, 4 * 4, 0);
         for (int i = 0; i < 4; i++)
         {
