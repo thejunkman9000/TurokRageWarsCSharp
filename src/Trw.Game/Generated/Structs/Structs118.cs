@@ -2262,7 +2262,7 @@ public readonly struct Shared_ActorView
     }
     [MethodImpl(Inl)] public float CrouchOffset_Set(float v) => Mem.Set(P + 0x718u, v);
     // +0x71C
-    public S8x2748 pad71C { [MethodImpl(Inl)] get => new(P + 0x71Cu); }
+    public S8x2748 IsForcedCrouch_71C { [MethodImpl(Inl)] get => new(P + 0x71Cu); }
     // +0x11D8
     public int StunTime
     {
@@ -2378,7 +2378,7 @@ public readonly struct Shared_ActorView
     }
     [MethodImpl(Inl)] public uint EmbryoOwnerPtr_Set(uint v) => Mem.Set(P + 0x13E0u, v);
     // +0x13E4
-    public S8x764 pad13E4 { [MethodImpl(Inl)] get => new(P + 0x13E4u); }
+    public S8x764 SpecialHitCount_13E4 { [MethodImpl(Inl)] get => new(P + 0x13E4u); }
     // +0x16E0
     public Shared_ActorView Next
     {

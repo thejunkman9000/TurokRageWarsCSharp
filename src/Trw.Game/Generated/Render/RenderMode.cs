@@ -2352,12 +2352,12 @@ public static partial class Gfx
             }
             Mem.Set(Gv.Gfx_BoundImagePtr, t);
             Mem.Set(0x800E32B4u, 0);
-            Mem.Set(0x800E32A8u, (int)(new Q2Tex(t).unk4));
-            Mem.Set(0x800E32ACu, (int)(new Q2Tex(t).unk6));
+            Mem.Set(0x800E32A8u, (int)(new Q2Tex(t).Width));
+            Mem.Set(0x800E32ACu, (int)(new Q2Tex(t).Height));
             Mem.Set(Gv.Gfx_TexBitsPerPixel, Image.GetBitsPerPixel(t));
             Mem.Set(0x800E32BCu, Image.HasAlpha(Mem.U32(Gv.Gfx_BoundImagePtr)));
-            a = new Q2Tex(t).unk10;
-            b = new Q2Tex(t).unkC;
+            a = new Q2Tex(t).PaletteSize;
+            b = new Q2Tex(t).PixelDataSize;
             Mem.Set(Gv.Gfx_TexNeedsStrips, 0);
             if (((a > 0) && (b > 2048)))
             {
@@ -2367,7 +2367,7 @@ public static partial class Gfx
             {
                 Mem.Set(Gv.Gfx_TexNeedsStrips, 1);
             }
-            r = Gfx.LoadPalette(Mem.S32(Gv.Gfx_TexBitsPerPixel), (uint)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk14));
+            r = Gfx.LoadPalette(Mem.S32(Gv.Gfx_TexBitsPerPixel), (uint)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).PalettePtr));
             if ((Mem.S32(Gv.Gfx_TexNeedsStrips) == 0))
             {
                 if ((Mem.S32(Gv.Gfx_TexBitsPerPixel) == 4))
@@ -2375,7 +2375,7 @@ public static partial class Gfx
                     {
                         uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new O3Dl(_g).w0_Set(4249878528u);
-                        new O3Dl(_g).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).img);
+                        new O3Dl(_g).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).PixelsPtr);
                     }
                     {
                         uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2390,7 +2390,7 @@ public static partial class Gfx
                     {
                         uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new O3Dl(_g_4).w0_Set(4076863488u);
-                        new O3Dl(_g_4).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) + 3) >> (int)2) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) + 3) >> (int)2) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 16))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 16))) & 4095))));
+                        new O3Dl(_g_4).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) + 3) >> (int)2) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) + 3) >> (int)2) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 16))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 16))) & 4095))));
                     }
                     {
                         uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2399,13 +2399,13 @@ public static partial class Gfx
                     }
                     {
                         uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
-                        new O3Dl(_g_6).w0_Set((4114612224u | (uint)((((((((int)((ushort)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) << (int)16) >> (int)17) + 7) >> (int)3) & 511) << (int)9))));
+                        new O3Dl(_g_6).w0_Set((4114612224u | (uint)((((((((int)((ushort)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth)) << (int)16) >> (int)17) + 7) >> (int)3) & 511) << (int)9))));
                         new O3Dl(_g_6).w1_Set((uint)(524800));
                     }
                     {
                         uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new O3Dl(_g_7).w0_Set(4060086272u);
-                        new O3Dl(_g_7).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h) - 1) * 4) & 4095))));
+                        new O3Dl(_g_7).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight) - 1) * 4) & 4095))));
                     }
                 }
                 else
@@ -2432,23 +2432,23 @@ public static partial class Gfx
                         }
                         {
                             uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
-                            new O3Dl(_g_11).w0_Set((4115136512u | (uint)((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) + 7) >> (int)3) & 511) << (int)9))));
+                            new O3Dl(_g_11).w0_Set((4115136512u | (uint)((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) + 7) >> (int)3) & 511) << (int)9))));
                             new O3Dl(_g_11).w1_Set((uint)(524800));
                         }
                         {
                             uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new O3Dl(_g_12).w0_Set(4060086272u);
-                            new O3Dl(_g_12).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h) - 1) * 4) & 4095))));
+                            new O3Dl(_g_12).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight) - 1) * 4) & 4095))));
                         }
                         {
                             uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new O3Dl(_g_13).w0_Set(4249878528u);
-                            new O3Dl(_g_13).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).img);
+                            new O3Dl(_g_13).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).PixelsPtr);
                         }
                         {
                             uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new O3Dl(_g_14).w0_Set(4076863488u);
-                            new O3Dl(_g_14).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) + 1) >> (int)1) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) + 1) >> (int)1) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 8))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 8))) & 4095))));
+                            new O3Dl(_g_14).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) + 1) >> (int)1) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) + 1) >> (int)1) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 8))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 8))) & 4095))));
                         }
                     }
                     else
@@ -2458,7 +2458,7 @@ public static partial class Gfx
                             {
                                 uint _g_15 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new O3Dl(_g_15).w0_Set(4245684224u);
-                                new O3Dl(_g_15).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).img);
+                                new O3Dl(_g_15).w1_Set(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).PixelsPtr);
                             }
                             {
                                 uint _g_16 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2473,7 +2473,7 @@ public static partial class Gfx
                             {
                                 uint _g_18 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new O3Dl(_g_18).w0_Set(4076863488u);
-                                new O3Dl(_g_18).w1_Set((uint)(((117440512 | (((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) - 1) < 2047) ? (((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h)) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 4))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) / 4))) & 4095))));
+                                new O3Dl(_g_18).w1_Set((uint)(((117440512 | (((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) - 1) < 2047) ? (((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight)) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 4))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) / 4))) & 4095))));
                             }
                             {
                                 uint _g_19 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
@@ -2482,13 +2482,13 @@ public static partial class Gfx
                             }
                             {
                                 uint _g_20 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
-                                new O3Dl(_g_20).w0_Set((4111466496u | (uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * 2) + 7) >> (int)3) & 511) << (int)9))));
+                                new O3Dl(_g_20).w0_Set((4111466496u | (uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * 2) + 7) >> (int)3) & 511) << (int)9))));
                                 new O3Dl(_g_20).w1_Set((uint)(524800));
                             }
                             {
                                 uint _g_21 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new O3Dl(_g_21).w0_Set(4060086272u);
-                                new O3Dl(_g_21).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).h) - 1) * 4) & 4095))));
+                                new O3Dl(_g_21).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadHeight) - 1) * 4) & 4095))));
                             }
                         }
                     }

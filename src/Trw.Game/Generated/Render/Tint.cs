@@ -183,11 +183,11 @@ public static partial class Tint
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6A54", (uint)o);
-            if ((new Obj6A54(o).unk24 != 0.0f))
+            if ((new Obj6A54(o).Alpha != 0.0f))
             {
-                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), new Obj6A54(o).unk34);
-                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), new Obj6A54(o).unk38);
-                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), new Obj6A54(o).unk3C);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), new Obj6A54(o).Red);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), new Obj6A54(o).Green);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), new Obj6A54(o).Blue);
             }
             else
             {
@@ -195,8 +195,8 @@ public static partial class Tint
                 Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), 0.0f);
                 Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), 0.0f);
             }
-            Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), new Obj6A54(o).unk24);
-            Mem.Set((Gv.Draw_TintColor + (uint)(1 * 4)), new Obj6A54(o).unk14);
+            Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), new Obj6A54(o).Alpha);
+            Mem.Set((Gv.Draw_TintColor + (uint)(1 * 4)), new Obj6A54(o).TintValue_14);
         }
     }
 
@@ -206,14 +206,14 @@ public static partial class Tint
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6AC0", (uint)o);
-            if ((new Obj6A54(o).unk24 != 0.0f))
+            if ((new Obj6A54(o).Alpha != 0.0f))
             {
-                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(0 * 4)))) + new Obj6A54(o).unk34));
-                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(1 * 4)))) + new Obj6A54(o).unk38));
-                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(2 * 4)))) + new Obj6A54(o).unk3C));
-                Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(3 * 4)))) + new Obj6A54(o).unk24));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(0 * 4)))) + new Obj6A54(o).Red));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(1 * 4)))) + new Obj6A54(o).Green));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(2 * 4)))) + new Obj6A54(o).Blue));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(3 * 4)))) + new Obj6A54(o).Alpha));
             }
-            Mem.Set((0x800D15F4u + (uint)(0 * 4)), (float)((float)(Mem.F32((0x800D15F4u + (uint)(0 * 4)))) + new Obj6A54(o).unk14));
+            Mem.Set((0x800D15F4u + (uint)(0 * 4)), (float)((float)(Mem.F32((0x800D15F4u + (uint)(0 * 4)))) + new Obj6A54(o).TintValue_14));
         }
     }
 }

@@ -169,10 +169,10 @@ public static partial class Camera
                 float fs1 = 0f;
                 float fs1f = 0f;
                 uint n = 0u;
-                if ((new CamObj_v2(o).unk7C != 0))
+                if ((new CamObj_v2(o).IsActive != 0))
                 {
-                    fs1 = new CamObj_v2(o).unk2C;
-                    fs1f = new CamObj_v2(o).unk34;
+                    fs1 = new CamObj_v2(o).Pitch;
+                    fs1f = new CamObj_v2(o).Roll;
                     if ((Flyby.IsInWindow() == 0))
                     {
                         Camera.ComputeRegionJitter(o, (_fp + 464u));
@@ -189,67 +189,67 @@ public static partial class Camera
                         new QuatView(_fp).y_Set((float)(0));
                         new QuatView(_fp).z_Set((float)(0));
                         new QuatView(_fp).w_Set(cosf((fs1 * k)));
-                        Mem.Set(Gv.Quat_SinScratch, sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf(((new CamObj_v2(o).Yaw + new CamObj_v2(o).YawOffset) * k)));
                         new QuatView((_fp + 16u)).x_Set((float)(0));
                         new QuatView((_fp + 16u)).y_Set(Mem.F32(Gv.Quat_SinScratch));
                         new QuatView((_fp + 16u)).z_Set((float)(0));
-                        new QuatView((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
+                        new QuatView((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).Yaw + new CamObj_v2(o).YawOffset) * k)));
                         Quat.Multiply((_fp + 48u), _fp, (_fp + 16u));
-                        Quat.Multiply(new CamObj_v2(o).unk150.P, (_fp + 48u), new CamObj_v2(o).quat48.P);
-                        Quat.Multiply(new CamObj_v2(o).unk140.P, (_fp + 32u), new CamObj_v2(o).unk150.P);
+                        Quat.Multiply(new CamObj_v2(o).ViewRotationNoRoll.P, (_fp + 48u), new CamObj_v2(o).Rotation.P);
+                        Quat.Multiply(new CamObj_v2(o).ViewRotation.P, (_fp + 32u), new CamObj_v2(o).ViewRotationNoRoll.P);
                         Quat.Multiply((_fp + 64u), (_fp + 32u), (_fp + 48u));
                         Quat.ToMatrix((_fp + 64u), (_fp + 80u));
-                        MathUtil.MtxMakeTranslate((_fp + 144u), 0.0f, new CamObj_v2(o).unk44, 0.0f);
-                        Quat.ToMatrix(new CamObj_v2(o).quat48.P, (_fp + 208u));
+                        MathUtil.MtxMakeTranslate((_fp + 144u), 0.0f, new CamObj_v2(o).EyeHeight, 0.0f);
+                        Quat.ToMatrix(new CamObj_v2(o).Rotation.P, (_fp + 208u));
                         new Vec3f((_fp + 480u)).x_Set(0.0f);
                         new Vec3f((_fp + 480u)).y_Set(0.0f);
                         new Vec3f((_fp + 480u)).z_Set(0.0f);
-                        Emitter.ApplyForce(new CamObj_v2(o).chans.P, new CamObj_v2(o).chans.ch[(int)(0)].v.P, (_fp + 480u));
-                        Camera.UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(1 * 20)));
-                        Camera.UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(2 * 20)));
-                        Camera.UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(3 * 20)));
+                        Emitter.ApplyForce(new CamObj_v2(o).ShakeChannels.P, new CamObj_v2(o).ShakeChannels.ch[(int)(0)].v.P, (_fp + 480u));
+                        Camera.UpdateShakeChannel((new CamObj_v2(o).ShakeChannels.ch.P + (uint)(1 * 20)));
+                        Camera.UpdateShakeChannel((new CamObj_v2(o).ShakeChannels.ch.P + (uint)(2 * 20)));
+                        Camera.UpdateShakeChannel((new CamObj_v2(o).ShakeChannels.ch.P + (uint)(3 * 20)));
                         if ((o != Gv.Camera_MainView))
                         {
                             for (n = Mem.U32((Gv.Camera_MainView + (uint)4524)); (n != 0u); n = new EmitNode_v2(n).next4_)
                             {
-                                Emitter.ApplyForce(n, new CamObj_v2(o).pos38.P, (_fp + 480u));
+                                Emitter.ApplyForce(n, new CamObj_v2(o).PosX.P, (_fp + 480u));
                             }
                         }
                         MathUtil.MtxMulAffine((_fp + 336u), (_fp + 80u), (_fp + 208u));
                         MathUtil.MtxTransformPoint((_fp + 336u), (_fp + 480u), (_fp + 496u));
                         MathUtil.MtxMulAffine((_fp + 336u), (_fp + 80u), (_fp + 144u));
                         MathUtil.MtxMulAffine((_fp + 400u), (_fp + 336u), (_fp + 208u));
-                        MathUtil.MtxMakeTranslate((_fp + 272u), (new CamObj_v2(o).pos38.x + new Vec3f((_fp + 496u)).x), ((new CamObj_v2(o).pos38.y + new Vec3f((_fp + 464u)).y) + new Vec3f((_fp + 496u)).y), (new CamObj_v2(o).pos38.z + new Vec3f((_fp + 496u)).z));
-                        MathUtil.MtxMulAffine(new CamObj_v2(o).unk160.P, (_fp + 400u), (_fp + 272u));
+                        MathUtil.MtxMakeTranslate((_fp + 272u), (new CamObj_v2(o).PosX.x + new Vec3f((_fp + 496u)).x), ((new CamObj_v2(o).PosX.y + new Vec3f((_fp + 464u)).y) + new Vec3f((_fp + 496u)).y), (new CamObj_v2(o).PosX.z + new Vec3f((_fp + 496u)).z));
+                        MathUtil.MtxMulAffine(new CamObj_v2(o).ViewMatrix.P, (_fp + 400u), (_fp + 272u));
                     }
                     else
                     {
-                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).unk34 * 0.5f)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).Roll * 0.5f)));
                         new QuatView((_fp + 32u)).x_Set((float)(0));
                         new QuatView((_fp + 32u)).y_Set((float)(0));
                         new QuatView((_fp + 32u)).z_Set(Mem.F32(Gv.Quat_SinScratch));
-                        new QuatView((_fp + 32u)).w_Set(cosf((new CamObj_v2(o).unk34 * 0.5f)));
-                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).unk2C * 0.5f)));
+                        new QuatView((_fp + 32u)).w_Set(cosf((new CamObj_v2(o).Roll * 0.5f)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).Pitch * 0.5f)));
                         new QuatView(_fp).x_Set(Mem.F32(Gv.Quat_SinScratch));
                         new QuatView(_fp).y_Set((float)(0));
                         new QuatView(_fp).z_Set((float)(0));
-                        new QuatView(_fp).w_Set(cosf((new CamObj_v2(o).unk2C * 0.5f)));
-                        sn = sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * 0.5f));
+                        new QuatView(_fp).w_Set(cosf((new CamObj_v2(o).Pitch * 0.5f)));
+                        sn = sinf(((new CamObj_v2(o).Yaw + new CamObj_v2(o).YawOffset) * 0.5f));
                         new QuatView((_fp + 16u)).x_Set((float)(0));
                         new QuatView((_fp + 16u)).y_Set(sn);
                         new QuatView((_fp + 16u)).z_Set((float)(0));
                         Mem.Set(Gv.Quat_SinScratch, sn);
-                        new QuatView((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * 0.5f)));
+                        new QuatView((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).Yaw + new CamObj_v2(o).YawOffset) * 0.5f)));
                         Quat.Multiply((_fp + 48u), _fp, (_fp + 16u));
-                        Mem.Copy(new CamObj_v2(o).unk150.P, (_fp + 48u), 16);
-                        Quat.Multiply(new CamObj_v2(o).unk140.P, (_fp + 32u), new CamObj_v2(o).unk150.P);
+                        Mem.Copy(new CamObj_v2(o).ViewRotationNoRoll.P, (_fp + 48u), 16);
+                        Quat.Multiply(new CamObj_v2(o).ViewRotation.P, (_fp + 32u), new CamObj_v2(o).ViewRotationNoRoll.P);
                         Quat.ToMatrix((_fp + 48u), (_fp + 80u));
-                        MathUtil.MtxMakeTranslate((_fp + 272u), new CamObj_v2(o).pos38.x, new CamObj_v2(o).pos38.y, new CamObj_v2(o).pos38.z);
-                        MathUtil.MtxMulAffine(new CamObj_v2(o).unk160.P, (_fp + 80u), (_fp + 272u));
+                        MathUtil.MtxMakeTranslate((_fp + 272u), new CamObj_v2(o).PosX.x, new CamObj_v2(o).PosX.y, new CamObj_v2(o).PosX.z);
+                        MathUtil.MtxMulAffine(new CamObj_v2(o).ViewMatrix.P, (_fp + 80u), (_fp + 272u));
                     }
-                    new CamObj_v2(o).unk130.y_Set(fs1);
-                    new CamObj_v2(o).unk130.w_Set(fs1f);
-                    new CamObj_v2(o).unk130.z_Set(new CamObj_v2(o).unk28);
+                    new CamObj_v2(o).ViewAngles_130.y_Set(fs1);
+                    new CamObj_v2(o).ViewAngles_130.w_Set(fs1f);
+                    new CamObj_v2(o).ViewAngles_130.z_Set(new CamObj_v2(o).Yaw);
                 }
             }
         }
@@ -268,22 +268,22 @@ public static partial class Camera
                 float r = 0f;
                 float half = 0f;
                 uint p = 0u;
-                if ((new CamObj(o).unk7C != 0))
+                if ((new CamObj(o).IsActive != 0))
                 {
                     if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0))
                     {
                         float a = 0f;
                         float b = 0f;
                         float c = 0f;
-                        r = (new CamObj(o).unk528 / cosf(((new CamObj(o).unk530 * new CamObj(o).unk70) * 0.00872664712f)));
+                        r = (new CamObj(o).FarDistance / cosf(((new CamObj(o).FovY * new CamObj(o).AspectRatio) * 0.00872664712f)));
                         new Vec3f((_fp + (uint)(0 * 12))).x_Set((float)(0));
                         new Vec3f((_fp + (uint)(0 * 12))).y_Set((float)(0));
                         new Vec3f((_fp + (uint)(0 * 12))).z_Set((float)(0));
-                        a = (r * sinf(((new CamObj(o).unk530 * new CamObj(o).unk70) * 0.00872664712f)));
+                        a = (r * sinf(((new CamObj(o).FovY * new CamObj(o).AspectRatio) * 0.00872664712f)));
                         new Vec3f((_fp + (uint)(1 * 12))).x_Set(a);
-                        b = (a / new CamObj(o).unk70);
+                        b = (a / new CamObj(o).AspectRatio);
                         new Vec3f((_fp + (uint)(1 * 12))).y_Set(b);
-                        c = (-new CamObj(o).unk528);
+                        c = (-new CamObj(o).FarDistance);
                         new Vec3f((_fp + (uint)(2 * 12))).x_Set((-a));
                         new Vec3f((_fp + (uint)(2 * 12))).y_Set(b);
                         new Vec3f((_fp + (uint)(3 * 12))).x_Set(a);
@@ -303,11 +303,11 @@ public static partial class Camera
                         new Vec3f((_fp + (uint)(0 * 12))).x_Set((float)(0));
                         new Vec3f((_fp + (uint)(0 * 12))).y_Set((float)(0));
                         new Vec3f((_fp + (uint)(0 * 12))).z_Set((float)(0));
-                        a_2 = (new CamObj(o).unk74 * 0.5f);
+                        a_2 = (new CamObj(o).ViewWidth_74 * 0.5f);
                         new Vec3f((_fp + (uint)(1 * 12))).x_Set(a_2);
-                        b_2 = (new CamObj(o).unk78 * 0.5f);
+                        b_2 = (new CamObj(o).ViewHeight_78 * 0.5f);
                         new Vec3f((_fp + (uint)(1 * 12))).y_Set(b_2);
-                        c_2 = (-new CamObj(o).unk528);
+                        c_2 = (-new CamObj(o).FarDistance);
                         new Vec3f((_fp + (uint)(2 * 12))).x_Set((-a_2));
                         new Vec3f((_fp + (uint)(2 * 12))).y_Set(b_2);
                         new Vec3f((_fp + (uint)(3 * 12))).x_Set(a_2);
@@ -320,17 +320,17 @@ public static partial class Camera
                         new Vec3f((_fp + (uint)(4 * 12))).z_Set(c_2);
                         r = sqrtf((((a_2 * a_2) + (b_2 * b_2)) + (c_2 * c_2)));
                     }
-                    p = new CamObj(o).unk260.P;
+                    p = new CamObj(o).FrustumPoints.P;
                     MathUtil.MtxTransformPoints((o + (uint)352), _fp, p, 5);
                     Frustum.BuildPlanes((o + (uint)752), p, (o + (uint)620), (o + (uint)632), (o + (uint)644), (o + (uint)656));
                     MathUtil.AabbOfPoints((o + (uint)848), 5, p);
                     half = (r * 1.5f);
-                    new CamObj(o).unk368_Set((new CamObj(o).unk260.x - r));
-                    new CamObj(o).unk374_Set((new CamObj(o).unk260.x + r));
-                    new CamObj(o).unk36C_Set((new CamObj(o).unk260.y - half));
-                    new CamObj(o).unk370_Set((new CamObj(o).unk260.z - r));
-                    new CamObj(o).unk37C_Set((new CamObj(o).unk260.z + r));
-                    new CamObj(o).unk378_Set((new CamObj(o).unk260.y + half));
+                    new CamObj(o).BoundsMinX_Set((new CamObj(o).FrustumPoints.x - r));
+                    new CamObj(o).BoundsMaxX_Set((new CamObj(o).FrustumPoints.x + r));
+                    new CamObj(o).BoundsMinY_Set((new CamObj(o).FrustumPoints.y - half));
+                    new CamObj(o).BoundsMinZ_Set((new CamObj(o).FrustumPoints.z - r));
+                    new CamObj(o).BoundsMaxZ_Set((new CamObj(o).FrustumPoints.z + r));
+                    new CamObj(o).BoundsMaxY_Set((new CamObj(o).FrustumPoints.y + half));
                 }
             }
         }
@@ -969,23 +969,23 @@ public static partial class Camera
             if (Dbg.On) Dbg.Enter("func_00238EA8", (uint)o);
             uint p = 0u;
             float z = 0f;
-            Mem.Set(new ObjInit(o).unk20.P, 0);
-            z = Mem.F32(new ObjInit(o).unk20.P);
+            Mem.Set(new ObjInit(o).EyeHeight.P, 0);
+            z = Mem.F32(new ObjInit(o).EyeHeight.P);
             new ObjInit(o).unk0_Set(1);
             new ObjInit(o).unk4_Set(0);
             new ObjInit(o).unk8_Set(0);
             new ObjInit(o).unkC_Set(0);
             new ObjInit(o).unk10_Set(0);
-            new ObjInit(o).unk14_Set(0);
-            new ObjInit(o).unk18_Set(0);
-            new ObjInit(o).unk1C_Set(0);
-            p = new ObjInit(o).v.P;
+            new ObjInit(o).PosX_Set(0);
+            new ObjInit(o).PosY_Set(0);
+            new ObjInit(o).PosZ_Set(0);
+            p = new ObjInit(o).Rotation.P;
             new Vec3f(p).x_Set(new Vec3f(p).y_Set(new Vec3f(p).z_Set(z)));
-            new ObjInit(o).unk30_Set(Mem.F32(0x800C8608u));
-            new ObjInit(o).unk34_Set(0);
-            new ObjInit(o).unk38_Set(z);
+            new ObjInit(o).RotationW_Set(Mem.F32(0x800C8608u));
+            new ObjInit(o).FloorTriPtr_Set(0);
+            new ObjInit(o).Override_38_Set(z);
             new ObjInit(o).unk3C_Set(Mem.F32(0x800C860Cu));
-            new ObjInit(o).unk40_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
+            new ObjInit(o).RegionId_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
         }
     }
 
@@ -1005,11 +1005,11 @@ public static partial class Camera
                 float z = 0f;
                 float w = 0f;
                 float dist = 0f;
-                new Tracker(t).unk24_Set(a);
-                new Tracker(t).unk28_Set(b);
-                new Tracker(t).unk2C_Set(c);
-                new Tracker(t).unk30_Set(d);
-                new Tracker(t).unk34_Set(e);
+                new Tracker(t).IsThirdPerson_Set(a);
+                new Tracker(t).Yaw_Set(b);
+                new Tracker(t).Pitch_Set(c);
+                new Tracker(t).YawOffset_Set(d);
+                new Tracker(t).Roll_Set(e);
                 new Tracker(t).PosX_Set(f);
                 new Tracker(t).PosY_Set(g);
                 new Tracker(t).PosZ_Set(h);
@@ -1105,12 +1105,12 @@ public static partial class Camera
             if (Dbg.On) Dbg.Enter("func_0023912C", (uint)o);
             if ((o != 0u))
             {
-                new Obj88(o).unk90_Set(0);
-                new Obj88(o).unk94_Set(0);
-                new Obj88(o).unk88_Set(Mem.F32(0x800C861Cu));
-                new Obj88(o).unk8C_Set(Mem.F32(0x800C8620u));
-                new Obj88(o).unk98_Set(Mem.F32(0x800C8624u));
-                new Obj88(o).unk9C_Set(Mem.F32(0x800C8628u));
+                new Obj88(o).SwayPhaseX_Set(0);
+                new Obj88(o).SwayPhaseY_Set(0);
+                new Obj88(o).SwayAmplitudeX_Set(Mem.F32(0x800C861Cu));
+                new Obj88(o).SwayAmplitudeY_Set(Mem.F32(0x800C8620u));
+                new Obj88(o).SwayRateX_Set(Mem.F32(0x800C8624u));
+                new Obj88(o).SwayRateY_Set(Mem.F32(0x800C8628u));
             }
         }
     }
@@ -1239,8 +1239,8 @@ public static partial class Camera
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002393C8", (uint)p);
-            new ModeBlk2(p).unkFC_Set(0);
-            new ModeBlk2(p).unk100_Set(0);
+            new ModeBlk2(p).ModeId_Set(0);
+            new ModeBlk2(p).ModeTimer_100_Set(0);
             new ModeBlk2(p).unk104_Set(0);
             new ModeBlk2(p).unk108_Set(0);
             new ModeBlk2(p).unk10C_Set(0);
@@ -1265,8 +1265,8 @@ public static partial class Camera
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002393FC", (uint)p);
-            new ModeBlk(p).unk100_Set(0);
-            new ModeBlk(p).modeFC_Set(1);
+            new ModeBlk(p).ModeTimer_100_Set(0);
+            new ModeBlk(p).ModeId_Set(1);
         }
     }
 
@@ -1276,8 +1276,8 @@ public static partial class Camera
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023940C", (uint)p);
-            new ModeBlk(p).unk100_Set(0);
-            new ModeBlk(p).modeFC_Set(2);
+            new ModeBlk(p).ModeTimer_100_Set(0);
+            new ModeBlk(p).ModeId_Set(2);
         }
     }
 
@@ -1331,7 +1331,7 @@ public static partial class Camera
             float ty = 0f;
             float k = 0f;
             tx = (ty = 0.0f);
-            r = Level.GetRegion(Gv.LevelMgr, (uint)(new ObjF4(o).unk58));
+            r = Level.GetRegion(Gv.LevelMgr, (uint)(new ObjF4(o).FloorTriPtr));
             if ((r == 0u))
             {
                 new Vec3f(@out).x_Set(ty);
@@ -1344,12 +1344,12 @@ public static partial class Camera
                 tx = Mem.F32(0x800C8668u);
                 ty = Mem.F32(0x800C866Cu);
             }
-            new ObjF4(o).unkF4_Set((new ObjF4(o).unkF4 + ((tx - new ObjF4(o).unkF4) * Mem.F32(0x800C8670u))));
+            new ObjF4(o).JitterAmplitudeXZ_Set((new ObjF4(o).JitterAmplitudeXZ + ((tx - new ObjF4(o).JitterAmplitudeXZ) * Mem.F32(0x800C8670u))));
             k = Mem.F32(0x800C8674u);
-            new ObjF4(o).unkF8_Set((new ObjF4(o).unkF8 + ((ty - new ObjF4(o).unkF8) * Mem.F32(0x800C8678u))));
-            new Vec3f(@out).x_Set(RandomGen.Symmetric(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
-            new Vec3f(@out).y_Set(RandomGen.Symmetric(0.0f, (new ObjF4(o).unkF8 * Mem.F32(0x800C867Cu))));
-            new Vec3f(@out).z_Set(RandomGen.Symmetric(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
+            new ObjF4(o).JitterAmplitudeY_Set((new ObjF4(o).JitterAmplitudeY + ((ty - new ObjF4(o).JitterAmplitudeY) * Mem.F32(0x800C8678u))));
+            new Vec3f(@out).x_Set(RandomGen.Symmetric(((-new ObjF4(o).JitterAmplitudeXZ) * k), (new ObjF4(o).JitterAmplitudeXZ * k)));
+            new Vec3f(@out).y_Set(RandomGen.Symmetric(0.0f, (new ObjF4(o).JitterAmplitudeY * Mem.F32(0x800C867Cu))));
+            new Vec3f(@out).z_Set(RandomGen.Symmetric(((-new ObjF4(o).JitterAmplitudeXZ) * k), (new ObjF4(o).JitterAmplitudeXZ * k)));
         }
     }
 
@@ -1899,10 +1899,10 @@ public static partial class CameraManager
             new S5Cams(m).f34_Set(0);
             new S5Cams(m).f38_Set(0);
             new S5Cams(m).part48_Set(0);
-            Camera.InitState(new S5Cams(m).part.P, default(uint), default(uint), default(uint));
+            Camera.InitState(new S5Cams(m).DefaultCamera.P, default(uint), default(uint), default(uint));
             new S5Cams(m).f38_Set(2);
-            ListUtil.Init(new S5Cams(m).recList.P, 0, 4);
-            ListUtil.Init(new S5Cams(m).list11EC.P, 0, 4);
+            ListUtil.Init(new S5Cams(m).SlotList_11D8.P, 0, 4);
+            ListUtil.Init(new S5Cams(m).SlotList2_11EC.P, 0, 4);
             for (i = 0; (i < 8); ++i)
             {
                 uint r = 0u;
@@ -1930,51 +1930,51 @@ public static partial class CameraManager
                 new S5Sub(sc).w8_Set(0);
                 new S5Sub(sc).wC_Set(0);
                 new S5Sub(sc).w10_Set(0);
-                ListUtil.Append_00255CB4(new S5Cams(m).recList.P, (new S5Cams(m).rec.P + (uint)(i * 84)), default(uint), default(uint));
+                ListUtil.Append_00255CB4(new S5Cams(m).SlotList_11D8.P, (new S5Cams(m).Slots_F38.P + (uint)(i * 84)), default(uint), default(uint));
             }
-            ListUtil.Init(new S5Cams(m).camList.P, 0, 4);
-            ListUtil.Init(new S5Cams(m).list20.P, 0, 4);
-            ListUtil.Init(new S5Cams(m).txtList.P, 0, 4);
-            new S5Cams(m).f1200_Set(1);
-            Audio.SetListener_0025E410((int)(new S5Cams(m).part.P));
+            ListUtil.Init(new S5Cams(m).ViewList.P, 0, 4);
+            ListUtil.Init(new S5Cams(m).ViewList2_20.P, 0, 4);
+            ListUtil.Init(new S5Cams(m).RecordPoolList_F24.P, 0, 4);
+            new S5Cams(m).IsDefaultListener_Set(1);
+            Audio.SetListener_0025E410((int)(new S5Cams(m).DefaultCamera.P));
             ResourcePool.Purge();
-            if ((new S5Cams(m).h != 0u))
+            if ((new S5Cams(m).ViewsHandle != 0u))
             {
-                ResourcePool.Release(0, new S5Cams(m).h);
-                new S5Cams(m).h_Set(0u);
+                ResourcePool.Release(0, new S5Cams(m).ViewsHandle);
+                new S5Cams(m).ViewsHandle_Set(0u);
                 new S5Cams(m).data__Set(0u);
-                new S5Cams(m).cnt_Set(0);
+                new S5Cams(m).ViewCount_Set(0);
             }
             ResourcePool.Purge();
-            if ((new S5Cams(m).h2 != 0u))
+            if ((new S5Cams(m).RecordPoolHandle_F18 != 0u))
             {
-                ResourcePool.Release(0, new S5Cams(m).h2);
-                new S5Cams(m).h2_Set(0u);
+                ResourcePool.Release(0, new S5Cams(m).RecordPoolHandle_F18);
+                new S5Cams(m).RecordPoolHandle_F18_Set(0u);
                 new S5Cams(m).data2__Set(0u);
-                new S5Cams(m).cnt2_Set(0);
+                new S5Cams(m).RecordPoolCount_F20_Set(0);
             }
             if ((n != 0))
             {
                 size = (n * 3800);
-                new S5Cams(m).cnt_Set(n);
-                new S5Cams(m).h_Set(ResourcePool.Alloc(0, size, (uint)(35), (int)((0x800C83C0u + (uint)4))));
-                new S5Cams(m).data__Set(Mem.U32(new S5Cams(m).h));
+                new S5Cams(m).ViewCount_Set(n);
+                new S5Cams(m).ViewsHandle_Set(ResourcePool.Alloc(0, size, (uint)(35), (int)((0x800C83C0u + (uint)4))));
+                new S5Cams(m).data__Set(Mem.U32(new S5Cams(m).ViewsHandle));
                 memset(new S5Cams(m).data_, 0, (uint)(size));
-                for (i = 0; (i < new S5Cams(m).cnt); ++i)
+                for (i = 0; (i < new S5Cams(m).ViewCount); ++i)
                 {
                     new S5Cam((new S5Cams(m).data_ + (uint)(i * 3800))).id_Set(i);
-                    ListUtil.Append_00255CB4(new S5Cams(m).camList.P, (new S5Cams(m).data_ + (uint)(i * 3800)), default(uint), default(uint));
+                    ListUtil.Append_00255CB4(new S5Cams(m).ViewList.P, (new S5Cams(m).data_ + (uint)(i * 3800)), default(uint), default(uint));
                 }
                 Audio.SetListener_0025E410((int)(new S5Cams(m).data_));
-                new S5Cams(m).f1200_Set(0);
+                new S5Cams(m).IsDefaultListener_Set(0);
             }
-            new S5Cams(m).cnt2_Set(16);
-            new S5Cams(m).h2_Set(ResourcePool.Alloc(0, 1024, (uint)(35), (int)(0x800C83CCu)));
-            new S5Cams(m).data2__Set(Mem.U32(new S5Cams(m).h2));
+            new S5Cams(m).RecordPoolCount_F20_Set(16);
+            new S5Cams(m).RecordPoolHandle_F18_Set(ResourcePool.Alloc(0, 1024, (uint)(35), (int)(0x800C83CCu)));
+            new S5Cams(m).data2__Set(Mem.U32(new S5Cams(m).RecordPoolHandle_F18));
             memset(new S5Cams(m).data2_, 0, (uint)(1024));
-            for (i = 0; (i < new S5Cams(m).cnt2); ++i)
+            for (i = 0; (i < new S5Cams(m).RecordPoolCount_F20); ++i)
             {
-                ListUtil.Append_00255CB4(new S5Cams(m).txtList.P, (new S5Cams(m).data2_ + (uint)(i * 64)), default(uint), default(uint));
+                ListUtil.Append_00255CB4(new S5Cams(m).RecordPoolList_F24.P, (new S5Cams(m).data2_ + (uint)(i * 64)), default(uint), default(uint));
             }
         }
     }
@@ -1990,58 +1990,58 @@ public static partial class Fade
             if (Dbg.On) Dbg.Enter("func_00233B04", (uint)o);
             float v = 0f;
             float lv = 0f;
-            if ((new FadeObj(o).state == 1))
+            if ((new FadeObj(o).FadeState == 1))
             {
                 goto L_L1;
             }
-            if ((new FadeObj(o).state == 0))
+            if ((new FadeObj(o).FadeState == 0))
             {
                 goto L_Lend;
             }
-            if ((new FadeObj(o).state == 2))
+            if ((new FadeObj(o).FadeState == 2))
             {
                 goto L_L2;
             }
-            if ((new FadeObj(o).state == 3))
+            if ((new FadeObj(o).FadeState == 3))
             {
                 goto L_L3;
             }
             goto L_Lend;
             L_L1: ;
-            if (((float)(new FadeObj(o).t1) <= new FadeObj(o).timer))
+            if (((float)(new FadeObj(o).FadeInTime) <= new FadeObj(o).FadeTimer))
             {
-                new FadeObj(o).state_Set(2);
-                new FadeObj(o).timer_Set(0.0f);
+                new FadeObj(o).FadeState_Set(2);
+                new FadeObj(o).FadeTimer_Set(0.0f);
             }
             else
             {
-                v = ((new FadeObj(o).timer / (float)(((int)(new FadeObj(o).t1) + 1))) * (float)(new FadeObj(o).level));
-                new FadeObj(o).cur_Set((byte)(Cpu.TruncU32(v)));
+                v = ((new FadeObj(o).FadeTimer / (float)(((int)(new FadeObj(o).FadeInTime) + 1))) * (float)(new FadeObj(o).FadeLevel));
+                new FadeObj(o).FadeAlpha_Set((byte)(Cpu.TruncU32(v)));
                 goto L_Lend;
             }
             L_L2: ;
-            if (!((float)(new FadeObj(o).t2) <= new FadeObj(o).timer))
+            if (!((float)(new FadeObj(o).FadeHoldTime) <= new FadeObj(o).FadeTimer))
             {
-                new FadeObj(o).cur_Set(new FadeObj(o).level);
+                new FadeObj(o).FadeAlpha_Set(new FadeObj(o).FadeLevel);
                 goto L_Lend;
             }
-            new FadeObj(o).state_Set(3);
-            new FadeObj(o).timer_Set(0.0f);
+            new FadeObj(o).FadeState_Set(3);
+            new FadeObj(o).FadeTimer_Set(0.0f);
             L_L3: ;
-            if (((float)(new FadeObj(o).t3) <= new FadeObj(o).timer))
+            if (((float)(new FadeObj(o).FadeOutTime) <= new FadeObj(o).FadeTimer))
             {
-                new FadeObj(o).state_Set(0);
-                new FadeObj(o).timer_Set(0.0f);
+                new FadeObj(o).FadeState_Set(0);
+                new FadeObj(o).FadeTimer_Set(0.0f);
             }
             else
             {
-                lv = (float)(new FadeObj(o).level);
-                v = (lv - ((new FadeObj(o).timer / (float)(((int)(new FadeObj(o).t3) + 1))) * lv));
-                new FadeObj(o).cur_Set((byte)(Cpu.TruncU32(v)));
+                lv = (float)(new FadeObj(o).FadeLevel);
+                v = (lv - ((new FadeObj(o).FadeTimer / (float)(((int)(new FadeObj(o).FadeOutTime) + 1))) * lv));
+                new FadeObj(o).FadeAlpha_Set((byte)(Cpu.TruncU32(v)));
             }
             goto L_Lend;
             L_Lend: ;
-            new FadeObj(o).timer_Set((new FadeObj(o).timer + Mem.F32(Gv.FrameTime)));
+            new FadeObj(o).FadeTimer_Set((new FadeObj(o).FadeTimer + Mem.F32(Gv.FrameTime)));
         }
     }
 
@@ -2053,16 +2053,16 @@ public static partial class Fade
             if (Dbg.On) Dbg.Enter("func_0023919C", (uint)o, (uint)a, (uint)b, (uint)c);
             if ((o != 0u))
             {
-                new Obj538(o).unk550_Set(d);
-                new Obj538(o).unk54A_Set(a);
-                new Obj538(o).unk54E_Set(b);
-                new Obj538(o).unk54F_Set(c);
-                new Obj538(o).unk551_Set((sbyte)(0));
-                new Obj538(o).unk54B_Set(e);
-                new Obj538(o).unk54C_Set(f);
-                new Obj538(o).unk54D_Set(g);
-                new Obj538(o).unk538_Set(0);
-                new Obj538(o).unk544_Set(1);
+                new Obj538(o).FadeB_Set(d);
+                new Obj538(o).FadeLevel_Set(a);
+                new Obj538(o).FadeR_Set(b);
+                new Obj538(o).FadeG_Set(c);
+                new Obj538(o).FadeAlpha_Set((sbyte)(0));
+                new Obj538(o).FadeInTime_Set(e);
+                new Obj538(o).FadeHoldTime_Set(f);
+                new Obj538(o).FadeOutTime_Set(g);
+                new Obj538(o).FadeTimer_Set(0);
+                new Obj538(o).FadeState_Set(1);
             }
         }
     }
@@ -3100,8 +3100,8 @@ public static partial class View
                 new DlCmd(dl).w1_Set((uint)(4));
                 Gfx.SetOtherModeL((uint)(22));
                 dl6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
-                new DlCmd(dl6).w0_Set(((4127195136u | ((Cpu.TruncU32((new ViewObj(a).unk2A4 + new ViewObj(a).unk29C)) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((new ViewObj(a).unk2A8 + new ViewObj(a).unk2A0)) & (uint)(1023)) << (int)2)));
-                new DlCmd(dl6).w1_Set((((Cpu.TruncU32(new ViewObj(a).unk2A4) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(new ViewObj(a).unk2A8) & (uint)(1023)) << (int)2)));
+                new DlCmd(dl6).w0_Set(((4127195136u | ((Cpu.TruncU32((new ViewObj(a).ViewportX + new ViewObj(a).ViewportWidth)) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((new ViewObj(a).ViewportY + new ViewObj(a).ViewportHeight)) & (uint)(1023)) << (int)2)));
+                new DlCmd(dl6).w1_Set((((Cpu.TruncU32(new ViewObj(a).ViewportX) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(new ViewObj(a).ViewportY) & (uint)(1023)) << (int)2)));
             }
         }
     }
@@ -3146,10 +3146,10 @@ public static partial class View
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002365FC", (uint)o);
-            new TargetObj(o).unk29C_Set(func_002365FC_approach(new TargetObj(o).unk29C, a, 16.0f));
-            new TargetObj(o).unk2A0_Set(func_002365FC_approach(new TargetObj(o).unk2A0, b, 16.0f));
-            new TargetObj(o).unk2A4_Set(func_002365FC_approach(new TargetObj(o).unk2A4, c, 16.0f));
-            new TargetObj(o).unk2A8_Set(func_002365FC_approach(new TargetObj(o).unk2A8, d, 16.0f));
+            new TargetObj(o).ViewportWidth_Set(func_002365FC_approach(new TargetObj(o).ViewportWidth, a, 16.0f));
+            new TargetObj(o).ViewportHeight_Set(func_002365FC_approach(new TargetObj(o).ViewportHeight, b, 16.0f));
+            new TargetObj(o).ViewportX_Set(func_002365FC_approach(new TargetObj(o).ViewportX, c, 16.0f));
+            new TargetObj(o).ViewportY_Set(func_002365FC_approach(new TargetObj(o).ViewportY, d, 16.0f));
         }
     }
 
@@ -4389,17 +4389,17 @@ public static partial class View
             if (Dbg.On) Dbg.Enter("func_0044B27C", (uint)actor);
             uint parts = 0u;
             memset(actor, 0, (uint)(4616));
-            ListUtil.Init(new func_8044B27C_S1_v2(actor).unkC.P, 0, 4);
-            ListUtil.Init(new func_8044B27C_S1_v2(actor).unk20.P, 0, 4);
-            ListUtil.Init(new func_8044B27C_S1_v2(actor).unkF24.P, 0, 4);
+            ListUtil.Init(new func_8044B27C_S1_v2(actor).ViewList_2.P, 0, 4);
+            ListUtil.Init(new func_8044B27C_S1_v2(actor).ViewList2_20.P, 0, 4);
+            ListUtil.Init(new func_8044B27C_S1_v2(actor).RecordPoolList_F24_2.P, 0, 4);
             parts = (actor + 64u);
-            new func_8044B27C_S1_v2(actor).unk1200_Set(1);
-            new func_8044B27C_S1_v2(actor).unk0_Set(0);
-            new func_8044B27C_S1_v2(actor).unk4_Set(0);
-            new func_8044B27C_S1_v2(actor).unk8_Set(0);
-            new func_8044B27C_S1_v2(actor).unkF18_Set(0);
-            new func_8044B27C_S1_v2(actor).unkF1C_Set(0);
-            new func_8044B27C_S1_v2(actor).unkF20_Set(0);
+            new func_8044B27C_S1_v2(actor).IsDefaultListener_Set(1);
+            new func_8044B27C_S1_v2(actor).ViewsHandle_Set(0);
+            new func_8044B27C_S1_v2(actor).Views_2_Set(0);
+            new func_8044B27C_S1_v2(actor).ViewCount_2_Set(0);
+            new func_8044B27C_S1_v2(actor).RecordPoolHandle_F18_Set(0);
+            new func_8044B27C_S1_v2(actor).RecordPool_F1C_2_Set(0);
+            new func_8044B27C_S1_v2(actor).RecordPoolCount_F20_2_Set(0);
             new func_8044B27C_S1_v2(actor).unk38_Set(2);
             Camera.InitState(parts, default(uint), default(uint), default(uint));
             Camera.SetupProjection(parts, default(uint), default(uint), default(uint));

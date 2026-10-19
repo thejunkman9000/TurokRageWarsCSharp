@@ -283,7 +283,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f9;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f9: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C712Cu)))) goto _f10;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C712Cu)))) goto _f10;
             goto L_b31;
             _f10: ;
             Mem.Set((new B2Ctl(ctl).owner_ + (uint)1704), Mem.F32(0x800C7130u));
@@ -304,7 +304,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f15;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f15: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7138u)))) goto _f16;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7138u)))) goto _f16;
             goto L_b31;
             _f16: ;
             Mem.Set((new B2Ctl(ctl).owner_ + (uint)1704), Mem.F32(0x800C713Cu));
@@ -319,7 +319,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f19;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f19: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7148u)))) goto _f20;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7148u)))) goto _f20;
             goto L_b41;
             _f20: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set((-fs0));
@@ -330,7 +330,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f23;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f23: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7154u)))) goto _f24;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7154u)))) goto _f24;
             L_b41: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set(0.0f);
             new B2Ctl(ctl).StrafeDir_Set(2);
@@ -444,7 +444,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f10;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f10: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7164u)))) goto _f11;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7164u)))) goto _f11;
             goto L_b31;
             _f11: ;
             Mem.Set((new B2Ctl(ctl).owner_ + (uint)1704), Mem.F32(0x800C7168u));
@@ -465,7 +465,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f16;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f16: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7170u)))) goto _f17;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7170u)))) goto _f17;
             goto L_b31;
             _f17: ;
             Mem.Set((new B2Ctl(ctl).owner_ + (uint)1704), Mem.F32(0x800C7174u));
@@ -480,7 +480,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f20;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f20: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7180u)))) goto _f21;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C7180u)))) goto _f21;
             goto L_b41;
             _f21: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set((-fs0));
@@ -491,7 +491,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f24;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f24: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C718Cu)))) goto _f25;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C718Cu)))) goto _f25;
             L_b41: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set(0.0f);
             new B2Ctl(ctl).StrafeDir_Set(2);
@@ -628,7 +628,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f8;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f8: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C71A0u)))) goto _f9;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C71A0u)))) goto _f9;
             goto L_b23;
             _f9: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set((-fs0));
@@ -639,7 +639,7 @@ public static partial class Ai
             if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f12;
             Ai.ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f12: ;
-            if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C71ACu)))) goto _f13;
+            if (!((new G21Ctl(ctl).SectorWalkDistances[(int)(idx)] < Mem.F32(0x800C71ACu)))) goto _f13;
             L_b23: ;
             new B2Ctl(ctl).OwnerPtr.StrafeInput_Set(0.0f);
             new B2Ctl(ctl).StrafeDir_Set(2);

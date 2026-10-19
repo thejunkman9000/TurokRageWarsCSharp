@@ -58,7 +58,7 @@ public static partial class LegacyMenu
             }
             else
             {
-                new O06B_v6(new O06A_v3(b).PlayerPtr).unk5D0_Set(0);
+                new O06B_v6(new O06A_v3(b).PlayerPtr).CameraMode_Set(0);
             }
             return 1;
         }
@@ -391,7 +391,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DF84", (uint)m, (uint)on);
-            int p = (int)(new S10Menu(m).ctrl.Port);
+            int p = (int)(new S10Menu(m).PadPtr.Port);
             if ((on != 0))
             {
                 Pad.EnableStatusPoll(p);
@@ -483,7 +483,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E21C", (uint)a);
-            new S10Item(a).f14_Set(0x800D76C8u);
+            new S10Item(a).Data_Set(0x800D76C8u);
             return 0;
         }
     }
@@ -494,7 +494,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E230", (uint)a);
-            new S10Item(a).f14_Set(0x800D76CCu);
+            new S10Item(a).Data_Set(0x800D76CCu);
             return 0;
         }
     }
@@ -531,10 +531,10 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043E284", (uint)a, (uint)m);
             Mem.Set((0x80146914u + (uint)(0 * 4)), 0);
-            Pad.DisableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.DisableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             Rumble.Reset(new S10Menu(m).ctrl_);
             Rumble.SetEnabled(new S10Menu(m).ctrl_, 1);
-            new S10Menu(m).ctx.f85C_Set(0);
+            new S10Menu(m).PlayerPtr.IsInMenu_Set(0);
             return 1;
         }
     }
@@ -560,7 +560,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E318", (uint)a, (uint)m);
-            uint sub = new S10Menu(m).ctx.sub_;
+            uint sub = new S10Menu(m).PlayerPtr.sub_;
             new S10Sub(sub).b83_Set((byte)(MenuSpinner.Step(m, (int)(new S10Sub(sub).b83), 1, 0, 10, 0)));
             return 0;
         }
@@ -572,37 +572,37 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E364", (uint)a, (uint)m);
-            int n = (int)(new S10Menu(m).ctx.sub.b83);
+            int n = (int)(new S10Menu(m).PlayerPtr.PlayerEntryPtr.b83);
             if ((n == 0))
             {
-                new S10Item(a).f14_Set(0x800D7680u);
+                new S10Item(a).Data_Set(0x800D7680u);
             }
             else
             {
                 if ((n == 10))
                 {
-                    new S10Item(a).f14_Set(0x800D7684u);
+                    new S10Item(a).Data_Set(0x800D7684u);
                 }
                 else
                 {
                     uint s = 0u;
-                    switch ((int)(new S10Menu(m).ctrl.Port))
+                    switch ((int)(new S10Menu(m).PadPtr.Port))
                     {
                     case 0:
                     default:
-                        new S10Item(a).f14_Set(0x800D7670u);
+                        new S10Item(a).Data_Set(0x800D7670u);
                         break;
                     case 1:
-                        new S10Item(a).f14_Set(0x800D7674u);
+                        new S10Item(a).Data_Set(0x800D7674u);
                         break;
                     case 2:
-                        new S10Item(a).f14_Set(0x800D7678u);
+                        new S10Item(a).Data_Set(0x800D7678u);
                         break;
                     case 3:
-                        new S10Item(a).f14_Set(0x800D767Cu);
+                        new S10Item(a).Data_Set(0x800D767Cu);
                         break;
                     }
-                    s = Mem.U32(new S10Item(a).f14);
+                    s = Mem.U32(new S10Item(a).Data);
                     StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 2)), 0x800E2320u, n, default(int));
                 }
             }
@@ -616,7 +616,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E458", (uint)a, (uint)m);
-            uint sub = new S10Menu(m).ctx.sub_;
+            uint sub = new S10Menu(m).PlayerPtr.sub_;
             new S10Sub(sub).b7B_Set((sbyte)(MenuSpinner.Step(m, (int)(new S10Sub(sub).b7B), 1, 0, 1, 1)));
             return 0;
         }
@@ -639,7 +639,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E4D0", (uint)a, (uint)m);
-            new S10Item(a).f14_Set(Mem.U32((0x800E5D10u + (uint)(new S10Menu(m).ctrl.Port * 4))));
+            new S10Item(a).Data_Set(Mem.U32((0x800E5D10u + (uint)(new S10Menu(m).PadPtr.Port * 4))));
             return 0;
         }
     }
@@ -661,13 +661,13 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E520", (uint)a, (uint)m);
-            switch ((int)(new S10Menu(m).ctx.sub.b7B))
+            switch ((int)(new S10Menu(m).PlayerPtr.PlayerEntryPtr.b7B))
             {
             case 0:
-                new S10Item(a).f14_Set(0x800D7688u);
+                new S10Item(a).Data_Set(0x800D7688u);
                 break;
             case 1:
-                new S10Item(a).f14_Set(0x800D768Cu);
+                new S10Item(a).Data_Set(0x800D768Cu);
                 break;
             }
             return 0;
@@ -680,7 +680,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E56C", (uint)m);
-            Pad.EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.EnableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
         }
     }
 
@@ -690,7 +690,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E590", (uint)m);
-            Pad.EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.EnableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
@@ -745,7 +745,7 @@ public static partial class LegacyMenu
             if (((int)(Pad.IsConfirm(new S10Menu(m).ctrl_)) != 0))
             {
                 ObjectUtil.Player_SetCharacter(ctx, (int)(new S10Sub(sub).b80));
-                Audio.PlaySound2D((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).f5E0 * 4))).v));
+                Audio.PlaySound2D((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).CharacterId * 4))).v));
                 MenuPanel.OpenChild((uint)((int)(y)), (uint)((int)(m)), 0x00450698u);
                 return 1;
             }
@@ -794,9 +794,9 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043E788", (uint)a, (uint)m);
             uint ctx = new S10Menu(m).ctx_;
             uint sub = new S10Ctx(ctx).sub_;
-            new S10Ctx(ctx).f858_Set(0);
+            new S10Ctx(ctx).TeamChoice_858_Set(0);
             new S10Sub(sub).b80_Set((sbyte)(0));
-            MenuPanel.Open((new S10Ctx(ctx).f5DC_ + (uint)1364), 0x00450758u, (int)(ctx), new S10Ctx(ctx).f698, new S10Ctx(ctx).f5D4);
+            MenuPanel.Open((new S10Ctx(ctx).f5DC_ + (uint)1364), 0x00450758u, (int)(ctx), new S10Ctx(ctx).ControllerPtr, new S10Ctx(ctx).PlayerIndex);
             return 1;
         }
     }
@@ -809,9 +809,9 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043E7D0", (uint)a, (uint)m);
             uint ctx = new S10Menu(m).ctx_;
             uint sub = new S10Ctx(ctx).sub_;
-            new S10Ctx(ctx).f858_Set(1);
+            new S10Ctx(ctx).TeamChoice_858_Set(1);
             new S10Sub(sub).b80_Set((sbyte)(0));
-            MenuPanel.Open((new S10Ctx(ctx).f5DC_ + (uint)1364), 0x00450758u, (int)(ctx), new S10Ctx(ctx).f698, new S10Ctx(ctx).f5D4);
+            MenuPanel.Open((new S10Ctx(ctx).f5DC_ + (uint)1364), 0x00450758u, (int)(ctx), new S10Ctx(ctx).ControllerPtr, new S10Ctx(ctx).PlayerIndex);
             return 1;
         }
     }
@@ -843,13 +843,13 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043E924", (uint)a, (uint)m);
             if ((Mem.F32(0x801462E8u) == 1.0f))
             {
-                new S10Item(a).f14_Set(0x800D7E08u);
+                new S10Item(a).Data_Set(0x800D7E08u);
             }
             else
             {
                 uint s = 0u;
-                new S10Item(a).f14_Set(0x800D7E04u);
-                s = Mem.U32(new S10Item(a).f14);
+                new S10Item(a).Data_Set(0x800D7E04u);
+                s = Mem.U32(new S10Item(a).Data);
                 StrUtil.Sprintf((s + (uint)(MenuItem.GetTextLength(a) - 3)), 0x800E2328u, (Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) - 5), default(int));
             }
             return 0;
@@ -910,7 +910,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EAC0", (uint)m);
-            int p = (int)(new S10Menu(m).ctrl.Port);
+            int p = (int)(new S10Menu(m).PadPtr.Port);
             Pad.EnableStatusPoll(p);
             CPak.DetectPort(p);
         }
@@ -922,7 +922,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EAF4", (uint)m);
-            Pad.EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.EnableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
@@ -933,7 +933,7 @@ public static partial class LegacyMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EB20", (uint)a, (uint)m);
-            Pad.EnableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.EnableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F754u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }
@@ -959,7 +959,7 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043EBC4", (uint)a, (uint)m);
             Game_FadeOutToState(Gv.GameCtx, 8);
             Mem.Set(0x80154048u, 0);
-            Pad.DisableStatusPoll((int)(new S10Menu(m).ctrl.Port));
+            Pad.DisableStatusPoll((int)(new S10Menu(m).PadPtr.Port));
             return 1;
         }
     }
@@ -1002,15 +1002,15 @@ public static partial class LegacyMenu
             if (Dbg.On) Dbg.Enter("func_0043ECE8", (uint)a, (uint)m);
             if ((Pad.CountConnected() < 2))
             {
-                new S10Menu(m).fC.flags_Set((uint)((uint)(new S10Menu(m).fC.flags) & (uint)((~16777216))));
-                if (((int)(new S10Menu(m).state) == 2))
+                new S10Menu(m).ItemsPtr.flags_Set((uint)((uint)(new S10Menu(m).ItemsPtr.flags) & (uint)((~16777216))));
+                if (((int)(new S10Menu(m).CursorIndex) == 2))
                 {
-                    new S10Menu(m).state_Set((short)(1));
+                    new S10Menu(m).CursorIndex_Set((short)(1));
                 }
             }
             else
             {
-                new S10Menu(m).fC.flags_Set((uint)((uint)(new S10Menu(m).fC.flags) | (uint)(16777216)));
+                new S10Menu(m).ItemsPtr.flags_Set((uint)((uint)(new S10Menu(m).ItemsPtr.flags) | (uint)(16777216)));
             }
             return 0;
         }
@@ -1123,7 +1123,7 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043EF1C", (uint)a);
             Mem.Set((0x801468B0u + (uint)(0 * 4)), Mem.F32(0x800E2390u));
-            new O06B_v16(new O06A_v18(a).unkC_).Item1Flags_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).unkC_).Item1Flags) & (uint)((~67108864))));
+            new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).ItemsPtr).Item1Flags) & (uint)((~67108864))));
         }
     }
 
@@ -1196,8 +1196,8 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043EFCC_func_0043F1B8", (uint)a, (uint)b);
             uint x = new O06A_v39(a).TemplatePtr;
-            int id = (int)(new O06X(x).unk20);
-            int idx = (int)(new O06X(x).unk22);
+            int id = (int)(new O06X(x).ParamId);
+            int idx = (int)(new O06X(x).ParamIndex);
             uint y = new O06B_v7(b).unk1C_;
             int r = 0;
             switch (id)
@@ -1215,15 +1215,15 @@ public static partial class LegacyMenu
                     }
                     break;
                     L_A: ;
-                    r = ((idx < (int)(new O06Y(y).unk64D)) ? 1 : 0);
+                    r = ((idx < (int)(new O06Y(y).LegacyKeyCountA_64D)) ? 1 : 0);
                     break;
                     L_B: ;
-                    r = (((idx - 3) < (int)(new O06Y(y).unk64E)) ? 1 : 0);
+                    r = (((idx - 3) < (int)(new O06Y(y).LegacyKeyCountB_64E)) ? 1 : 0);
                     break;
                 }
                 break;
             case 4500:
-                r = (((int)(new O06Y(y).unk644[(int)(idx)]) != 0) ? 1 : 0);
+                r = (((int)(new O06Y(y).LegacyItemFlags_644[(int)(idx)]) != 0) ? 1 : 0);
                 break;
             }
             return r;
@@ -1242,7 +1242,7 @@ public static partial class LegacyMenu
             if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 5))
             {
                 Mem.Set(Gv.Menu_CurrentDrawPass, 5);
-                Gfx.BeginFlatColorPass((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))), default(uint), default(uint), default(uint));
+                Gfx.BeginFlatColorPass((uint)((int)((new O06V_v5(d).PanelFade * (new O06V_v5(d).TextFade * 255.0f)))), default(uint), default(uint), default(uint));
             }
             g1 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g1).w0_Set(3875536896u);
@@ -1254,15 +1254,15 @@ public static partial class LegacyMenu
             {
                 g3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g3).w0_Set(4211081216u);
-                new O06Gfx(g3).w1_Set(((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))) | 4294967040u));
+                new O06Gfx(g3).w1_Set(((uint)((int)((new O06V_v5(d).PanelFade * (new O06V_v5(d).TextFade * 255.0f)))) | 4294967040u));
             }
             else
             {
                 g3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g3).w0_Set(4211081216u);
-                new O06Gfx(g3).w1_Set((uint)((((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f))) & 255) | 842150400)));
+                new O06Gfx(g3).w1_Set((uint)((((int)((new O06V_v5(d).PanelFade * (new O06V_v5(d).TextFade * 255.0f))) & 255) | 842150400)));
             }
-            Sprite.Draw(new O06A_v39(a).Data, 0, new O06E_v2(b).unk16, new O06E_v2(b).unk1E, new O06E_v2(b).unkC, new O06E_v2(b).unk10, 1);
+            Sprite.Draw(new O06A_v39(a).Data, 0, new O06E_v2(b).Left16, new O06E_v2(b).Top16, new O06E_v2(b).ScaleX, new O06E_v2(b).ScaleY, 1);
         }
     }
 
@@ -1416,8 +1416,8 @@ public static partial class LegacyMenu
         {
             if (Dbg.On) Dbg.Enter("func_0043F1B8", (uint)a, (uint)b);
             uint x = new O06A_v11(a).TemplatePtr;
-            int id = (int)(new O06X(x).unk20);
-            int idx = (int)(new O06X(x).unk22);
+            int id = (int)(new O06X(x).ParamId);
+            int idx = (int)(new O06X(x).ParamIndex);
             uint y = new O06B_v7(b).unk1C_;
             int r = 0;
             switch (id)
@@ -1435,15 +1435,15 @@ public static partial class LegacyMenu
                     }
                     break;
                     L_A: ;
-                    r = ((idx < (int)(new O06Y(y).unk64D)) ? 1 : 0);
+                    r = ((idx < (int)(new O06Y(y).LegacyKeyCountA_64D)) ? 1 : 0);
                     break;
                     L_B: ;
-                    r = (((idx - 3) < (int)(new O06Y(y).unk64E)) ? 1 : 0);
+                    r = (((idx - 3) < (int)(new O06Y(y).LegacyKeyCountB_64E)) ? 1 : 0);
                     break;
                 }
                 break;
             case 4500:
-                r = (((int)(new O06Y(y).unk644[(int)(idx)]) != 0) ? 1 : 0);
+                r = (((int)(new O06Y(y).LegacyItemFlags_644[(int)(idx)]) != 0) ? 1 : 0);
                 break;
             }
             return r;

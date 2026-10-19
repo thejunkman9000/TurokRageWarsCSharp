@@ -85,12 +85,12 @@ public static partial class CameraShake
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239D0C", (uint)o);
-            switch (new ObjWave(o).type)
+            switch (new ObjWave(o).Mode)
             {
             case 1:
-                return (sinf((new ObjWave(o).unk10 * Mem.F32(0x800C865Cu))) * new ObjWave(o).unkC);
+                return (sinf((new ObjWave(o).Phase * Mem.F32(0x800C865Cu))) * new ObjWave(o).Amplitude);
             case 0:
-                return RandomGen.Symmetric((-new ObjWave(o).unkC), new ObjWave(o).unkC);
+                return RandomGen.Symmetric((-new ObjWave(o).Amplitude), new ObjWave(o).Amplitude);
             default:
                 return 0.0f;
             }

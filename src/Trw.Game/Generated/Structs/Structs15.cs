@@ -3412,19 +3412,19 @@ public readonly struct ModeBlk
     // +0x0
     public U8x252 padFC { [MethodImpl(Inl)] get => new(P); }
     // +0xFC
-    public int modeFC
+    public int ModeId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xFCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xFCu, value);
     }
-    [MethodImpl(Inl)] public int modeFC_Set(int v) => Mem.Set(P + 0xFCu, v);
+    [MethodImpl(Inl)] public int ModeId_Set(int v) => Mem.Set(P + 0xFCu, v);
     // +0x100
-    public int unk100
+    public int ModeTimer_100
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x100u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x100u, value);
     }
-    [MethodImpl(Inl)] public int unk100_Set(int v) => Mem.Set(P + 0x100u, v);
+    [MethodImpl(Inl)] public int ModeTimer_100_Set(int v) => Mem.Set(P + 0x100u, v);
 }
 
 /// <summary>struct ModeBlk2, 0x11C bytes, at a guest address.</summary>
@@ -3441,19 +3441,19 @@ public readonly struct ModeBlk2
     // +0x0
     public U8x252 padFC { [MethodImpl(Inl)] get => new(P); }
     // +0xFC
-    public int unkFC
+    public int ModeId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xFCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xFCu, value);
     }
-    [MethodImpl(Inl)] public int unkFC_Set(int v) => Mem.Set(P + 0xFCu, v);
+    [MethodImpl(Inl)] public int ModeId_Set(int v) => Mem.Set(P + 0xFCu, v);
     // +0x100
-    public int unk100
+    public int ModeTimer_100
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x100u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x100u, value);
     }
-    [MethodImpl(Inl)] public int unk100_Set(int v) => Mem.Set(P + 0x100u, v);
+    [MethodImpl(Inl)] public int ModeTimer_100_Set(int v) => Mem.Set(P + 0x100u, v);
     // +0x104
     public int unk104
     {

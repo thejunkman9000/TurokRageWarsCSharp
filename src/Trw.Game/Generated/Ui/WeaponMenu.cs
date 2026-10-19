@@ -295,16 +295,16 @@ public static partial class TeamMenu
             uint e = 0u;
             ushort a1 = 0;
             if (!((Flyby.IsActive() == 0))) goto _f0;
-            if (!(((Mem.S32(Gv.MenuPanel_SharedList) != 0) && (new B04Mn3(o).w0 != 0)))) goto _f1;
+            if (!(((Mem.S32(Gv.MenuPanel_SharedList) != 0) && (new B04Mn3(o).OpenState != 0)))) goto _f1;
             TeamMenu.Close(o);
             return;
             _f1: ;
             wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
-            k = new B04Mn3(o).w0;
+            k = new B04Mn3(o).OpenState;
             if (!(((k == 0) || (k == 3)))) goto _f2;
             if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.TeamId) == 255)))) goto _f3;
             TeamMenu.BuildSlots(o);
-            new B04Mn3(o).w0_Set(1);
+            new B04Mn3(o).OpenState_Set(1);
             goto L_blk9;
             _f3: ;
             goto _f4;
@@ -314,17 +314,17 @@ public static partial class TeamMenu
             new B04Act(p).IsStickCaptured_Set(1);
             Mem.Set((p + (uint)4536), 1);
             v = TeamMenu.StickDirection4(p);
-            if (!((v != new B04Mn3(o).w70))) goto _f5;
+            if (!((v != new B04Mn3(o).HoveredDirection))) goto _f5;
             if (!((v != (-1)))) goto _f6;
             e = (o + (uint)(v * 20));
             a1 = Mem.U16((e + (uint)30));
             if (!((Mem.S32((e + (uint)32)) != 0))) goto _f7;
             if (!(((int)((short)(a1)) < 0))) goto _f8;
-            new B04Mn3(o).w70_Set((-1));
+            new B04Mn3(o).HoveredDirection_Set((-1));
             goto _f9;
             _f8: ;
-            if (!((v != new B04Mn3(o).w6C))) goto _f10;
-            new B04Mn3(o).w6C_Set(v);
+            if (!((v != new B04Mn3(o).SelectedSlot))) goto _f10;
+            new B04Mn3(o).SelectedSlot_Set(v);
             _f10: ;
             new B04Act(p).PlayerEntryPtr.TeamId_Set((byte)(a1));
             goto L_blk17;
@@ -333,22 +333,22 @@ public static partial class TeamMenu
             goto _f11;
             _f6: ;
             L_blk17: ;
-            new B04Mn3(o).w70_Set(v);
+            new B04Mn3(o).HoveredDirection_Set(v);
             _f11: ;
             _f5: ;
             _f4: ;
-            k2 = new B04Mn3(o).w0;
+            k2 = new B04Mn3(o).OpenState;
             switch (k2) { case 1: goto _f13; case 2: goto _f14; case 3: goto _f15; default: goto _f12; }
             _f13: ;
-            new B04Mn3(o).f8_Set((new B04Mn3(o).f8 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C738Cu))));
-            if (!((Mem.F32(0x800C7390u) <= new B04Mn3(o).f8))) goto _f16;
-            new B04Mn3(o).f8_Set(Mem.F32(0x800C7390u));
-            new B04Mn3(o).w0_Set(2);
+            new B04Mn3(o).OpenScale_Set((new B04Mn3(o).OpenScale + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C738Cu))));
+            if (!((Mem.F32(0x800C7390u) <= new B04Mn3(o).OpenScale))) goto _f16;
+            new B04Mn3(o).OpenScale_Set(Mem.F32(0x800C7390u));
+            new B04Mn3(o).OpenState_Set(2);
             _f16: ;
             goto _f12;
             _f14: ;
             if (!((TeamMenu.ShouldClose(o, p) != 0))) goto _f17;
-            new B04Mn3(o).w0_Set(3);
+            new B04Mn3(o).OpenState_Set(3);
             new B04Act(p).IsStickCaptured_Set(0);
             Mem.Set((p + (uint)4536), 0);
             switch ((int)(new B04Act(p).PlayerEntryPtr.TeamId)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
@@ -372,17 +372,17 @@ public static partial class TeamMenu
             goto _f18;
             _f18: ;
             _f15: ;
-            t = (new B04Mn3(o).f8 - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7394u)));
-            new B04Mn3(o).f8_Set(t);
+            t = (new B04Mn3(o).OpenScale - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7394u)));
+            new B04Mn3(o).OpenScale_Set(t);
             if (!((t <= 0.0f))) goto _f23;
-            new B04Mn3(o).f8_Set(0.0f);
-            new B04Mn3(o).w0_Set(0);
+            new B04Mn3(o).OpenScale_Set(0.0f);
+            new B04Mn3(o).OpenState_Set(0);
             _f23: ;
             _f17: ;
             goto _f12;
             _f12: ;
-            if (!((new B04Mn3(o).w0 != 0))) goto _f24;
-            new B04Mn3(o).f14_Set((new B04Mn3(o).f14 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7398u))));
+            if (!((new B04Mn3(o).OpenState != 0))) goto _f24;
+            new B04Mn3(o).SpinAngle_Set((new B04Mn3(o).SpinAngle + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7398u))));
             _f24: ;
             _f0: ;
         }
@@ -610,11 +610,11 @@ public static partial class TeamMenu
             uint e = 0u;
             ushort a1 = 0;
             wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
-            k = new B04MenuL(o).kind;
+            k = new B04MenuL(o).OpenState;
             if (!(((k == 0) || (k == 3)))) goto _f0;
             if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.TeamId) == 255)))) goto _f1;
             TeamMenu.BuildSlots(o);
-            new B04MenuL(o).kind_Set(1);
+            new B04MenuL(o).OpenState_Set(1);
             goto L_blk5;
             _f1: ;
             goto _f2;
@@ -624,17 +624,17 @@ public static partial class TeamMenu
             Mem.Set((p + (uint)4532), 1);
             Mem.Set((p + (uint)4536), 1);
             v = TeamMenu.StickDirection4(p);
-            if (!((v != new B04MenuL(o).unk70))) goto _f3;
+            if (!((v != new B04MenuL(o).HoveredDirection))) goto _f3;
             if (!((v != (-1)))) goto _f4;
             e = (o + (uint)(v * 20));
             a1 = Mem.U16((e + (uint)30));
             if (!((Mem.S32((e + (uint)32)) != 0))) goto _f5;
             if (!(((int)((short)(a1)) < 0))) goto _f6;
-            new B04MenuL(o).unk70_Set((-1));
+            new B04MenuL(o).HoveredDirection_Set((-1));
             return;
             _f6: ;
-            if (!((v != new B04MenuL(o).unk6C))) goto _f7;
-            new B04MenuL(o).unk6C_Set(v);
+            if (!((v != new B04MenuL(o).SelectedSlot))) goto _f7;
+            new B04MenuL(o).SelectedSlot_Set(v);
             _f7: ;
             new B04Act(p).PlayerEntryPtr.TeamId_Set((byte)(a1));
             goto L_blk13;
@@ -642,7 +642,7 @@ public static partial class TeamMenu
             goto _f8;
             _f4: ;
             L_blk13: ;
-            new B04MenuL(o).unk70_Set(v);
+            new B04MenuL(o).HoveredDirection_Set(v);
             _f8: ;
             _f3: ;
             _f2: ;
@@ -882,7 +882,7 @@ public static partial class WeaponMenu
                 float new_var = 0f;
                 int bl = 0;
                 t = ((int)(Mem.U8(0x801462DEu)) + 64);
-                new_var4 = new B04Menu(o).f8;
+                new_var4 = new B04Menu(o).OpenScale;
                 do
                 {
                     new_var5 = ((t < 256) ? 1 : 0);
@@ -907,14 +907,14 @@ public static partial class WeaponMenu
                     fs1 = (new B04Cam(cam).q.a * 0.00312500005f);
                     fs1f = (new B04Cam(cam).q.b * 0.00416666688f);
                     q = new B04Cam(cam).q.P;
-                    X = ((new R1Quad(q).c + (new B04Cam(cam).q.a * 0.5f)) + ((new B04Draw(sl).v.x * 0.5f) * new R1Quad(q).a));
+                    X = ((new R1Quad(q).c + (new B04Cam(cam).q.a * 0.5f)) + ((new B04Draw(sl).Offset.x * 0.5f) * new R1Quad(q).a));
                     new_var = (new R1Quad(q).b * 0.5f);
-                    Y = ((new R1Quad(q).d + new_var) + ((new B04Draw(sl).v.y * 0.5f) * new R1Quad(q).b));
-                    alpha = new B04Draw(sl).f18;
-                    if ((new B04Draw(sl).u14 != 0))
+                    Y = ((new R1Quad(q).d + new_var) + ((new B04Draw(sl).Offset.y * 0.5f) * new R1Quad(q).b));
+                    alpha = new B04Draw(sl).Alpha;
+                    if ((new B04Draw(sl).IconSprite != 0))
                     {
-                        Sprite.GetFrameSize(new B04Draw(sl).u14, 0, _fp, (_fp + 4u));
-                        if ((new B04Menu(o).w37C == new B04Draw(sl).i))
+                        Sprite.GetFrameSize(new B04Draw(sl).IconSprite, 0, _fp, (_fp + 4u));
+                        if ((new B04Menu(o).HighlightedSlot == new B04Draw(sl).SlotIndex))
                         {
                             r = (int)(((cosf(Mem.F32((o + (uint)20))) * 63.0f) + 192.0f));
                             alpha = 1.0f;
@@ -923,7 +923,7 @@ public static partial class WeaponMenu
                         }
                         else
                         {
-                            if ((Player.CanUseWeapon(p, new B04Draw(sl).idx) == 0))
+                            if ((Player.CanUseWeapon(p, new B04Draw(sl).WeaponIndex) == 0))
                             {
                                 new_var2 = (uint)(100);
                             }
@@ -938,8 +938,8 @@ public static partial class WeaponMenu
                         g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(g).w0_Set(4211081216u);
                         new DlCmd(g).w1_Set(((uint)(((((r & 255) << (int)24) | (((gg & 255) << (int)11) << (int)5)) | ((bl & 255) << (int)8))) | (Cpu.TruncU32((alpha * fs3)) & (uint)(255))));
-                        new_var2 = (uint)((short)((int)((X - ((((float)(Mem.S32(_fp)) * new B04Draw(sl).f1C) * fs1) * 0.5f)))));
-                        Sprite.Draw(new B04Draw(sl).u14, 0, (short)((int)(new_var2)), (short)((int)((short)((int)((Y - ((((float)(Mem.S32((_fp + 4u))) * new B04Draw(sl).f1C) * fs1f) * 0.5f)))))), (fs1 * new B04Draw(sl).f1C), (fs1f * new B04Draw(sl).f1C), 1);
+                        new_var2 = (uint)((short)((int)((X - ((((float)(Mem.S32(_fp)) * new B04Draw(sl).Scale) * fs1) * 0.5f)))));
+                        Sprite.Draw(new B04Draw(sl).IconSprite, 0, (short)((int)(new_var2)), (short)((int)((short)((int)((Y - ((((float)(Mem.S32((_fp + 4u))) * new B04Draw(sl).Scale) * fs1f) * 0.5f)))))), (fs1 * new B04Draw(sl).Scale), (fs1f * new B04Draw(sl).Scale), 1);
                     }
                 }
             }
@@ -1300,7 +1300,7 @@ public static partial class WeaponMenu
             if (!(((int)(idx) != (int)(new B04Act(p).WeaponIndex)))) goto _f14;
             new B04Act(p).PendingWeaponIndex_Set((short)(a2));
             if (!(!((new B04Act(p).GroundFlags & (uint)(4096)) != 0u))) goto _f15;
-            t = (int)(new B04W2(Mem.U32((Gv.WeaponDefTable + (uint)(idx * 4)))).unkC);
+            t = (int)(new B04W2(Mem.U32((Gv.WeaponDefTable + (uint)(idx * 4)))).PairedWeaponIndex_C);
             if (!(((t != s0v) && ((int)(new B04Act(p).WeaponSlots[(int)(t)].a) != 0)))) goto _f16;
             Mem.Set((e + (uint)28), t);
             _f16: ;
@@ -1377,7 +1377,7 @@ public static partial class WeaponMenu
             float t = 0f;
             int a0 = 0;
             if (!((((((uint)((new B04Act(p).CharacterId - 17)) >= (uint)(2)) && (new B04Act(p).TeamMenuState == 0)) && !(new B04Act(p).StunTime > 0.0f)) && (Flyby.IsActive() == 0)))) goto _f0;
-            new B04Menu(o).w380_Set((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) == 1) ? 1 : 0));
+            new B04Menu(o).IsListMode_Set((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) == 1) ? 1 : 0));
             if (!((new B04Act(p).CharacterId == 14))) goto _f1;
             if (!(((int)(new B04Act(p).WeaponActorMode_48C) != 0))) goto _f2;
             if (!(((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
@@ -1391,7 +1391,7 @@ public static partial class WeaponMenu
             new B04Act(p).PendingWeaponIndex_Set((short)((int)(Player.PickNextWeapon(p, default(uint), default(uint), default(uint)))));
             goto _f6;
             _f5: ;
-            if (!((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) != 1) || ((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
+            if (!((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) != 1) || ((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Menu(o).OpenDirection_388 != 8))))) goto _f7;
             WeaponMenu.UpdateSelection(o, p);
             _f7: ;
             _f6: ;
@@ -1405,40 +1405,40 @@ public static partial class WeaponMenu
             new B04Act(p).unk11F0_Set(0);
             new B04Act(p).WeaponSpinFrame_Set((-1));
             _f8: ;
-            switch (new B04Menu(o).w0) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
+            switch (new B04Menu(o).OpenState) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
             _f11: ;
-            new B04Menu(o).f8_Set((new B04Menu(o).f8 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7324u))));
-            if (!((new B04Menu(o).w388 != (-1)))) goto _f14;
-            new B04Menu(o).f4_Set(Mem.F32(0x800C7328u));
+            new B04Menu(o).OpenScale_Set((new B04Menu(o).OpenScale + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7324u))));
+            if (!((new B04Menu(o).OpenDirection_388 != (-1)))) goto _f14;
+            new B04Menu(o).HoldTimer_Set(Mem.F32(0x800C7328u));
             goto _f15;
             _f14: ;
-            new B04Menu(o).f4_Set((float)(0));
+            new B04Menu(o).HoldTimer_Set((float)(0));
             _f15: ;
-            if (!((new B04Menu(o).f8 >= Mem.F32(0x800C732Cu)))) goto _f16;
-            new B04Menu(o).w0_Set(2);
-            new B04Menu(o).f8_Set(Mem.F32(0x800C732Cu));
-            if (!((new B04Menu(o).w388 != (-1)))) goto _f17;
-            new B04Menu(o).w388_Set(8);
+            if (!((new B04Menu(o).OpenScale >= Mem.F32(0x800C732Cu)))) goto _f16;
+            new B04Menu(o).OpenState_Set(2);
+            new B04Menu(o).OpenScale_Set(Mem.F32(0x800C732Cu));
+            if (!((new B04Menu(o).OpenDirection_388 != (-1)))) goto _f17;
+            new B04Menu(o).OpenDirection_388_Set(8);
             _f17: ;
             _f16: ;
             goto _f10;
             _f12: ;
             if (!((WeaponMenu.ShouldClose(o, p) != 0))) goto _f18;
-            new B04Menu(o).w388_Set((-1));
+            new B04Menu(o).OpenDirection_388_Set((-1));
             new B04Act(p).IsStickCaptured_Set(0);
-            new B04Menu(o).w0_Set(3);
+            new B04Menu(o).OpenState_Set(3);
             _f13: ;
-            t = (new B04Menu(o).f8 - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7330u)));
-            new B04Menu(o).f8_Set(t);
+            t = (new B04Menu(o).OpenScale - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7330u)));
+            new B04Menu(o).OpenScale_Set(t);
             if (!((t <= 0.0f))) goto _f19;
-            new B04Menu(o).f8_Set(0.0f);
-            new B04Menu(o).w0_Set(0);
+            new B04Menu(o).OpenScale_Set(0.0f);
+            new B04Menu(o).OpenState_Set(0);
             _f19: ;
             _f18: ;
             goto _f10;
             _f10: ;
-            if (!((new B04Menu(o).w0 != 0))) goto _f20;
-            new B04Menu(o).f14_Set((new B04Menu(o).f14 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7334u))));
+            if (!((new B04Menu(o).OpenState != 0))) goto _f20;
+            new B04Menu(o).SpinAngle_Set((new B04Menu(o).SpinAngle + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7334u))));
             goto _f21;
             _f20: ;
             new B04Act(p).IsStickCaptured_Set(0);
@@ -1570,16 +1570,16 @@ public static partial class WeaponMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021846C", (uint)o, (uint)p);
-            if ((new B04Obj(o).unk4 > 0.0f))
+            if ((new B04Obj(o).HoldTimer > 0.0f))
             {
-                new B04Obj(o).unk4_Set((new B04Obj(o).unk4 - Mem.F32(Gv.FrameTime)));
+                new B04Obj(o).HoldTimer_Set((new B04Obj(o).HoldTimer - Mem.F32(Gv.FrameTime)));
                 return 0;
             }
             if (((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)) != 0u))
             {
                 return 0;
             }
-            new B04Obj(o).unk37C_Set((-1));
+            new B04Obj(o).HighlightedSlot_Set((-1));
             return 1;
         }
     }

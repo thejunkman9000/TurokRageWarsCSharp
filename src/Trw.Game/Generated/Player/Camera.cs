@@ -218,9 +218,9 @@ public static partial class Player
                 m = (((float)(new B05Sta10(st).b79) * 0.0078125f) - 1.0f);
                 turn = ((m * 0.5f) + 0.875f);
                 m = (((float)(new B05Sta10(st).b7A) * 0.0078125f) - 1.0f);
-                turn = (turn * ((1.0f - om) * new B05In10(@in).f4));
+                turn = (turn * ((1.0f - om) * new B05In10(@in).YawRate));
                 spd = ((m * 0.400000006f) + 0.600000024f);
-                spd = (spd * (((1.0f - om) * new B05In10(@in).f8) * new B05In10(@in).fC));
+                spd = (spd * (((1.0f - om) * new B05In10(@in).PitchRate) * new B05In10(@in).PitchRateScale));
                 switch ((int)(new B05Sta10(st).b7B))
                 {
                 case 1:
@@ -236,19 +236,19 @@ public static partial class Player
                 h = (uint)(Actor.GetCurrentRegion(a));
                 if (((h == 0u) || ((new B05Hit10(h).flags & (uint)(24576)) != (uint)(8192))))
                 {
-                    if ((new B05In10(@in).f0 != 0.0f))
+                    if ((new B05In10(@in).YawInputScale != 0.0f))
                     {
-                        MathUtil.ApproachProportional((a + 108u), (new B05A10(a).ang + (((new B05P10(p).TurnInput * 80.0f) * new B05In10(@in).f0) * 0.0174532942f)), turn);
+                        MathUtil.ApproachProportional((a + 108u), (new B05A10(a).ang + (((new B05P10(p).TurnInput * 80.0f) * new B05In10(@in).YawInputScale) * 0.0174532942f)), turn);
                     }
                 }
                 w = ((-new B05P10(p).PitchInput) * 80.0f);
                 if ((w < 0.0f))
                 {
-                    x = ((w * (-0.716197133f)) * new B05In10(@in).f10);
+                    x = ((w * (-0.716197133f)) * new B05In10(@in).PitchScaleNeg);
                 }
                 else
                 {
-                    x = ((w * 0.716197133f) * new B05In10(@in).f14);
+                    x = ((w * 0.716197133f) * new B05In10(@in).PitchScalePos);
                 }
                 MathUtil.ApproachProportional((p + 1828u), (x * 0.0174532942f), spd);
                 trw_mouse_look(p, a, @in, h);

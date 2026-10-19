@@ -17,9 +17,9 @@ public static partial class ScreenWipe
             uint g = 0u;
             uint v = 0u;
             int s = 0;
-            if ((new O06A_v36(a).unk18 == 1))
+            if ((new O06A_v36(a).State == 1))
             {
-                s = new O06A_v36(a).unk14;
+                s = new O06A_v36(a).Frame;
                 v = Gv.Camera_MainView;
                 TextUtil.BeginFontPass();
                 Gfx.SetOtherModeL((uint)(21));
@@ -41,11 +41,11 @@ public static partial class ScreenWipe
                 }
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g).w0_Set(4211081216u);
-                new O06Gfx(g).w1_Set((uint)((((((int)(new O06A_v36(a).unk7) << (int)24) | ((int)(new O06A_v36(a).unkB) << (int)16)) | ((int)(new O06A_v36(a).unkF) << (int)8)) | 255)));
+                new O06Gfx(g).w1_Set((uint)((((((int)(new O06A_v36(a).ColorR8) << (int)24) | ((int)(new O06A_v36(a).ColorG8) << (int)16)) | ((int)(new O06A_v36(a).ColorB8) << (int)8)) | 255)));
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g).w0_Set(4194304000u);
                 new O06Gfx(g).w1_Set(3758096639u);
-                Sprite.Draw(new O06A_v36(a).unk0, s, (short)((int)(new O06V_v2(v).unk2A4)), (short)((int)(new O06V_v2(v).unk2A8)), (f0 * 9.0f), (f1 * 4.0f), 1);
+                Sprite.Draw(new O06A_v36(a).SpriteId, s, (short)((int)(new O06V_v2(v).ViewportX)), (short)((int)(new O06V_v2(v).ViewportY)), (f0 * 9.0f), (f1 * 4.0f), 1);
             }
         }
     }
@@ -56,9 +56,9 @@ public static partial class ScreenWipe
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043C3F0", (uint)a, (uint)b, (uint)c, (uint)d);
-            new O06A_v12(a).unk10_Set(0);
-            new O06A_v12(a).unk14_Set(0);
-            new O06A_v12(a).unk18_Set(0);
+            new O06A_v12(a).Speed_Set(0);
+            new O06A_v12(a).Frame_Set(0);
+            new O06A_v12(a).State_Set(0);
             ScreenWipe.SetSprite(a, b);
             ScreenWipe.SetColor(a, c, d, e);
         }
@@ -70,12 +70,12 @@ public static partial class ScreenWipe
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043C484", (uint)a);
-            new O06A_v12(a).unk14_Set((int)((int)(new O06A_v12(a).unk14) + new O06A_v12(a).unk10));
-            if ((new O06A_v12(a).unk14 >= 13))
+            new O06A_v12(a).Frame_Set((int)((int)(new O06A_v12(a).Frame) + new O06A_v12(a).Speed));
+            if ((new O06A_v12(a).Frame >= 13))
             {
-                new O06A_v12(a).unk14_Set(0);
-                new O06A_v12(a).unk10_Set(0);
-                new O06A_v12(a).unk18_Set(2);
+                new O06A_v12(a).Frame_Set(0);
+                new O06A_v12(a).Speed_Set(0);
+                new O06A_v12(a).State_Set(2);
             }
         }
     }
@@ -116,9 +116,9 @@ public static partial class ScreenWipe
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043C4D8", (uint)a, (uint)b, (uint)c, (uint)d);
-            new O06A_v33(a).unk4_Set(b);
-            new O06A_v33(a).unk8_Set(c);
-            new O06A_v33(a).unkC_Set(d);
+            new O06A_v33(a).ColorR_Set(b);
+            new O06A_v33(a).ColorG_Set(c);
+            new O06A_v33(a).ColorB_Set(d);
         }
     }
 

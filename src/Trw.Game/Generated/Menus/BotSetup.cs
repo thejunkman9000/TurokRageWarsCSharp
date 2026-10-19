@@ -172,8 +172,8 @@ public static partial class BotSetup
             {
                 return 0;
             }
-            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type;
-            col = BotSetup.FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id);
+            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Difficulty;
+            col = BotSetup.FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).CharacterId);
             do
             {
                 --row;
@@ -189,10 +189,10 @@ public static partial class BotSetup
                 key = new O3Chr(((Gv.BotSetup_NameTable + (uint)(row * 136)) + (uint)(col * 8))).ch;
             }
             while ((key == (-1)));
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type_Set(row);
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id_Set(key);
-            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + key) * 8))).s));
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).fC_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Difficulty_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).CharacterId_Set(key);
+            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + key) * 8))).s));
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).DifficultyRow_C_Set(row);
             BotSetup.RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
             Audio.PlaySound2D(3713);
             return 0;
@@ -216,8 +216,8 @@ public static partial class BotSetup
             {
                 return 0;
             }
-            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type;
-            col = BotSetup.FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id);
+            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Difficulty;
+            col = BotSetup.FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).CharacterId);
             do
             {
                 ++row;
@@ -233,10 +233,10 @@ public static partial class BotSetup
                 a3 = new O3Chr(((Gv.BotSetup_NameTable + (uint)(row * 136)) + (uint)(col * 8))).ch;
             }
             while ((a3 == (-1)));
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type_Set(row);
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id_Set(a3);
-            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + a3) * 8))).s));
-            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).fC_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Difficulty_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).CharacterId_Set(a3);
+            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).Name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + a3) * 8))).s));
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).DifficultyRow_C_Set(row);
             BotSetup.RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
             Audio.PlaySound2D(3713);
             return 0;
@@ -265,21 +265,21 @@ public static partial class BotSetup
                 return;
             }
             o = UiTree.FindNode((uint)(w), (uint)(909), default(uint), default(uint));
-            new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3Row((Gv.CharSelect_CharacterTable + (uint)(CharSelect.FindRowByCharacter(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0))) * 112))).f8);
+            new O3Obj(o).Alpha_Set((byte)(125));
+            new O3Obj(o).ImageOrColor_Set(new O3Row((Gv.CharSelect_CharacterTable + (uint)(CharSelect.FindRowByCharacter(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0))) * 112))).PortraitImage);
             o = UiTree.FindNode((uint)(w), (uint)(911), default(uint), default(uint));
-            new O3Obj(o).alpha_Set((byte)(125));
+            new O3Obj(o).Alpha_Set((byte)(125));
             LibC.StrCopy(((Gv.BotSetup_Slots + (uint)off) + (uint)16), Mem.U32(new O3Chr(((Gv.BotSetup_NameTable + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 136)) + (uint)(BotSetup.FindBotNameIndex(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)), Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0))) * 8))).s));
-            new O3Obj(o).f38_Set(((Gv.BotSetup_Slots + (uint)off) + (uint)16));
+            new O3Obj(o).TextPtr_Set(((Gv.BotSetup_Slots + (uint)off) + (uint)16));
             o = UiTree.FindNode((uint)(w), (uint)(910), default(uint), default(uint));
-            new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f38_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 4))))));
+            new O3Obj(o).Alpha_Set((byte)(125));
+            new O3Obj(o).TextPtr_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 4))))));
             o = UiTree.FindNode((uint)(w), (uint)(912), default(uint), default(uint));
-            new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).a);
+            new O3Obj(o).Alpha_Set((byte)(125));
+            new O3Obj(o).ImageOrColor_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).a);
             o = UiTree.FindNode((uint)(w), (uint)(913), default(uint), default(uint));
-            new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).b);
+            new O3Obj(o).Alpha_Set((byte)(125));
+            new O3Obj(o).ImageOrColor_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).b);
         }
     }
 
@@ -365,9 +365,9 @@ public static partial class BotSetup
             pts = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).CharacterId >= 0))
                 {
-                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type)
+                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).Difficulty)
                     {
                     case 0:
                         pts = 5;
@@ -385,7 +385,7 @@ public static partial class BotSetup
             n = 0;
             for (j = 0; (j < 3); ++j)
             {
-                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).CharacterId >= 0))
                 {
                     ++n;
                 }
@@ -462,16 +462,16 @@ public static partial class BotSetup
                     for (i = 0; (i < n); ++i)
                     {
                         t = (Mem.S32((_fp + (uint)(i * 4))) / 10);
-                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).f8_Set(4);
-                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type_Set(t);
-                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).fC_Set(t);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).TeamId_Set(4);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).Difficulty_Set(t);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).DifficultyRow_C_Set(t);
                         do
                         {
                             r = (RandomGen.Next() % 17);
-                            new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id_Set(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).ch);
-                            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).s));
+                            new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).CharacterId_Set(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).ch);
+                            LibC.StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).Name.P, Mem.U32(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).s));
                         }
-                        while ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id == (-1)));
+                        while ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).CharacterId == (-1)));
                     }
                 }
             }
@@ -488,10 +488,10 @@ public static partial class BotSetup
             int i = 0;
             for (i = 0; (i < 3); ++i)
             {
-                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id_Set((-1));
-                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type_Set(0);
-                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).f8_Set(0);
-                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).fC_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).CharacterId_Set((-1));
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).Difficulty_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).TeamId_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).DifficultyRow_C_Set(0);
             }
         }
     }
@@ -579,9 +579,9 @@ public static partial class BotSetup
             pts = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).CharacterId >= 0))
                 {
-                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type)
+                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).Difficulty)
                     {
                     case 0:
                         pts = 5;
@@ -740,12 +740,12 @@ public static partial class BotSetup
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
             {
                 Menu.ConsumeEvent();
-                new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).f8_Set(((new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).f8 + 1) % 5));
+                new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).TeamId_Set(((new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).TeamId + 1) % 5));
                 BotSetup.RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
                 if ((Menu.GetStackScreenId(0) == 22))
                 {
                     j = new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel;
-                    new O3Pl4((Gv.Settings_PlayerRecords + (uint)((7 - j) * 150))).TeamId_Set((byte)(new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).f8));
+                    new O3Pl4((Gv.Settings_PlayerRecords + (uint)((7 - j) * 150))).TeamId_Set((byte)(new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).TeamId));
                 }
             }
             return 0;

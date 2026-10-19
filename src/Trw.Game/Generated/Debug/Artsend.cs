@@ -203,22 +203,22 @@ public static partial class Artsend
                 Mem.Set(Gv.Artsend_ImagePtr, 0u);
                 Mem.Set(Gv.Artsend_PalettePtr, 0u);
                 Mem.Set(Gv.Artsend_TexturePtr, 0u);
-                v0 = (int)(Resource.GetCartridgeKey((uint)(new B21Ctx(c).TextureSetsIndex), (uint)(new B21Ctx(c).TextureSetsIndexKey), new B21RecX(Gv.Artsend_TextureIndex).unk0, _fp));
+                v0 = (int)(Resource.GetCartridgeKey((uint)(new B21Ctx(c).TextureSetsIndex), (uint)(new B21Ctx(c).TextureSetsIndexKey), new B21RecX(Gv.Artsend_TextureIndex).TextureIndex, _fp));
                 obj = ResourceCache.Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
                 s3 = Mem.U32(obj);
                 s2 = Chunk.Get(s3, 1);
                 s5 = Chunk.Get(s3, 2);
-                while ((new B21RecX(Gv.Artsend_TextureIndex).unk4 < 0))
+                while ((new B21RecX(Gv.Artsend_TextureIndex).FrameIndex < 0))
                 {
-                    new B21RecX(Gv.Artsend_TextureIndex).unk4_Set((int)((int)(new B21RecX(Gv.Artsend_TextureIndex).unk4) + Mem.S32(s2)));
+                    new B21RecX(Gv.Artsend_TextureIndex).FrameIndex_Set((int)((int)(new B21RecX(Gv.Artsend_TextureIndex).FrameIndex) + Mem.S32(s2)));
                 }
-                s4 = (new B21RecX(Gv.Artsend_TextureIndex).unk4 % Mem.S32(s2));
-                s0 = (new B21RecX(Gv.Artsend_TextureIndex).unk4 % Mem.S32(s5));
-                new B21RecX(Gv.Artsend_TextureIndex).unk10_Set(obj);
+                s4 = (new B21RecX(Gv.Artsend_TextureIndex).FrameIndex % Mem.S32(s2));
+                s0 = (new B21RecX(Gv.Artsend_TextureIndex).FrameIndex % Mem.S32(s5));
+                new B21RecX(Gv.Artsend_TextureIndex).TextureRes_Set(obj);
                 new B21RecX(Gv.Artsend_TextureIndex).unk18__Set(Chunk.Get(s2, s4));
                 new B21RecX(Gv.Artsend_TextureIndex).unk1C__Set(Chunk.Get(s5, s0));
                 new B21RecX(Gv.Artsend_TextureIndex).unk14__Set(Chunk.Get(s3, 0));
-                new B21RecX(Gv.Artsend_TextureIndex).unkC_Set(0);
+                new B21RecX(Gv.Artsend_TextureIndex).OverrideState_C_Set(0);
                 new B21RecX(Gv.Artsend_TextureIndex).unk2120__Set(s3);
                 new B21RecX(Gv.Artsend_TextureIndex).unk2124__Set(s2);
                 new B21RecX(Gv.Artsend_TextureIndex).unk2128__Set(s5);
@@ -236,11 +236,11 @@ public static partial class Artsend
                             break;
                         }
                     }
-                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).buf212C.P, 0x800CA5E0u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).unk0), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, 0x800CA5E0u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).buf212C.P, 0x800CA5F8u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).unk0), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).LabelText.P, 0x800CA5F8u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).TextureIndex), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 Mem.Set(0x8014D068u, 0);
             }
@@ -749,21 +749,21 @@ public static partial class Artsend
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002958D8");
-            new B21Blk(Gv.Artsend_Active).unk0_Set((byte)(0));
-            new B21Blk(Gv.Artsend_Active).unk1_Set((byte)(0));
-            new B21Blk(Gv.Artsend_Active).unkC_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk10_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk8_Set(1);
-            new B21Blk(Gv.Artsend_Active).unk4_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk14_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk1C_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk24_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk28_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk20_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk212C_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk2130_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk2134_Set(0);
-            new B21Blk(Gv.Artsend_Active).unk21B8_Set(0);
+            new B21Blk(Gv.Artsend_Active).IsActive_Set((byte)(0));
+            new B21Blk(Gv.Artsend_Active).Flag_1_Set((byte)(0));
+            new B21Blk(Gv.Artsend_Active).TextureIndex_Set(0);
+            new B21Blk(Gv.Artsend_Active).FrameIndex_Set(0);
+            new B21Blk(Gv.Artsend_Active).TextureCount_Set(1);
+            new B21Blk(Gv.Artsend_Active).Field_4_Set(0);
+            new B21Blk(Gv.Artsend_Active).IsDirty_Set(0);
+            new B21Blk(Gv.Artsend_Active).TextureRes_Set(0);
+            new B21Blk(Gv.Artsend_Active).ImagePtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).PalettePtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).TexturePtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).TextureDataPtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).ImageListPtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).PaletteListPtr_Set(0);
+            new B21Blk(Gv.Artsend_Active).LabelTimer_21B8_Set(0);
         }
     }
 
@@ -775,10 +775,10 @@ public static partial class Artsend
             if (Dbg.On) Dbg.Enter("func_00295924");
             if (((Mem.Set(0x800D2AECu, (int)(Mem.S32(0x800D2AECu) + 1)) - 1) >= 3))
             {
-                int t = new B21Cnt(Gv.Artsend_FrameIndex).unk0;
-                new B21Cnt(Gv.Artsend_FrameIndex).unk4_Set(1);
+                int t = new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex;
+                new B21Cnt(Gv.Artsend_FrameIndex).IsDirty_Set(1);
                 Mem.Set(0x800D2AECu, 0);
-                new B21Cnt(Gv.Artsend_FrameIndex).unk0_Set((t - 1));
+                new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex_Set((t - 1));
             }
         }
     }
@@ -791,10 +791,10 @@ public static partial class Artsend
             if (Dbg.On) Dbg.Enter("func_00295970");
             if (((Mem.Set(0x800D2AF0u, (int)(Mem.S32(0x800D2AF0u) + 1)) - 1) >= 3))
             {
-                int t = new B21Cnt(Gv.Artsend_FrameIndex).unk0;
-                new B21Cnt(Gv.Artsend_FrameIndex).unk4_Set(1);
+                int t = new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex;
+                new B21Cnt(Gv.Artsend_FrameIndex).IsDirty_Set(1);
                 Mem.Set(0x800D2AF0u, 0);
-                new B21Cnt(Gv.Artsend_FrameIndex).unk0_Set((t + 1));
+                new B21Cnt(Gv.Artsend_FrameIndex).FrameIndex_Set((t + 1));
             }
         }
     }

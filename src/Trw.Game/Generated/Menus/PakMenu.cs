@@ -131,7 +131,7 @@ public static partial class PakMenu
                         }
                         else
                         {
-                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).unk20.unk4));
+                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).PadPtr.Port));
                         }
                         r = func_00406178_O01Pick(_fp);
                     }
@@ -402,15 +402,15 @@ public static partial class PakMenu
                 Mem.Set(0x800E28C4u, 0);
                 Mem.Set(Gv.PakMenu_MessageOpen, 0);
                 Mem.Set(Gv.PakMenu_BootMode, 0);
-                pv = (int)(new O01OwnC(own).unk20.unk4);
-                pp = new O01OwnC(own).unk1C_;
+                pv = (int)(new O01OwnC(own).PadPtr.Port);
+                pp = new O01OwnC(own).PlayerPtr;
                 new O01Sel(_fp).v_Set(pv);
                 plr = pp;
                 msg = func_00406434_O01Pick(_fp);
                 if ((Mem.S32(Gv.PakMenu_SkipPak) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open((new O01Actor_v2(new O01OwnC(own).unk1C_).unk5DC_ + (uint)1364), msg, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0u));
+                    MenuPanel.Open((new O01Actor_v2(new O01OwnC(own).PlayerPtr).unk5DC_ + (uint)1364), msg, (int)(plr), new O01Actor_v2(plr).ControllerPtr, (int)(0u));
                 }
                 else
                 {
@@ -420,7 +420,7 @@ public static partial class PakMenu
                     }
                     else
                     {
-                        pad = (int)(new O01OwnC(own).unk20.unk4);
+                        pad = (int)(new O01OwnC(own).PadPtr.Port);
                     }
                     CPak.DetectPort(pad);
                     if ((CPak.GetStatus(new O01Sel(_fp).v) == 0))
@@ -434,17 +434,17 @@ public static partial class PakMenu
                         Mem.Set(Gv.PakMenu_MessageOpen, 1);
                         if ((CPak.IsRumblePak(new O01Sel(_fp).v) != 0))
                         {
-                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F658u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
+                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F658u, (int)(plr), new O01Actor_v2(plr).ControllerPtr, (int)(msg));
                         }
                         else
                         {
                             if ((CPak.IsDamaged(new O01Sel(_fp).v) != 0))
                             {
-                                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0x0044F0DCu));
+                                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, (int)(plr), new O01Actor_v2(plr).ControllerPtr, (int)(0x0044F0DCu));
                             }
                             else
                             {
-                                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F610u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
+                                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F610u, (int)(plr), new O01Actor_v2(plr).ControllerPtr, (int)(msg));
                             }
                         }
                     }
@@ -468,12 +468,12 @@ public static partial class PakMenu
             Mem.Set(0x800E28C4u, 1);
             Mem.Set(Gv.PakMenu_MessageOpen, 0);
             Mem.Set(Gv.PakMenu_BootMode, 0);
-            new O01Own6(own).unkC.unk328_Set((uint)((uint)(new O01Own6(own).unkC.unk328) & 4278190079u));
-            pad = (int)(new O01Own6(own).unk20.unk4);
+            new O01Own6(own).ItemsPtr.Item20Flags_Set((uint)((uint)(new O01Own6(own).ItemsPtr.Item20Flags) & 4278190079u));
+            pad = (int)(new O01Own6(own).PadPtr.Port);
             if ((Mem.S32(Gv.PakMenu_SkipPak) != 0))
             {
                 Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                MenuPanel.Open((new O01Plr2(new O01Own6(own).unk1C_).unk5DC_ + (uint)1364), 0x0045077Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0u));
+                MenuPanel.Open((new O01Plr2(new O01Own6(own).PlayerPtr).unk5DC_ + (uint)1364), 0x0045077Cu, (int)(new O01Own6(own).PlayerPtr), (int)(new O01Own6(own).unk20_), (int)(0u));
             }
             else
             {
@@ -487,17 +487,17 @@ public static partial class PakMenu
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
                     if ((CPak.IsRumblePak(pad) != 0))
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F67Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F67Cu, (int)(new O01Own6(own).PlayerPtr), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                     }
                     else
                     {
                         if ((CPak.IsDamaged(pad) != 0))
                         {
-                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0044F0B8u));
+                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, (int)(new O01Own6(own).PlayerPtr), (int)(new O01Own6(own).unk20_), (int)(0x0044F0B8u));
                         }
                         else
                         {
-                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F610u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
+                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F610u, (int)(new O01Own6(own).PlayerPtr), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                         }
                     }
                 }
@@ -604,7 +604,7 @@ public static partial class PakMenu
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
                     Mem.Set(Gv.PakMenu_BootCheckOk, 0);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F70Cu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F70Cu, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0u));
                     Mem.Set(Gv.PakMenu_BootCheckDone, 1);
                     Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
                     return;
@@ -637,7 +637,7 @@ public static partial class PakMenu
                     {
                         Mem.Set(Gv.PakMenu_MessageOpen, 1);
                         Mem.Set(Gv.PakMenu_BootCheckOk, 0);
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0u));
                         Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
                         Mem.Set(Gv.PakMenu_BootCheckDone, 1);
                         return;
@@ -648,7 +648,7 @@ public static partial class PakMenu
                     goto L_blk59;
                 }
                 Game_LatchPads();
-                if ((((new Q01Sub_v2(new Q01Obj(arg0).unk20_).unkB0 & 4096) != 0) && (Mem.S32(Gv.PakMenu_BootCheckDone) == 0)))
+                if ((((new Q01Sub_v2(new Q01Obj(arg0).PadPtr).unkB0 & 4096) != 0) && (Mem.S32(Gv.PakMenu_BootCheckDone) == 0)))
                 {
                     Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
                     Mem.Set(Gv.PakMenu_BootCheckDone, 1);
@@ -663,7 +663,7 @@ public static partial class PakMenu
                     }
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
                     Mem.Set(Gv.PakMenu_BootCheckOk, 0);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0u));
                     Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
                     Mem.Set(Gv.PakMenu_BootCheckDone, 1);
                     return;
@@ -725,7 +725,7 @@ public static partial class PakMenu
                     {
                         Mem.Set(Gv.PakMenu_MessageOpen, 1);
                         Mem.Set(Gv.PakMenu_BootCheckOk, 0);
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F6C4u, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0u));
                         Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
                         Mem.Set(Gv.PakMenu_BootCheckDone, 1);
                         return;
@@ -792,7 +792,7 @@ public static partial class PakMenu
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
                     Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FB20u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FB20u, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0x0044F148u));
                     goto L_after;
                 }
                 if ((Mem.S32((_fp + 32u)) < r2))
@@ -803,7 +803,7 @@ public static partial class PakMenu
                 L_L56: ;
                 Mem.Set(Gv.PakMenu_MessageOpen, 1);
                 Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FAFCu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FAFCu, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0x0044F148u));
                 L_after: ;
                 if ((s0 == 0))
                 {
@@ -812,7 +812,7 @@ public static partial class PakMenu
                 L_blk59: ;
                 Mem.Set(Gv.PakMenu_MessageOpen, 1);
                 Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F994u, new Q01Obj(arg0).PlayerPtr, (int)(new Q01Obj(arg0).PadPtr), (int)(0x0044F148u));
                 L_fin: ;
                 if ((Mem.S32(Gv.PakMenu_MessageOpen) == 0))
                 {
@@ -1148,7 +1148,7 @@ public static partial class PakMenu
                         }
                         if ((ok != 0))
                         {
-                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F5ECu, (int)(plr), new O01Plr3(plr).unk698, (int)((uint)(new O01OwnJ(own).unk14)));
+                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F5ECu, (int)(plr), new O01Plr3(plr).ControllerPtr, (int)((uint)(new O01OwnJ(own).unk14)));
                             return 0;
                         }
                     }
@@ -1158,11 +1158,11 @@ public static partial class PakMenu
                 {
                     if ((r == 0))
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F778u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F778u, (int)(plr), new O01Plr3(plr).ControllerPtr, (int)(func_00407290_O01Pick((_fp + 8u))));
                     }
                     else
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F808u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F808u, (int)(plr), new O01Plr3(plr).ControllerPtr, (int)(func_00407290_O01Pick((_fp + 8u))));
                     }
                 }
                 return 1;
@@ -1250,7 +1250,7 @@ public static partial class PakMenu
                         }
                         if ((ok != 0))
                         {
-                            MenuPanel.Open(new_var, 0x0044FAFCu, (int)(plr), new O01Plr3(plr).unk698, new O01Own9(own).unk14);
+                            MenuPanel.Open(new_var, 0x0044FAFCu, (int)(plr), new O01Plr3(plr).ControllerPtr, new O01Own9(own).unk14);
                             return 0;
                         }
                     }
@@ -2327,7 +2327,7 @@ public static partial class PakMenu
             }
             else
             {
-                pad = (int)(new O01OwnE(own).unk20.unk4);
+                pad = (int)(new O01OwnE(own).PadPtr.Port);
             }
             if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(0), default(uint))) != 0))
             {
@@ -2339,19 +2339,19 @@ public static partial class PakMenu
                 plr = Player.FindByPad(Gv.PlayerPool, new O01OwnE(own).unk20_);
                 g = Gv.LevelMgr;
                 save = Mem.U8(Gv.Settings_ResolutionMode);
-                Mem.Copy(new O01Plr5(plr).unk5E0.P, new O01CfgE(Mem.U32(Gv.GameSave_DataPtr)).blk18.P, 112);
+                Mem.Copy(new O01Plr5(plr).unk5E0.P, new O01CfgE(Mem.U32(Gv.GameSave_DataPtr)).PlayerBlock.P, 112);
                 {
-                    Mem.Copy(Gv.Settings, new O01CfgE(Mem.U32(Gv.GameSave_DataPtr)).blk88.P, 1412);
+                    Mem.Copy(Gv.Settings, new O01CfgE(Mem.U32(Gv.GameSave_DataPtr)).SettingsBlock.P, 1412);
                     c = Mem.U32(Gv.GameSave_DataPtr);
                 }
                 new_var = (c + 12u);
-                Mem.Set((Gv.Settings_MatchRules + (uint)(0 * 4)), new O01CfgE(c).unk8);
+                Mem.Set((Gv.Settings_MatchRules + (uint)(0 * 4)), new O01CfgE(c).MatchRulesWord0);
                 Mem.Set((0x801468A4u + (uint)(0 * 4)), Mem.F32(new_var));
-                Mem.Set((0x801468A8u + (uint)(0 * 4)), new O01CfgE(c).unk10);
+                Mem.Set((0x801468A8u + (uint)(0 * 4)), new O01CfgE(c).MatchRulesWord2);
                 Mem.Set(0x8013B2D4u, Mem.S32(Gv.Settings_UnlockedCheats));
                 Mem.Set(Gv.Settings_ResolutionMode, save);
-                Mem.Set((0x801468ACu + (uint)(0 * 4)), new O01CfgE(c).unk14);
-                src = new O01CfgE(c).unk60C.P;
+                Mem.Set((0x801468ACu + (uint)(0 * 4)), new O01CfgE(c).MatchRulesWord3);
+                src = new O01CfgE(c).LevelPersistData.P;
                 dp = Gv.LevelPersistBuffer;
                 for (i = 0; (i < new O01GE(g).SaveDataSize); ++i)
                 {
@@ -2364,11 +2364,11 @@ public static partial class PakMenu
             }
             if ((CPak.DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01OwnE(own).PlayerPtr), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).UserParam);
             }
             else
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnE(own).PlayerPtr), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).UserParam);
             }
             return 1;
         }
@@ -2606,7 +2606,7 @@ public static partial class PakMenu
             }
             else
             {
-                pad = (int)(new O01Own8(own).unk20.unk4);
+                pad = (int)(new O01Own8(own).PadPtr.Port);
             }
             if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(0), default(uint))) != 0))
             {
@@ -2616,7 +2616,7 @@ public static partial class PakMenu
             if ((Mem.S32(Gv.PakMenu_NoteLoadMode) != 0))
             {
                 plr = Player.FindByPad(Gv.PlayerPool, new O01Own8(own).unk20_);
-                new O01Own8(own).unk1C__Set(plr);
+                new O01Own8(own).PlayerPtr_Set(plr);
                 func_00408C78_O01Restore(plr);
                 ObjectUtil.Player_SetCharacter(plr, (int)(Mem.S8((0x80153720u + (uint)0))));
                 MenuPanel.OpenChild((new O01Actor_v3(plr).unk5DC_ + (uint)1364), own, 0x00450698u);
@@ -2624,11 +2624,11 @@ public static partial class PakMenu
             }
             if ((CPak.DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01Own8(own).PlayerPtr), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).UserParam)));
             }
             else
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01Own8(own).PlayerPtr), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).UserParam)));
             }
             return 1;
         }
@@ -2650,8 +2650,8 @@ public static partial class PakMenu
             }
             if (((Mem.S32(Gv.PakMenu_MessageId) == 9) || (Mem.S32(Gv.PakMenu_MessageId) == 5)))
             {
-                Rumble.Reset(new Q01Obj_v4(o).unk20_);
-                Rumble.SetEnabled(new Q01Obj_v4(o).unk20_, 1);
+                Rumble.Reset(new Q01Obj_v4(o).PadPtr);
+                Rumble.SetEnabled(new Q01Obj_v4(o).PadPtr, 1);
             }
             if ((Mem.S32(Gv.PakMenu_MessageId) == 9))
             {
@@ -2663,10 +2663,10 @@ public static partial class PakMenu
                     }
                     else
                     {
-                        s1 = (int)(new Q01Sub(new Q01Obj_v4(o).unk20_).unk4);
+                        s1 = (int)(new Q01Sub(new Q01Obj_v4(o).PadPtr).unk4);
                     }
                     Pad.DisableStatusPoll(s1);
-                    Level.SetTransitionState_0044E178(Gv.LevelMgr, new Q01Plr(new Q01Obj_v4(o).unk1C_).unk5EC, 2);
+                    Level.SetTransitionState_0044E178(Gv.LevelMgr, new Q01Plr(new Q01Obj_v4(o).PlayerPtr).unk5EC, 2);
                     return 1;
                 }
                 Match.EnterState0C_0044EA24(Gv.GameCtx);
@@ -2678,7 +2678,7 @@ public static partial class PakMenu
             }
             else
             {
-                s1 = (int)(new Q01Sub(new Q01Obj_v4(o).unk20_).unk4);
+                s1 = (int)(new Q01Sub(new Q01Obj_v4(o).PadPtr).unk4);
             }
             if ((Mem.S32(Gv.PakMenu_MessageId) == 5))
             {
@@ -2697,13 +2697,13 @@ public static partial class PakMenu
                 CPak.DetectPort(s1);
                 s0 = CPak.GetStatus(s1);
                 v = Pad.TakePakChanged(s1);
-                if (((((s0 == 0) || (v != 0)) && (s0 != (-2))) && (new Q01Obj_v4(o).unk24 == (uint)(1))))
+                if (((((s0 == 0) || (v != 0)) && (s0 != (-2))) && (new Q01Obj_v4(o).UserParam == (uint)(1))))
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F100u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F100u, (int)(new Q01Obj_v4(o).PlayerPtr), (int)(new Q01Obj_v4(o).PadPtr), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x00450BD0u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x00450BD0u, (int)(new Q01Obj_v4(o).PlayerPtr), (int)(new Q01Obj_v4(o).PadPtr), 0);
                 }
             }
             else
@@ -2715,29 +2715,29 @@ public static partial class PakMenu
                     v = Pad.TakePakChanged(s1);
                     if ((((s0 == 0) || (v != 0)) && (s0 != (-2))))
                     {
-                        if ((new Q01Obj_v4(o).unk24 == (uint)(1)))
+                        if ((new Q01Obj_v4(o).UserParam == (uint)(1)))
                         {
-                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F124u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                            MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F124u, (int)(new Q01Obj_v4(o).PlayerPtr), (int)(new Q01Obj_v4(o).PadPtr), 0);
                         }
                     }
                 }
                 else
                 {
-                    if ((new Q01Obj_v4(o).unk24 == (uint)(1)))
+                    if ((new Q01Obj_v4(o).UserParam == (uint)(1)))
                     {
-                        new Q01Obj_v4(o).unk24_Set(0u);
+                        new Q01Obj_v4(o).UserParam_Set(0u);
                     }
-                    if ((new Q01Obj_v4(o).unk24 != 0u))
+                    if ((new Q01Obj_v4(o).UserParam != 0u))
                     {
-                        if (((new Q01Obj_v4(o).unk24 != 0x0044F0DCu) && (new Q01Obj_v4(o).unk1C_ != 0u)))
+                        if (((new Q01Obj_v4(o).UserParam != 0x0044F0DCu) && (new Q01Obj_v4(o).PlayerPtr != 0u)))
                         {
-                            p = (new Q01Plr(new Q01Obj_v4(o).unk1C_).unk5DC_ + (uint)1364);
+                            p = (new Q01Plr(new Q01Obj_v4(o).PlayerPtr).unk5DC_ + (uint)1364);
                         }
                         else
                         {
                             p = Gv.MenuPanel_SharedList;
                         }
-                        MenuPanel.Open(p, new Q01Obj_v4(o).unk24, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), s1);
+                        MenuPanel.Open(p, new Q01Obj_v4(o).UserParam, (int)(new Q01Obj_v4(o).PlayerPtr), (int)(new Q01Obj_v4(o).PadPtr), s1);
                     }
                 }
             }
@@ -2761,23 +2761,23 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnH(own).unk20.unk4);
+                    pad = (int)(new O01OwnH(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).UserParam), (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
                     CPak.DetectPort(pad);
                     if ((CPak.DeleteFile(pad, Mem.S32(0x80153754u)) == 0))
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7C0u, (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).UserParam);
                     }
                     else
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).UserParam);
                     }
                 }
                 break;
@@ -2788,12 +2788,12 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnH(own).unk20.unk4);
+                    pad = (int)(new O01OwnH(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).UserParam), (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
@@ -2805,7 +2805,7 @@ public static partial class PakMenu
                     }
                     else
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F82Cu, (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).UserParam);
                     }
                 }
                 break;
@@ -2816,23 +2816,23 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnH(own).unk20.unk4);
+                    pad = (int)(new O01OwnH(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).UserParam), (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
                     CPak.DetectPort(pad);
                     if ((CPak.RepairId(pad) == 0))
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7E4u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F7E4u, (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).UserParam);
                     }
                     else
                     {
-                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F970u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F970u, (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).UserParam);
                     }
                 }
                 break;
@@ -2842,7 +2842,7 @@ public static partial class PakMenu
                 {
                     Mem.Set(0x80146D6Cu, 1);
                 }
-                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnH(own).UserParam), (int)(new O01OwnH(own).PlayerPtr), (int)(new O01OwnH(own).unk20_), 0);
                 break;
             }
             return 1;
@@ -2895,7 +2895,7 @@ public static partial class PakMenu
                         }
                         else
                         {
-                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).unk20.unk4));
+                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).PadPtr.Port));
                         }
                         r = func_00409474_O01Pick(_fp);
                     }
@@ -2941,16 +2941,16 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnI(own).unk20.unk4);
+                    pad = (int)(new O01OwnI(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 3:
@@ -2960,16 +2960,16 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnI(own).unk20.unk4);
+                    pad = (int)(new O01OwnI(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 0:
@@ -2979,16 +2979,16 @@ public static partial class PakMenu
                 }
                 else
                 {
-                    pad = (int)(new O01OwnI(own).unk20.unk4);
+                    pad = (int)(new O01OwnI(own).PadPtr.Port);
                 }
                 if (((int)(PakMenu.CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01OwnI(own).UserParam), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 1:
@@ -3003,11 +3003,11 @@ public static partial class PakMenu
                 msg = func_00409474_O01GetMsg(own);
                 if ((msg == 0u))
                 {
-                    msg = (uint)(new O01OwnI(own).unk24);
+                    msg = (uint)(new O01OwnI(own).UserParam);
                 }
                 if ((new O01OwnI(own).unk1C_ != 0u))
                 {
-                    a0 = (new O01OwnI(own).unk1C.unk5DC_ + (uint)1364);
+                    a0 = (new O01OwnI(own).PlayerPtr.unk5DC_ + (uint)1364);
                 }
                 else
                 {
@@ -3086,7 +3086,7 @@ public static partial class PakMenu
             {
                 return Mem.S32(Gv.PakMenu_BootPad);
             }
-            return (int)(new O01Obj(a).unk20.unk4);
+            return (int)(new O01Obj(a).PadPtr.Port);
         }
     }
 
@@ -3100,7 +3100,7 @@ public static partial class PakMenu
             {
                 return Mem.S32(Gv.PakMenu_BootPad);
             }
-            return (int)(new O01Obj3(o).unk20.unk4);
+            return (int)(new O01Obj3(o).PadPtr.Port);
         }
     }
 
@@ -3136,7 +3136,7 @@ public static partial class PakMenu
             {
                 return Mem.S32(Gv.PakMenu_BootPad);
             }
-            return (int)(new O01Obj3(o).unk20.unk4);
+            return (int)(new O01Obj3(o).PadPtr.Port);
         }
     }
 
@@ -3168,7 +3168,7 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409DF8", (uint)a);
-            if (((new O01Obj(a).unk20.unkB0 & (uint)(4096)) != (uint)(0)))
+            if (((new O01Obj(a).PadPtr.Buttons & (uint)(4096)) != (uint)(0)))
             {
                 if ((Mem.S32(Gv.PakMenu_BootCheckDone) == 0))
                 {
@@ -3233,8 +3233,8 @@ public static partial class PakMenu
             }
             else
             {
-                v = (int)(new O01Obj(a).unk20.unk4);
-                r = new O01Obj(a).unk1C;
+                v = (int)(new O01Obj(a).PadPtr.Port);
+                r = new O01Obj(a).PlayerPtr;
             }
             Mem.Set(@out, v);
             return r;
@@ -3254,7 +3254,7 @@ public static partial class PakMenu
             }
             else
             {
-                ch = (int)(new O01Obj(a).unk20.unk4);
+                ch = (int)(new O01Obj(a).PadPtr.Port);
             }
             CPak.DetectPort(ch);
         }
@@ -3339,7 +3339,7 @@ public static partial class PakMenu
                         }
                         else
                         {
-                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).unk20.unk4));
+                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).PadPtr.Port));
                         }
                         r = func_0040A0C8_O01Pick(_fp);
                     }
@@ -3444,7 +3444,7 @@ public static partial class PakMenu
             }
             else
             {
-                v = (int)(new O01Owner(own).unk20.unk4);
+                v = (int)(new O01Owner(own).PadPtr.Port);
                 new O01Item(item).unk14__Set(0x800D7710u);
                 buf = new O01Text(0x800D7710u).buf_;
                 StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
@@ -3567,7 +3567,7 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A500", (uint)item);
-            switch (new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).unk90)
+            switch (new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).Difficulty)
             {
             default:
             case (uint)(0):
@@ -3590,7 +3590,7 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A55C", (uint)item);
-            int v = (new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).unk1C >> (int)8);
+            int v = (new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).PlayerHealth >> (int)8);
             uint buf = new O01Item(item).unk14.buf_;
             StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 3)), Gv.FmtStr_3d, v, default(int));
             return 0;
@@ -3603,7 +3603,7 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A5B8", (uint)item);
-            int v = (int)(new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).unk22);
+            int v = (int)(new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).PlayerLives);
             uint buf = new O01Item(item).unk14.buf_;
             StrUtil.Sprintf((buf + (uint)(MenuItem.GetTextLength((uint)(item)) - 2)), 0x800E0DB0u, v, default(int));
             return 0;
@@ -3616,7 +3616,7 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A614", (uint)item);
-            LevelIdToWorld(new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).unk24);
+            LevelIdToWorld(new O01Cfg(Mem.U32(Gv.GameSave_DataPtr)).PlayerSpawnPointId);
             return 0;
         }
     }
@@ -3705,11 +3705,11 @@ public static partial class PakMenu
             {
                 if ((Mem.S32(Gv.PakMenu_GameNoteIsLoad) != 0))
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F100u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F100u, new O01Owner(own).PlayerPtr, (int)(new O01Owner(own).unk20_), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Owner(own).UserParam), new O01Owner(own).PlayerPtr, (int)(new O01Owner(own).unk20_), 0);
                 }
             }
             while ((0 != 0));
@@ -3746,10 +3746,10 @@ public static partial class PakMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A7A8", (uint)item);
-            new O01Item(item).unkC.unkA8_Set((uint)((uint)(new O01Item(item).unkC.unkA8) & 4269801471u));
+            new O01Item(item).unkC.Item4Flags_Set((uint)((uint)(new O01Item(item).unkC.Item4Flags) & 4269801471u));
             Mem.Set(Gv.PakMenu_NoteLoadMode, 0);
             Mem.Set(Gv.PakMenu_NoteIsForeign, 1);
-            new O01Item(item).unkC.unkD0_Set((uint)((uint)(new O01Item(item).unkC.unkD0) & 4269801471u));
+            new O01Item(item).unkC.Item5Flags_Set((uint)((uint)(new O01Item(item).unkC.Item5Flags) & 4269801471u));
         }
     }
 
@@ -3956,11 +3956,11 @@ public static partial class PakMenu
             if (Dbg.On) Dbg.Enter("func_0040AACC", (uint)item, (uint)own);
             if ((Mem.S32(Gv.PakMenu_NoteLoadMode) != 0))
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F0B8u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044F0B8u, new O01Owner(own).PlayerPtr, (int)(new O01Owner(own).unk20_), 0);
             }
             else
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Owner(own).UserParam), new O01Owner(own).PlayerPtr, (int)(new O01Owner(own).unk20_), 0);
             }
             return 1;
         }
@@ -4053,10 +4053,10 @@ public static partial class PakMenu
         {
             if (Dbg.On) Dbg.Enter("func_0040ABD4", (uint)item);
             uint f = 0u;
-            new O01Item(item).unkC.unk120_Set((uint)((uint)(new O01Item(item).unkC.unk120) & 4227858431u));
+            new O01Item(item).unkC.Item7Flags_Set((uint)((uint)(new O01Item(item).unkC.Item7Flags) & 4227858431u));
             f = new O01Item(item).unkC_;
             Mem.Set(Gv.PakMenu_MessageId, 8);
-            new O01Flags(f).unk120_Set((uint)((uint)(new O01Flags(f).unk120) | (uint)(8)));
+            new O01Flags(f).Item7Flags_Set((uint)((uint)(new O01Flags(f).Item7Flags) | (uint)(8)));
             return (int)(Pad.ClearFlag800D0E60_00264A1C(f, default(uint), default(uint), default(uint)));
         }
     }
@@ -4522,7 +4522,7 @@ public static partial class PakMenu
             {
                 return Mem.S32(Gv.PakMenu_BootPad);
             }
-            return (int)(new O01Obj3(o).unk20.unk4);
+            return (int)(new O01Obj3(o).PadPtr.Port);
         }
     }
 
@@ -4620,7 +4620,7 @@ public static partial class PakMenu
             }
             else
             {
-                v = (int)(new O01Owner(own).unk20.unk4);
+                v = (int)(new O01Owner(own).PadPtr.Port);
             }
             if ((Mem.S32(Gv.PakMenu_RepairFailed) != 0))
             {
@@ -4649,16 +4649,16 @@ public static partial class PakMenu
             }
             else
             {
-                pad = (int)(new O01Own3(o).unk20.unk4);
+                pad = (int)(new O01Own3(o).PadPtr.Port);
             }
             if (((int)(PakMenu.CheckPak(o, (uint)(pad), (uint)(1), default(uint))) == 0))
             {
-                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FAD8u, (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), new O01Own3(o).unk24);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, 0x0044FAD8u, (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), new O01Own3(o).UserParam);
             }
             else
             {
                 Mem.Set(Gv.PakMenu_MessageOpen, 1);
-                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Own3(o).UserParam), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
             }
             do
             {
@@ -4683,7 +4683,7 @@ public static partial class PakMenu
             }
             else
             {
-                pad = (int)(new O01Own3(o).unk20.unk4);
+                pad = (int)(new O01Own3(o).PadPtr.Port);
             }
             do
             {
@@ -4692,17 +4692,17 @@ public static partial class PakMenu
                 {
                     if ((new O01Own3(o).unk1C_ != 0u))
                     {
-                        p = (new O01Own3(o).unk1C.unk5DC_ + (uint)1364);
+                        p = (new O01Own3(o).PlayerPtr.unk5DC_ + (uint)1364);
                     }
                     else
                     {
                         p = Gv.MenuPanel_SharedList;
                     }
-                    MenuPanel.Open(p, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                    MenuPanel.Open(p, (uint)(new O01Own3(o).UserParam), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
                 }
                 else
                 {
-                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                    MenuPanel.Open(Gv.MenuPanel_SharedList, (uint)(new O01Own3(o).UserParam), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
                 }
                 return 1;
             }
@@ -4728,13 +4728,13 @@ public static partial class PakMenu
             {
                 if ((new O01Own2(own).unk1C_ != 0u))
                 {
-                    p = (new O01Own2(own).unk1C.unk5DC_ + (uint)1364);
+                    p = (new O01Own2(own).PlayerPtr.unk5DC_ + (uint)1364);
                 }
                 else
                 {
                     p = Gv.MenuPanel_SharedList;
                 }
-                MenuPanel.Open(p, (uint)(new O01Own2(own).unk24), (int)(new O01Own2(own).unk1C_), (int)(new O01Own2(own).unk20), 0);
+                MenuPanel.Open(p, (uint)(new O01Own2(own).UserParam), (int)(new O01Own2(own).unk1C_), (int)(new O01Own2(own).PadPtr), 0);
             }
             return 1;
         }
@@ -4768,7 +4768,7 @@ public static partial class PakMenu
             {
                 return Mem.S32(Gv.PakMenu_BootPad);
             }
-            return (int)(new O01Obj3(o).unk20.unk4);
+            return (int)(new O01Obj3(o).PadPtr.Port);
         }
     }
 

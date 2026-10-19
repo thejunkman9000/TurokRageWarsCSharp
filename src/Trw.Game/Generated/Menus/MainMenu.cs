@@ -725,10 +725,10 @@ public static partial class MainMenu
                 new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer - 1));
                 if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer <= 0))
                 {
-                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16) - 1)));
-                    if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk1A)) < 0))
+                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y) - 1)));
+                    if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Height)) < 0))
                     {
-                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel)).unk44.unk1A));
+                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel)).unk44.Height));
                     }
                     new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer_Set(3);
                 }
@@ -780,7 +780,7 @@ public static partial class MainMenu
             {
                 if ((new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).Id)) || (new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }

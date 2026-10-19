@@ -25,23 +25,23 @@ public static partial class PauseOptions
             int i = 0;
             int rem = 0;
             Mem.Set(Gv.PauseOptions_PagePtr, ResourcePool.Malloc((uint)(108)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).sound_Set(Audio.IsSoundOn());
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SavedSoundOn_Set(Audio.IsSoundOn());
             Audio.PlayCue(52);
             Audio.UnduckMusic();
             Audio.StopAllExcept((-1));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).page_Set(1);
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).pages_Set(4);
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(1);
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set(4);
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab__Set(UiTree.FindNode(node, (uint)(897), default(uint), default(uint)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X) - (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width) / 4));
-            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep * 4));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X) + rem));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.X) - (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.Width)));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1Step_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.Width) / 4));
+            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1Step * 4));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr.X) + rem));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab__Set(UiTree.FindNode(node, (uint)(904), default(uint), default(uint)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X) + (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width) / 4));
-            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep * 4));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X) - rem));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).title_Set((int)(Flicker.Create((uint)(883), (uint)(110), default(uint), default(uint))));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.X) + (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.Width)));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2Step_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.Width) / 4));
+            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2Step * 4));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr.X) - rem));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).TitleFlickerPtr_Set((int)(Flicker.Create((uint)(883), (uint)(110), default(uint), default(uint))));
             marker = UiTree.FindNode(node, (uint)(882), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).marker__Set(marker);
             UiNode.SetVisible(marker, 0);
@@ -76,7 +76,7 @@ public static partial class PauseOptions
             }
             OptionList.SetSelection(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).secondList_, (int)(new Shared_GameSlot((((settings + 31u) + 297u) + (uint)(7 * 150))).secondListMode));
             slider = (int)(Slider.Create(890, 891, 128));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).slider_Set(slider);
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).SliderPtr_Set(slider);
             Slider.SetValue((uint)(slider), new Shared_Game(settings).buttons);
             switch ((int)(new Shared_Game(settings).controllerMode))
             {
@@ -112,8 +112,8 @@ public static partial class PauseOptions
             Menu.DisableInput();
             ScreenWipe.Init(Mem.U32(Gv.PauseOptions_PagePtr), 103, 0, 0, 0);
             Menu.ShowScreen_0043C458(Mem.U32(Gv.PauseOptions_PagePtr));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).cursor_Set(0);
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).selection_Set((-1));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).WipeStarted_1C_Set(0);
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).NextScreenId_Set((-1));
             UiNode.SetVisible(node, 0);
             Mem.Set(Gv.GamePaused, 1);
             Mem.Set((Gv.Menu_ScreenRequest + (uint)(1 * 4)), 0);
@@ -247,9 +247,9 @@ public static partial class PauseOptions
             s0 = new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).IsHolding;
             if (((s0 == 1) && (Flyby.IsInWindow() == s0)))
             {
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w68, 0);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w44, 0);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w4C, 0);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PromptNodePtr, 0);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).FooterNodePtr, 0);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).RumbleIconNodePtr, 0);
                 new Q2Scr(Mem.U32(Gv.FlybyCtlPtr)).IsHolding_Set(0);
             }
             g = Gv.Menu_ScreenRequest_Pending;
@@ -258,40 +258,40 @@ public static partial class PauseOptions
                 Mem.Set((g + (uint)(0 * 4)), 0);
                 if ((Mem.S32((g + (uint)((-1) * 4))) != (-1)))
                 {
-                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w48, 0);
-                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w40, 0);
+                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PakIconNodePtr, 0);
+                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).HeaderNodePtr, 0);
                     Menu.ConsumeEvent();
                     Menu.GotoScreen(Mem.S32((g + (uint)((-1) * 4))));
                     return 0;
                 }
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w48, 1);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w40, 1);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PakIconNodePtr, 1);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).HeaderNodePtr, 1);
                 Menu.MoveFocus((uint)(893), default(uint), default(uint), default(uint));
             }
-            switch (new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state)
+            switch (new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase)
             {
             case 1:
-                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).a_).f14_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).a_).f14) + (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).da))));
-                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).b_).f14_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).b_).f14) - (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).db))));
-                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer_Set((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer - 1));
-                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer <= 0))
+                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr).X_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr).X) + (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1Step16))));
+                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr).X_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr).X) - (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2Step16))));
+                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer - 1));
+                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer <= 0))
                 {
-                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w3C, 1);
-                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w48, 1);
-                    Flicker.Trigger(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w38, 4);
-                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state_Set(4);
-                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer_Set(4);
+                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).MarkerNodePtr, 1);
+                    UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PakIconNodePtr, 1);
+                    Flicker.Trigger(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).TitleFlickerPtr, 4);
+                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(4);
+                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set(4);
                 }
                 break;
             case 2:
-                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).a_).f14_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).a_).f14) - (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).da))));
-                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).b_).f14_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).b_).f14) + (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).db))));
-                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer_Set((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer - 1));
-                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer <= 0))
+                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr).X_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1NodePtr).X) - (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel1Step16))));
+                new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr).X_Set((ushort)(((int)(new Q2It_v2(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2NodePtr).X) + (int)(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).SlidePanel2Step16))));
+                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer - 1));
+                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer <= 0))
                 {
                     q = Gv.GamePaused;
                     Mem.Set((q + (uint)(0 * 4)), 0);
-                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state_Set(3);
+                    new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(3);
                     CameraManager.Init((q - (uint)6156), 0);
                     Player.InitPool((q - (uint)6228), 0, 0);
                     Level.Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
@@ -301,13 +301,13 @@ public static partial class PauseOptions
                     }
                     Mem.Set((q + (uint)((-7) * 4)), 8);
                     Menu.ConsumeEvent();
-                    Menu.GotoScreen(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w60);
+                    Menu.GotoScreen(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).NextScreenId);
                     return 0;
                 }
                 break;
             case 4:
                 p = Mem.U32(Gv.PauseOptions_PagePtr);
-                y = new Q2Lb(p).timer;
+                y = new Q2Lb(p).AnimTimer;
                 x = (y - 1);
                 if ((x >= 0))
                 {
@@ -317,30 +317,30 @@ public static partial class PauseOptions
                 {
                     t = 0;
                 }
-                new Q2Lb(p).timer_Set(t);
-                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer <= 0))
+                new Q2Lb(p).AnimTimer_Set(t);
+                if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer <= 0))
                 {
-                    if ((Flicker.IsSteady(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w38) != 0))
+                    if ((Flicker.IsSteady(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).TitleFlickerPtr) != 0))
                     {
-                        Flicker.Stop(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w38);
-                        new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state_Set(3);
+                        Flicker.Stop(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).TitleFlickerPtr);
+                        new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(3);
                     }
                 }
                 break;
             case 5:
                 Audio.PlaySound2D(3704);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w3C, 0);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w48, 0);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w44, 1);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w4C, 1);
-                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).w68, 1);
-                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state_Set(2);
-                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).timer_Set(4);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).MarkerNodePtr, 0);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PakIconNodePtr, 0);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).FooterNodePtr, 1);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).RumbleIconNodePtr, 1);
+                UiNode.SetVisible(new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).PromptNodePtr, 1);
+                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(2);
+                new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set(4);
                 break;
             case 3:
                 break;
             }
-            if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).state != 3))
+            if ((new Q2Lb(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase != 3))
             {
                 return 0;
             }
@@ -401,10 +401,10 @@ public static partial class PauseOptions
             case 893:
                 Menu.DisableInput();
                 Menu.ShowScreen_0043C458(Mem.U32(Gv.PauseOptions_PagePtr));
-                new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk1C_Set(1);
-                new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk60_Set((-1));
-                UiNode.SetVisible(new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk44, 1);
-                UiNode.SetVisible(new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk4C, 1);
+                new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).WipeStarted_1C_Set(1);
+                new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).NextScreenId_Set((-1));
+                UiNode.SetVisible(new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).FooterNodePtr, 1);
+                UiNode.SetVisible(new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).RumbleIconNodePtr, 1);
                 Flyby.Abort();
                 break;
             case 896:
@@ -414,15 +414,15 @@ public static partial class PauseOptions
                 Menu.DisableInput();
                 if ((MatchSetup.PickRandomArena() == 0))
                 {
-                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk30_Set(5);
-                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk34_Set(4);
-                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk60_Set(20);
+                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).AnimPhase_Set(5);
+                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).AnimTimer_Set(4);
+                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).NextScreenId_Set(20);
                 }
                 else
                 {
                     Menu.ShowScreen_0043C458(Mem.U32(Gv.PauseOptions_PagePtr));
-                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk1C_Set(1);
-                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).unk60_Set(0);
+                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).WipeStarted_1C_Set(1);
+                    new O04ModeS4518(Mem.U32(Gv.PauseOptions_PagePtr)).NextScreenId_Set(0);
                 }
                 break;
             case 887:
@@ -468,7 +468,7 @@ public static partial class PauseOptions
             {
                 if ((new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).Id)) || (new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).key == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O04Evt((Gv.PauseOptions_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }

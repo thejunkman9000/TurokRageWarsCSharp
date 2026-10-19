@@ -2308,8 +2308,8 @@ public static partial class Rumble
             switch (new B14SrcDef(d).type)
             {
             case 0:
-                new B14Timer(o).f4_Set((float)((float)(new B14Timer(o).f4) + (1.0f / Mem.F32(0x80146CFCu))));
-                if (!(new B14SrcDef(d).f14 <= new B14Timer(o).f4))
+                new B14Timer(o).Time_Set((float)((float)(new B14Timer(o).Time) + (1.0f / Mem.F32(0x80146CFCu))));
+                if (!(new B14SrcDef(d).f14 <= new B14Timer(o).Time))
                 {
                     if (((d != 0u) || (Mem.F32(0x80146CFCu) != 0f)))
                     {
@@ -2322,11 +2322,11 @@ public static partial class Rumble
                 }
                 return 1;
             case 1:
-                new B14Timer(o).f4_Set((float)((float)(new B14Timer(o).f4) - (1.0f / Mem.F32(0x80146CFCu))));
-                if ((new B14Timer(o).f4 <= 0.0f))
+                new B14Timer(o).Time_Set((float)((float)(new B14Timer(o).Time) - (1.0f / Mem.F32(0x80146CFCu))));
+                if ((new B14Timer(o).Time <= 0.0f))
                 {
-                    new B14Timer(o).f4_Set((float)((float)(new B14Timer(o).f4) + new B14SrcDef(d).f4));
-                    new B14Timer(o).f8_Set(RandomGen.Symmetric(((float)((int)(new B14SrcDef(d).b8)) * 0.00392156886f), ((float)((int)(new B14SrcDef(d).b9)) * 0.00392156886f)));
+                    new B14Timer(o).Time_Set((float)((float)(new B14Timer(o).Time) + new B14SrcDef(d).f4));
+                    new B14Timer(o).Level_Set(RandomGen.Symmetric(((float)((int)(new B14SrcDef(d).b8)) * 0.00392156886f), ((float)((int)(new B14SrcDef(d).b9)) * 0.00392156886f)));
                 }
                 return 0;
             default:
@@ -2346,9 +2346,9 @@ public static partial class Rumble
             switch (new B14Src(s).type)
             {
             case 0:
-                return ((float)(Mem.U8(((s + (uint)(int)(((new B14Smp(o).f4 * Mem.F32(0x800C940Cu)) / new B14Src(s).f14))) + (uint)4))) * Mem.F32(0x800C9410u));
+                return ((float)(Mem.U8(((s + (uint)(int)(((new B14Smp(o).Time * Mem.F32(0x800C940Cu)) / new B14Src(s).f14))) + (uint)4))) * Mem.F32(0x800C9410u));
             case 1:
-                return new B14Smp(o).f8;
+                return new B14Smp(o).Level;
             default:
                 return 0.0f;
             }
@@ -2488,24 +2488,24 @@ public static partial class Rumble
             {
                 Mem.Copy(_fp + 0u, p_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002856B0_func_002859A0", (uint)s, (uint)p_in);
-                float dx = (new B19Vec3(_fp).x - new B19Spawn(s).pos.x);
-                float dy = (new B19Vec3(_fp).y - new B19Spawn(s).pos.y);
-                float dz = (new B19Vec3(_fp).z - new B19Spawn(s).pos.z);
+                float dx = (new B19Vec3(_fp).x - new B19Spawn(s).Position.x);
+                float dy = (new B19Vec3(_fp).y - new B19Spawn(s).Position.y);
+                float dz = (new B19Vec3(_fp).z - new B19Spawn(s).Position.z);
                 float d = sqrtf((((dx * dx) + (dy * dy)) + (dz * dz)));
                 float k = 0f;
-                if (((d == 0.0f) || (new B19Spawn(s).f18 == 0.0f)))
+                if (((d == 0.0f) || (new B19Spawn(s).Radius == 0.0f)))
                 {
                     k = 1.0f;
                 }
                 else
                 {
                     k = 0.0f;
-                    if ((d < new B19Spawn(s).f18))
+                    if ((d < new B19Spawn(s).Radius))
                     {
-                        k = (1.0f - (d / new B19Spawn(s).f18));
+                        k = (1.0f - (d / new B19Spawn(s).Radius));
                     }
                 }
-                k = (k * new B19Spawn(s).f1C);
+                k = (k * new B19Spawn(s).Strength);
                 return ((k * Rumble.SampleChannel((s + 32u))) * Rumble.SampleChannel((s + 44u)));
             }
         }
@@ -2862,9 +2862,9 @@ public static partial class Rumble
                 }
                 if ((r != 0))
                 {
-                    if ((new B19Spawn(n).link != 0u))
+                    if ((new B19Spawn(n).OwnerHandlePtr != 0u))
                     {
-                        Mem.Set(new B19Spawn(n).link, 0u);
+                        Mem.Set(new B19Spawn(n).OwnerHandlePtr, 0u);
                     }
                     ListUtil.Remove((pool + 20u), n, default(uint), default(uint));
                     ListUtil.Append_00255CB4(pool, n, default(uint), default(uint));
@@ -2934,7 +2934,7 @@ public static partial class Rumble
         {
             if (Dbg.On) Dbg.Enter("func_004055D4", (uint)ch);
             uint r = (0x80153330u + (uint)(ch * 112));
-            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).Errno) != 0))
             {
                 new O01Rumble(r).ok_Set((byte)(0));
                 return 0;

@@ -2754,7 +2754,7 @@ public static partial class Model
                 if ((new B15Dbg(Gv.Settings_MatchRules).IsBossMode != 0))
                 {
                     st = new B15Pl(plp).stats_;
-                    if ((((int)(new B15Stats(st).unk80) == 11) && ((int)(new B15Stats(st).unk94) != 0)))
+                    if ((((int)(new B15Stats(st).CharacterId) == 11) && ((int)(new B15Stats(st).IsBoss) != 0)))
                     {
                         s6 = ((0 < new B15Dbg(Gv.Settings_MatchRules).BossShieldPercent) ? 1 : 0);
                     }
@@ -2769,7 +2769,7 @@ public static partial class Model
                 }
                 if ((Mem.S32(Gv.Match_MonkeyTagMode) != 0))
                 {
-                    if (((int)(new B15Pl(plp).stats.unk8F) == 1))
+                    if (((int)(new B15Pl(plp).stats.IsMonkey) == 1))
                     {
                         s7 = 1;
                     }
@@ -2807,15 +2807,15 @@ public static partial class Model
                         Light.LoadForModel(mtxp, lights, info);
                     }
                     st = new B15Pl(plp).stats_;
-                    if ((((int)(new B15Stats(st).unk80) == 18) && ((Mem.S32(Gv.Settings_MonkeyTagMode) == 0) || ((int)(new B15Stats(st).unk8F) == 0))))
+                    if ((((int)(new B15Stats(st).CharacterId) == 18) && ((Mem.S32(Gv.Settings_MonkeyTagMode) == 0) || ((int)(new B15Stats(st).IsMonkey) == 0))))
                     {
-                        if (((int)(new B15Stats(st).unk81) == 0))
+                        if (((int)(new B15Stats(st).SkinIndex) == 0))
                         {
                             m = 40;
                         }
                         else
                         {
-                            if (((int)(new B15Stats(st).unk81) == 1))
+                            if (((int)(new B15Stats(st).SkinIndex) == 1))
                             {
                                 m = 32;
                             }
@@ -4276,33 +4276,33 @@ public static partial class Model
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00285540", (uint)d, (uint)s);
-            new B19RecOut(d).f0_Set(new B19RecIn(s).f4);
-            new B19RecOut(d).b.Set((int)(0), new B19RecIn(s).b[(int)(0)]);
-            new B19RecOut(d).b.Set((int)(1), new B19RecIn(s).b[(int)(1)]);
-            new B19RecOut(d).b.Set((int)(2), new B19RecIn(s).b[(int)(2)]);
-            new B19RecOut(d).b.Set((int)(3), new B19RecIn(s).b[(int)(3)]);
-            new B19RecOut(d).b.Set((int)(4), new B19RecIn(s).b[(int)(4)]);
-            new B19RecOut(d).b.Set((int)(5), new B19RecIn(s).b[(int)(5)]);
-            new B19RecOut(d).b.Set((int)(6), new B19RecIn(s).b[(int)(6)]);
-            new B19RecOut(d).b.Set((int)(7), new B19RecIn(s).b[(int)(7)]);
-            new B19RecOut(d).h18_Set(new B19RecIn(s).h14);
-            new B19RecOut(d).h1A_Set(new B19RecIn(s).h16);
-            new B19RecOut(d).f6_Set(new B19RecIn(s).fA);
-            if (((new B19RecIn(s).f4 & (uint)(64)) != 0u))
+            new B19RecOut(d).Flags_Set(new B19RecIn(s).Flags);
+            new B19RecOut(d).ColorBytes_10.Set((int)(0), new B19RecIn(s).ColorBytes_C[(int)(0)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(1), new B19RecIn(s).ColorBytes_C[(int)(1)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(2), new B19RecIn(s).ColorBytes_C[(int)(2)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(3), new B19RecIn(s).ColorBytes_C[(int)(3)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(4), new B19RecIn(s).ColorBytes_C[(int)(4)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(5), new B19RecIn(s).ColorBytes_C[(int)(5)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(6), new B19RecIn(s).ColorBytes_C[(int)(6)]);
+            new B19RecOut(d).ColorBytes_10.Set((int)(7), new B19RecIn(s).ColorBytes_C[(int)(7)]);
+            new B19RecOut(d).Param_18_Set(new B19RecIn(s).Param_14);
+            new B19RecOut(d).Param_1A_Set(new B19RecIn(s).Param_16);
+            new B19RecOut(d).Param_6_Set(new B19RecIn(s).Param_A);
+            if (((new B19RecIn(s).Flags & (uint)(64)) != 0u))
             {
-                new B19RecOut(d).f4_Set((ushort)((((int)(new B19RecIn(s).f8) << (int)1) | 1)));
+                new B19RecOut(d).PackedParam_4_Set((ushort)((((int)(new B19RecIn(s).Param_8) << (int)1) | 1)));
             }
             else
             {
-                new B19RecOut(d).f4_Set((ushort)(((int)(new B19RecIn(s).f8) << (int)1)));
+                new B19RecOut(d).PackedParam_4_Set((ushort)(((int)(new B19RecIn(s).Param_8) << (int)1)));
             }
-            if ((new B19RecIn(s).f0 == (-1)))
+            if ((new B19RecIn(s).MaterialId == (-1)))
             {
-                new B19RecOut(d).f8_Set(0);
+                new B19RecOut(d).MaterialHandle_Set(0);
             }
             else
             {
-                Material.GetHandleById((d + 8u), new B19RecIn(s).f0);
+                Material.GetHandleById((d + 8u), new B19RecIn(s).MaterialId);
             }
         }
     }

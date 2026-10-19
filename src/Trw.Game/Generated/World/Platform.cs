@@ -128,11 +128,11 @@ public static partial class PlatformObj
                 }
                 if ((new M1Info(info).SlideHeight_5C > 0.0f))
                 {
-                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).f58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
+                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).SinkDepth_58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
                 }
                 else
                 {
-                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).f58));
+                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).SinkDepth_58));
                 }
                 break;
             case 2:
@@ -147,11 +147,11 @@ public static partial class PlatformObj
                 }
                 if ((new M1Info(info).SlideHeight_5C > 0.0f))
                 {
-                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).f58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
+                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).SinkDepth_58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
                 }
                 else
                 {
-                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).f58));
+                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).SinkDepth_58));
                 }
                 break;
             case 4:
@@ -161,11 +161,11 @@ public static partial class PlatformObj
                 }
                 if ((new M1Info(info).SlideHeight_5C > 0.0f))
                 {
-                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).f58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
+                    new M1State(state).ClassVar_12C.f_Set(((-new M1Info(info).SinkDepth_58) * Emitter.Falloff_00265734((new M1State(state).Timer_44 / new M1Info(info).SlideHeight_5C))));
                 }
                 else
                 {
-                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).f58));
+                    new M1State(state).ClassVar_12C.f_Set((-new M1Info(info).SinkDepth_58));
                 }
                 if (((new M1Info(info).ClassFlags.u & (uint)(33554432)) != 0u))
                 {
@@ -827,7 +827,7 @@ public static partial class PlatformObj
                 MathUtil.MtxPostRotateX(_fp, new B01State(state).ClassVec_130.y);
                 MathUtil.MtxPostRotateY(_fp, new B01Actor(actor).Yaw);
                 MathUtil.MtxCopy(new B01Actor(actor).TransformMtx.P, _fp);
-                MathUtil.MtxScaleRows(new B01Actor(actor).TransformMtx.P, new B01Actor(actor).Scale, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
+                MathUtil.MtxScaleRows(new B01Actor(actor).TransformMtx.P, new B01Actor(actor).Scale, new B01Actor(actor).ScaleY, new B01Actor(actor).ScaleZ);
                 Vec.ClampLengthChecked(new B01Actor(actor).Position.P, 2.0E+4f);
                 MathUtil.MtxTranslate(new B01Actor(actor).TransformMtx.P, new B01Actor(actor).Position.x, new B01Actor(actor).Position.y, new B01Actor(actor).Position.z);
                 MathUtil.MtxSwapRowsYZ(new B01Actor(actor).TransformMtx.P);
@@ -1108,7 +1108,7 @@ public static partial class PlatformObj
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207EEC", (uint)e);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 1);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).TargetMapIndex), (int)(new B2Evt(e).TargetEntityIndex), 1);
         }
     }
 
@@ -1129,7 +1129,7 @@ public static partial class PlatformObj
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F60", (uint)e);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 0);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).TargetMapIndex), (int)(new B2Evt(e).TargetEntityIndex), 0);
         }
     }
 

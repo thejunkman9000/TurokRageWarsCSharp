@@ -67,7 +67,7 @@ public static partial class CPak
             int code = 0;
             int ok = 0;
             int ret = 0;
-            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(pad * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(pad * 4))).Errno) != 0))
             {
                 Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), (-2));
                 ret = 0;
@@ -145,7 +145,7 @@ public static partial class CPak
             for (i = 0; (i < 4); ++i)
             {
                 r = (0x80153330u + (uint)(i * 112));
-                if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(i * 4))).unk3) != 0))
+                if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(i * 4))).Errno) != 0))
                 {
                     new O01Rumble(r).ok_Set((byte)(0));
                     ok = 0;
@@ -309,18 +309,18 @@ public static partial class CPak
             {
                 return (-2);
             }
-            if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0 == 0))
+            if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].FileSize == 0))
             {
                 Mem.Set(valid, 0);
             }
             else
             {
                 Mem.Set(valid, 1);
-                Mem.Set(blocks, (int)(((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0) >> (int)8)));
+                Mem.Set(blocks, (int)(((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].FileSize) >> (int)8)));
                 memcpy(company, ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 8u), (uint)(2));
                 memcpy(game, ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 4u), (uint)(4));
-                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, name, 17);
-                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P, ext, 4);
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].GameName.P, name, 17);
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].ExtName.P, ext, 4);
                 Mem.Set((game + (uint)4), (byte)(0));
                 Mem.Set((company + (uint)2), (byte)(0));
             }
@@ -346,7 +346,7 @@ public static partial class CPak
             Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             if ((r == 0))
             {
-                r = osPfsDeleteFile((Gv.CPak_PfsArray + (uint)(pad * 104)), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk8, (uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk4), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
+                r = osPfsDeleteFile((Gv.CPak_PfsArray + (uint)(pad * 104)), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].CompanyCode, (uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].GameCode), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].GameName.P, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].ExtName.P);
                 if ((r != 0))
                 {
                     r = (-1);
@@ -516,7 +516,7 @@ public static partial class CPak
                 {
                     if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) == 3))
                     {
-                        new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].unkE.P);
+                        new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].GameName.P);
                     }
                     func_00404BE8_O01ConvName(new O01Pp((_fp + 16u)).p_, _fp, 16);
                     if ((LibC.StrCompare(_fp, name) == 0))
@@ -580,7 +580,7 @@ public static partial class CPak
             Pad.ReadController_00263760();
             Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             r = (0x80153330u + (uint)(ch * 112));
-            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).Errno) != 0))
             {
                 new O01Rumble(r).ok_Set((byte)(0));
                 ok = 0;
@@ -738,7 +738,7 @@ public static partial class CPak
             {
                 for (i = 0; (i < 16); ++i)
                 {
-                    if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].unk0 == 0))
+                    if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].FileSize == 0))
                     {
                         Mem.Set(cnt, (int)(Mem.S32(cnt) + 1));
                     }
@@ -834,7 +834,7 @@ public static partial class CPak
             {
                 return (-2);
             }
-            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P);
+            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].GameName.P);
             return 0;
         }
     }
@@ -849,7 +849,7 @@ public static partial class CPak
             {
                 return (-2);
             }
-            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
+            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].ExtName.P);
             return 0;
         }
     }
@@ -864,7 +864,7 @@ public static partial class CPak
             {
                 return (-2);
             }
-            Mem.Set(@out, CPak.BytesToPages((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0)));
+            Mem.Set(@out, CPak.BytesToPages((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].FileSize)));
             return 0;
         }
     }

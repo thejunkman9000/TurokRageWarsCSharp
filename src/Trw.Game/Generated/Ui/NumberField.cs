@@ -29,18 +29,18 @@ public static partial class NumberField
             s2 = (int)(UiScreen.GetData(Menu.GetCurrentScreenId()));
             o = (uint)((int)(ResourcePool.Malloc((uint)(108))));
             MemUtil.Fill(o, 0, (uint)(108));
-            Mem.Copy(new Obj2990(o).head.P, new Tmpl2990(t).head.P, 44);
+            Mem.Copy(new Obj2990(o).Header.P, new Tmpl2990(t).head.P, 44);
             Mem.Set((o + (uint)14), (ushort)(2917));
-            Mem.Copy(new Obj2990(o).tail.P, new Tmpl2990(t).tail.P, 20);
+            Mem.Copy(new Obj2990(o).NodeData.P, new Tmpl2990(t).tail.P, 20);
             new Obj2990(o).sub__Set(UiTree.FindNode((uint)(s2), (uint)((a1 & 65535)), default(uint), default(uint)));
-            new Obj2990(o).sub.unk38_Set((o + (uint)96));
-            new Obj2990(o).unk4C_Set(a3);
-            new Obj2990(o).unk50_Set(a2);
-            new Obj2990(o).unk58_Set(0);
-            new Obj2990(o).unk48_Set(0);
-            new Obj2990(o).unk54_Set(a4);
+            new Obj2990(o).TextNodePtr.unk38_Set((o + (uint)96));
+            new Obj2990(o).MaxValue_Set(a3);
+            new Obj2990(o).MinValue_Set(a2);
+            new Obj2990(o).Value_Set(0);
+            new Obj2990(o).RepeatFrames_Set(0);
+            new Obj2990(o).IsWrapping_Set(a4);
             NumberField.SetValue(o, a2);
-            new Obj2990(o).unk5C_Set(2);
+            new Obj2990(o).RepeatState_Set(2);
             UiTree.ReplaceNode(t, o, default(uint), default(uint));
             Mem.Set((t + (uint)12), (short)((-1)));
             UiTree.ReplaceRefs((uint)(s2), t, o, default(uint));
@@ -64,8 +64,8 @@ public static partial class NumberField
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2B24", (uint)o, (uint)n);
-            new AnimObj(o).unk58_Set(n);
-            StrUtil.FormatInto(new AnimObj(o).buf.P, 0x800CAF20u, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new AnimObj(o).Value_Set(n);
+            StrUtil.FormatInto(new AnimObj(o).Text.P, 0x800CAF20u, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
         }
     }
 
@@ -128,24 +128,24 @@ public static partial class NumberField
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2D14", (uint)o);
-            if ((new P4Cur(o).f54 == 0))
+            if ((new P4Cur(o).IsWrapping == 0))
             {
-                if ((new P4Cur(o).f58 > new P4Cur(o).f50))
+                if ((new P4Cur(o).Value > new P4Cur(o).MinValue))
                 {
-                    NumberField.SetValue(o, (new P4Cur(o).f58 - 1));
+                    NumberField.SetValue(o, (new P4Cur(o).Value - 1));
                 }
             }
             else
             {
-                if ((new P4Cur(o).f58 == new P4Cur(o).f50))
+                if ((new P4Cur(o).Value == new P4Cur(o).MinValue))
                 {
-                    new P4Cur(o).f58_Set(new P4Cur(o).f4C);
+                    new P4Cur(o).Value_Set(new P4Cur(o).MaxValue);
                 }
                 else
                 {
-                    new P4Cur(o).f58_Set((new P4Cur(o).f58 - 1));
+                    new P4Cur(o).Value_Set((new P4Cur(o).Value - 1));
                 }
-                NumberField.SetValue(o, new P4Cur(o).f58);
+                NumberField.SetValue(o, new P4Cur(o).Value);
             }
         }
     }
@@ -156,24 +156,24 @@ public static partial class NumberField
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2D7C", (uint)o);
-            if ((new AnimObj(o).unk54 == 0))
+            if ((new AnimObj(o).IsWrapping == 0))
             {
-                if ((new AnimObj(o).unk58 < new AnimObj(o).unk4C))
+                if ((new AnimObj(o).Value < new AnimObj(o).MaxValue))
                 {
-                    NumberField.SetValue(o, (new AnimObj(o).unk58 + 1));
+                    NumberField.SetValue(o, (new AnimObj(o).Value + 1));
                 }
             }
             else
             {
-                if ((new AnimObj(o).unk58 == new AnimObj(o).unk4C))
+                if ((new AnimObj(o).Value == new AnimObj(o).MaxValue))
                 {
-                    new AnimObj(o).unk58_Set(new AnimObj(o).unk50);
+                    new AnimObj(o).Value_Set(new AnimObj(o).MinValue);
                 }
                 else
                 {
-                    new AnimObj(o).unk58_Set((new AnimObj(o).unk58 + 1));
+                    new AnimObj(o).Value_Set((new AnimObj(o).Value + 1));
                 }
-                NumberField.SetValue(o, new AnimObj(o).unk58);
+                NumberField.SetValue(o, new AnimObj(o).Value);
             }
         }
     }
@@ -185,8 +185,8 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2DE4", (uint)o);
             uint n = new StateObj(o).list_;
-            new StateObj(o).unk5C_Set(2);
-            new StateObj(o).unk48_Set(0);
+            new StateObj(o).RepeatState_Set(2);
+            new StateObj(o).RepeatFrames_Set(0);
             for (; (n != 0u); n = new SubNode(n).next_)
             {
                 if (((int)(new SubNode(n).Type) != 8))
@@ -205,8 +205,8 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2E20", (uint)o);
             uint n = new StateObj(o).list_;
-            new StateObj(o).unk5C_Set(2);
-            new StateObj(o).unk48_Set(0);
+            new StateObj(o).RepeatState_Set(2);
+            new StateObj(o).RepeatFrames_Set(0);
             for (; (n != 0u); n = new SubNode(n).next_)
             {
                 if (((int)(new SubNode(n).Type) != 8))
@@ -225,8 +225,8 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2E5C", (uint)o);
             uint n = 0u;
-            new StateObj(o).unk5C_Set(2);
-            new StateObj(o).unk48_Set(0);
+            new StateObj(o).RepeatState_Set(2);
+            new StateObj(o).RepeatFrames_Set(0);
             Audio.PlaySound2D(3700);
             n = new StateObj(o).list_;
             for (; (n != 0u); n = new SubNode(n).next_)
@@ -249,12 +249,12 @@ public static partial class NumberField
             int t = MathUtil.AbsInt(arg);
             if ((t < Menu.GetStickDeadzone()))
             {
-                new StateObj(o).unk5C_Set(2);
-                new StateObj(o).unk48_Set(0);
+                new StateObj(o).RepeatState_Set(2);
+                new StateObj(o).RepeatFrames_Set(0);
             }
             if ((mode == 1))
             {
-                new StateObj(o).unk5C_Set(mode);
+                new StateObj(o).RepeatState_Set(mode);
                 NumberField.Increment(o);
                 Audio.PlaySound2D(3713);
                 return 0;
@@ -272,12 +272,12 @@ public static partial class NumberField
             int t = MathUtil.AbsInt(arg);
             if ((t < Menu.GetStickDeadzone()))
             {
-                new StateObj(o).unk5C_Set(2);
-                new StateObj(o).unk48_Set(0);
+                new StateObj(o).RepeatState_Set(2);
+                new StateObj(o).RepeatFrames_Set(0);
             }
             if ((mode == 1))
             {
-                new StateObj(o).unk5C_Set(0);
+                new StateObj(o).RepeatState_Set(0);
                 NumberField.Decrement(o);
                 Audio.PlaySound2D(3713);
                 return 0;
@@ -294,8 +294,8 @@ public static partial class NumberField
             if (Dbg.On) Dbg.Enter("func_002A2FB8", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if (((((a2 >> (int)16) == (uint)(3)) && (a3 < 8)) && (a3 >= 6)))
             {
-                new StateObj(o).unk5C_Set(2);
-                new StateObj(o).unk48_Set(0);
+                new StateObj(o).RepeatState_Set(2);
+                new StateObj(o).RepeatFrames_Set(0);
             }
             return 0;
         }
@@ -308,18 +308,18 @@ public static partial class NumberField
         {
             if (Dbg.On) Dbg.Enter("func_002A2FE8", (uint)o);
             uint q = o;
-            switch (new StateObj(o).unk5C)
+            switch (new StateObj(o).RepeatState)
             {
             case 0:
-                new StateObj(o).unk48_Set((new StateObj(o).unk48 + 1));
-                if ((new StateObj(o).unk48 >= 11))
+                new StateObj(o).RepeatFrames_Set((new StateObj(o).RepeatFrames + 1));
+                if ((new StateObj(o).RepeatFrames >= 11))
                 {
                     NumberField.Decrement(o);
                 }
                 break;
             case 1:
-                new StateObj(q).unk48_Set((new StateObj(q).unk48 + 1));
-                if ((new StateObj(q).unk48 >= 11))
+                new StateObj(q).RepeatFrames_Set((new StateObj(q).RepeatFrames + 1));
+                if ((new StateObj(q).RepeatFrames >= 11))
                 {
                     NumberField.Increment(q);
                 }

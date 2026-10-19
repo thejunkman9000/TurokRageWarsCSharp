@@ -461,7 +461,7 @@ public static partial class MatchOptions
             {
                 if ((new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).Id)) || (new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }

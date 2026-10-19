@@ -121,7 +121,7 @@ public static partial class MenuButton
         {
             if (Dbg.On) Dbg.Enter("func_0041B584", (uint)o);
             uint p = 0u;
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -139,7 +139,7 @@ public static partial class MenuButton
         {
             if (Dbg.On) Dbg.Enter("func_0041B5B4", (uint)o);
             uint p = 0u;
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -158,7 +158,7 @@ public static partial class MenuButton
             if (Dbg.On) Dbg.Enter("func_0041B5E4", (uint)o);
             uint p = 0u;
             Audio.PlaySound2D(3700);
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {

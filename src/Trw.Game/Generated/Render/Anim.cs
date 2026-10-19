@@ -2123,8 +2123,8 @@ public static partial class Anim
                 MathUtil.MtxMakeRotateY(_fp, Cpu.U2F((uint)(new ObjView(o).Yaw.i)));
                 MathUtil.MtxTransformPoint(_fp, (_fp + 80u), (_fp + 96u));
                 new Vec3f((_fp + 96u)).x_Set((float)((float)(new Vec3f((_fp + 96u)).x) * new ObjView(o).Scale));
-                new Vec3f((_fp + 96u)).y_Set((float)((float)(new Vec3f((_fp + 96u)).y) * new ObjView(o).unk54));
-                new Vec3f((_fp + 96u)).z_Set((float)((float)(new Vec3f((_fp + 96u)).z) * new ObjView(o).unk58));
+                new Vec3f((_fp + 96u)).y_Set((float)((float)(new Vec3f((_fp + 96u)).y) * new ObjView(o).ScaleY));
+                new Vec3f((_fp + 96u)).z_Set((float)((float)(new Vec3f((_fp + 96u)).z) * new ObjView(o).ScaleZ));
                 Mem.Copy(_ret, (_fp + 96u), 12);
                 return _ret;
             }
@@ -2180,7 +2180,7 @@ public static partial class Anim
                 MathUtil.MtxTransformPoint((_fp + 80u), (_fp + 32u), (_fp + 48u));
                 new Vec3f((_fp + 64u)).x_Set((new ObjView(a).Position.x + (Mem.F32(((_fp + 48u) + (uint)(0 * 4))) * new ObjView(a).Scale)));
                 new Vec3f((_fp + 64u)).y_Set(new ObjView(a).Position.y);
-                new Vec3f((_fp + 64u)).z_Set((new ObjView(a).Position.z + (Mem.F32(((_fp + 48u) + (uint)(2 * 4))) * new ObjView(a).unk58)));
+                new Vec3f((_fp + 64u)).z_Set((new ObjView(a).Position.z + (Mem.F32(((_fp + 48u) + (uint)(2 * 4))) * new ObjView(a).ScaleZ)));
                 Collision.LocatePoint_0024E78C(a, (_fp + 64u), new ObjView(a).Position.P, (a + 20u));
             }
         }
@@ -2253,9 +2253,9 @@ public static partial class Anim
             }
             else
             {
-                n = Chunk.Get((uint)(new B11Trk(s).node8), key);
-                a = (n + (uint)(new B11Trk(s).unk18 * 4));
-                b = (n + (uint)(new B11Trk(s).unk1C * 4));
+                n = Chunk.Get((uint)(new B11Trk(s).PositionKeys), key);
+                a = (n + (uint)(new B11Trk(s).PositionKeyA * 4));
+                b = (n + (uint)(new B11Trk(s).PositionKeyB * 4));
                 t = new B11Trk(s).t;
                 new Vec3f(@out).x_Set((Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
                 new Vec3f(@out).y_Set((Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
@@ -2286,9 +2286,9 @@ public static partial class Anim
             }
             else
             {
-                n = Chunk.Get((uint)(new B11Trk(s).nodeC), key);
-                a = (n + (uint)(new B11Trk(s).unk10 * 4));
-                b = (n + (uint)(new B11Trk(s).unk14 * 4));
+                n = Chunk.Get((uint)(new B11Trk(s).RotationKeys), key);
+                a = (n + (uint)(new B11Trk(s).RotationKeyA * 4));
+                b = (n + (uint)(new B11Trk(s).RotationKeyB * 4));
                 t = new B11Trk(s).t;
                 Mem.Set((@out + (uint)(0 * 4)), (Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
                 Mem.Set((@out + (uint)(1 * 4)), (Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
@@ -2317,8 +2317,8 @@ public static partial class Anim
             }
             else
             {
-                n = Chunk.Get((uint)(new B11Trk(s).nodeC), key);
-                Quat.Slerp(@out, new B11Trk(s).t, (n + (uint)(new B11Trk(s).unk10 * 4)), (n + (uint)(new B11Trk(s).unk14 * 4)));
+                n = Chunk.Get((uint)(new B11Trk(s).RotationKeys), key);
+                Quat.Slerp(@out, new B11Trk(s).t, (n + (uint)(new B11Trk(s).RotationKeyA * 4)), (n + (uint)(new B11Trk(s).RotationKeyB * 4)));
             }
         }
     }

@@ -21,11 +21,11 @@ public static partial class Game
                 for (i = 0; (i < (int)(Mem.U8(Gv.__osMaxControllers))); ++i, pkt += 8u, status += 4u)
                 {
                     Mem.Copy(_fp, pkt, 8);
-                    new OSContStatus(status).errno_Set((byte)((((int)(new OSContPackedRequest(_fp).unk02) & 192) >> (int)4)));
+                    new OSContStatus(status).errno_Set((byte)((((int)(new OSContPackedRequest(_fp).RxSize) & 192) >> (int)4)));
                     if (((int)(new OSContStatus(status).errno) == 0))
                     {
-                        new OSContStatus(status).type_Set((ushort)((((int)(new OSContPackedRequest(_fp).unk05) << (int)8) | (int)(new OSContPackedRequest(_fp).unk04))));
-                        new OSContStatus(status).status_Set(new OSContPackedRequest(_fp).unk06);
+                        new OSContStatus(status).type_Set((ushort)((((int)(new OSContPackedRequest(_fp).TypeL) << (int)8) | (int)(new OSContPackedRequest(_fp).TypeH))));
+                        new OSContStatus(status).status_Set(new OSContPackedRequest(_fp).Status);
                         bits = (byte)((int)(bits) | (1 << (int)i));
                     }
                 }

@@ -128,13 +128,13 @@ public static partial class ActorPool
             if (Dbg.On) Dbg.Enter("func_0044BA40", (uint)arg0);
             uint var_s0 = 0u;
             int var_s1 = 0;
-            ListUtil.Init(new func_80262ABC_S1_v2(arg0).unk5F00.P, 744, 748);
-            ListUtil.Init(new func_80262ABC_S1_v2(arg0).unk5F14.P, 744, 748);
+            ListUtil.Init(new func_80262ABC_S1_v2(arg0).FreeList.P, 744, 748);
+            ListUtil.Init(new func_80262ABC_S1_v2(arg0).ActiveList_2.P, 744, 748);
             var_s1 = 0;
-            var_s0 = new func_80262ABC_S1_v2(arg0).effects.P;
+            var_s0 = new func_80262ABC_S1_v2(arg0).EffectArray.P;
             do
             {
-                ListUtil.Append_00255CB4(new func_80262ABC_S1_v2(arg0).unk5F00.P, var_s0, default(uint), default(uint));
+                ListUtil.Append_00255CB4(new func_80262ABC_S1_v2(arg0).FreeList.P, var_s0, default(uint), default(uint));
                 var_s1 = (int)((int)(var_s1) + 1);
                 var_s0 = (uint)(var_s0 + (uint)(1 * 760));
             }

@@ -15,7 +15,7 @@ public static partial class CheatsMenu
             Mem.Set(Gv.CheatsMenu_PagePtr, ResourcePool.Malloc((uint)(60)));
             new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).w8__Set((uint)(root));
             new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).IsCodeEntered_38_Set(0);
-            new O3Spr(UiTree.FindNode((uint)(root), (uint)(936), default(uint), default(uint))).f1A_Set((short)(136));
+            new O3Spr(UiTree.FindNode((uint)(root), (uint)(936), default(uint), default(uint))).Height_Set((short)(136));
             new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).bar__Set((uint)((int)(PopupPanel.Create(936, 937))));
             MenuButton.Create(950);
             new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).ToggleList0Ptr_Set((int)(OptionList.Create(948, 949)));
@@ -318,11 +318,11 @@ public static partial class CheatsMenu
             if ((t <= 0))
             {
                 a = UiTree.FindNode(new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).w8_, (uint)(952), default(uint), default(uint));
-                new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsNodePtr.f16_Set((short)(((int)(new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsNodePtr.f16) - 1)));
+                new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsNodePtr.Y_Set((short)(((int)(new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsNodePtr.Y) - 1)));
                 it = new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).item_;
-                if ((((int)(new O3Spr(it).f16) + (int)(new O3Spr(a).f1A)) < 0))
+                if ((((int)(new O3Spr(it).Y) + (int)(new O3Spr(a).Height)) < 0))
                 {
-                    new O3Spr(it).f16_Set((short)(2));
+                    new O3Spr(it).Y_Set((short)(2));
                     CheatsMenu.ScrollCredits();
                 }
                 new O3Pm(Mem.U32(Gv.CheatsMenu_PagePtr)).CreditsScrollTimer_Set(1);

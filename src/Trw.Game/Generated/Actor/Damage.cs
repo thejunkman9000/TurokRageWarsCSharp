@@ -239,22 +239,22 @@ public static partial class Damage
                 float f = 0f;
                 float g = 0f;
                 float h = 0f;
-                if (((int)(new B15Ent(a1).type) == 1))
+                if (((int)(new B15Ent(a1).Type) == 1))
                 {
-                    new B15Ent(a1).unk170_Set((uint)((uint)(new B15Ent(a1).unk170) | (uint)(32768)));
+                    new B15Ent(a1).StateBlock_Set((uint)((uint)(new B15Ent(a1).StateBlock) | (uint)(32768)));
                     e = a1;
-                    if (((new B15Ent(a0).flags & (uint)(3145728)) != 0u))
+                    if (((new B15Ent(a0).Flags & (uint)(3145728)) != 0u))
                     {
                         o = new B15Ent(a0).owner_;
                         if ((Mem.U32((o + (uint)1500)) != 0u))
                         {
-                            if (((new B15Ent(a1).unk1AC & (uint)(16384)) != 0u))
+                            if (((new B15Ent(a1).HitFlags_1AC & (uint)(16384)) != 0u))
                             {
                                 Camera.StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94B4u), 100.0f, Mem.F32(0x800C94B4u), Mem.F32(0x800C94B0u), 1, _fp);
                             }
                             else
                             {
-                                if (((new B15Ent(a1).unk1AC & (uint)(8192)) != 0u))
+                                if (((new B15Ent(a1).HitFlags_1AC & (uint)(8192)) != 0u))
                                 {
                                     Camera.StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94BCu), 50.0f, Mem.F32(0x800C94BCu), Mem.F32(0x800C94B8u), 1, _fp);
                                 }
@@ -263,7 +263,7 @@ public static partial class Damage
                     }
                     if ((flag != 0))
                     {
-                        if ((((p10 != 0u) && ((new B15Ent(e).flags & (uint)(3145728)) != 0u)) && (((int)(new B15Mode(p10).mode) == 4) || ((int)(new B15Mode(p10).mode) == 5))))
+                        if ((((p10 != 0u) && ((new B15Ent(e).Flags & (uint)(3145728)) != 0u)) && (((int)(new B15Mode(p10).mode) == 4) || ((int)(new B15Mode(p10).mode) == 5))))
                         {
                             ho = new B15Ent(e).owner_;
                             func_0026643C_fx(ho, a1, _fp, (_fp + 16u), (int)(new B15Mode(p10).mode));
@@ -272,17 +272,17 @@ public static partial class Damage
                         new Vec3f((_fp + 16u)).y_Set(0.0f);
                         new Vec3f((_fp + 16u)).z_Set(0.0f);
                     }
-                    if ((((new B15Ent(e).flags & (uint)(3145728)) != 0u) && ((w11 & (uint)(512)) != 0u)))
+                    if ((((new B15Ent(e).Flags & (uint)(3145728)) != 0u) && ((w11 & (uint)(512)) != 0u)))
                     {
                         Level.FireEntityTriggers(a0, 16, (int)(e));
                     }
                 }
-                if (((new B15Ent(a0).def.type == 1) || (new B15Ent(a0).def.type == 11)))
+                if (((new B15Ent(a0).DefPtr.type == 1) || (new B15Ent(a0).DefPtr.type == 11)))
                 {
-                    Vec.Add(new B15Ent(a0).unk1C.P, new B15Ent(a0).unk1C.P, (_fp + 16u));
+                    Vec.Add(new B15Ent(a0).Velocity.P, new B15Ent(a0).Velocity.P, (_fp + 16u));
                     if ((w9 != 0))
                     {
-                        new B15Ent(a0).unk6C_Set((new B15Ent(a0).unk6C + (Actor.AngleToPoint(a0, C.Tmp(Cpu.F2U(new B15Ent(a1).pos.x), Cpu.F2U(new B15Ent(a1).pos.y), Cpu.F2U(new B15Ent(a1).pos.z))) * Mem.F32(0x800C94CCu))));
+                        new B15Ent(a0).Yaw_Set((new B15Ent(a0).Yaw + (Actor.AngleToPoint(a0, C.Tmp(Cpu.F2U(new B15Ent(a1).Position.x), Cpu.F2U(new B15Ent(a1).Position.y), Cpu.F2U(new B15Ent(a1).Position.z))) * Mem.F32(0x800C94CCu))));
                     }
                 }
             }
@@ -879,10 +879,10 @@ public static partial class Damage
                 if ((((int)(Mem.U8(act)) == 1) && ((new ActorView(act).Flags & (uint)(3145728)) != 0u)))
                 {
                     o = new ActorView(act).OwnerPtr;
-                    if (((act == (o + (uint)744)) && ((((int)(new B15O(o).unk62E) == 0) || ((int)(new B15O(o).unk62E) == 17)) || ((int)(new B15O(o).unk62E) == 16))))
+                    if (((act == (o + (uint)744)) && ((((int)(new B15O(o).WeaponIndex) == 0) || ((int)(new B15O(o).WeaponIndex) == 17)) || ((int)(new B15O(o).WeaponIndex) == 16))))
                     {
                         Mem.Copy(_fp, pos, 12);
-                        Mem.Copy((_fp + 16u), new B15O(o).pos.P, 12);
+                        Mem.Copy((_fp + 16u), new B15O(o).Position.P, 12);
                         Vec.Lerp(pos, 0.75f, _fp, (_fp + 16u));
                         new Vec3f(pos).y_Set((new Vec3f(pos).y + (Actor.GetHeight(o) * Mem.F32(0x800C9520u))));
                         r = 1;

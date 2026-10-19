@@ -49,7 +49,7 @@ public static partial class Hud
                 uint g = 0u;
                 uint mp = 0u;
                 Model.ResetStateCache();
-                if (((new B04O5(o).unk8 != 0) && (new B04O5(o).unkB4 != 0)))
+                if (((new B04O5(o).ModelIndex != 0) && (new B04O5(o).IsVisible != 0)))
                 {
                     Gfx.SetColorDither((uint)(192));
                     Model.SetPrimAlphaOverride((byte)(1), (byte)(32));
@@ -60,11 +60,11 @@ public static partial class Hud
                     new DlCmd(g).w0_Set(3808432641u);
                     new DlCmd(g).w1_Set((uint)(8192));
                     Model.ClearBatchQueue();
-                    Gfx.ClearZBufferRect((int)(Gv.GameCtx), (int)(new B04C5(c).f2A4), (int)((new B04C5(c).f29C + new B04C5(c).f2A4)), (int)(new B04C5(c).f2A8), (int)((new B04C5(c).f2A0 + new B04C5(c).f2A8)), 0);
-                    MathUtil.MtxMakeScale(_fp, new B04O5(o).unk90, new B04O5(o).unk94, new B04O5(o).unk98);
-                    MathUtil.MtxPostRotateY(_fp, new B04O5(o).unkA0);
-                    MathUtil.MtxPostRotateX(_fp, new B04O5(o).unk9C);
-                    MathUtil.MtxTranslate(_fp, new B04O5(o).posA8.x, new B04O5(o).posA8.y, new B04O5(o).posA8.z);
+                    Gfx.ClearZBufferRect((int)(Gv.GameCtx), (int)(new B04C5(c).ViewportX), (int)((new B04C5(c).ViewportWidth + new B04C5(c).ViewportX)), (int)(new B04C5(c).ViewportY), (int)((new B04C5(c).ViewportHeight + new B04C5(c).ViewportY)), 0);
+                    MathUtil.MtxMakeScale(_fp, new B04O5(o).ScaleX, new B04O5(o).ScaleY, new B04O5(o).ScaleZ);
+                    MathUtil.MtxPostRotateY(_fp, new B04O5(o).RotationY);
+                    MathUtil.MtxPostRotateX(_fp, new B04O5(o).RotationX);
+                    MathUtil.MtxTranslate(_fp, new B04O5(o).Position.x, new B04O5(o).Position.y, new B04O5(o).Position.z);
                     MathUtil.MtxSwapRowsYZ(_fp);
                     mp = (_fp + 64u);
                     MathUtil.MtxCopy(mp, _fp);
@@ -73,8 +73,8 @@ public static partial class Hud
                         MathUtil.MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
                     }
                     MathUtil.MtxFloatToFixed(mp, (o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 16)));
-                    MathUtil.MtxTransformPoint(_fp, new B04O5(o).posA8.P, (_fp + 128u));
-                    Model.QueueByIndex(new B04O5(o).unk8, (int)((o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 16))), (int)(Gv.Light_AmbientColor), 0, (-1));
+                    MathUtil.MtxTransformPoint(_fp, new B04O5(o).Position.P, (_fp + 128u));
+                    Model.QueueByIndex(new B04O5(o).ModelIndex, (int)((o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 16))), (int)(Gv.Light_AmbientColor), 0, (-1));
                     Model.FlushBatches();
                     Gfx.SetColorDither((uint)(0));
                     Model.SetPrimAlphaOverride((byte)(0), (byte)(32));
@@ -2744,10 +2744,10 @@ public static partial class Hud
                 {
                     if (((new Player_v2(p).GroundFlags & (uint)(4096)) != 0u))
                     {
-                        Mem.Set((_fp + (uint)0), new PawnFx(a).rgba[(int)(0)]);
-                        Mem.Set((_fp + (uint)1), new PawnFx(a).rgba[(int)(1)]);
-                        Mem.Set((_fp + (uint)2), new PawnFx(a).rgba[(int)(2)]);
-                        Mem.Set((_fp + (uint)3), new PawnFx(a).rgba[(int)(3)]);
+                        Mem.Set((_fp + (uint)0), new PawnFx(a).OverlayColor[(int)(0)]);
+                        Mem.Set((_fp + (uint)1), new PawnFx(a).OverlayColor[(int)(1)]);
+                        Mem.Set((_fp + (uint)2), new PawnFx(a).OverlayColor[(int)(2)]);
+                        Mem.Set((_fp + (uint)3), new PawnFx(a).OverlayColor[(int)(3)]);
                         if ((Mem.S32(0x800CF228u) != 0))
                         {
                             for (i = 0; (i < 4); ++i)
@@ -2761,7 +2761,7 @@ public static partial class Hud
                             Mem.Set((_fp + (uint)1), (byte)((int)(Mem.U8((_fp + (uint)1))) >> (int)3));
                             Mem.Set((_fp + (uint)2), (byte)((int)(Mem.U8((_fp + (uint)2))) >> (int)3));
                         }
-                        Gfx.FillRectBlended(Gv.GameCtx, _fp, (int)(new PawnFx(a).unk2A4), (int)(new PawnFx(a).unk2A8), (int)((new PawnFx(a).unk2A4 + new PawnFx(a).unk29C)), (int)((new PawnFx(a).unk2A8 + new PawnFx(a).unk2A0)));
+                        Gfx.FillRectBlended(Gv.GameCtx, _fp, (int)(new PawnFx(a).ViewportX), (int)(new PawnFx(a).ViewportY), (int)((new PawnFx(a).ViewportX + new PawnFx(a).ViewportWidth)), (int)((new PawnFx(a).ViewportY + new PawnFx(a).ViewportHeight)));
                     }
                     if (((Flyby.IsInWindow() == 0) && (Game_IsInState13() != 0)))
                     {
@@ -3158,7 +3158,7 @@ public static partial class Hud
                                 new TextNode(n).FadeState_Set(type);
                                 new TextNode(n).unk24__Set(start);
                                 new TextNode(n).Alpha_Set(0);
-                                new TextNode(n).unk10_Set(1.0f);
+                                new TextNode(n).LineScale_10_Set(1.0f);
                                 new TextNode(n).MessageId_Set(id);
                                 new TextNode(n).unk20_Set(0);
                                 new TextNode(n).FadeProgress_Set(0);
@@ -3241,7 +3241,7 @@ public static partial class Hud
                                 new TextNode_v3(n).FadeState_Set(type);
                                 new TextNode_v3(n).unk24__Set(start);
                                 new TextNode_v3(n).Alpha_Set(0);
-                                new TextNode_v3(n).unk10_Set(1.0f);
+                                new TextNode_v3(n).LineScale_10_Set(1.0f);
                                 new TextNode_v3(n).MessageId_Set(id);
                                 new TextNode_v3(n).unk20_Set(0);
                                 new TextNode_v3(n).FadeProgress_Set(0);
@@ -3471,7 +3471,7 @@ public static partial class Hud
                                 new TextNode(n).FadeState_Set(type);
                                 new TextNode(n).unk24__Set(start);
                                 new TextNode(n).Alpha_Set(0);
-                                new TextNode(n).unk10_Set(1.0f);
+                                new TextNode(n).LineScale_10_Set(1.0f);
                                 new TextNode(n).MessageId_Set(id);
                                 new TextNode(n).unk20_Set(0);
                                 new TextNode(n).FadeProgress_Set(0);

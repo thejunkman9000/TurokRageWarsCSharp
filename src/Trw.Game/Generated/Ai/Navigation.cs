@@ -454,7 +454,7 @@ public static partial class AiNav
                 started = 0;
                 f1 = (int)((new S5Actor(a).GroundFlags & (uint)(8192)));
                 f2 = (int)((new S5Actor(a).GroundFlags & (uint)(4096)));
-                Vec.Sub((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).BrainPtr.key), new S5Actor(a).Position.P);
+                Vec.Sub((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).BrainPtr.CurrentNode), new S5Actor(a).Position.P);
                 if (!(((f1 != 0) || (f2 != 0)))) goto _f3;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f4;
@@ -466,9 +466,9 @@ public static partial class AiNav
                 if (!((ady < 0.0f))) goto _f5;
                 ady = (-ady);
                 _f5: ;
-                best = new S5Actor(a).BrainPtr.key;
+                best = new S5Actor(a).BrainPtr.CurrentNode;
                 if (!((new S5Actor(a).IsComputer != 0))) goto _f6;
-                if (!((new S5Actor(a).BrainPtr.unk14 != (-1)))) goto _f7;
+                if (!((new S5Actor(a).BrainPtr.PathNodes != (-1)))) goto _f7;
                 x = Actor.IsOnGround(a);
                 z = 0;
                 w = (((int)(new S5Actor(a).StateId) == 15) ? 1 : 0);
@@ -479,9 +479,9 @@ public static partial class AiNav
                 if (!(((w != 0) || (f1 != 0)))) goto _f9;
                 L_b14: ;
                 if (!((z == 0))) goto _f10;
-                idx = new S5Actor(a).BrainPtr.unk14;
+                idx = new S5Actor(a).BrainPtr.PathNodes;
                 if (!((idx == (-1)))) goto _f11;
-                idx = new S5Actor(a).BrainPtr.unkC;
+                idx = new S5Actor(a).BrainPtr.GoalNode;
                 _f11: ;
                 rec = func_0020AF9C_getRec0(m, idx);
                 Vec.Sub((_fp + 512u), rec, new S5Actor(a).Position.P);
@@ -500,14 +500,14 @@ public static partial class AiNav
                 _f15: ;
                 if (!((new Vec3f((_fp + 512u)).y < 307.199982f))) goto _f18;
                 L_b27: ;
-                new S5Actor(a).BrainPtr.prev_Set(new S5Actor(a).BrainPtr.key);
-                new S5Actor(a).BrainPtr.key_Set(idx);
+                new S5Actor(a).BrainPtr.PreviousNode_Set(new S5Actor(a).BrainPtr.CurrentNode);
+                new S5Actor(a).BrainPtr.CurrentNode_Set(idx);
                 _f18: ;
                 _f17: ;
                 _f14: ;
                 goto _f19;
                 _f10: ;
-                new S5Actor(a).BrainPtr.unk14_Set((-1));
+                new S5Actor(a).BrainPtr.PathNodes_Set((-1));
                 goto L_b30;
                 _f19: ;
                 goto _f20;
@@ -521,7 +521,7 @@ public static partial class AiNav
                 goto _f22;
                 _f6: ;
                 L_b30: ;
-                cnt = func_0020AF9C_collect(m, new S5Actor(a).BrainPtr.key, _fp, (_fp + 256u));
+                cnt = func_0020AF9C_collect(m, new S5Actor(a).BrainPtr.CurrentNode, _fp, (_fp + 256u));
                 i = 0;
                 if (!((cnt > 0))) goto _f23;
                 _f24: ;
@@ -569,10 +569,10 @@ public static partial class AiNav
                 if ((i < cnt)) goto _f24;
                 _f26: ;
                 _f23: ;
-                if (!((new S5Actor(a).BrainPtr.key != best))) goto _f39;
-                new S5Actor(a).BrainPtr.prev_Set(new S5Actor(a).BrainPtr.key);
+                if (!((new S5Actor(a).BrainPtr.CurrentNode != best))) goto _f39;
+                new S5Actor(a).BrainPtr.PreviousNode_Set(new S5Actor(a).BrainPtr.CurrentNode);
                 _f39: ;
-                new S5Actor(a).BrainPtr.key_Set(best);
+                new S5Actor(a).BrainPtr.CurrentNode_Set(best);
                 _f22: ;
             }
         }

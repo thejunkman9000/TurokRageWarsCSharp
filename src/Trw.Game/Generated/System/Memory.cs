@@ -162,38 +162,38 @@ public static partial class AddrHash
             uint prev = 0u;
             uint idx = 0u;
             b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
-            if ((new B12Bucket(b).unk4 == (uint)(0)))
+            if ((new B12Bucket(b).Value == (uint)(0)))
             {
-                new B12Bucket(b).unk0_Set(key);
-                new B12Bucket(b).unk4_Set((uint)(val));
+                new B12Bucket(b).Key_Set(key);
+                new B12Bucket(b).Value_Set((uint)(val));
                 return;
             }
             do
             {
-                if ((new B12Bucket(b).unk0 == key))
+                if ((new B12Bucket(b).Key == key))
                 {
-                    new B12Bucket(b).unk4_Set((uint)(val));
+                    new B12Bucket(b).Value_Set((uint)(val));
                     return;
                 }
                 prev = b;
                 b = new B12Bucket(b).next_;
             }
             while ((b != 0u));
-            idx = (uint)((new B12Bucket(prev).id | 1));
-            if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4 != (uint)(0)))
+            idx = (uint)((new B12Bucket(prev).SlotIndex_8 | 1));
+            if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).Value != (uint)(0)))
             {
                 for (; ; )
                 {
                     idx = (uint)((uint)(idx) + (uint)(2));
                     idx = (uint)((uint)(idx) & Mem.U32(0x80105198u));
-                    if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4 == (uint)(0)))
+                    if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).Value == (uint)(0)))
                     {
                         break;
                     }
                 }
             }
-            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk0_Set(key);
-            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4_Set((uint)(val));
+            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).Key_Set(key);
+            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).Value_Set((uint)(val));
             new B12Bucket(prev).next__Set((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16)));
         }
     }
@@ -209,7 +209,7 @@ public static partial class AddrHash
             uint nx = 0u;
             p = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             prev = 0u;
-            if ((new B12Bucket(p).unk0 != key))
+            if ((new B12Bucket(p).Key != key))
             {
                 for (; ; )
                 {
@@ -219,7 +219,7 @@ public static partial class AddrHash
                     {
                         return;
                     }
-                    if ((new B12Bucket(p).unk0 == key))
+                    if ((new B12Bucket(p).Key == key))
                     {
                         break;
                     }
@@ -230,8 +230,8 @@ public static partial class AddrHash
                 nx = new B12Bucket(p).next_;
                 if ((nx != 0u))
                 {
-                    new B12Bucket(p).unk4_Set(new B12Bucket(nx).unk4);
-                    new B12Bucket(p).unk0_Set(new B12Bucket(nx).unk0);
+                    new B12Bucket(p).Value_Set(new B12Bucket(nx).Value);
+                    new B12Bucket(p).Key_Set(new B12Bucket(nx).Key);
                     new B12Bucket(p).next__Set(new B12Bucket(nx).next_);
                     {
                         uint t = p;
@@ -243,8 +243,8 @@ public static partial class AddrHash
                 {
                     new B12Bucket(prev).next__Set(nx);
                 }
-                new B12Bucket(p).unk4_Set((uint)(0));
-                new B12Bucket(p).unk0_Set((uint)(0));
+                new B12Bucket(p).Value_Set((uint)(0));
+                new B12Bucket(p).Key_Set((uint)(0));
                 new B12Bucket(p).next__Set(0u);
             }
         }
@@ -380,19 +380,19 @@ public static partial class FramePool
             }
             for (n = 0; (n < 3); ++n)
             {
-                if ((new Q01Pool(arg0).unkC[(int)(n)] != 0u))
+                if ((new Q01Pool(arg0).FrameBufferHandles[(int)(n)] != 0u))
                 {
-                    ResourcePool.Release(0, new Q01Pool(arg0).unkC[(int)(n)]);
+                    ResourcePool.Release(0, new Q01Pool(arg0).FrameBufferHandles[(int)(n)]);
                 }
             }
-            new Q01Pool(arg0).unk0_Set(0);
+            new Q01Pool(arg0).IsInitialised_Set(0);
             new Q01Pool(arg0).unk4__Set(0u);
             new Q01Pool(arg0).unk8__Set(0u);
             new Q01Pool(arg0).unk18__Set(0u);
             new Q01Pool(arg0).unk1C__Set(0u);
             for (j = 2; (j >= 0); --j)
             {
-                new Q01Pool(arg0).unkC.Set((int)(j), 0u);
+                new Q01Pool(arg0).FrameBufferHandles.Set((int)(j), 0u);
             }
             if ((MemUtil.GetRamSize() >= (mb * (uint)(6))))
             {
@@ -404,8 +404,8 @@ public static partial class FramePool
                 memset((uint)(new Q01Mem(b).addr), 0, (uint)(1036800));
                 memset((uint)(new Q01Mem(a).addr), 0, (uint)(345600));
                 new Q01Pool(arg0).unk18__Set(a);
-                new Q01Pool(arg0).unkC.Set((int)(0), b);
-                Mem.Set(0x801536E8u, new Q01Pool(arg0).unk18.addr);
+                new Q01Pool(arg0).FrameBufferHandles.Set((int)(0), b);
+                Mem.Set(0x801536E8u, new Q01Pool(arg0).ZBufferHandle.addr);
                 for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
                     Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b).addr) + (i * sz))));
@@ -416,7 +416,7 @@ public static partial class FramePool
                 sz = (uint)(126144);
                 @base = 2151677952u;
                 b2 = ResourcePool.AllocAt(0, (int)((@base - ((Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1)) * sz))), (int)(((Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1)) * sz)));
-                new Q01Pool(arg0).unkC.Set((int)(0), b2);
+                new Q01Pool(arg0).FrameBufferHandles.Set((int)(0), b2);
                 for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
                     Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b2).addr) + (i * sz))));
@@ -431,18 +431,18 @@ public static partial class FramePool
             new Q01Pool(arg0).unk4__Set(ResourcePool.Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(0x800E28A8u)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
             new Q01Pool(arg0).unk8__Set(ResourcePool.Alloc(0, 32768, (uint)(35), (int)(0x800E0D7Cu)));
             new Q01Pool(arg0).unk1C__Set(ResourcePool.Alloc(0, 139264, (uint)(35), (int)(0x800E0D84u)));
-            Mem.Set(0x801536F0u, new Q01Pool(arg0).unk4.addr);
+            Mem.Set(0x801536F0u, new Q01Pool(arg0).DisplayListHandle.addr);
             Mem.Set(0x801536BCu, (Mem.S32(0x801536F0u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
             Mem.Set(0x801536F4u, (Mem.S32(0x801536BCu) + (Mem.S32(0x800E28A8u) * 8)));
             Mem.Set(0x801536C0u, (Mem.S32(0x801536F4u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
             Mem.Set(0x801536B4u, 32768);
             Mem.Set(0x801536ECu, 139264);
-            Mem.Set(0x801536B8u, new Q01Pool(arg0).unk8.addr);
-            Mem.Set(0x801536B0u, new Q01Pool(arg0).unk1C.addr);
+            Mem.Set(0x801536B8u, new Q01Pool(arg0).RdpOutputBufferHandle.addr);
+            Mem.Set(0x801536B0u, new Q01Pool(arg0).Buffer136K_1C.addr);
             for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
             {
             }
-            new Q01Pool(arg0).unk0_Set(1);
+            new Q01Pool(arg0).IsInitialised_Set(1);
         }
     }
 
@@ -491,19 +491,19 @@ public static partial class FramePool
             }
             for (n = 0; (n < 3); ++n)
             {
-                if ((new Q01Pool_v2(arg0).unkC[(int)(n)] != 0u))
+                if ((new Q01Pool_v2(arg0).FrameBufferHandles[(int)(n)] != 0u))
                 {
-                    ResourcePool.Release(0, new Q01Pool_v2(arg0).unkC[(int)(n)]);
+                    ResourcePool.Release(0, new Q01Pool_v2(arg0).FrameBufferHandles[(int)(n)]);
                 }
             }
-            new Q01Pool_v2(arg0).unk0_Set(0);
+            new Q01Pool_v2(arg0).IsInitialised_Set(0);
             new Q01Pool_v2(arg0).unk4__Set(0u);
             new Q01Pool_v2(arg0).unk8__Set(0u);
             new Q01Pool_v2(arg0).unk18__Set(0u);
             new Q01Pool_v2(arg0).unk1C__Set(0u);
             for (j = 2; (j >= 0); --j)
             {
-                new Q01Pool_v2(arg0).unkC.Set((int)(j), 0u);
+                new Q01Pool_v2(arg0).FrameBufferHandles.Set((int)(j), 0u);
             }
         }
     }
@@ -695,14 +695,14 @@ public static partial class Heap
                             new B12HBlk(f).next__Set(0u);
                             new B12HBlk(f).prev__Set(0u);
                         }
-                        new B12HBlk(b).unk8_Set((int)(f));
-                        nx = (uint)(new B12HBlk(f).unkC);
-                        new B12HBlk(b).unkC_Set((int)(nx));
-                        if ((new B12HBlk(f).unkC != 0))
+                        new B12HBlk(b).PrevPhysPtr_Set((int)(f));
+                        nx = (uint)(new B12HBlk(f).NextPhysPtr);
+                        new B12HBlk(b).NextPhysPtr_Set((int)(nx));
+                        if ((new B12HBlk(f).NextPhysPtr != 0))
                         {
-                            new B12HBlk(nx).unk8_Set((int)(b));
+                            new B12HBlk(nx).PrevPhysPtr_Set((int)(b));
                         }
-                        new B12HBlk(f).unkC_Set((int)(b));
+                        new B12HBlk(f).NextPhysPtr_Set((int)(b));
                         return ptr;
                     }
                 }

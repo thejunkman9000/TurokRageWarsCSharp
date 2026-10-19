@@ -10,26 +10,26 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alEnvmixerNew", (uint)e, (uint)hp);
-            alFilterNew(new ALEnvMixer(e).filter.P, 0x002B9800u, 0x002BA288u, 4);
-            new ALEnvMixer(e).state_Set(alHeapDBAlloc(0u, 0, hp, 1, 80));
-            new ALEnvMixer(e).first_Set(1);
-            new ALEnvMixer(e).motion_Set(0);
-            new ALEnvMixer(e).f1A_Set((short)(1));
-            new ALEnvMixer(e).f28_Set((short)(1));
-            new ALEnvMixer(e).f2E_Set((short)(1));
-            new ALEnvMixer(e).f1C_Set((short)(1));
-            new ALEnvMixer(e).f1E_Set((short)(1));
-            new ALEnvMixer(e).f20_Set((short)(0));
-            new ALEnvMixer(e).f22_Set((short)(0));
-            new ALEnvMixer(e).f26_Set((short)(1));
-            Mem.Set(new ALEnvMixer(e).f24.P, (short)(0));
-            Mem.Set(new ALEnvMixer(e).f24.P, (short)(0));
-            new ALEnvMixer(e).f30_Set(0);
-            new ALEnvMixer(e).f34_Set(0);
-            new ALEnvMixer(e).f18_Set((short)(0));
-            new ALEnvMixer(e).f3C_Set(0);
-            new ALEnvMixer(e).f40_Set(0);
-            new ALEnvMixer(e).f44_Set(0);
+            alFilterNew(new ALEnvMixer(e).Filter.P, 0x002B9800u, 0x002BA288u, 4);
+            new ALEnvMixer(e).State_Set(alHeapDBAlloc(0u, 0, hp, 1, 80));
+            new ALEnvMixer(e).First_Set(1);
+            new ALEnvMixer(e).Motion_Set(0);
+            new ALEnvMixer(e).Volume_Set((short)(1));
+            new ALEnvMixer(e).LTgt_Set((short)(1));
+            new ALEnvMixer(e).RTgt_Set((short)(1));
+            new ALEnvMixer(e).CVolL_Set((short)(1));
+            new ALEnvMixer(e).CVolR_Set((short)(1));
+            new ALEnvMixer(e).DryAmt_Set((short)(0));
+            new ALEnvMixer(e).WetAmt_Set((short)(0));
+            new ALEnvMixer(e).LRatM_Set((short)(1));
+            Mem.Set(new ALEnvMixer(e).LRatL.P, (short)(0));
+            Mem.Set(new ALEnvMixer(e).LRatL.P, (short)(0));
+            new ALEnvMixer(e).Delta_Set(0);
+            new ALEnvMixer(e).SegEnd_Set(0);
+            new ALEnvMixer(e).Pan_Set((short)(0));
+            new ALEnvMixer(e).CtrlList_Set(0);
+            new ALEnvMixer(e).CtrlTail_Set(0);
+            new ALEnvMixer(e).Sources_Set(0);
         }
     }
 

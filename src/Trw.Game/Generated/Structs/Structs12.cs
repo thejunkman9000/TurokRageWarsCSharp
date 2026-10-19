@@ -1007,7 +1007,7 @@ public readonly struct HitB6
     [MethodImpl(Inl)] public static implicit operator uint(HitB6 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator HitB6(uint p) => new(p);
     // +0x0
-    public Plr unk0
+    public Plr SourcePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -1019,12 +1019,12 @@ public readonly struct HitB6
     }
     [MethodImpl(Inl)] public uint unk0__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public int unk4
+    public int Amount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int Amount_Set(int v) => Mem.Set(P + 0x4u, v);
 }
 
 /// <summary>struct HitRec, 0x100 bytes, at a guest address.</summary>
@@ -1540,12 +1540,12 @@ public readonly struct HudStatusShared_Settings
     // +0xE
     public S8x8 padE { [MethodImpl(Inl)] get => new(P + 0xEu); }
     // +0x16
-    public byte hudFade
+    public byte OpacityByte
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public byte hudFade_Set(byte v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public byte OpacityByte_Set(byte v) => Mem.Set(P + 0x16u, v);
     // +0x17
     public S8x6 pad17 { [MethodImpl(Inl)] get => new(P + 0x17u); }
     // +0x1D

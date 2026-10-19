@@ -1636,142 +1636,142 @@ public readonly struct ALEnvMixer
     [MethodImpl(Inl)] public static implicit operator uint(ALEnvMixer v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ALEnvMixer(uint p) => new(p);
     // +0x0
-    public ALFilter filter { [MethodImpl(Inl)] get => new(P); }
+    public ALFilter Filter { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public uint state
+    public uint State
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public uint state_Set(uint v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public uint State_Set(uint v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public short f18
+    public short Pan
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public short f18_Set(short v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public short Pan_Set(short v) => Mem.Set(P + 0x18u, v);
     // +0x1A
-    public short f1A
+    public short Volume
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x1Au);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Au, value);
     }
-    [MethodImpl(Inl)] public short f1A_Set(short v) => Mem.Set(P + 0x1Au, v);
+    [MethodImpl(Inl)] public short Volume_Set(short v) => Mem.Set(P + 0x1Au, v);
     // +0x1C
-    public short f1C
+    public short CVolL
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public short f1C_Set(short v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public short CVolL_Set(short v) => Mem.Set(P + 0x1Cu, v);
     // +0x1E
-    public short f1E
+    public short CVolR
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x1Eu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Eu, value);
     }
-    [MethodImpl(Inl)] public short f1E_Set(short v) => Mem.Set(P + 0x1Eu, v);
+    [MethodImpl(Inl)] public short CVolR_Set(short v) => Mem.Set(P + 0x1Eu, v);
     // +0x20
-    public short f20
+    public short DryAmt
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public short f20_Set(short v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public short DryAmt_Set(short v) => Mem.Set(P + 0x20u, v);
     // +0x22
-    public short f22
+    public short WetAmt
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x22u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x22u, value);
     }
-    [MethodImpl(Inl)] public short f22_Set(short v) => Mem.Set(P + 0x22u, v);
+    [MethodImpl(Inl)] public short WetAmt_Set(short v) => Mem.Set(P + 0x22u, v);
     // +0x24
-    public ALEnvMixer_f24 f24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
+    public ALEnvMixer_f24 LRatL { [MethodImpl(Inl)] get => new(P + 0x24u); }
     // +0x26
-    public short f26
+    public short LRatM
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x26u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x26u, value);
     }
-    [MethodImpl(Inl)] public short f26_Set(short v) => Mem.Set(P + 0x26u, v);
+    [MethodImpl(Inl)] public short LRatM_Set(short v) => Mem.Set(P + 0x26u, v);
     // +0x28
-    public short f28
+    public short LTgt
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public short f28_Set(short v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public short LTgt_Set(short v) => Mem.Set(P + 0x28u, v);
     // +0x2A
-    public short f2A
+    public short RRatL
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x2Au);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2Au, value);
     }
-    [MethodImpl(Inl)] public short f2A_Set(short v) => Mem.Set(P + 0x2Au, v);
+    [MethodImpl(Inl)] public short RRatL_Set(short v) => Mem.Set(P + 0x2Au, v);
     // +0x2C
-    public short f2C
+    public short RRatM
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x2Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2Cu, value);
     }
-    [MethodImpl(Inl)] public short f2C_Set(short v) => Mem.Set(P + 0x2Cu, v);
+    [MethodImpl(Inl)] public short RRatM_Set(short v) => Mem.Set(P + 0x2Cu, v);
     // +0x2E
-    public short f2E
+    public short RTgt
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x2Eu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2Eu, value);
     }
-    [MethodImpl(Inl)] public short f2E_Set(short v) => Mem.Set(P + 0x2Eu, v);
+    [MethodImpl(Inl)] public short RTgt_Set(short v) => Mem.Set(P + 0x2Eu, v);
     // +0x30
-    public int f30
+    public int Delta
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public int f30_Set(int v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public int Delta_Set(int v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public int f34
+    public int SegEnd
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public int f34_Set(int v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public int SegEnd_Set(int v) => Mem.Set(P + 0x34u, v);
     // +0x38
-    public int first
+    public int First
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int first_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int First_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public int f3C
+    public int CtrlList
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public int f3C_Set(int v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public int CtrlList_Set(int v) => Mem.Set(P + 0x3Cu, v);
     // +0x40
-    public int f40
+    public int CtrlTail
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public int f40_Set(int v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public int CtrlTail_Set(int v) => Mem.Set(P + 0x40u, v);
     // +0x44
-    public int f44
+    public int Sources
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public int f44_Set(int v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public int Sources_Set(int v) => Mem.Set(P + 0x44u, v);
     // +0x48
-    public int motion
+    public int Motion
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x48u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x48u, value);
     }
-    [MethodImpl(Inl)] public int motion_Set(int v) => Mem.Set(P + 0x48u, v);
+    [MethodImpl(Inl)] public int Motion_Set(int v) => Mem.Set(P + 0x48u, v);
 }
 
 /// <summary>struct ALEnvMixerFull, 0x4C bytes, at a guest address.</summary>
@@ -4746,19 +4746,19 @@ public readonly struct ALLowPassFx
     [MethodImpl(Inl)] public static implicit operator uint(ALLowPassFx v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ALLowPassFx(uint p) => new(p);
     // +0x0
-    public short fc
+    public short Cutoff
     {
         [MethodImpl(Inl)] get => Mem.S16(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public short fc_Set(short v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public short Cutoff_Set(short v) => Mem.Set(P, v);
     // +0x2
-    public short fgain
+    public short Gain
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x2u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2u, value);
     }
-    [MethodImpl(Inl)] public short fgain_Set(short v) => Mem.Set(P + 0x2u, v);
+    [MethodImpl(Inl)] public short Gain_Set(short v) => Mem.Set(P + 0x2u, v);
     // +0x4
     public S16x2 pad04 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x8

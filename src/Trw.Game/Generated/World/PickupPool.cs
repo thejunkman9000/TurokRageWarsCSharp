@@ -35,21 +35,21 @@ public static partial class PickupPool
                     PickupPool.Free(o, new NodeOwner(o).tail_);
                 }
                 n = new NodeOwner(o).freeList_;
-                new NodeOwner(o).freeList__Set(new Spawn_v2(n).next1DC_);
+                new NodeOwner(o).freeList__Set(new Spawn_v2(n).NextPtr);
                 if ((new NodeOwner(o).head_ != 0u))
                 {
                     new Node(new NodeOwner(o).head_).prev__Set(n);
                 }
-                new Spawn_v2(n).next1DC__Set(new NodeOwner(o).head_);
-                new Spawn_v2(n).prev1D8__Set(0u);
+                new Spawn_v2(n).NextPtr_Set(new NodeOwner(o).head_);
+                new Spawn_v2(n).PrevPtr_Set(0u);
                 new NodeOwner(o).head__Set(n);
                 if ((new NodeOwner(o).tail_ == 0u))
                 {
                     new NodeOwner(o).tail__Set(n);
                 }
-                new Spawn_v2(n).flags1D0_Set((uint)((uint)(new Spawn_v2(n).flags1D0) | (uint)(1)));
+                new Spawn_v2(n).PoolFlags_Set((uint)((uint)(new Spawn_v2(n).PoolFlags) | (uint)(1)));
                 Actor.InitBase_00246174(n);
-                new Spawn_v2(n).unk1C8_Set((float)(0));
+                new Spawn_v2(n).TimeLeft_Set((float)(0));
                 r = Level.GetModelKey(Gv.LevelMgr, idx);
                 new Spawn_v2(n).counter1D4__Set(counter);
                 if ((counter != 0u))
@@ -58,41 +58,41 @@ public static partial class PickupPool
                 }
                 if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
                 {
-                    new Spawn_v2(n).def__Set(Gv.PickupPool_AltDef_8011F2C0);
+                    new Spawn_v2(n).DefPtr_Set(Gv.PickupPool_AltDef_8011F2C0);
                 }
                 else
                 {
-                    new Spawn_v2(n).def__Set(Gv.PickupPool_PickupDef);
+                    new Spawn_v2(n).DefPtr_Set(Gv.PickupPool_PickupDef);
                 }
-                new Spawn_v2(n).unk1C8_Set(f);
-                new Spawn_v2(n).unk1CC_Set(0);
-                new Spawn_v2(n).unk4_Set((short)(idx));
+                new Spawn_v2(n).TimeLeft_Set(f);
+                new Spawn_v2(n).SpawnDelay_1CC_Set(0);
+                new Spawn_v2(n).TypeIndex_Set((short)(idx));
                 new Vec3f((_fp + 16u)).y_Set((new Vec3f((_fp + 16u)).y + 10.2399998f));
-                Mem.Copy(new Spawn_v2(n).pos.P, (_fp + 16u), 12);
-                new Spawn_v2(n).unk174_Set(0);
+                Mem.Copy(new Spawn_v2(n).Position.P, (_fp + 16u), 12);
+                new Spawn_v2(n).Yaw_Set(0);
                 new Spawn_v2(n).unk178_Set(0);
                 new Spawn_v2(n).unk168_Set(0);
                 new Spawn_v2(n).unk16C_Set(1.0f);
                 new Spawn_v2(n).unk170_Set(0);
-                new Spawn_v2(n).box.Set((int)(0), (new Vec3f((_fp + 16u)).x - 81.9199981f));
-                new Spawn_v2(n).box.Set((int)(1), (new Vec3f((_fp + 16u)).y - 81.9199981f));
-                new Spawn_v2(n).box.Set((int)(2), (new Vec3f((_fp + 16u)).z - 81.9199981f));
-                new Spawn_v2(n).box.Set((int)(3), (new Vec3f((_fp + 16u)).x + 81.9199981f));
-                new Spawn_v2(n).box.Set((int)(4), (new Vec3f((_fp + 16u)).y + 81.9199981f));
-                new Spawn_v2(n).box.Set((int)(5), (new Vec3f((_fp + 16u)).z + 81.9199981f));
-                new Spawn_v2(n).unk50_Set(r);
-                new Spawn_v2(n).unk54_Set((-1));
-                new Spawn_v2(n).unk58_Set(0);
-                new Spawn_v2(n).unk5C_Set(0);
-                new Spawn_v2(n).unk14_Set(val);
-                new Spawn_v2(n).unk194_Set(0);
-                new Spawn_v2(n).unk19C_Set((short)(26));
-                Mem.Copy(new Spawn_v2(n).vel.P, _fp, 12);
-                new Spawn_v2(n).unk1C4_Set(0);
-                new Vec3f((_fp + 32u)).x_Set(new Spawn_v2(n).pos.x);
-                new Vec3f((_fp + 32u)).y_Set((new Spawn_v2(n).pos.y + (Actor.GetHeight(n) * 0.5f)));
-                new Vec3f((_fp + 32u)).z_Set(new Spawn_v2(n).pos.z);
-                Light.GetLightsAt(Gv.LevelMgr, (_fp + 32u), new Spawn_v2(n).unk1A8.P);
+                new Spawn_v2(n).BoundsMin.Set((int)(0), (new Vec3f((_fp + 16u)).x - 81.9199981f));
+                new Spawn_v2(n).BoundsMin.Set((int)(1), (new Vec3f((_fp + 16u)).y - 81.9199981f));
+                new Spawn_v2(n).BoundsMin.Set((int)(2), (new Vec3f((_fp + 16u)).z - 81.9199981f));
+                new Spawn_v2(n).BoundsMin.Set((int)(3), (new Vec3f((_fp + 16u)).x + 81.9199981f));
+                new Spawn_v2(n).BoundsMin.Set((int)(4), (new Vec3f((_fp + 16u)).y + 81.9199981f));
+                new Spawn_v2(n).BoundsMin.Set((int)(5), (new Vec3f((_fp + 16u)).z + 81.9199981f));
+                new Spawn_v2(n).ModelTableKey_Set(r);
+                new Spawn_v2(n).LoadedModelIndex_Set((-1));
+                new Spawn_v2(n).LoadedModelKey_Set(0);
+                new Spawn_v2(n).LoadedModelSize_Set(0);
+                new Spawn_v2(n).RegionPtr_Set(val);
+                new Spawn_v2(n).Scale_Set(0);
+                new Spawn_v2(n).Flags_Set((short)(26));
+                Mem.Copy(new Spawn_v2(n).Velocity.P, _fp, 12);
+                new Spawn_v2(n).CachedDisplayList_Set(0);
+                new Vec3f((_fp + 32u)).x_Set(new Spawn_v2(n).Position.x);
+                new Vec3f((_fp + 32u)).y_Set((new Spawn_v2(n).Position.y + (Actor.GetHeight(n) * 0.5f)));
+                new Vec3f((_fp + 32u)).z_Set(new Spawn_v2(n).Position.z);
+                Light.GetLightsAt(Gv.LevelMgr, (_fp + 32u), new Spawn_v2(n).LightSet.P);
                 return n;
             }
         }
@@ -185,29 +185,29 @@ public static partial class PickupPool
                 if (Dbg.On) Dbg.Enter("func_00290404", (uint)o);
                 uint t = 0u;
                 t = 0x80104438u;
-                if (!((new Def_v2(new Obj_v12(o).def_).flags & (uint)(4)) != 0u))
+                if (!((new Def_v2(new Obj_v12(o).DefPtr).flags & (uint)(4)) != 0u))
                 {
                     t = 0x801043F8u;
                 }
-                if ((0.0f < new Obj_v12(o).unk1CC))
+                if ((0.0f < new Obj_v12(o).SpawnDelay_1CC))
                 {
-                    new Obj_v12(o).unk1CC_Set((new Obj_v12(o).unk1CC - Mem.F32(Gv.FrameTime)));
-                    Mem.Copy(_fp, new Obj_v12(o).pos.P, 12);
+                    new Obj_v12(o).SpawnDelay_1CC_Set((new Obj_v12(o).SpawnDelay_1CC - Mem.F32(Gv.FrameTime)));
+                    Mem.Copy(_fp, new Obj_v12(o).Position.P, 12);
                 }
                 Pickup.Update(o);
-                if ((new Obj_v12(o).def_ != Gv.PickupPool_PickupDef))
+                if ((new Obj_v12(o).DefPtr != Gv.PickupPool_PickupDef))
                 {
-                    new Obj_v12(o).vx_Set(0.0f);
-                    new Obj_v12(o).vy_Set(0.0f);
-                    new Obj_v12(o).vz_Set(0.0f);
+                    new Obj_v12(o).Velocity_Set(0.0f);
+                    new Obj_v12(o).VelocityY_Set(0.0f);
+                    new Obj_v12(o).VelocityZ_Set(0.0f);
                 }
-                Collision.MoveActor((int)(o), new Obj_v12(o).pos.x, new Obj_v12(o).pos.y, new Obj_v12(o).pos.z, (int)(t));
-                new Obj_v12(o).box.Set((int)(0), (new Obj_v12(o).pos.x - 81.9199981f));
-                new Obj_v12(o).box.Set((int)(1), (new Obj_v12(o).pos.y - 81.9199981f));
-                new Obj_v12(o).box.Set((int)(2), (new Obj_v12(o).pos.z - 81.9199981f));
-                new Obj_v12(o).box.Set((int)(3), (new Obj_v12(o).pos.x + 81.9199981f));
-                new Obj_v12(o).box.Set((int)(4), (new Obj_v12(o).pos.y + 81.9199981f));
-                new Obj_v12(o).box.Set((int)(5), (new Obj_v12(o).pos.z + 81.9199981f));
+                Collision.MoveActor((int)(o), new Obj_v12(o).Position.x, new Obj_v12(o).Position.y, new Obj_v12(o).Position.z, (int)(t));
+                new Obj_v12(o).BoundsMin.Set((int)(0), (new Obj_v12(o).Position.x - 81.9199981f));
+                new Obj_v12(o).BoundsMin.Set((int)(1), (new Obj_v12(o).Position.y - 81.9199981f));
+                new Obj_v12(o).BoundsMin.Set((int)(2), (new Obj_v12(o).Position.z - 81.9199981f));
+                new Obj_v12(o).BoundsMin.Set((int)(3), (new Obj_v12(o).Position.x + 81.9199981f));
+                new Obj_v12(o).BoundsMin.Set((int)(4), (new Obj_v12(o).Position.y + 81.9199981f));
+                new Obj_v12(o).BoundsMin.Set((int)(5), (new Obj_v12(o).Position.z + 81.9199981f));
             }
         }
         finally { Stack.Free(12); }
@@ -303,7 +303,7 @@ public static partial class PickupPool
             while ((e != 0u))
             {
                 Pickup.ClearDisplayList(e);
-                if (((((((((((new EntityView(e).flags19C & (uint)(196608)) == (uint)(131072)) && (Actor.IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new EntityView(e).PartMask[(int)(0)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new EntityView(e).PartMask[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new EntityView(e).PartMask[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new EntityView(e).PartMask[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new EntityView(e).PartMask[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new EntityView(e).PartMask[(int)(4)])))
+                if (((((((((((new EntityView(e).ActorStateTablePtr & (uint)(196608)) == (uint)(131072)) && (Actor.IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new EntityView(e).PartMask[(int)(0)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new EntityView(e).PartMask[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new EntityView(e).PartMask[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new EntityView(e).PartMask[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new EntityView(e).PartMask[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new EntityView(e).PartMask[(int)(4)])))
                 {
                     c = new LevelView(lv).AlwaysActiveActorCount;
                     if ((c != 512))
@@ -428,15 +428,15 @@ public static partial class PickupPool
             new S7Fx(p).slot[(int)(0)].prev__Set(0u);
             new S7Fx(p).slot[(int)(31)].next__Set(0u);
             ObjectRec.Init_00219460(Gv.PickupPool_PickupDef);
-            new S7Rec(Gv.PickupPool_PickupDef).unk0_Set(8);
-            new S7Rec(Gv.PickupPool_PickupDef).unk14_Set(1);
-            new S7Rec(Gv.PickupPool_PickupDef).unk12_Set((sbyte)(0));
+            new S7Rec(Gv.PickupPool_PickupDef).Kind_Set(8);
+            new S7Rec(Gv.PickupPool_PickupDef).Params_Set(1);
+            new S7Rec(Gv.PickupPool_PickupDef).SpawnParam_12_Set((sbyte)(0));
             ObjectRec.Init_00219460(Gv.PickupPool_AltDef_8011F2C0);
-            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).unk0_Set(8);
-            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).unk14_Set(0);
-            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).unk12_Set((sbyte)(0));
-            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).unk18_Set(122.879997f);
-            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).unk1C_Set(122.879997f);
+            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).Kind_Set(8);
+            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).Params_Set(0);
+            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).SpawnParam_12_Set((sbyte)(0));
+            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).BaseHealth_Set(122.879997f);
+            new S7Rec(Gv.PickupPool_AltDef_8011F2C0).ShapeHeight_1C_Set(122.879997f);
             for (i = 0; (i < 32); ++i)
             {
                 Pickup.SetStaticDef_002903E8((new S7Fx(p).slot.P + (uint)(i * 480)));

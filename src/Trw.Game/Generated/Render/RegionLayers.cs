@@ -1721,7 +1721,7 @@ public static partial class RegionLayer
                         uint pn = _fp;
                         do
                         {
-                            if ((new B09Emitter(e).key > new B09Cam(cam).depth))
+                            if ((new B09Emitter(e).HeightKey > new B09Cam(cam).depth))
                             {
                                 Mem.Set(pn, e);
                                 pn += 4u;
@@ -1760,16 +1760,16 @@ public static partial class RegionLayer
         {
             if (Dbg.On) Dbg.Enter("func_0023B684", (uint)e, (uint)def, (uint)n);
             new B09Emitter(e).def__Set(def);
-            new B09Emitter(e).mask_Set((ushort)(n));
-            Material.GetHandleById(new B09Emitter(e).pad14.P, (int)(new B09EDef(def).id));
-            new B09Emitter(e).f1C_Set((float)(0));
-            new B09Emitter(e).f20_Set((float)(0));
-            new B09Emitter(e).f208_Set((float)(0));
-            new B09Emitter(e).f20C_Set((float)(0));
-            new B09Emitter(e).f214_Set(a);
-            new B09Emitter(e).f218_Set(b);
-            new B09Emitter(e).f21C_Set(c);
-            new B09Emitter(e).f220_Set(d);
+            new B09Emitter(e).ActiveMask_Set((ushort)(n));
+            Material.GetHandleById(new B09Emitter(e).pad14.P, (int)(new B09EDef(def).MaterialId));
+            new B09Emitter(e).ScrollU_Set((float)(0));
+            new B09Emitter(e).ScrollV_Set((float)(0));
+            new B09Emitter(e).FadeAlpha_Set((float)(0));
+            new B09Emitter(e).AnimTime_Set((float)(0));
+            new B09Emitter(e).SpeedScale_Set(a);
+            new B09Emitter(e).Param218_218_Set(b);
+            new B09Emitter(e).HeightOffset_Set(c);
+            new B09Emitter(e).Param220_220_Set(d);
         }
     }
 
@@ -1783,52 +1783,52 @@ public static partial class RegionLayer
             float x = 0f;
             float step = 0f;
             float t = 0f;
-            if ((((int)(new B09Emitter(e).mask) & mask) != 0))
+            if ((((int)(new B09Emitter(e).ActiveMask) & mask) != 0))
             {
-                float up = new B09Emitter(e).f208;
-                up = (float)((float)(up) + (new B09EDef(def).f20 * Mem.F32(Gv.FrameTime)));
+                float up = new B09Emitter(e).FadeAlpha;
+                up = (float)((float)(up) + (new B09EDef(def).FadeRate * Mem.F32(Gv.FrameTime)));
                 if ((Mem.F32(0x800C86E0u) < up))
                 {
                     up = Mem.F32(0x800C86E0u);
                 }
-                new B09Emitter(e).f208_Set(up);
+                new B09Emitter(e).FadeAlpha_Set(up);
             }
             else
             {
                 float dn = 0f;
-                if ((new B09Emitter(e).f208 == 0.0f))
+                if ((new B09Emitter(e).FadeAlpha == 0.0f))
                 {
                     return 1;
                 }
-                dn = (new B09Emitter(e).f208 - (new B09EDef(def).f20 * Mem.F32(Gv.FrameTime)));
+                dn = (new B09Emitter(e).FadeAlpha - (new B09EDef(def).FadeRate * Mem.F32(Gv.FrameTime)));
                 dn = ((dn < 0.0f) ? 0.0f : dn);
-                new B09Emitter(e).f208_Set(dn);
+                new B09Emitter(e).FadeAlpha_Set(dn);
             }
-            new B09Emitter(e).f20C_Set((new B09Emitter(e).f20C + ((Mem.F32(Gv.FrameTime) * new B09EDef(def).f10) * new B09Emitter(e).f214)));
-            step = ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800D2994u)) * new B09EDef(def).f8);
-            t = (new B09Emitter(e).f1C + (step * Mem.F32(0x800C86E4u)));
-            new B09Emitter(e).f1C_Set(t);
+            new B09Emitter(e).AnimTime_Set((new B09Emitter(e).AnimTime + ((Mem.F32(Gv.FrameTime) * new B09EDef(def).AnimRate) * new B09Emitter(e).SpeedScale)));
+            step = ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800D2994u)) * new B09EDef(def).ScrollSpeed);
+            t = (new B09Emitter(e).ScrollU + (step * Mem.F32(0x800C86E4u)));
+            new B09Emitter(e).ScrollU_Set(t);
             if ((Mem.F32(0x800C86E8u) < t))
             {
-                new B09Emitter(e).f1C_Set((t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).ScrollU_Set((t - Mem.F32(0x800C86E8u)));
             }
-            t = (new B09Emitter(e).f20 + (step * Mem.F32(0x800C86ECu)));
-            new B09Emitter(e).f20_Set(t);
+            t = (new B09Emitter(e).ScrollV + (step * Mem.F32(0x800C86ECu)));
+            new B09Emitter(e).ScrollV_Set(t);
             if ((Mem.F32(0x800C86E8u) < t))
             {
-                new B09Emitter(e).f20_Set((t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).ScrollV_Set((t - Mem.F32(0x800C86E8u)));
             }
-            x = (new B09EDef(def).f14 + new B09Emitter(e).f21C);
+            x = (new B09EDef(def).BaseHeight + new B09Emitter(e).HeightOffset);
             if (((flag != 0) && (Mem.S32((ctx + (uint)36)) == 0)))
             {
                 x = (float)((float)(x) + f4);
             }
             else
             {
-                byte b = new B09EDef(def).flags29;
+                byte b = new B09EDef(def).HeightFlags;
                 if ((((int)(b) & 1) != 0))
                 {
-                    x = (float)((float)(x) + (Mem.F32((ctx + (uint)300)) * new B09EDef(def).f1C));
+                    x = (float)((float)(x) + (Mem.F32((ctx + (uint)300)) * new B09EDef(def).HeightScale_1C));
                 }
                 else
                 {
@@ -1838,7 +1838,7 @@ public static partial class RegionLayer
                     }
                 }
             }
-            new B09Emitter(e).key_Set(x);
+            new B09Emitter(e).HeightKey_Set(x);
             return 0;
         }
     }

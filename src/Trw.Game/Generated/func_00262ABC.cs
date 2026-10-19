@@ -11,14 +11,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00262ABC_take_effect", (uint)scene, (uint)@ref);
             uint effect = 0u;
-            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
+            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).ActiveCount_5F24) >= (uint)(3))))
             {
                 return 0u;
             }
-            effect = new func_80262ABC_S1(scene).unk5F00.v0_;
+            effect = new func_80262ABC_S1(scene).FreeList.v0_;
             if ((effect != 0u))
             {
-                ListUtil.Remove(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
+                ListUtil.Remove(new func_80262ABC_S1(scene).FreeList.P, effect, default(uint), default(uint));
                 ListUtil.Add((scene + 24340u), effect);
                 new Effect_func_80262A9C_de(effect).ref__Set(@ref);
                 if ((@ref != 0u))

@@ -120,25 +120,25 @@ public static partial class Actor
                             st = 4;
                         }
                         par = new CcGs(Gv.Collision_Contacts).unk0_;
-                        if (((new CcPar(par).flags100 & (uint)(50331648)) != 0u))
+                        if (((new CcPar(par).Flags & (uint)(50331648)) != 0u))
                         {
                             MathUtil.MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
                             sp110 = 1;
-                            if (((new CcPar(par).flags100 & (uint)(16777216)) != 0u))
+                            if (((new CcPar(par).Flags & (uint)(16777216)) != 0u))
                             {
                                 Anim.StartHitFlinch(par, (par + (uint)368), (_fp + 16u), new CcGs(Gv.Collision_Contacts).pos.P, new CcGs(Gv.Collision_Contacts).vD8.P, new CcGs(Gv.Collision_Contacts).idx);
                             }
-                            if (((new CcPar(par).flags100 & (uint)(33554432)) != 0u))
+                            if (((new CcPar(par).Flags & (uint)(33554432)) != 0u))
                             {
                                 if ((((int)(new CcObj(o).TypeId) == 298) || ((int)(new CcObj(o).TypeId) == 306)))
                                 {
                                     if ((Mem.S32(new CcPar(par).tab18_) == 11))
                                     {
-                                        int v = new CcPar(par).unk13E4;
+                                        int v = new CcPar(par).SpecialHitCount_13E4;
                                         f13 = ((v < 1) ? 1 : 0);
                                         if ((f13 != 0))
                                         {
-                                            new CcPar(par).unk13E4_Set((v + 1));
+                                            new CcPar(par).SpecialHitCount_13E4_Set((v + 1));
                                         }
                                     }
                                 }
@@ -177,18 +177,18 @@ public static partial class Actor
                 v8C = (int)(new CcCfg(cfg).tab.a8C[(int)(st)]);
                 Mem.Copy(_fp, (new CcCfg(cfg).tab.vec.P + (uint)(st * 8)), 8);
                 vA8 = (int)(new CcCfg(cfg).tab.aA8[(int)(st)]);
-                if (((int)(new CcPar(P).type) == 1))
+                if (((int)(new CcPar(P).Type) == 1))
                 {
                     par = P;
-                    if ((new CcPar(par).unk288 != 0u))
+                    if ((new CcPar(par).Callback288_288 != 0u))
                     {
-                        Funcs.CallReg(new CcPar(par).unk288, par, (par + (uint)368), o, 0u);
+                        Funcs.CallReg(new CcPar(par).Callback288_288, par, (par + (uint)368), o, 0u);
                     }
                     if ((Actor.StubFalse_0024E130() != 0))
                     {
                         sp10C = 0;
                     }
-                    if (((new CcPar(par).unk170 & (uint)(2)) != 0u))
+                    if (((new CcPar(par).StateBlock & (uint)(2)) != 0u))
                     {
                         sp10C = 0;
                     }
@@ -633,14 +633,14 @@ public static partial class Effects
         {
             if (Dbg.On) Dbg.Enter("func_002627C0_take_effect", (uint)scene, (uint)@ref);
             uint effect = 0u;
-            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
+            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).ActiveCount_5F24) >= (uint)(3))))
             {
                 return 0u;
             }
-            effect = new func_80262ABC_S1(scene).unk5F00.v0_;
+            effect = new func_80262ABC_S1(scene).FreeList.v0_;
             if ((effect != 0u))
             {
-                ListUtil.Remove(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
+                ListUtil.Remove(new func_80262ABC_S1(scene).FreeList.P, effect, default(uint), default(uint));
                 ListUtil.Add((scene + 24340u), effect);
                 new Effect_func_80262A9C_de(effect).ref__Set(@ref);
                 if ((@ref != 0u))
@@ -4495,11 +4495,11 @@ public static partial class Effects
             uint e = Pool.TakeFree(new Obj7588(o).sub.P);
             if ((e != 0u))
             {
-                new Ent6B74(e).unk18_Set(a);
-                new Ent6B74(e).unk14_Set(b);
-                new Ent6B74(e).unk8_Set(0);
-                new Ent6B74(e).unkC_Set(d);
-                new Ent6B74(e).unk10_Set(c);
+                new Ent6B74(e).Callback_Set(a);
+                new Ent6B74(e).UserData_Set(b);
+                new Ent6B74(e).Timer_Set(0);
+                new Ent6B74(e).Period_Set(d);
+                new Ent6B74(e).RemainingCount_Set(c);
             }
         }
     }
@@ -4606,8 +4606,8 @@ public static partial class Effects
             new S7Tabs(o).unk9C_Set(0);
             Effects.Text_FontInitHook();
             TextUtil.LoadFontTexture(default(uint), default(uint), default(uint), default(uint));
-            TextUtil.BuildCharMap((int)(o), 0x800D3080u, 117, new S7Tabs(o).tab0.P);
-            TextUtil.BuildCharMap((int)(o), 0x800D2F94u, 117, new S7Tabs(o).tab1.P);
+            TextUtil.BuildCharMap((int)(o), 0x800D3080u, 117, new S7Tabs(o).CharMapA.P);
+            TextUtil.BuildCharMap((int)(o), 0x800D2F94u, 117, new S7Tabs(o).CharMapB.P);
         }
     }
 
@@ -4894,22 +4894,22 @@ public static partial class Particle
                 }
                 f = (f * scale);
                 Mem.Copy((_fp + 32u), new ActorX(a).HitPoints.P, 12);
-                if ((new ActorX(a).f1AC > 0.0f))
+                if ((new ActorX(a).HitFlags_1AC > 0.0f))
                 {
                     new Vec3f(_fp).x_Set(0.0f);
                     new Vec3f(_fp).z_Set(0.0f);
                     new Vec3f(_fp).y_Set(Mem.F32(0x800C9C34u));
                     Vec.Cross((_fp + 16u), _fp, (_fp + 32u));
-                    Vec.Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f19C) * new ActorX(a).f1AC) * f));
-                    new ActorX(a).f19C_Set((float)((float)(new ActorX(a).f19C) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
-                    tmp = new ActorX(a).f19C;
-                    Vec.Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1AC) * f));
+                    Vec.Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).ActorStateTablePtr) * new ActorX(a).HitFlags_1AC) * f));
+                    new ActorX(a).ActorStateTablePtr_Set((float)((float)(new ActorX(a).ActorStateTablePtr) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
+                    tmp = new ActorX(a).ActorStateTablePtr;
+                    Vec.Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).HitFlags_1AC) * f));
                     Vec.Sub(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 48u));
                     Vec.Add(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 64u));
                 }
                 else
                 {
-                    new ActorX(a).f19C_Set((new ActorX(a).f19C + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
+                    new ActorX(a).ActorStateTablePtr_Set((new ActorX(a).ActorStateTablePtr + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
                 }
                 if ((new ActorX(a).f1B0 > 0.0f))
                 {
@@ -8130,7 +8130,7 @@ public static partial class Particle
                     {
                         return;
                     }
-                    MathUtil.MtxTransformPoint((b + (uint)544), new B18Actor(o).pos.P, _fp);
+                    MathUtil.MtxTransformPoint((b + (uint)544), new B18Actor(o).Position.P, _fp);
                     f = new Vec3f(_fp).z;
                     if ((f < 0.0f))
                     {
@@ -8138,26 +8138,26 @@ public static partial class Particle
                     }
                     Particle.BuildMatrix(o, (uint)(s3), b, f);
                 }
-                if ((new B18Actor(o).unk110 == 0))
+                if ((new B18Actor(o).ModelKey == 0))
                 {
-                    p = ResourceCache.Hash(0, (uint)(new B18Actor(o).unk118.unk14), new B18Actor(o).unk118.unk14, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
+                    p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ParticleDefPtr.ModelSetKey), new B18Actor(o).ParticleDefPtr.ModelSetKey, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
                     if ((p != 0u))
                     {
-                        s1 = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(p)), new B18Actor(o).unk118.unk14, 1);
+                        s1 = Resource.GetCartridgeKeyNoSize((uint)(Mem.S32(p)), new B18Actor(o).ParticleDefPtr.ModelSetKey, 1);
                         ResourcePool.Release(0, p);
                         q = Resource.LoadIndexTable(0, (_fp + 12u), s1, 0x800C9E40u, 1);
                         if ((q != 0u))
                         {
-                            new B18Actor(o).unk110_Set((int)(Resource.GetCartridgeKey(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
+                            new B18Actor(o).ModelKey_Set((int)(Resource.GetCartridgeKey(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
                             ResourcePool.Release(0, q);
                         }
                     }
-                    if ((new B18Actor(o).unk110 == 0))
+                    if ((new B18Actor(o).ModelKey == 0))
                     {
                         return;
                     }
                 }
-                p = ResourceCache.Hash(0, (uint)(new B18Actor(o).unk110), new B18Actor(o).unk110, (uint)(new B18Actor(o).unk114), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
+                p = ResourceCache.Hash(0, (uint)(new B18Actor(o).ModelKey), new B18Actor(o).ModelKey, (uint)(new B18Actor(o).ModelSize), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
                 if ((p != 0u))
                 {
                     Model.QueueBatched(p, s3, 0, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 24) + 224))), (uint)(0), (-1));
@@ -10472,7 +10472,7 @@ public static partial class Particle
                                     new B18Ob(o_2).Flags_Set((f & 4293918599u));
                                     if ((h != 0u))
                                     {
-                                        new B18Hnd(h).unk16_Set((short)(0));
+                                        new B18Hnd(h).IsEnabled_Set((short)(0));
                                     }
                                     if ((((new B18Ob(o_2).Age < (float)(new B18Ob(o_2).LifeFrames)) && ((int)(new B18Ob(o_2).LifeFrames) != one)) && !((new B18Ob(o_2).Flags & (uint)(4096)) != 0u)))
                                     {
@@ -10482,11 +10482,11 @@ public static partial class Particle
                                             h = new B18Ob(o_2).handle_;
                                             if ((h != 0u))
                                             {
-                                                new B18Hnd(h).unk16_Set((short)(one));
-                                                new B18Hnd(h).unk10_Set((short)((int)(new B18Ob(o_2).Position.x)));
-                                                new B18Hnd(h).unk12_Set((short)((int)(new B18Ob(o_2).Position.y)));
-                                                new B18Hnd(h).unk14_Set((short)((int)(new B18Ob(o_2).Position.z)));
-                                                new B18Hnd(h).unkC_Set((new B18Ob(o_2).Alpha_198 * 0.00392156886f));
+                                                new B18Hnd(h).IsEnabled_Set((short)(one));
+                                                new B18Hnd(h).PosX_Set((short)((int)(new B18Ob(o_2).Position.x)));
+                                                new B18Hnd(h).PosY_Set((short)((int)(new B18Ob(o_2).Position.y)));
+                                                new B18Hnd(h).PosZ_Set((short)((int)(new B18Ob(o_2).Position.z)));
+                                                new B18Hnd(h).Intensity_Set((new B18Ob(o_2).Alpha_198 * 0.00392156886f));
                                             }
                                             new B18Ob(o_2).Age_Set((float)((float)(new B18Ob(o_2).Age) + Mem.F32(Gv.FrameTime)));
                                         }

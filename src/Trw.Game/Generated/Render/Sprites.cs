@@ -1312,10 +1312,10 @@ public static partial class Gfx
             int srcHi = 0;
             float srcH = 0f;
             headerDone = 0;
-            w = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk4);
+            w = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Width);
             if ((w != 0))
             {
-                h = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
+                h = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Height);
                 if ((((h != 0) && (x0 != x1)) && (y0 != y1)))
                 {
                     hCopy = h;
@@ -1325,7 +1325,7 @@ public static partial class Gfx
                     dy = ((y1 - y0) + 1);
                     dsdx = ((int)((((s1 - s0) * (float)(w)) * Mem.F32(0x800E1434u))) / ((x1 - x0) + 1));
                     mode = Mem.S32(Gv.Gfx_TexBitsPerPixel);
-                    tw = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w);
+                    tw = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth);
                     Mem.Set(0x800E32B4u, 0);
                     dtdy = ((int)((srcH * Mem.F32(0x800E1434u))) / dy);
                     if ((srcHi == 0))
@@ -1345,35 +1345,35 @@ public static partial class Gfx
                     {
                     case 4:
                         {
-                            short u = (short)((ushort)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w));
+                            short u = (short)((ushort)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth));
                             stripRows = ((4096 / (int)(u)) & (~1));
                             rowBytes = ((int)(u) / 2);
                             break;
                         }
                         goto case 8;
                     case 8:
-                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
-                        rowBytes = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w);
+                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth)) & (~1));
+                        rowBytes = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth);
                         break;
                     case 16:
-                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * 2);
-                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
+                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * 2);
+                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth)) & (~1));
                         break;
                     case 24:
-                        stripRows = ((1024 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
-                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * 4);
+                        stripRows = ((1024 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth)) & (~1));
+                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).LoadWidth) * 4);
                         break;
                     default:
                         rowBytes = 0;
                         stripRows = 0;
                         break;
                     }
-                    if (((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6) < stripRows))
+                    if (((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Height) < stripRows))
                     {
-                        stripRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
+                        stripRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Height);
                     }
                     rowPos = 0;
-                    texRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
+                    texRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).Height);
                     sStart = (int)(((s0 * (float)(wCopy)) * Mem.F32((0x800E1438u + (uint)(1 * 4)))));
                     if ((texRows >= 0))
                     {
@@ -1382,7 +1382,7 @@ public static partial class Gfx
                             tOff = 0;
                             top = (y0 + ((invDtdy * ((rowPos << (int)10) - tStart)) >> (int)10));
                             bottom = ((y0 + ((invDtdy * (((rowPos + stripRows) << (int)10) - tStart)) >> (int)10)) - 1024);
-                            imgPtr = (int)((new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).img + (uint)((rowPos * rowBytes))));
+                            imgPtr = (int)((new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).PixelsPtr + (uint)((rowPos * rowBytes))));
                             rowPos = (rowPos + stripRows);
                             if ((bottom < top))
                             {

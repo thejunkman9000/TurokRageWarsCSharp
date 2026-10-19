@@ -791,40 +791,40 @@ public static partial class Ui
                 while ((i != (-1)));
             }
             it = (new Q04Pan2(p).items_ + (uint)((int)(new Q04Pan2(p).CursorIndex) * 40));
-            new Q04Pan2(p).f2C_Set((new Q04Pan2(p).f2C + Mem.F32(Gv.FrameTime)));
+            new Q04Pan2(p).OpenTime_Set((new Q04Pan2(p).OpenTime + Mem.F32(Gv.FrameTime)));
             s3 = (new Q04Item(it).Flags & (uint)(4194304));
             MenuPanel.StepOpenAnim(p);
             switch ((int)(new Q04Pan2(p).State))
             {
             case 0:
-                new Q04Pan2(p).f30_Set((new Q04Pan2(p).f30 + Mem.F32(Gv.FrameTime)));
-                if ((1.0f <= new Q04Pan2(p).f30))
+                new Q04Pan2(p).PanelFade_Set((new Q04Pan2(p).PanelFade + Mem.F32(Gv.FrameTime)));
+                if ((1.0f <= new Q04Pan2(p).PanelFade))
                 {
-                    new Q04Pan2(p).f30_Set(1.0f);
+                    new Q04Pan2(p).PanelFade_Set(1.0f);
                     new Q04Pan2(p).State_Set((short)(1));
                 }
                 break;
             case 1:
-                new Q04Pan2(p).f34_Set((new Q04Pan2(p).f34 + (Mem.F32(Gv.FrameTime) * 0.400000006f)));
-                if ((1.0f <= new Q04Pan2(p).f34))
+                new Q04Pan2(p).TextFade_Set((new Q04Pan2(p).TextFade + (Mem.F32(Gv.FrameTime) * 0.400000006f)));
+                if ((1.0f <= new Q04Pan2(p).TextFade))
                 {
-                    new Q04Pan2(p).f34_Set(1.0f);
+                    new Q04Pan2(p).TextFade_Set(1.0f);
                     new Q04Pan2(p).State_Set((short)(2));
                 }
                 break;
             case 3:
-                new Q04Pan2(p).f34_Set((new Q04Pan2(p).f34 - (Mem.F32(Gv.FrameTime) * 0.400000006f)));
-                if ((new Q04Pan2(p).f34 <= 0.0f))
+                new Q04Pan2(p).TextFade_Set((new Q04Pan2(p).TextFade - (Mem.F32(Gv.FrameTime) * 0.400000006f)));
+                if ((new Q04Pan2(p).TextFade <= 0.0f))
                 {
-                    new Q04Pan2(p).f34_Set(0.0f);
+                    new Q04Pan2(p).TextFade_Set(0.0f);
                     new Q04Pan2(p).State_Set((short)(4));
                 }
                 break;
             case 4:
-                new Q04Pan2(p).f30_Set((new Q04Pan2(p).f30 - Mem.F32(Gv.FrameTime)));
-                if ((new Q04Pan2(p).f30 <= 0.0f))
+                new Q04Pan2(p).PanelFade_Set((new Q04Pan2(p).PanelFade - Mem.F32(Gv.FrameTime)));
+                if ((new Q04Pan2(p).PanelFade <= 0.0f))
                 {
-                    new Q04Pan2(p).f30_Set(0.0f);
+                    new Q04Pan2(p).PanelFade_Set(0.0f);
                     return 1;
                 }
                 break;

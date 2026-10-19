@@ -13,10 +13,10 @@ public static partial class PauseSoundMenu
         {
             if (Dbg.On) Dbg.Enter("func_00439420");
             Mem.Set(Gv.PauseSoundMenu_StatePtr, ResourcePool.Malloc((uint)(8)));
-            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0_Set(Slider.Create(469, 470, 255));
-            Slider.SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
-            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4_Set(Slider.Create(471, 472, 255));
-            Slider.SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
+            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).MusicVolumeSlider_Set(Slider.Create(469, 470, 255));
+            Slider.SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).MusicVolumeSlider, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
+            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).SoundVolumeSlider_Set(Slider.Create(471, 472, 255));
+            Slider.SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).SoundVolumeSlider, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
             MenuButton.Create(467);
             return 0;
         }
@@ -51,13 +51,13 @@ public static partial class PauseSoundMenu
         {
             if (Dbg.On) Dbg.Enter("func_004394E8");
             int t = 0;
-            t = Slider.GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4);
+            t = Slider.GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).SoundVolumeSlider);
             if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1)))))
             {
                 Mem.Set((Gv.Settings_MusicVolume + (uint)1), (byte)(t));
                 Audio.PlaySound2D(1120);
             }
-            t = Slider.GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0);
+            t = Slider.GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).MusicVolumeSlider);
             if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0)))))
             {
                 Mem.Set((Gv.Settings_MusicVolume + (uint)0), (byte)(t));

@@ -3176,33 +3176,33 @@ public readonly struct TargetObj
     // +0x0
     public U8x668 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x29C
-    public float unk29C
+    public float ViewportWidth
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x29Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x29Cu, value);
     }
-    [MethodImpl(Inl)] public float unk29C_Set(float v) => Mem.Set(P + 0x29Cu, v);
+    [MethodImpl(Inl)] public float ViewportWidth_Set(float v) => Mem.Set(P + 0x29Cu, v);
     // +0x2A0
-    public float unk2A0
+    public float ViewportHeight
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x2A0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2A0u, value);
     }
-    [MethodImpl(Inl)] public float unk2A0_Set(float v) => Mem.Set(P + 0x2A0u, v);
+    [MethodImpl(Inl)] public float ViewportHeight_Set(float v) => Mem.Set(P + 0x2A0u, v);
     // +0x2A4
-    public float unk2A4
+    public float ViewportX
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x2A4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2A4u, value);
     }
-    [MethodImpl(Inl)] public float unk2A4_Set(float v) => Mem.Set(P + 0x2A4u, v);
+    [MethodImpl(Inl)] public float ViewportX_Set(float v) => Mem.Set(P + 0x2A4u, v);
     // +0x2A8
-    public float unk2A8
+    public float ViewportY
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x2A8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2A8u, value);
     }
-    [MethodImpl(Inl)] public float unk2A8_Set(float v) => Mem.Set(P + 0x2A8u, v);
+    [MethodImpl(Inl)] public float ViewportY_Set(float v) => Mem.Set(P + 0x2A8u, v);
 }
 
 /// <summary>struct TargetPosition, 0x14 bytes, at a guest address.</summary>
@@ -4073,12 +4073,12 @@ public readonly struct TextNode
     }
     [MethodImpl(Inl)] public float FontSize_Set(float v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public float unk10
+    public float LineScale_10
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public float LineScale_10_Set(float v) => Mem.Set(P + 0x10u, v);
     // +0x14
     public int FadeState
     {
@@ -4276,12 +4276,12 @@ public readonly struct TextNode_v3
     }
     [MethodImpl(Inl)] public float FontSize_Set(float v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public float unk10
+    public float LineScale_10
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public float LineScale_10_Set(float v) => Mem.Set(P + 0x10u, v);
     // +0x14
     public int FadeState
     {
@@ -4657,12 +4657,12 @@ public readonly struct Tgt697C
     // +0x0
     public U8x315 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x13B
-    public byte unk13B
+    public byte TrailCount_13B
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x13Bu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13Bu, value);
     }
-    [MethodImpl(Inl)] public byte unk13B_Set(byte v) => Mem.Set(P + 0x13Bu, v);
+    [MethodImpl(Inl)] public byte TrailCount_13B_Set(byte v) => Mem.Set(P + 0x13Bu, v);
     // +0x13C
     public U8x157 pad13C { [MethodImpl(Inl)] get => new(P + 0x13Cu); }
     // +0x1D9
@@ -5292,40 +5292,40 @@ public readonly struct Tracker
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int unk24
+    public int IsThirdPerson
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsThirdPerson_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int Yaw
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int Yaw_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public int unk2C
+    public int Pitch
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2Cu, value);
     }
-    [MethodImpl(Inl)] public int unk2C_Set(int v) => Mem.Set(P + 0x2Cu, v);
+    [MethodImpl(Inl)] public int Pitch_Set(int v) => Mem.Set(P + 0x2Cu, v);
     // +0x30
-    public float unk30
+    public float YawOffset
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public float unk30_Set(float v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public float YawOffset_Set(float v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public float unk34
+    public float Roll
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float Roll_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
     public float PosX
     {

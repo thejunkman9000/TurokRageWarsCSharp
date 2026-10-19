@@ -774,7 +774,7 @@ public static partial class ArenaSelect
                 }
                 if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).IsMarkerFading == 1))
                 {
-                    v = (int)(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.unk10);
+                    v = (int)(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.Alpha);
                     v = (int)((int)(v) - 30);
                     if ((v <= 0))
                     {
@@ -783,8 +783,8 @@ public static partial class ArenaSelect
                         UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454_, 0);
                         v = 255;
                     }
-                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.unk10_Set((byte)(v));
-                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeA.unk10_Set((byte)(v));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.Alpha_Set((byte)(v));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeA.Alpha_Set((byte)(v));
                 }
             }
             return 0;
@@ -1026,12 +1026,12 @@ public static partial class ArenaSelect
                         {
                             h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
                             UiNode.SetVisible(h, s7);
-                            new O04Sub10(h).unk10_Set((byte)(a));
+                            new O04Sub10(h).Alpha_Set((byte)(a));
                             if ((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.w != (-1)))
                             {
                                 h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
                                 UiNode.SetVisible(h, s7);
-                                new O04Sub10(h).unk10_Set((byte)(a));
+                                new O04Sub10(h).Alpha_Set((byte)(a));
                             }
                             found = 1;
                         }
@@ -1081,7 +1081,7 @@ public static partial class ArenaSelect
                     Level.CopyLevelName(Gv.LevelMgr, Arena.GetLevelForType(ArenaSelect.CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).Category), new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex), _fp, 63);
                     LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, StrUtil.ToUpper(_fp));
                 }
-                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameLabelNode.unk38_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameLabelNode.TextPtr_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P);
                 Flyby.Abort();
             }
         }
@@ -1190,7 +1190,7 @@ public static partial class ArenaSelect
                     Level.CopyLevelName(Gv.LevelMgr, Arena.GetLevelForType(ArenaSelect.CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).Category), new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex), _fp, 63);
                     LibC.StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P, StrUtil.ToUpper(_fp));
                 }
-                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameLabelNode.unk38_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameLabelNode.TextPtr_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameText.P);
             }
         }
         finally { Stack.Free(64); }
@@ -1265,8 +1265,8 @@ public static partial class ArenaSelect
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B4C4");
-            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.unk10_Set((byte)(255));
-            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeA.unk10_Set((byte)(255));
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeB.Alpha_Set((byte)(255));
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).MarkerNodeA.Alpha_Set((byte)(255));
             UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk450_, 1);
             UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454_, 1);
             new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).IsMarkerFading_Set(0);
@@ -1327,7 +1327,7 @@ public static partial class ArenaSelect
             UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 0);
             UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3EC_, 0);
             UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).NameFrameNode_3F0, 0);
-            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ConfirmFadeNode_44C.unk10_Set((byte)(90));
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ConfirmFadeNode_44C.Alpha_Set((byte)(90));
             Audio.PlaySound2D(3708);
             return 0;
         }
@@ -1379,7 +1379,7 @@ public static partial class ArenaSelect
                 ArenaSelect.ShowMarkers();
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).IdleTime_Set(0);
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).FlybyDelay_Set(0);
-                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.unk10_Set((byte)(65));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.Alpha_Set((byte)(65));
                 ArenaSelect.RefreshSelection();
                 if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex == 0))
                 {
@@ -1456,7 +1456,7 @@ public static partial class ArenaSelect
                 ArenaSelect.ShowMarkers();
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).IdleTime_Set(0);
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).FlybyDelay_Set(0);
-                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.unk10_Set((byte)(65));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.Alpha_Set((byte)(65));
                 ArenaSelect.RefreshSelection();
                 UiNode.SetVisible(new O04ModeF60((new_var = Mem.U32(Gv.ArenaSelect_PagePtr))).GauntletPanelNode_440, 0);
                 UiNode.SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaPanelNode_444, 1);
@@ -1504,7 +1504,7 @@ public static partial class ArenaSelect
                 ArenaSelect.ShowMarkers();
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).IdleTime_Set(0);
                 new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).FlybyDelay_Set(0);
-                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.unk10_Set((byte)(65));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).SelectedArenaNode.Alpha_Set((byte)(65));
                 r = Arena.GetCountForType(ArenaSelect.CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).Category));
                 if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex >= r))
                 {
@@ -1657,7 +1657,7 @@ public static partial class ArenaSelect
             {
                 if ((new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).Id)) || (new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }

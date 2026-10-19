@@ -15,29 +15,29 @@ public static partial class ControllerMenu
             if (Dbg.On) Dbg.Enter("func_004366C4", (uint)cfg, _a1);
             uint w = 0u;
             Mem.Set(Gv.ControllerMenu_PagePtr, ResourcePool.Malloc((uint)(100)));
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f0_Set(PopupPanel.Create(91, 92));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).PopupPanelPtr_Set(PopupPanel.Create(91, 92));
             MenuButton.Create(94);
             w = OptionList.Create(100, 101);
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f14_Set(w);
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).ControlTypeOption_Set(w);
             OptionList.AddOption(w, Mem.U32((0x800D74D0u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f14, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).ControlTypeOption, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
             w = OptionList.Create(97, 99);
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f10_Set(w);
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).LookSpringOption_Set(w);
             OptionList.AddOption(w, Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f10, Mem.U32((Gv.Str_OnPtr + (uint)(0 * 4))));
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f8_Set(Slider.Create(102, 103, 248));
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).fC_Set(Slider.Create(106, 107, 248));
+            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).LookSpringOption, Mem.U32((Gv.Str_OnPtr + (uint)(0 * 4))));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).HorzSensitivitySlider_Set(Slider.Create(102, 103, 248));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).VertSensitivitySlider_Set(Slider.Create(106, 107, 248));
             w = OptionList.Create(104, 105);
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f18_Set(w);
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).WeaponSelectModeOption_Set(w);
             OptionList.AddOption(w, Mem.U32((0x800D74E0u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f18, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
-            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f18, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
+            OptionList.AddOption(new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).WeaponSelectModeOption, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
             MenuButton.Create(96);
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f4_Set(Flicker.Create((uint)(93), (uint)(110), default(uint), default(uint)));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).FlickerPtr_Set(Flicker.Create((uint)(93), (uint)(110), default(uint), default(uint)));
             new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f24_Set(3);
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f20_Set((-1));
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f2C_Set(UiTree.FindNode(cfg, (uint)(95), default(uint), default(uint)));
-            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).f28_Set(0);
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).NextScreenId_Set((-1));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleNodePtr_Set(UiTree.FindNode(cfg, (uint)(95), default(uint), default(uint)));
+            new O05M90_v4(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex_Set(0);
             ControllerMenu.LoadSettings(0);
             return 0;
         }
@@ -165,11 +165,11 @@ public static partial class ControllerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00436898", (uint)i);
             Mem.Set((0x80146410u + (uint)((i * 150) + 7)), (byte)(i));
-            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).ControlType));
-            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).LookSpring));
-            Slider.SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickHorzSensitivity));
-            Slider.SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickVertSensitivity));
-            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).WeaponSelectMode));
+            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).ControlTypeOption, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).ControlType));
+            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).LookSpringOption, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).LookSpring));
+            Slider.SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).HorzSensitivitySlider, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickHorzSensitivity));
+            Slider.SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).VertSensitivitySlider, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickVertSensitivity));
+            OptionList.SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).WeaponSelectModeOption, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).WeaponSelectMode));
         }
     }
 
@@ -180,11 +180,11 @@ public static partial class ControllerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00436988", (uint)k);
             uint r = (Gv.Settings_PlayerRecords + (uint)(k * 150));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).ControlType_Set((sbyte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).LookSpring_Set((byte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickHorzSensitivity_Set((byte)(Slider.GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickVertSensitivity_Set((byte)(Slider.GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).WeaponSelectMode_Set((byte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).ControlType_Set((sbyte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).ControlTypeOption)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).LookSpring_Set((byte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).LookSpringOption)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickHorzSensitivity_Set((byte)(Slider.GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).HorzSensitivitySlider)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickVertSensitivity_Set((byte)(Slider.GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).VertSensitivitySlider)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).WeaponSelectMode_Set((byte)(OptionList.GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).WeaponSelectModeOption)));
             new O05R150b(r).ControlType_Set((byte)(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).ControlType));
             new O05R150b(r).LookSpring_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).LookSpring);
             new O05R150b(r).StickHorzSensitivity_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickHorzSensitivity);
@@ -221,15 +221,15 @@ public static partial class ControllerMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436D50");
-            int t = PopupPanel.GetState(new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).f0);
+            int t = PopupPanel.GetState(new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).PopupPanelPtr);
             if ((t != 3))
             {
                 if ((t == 4))
                 {
                     Menu.ConsumeEvent();
-                    if ((new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).f20 != (-1)))
+                    if ((new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).NextScreenId != (-1)))
                     {
-                        Menu.GotoScreen(new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).f20);
+                        Menu.GotoScreen(new O05M90_v3(Mem.U32(Gv.ControllerMenu_PagePtr)).NextScreenId);
                     }
                     else
                     {
@@ -261,10 +261,10 @@ public static partial class ControllerMenu
             Menu.ConsumeEvent();
             if ((Menu.GetMessage() == 96))
             {
-                ControllerMenu.StoreSettings(new O05M90_v5(Mem.U32(Gv.ControllerMenu_PagePtr)).f28);
+                ControllerMenu.StoreSettings(new O05M90_v5(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex);
                 p = Mem.U32(Gv.ControllerMenu_PagePtr);
-                new O05M90_v5(p).f20_Set((-1));
-                PopupPanel.SetState(new O05M90_v5(p).f0, 2);
+                new O05M90_v5(p).NextScreenId_Set((-1));
+                PopupPanel.SetState(new O05M90_v5(p).PopupPanelPtr, 2);
             }
             return 0;
         }
@@ -296,15 +296,15 @@ public static partial class ControllerMenu
             {
                 return 0;
             }
-            ControllerMenu.StoreSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28);
-            new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28_Set((int)(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 + 1));
-            if ((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 >= 4))
+            ControllerMenu.StoreSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex);
+            new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex_Set((int)(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex + 1));
+            if ((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex >= 4))
             {
-                new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28_Set(0);
+                new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex_Set(0);
             }
-            ControllerMenu.LoadSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28);
-            StrUtil.FormatInto(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f2C).f38_Set(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).buf.P);
+            ControllerMenu.LoadSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex);
+            StrUtil.FormatInto(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleNodePtr).TextPtr_Set(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleText.P);
             Audio.PlaySound2D(3713);
             return 0;
         }
@@ -321,15 +321,15 @@ public static partial class ControllerMenu
             {
                 return 0;
             }
-            ControllerMenu.StoreSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28);
-            new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28_Set((int)(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 - 1));
-            if ((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 < 0))
+            ControllerMenu.StoreSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex);
+            new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex_Set((int)(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex - 1));
+            if ((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex < 0))
             {
-                new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28_Set(3);
+                new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex_Set(3);
             }
-            ControllerMenu.LoadSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28);
-            StrUtil.FormatInto(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f28 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).f2C).f38_Set(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).buf.P);
+            ControllerMenu.LoadSettings(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex);
+            StrUtil.FormatInto(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleText.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).PlayerIndex + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleNodePtr).TextPtr_Set(new O05M90_v2(Mem.U32(Gv.ControllerMenu_PagePtr)).TitleText.P);
             Audio.PlaySound2D(3713);
             return 0;
         }

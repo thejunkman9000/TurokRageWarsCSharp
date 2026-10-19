@@ -14,16 +14,16 @@ public static partial class ColorCycle
             if (Dbg.On) Dbg.Enter("func_00419760", (uint)o, (uint)a1, (uint)dt);
             if ((ColorCycle.TestFlags(o, 4) == 0))
             {
-                new O3Menu(o).f54_Set((new O3Menu(o).f54 + dt));
-                new O3Menu(o).g.col_Set(Mem.S32((new O3Menu(o).tbl_ + (uint)(new O3Menu(o).cur * 4))));
-                if ((new O3Menu(o).f54 > new O3Menu(o).f58))
+                new O3Menu(o).Timer_Set((new O3Menu(o).Timer + dt));
+                new O3Menu(o).TargetNodePtr.col_Set(Mem.S32((new O3Menu(o).tbl_ + (uint)(new O3Menu(o).Index * 4))));
+                if ((new O3Menu(o).Timer > new O3Menu(o).Period))
                 {
-                    new O3Menu(o).f54_Set(0);
+                    new O3Menu(o).Timer_Set(0);
                     if ((ColorCycle.TestFlags(o, 1) != 0))
                     {
-                        if ((new O3Menu(o).cur < (new O3Menu(o).cnt - 1)))
+                        if ((new O3Menu(o).Index < (new O3Menu(o).Count - 1)))
                         {
-                            new O3Menu(o).cur_Set((new O3Menu(o).cur + 1));
+                            new O3Menu(o).Index_Set((new O3Menu(o).Index + 1));
                         }
                         else
                         {
@@ -31,15 +31,15 @@ public static partial class ColorCycle
                             {
                                 ColorCycle.ClearFlags(o, 1);
                                 ColorCycle.SetFlags(o, 2);
-                                ColorCycle.SetIndex(o, (new O3Menu(o).cnt - 2));
+                                ColorCycle.SetIndex(o, (new O3Menu(o).Count - 2));
                             }
                             else
                             {
                                 if ((ColorCycle.TestFlags(o, 32) != 0))
                                 {
-                                    if ((new O3Menu(o).f60 > 0))
+                                    if ((new O3Menu(o).RepeatCount > 0))
                                     {
-                                        new O3Menu(o).f60_Set((new O3Menu(o).f60 - 1));
+                                        new O3Menu(o).RepeatCount_Set((new O3Menu(o).RepeatCount - 1));
                                         ColorCycle.SetIndex(o, 0);
                                     }
                                 }
@@ -55,9 +55,9 @@ public static partial class ColorCycle
                     }
                     else
                     {
-                        if ((new O3Menu(o).cur > 0))
+                        if ((new O3Menu(o).Index > 0))
                         {
-                            new O3Menu(o).cur_Set((new O3Menu(o).cur - 1));
+                            new O3Menu(o).Index_Set((new O3Menu(o).Index - 1));
                         }
                         else
                         {
@@ -71,17 +71,17 @@ public static partial class ColorCycle
                             {
                                 if ((ColorCycle.TestFlags(o, 32) != 0))
                                 {
-                                    if ((new O3Menu(o).f60 > 0))
+                                    if ((new O3Menu(o).RepeatCount > 0))
                                     {
-                                        new O3Menu(o).f60_Set((new O3Menu(o).f60 - 1));
-                                        ColorCycle.SetIndex(o, (new O3Menu(o).cnt - 1));
+                                        new O3Menu(o).RepeatCount_Set((new O3Menu(o).RepeatCount - 1));
+                                        ColorCycle.SetIndex(o, (new O3Menu(o).Count - 1));
                                     }
                                 }
                                 else
                                 {
                                     if ((ColorCycle.TestFlags(o, 8) != 0))
                                     {
-                                        ColorCycle.SetIndex(o, (new O3Menu(o).cnt - 1));
+                                        ColorCycle.SetIndex(o, (new O3Menu(o).Count - 1));
                                     }
                                 }
                             }
@@ -119,17 +119,17 @@ public static partial class ColorCycle
             Mem.Set((o + (uint)18), (short)(8));
             Mem.Set((o + (uint)12), (short)(2911));
             new O3Menu(o).g__Set(g);
-            new O3Menu(o).f54_Set(0);
+            new O3Menu(o).Timer_Set(0);
             new O3Menu(o).tbl__Set(tbl);
-            new O3Menu(o).flags_Set(0);
-            new O3Menu(o).cnt_Set(0);
+            new O3Menu(o).Flags_Set(0);
+            new O3Menu(o).Count_Set(0);
             if ((Mem.S32((tbl + (uint)(0 * 4))) != (-1)))
             {
                 do
                 {
-                    new O3Menu(o).cnt_Set((new O3Menu(o).cnt + 1));
+                    new O3Menu(o).Count_Set((new O3Menu(o).Count + 1));
                 }
-                while ((Mem.S32((tbl + (uint)(new O3Menu(o).cnt * 4))) != (-1)));
+                while ((Mem.S32((tbl + (uint)(new O3Menu(o).Count * 4))) != (-1)));
             }
             ColorCycle.SetFlags(o, 1);
             ColorCycle.SetIndex(o, 0);
@@ -146,7 +146,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A5C", (uint)o, (uint)v);
-            new O3Menu(o).cur_Set(v);
+            new O3Menu(o).Index_Set(v);
         }
     }
 
@@ -156,7 +156,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A64", (uint)o, (uint)v);
-            new O3Menu(o).f58_Set(v);
+            new O3Menu(o).Period_Set(v);
         }
     }
 
@@ -166,7 +166,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A6C", (uint)o);
-            return new O3Menu(o).cur;
+            return new O3Menu(o).Index;
         }
     }
 
@@ -176,7 +176,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A78", (uint)o);
-            return new O3Menu(o).cnt;
+            return new O3Menu(o).Count;
         }
     }
 
@@ -186,7 +186,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A84", (uint)o, (uint)v);
-            new O3Menu(o).f60_Set(v);
+            new O3Menu(o).RepeatCount_Set(v);
         }
     }
 
@@ -196,7 +196,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A8C", (uint)o);
-            return new O3Menu(o).f60;
+            return new O3Menu(o).RepeatCount;
         }
     }
 
@@ -206,7 +206,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419A98", (uint)o, (uint)v);
-            new O3Menu(o).flags_Set((int)((int)(new O3Menu(o).flags) | v));
+            new O3Menu(o).Flags_Set((int)((int)(new O3Menu(o).Flags) | v));
         }
     }
 
@@ -216,7 +216,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419AA8", (uint)o, (uint)v);
-            new O3Menu(o).flags_Set((int)((int)(new O3Menu(o).flags) & (~v)));
+            new O3Menu(o).Flags_Set((int)((int)(new O3Menu(o).Flags) & (~v)));
         }
     }
 
@@ -226,7 +226,7 @@ public static partial class ColorCycle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419ABC", (uint)o, (uint)v);
-            return (((new O3Menu(o).flags & v) != 0) ? 1 : 0);
+            return (((new O3Menu(o).Flags & v) != 0) ? 1 : 0);
         }
     }
 

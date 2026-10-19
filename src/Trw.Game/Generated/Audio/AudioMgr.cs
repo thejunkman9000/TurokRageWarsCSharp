@@ -23,9 +23,9 @@ public static partial class AudioMgr
             int n4 = 0;
             Mem.Set((Gv.AudioMgr_DmaState + (uint)0), (sbyte)(0));
             new ALSynConfig(cfg).dmaproc_Set(0x00256E8Cu);
-            freq = osAiSetFrequency(new B12AiCfg(c2).unk0);
+            freq = osAiSetFrequency(new B12AiCfg(c2).OutputFrequency);
             new ALSynConfig(cfg).outputRate_Set(freq);
-            t = (((float)(new B12AiCfg(c2).unk4) * (float)(freq)) * 0.0166666675f);
+            t = (((float)(new B12AiCfg(c2).FramesPerSecond_4) * (float)(freq)) * 0.0166666675f);
             n = (uint)((int)(t));
             Mem.Set(Gv.AudioMgr_FrameSamples, (int)(n));
             if (((float)(n) < t))
@@ -49,9 +49,9 @@ public static partial class AudioMgr
             new B12DbEnt2((Gv.AudioMgr_DmaBuffers + (uint)(i * 20))).data_Set(alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, 768));
             for (i = (uint)(0); (i < (uint)(2)); ++i)
             {
-                Mem.Set((0x8010BE20u + (uint)(i * 4)), alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, (new B12AiCfg(c2).unk8 * 8)));
+                Mem.Set((0x8010BE20u + (uint)(i * 4)), alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, (new B12AiCfg(c2).MaxAcmdSize * 8)));
             }
-            Mem.Set(0x8010BE9Cu, new B12AiCfg(c2).unk8);
+            Mem.Set(0x8010BE9Cu, new B12AiCfg(c2).MaxAcmdSize);
             i = (uint)(0);
             a20 = Gv.Rsp_BootUcode;
             a24 = ((int)(0x800DCD10u - Gv.Rsp_BootUcode));
@@ -64,20 +64,20 @@ public static partial class AudioMgr
                 new B12AiTask(Mem.U32(tp)).cmd__Set(alHeapDBAlloc(0u, 0, new ALSynConfig(cfg).heap, 1, n4));
                 new B12AiTask(Mem.U32(tp)).f58__Set(0x8010BE80u);
                 new B12AiTask(Mem.U32(tp)).f5C__Set(Mem.U32(tp));
-                new B12AiTask(Mem.U32(tp)).f18_Set(2);
+                new B12AiTask(Mem.U32(tp)).TaskType_Set(2);
                 new B12AiTask(Mem.U32(tp)).f20__Set(a20);
-                new B12AiTask(Mem.U32(tp)).f24_Set(a24);
-                new B12AiTask(Mem.U32(tp)).f1C_Set(0);
+                new B12AiTask(Mem.U32(tp)).UcodeBootSize_Set(a24);
+                new B12AiTask(Mem.U32(tp)).TaskFlags_Set(0);
                 new B12AiTask(Mem.U32(tp)).f28__Set(0x800DF230u);
-                new B12AiTask(Mem.U32(tp)).f2C_Set(4096);
+                new B12AiTask(Mem.U32(tp)).UcodeSize_Set(4096);
                 new B12AiTask(Mem.U32(tp)).f30__Set(0x800E0860u);
-                new B12AiTask(Mem.U32(tp)).f34_Set(2048);
-                new B12AiTask(Mem.U32(tp)).f50_Set(0);
-                new B12AiTask(Mem.U32(tp)).f54_Set(0);
-                new B12AiTask(Mem.U32(tp)).f38_Set(0);
-                new B12AiTask(Mem.U32(tp)).f3C_Set(0);
-                new B12AiTask(Mem.U32(tp)).f40_Set(0);
-                new B12AiTask(Mem.U32(tp)).f44_Set(0);
+                new B12AiTask(Mem.U32(tp)).UcodeDataSize_Set(2048);
+                new B12AiTask(Mem.U32(tp)).YieldDataPtr_Set(0);
+                new B12AiTask(Mem.U32(tp)).YieldDataSize_Set(0);
+                new B12AiTask(Mem.U32(tp)).DramStackPtr_Set(0);
+                new B12AiTask(Mem.U32(tp)).DramStackSize_Set(0);
+                new B12AiTask(Mem.U32(tp)).OutputBuffPtr_Set(0);
+                new B12AiTask(Mem.U32(tp)).OutputBuffSize_Set(0);
                 tp += 4u;
             }
             osCreateMesgQueue(0x8010BE80u, 0x8010B6D0u, 10);

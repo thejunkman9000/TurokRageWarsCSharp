@@ -159,8 +159,8 @@ public static partial class Light
             {
                 ListUtil.Remove((pool + 20u), e, default(uint), default(uint));
                 ListUtil.Add(pool, e);
-                new B15Ent_v2(e).unk8_Set(val);
-                new B15Ent_v2(e).unk16_Set((short)(0));
+                new B15Ent_v2(e).DefPtr_Set(val);
+                new B15Ent_v2(e).IsEnabled_Set((short)(0));
             }
             return e;
         }
@@ -172,7 +172,7 @@ public static partial class Light
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00268C7C", (uint)pool, (uint)e);
-            new B15Ent_v3(e).unk16_Set((short)(0));
+            new B15Ent_v3(e).IsEnabled_Set((short)(0));
             ListUtil.Remove(pool, e, default(uint), default(uint));
             ListUtil.Add((pool + (uint)20), e);
         }
@@ -2021,22 +2021,22 @@ public static partial class Light
                             MathUtil.MtxTransformPointProject((o + (uint)96), (_fp + 2176u), (_fp + 2160u));
                             Vec.Sub((db + (uint)(k * 12)), pos, (_fp + 2160u));
                             Vec.Normalize((db + (uint)(k * 12)));
-                            Mem.Copy((_fp + 2080u), new B19bLObj(o).pos.P, 12);
-                            if (((int)(new B19bLObj(o).fBA) != 0))
+                            Mem.Copy((_fp + 2080u), new B19bLObj(o).Color.P, 12);
+                            if (((int)(new B19bLObj(o).IsFlickering) != 0))
                             {
                                 new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(Light.GetFlickerForObject(o))));
-                                Vec.Scale((_fp + 2144u), (_fp + 2192u), (Mem.F32((wb + (uint)(k * 4))) * new B19bLObj(o).f4));
+                                Vec.Scale((_fp + 2144u), (_fp + 2192u), (Mem.F32((wb + (uint)(k * 4))) * new B19bLObj(o).AmbientFraction_4));
                                 last = o;
-                                if (((int)(new B19bLObj(o).fB8) != 0))
+                                if (((int)(new B19bLObj(o).IsNegative) != 0))
                                 {
                                     Vec.Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
                                 }
                                 Vec.Add((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
                             }
-                            u1 = (new B19bLObj(o).f4 * 0.5f);
+                            u1 = (new B19bLObj(o).AmbientFraction_4 * 0.5f);
                             u0 = (1.0f - u1);
                             Vec.Scale((_fp + 2144u), (_fp + 2080u), (Mem.F32((wb + (uint)(k * 4))) * u1));
-                            if (((int)(new B19bLObj(o).fB8) != 0))
+                            if (((int)(new B19bLObj(o).IsNegative) != 0))
                             {
                                 Vec.Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
                             }
@@ -2066,7 +2066,7 @@ public static partial class Light
                             Vec.Scale((_fp + 2144u), (db + (uint)(k * 12)), Mem.F32((wb + (uint)(k * 4))));
                             Vec.Scale((_fp + 2144u), (_fp + 2144u), u0);
                             Vec.Add((_fp + 2064u), (_fp + 2064u), (_fp + 2144u));
-                            if (((int)(new B19bLObj(o).fB8) != 0))
+                            if (((int)(new B19bLObj(o).IsNegative) != 0))
                             {
                                 Mem.Set((wb + (uint)(k * 4)), (-Mem.F32((wb + (uint)(k * 4)))));
                             }
@@ -2104,7 +2104,7 @@ public static partial class Light
                             s0 = s1;
                         }
                         s0 = (s0 * 0.5f);
-                        Mem.Copy((_fp + 2080u), new B19bLObj(o).pos.P, 12);
+                        Mem.Copy((_fp + 2080u), new B19bLObj(o).Color.P, 12);
                         s2 = (s1 - s0);
                         if ((o == last))
                         {

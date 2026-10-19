@@ -205,8 +205,8 @@ public static partial class Sched
                         osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(0x800D2B1Cu));
                     }
                 }
-                new Vid(o).unk2FC_Set((new Vid(o).unk2FC + 1));
-                while ((osRecvMesg(new Vid(o).q78.P, _fp, 0) != (-1)))
+                new Vid(o).FrameCount_Set((new Vid(o).FrameCount + 1));
+                while ((osRecvMesg(new Vid(o).CommandQueue.P, _fp, 0) != (-1)))
                 {
                     Sched.EnqueueTask(o, Mem.U32(_fp));
                 }
@@ -222,10 +222,10 @@ public static partial class Sched
                 if ((Mem.S32(Gv.Sched_PendingSwapCount) != 0))
                 {
                     fr = Mem.U32((0x80146970u + (uint)(Mem.S32(0x8011FAB4u) * 4)));
-                    if (!((uint)((Mem.S32(0x801469E0u) + 1)) < new Frm(fr).unk124))
+                    if (!((uint)((Mem.S32(0x801469E0u) + 1)) < new Frm(fr).MinRetraceCount_124))
                     {
-                        Mem.Set(0x80146CF0u, new Frm(fr).unk110);
-                        osViSwapBuffer((uint)(new Frm(fr).unk110));
+                        Mem.Set(0x80146CF0u, new Frm(fr).FramebufferPtr);
+                        osViSwapBuffer((uint)(new Frm(fr).FramebufferPtr));
                         Mem.Set(Gv.Sched_PendingSwapCount, (Mem.S32(Gv.Sched_PendingSwapCount) - 1));
                         Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
                         Mem.Set(0x8011FAB4u, (Mem.S32(0x8011FAB4u) + 1));
@@ -235,19 +235,19 @@ public static partial class Sched
                         }
                     }
                 }
-                if (((new Vid(o).cur2F4_ == 0u) && (new Vid(o).next2F8_ == 0u)))
+                if (((new Vid(o).CurRspTask == 0u) && (new Vid(o).CurRdpTask == 0u)))
                 {
-                    j = new Vid(o).head2E8_;
-                    if ((((j != 0u) && (new Job(j).unk10 == 1)) && (new Job(j).flags4 == (uint)(50))))
+                    j = new Vid(o).GfxListHead;
+                    if ((((j != 0u) && (new Job(j).TaskType == 1)) && (new Job(j).State == (uint)(50))))
                     {
-                        new Job(j).flags4_Set((uint)(2));
-                        new Vid(o).cur2F4__Set(new Vid(o).head2E8_);
-                        c = new Vid(o).head2E8_;
-                        k = new Job(c).next_;
-                        new Vid(o).head2E8__Set(k);
+                        new Job(j).State_Set((uint)(2));
+                        new Vid(o).CurRspTask_Set(new Vid(o).GfxListHead);
+                        c = new Vid(o).GfxListHead;
+                        k = new Job(c).NextPtr;
+                        new Vid(o).GfxListHead_Set(k);
                         if ((k == 0u))
                         {
-                            new Vid(o).tail2F0__Set(0u);
+                            new Vid(o).GfxListTail_Set(0u);
                         }
                         Sched.HandleSpDone(o);
                     }
@@ -257,19 +257,19 @@ public static partial class Sched
                 {
                     Mem.Set(0u, (byte)(0));
                 }
-                if (((new Vid(o).unk300 != 0) && (new Vid(o).cur2F4_ != 0u)))
+                if (((new Vid(o).DoAudio != 0) && (new Vid(o).CurRspTask != 0u)))
                 {
                     Sched.YieldGfxTask(o);
                 }
                 else
                 {
-                    mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
+                    mode = ((((new Vid(o).CurRspTask == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).CurRdpTask == 0u) ? 1 : 0));
                     if (((int)(Sched.PickTasks(o, (_fp + 4u), (_fp + 8u), (uint)(mode))) != mode))
                     {
                         Sched.StartTasks(o, Mem.U32((_fp + 4u)), Mem.U32((_fp + 8u)));
                     }
                 }
-                n = new Vid(o).unk2E0_;
+                n = new Vid(o).ClientList;
                 while ((n != 0u))
                 {
                     if ((Mem.S32((new Qn(n).q_ + (uint)(2 * 4))) < 2))
@@ -298,34 +298,34 @@ public static partial class Sched
                 uint @base = 0u;
                 uint fb = 0u;
                 int mode = 0;
-                j = new Vid(o).cur2F4_;
-                new Vid(o).cur2F4__Set(0u);
+                j = new Vid(o).CurRspTask;
+                new Vid(o).CurRspTask_Set(0u);
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0u);
-                if ((((new Job(j).flags4 & (uint)(16)) != 0u) && (osSpTaskYielded((j + (uint)16)) != 0)))
+                if ((((new Job(j).State & (uint)(16)) != 0u) && (osSpTaskYielded((j + (uint)16)) != 0)))
                 {
-                    new Job(j).flags4_Set((uint)((uint)(new Job(j).flags4) | (uint)(32)));
-                    if (((new Job(j).flags8 & (uint)(7)) == (uint)(3)))
+                    new Job(j).State_Set((uint)((uint)(new Job(j).State) | (uint)(32)));
+                    if (((new Job(j).Flags & (uint)(7)) == (uint)(3)))
                     {
-                        new Job(j).next__Set(new Vid(o).head2E8_);
-                        new Vid(o).head2E8__Set(j);
-                        if ((new Vid(o).tail2F0_ == 0u))
+                        new Job(j).NextPtr_Set(new Vid(o).GfxListHead);
+                        new Vid(o).GfxListHead_Set(j);
+                        if ((new Vid(o).GfxListTail == 0u))
                         {
-                            new Vid(o).tail2F0__Set(j);
+                            new Vid(o).GfxListTail_Set(j);
                         }
                     }
-                    if (((new Job(j).flags8 & (uint)(32)) != 0u))
+                    if (((new Job(j).Flags & (uint)(32)) != 0u))
                     {
                         Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
                     }
                 }
                 else
                 {
-                    new Job(j).flags4_Set((uint)((uint)(new Job(j).flags4) & (uint)((~2))));
-                    if ((new Job(j).unk10 == 1))
+                    new Job(j).State_Set((uint)((uint)(new Job(j).State) & (uint)((~2))));
+                    if ((new Job(j).TaskType == 1))
                     {
                         Mem.Set(0x800D2950u, 0);
-                        if (!((new Job(j).flags8 & (uint)(32)) != 0u))
+                        if (!((new Job(j).Flags & (uint)(32)) != 0u))
                         {
                             goto L_done;
                         }
@@ -333,24 +333,24 @@ public static partial class Sched
                         Mem.Set(0x800D29A0u, Mem.F32(Gv.Sched_SpTaskTimeMs));
                         Mem.Set(0x800D299Cu, ((float)((((osGetTime() - Mem.U64(0x8011F290u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                         @base = Gv.GameCtx;
-                        fb = (uint)(new Job(j).unkC);
-                        if ((fb == new View_v2((@base + (uint)(0 * 320))).fb))
+                        fb = (uint)(new Job(j).FramebufferPtr);
+                        if ((fb == new View_v2((@base + (uint)(0 * 320))).FramebufferPtr))
                         {
                             s = @base;
                             goto L_sel;
                         }
-                        if ((fb == new View_v2((@base + (uint)(1 * 320))).fb))
+                        if ((fb == new View_v2((@base + (uint)(1 * 320))).FramebufferPtr))
                         {
                             s = (@base + (uint)(1 * 320));
                             goto L_sel;
                         }
                         s = @base;
-                        if ((fb == new View_v2((@base + (uint)(2 * 320))).fb))
+                        if ((fb == new View_v2((@base + (uint)(2 * 320))).FramebufferPtr))
                         {
                             s = (uint)(s + (uint)(2 * 320));
                         }
                         L_sel: ;
-                        Resource.PostFrameDone(0, (uint)(((new View_v2(s).unk114 == Mem.U32(0x801536F4u)) ? 1 : 0)));
+                        Resource.PostFrameDone(0, (uint)(((new View_v2(s).DisplayListPtr == Mem.U32(0x801536F4u)) ? 1 : 0)));
                         if ((osSendMesg((uint)(Mem.S32((j + (uint)((80 / 4) * 4)))), (uint)(Mem.S32((j + (uint)((84 / 4) * 4)))), 1) == (-1)))
                         {
                             Mem.Set(0u, (byte)(0));
@@ -367,7 +367,7 @@ public static partial class Sched
                     L_done: ;
                     Video.SwapIfReady((int)(o), j);
                 }
-                mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
+                mode = ((((new Vid(o).CurRspTask == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).CurRdpTask == 0u) ? 1 : 0));
                 if (((int)(Sched.PickTasks(o, _fp, (_fp + 4u), (uint)(mode))) != mode))
                 {
                     Sched.StartTasks(o, Mem.U32(_fp), Mem.U32((_fp + 4u)));
@@ -395,34 +395,34 @@ public static partial class Sched
                 int idx = 0;
                 uint lim = 0u;
                 ulong d = 0UL;
-                j = new Vid(o).next2F8_;
+                j = new Vid(o).CurRdpTask;
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0u);
-                new Job(j).flags4_Set((uint)((uint)(new Job(j).flags4) & (uint)((~1))));
-                if ((new Job(j).unk10 == 1))
+                new Job(j).State_Set((uint)((uint)(new Job(j).State) & (uint)((~1))));
+                if ((new Job(j).TaskType == 1))
                 {
-                    if (((new Job(j).flags8 & (uint)(32)) != 0u))
+                    if (((new Job(j).Flags & (uint)(32)) != 0u))
                     {
                         Mem.Set(0x800D29A4u, ((float)((((osGetTime() - Mem.U64(0x8011F2A8u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                     }
-                    new Vid(o).next2F8__Set(0u);
+                    new Vid(o).CurRdpTask_Set(0u);
                     do
                     {
-                        if (((new Job(j).flags8 & (uint)(32)) != 0u))
+                        if (((new Job(j).Flags & (uint)(32)) != 0u))
                         {
                             @base = Gv.GameCtx;
-                            fb = (uint)(new Job(j).unkC);
-                            if ((fb == new View_v3((@base + (uint)(0 * 320))).fb))
+                            fb = (uint)(new Job(j).FramebufferPtr);
+                            if ((fb == new View_v3((@base + (uint)(0 * 320))).FramebufferPtr))
                             {
                                 s = @base;
                                 goto L_sel;
                             }
-                            if ((fb == new View_v3((@base + (uint)(1 * 320))).fb))
+                            if ((fb == new View_v3((@base + (uint)(1 * 320))).FramebufferPtr))
                             {
                                 s = (@base + (uint)(1 * 320));
                                 goto L_sel;
                             }
-                            if ((fb != new View_v3((@base + (uint)(2 * 320))).fb))
+                            if ((fb != new View_v3((@base + (uint)(2 * 320))).FramebufferPtr))
                             {
                                 s = @base;
                             }
@@ -436,7 +436,7 @@ public static partial class Sched
                             Mem.Set(0x8014696Cu, Mem.S32(0x8011FAB8u));
                             Mem.Set(0x8011FAB8u, Mem.S32(0x80146D64u));
                             Mem.Set(0x80146D64u, (Mem.S32(0x801469E0u) + 1));
-                            if (!((uint)(Mem.S32(0x80146D64u)) < new View_v3(s).unk124))
+                            if (!((uint)(Mem.S32(0x80146D64u)) < new View_v3(s).MinRetraceCount_124))
                             {
                                 t = Mem.S32(Gv.Sched_PendingSwapCount);
                                 if ((t != 0))
@@ -445,8 +445,8 @@ public static partial class Sched
                                 }
                                 if ((Mem.S32(Gv.Sched_FbSwapPending) == 0))
                                 {
-                                    Mem.Set(0x80146CF0u, (int)(new View_v3(s).fb));
-                                    osViSwapBuffer((uint)(new View_v3(s).fb));
+                                    Mem.Set(0x80146CF0u, (int)(new View_v3(s).FramebufferPtr));
+                                    osViSwapBuffer((uint)(new View_v3(s).FramebufferPtr));
                                     Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
                                     goto L_done;
                                 }
@@ -468,7 +468,7 @@ public static partial class Sched
                     while ((0 != 0));
                 }
                 Video.SwapIfReady((int)(o), j);
-                mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
+                mode = ((((new Vid(o).CurRspTask == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).CurRdpTask == 0u) ? 1 : 0));
                 if (((int)(Sched.PickTasks(o, _fp, (_fp + 4u), (uint)(mode))) != mode))
                 {
                     Sched.StartTasks(o, Mem.U32(_fp), Mem.U32((_fp + 4u)));
@@ -953,10 +953,10 @@ public static partial class Sched
                 new Job_v2(cur).flags4_Set((uint)((uint)(new Job_v2(cur).flags4) & (uint)((~48))));
                 osSpTaskLoad((cur + (uint)16));
                 osSpTaskStartGo((cur + (uint)16));
-                new Vid_v2(o).unk2F4__Set(cur);
+                new Vid_v2(o).CurRspTask_Set(cur);
                 if ((cur == next))
                 {
-                    new Vid_v2(o).unk2F8__Set(next);
+                    new Vid_v2(o).CurRdpTask_Set(next);
                 }
             }
             if (((next != 0u) && (next != cur)))
@@ -964,7 +964,7 @@ public static partial class Sched
                 osDpSetNextBuffer((uint)(new Job_v2(next).unk38), Mem.U64(new Job_v2(next).unk3C_));
                 Mem.Set(0x800D2960u, 1);
                 Mem.Set(0x800D2964u, 0);
-                new Vid_v2(o).unk2F8__Set(next);
+                new Vid_v2(o).CurRdpTask_Set(next);
             }
         }
     }
@@ -997,7 +997,7 @@ public static partial class Sched
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0);
                 Mem.Set((_fp + 8u), 0);
-                while ((osRecvMesg(new Vid_v3(o).q78.P, _fp, 0) != (-1)))
+                while ((osRecvMesg(new Vid_v3(o).CommandQueue.P, _fp, 0) != (-1)))
                 {
                     if ((((new Msg(Mem.U32(_fp)).unk10 == 1) && ((new Msg(Mem.U32(_fp)).flags8 & (uint)(32)) != 0u)) && (Mem.S32(Gv.ResourceLoader_BoostFrames) == 0)))
                     {
@@ -1006,13 +1006,13 @@ public static partial class Sched
                     }
                     Sched.EnqueueTask(o, Mem.U32(_fp));
                 }
-                if (((new Vid_v3(o).unk300 != 0) && (new Vid_v3(o).unk2F4 != 0)))
+                if (((new Vid_v3(o).DoAudio != 0) && (new Vid_v3(o).CurRspTask != 0)))
                 {
                     Sched.YieldGfxTask(o);
                 }
                 else
                 {
-                    mode = ((((new Vid_v3(o).unk2F4 == 0) ? 1 : 0) << (int)1) | ((new Vid_v3(o).unk2F8 == 0) ? 1 : 0));
+                    mode = ((((new Vid_v3(o).CurRspTask == 0) ? 1 : 0) << (int)1) | ((new Vid_v3(o).CurRdpTask == 0) ? 1 : 0));
                     if (((int)(Sched.PickTasks(o, (_fp + 4u), (_fp + 8u), (uint)(mode))) != mode))
                     {
                         Sched.StartTasks(o, (uint)(Mem.S32((_fp + 4u))), (uint)(Mem.S32((_fp + 8u))));

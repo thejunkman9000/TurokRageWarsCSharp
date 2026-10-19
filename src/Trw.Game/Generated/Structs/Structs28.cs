@@ -2975,12 +2975,12 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public int EmbryoOwnerPtr_Set(int v) => Mem.Set(P + 0x13E0u, v);
     // +0x13E4
-    public int field13E4
+    public int SpecialHitCount_13E4
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13E4u, value);
     }
-    [MethodImpl(Inl)] public int field13E4_Set(int v) => Mem.Set(P + 0x13E4u, v);
+    [MethodImpl(Inl)] public int SpecialHitCount_13E4_Set(int v) => Mem.Set(P + 0x13E4u, v);
     // +0x13E8
     public S8x104 pad13E8 { [MethodImpl(Inl)] get => new(P + 0x13E8u); }
     // +0x1450
@@ -4799,23 +4799,23 @@ public readonly struct S1008Menu
     [MethodImpl(Inl)] public static implicit operator uint(S1008Menu v) => v.P;
     [MethodImpl(Inl)] public static explicit operator S1008Menu(uint p) => new(p);
     // +0x0
-    public uint owner
+    public uint OwnerPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public uint owner_Set(uint v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public uint OwnerPtr_Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public uint handle
+    public uint CursorGroupPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint handle_Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint CursorGroupPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x192 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xC8
-    public S1008Node left
+    public S1008Node LeftNodePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xC8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xC8u, value.P);
@@ -4827,14 +4827,14 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint left__Set(uint v) => Mem.Set(P + 0xC8u, v);
     // +0xCC
-    public int leftStep
+    public int LeftSlideStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCCu, value);
     }
-    [MethodImpl(Inl)] public int leftStep_Set(int v) => Mem.Set(P + 0xCCu, v);
+    [MethodImpl(Inl)] public int LeftSlideStep_Set(int v) => Mem.Set(P + 0xCCu, v);
     // +0xD0
-    public S1008Node right
+    public S1008Node RightNodePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xD0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD0u, value.P);
@@ -4846,33 +4846,33 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint right__Set(uint v) => Mem.Set(P + 0xD0u, v);
     // +0xD4
-    public int rightStep
+    public int RightSlideStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD4u, value);
     }
-    [MethodImpl(Inl)] public int rightStep_Set(int v) => Mem.Set(P + 0xD4u, v);
+    [MethodImpl(Inl)] public int RightSlideStep_Set(int v) => Mem.Set(P + 0xD4u, v);
     // +0xD8
-    public int state
+    public int State
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public int state_Set(int v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public int State_Set(int v) => Mem.Set(P + 0xD8u, v);
     // +0xDC
-    public int timer
+    public int Timer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public int timer_Set(int v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public int Timer_Set(int v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public int fade
+    public int FlickerHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xE0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE0u, value);
     }
-    [MethodImpl(Inl)] public int fade_Set(int v) => Mem.Set(P + 0xE0u, v);
+    [MethodImpl(Inl)] public int FlickerHandle_Set(int v) => Mem.Set(P + 0xE0u, v);
     // +0xE4
     public S1008Node groupA
     {
@@ -4886,7 +4886,7 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint groupA__Set(uint v) => Mem.Set(P + 0xE4u, v);
     // +0xE8
-    public S1008Node cursor
+    public S1008Node CursorNodePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xE8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE8u, value.P);
@@ -4898,7 +4898,7 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint cursor__Set(uint v) => Mem.Set(P + 0xE8u, v);
     // +0xEC
-    public S1008Node focus
+    public S1008Node FocusNodePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xECu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xECu, value.P);
@@ -4934,21 +4934,21 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint groupB__Set(uint v) => Mem.Set(P + 0xF4u, v);
     // +0xF8
-    public int styleStep
+    public int AwardStep_F8
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xF8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xF8u, value);
     }
-    [MethodImpl(Inl)] public int styleStep_Set(int v) => Mem.Set(P + 0xF8u, v);
+    [MethodImpl(Inl)] public int AwardStep_F8_Set(int v) => Mem.Set(P + 0xF8u, v);
     // +0xFC
-    public int styleValue
+    public int AwardPhase_FC
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xFCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xFCu, value);
     }
-    [MethodImpl(Inl)] public int styleValue_Set(int v) => Mem.Set(P + 0xFCu, v);
+    [MethodImpl(Inl)] public int AwardPhase_FC_Set(int v) => Mem.Set(P + 0xFCu, v);
     // +0x100
-    public S1008Node groupC
+    public S1008Node FadeNodePtr_100
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x100u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x100u, value.P);
@@ -4960,19 +4960,19 @@ public readonly struct S1008Menu
     }
     [MethodImpl(Inl)] public uint groupC__Set(uint v) => Mem.Set(P + 0x100u, v);
     // +0x104
-    public int alphaStep
+    public int AlphaStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x104u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x104u, value);
     }
-    [MethodImpl(Inl)] public int alphaStep_Set(int v) => Mem.Set(P + 0x104u, v);
+    [MethodImpl(Inl)] public int AlphaStep_Set(int v) => Mem.Set(P + 0x104u, v);
     // +0x108
-    public int clock
+    public int Clock
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x108u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x108u, value);
     }
-    [MethodImpl(Inl)] public int clock_Set(int v) => Mem.Set(P + 0x108u, v);
+    [MethodImpl(Inl)] public int Clock_Set(int v) => Mem.Set(P + 0x108u, v);
     // +0x10C
     public int f10C
     {

@@ -3805,28 +3805,28 @@ public readonly struct ActorCmd
     [MethodImpl(Inl)] public static implicit operator uint(ActorCmd v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ActorCmd(uint p) => new(p);
     // +0x0
-    public int f0
+    public int DrawsModel_0
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int f0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int DrawsModel_0_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public int f4
+    public int DrawsShadow_4
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int f4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int DrawsShadow_4_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x4 pad_8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xC
-    public uint fC
+    public uint ModelPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public uint fC_Set(uint v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public uint ModelPtr_Set(uint v) => Mem.Set(P + 0xCu, v);
 }
 
 /// <summary>struct ActorDef, 0x68 bytes, at a guest address.</summary>
@@ -4574,12 +4574,12 @@ public readonly struct ActorX
     // +0x18C
     public U8x16 pad18C { [MethodImpl(Inl)] get => new(P + 0x18Cu); }
     // +0x19C
-    public float f19C
+    public float ActorStateTablePtr
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x19Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x19Cu, value);
     }
-    [MethodImpl(Inl)] public float f19C_Set(float v) => Mem.Set(P + 0x19Cu, v);
+    [MethodImpl(Inl)] public float ActorStateTablePtr_Set(float v) => Mem.Set(P + 0x19Cu, v);
     // +0x1A0
     public float CollisionProfilePtr
     {
@@ -4602,12 +4602,12 @@ public readonly struct ActorX
     }
     [MethodImpl(Inl)] public float f1A8_Set(float v) => Mem.Set(P + 0x1A8u, v);
     // +0x1AC
-    public float f1AC
+    public float HitFlags_1AC
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1ACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1ACu, value);
     }
-    [MethodImpl(Inl)] public float f1AC_Set(float v) => Mem.Set(P + 0x1ACu, v);
+    [MethodImpl(Inl)] public float HitFlags_1AC_Set(float v) => Mem.Set(P + 0x1ACu, v);
     // +0x1B0
     public float f1B0
     {

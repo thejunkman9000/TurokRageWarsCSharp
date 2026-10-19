@@ -110,7 +110,7 @@ public static partial class Player
             {
                 return 0;
             }
-            if (((new ObjDef_v2(o).f38 & (uint)(131072)) != 0u))
+            if (((new ObjDef_v2(o).GroundFlags & (uint)(131072)) != 0u))
             {
                 if (((int)(new Player_v3(p).StateId) == 13))
                 {
@@ -606,7 +606,7 @@ public static partial class PlayerState
             MathUtil.ApproachProportional((p + 1836u), 0.0f, 0.25f);
             Player.UpdateViewTurn(p, o, Gv.Player_ViewTurnParams);
             Player.UpdateGroundMovement(p, o, 0x800CE79Cu);
-            if ((new ObjDef_v2(o).f20 <= 0.0f))
+            if ((new ObjDef_v2(o).VelocityY <= 0.0f))
             {
                 if ((Actor.IsOnGround(o) != 0))
                 {

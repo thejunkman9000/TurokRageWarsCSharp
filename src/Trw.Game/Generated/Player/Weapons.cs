@@ -215,7 +215,7 @@ public static partial class Player
                 k = 23;
             }
             L_l2: ;
-            Level.SetActorType(Gv.LevelMgr, (a + (uint)744), ((int)(new PlrDef(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(a).WeaponIndex * 4)))).unk4) + k), new Plr(a).WeaponAnimInfoPtr_484.unk10);
+            Level.SetActorType(Gv.LevelMgr, (a + (uint)744), ((int)(new PlrDef(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(a).WeaponIndex * 4)))).ModelTypeBase) + k), new Plr(a).WeaponAnimInfoPtr_484.unk10);
         }
     }
 
@@ -225,7 +225,7 @@ public static partial class Player
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BECC", (uint)actor);
-            return (((int)(new B07Weapon(Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).unk8) > 0) ? 1 : 0);
+            return (((int)(new B07Weapon(Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).ZoomLevel_8) > 0) ? 1 : 0);
         }
     }
 

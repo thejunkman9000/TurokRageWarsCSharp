@@ -1115,11 +1115,11 @@ public static partial class Settings
             new O06B_v10(a).unk29_Set((byte)(0));
             new O06B_v10(a).unk2A_Set((byte)(0));
             new O06B_v10(a).unk2B_Set((byte)(1));
-            new O06B_v10(a).unk16_Set((byte)(new O06B_v10(a).Opacity));
+            new O06B_v10(a).OpacityByte_Set((byte)(new O06B_v10(a).Opacity));
             new O06B_v10(a).GameSpeed_Set(Mem.F32(0x800E2798u));
             for (i = 0; (i < 10); ++i)
             {
-                new O06B_v10(a).unk2C.Set((int)(i), (byte)(1));
+                new O06B_v10(a).WeaponFlags_2C.Set((int)(i), (byte)(1));
             }
             new O06B_v10(a).unk36_Set((byte)(0));
             new O06B_v10(a).unk37_Set((byte)(3));

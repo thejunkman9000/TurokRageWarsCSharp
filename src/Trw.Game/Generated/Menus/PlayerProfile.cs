@@ -15,23 +15,23 @@ public static partial class NameEntry
             if (Dbg.On) Dbg.Enter("func_00430120", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
             uint obj = 0u;
-            if ((new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state != 12))
+            if ((new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].State != 12))
             {
                 return 0;
             }
             obj = CursorGroup.GetItem(Mem.U32((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)4)), idx);
-            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB4C_Set(0);
-            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB48_Set(2);
+            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].LetterRepeatTimer_Set(0);
+            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].LetterRepeatDir_Set(2);
             if ((d == 1))
             {
-                int v = (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 + 1);
+                int v = (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].NameCursor + 1);
                 if ((v < 7))
                 {
-                    new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44_Set(v);
+                    new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].NameCursor_Set(v);
                 }
-                if (((int)(Mem.U8(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))) + (uint)2956))) == 0))
+                if (((int)(Mem.U8(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].NameCursor * 2))) + (uint)2956))) == 0))
                 {
-                    Mem.Set(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))) + (uint)2956), (byte)(65));
+                    Mem.Set(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].NameCursor * 2))) + (uint)2956), (byte)(65));
                 }
                 new O05Obj10(obj).b10_Set((byte)(255));
                 Audio.PlaySound2D(3700);
@@ -48,15 +48,15 @@ public static partial class NameEntry
             if (Dbg.On) Dbg.Enter("func_00430208", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
             uint obj = 0u;
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state == 13))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State == 13))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state >= 14))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State >= 14))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state != 12))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State != 12))
             {
                 return 0;
             }
@@ -64,16 +64,16 @@ public static partial class NameEntry
             {
                 return 0;
             }
-            obj = CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, idx);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB48_Set(2);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB4C_Set(0);
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 > 0))
+            obj = CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, idx);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].LetterRepeatDir_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].LetterRepeatTimer_Set(0);
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor > 0))
             {
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 - 1));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor - 1));
             }
-            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2))]) == 0))
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), (byte)(65));
             }
             new O05Obj10(obj).b10_Set((byte)(255));
             Audio.PlaySound2D(3700);
@@ -89,12 +89,12 @@ public static partial class NameEntry
             if (Dbg.On) Dbg.Enter("func_00432334", (uint)a, (uint)b, (uint)idx);
             Menu.ConsumeEvent();
             idx = (uint)((uint)(idx) & (uint)(65535));
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54 == 7))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54 == 7))
             {
                 Menu.EnterSelectedState_00435958((uint)(3), default(uint), default(uint), default(uint));
                 return 0;
             }
-            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State)
             {
             case 0:
                 if ((PlayerMenu.CountJoinedPads() > 0))
@@ -106,18 +106,18 @@ public static partial class NameEntry
                 return 0;
             case 12:
                 Menu.ConsumeEvent();
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), (byte)(32));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), (byte)(32));
                 break;
             case 22:
                 Menu.ConsumeEvent();
                 PlayerMenu.BindProfileWidgets((-1));
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state_Set(13);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State_Set(13);
                 PlayerMenu.RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
                 break;
             case 27:
                 Menu.ConsumeEvent();
                 PlayerMenu.BindPadWidgets((-1));
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state_Set(13);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State_Set(13);
                 PlayerMenu.RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
                 break;
             default:
@@ -134,19 +134,19 @@ public static partial class NameEntry
         {
             if (Dbg.On) Dbg.Enter("func_00435010", (uint)idx);
             byte c = 0;
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(idx), 0);
-            CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, idx);
-            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2))]) == 0))
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(idx), 0);
+            CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, idx);
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), (byte)(65));
             }
-            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2))];
+            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2))];
             ++c;
             if (((int)(c) >= 91))
             {
                 c = (byte)(32);
             }
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), c);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), c);
         }
     }
 
@@ -157,19 +157,19 @@ public static partial class NameEntry
         {
             if (Dbg.On) Dbg.Enter("func_004350D0", (uint)idx);
             byte c = 0;
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(idx), 0);
-            CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, idx);
-            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2))]) == 0))
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(idx), 0);
+            CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, idx);
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), (byte)(65));
             }
-            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2))];
+            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2))];
             --c;
             if (((int)(c) < 32))
             {
                 c = (byte)(90);
             }
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB44 * 2)), c);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameBuffer.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].NameCursor * 2)), c);
         }
     }
 
@@ -411,8 +411,8 @@ public static partial class NameEntry
                 new O06B_v21(new O06A_v30(a).ItemsPtr).Item3Flags_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).ItemsPtr).Item3Flags) & (uint)((~25165824))));
                 break;
             }
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(0);
-            dst = new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.P;
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set(0);
+            dst = new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Text.P;
             do
             {
                 src = new O06N_v2((0x8014641Cu + (uint)(n * 150))).b.P;
@@ -439,8 +439,8 @@ public static partial class NameEntry
                 Mem.Set(((dst += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
             }
             Mem.Set(dst, (byte)(0));
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((8 - cnt));
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8_Set((8 - cnt));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos_Set((8 - cnt));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Length_Set((8 - cnt));
         }
     }
 
@@ -451,25 +451,25 @@ public static partial class NameEntry
         {
             if (Dbg.On) Dbg.Enter("func_004465B4", (uint)a, (uint)b);
             int n = Player.GetIndex(Gv.PlayerPool, Mem.S32((b + (uint)28)));
-            float v = (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4 + Mem.F32(Gv.FrameTime));
-            new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(v);
+            float v = (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer + Mem.F32(Gv.FrameTime));
+            new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set(v);
             if ((Mem.F32(0x800E2810u) <= v))
             {
-                new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((v - Mem.F32(0x800E2810u)));
+                new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set((v - Mem.F32(0x800E2810u)));
             }
-            if (((int)(new O06A2(b).unk0) == 1))
+            if (((int)(new O06A2(b).CursorIndex) == 1))
             {
-                if (((Pad.IsLeft(new O06A2(b).unk20) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 > 0)))
+                if (((Pad.IsLeft(new O06A2(b).PadPtr) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos > 0)))
                 {
-                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 - 1));
-                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((float)(0));
+                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos - 1));
+                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set((float)(0));
                 }
                 else
                 {
-                    if (((Pad.IsRight(new O06A2(b).unk20) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 < new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8)))
+                    if (((Pad.IsRight(new O06A2(b).PadPtr) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos < new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).Length)))
                     {
-                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 + 1));
-                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((float)(0));
+                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos + 1));
+                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set((float)(0));
                     }
                 }
             }
@@ -484,15 +484,15 @@ public static partial class NameEntry
         {
             if (Dbg.On) Dbg.Enter("func_00446704", (uint)a, (uint)b);
             int n = Player.GetIndex(Gv.PlayerPool, new O06A_v4(b).Value);
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(0);
-            if ((new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8 == 8))
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).BlinkTimer_Set(0);
+            if ((new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Length == 8))
             {
                 return 0;
             }
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0), Mem.U8(Mem.U32(new O06A_v4(a).Data)));
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 + 1));
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8 + 1));
-            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8), (byte)(0));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Text.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos), Mem.U8(Mem.U32(new O06A_v4(a).Data)));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).CursorPos + 1));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Length_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Length + 1));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Text.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).Length), (byte)(0));
             return 0;
         }
     }
@@ -616,90 +616,90 @@ public static partial class PlayerMenu
             uint w = 0u;
             uint t = 0u;
             Mem.Set(Gv.PlayerMenu_PagePtr, ResourcePool.Malloc((uint)(13428)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f0_Set(arg0);
-            ScreenWipe.Init(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.blk8.P, 103, 0, 0, 0);
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4_Set(CursorGroup.Create(arg0, 4));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.RootNodePtr_Set(arg0);
+            ScreenWipe.Init(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.Wipe.P, 103, 0, 0, 0);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr_Set(CursorGroup.Create(arg0, 4));
             CursorGroup.SetCursorById(arg0, 0, 645);
             CursorGroup.SetCursorById(arg0, 1, 645);
             CursorGroup.SetCursorById(arg0, 2, 645);
             CursorGroup.SetCursorById(arg0, 3, 645);
             for (i = 3; (i >= 0); --i)
             {
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(i), 0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(i), 0);
             }
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C_Set(1);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase_Set(1);
             i = 4;
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50_Set(i);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer_Set(i);
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C__Set(UiTree.FindNode(arg0, (uint)(763), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.u14) - (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.w18.P)))));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f40_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.w18.P)) / 4));
-            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.w18.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f40 * 4));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.X_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.X) - (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.Width.P)))));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftStep_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.Width.P)) / 4));
+            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.Width.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftStep * 4));
             {
                 int r = m;
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C.u14) + r)));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.X_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr.X) + r)));
             }
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44__Set(UiTree.FindNode(arg0, (uint)(674), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.u14) + (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.w18.P)))));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f48_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.w18.P)) / 4));
-            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.w18.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f48 * 4));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.X_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.X) + (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.Width.P)))));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightStep_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.Width.P)) / 4));
+            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.Width.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightStep * 4));
             {
                 int r_2 = m;
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44.u14) - r_2)));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.X_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr.X) - r_2)));
             }
-            new Q03WdS(UiTree.FindNode(arg0, (uint)(646), default(uint), default(uint))).b10_Set((byte)(110));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f24_Set(Flicker.Create((uint)(647), (uint)(255), default(uint), default(uint)));
+            new Q03WdS(UiTree.FindNode(arg0, (uint)(646), default(uint), default(uint))).Alpha_Set((byte)(110));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerPtr_Set(Flicker.Create((uint)(647), (uint)(255), default(uint), default(uint)));
             t = UiTree.FindNode(arg0, (uint)(647), default(uint), default(uint));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f28_Set(t);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerNodePtr_Set(t);
             UiNode.SetVisible(t, 0);
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].f10_Set(UiTree.FindNode(arg0, (uint)(764), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(1)].f10_Set(UiTree.FindNode(arg0, (uint)(675), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(2)].f10_Set(UiTree.FindNode(arg0, (uint)(765), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(3)].f10_Set(UiTree.FindNode(arg0, (uint)(762), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54_Set((int)(Mem.U32(0x800E54A0u)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(764), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(1)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(675), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(2)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(765), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(3)].PanelNodePtr_Set(UiTree.FindNode(arg0, (uint)(762), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54_Set((int)(Mem.U32(0x800E54A0u)));
             for (i = 0; (i < 4); ++i)
             {
                 new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(i)].a_Set((-1));
                 new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(i)].b_Set(0);
                 new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(i)].c_Set(2);
             }
-            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54)
+            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54)
             {
             case 7:
                 break;
             case 5:
                 w = UiTree.FindNode(arg0, (uint)(659), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             case 6:
                 w = UiTree.FindNode(arg0, (uint)(662), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             case 4:
                 w = UiTree.FindNode(arg0, (uint)(648), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             case 0:
                 w = UiTree.FindNode(arg0, (uint)(673), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             case 3:
                 w = UiTree.FindNode(arg0, (uint)(661), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             case 1:
                 w = UiTree.FindNode(arg0, (uint)(649), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 for (i = 0; (i < 4); ++i)
                 {
                     if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) >= 0))
@@ -723,7 +723,7 @@ public static partial class PlayerMenu
             case 2:
                 w = UiTree.FindNode(arg0, (uint)(663), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
-                new Q03WdS(w).b10_Set((byte)(255));
+                new Q03WdS(w).Alpha_Set((byte)(255));
                 i = 0;
                 break;
             default:
@@ -732,29 +732,29 @@ public static partial class PlayerMenu
             }
             for (i = 0; (i < 4); ++i)
             {
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state_Set(0);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fC_Set(0u);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14_Set((-1));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].ProfileWindowNodePtr_Set(0u);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set((-1));
                 PlayerMenu.RefreshPanel((uint)(i), default(uint), default(uint), default(uint));
                 Pad.EnableStatusPoll(i);
                 for (j = 0; (j < 4); ++j)
                 {
-                    Profile.Init((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].rec.P + (uint)(j * 400)));
+                    Profile.Init((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].ProfileRecords.P + (uint)(j * 400)));
                 }
                 for (j = 0; (j < 16); ++j)
                 {
-                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].items[(int)(j)].b.P + (uint)40), 0, (uint)(20));
-                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].items[(int)(j)].b.P + (uint)60), 0, (uint)(10));
+                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakNotes[(int)(j)].b.P + (uint)40), 0, (uint)(20));
+                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakNotes[(int)(j)].b.P + (uint)60), 0, (uint)(10));
                 }
                 memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].padAB8.P + (uint)20), 0, (uint)(10));
                 memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].padAB8.P + (uint)10), 0, (uint)(10));
                 memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].padAB8.P + (uint)0), 0, (uint)(10));
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].scroll_Set(0);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fAEC_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].SelectedNote_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].SelectedRecord_Set(0);
                 for (j = 0; (j < 4); ++j)
                 {
-                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].tabAF0.Set((int)(j), 2);
-                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].wdB00.Set((int)(j), 0u);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].RecordStates.Set((int)(j), 2);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].RecordNodePtrs_B00.Set((int)(j), 0u);
                 }
                 {
                     uint P = (Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 2920));
@@ -767,13 +767,13 @@ public static partial class PlayerMenu
                 }
             }
             new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).NextScreenId_Set((-1));
-            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54)
+            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54)
             {
             case 5:
                 id = 14;
                 for (i = 3; (i >= 0); --i)
                 {
-                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state_Set(id);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State_Set(id);
                 }
                 for (i = 0; (i < 4); ++i)
                 {
@@ -781,9 +781,9 @@ public static partial class PlayerMenu
                     {
                         if (((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) >= 0) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                         {
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].f14_Set(2);
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].state_Set(2);
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].f8_Set(6);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].PakProbeDelay_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].State_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex)].StateAfterProbe_Set(6);
                         }
                     }
                 }
@@ -804,9 +804,9 @@ public static partial class PlayerMenu
                         m2 = CPak.GetStatus(i);
                         if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                         {
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14_Set(2);
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state_Set(2);
-                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f8_Set(4);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].StateAfterProbe_Set(4);
                             PlayerMenu.RefreshPanel((uint)(i), default(uint), default(uint), default(uint));
                         }
                     }
@@ -817,18 +817,18 @@ public static partial class PlayerMenu
                     m2 = CPak.GetStatus(Mem.S32(Gv.PakCheck_Port));
                     if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                     {
-                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].f14_Set(2);
-                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].state_Set(2);
-                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].f8_Set(4);
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].PakProbeDelay_Set(2);
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].State_Set(2);
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(Mem.S32(Gv.PakCheck_Port))].StateAfterProbe_Set(4);
                         PlayerMenu.RefreshPanel((uint)(Mem.S32(Gv.PakCheck_Port)), default(uint), default(uint), default(uint));
                     }
                 }
                 break;
             case 7:
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].f14_Set(2);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].state_Set(2);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].f8_Set(13);
-                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].f4_Set(6);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].PakProbeDelay_Set(2);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].State_Set(2);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].StateAfterProbe_Set(13);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(0)].ProfileListMode_Set(6);
                 PlayerMenu.RefreshPanel((uint)(0), default(uint), default(uint), default(uint));
                 break;
             }
@@ -1800,16 +1800,16 @@ public static partial class PlayerMenu
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C == 3))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase == 3))
             {
                 for (i = 0; (i < 4); ++i)
                 {
-                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14 > 0))
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay > 0))
                     {
-                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14 - 1));
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14 == 0))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay - 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay == 0))
                         {
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14_Set((-1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set((-1));
                             Menu.DisableInput();
                             CPak.DetectPort(i);
                             PlayerMenu.ProbePak((uint)(i), default(uint), default(uint), default(uint));
@@ -1818,17 +1818,17 @@ public static partial class PlayerMenu
                     }
                 }
             }
-            if ((ScreenWipe.GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.blk8.P) != 1))
+            if ((ScreenWipe.GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.Wipe.P) != 1))
             {
                 return 0;
             }
-            ScreenWipe.Draw(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.blk8.P);
-            ScreenWipe.Advance(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.blk8.P);
-            if ((ScreenWipe.GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.blk8.P) != 2))
+            ScreenWipe.Draw(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.Wipe.P);
+            ScreenWipe.Advance(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.Wipe.P);
+            if ((ScreenWipe.GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.Wipe.P) != 2))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54 != 5))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54 != 5))
             {
                 return 0;
             }
@@ -1861,28 +1861,28 @@ public static partial class PlayerMenu
             {
                 return 0;
             }
-            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase)
             {
             case 1:
-                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C).h14) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.h42)));
-                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44).h14) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.h4A)));
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50 - 1));
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50 <= 0))
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr).X_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr).X) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlidePanel1Step16)));
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr).X_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr).X) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlidePanel2Step16)));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer - 1));
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer <= 0))
                 {
                     Audio.PlaySound2D(3705);
-                    UiNode.SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f28, 1);
-                    Flicker.Trigger(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f24, 4);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C_Set(4);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50_Set(4);
+                    UiNode.SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerNodePtr, 1);
+                    Flicker.Trigger(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerPtr, 4);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase_Set(4);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer_Set(4);
                 }
                 break;
             case 2:
-                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f3C).h14) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.h42)));
-                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f44).h14) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.h4A)));
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50 - 1));
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50 <= 0))
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr).X_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideLeftNodePtr).X) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlidePanel1Step16)));
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr).X_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlideRightNodePtr).X) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.SlidePanel2Step16)));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer - 1));
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer <= 0))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C_Set(3);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase_Set(3);
                     Menu.ConsumeEvent();
                     Menu.GotoScreen(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).NextScreenId);
                     return 0;
@@ -1894,28 +1894,28 @@ public static partial class PlayerMenu
             case 4:
                 {
                     uint p = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.P;
-                    int y = new O05Hdr(p).f50;
+                    int y = new O05Hdr(p).AnimTimer;
                     int x = (y - 1);
                     int t = ((x >= 0) ? (y - ((y >= x) ? 1 : 0)) : 0);
-                    new O05Hdr(p).f50_Set(t);
+                    new O05Hdr(p).AnimTimer_Set(t);
                 }
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50 <= 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer <= 0))
                 {
-                    if ((Flicker.IsSteady(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f24) != 0))
+                    if ((Flicker.IsSteady(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerPtr) != 0))
                     {
-                        Flicker.Stop(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f24);
-                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C_Set(3);
+                        Flicker.Stop(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerPtr);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase_Set(3);
                     }
                 }
                 break;
             case 5:
                 Audio.PlaySound2D(3704);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C_Set(2);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f50_Set(4);
-                UiNode.SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f28, 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimTimer_Set(4);
+                UiNode.SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.FlickerNodePtr, 0);
                 break;
             }
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4C == 3))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.AnimPhase == 3))
             {
                 PlayerMenu.AnimateCursors(ev);
             }
@@ -1932,7 +1932,7 @@ public static partial class PlayerMenu
             int k = (int)((c & (uint)(65535)));
             if (((c >> (int)16) == (uint)(3)))
             {
-                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f54)
+                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.EntryMode_54)
                 {
                 case 7:
                     break;
@@ -1941,12 +1941,12 @@ public static partial class PlayerMenu
                 case 6:
                     if ((d == 10))
                     {
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 4))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 4))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(4);
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -1956,22 +1956,22 @@ public static partial class PlayerMenu
                     {
                     case 11:
                     case 13:
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 0))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(4);
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
                     case 10:
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 4))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 4))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(4);
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
@@ -1980,12 +1980,12 @@ public static partial class PlayerMenu
                 case 0:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 0))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(12);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(12);
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -1993,13 +1993,13 @@ public static partial class PlayerMenu
                 case 3:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 0))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(13);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4_Set(5);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(13);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode_Set(5);
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -2007,16 +2007,16 @@ public static partial class PlayerMenu
                 case 1:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 0))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(14);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(14);
                             if ((PlayerMenu.FindWaitingPad() >= 0))
                             {
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(13);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4_Set(6);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(13);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode_Set(6);
                             }
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
@@ -2025,16 +2025,16 @@ public static partial class PlayerMenu
                 case 2:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State == 0))
                         {
                             Menu.ConsumeEvent();
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(14);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(14);
                             if ((PlayerMenu.FindWaitingPad() >= 0))
                             {
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f14_Set(2);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(2);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f8_Set(13);
-                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4_Set(3);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakProbeDelay_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].StateAfterProbe_Set(13);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode_Set(3);
                             }
                             PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
@@ -2054,13 +2054,13 @@ public static partial class PlayerMenu
             if (Dbg.On) Dbg.Enter("func_004302F8", (uint)a, (uint)b, (uint)c, (uint)ev);
             int k = (int)((c & (uint)(65535)));
             uint s = 0u;
-            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State)
             {
             case 12:
                 if ((MathUtil.AbsInt(e5) < Menu.GetStickDeadzone()))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB4C_Set(0);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB48_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatTimer_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatDir_Set(2);
                 }
                 if ((ev != 1))
                 {
@@ -2068,7 +2068,7 @@ public static partial class PlayerMenu
                 }
                 Menu.ConsumeEvent();
                 NameEntry.LetterDown(k);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB48_Set(0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatDir_Set(0);
                 Audio.PlaySound2D(3713);
                 return 0;
             case 4:
@@ -2078,11 +2078,11 @@ public static partial class PlayerMenu
                 }
                 Menu.ConsumeEvent();
                 PlayerMenu.ScrollNoteList(k, 1);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(k), 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(k), 0);
                 Audio.PlaySound2D(3700);
                 return 0;
             case 13:
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4 != 6))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode != 6))
                 {
                     return 0;
                 }
@@ -2091,23 +2091,23 @@ public static partial class PlayerMenu
                     return 0;
                 }
                 Menu.ConsumeEvent();
-                s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f30_;
+                s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f30_;
                 while ((UiNode.IsDisabledInherited(s) != 0))
                 {
                     s = new O05Ch(s).f30_;
                 }
-                CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                 Audio.PlaySound2D(3700);
                 return 0;
             case 22:
                 if ((ev == 1))
                 {
-                    s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f30_;
+                    s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f30_;
                     while ((UiNode.IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch(s).f30_;
                     }
-                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                     PlayerMenu.BindProfileWidgets(k);
                 }
                 Menu.ConsumeEvent();
@@ -2115,12 +2115,12 @@ public static partial class PlayerMenu
             case 27:
                 if ((ev == 1))
                 {
-                    s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f30_;
+                    s = new O05Ch(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f30_;
                     while ((UiNode.IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch(s).f30_;
                     }
-                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                     PlayerMenu.BindPadWidgets(k);
                 }
                 Menu.ConsumeEvent();
@@ -2138,20 +2138,20 @@ public static partial class PlayerMenu
             if (Dbg.On) Dbg.Enter("func_004305D8", (uint)a, (uint)b, (uint)c, (uint)ev);
             int k = (int)((c & (uint)(65535)));
             uint s = 0u;
-            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State)
             {
             case 12:
                 if ((MathUtil.AbsInt(e5) < Menu.GetStickDeadzone()))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB4C_Set(0);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB48_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatTimer_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatDir_Set(2);
                 }
                 if ((ev != 1))
                 {
                     return 0;
                 }
                 Menu.ConsumeEvent();
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fB48_Set(1);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].LetterRepeatDir_Set(1);
                 NameEntry.LetterUp(k);
                 Audio.PlaySound2D(3713);
                 return 0;
@@ -2162,11 +2162,11 @@ public static partial class PlayerMenu
                 }
                 Menu.ConsumeEvent();
                 PlayerMenu.ScrollNoteList(k, 0);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(k), 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(k), 0);
                 Audio.PlaySound2D(3700);
                 return 0;
             case 13:
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4 != 6))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode != 6))
                 {
                     return 0;
                 }
@@ -2175,23 +2175,23 @@ public static partial class PlayerMenu
                     return 0;
                 }
                 Menu.ConsumeEvent();
-                s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f2C_;
+                s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f2C_;
                 while ((UiNode.IsDisabledInherited(s) != 0))
                 {
                     s = new O05Ch_v2(s).f2C_;
                 }
-                CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                 Audio.PlaySound2D(3700);
                 return 0;
             case 22:
                 if ((ev == 1))
                 {
-                    s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f2C_;
+                    s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f2C_;
                     while ((UiNode.IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch_v2(s).f2C_;
                     }
-                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                     PlayerMenu.BindProfileWidgets(k);
                 }
                 Menu.ConsumeEvent();
@@ -2199,12 +2199,12 @@ public static partial class PlayerMenu
             case 27:
                 if ((ev == 1))
                 {
-                    s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k)).f2C_;
+                    s = new O05Ch_v2(CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k)).f2C_;
                     while ((UiNode.IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch_v2(s).f2C_;
                     }
-                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k, s);
+                    CursorGroup.MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k, s);
                     PlayerMenu.BindPadWidgets(k);
                 }
                 Menu.ConsumeEvent();
@@ -7142,26 +7142,26 @@ public static partial class PlayerMenu
             uint w = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state)
+                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State)
                 {
                 case 0:
                     PlayerMenu.PulseJoinPrompt(i);
                     break;
                 case 12:
-                    w = CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, i);
-                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
-                    switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB48)
+                    w = CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, i);
+                    new O05ItemWd(w).Alpha_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
+                    switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatDir)
                     {
                     case 0:
-                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C + 1));
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C >= 6))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer + 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer >= 6))
                         {
                             NameEntry.LetterDown(i);
                         }
                         break;
                     case 1:
-                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C + 1));
-                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB4C >= 6))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer + 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].LetterRepeatTimer >= 6))
                         {
                             NameEntry.LetterUp(i);
                         }
@@ -7171,11 +7171,11 @@ public static partial class PlayerMenu
                     }
                     break;
                 case 4:
-                    w = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].wd[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].scroll - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].cur))];
-                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
+                    w = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].NoteRowNodePtrs[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].SelectedNote - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].ListTop))];
+                    new O05ItemWd(w).Alpha_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
                     break;
                 }
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C.Set((int)(i), (int)((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C[(int)(i)]) + dt));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers.Set((int)(i), (int)((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers[(int)(i)]) + dt));
             }
         }
     }
@@ -7726,22 +7726,22 @@ public static partial class PlayerMenu
                     id = 657;
                     break;
                 }
-                w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f0, (uint)(id), default(uint), default(uint));
+                w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.RootNodePtr, (uint)(id), default(uint), default(uint));
                 UiNode.SetDisabled(w, 0);
                 o = new O05WdA(w).f8;
-                if (((k != (-1)) && (w == CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k))))
+                if (((k != (-1)) && (w == CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k))))
                 {
-                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fAEC * 400)));
+                    new O05Wd(o).TextPtr_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileRecords.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedRecord * 400)));
                 }
                 else
                 {
                     if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) >= 0))
                     {
-                        new O05Wd(o).f38_Set((Gv.ProfileTable + (uint)(i * 400)));
+                        new O05Wd(o).TextPtr_Set((Gv.ProfileTable + (uint)(i * 400)));
                     }
                     else
                     {
-                        new O05Wd(o).f38_Set(0u);
+                        new O05Wd(o).TextPtr_Set(0u);
                     }
                 }
             }
@@ -7775,7 +7775,7 @@ public static partial class PlayerMenu
                     id = 671;
                     break;
                 }
-                w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f0, (uint)(id), default(uint), default(uint));
+                w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.RootNodePtr, (uint)(id), default(uint), default(uint));
                 if ((Pad.IsConnected(i) == 1))
                 {
                     UiNode.SetDisabled(w, 0);
@@ -7785,13 +7785,13 @@ public static partial class PlayerMenu
                     UiNode.SetDisabled(w, 1);
                 }
                 o = new O05WdA(w).f8;
-                if (((k != (-1)) && (w == CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, k))))
+                if (((k != (-1)) && (w == CursorGroup.GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, k))))
                 {
-                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fAEC * 400)));
+                    new O05Wd(o).TextPtr_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileRecords.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedRecord * 400)));
                 }
                 else
                 {
-                    new O05Wd(o).f38_Set(0u);
+                    new O05Wd(o).TextPtr_Set(0u);
                 }
             }
         }
@@ -7820,11 +7820,11 @@ public static partial class PlayerMenu
                         {
                             LibC.StrCopy(_fp, Mem.U32(0x800D7784u));
                         }
-                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), _fp);
-                        StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), _fp);
+                        StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         if (((int)(Mem.U8(((_fp + 24u) + (uint)0))) != 0))
                         {
-                            StrUtil.FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            StrUtil.FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                             continue;
                         }
                     }
@@ -7834,22 +7834,22 @@ public static partial class PlayerMenu
                         {
                             found = 1;
                         }
-                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
-                        StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC.StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
+                        StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
-                    StrUtil.FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    StrUtil.FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 if ((found == 0))
                 {
-                    w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(728), default(uint), default(uint));
+                    w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(728), default(uint), default(uint));
                     if ((CPak.GetFreePages(k, (_fp + 52u)) == 0))
                     {
                         StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2764));
-                        w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(727), default(uint), default(uint));
+                        new O05Wd(w).TextPtr_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2764));
+                        w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(727), default(uint), default(uint));
                         Mem.Set((_fp + 52u), PlayerMenu.GetSaveSize());
                         StrUtil.FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(CPak.BytesToPages((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2754));
+                        new O05Wd(w).TextPtr_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players.P + (uint)(k * 2920)) + (uint)2754));
                     }
                     else
                     {
@@ -7858,17 +7858,17 @@ public static partial class PlayerMenu
                 }
                 if ((found == 1))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].state_Set(found);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].State_Set(found);
                     PlayerMenu.RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll_Set((-1));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote_Set((-1));
                     i = k;
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur_Set(0);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].wd.Set((int)(0), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(731), default(uint), default(uint)));
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].wd.Set((int)(1), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(732), default(uint), default(uint)));
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].wd.Set((int)(2), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(733), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].NoteRowNodePtrs.Set((int)(0), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(731), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].NoteRowNodePtrs.Set((int)(1), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(732), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].NoteRowNodePtrs.Set((int)(2), UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(733), default(uint), default(uint)));
                     PlayerMenu.ScrollNoteList(k, 1);
                 }
             }
@@ -7887,44 +7887,44 @@ public static partial class PlayerMenu
             uint w = 0u;
             if ((dir == 1))
             {
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll < 15))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote < 15))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll + 1));
-                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll >= (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur + 3)))
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote + 1));
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote >= (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop + 3)))
                     {
-                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur + 3) < 15))
+                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop + 3) < 15))
                         {
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur + 1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop + 1));
                         }
                         else
                         {
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur_Set(13);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop_Set(13);
                         }
                     }
                 }
             }
             else
             {
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll > 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote > 0))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll - 1));
-                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur > 0))
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote - 1));
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop > 0))
                     {
-                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur) < 0))
+                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop) < 0))
                         {
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur - 1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop - 1));
                         }
                     }
                 }
             }
             for (j = 0; (j < 3); ++j)
             {
-                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].wd[(int)(j)]).b10_Set((byte)(255));
-                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].wd[(int)(j)]).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].cur + j) * 70)));
+                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].NoteRowNodePtrs[(int)(j)]).Alpha_Set((byte)(255));
+                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].NoteRowNodePtrs[(int)(j)]).TextPtr_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ListTop + j) * 70)));
             }
-            sc = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].scroll;
-            w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(726), default(uint), default(uint));
-            new O05ItemWd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].items.P + (uint)(sc * 70)) + (uint)60));
+            sc = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedNote;
+            w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(726), default(uint), default(uint));
+            new O05ItemWd(w).TextPtr_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PakNotes.P + (uint)(sc * 70)) + (uint)60));
         }
     }
 
@@ -7984,8 +7984,8 @@ public static partial class PlayerMenu
                     if ((CPak.FindFreeExtension(idx, _fp) == 0))
                     {
                         recs = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P;
-                        MemUtil.Copy(recs, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec.P, (uint)(1600));
-                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB64);
+                        MemUtil.Copy(recs, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords.P, (uint)(1600));
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakId);
                         new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveCrc_Set((int)(CPak.CPak_Crc32(recs, 1600, (uint)(7))));
                         recs = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P;
                         for (i = 0; (i < 16); ++i)
@@ -8001,8 +8001,8 @@ public static partial class PlayerMenu
                 }
                 if ((ok == 0))
                 {
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].f14_Set(2);
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakProbeDelay_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State_Set(2);
                     PlayerMenu.RefreshPanel((uint)(idx), default(uint), default(uint), default(uint));
                 }
                 return ok;
@@ -8021,8 +8021,8 @@ public static partial class PlayerMenu
             uint buf = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P;
             if (((CPak.ReadFile(idx, a, buf, 1608) == 0) && ((int)(CPak.CPak_Crc32(buf, 1600, (uint)(7))) == Mem.S32((buf + (uint)((1604 / 4) * 4))))))
             {
-                MemUtil.Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P, (uint)(1600));
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId);
+                MemUtil.Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P, (uint)(1600));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId);
                 ok = 1;
             }
             else
@@ -8038,8 +8038,8 @@ public static partial class PlayerMenu
             }
             if ((ok == 0))
             {
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].f14_Set(2);
-                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakProbeDelay_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State_Set(2);
             }
             return ok;
         }
@@ -8054,7 +8054,7 @@ public static partial class PlayerMenu
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State;
                 if ((((st != 0) && (st != 17)) && (st != 14)))
                 {
                     return (-1);
@@ -8062,7 +8062,7 @@ public static partial class PlayerMenu
             }
             for (i = 0; (i < 4); ++i)
             {
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state == 14))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State == 14))
                 {
                     return i;
                 }
@@ -8092,7 +8092,7 @@ public static partial class PlayerMenu
                 }
                 for (i = 0; (i < 4); ++i)
                 {
-                    s = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].fB28;
+                    s = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].SaveRecordIndex;
                     if ((s >= 0))
                     {
                         MemUtil.Copy((Gv.ProfileTable + (uint)(i * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P + (uint)(s * 400)), (uint)(sz));
@@ -8125,12 +8125,12 @@ public static partial class PlayerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00434B58", (uint)k);
             int r = 0;
-            int sel = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fAEC;
+            int sel = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].SelectedRecord;
             int found = 0;
             int idx = 0;
             int i = 0;
             int v = 0;
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].tabAF0[(int)(sel)] == 1))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].RecordStates[(int)(sel)] == 1))
             {
                 found = (-1);
                 for (i = 0; (i < 4); ++i)
@@ -8154,9 +8154,9 @@ public static partial class PlayerMenu
                         new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(v)].b_Set(idx);
                         new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(v)].c_Set(1);
                     }
-                    MemUtil.Copy((Gv.ProfileTable + (uint)(found * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
+                    MemUtil.Copy((Gv.ProfileTable + (uint)(found * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileRecords.P + (uint)(sel * 400)), (uint)(400));
                     new O05Rec((Gv.ProfileTable + (uint)(found * 400))).OwnerPadIndex_Set((sbyte)(k));
-                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f4_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileListMode_Set(0);
                     PlayerMenu.BindProfileWidgets((idx = (-1)));
                     r = 1;
                 }
@@ -8177,7 +8177,7 @@ public static partial class PlayerMenu
             {
                 if ((((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).IsDefaultProfile) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) == k)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                 {
-                    MemUtil.Copy((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].rec.P + (uint)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakRecordIndex * 400)), (Gv.ProfileTable + (uint)(i * 400)), (uint)(sz));
+                    MemUtil.Copy((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileRecords.P + (uint)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakRecordIndex * 400)), (Gv.ProfileTable + (uint)(i * 400)), (uint)(sz));
                 }
             }
         }
@@ -8211,9 +8211,9 @@ public static partial class PlayerMenu
                 }
                 if ((((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).IsDefaultProfile) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) == k)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                 {
-                    uint w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].fC, (uint)(id), default(uint), default(uint));
+                    uint w = UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].ProfileWindowNodePtr, (uint)(id), default(uint), default(uint));
                     ++n;
-                    new O05Wd(w).f38_Set((Gv.ProfileTable + (uint)(i * 400)));
+                    new O05Wd(w).TextPtr_Set((Gv.ProfileTable + (uint)(i * 400)));
                 }
             }
         }
@@ -8226,13 +8226,13 @@ public static partial class PlayerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00434F4C", (uint)idx);
             int pl = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Slots[(int)(0)].a;
-            CursorGroup.SetLocked(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.f4, pl, 0);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state_Set(17);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB30_Set(0);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].f14_Set(2);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].state_Set(2);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].f8_Set(13);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].f4_Set(3);
+            CursorGroup.SetLocked(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.CursorGroupPtr, pl, 0);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State_Set(17);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].IsHost_B30_Set(0);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].PakProbeDelay_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].State_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].StateAfterProbe_Set(13);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(pl)].ProfileListMode_Set(3);
             PlayerMenu.RefreshPanel((uint)(pl), default(uint), default(uint), default(uint));
             PlayerMenu.BindPadWidgets((-1));
         }
@@ -8256,10 +8256,10 @@ public static partial class PlayerMenu
             if (Dbg.On) Dbg.Enter("func_004351A0", (uint)k);
             float x = 0f;
             byte v = 0;
-            x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.w2C[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
+            x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Header.PulseTimers[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
             v = (byte)(Cpu.TruncU32(x));
-            new O05Obj10(UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
-            new O05Obj10(UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PanelNodePtr, (uint)(706), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree.FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(k)].PanelNodePtr, (uint)(707), default(uint), default(uint))).b10_Set(v);
         }
     }
 
@@ -8270,8 +8270,8 @@ public static partial class PlayerMenu
         {
             if (Dbg.On) Dbg.Enter("func_004352A8", (uint)i);
             new O05R150((0x80146410u + (uint)(i * 150))).b0_Set((byte)(1));
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].f14_Set(2);
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].PakProbeDelay_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State_Set(2);
         }
     }
 
@@ -8289,7 +8289,7 @@ public static partial class PlayerMenu
                 {
                     break;
                 }
-                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec[(int)(i)].OwnerPadIndex) == (-1)))
+                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords[(int)(i)].OwnerPadIndex) == (-1)))
                 {
                     r = i;
                 }
@@ -8312,7 +8312,7 @@ public static partial class PlayerMenu
                 {
                     break;
                 }
-                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec[(int)(i)].OwnerPadIndex) != (-1)))
+                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords[(int)(i)].OwnerPadIndex) != (-1)))
                 {
                     r = 0;
                 }
@@ -8483,8 +8483,8 @@ public static partial class PlayerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00435608", (uint)idx);
             uint buf = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P;
-            MemUtil.Copy(buf, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec.P, (uint)(1600));
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB64);
+            MemUtil.Copy(buf, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords.P, (uint)(1600));
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakId);
             new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveCrc_Set((int)(CPak.CPak_Crc32(buf, 1600, (uint)(7))));
         }
     }
@@ -8495,8 +8495,8 @@ public static partial class PlayerMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043569C", (uint)idx);
-            MemUtil.Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].rec.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P, (uint)(1600));
-            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId);
+            MemUtil.Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].ProfileRecords.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSaveRecords.P, (uint)(1600));
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakId_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).PakSavePakId);
         }
     }
 
@@ -8510,7 +8510,7 @@ public static partial class PlayerMenu
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State;
                 if ((((st != 0) && (st != 14)) && (st != 17)))
                 {
                     ++n;
@@ -8530,7 +8530,7 @@ public static partial class PlayerMenu
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State;
                 if (((st != 0) && (st != 17)))
                 {
                     ++n;
@@ -8550,7 +8550,7 @@ public static partial class PlayerMenu
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].state != 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(i)].State != 0))
                 {
                     ++n;
                 }
@@ -8573,7 +8573,7 @@ public static partial class PlayerMenu
                 uint rec = (Gv.ProfileTable + (uint)(i * 400));
                 if ((a != (-1)))
                 {
-                    MemUtil.Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                    MemUtil.Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(a)].ProfileRecords.P + (uint)(b * 400)), (uint)(400));
                     new O05Rec(rec).PakRecordIndex_Set((sbyte)(b));
                 }
                 else
@@ -8595,7 +8595,7 @@ public static partial class PlayerMenu
             uint rec = (Gv.ProfileTable + (uint)(k * 400));
             if ((a != (-1)))
             {
-                MemUtil.Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                MemUtil.Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(a)].ProfileRecords.P + (uint)(b * 400)), (uint)(400));
                 new O05Rec(rec).PakRecordIndex_Set((sbyte)(b));
             }
             new O05Rec(rec).OwnerPadIndex_Set((sbyte)(a));
@@ -8638,7 +8638,7 @@ public static partial class PlayerMenu
             {
                 if ((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).IsDefaultProfile) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) == idx)))
                 {
-                    if ((new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakId != new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB64))
+                    if ((new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakId != new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].PakId))
                     {
                         r = 0;
                     }
@@ -8692,7 +8692,7 @@ public static partial class PlayerMenu
         {
             if (Dbg.On) Dbg.Enter("func_00435BEC", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
-            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].state == 12))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].State == 12))
             {
                 if (((c >> (int)16) == (uint)(3)))
                 {
@@ -8700,8 +8700,8 @@ public static partial class PlayerMenu
                     {
                         if ((d >= 4))
                         {
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB4C_Set(0);
-                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].fB48_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].LetterRepeatTimer_Set(0);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).Players[(int)(idx)].LetterRepeatDir_Set(2);
                         }
                     }
                 }
@@ -8927,27 +8927,27 @@ public static partial class ProfileStats
             if (Dbg.On) Dbg.Enter("func_0041CEB0", (uint)arg0);
             int t = 0;
             Mem.Set(Gv.ProfileStats_PagePtr, ResourcePool.Malloc((uint)(528)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).owner_Set(arg0);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle_Set(CursorGroup.Create(arg0, 4));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).OwnerPtr_Set(arg0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorGroupPtr_Set(CursorGroup.Create(arg0, 4));
             CursorGroup.SetCursorById(arg0, 0, 513);
             CursorGroup.SetCursorById(arg0, 1, 513);
             CursorGroup.SetCursorById(arg0, 2, 513);
             CursorGroup.SetCursorById(arg0, 3, 513);
-            CursorGroup.SetShared(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle, 1);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(1);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+            CursorGroup.SetShared(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorGroupPtr, 1);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(1);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set(4);
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left__Set(UiTree.FindNode(arg0, (uint)(492), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X) - (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.Width)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.Width) / 4));
-            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.Width) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep * 4));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X) + t));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X) - (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.Width)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftSlideStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.Width) / 4));
+            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.Width) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftSlideStep * 4));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X) + t));
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right__Set(UiTree.FindNode(arg0, (uint)(491), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X) + (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.Width)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.Width) / 4));
-            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.Width) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep * 4));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X) - t));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X) + (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.Width)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightSlideStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.Width) / 4));
+            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.Width) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightSlideStep * 4));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X) - t));
             new S1008Node(UiTree.FindNode(arg0, (uint)(488), default(uint), default(uint))).Alpha_Set((byte)(110));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade_Set((int)(Flicker.Create((uint)(486), (uint)(255), default(uint), default(uint))));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FlickerHandle_Set((int)(Flicker.Create((uint)(486), (uint)(255), default(uint), default(uint))));
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA__Set(UiTree.FindNode(arg0, (uint)(486), default(uint), default(uint)));
             UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 0);
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor__Set(UiTree.FindNode(arg0, (uint)(563), default(uint), default(uint)));
@@ -8956,18 +8956,18 @@ public static partial class ProfileStats
             new S1008Node(UiTree.FindNode(arg0, (uint)(497), default(uint), default(uint))).Alpha_Set((byte)(120));
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB__Set(UiTree.FindNode(arg0, (uint)(512), default(uint), default(uint)));
             UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 0);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue_Set(0);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleStep_Set(27);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardPhase_FC_Set(0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardStep_F8_Set(27);
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC__Set(UiTree.FindNode(arg0, (uint)(511), default(uint), default(uint)));
             UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 0);
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.Alpha_Set((byte)(0));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).alphaStep_Set(25);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FadeNodePtr_100.Alpha_Set((byte)(0));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AlphaStep_Set(25);
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).nodeF0__Set(UiTree.FindNode(arg0, (uint)(510), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock_Set(0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Clock_Set(0);
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).f10C_Set((-1));
             Profile.NextActiveSlot((Mem.U32(Gv.ProfileStats_PagePtr) + 268u));
             ProfileStats.ShowStats();
-            ProfileStats.ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue);
+            ProfileStats.ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardPhase_FC);
             new S1008Node(UiTree.FindNode(arg0, (uint)(493), default(uint), default(uint))).Alpha_Set((byte)(110));
             new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus__Set(0u);
             return 0;
@@ -8981,82 +8981,82 @@ public static partial class ProfileStats
         {
             if (Dbg.On) Dbg.Enter("func_0041D1A4", (uint)arg0, (uint)arg1, (uint)arg2);
             uint node = 0u;
-            switch (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state)
+            switch (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State)
             {
             case 1:
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep))));
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep))));
-                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftSlideStep))));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightSlideStep))));
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer - 1)) <= 0))
                 {
                     Audio.PlaySound2D(3705);
                     UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 1);
-                    Flicker.Trigger((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade), 4);
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(4);
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+                    Flicker.Trigger((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FlickerHandle), 4);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(4);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set(4);
                 }
                 break;
             case 2:
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.X) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep))));
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.X) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep))));
-                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftNodePtr.X) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).LeftSlideStep))));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightNodePtr.X) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).RightSlideStep))));
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer - 1)) <= 0))
                 {
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(3);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(3);
                     Menu.ConsumeEvent();
                     Menu.GoBack();
                     return 0;
                 }
                 break;
             case 4:
-                if ((Flicker.IsSteady((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade)) != 0))
+                if ((Flicker.IsSteady((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FlickerHandle)) != 0))
                 {
-                    Flicker.Stop((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade));
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(6);
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+                    Flicker.Stop((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FlickerHandle));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(6);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set(4);
                     UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 1);
                     UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 1);
                 }
                 break;
             case 5:
                 Audio.PlaySound2D(3704);
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(2);
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(2);
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set(4);
                 UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 0);
                 UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 0);
                 UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 0);
                 break;
             case 6:
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue) + new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleStep));
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.Alpha_Set((byte)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.Alpha) + (int)((byte)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).alphaStep))));
-                ProfileStats.ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue);
-                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardPhase_FC_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardPhase_FC) + new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardStep_F8));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FadeNodePtr_100.Alpha_Set((byte)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FadeNodePtr_100.Alpha) + (int)((byte)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AlphaStep))));
+                ProfileStats.ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).AwardPhase_FC);
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Timer - 1)) <= 0))
                 {
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.Alpha_Set((byte)(100));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FadeNodePtr_100.Alpha_Set((byte)(100));
                     ProfileStats.ShowAwardIcons(110);
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(3);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(3);
                     UiNode.SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor_, 1);
                 }
                 break;
             case 7:
                 break;
             }
-            if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state == 3))
+            if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).State == 3))
             {
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock) + arg2));
-                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.Alpha_Set((byte)(int)(((cosf_Recompiled(((float)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
-                node = CursorGroup.GetItem(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle, 0);
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Clock_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Clock) + arg2));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorNodePtr.Alpha_Set((byte)(int)(((cosf_Recompiled(((float)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).Clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
+                node = CursorGroup.GetItem(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorGroupPtr, 0);
                 if ((node != new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus_))
                 {
                     Audio.PlaySound2D(3710);
                     if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus_ != 0u))
                     {
-                        new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus.Alpha_Set((byte)(110));
+                        new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).FocusNodePtr.Alpha_Set((byte)(110));
                     }
                     new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus__Set(node);
                     new S1008Node(node).Alpha_Set((byte)(225));
                     ProfileStats.ShowAwardText();
                     ProfileStats.ShowAwardModel_0041D550();
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.X_Set((ushort)(((int)(new S1008Node(node).X) - 2)));
-                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.Y_Set(new S1008Node(node).Y);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorNodePtr.X_Set((ushort)(((int)(new S1008Node(node).X) - 2)));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).CursorNodePtr.Y_Set(new S1008Node(node).Y);
                 }
             }
             return 0;

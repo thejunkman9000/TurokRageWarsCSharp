@@ -218,8 +218,8 @@ public static partial class AnimProp
                 int p = (int)(Actor.AcquireModel(actor, i));
                 if ((p != 0))
                 {
-                    new B01Evt(evt).unkC_Set(p);
-                    new B01Evt(evt).unk10_Set(p);
+                    new B01Evt(evt).ModelPtr_Set(p);
+                    new B01Evt(evt).ModelPtr2_10_Set(p);
                     Shadow.DrawForActor(actor, state, evt, default(uint));
                     Light.ShadeVertices((uint)(p), new B01Actor(actor).BoneMatricesPtr, 1, (int)((new B01Actor(actor).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new B01Actor(actor).ShadeParam_3));
                 }

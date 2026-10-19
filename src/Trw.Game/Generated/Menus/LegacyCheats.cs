@@ -2042,15 +2042,15 @@ public static partial class LegacyCheats
             Mem.Set(Gv.LegacyCheats_WarpIndex, i);
             if ((i != (-1)))
             {
-                new Q4G2A(a).f0C.f2D8_Set((uint)((uint)(new Q4G2A(a).f0C.f2D8) | (uint)(25165824)));
+                new Q4G2A(a).ItemsPtr.Item18Flags_Set((uint)((uint)(new Q4G2A(a).ItemsPtr.Item18Flags) | (uint)(25165824)));
             }
             else
             {
-                new Q4G2A(a).f0C.f2D8_Set((uint)((uint)(new Q4G2A(a).f0C.f2D8) & 4269801471u));
+                new Q4G2A(a).ItemsPtr.Item18Flags_Set((uint)((uint)(new Q4G2A(a).ItemsPtr.Item18Flags) & 4269801471u));
             }
             if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
-                new Q4G2A(a).f0C.f2D8_Set((uint)((uint)(new Q4G2A(a).f0C.f2D8) & 4269801471u));
+                new Q4G2A(a).ItemsPtr.Item18Flags_Set((uint)((uint)(new Q4G2A(a).ItemsPtr.Item18Flags) & 4269801471u));
             }
         }
     }
@@ -2102,7 +2102,7 @@ public static partial class LegacyCheats
             code = 8000;
             goto _f0;
             _f0: ;
-            if (!(((int)(Pad.IsConfirm((uint)(new Q4O(o).f20))) != 0))) goto _f13;
+            if (!(((int)(Pad.IsConfirm((uint)(new Q4O(o).PadPtr))) != 0))) goto _f13;
             if (!((code == 8000))) goto _f14;
             Mem.Set(0x801462E6u, (byte)(1));
             LegacyMenu.ClaimConfirmingPad(o);
@@ -2120,7 +2120,7 @@ public static partial class LegacyCheats
             Game_FadeToLevel(Gv.GameCtx, code);
             return 1;
             _f13: ;
-            if (!((Pad.IsLeft((uint)(new Q4O(o).f20)) != 0))) goto _f16;
+            if (!((Pad.IsLeft((uint)(new Q4O(o).PadPtr)) != 0))) goto _f16;
             i = Mem.S32(Gv.LegacyCheats_WarpIndex);
             n = 0;
             _f17: ;
@@ -2183,7 +2183,7 @@ public static partial class LegacyCheats
             r = i;
             goto L_done;
             _f16: ;
-            if (!((Pad.IsRight((uint)(new Q4O(o).f20)) != 0))) goto _f37;
+            if (!((Pad.IsRight((uint)(new Q4O(o).PadPtr)) != 0))) goto _f37;
             i = Mem.S32(Gv.LegacyCheats_WarpIndex);
             n = 0;
             _f38: ;
@@ -2281,13 +2281,13 @@ public static partial class LegacyCheats
                 t = (new Q4D(a3).f34 * 128.0f);
                 pa = (float)(new Q4T(Gv.LegacyCheats_CodeCursor).cur);
                 pa = (pa * w);
-                pb = (float)(new Q4B(a1).f14);
+                pb = (float)(new Q4B(a1).Left);
                 x = (pb + pa);
                 Mem.Set(Gv.Menu_CurrentDrawPass, (-1));
                 alpha = (new Q4D(a3).f30 * t);
                 xi = (int)(x);
                 Gfx.BeginFillRectPass();
-                Gfx.DrawBevelRect(xi, new Q4B(a1).f20, (int)(((float)(xi) + w)), (new Q4B(a1).f20 + 2), 0, 0, (byte)(255), (byte)(255), (byte)(255), (byte)((int)((Cpu.TruncU32(alpha) & (uint)(255)))));
+                Gfx.DrawBevelRect(xi, new Q4B(a1).Bottom, (int)(((float)(xi) + w)), (new Q4B(a1).Bottom + 2), 0, 0, (byte)(255), (byte)(255), (byte)(255), (byte)((int)((Cpu.TruncU32(alpha) & (uint)(255)))));
             }
             MenuItem.DrawLabelAlt(a0, (int)(a1), (int)(a2), (int)(a3));
         }
@@ -2433,11 +2433,11 @@ public static partial class LegacyCheats
             uint k = (uint)(Mem.S32(0x80154030u));
             if ((k < (uint)(12)))
             {
-                new Q4Z(o).f14_Set(new Q4RowT((0x0044FB94u + (uint)(k * 16))).text);
+                new Q4Z(o).Data_Set(new Q4RowT((0x0044FB94u + (uint)(k * 16))).text);
             }
             else
             {
-                new Q4Z(o).f14_Set(Gv.Menu_BlankLabelText);
+                new Q4Z(o).Data_Set(Gv.Menu_BlankLabelText);
             }
             return 0;
         }
@@ -2450,19 +2450,19 @@ public static partial class LegacyCheats
             if (Dbg.On) Dbg.Enter("func_0043D260", (uint)o, (uint)m, (uint)a2, (uint)a3);
             if (((Mem.U32(Gv.Settings_UnlockedCheats) & m) != 0u))
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) | (uint)(16777216)));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) | (uint)(16777216)));
             }
             else
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) & 4278190079u));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) & 4278190079u));
             }
             if (((Mem.U32(Gv.Settings) & m) != 0u))
             {
-                new Q4Z(o).f14_Set(a2);
+                new Q4Z(o).Data_Set(a2);
             }
             else
             {
-                new Q4Z(o).f14_Set(a3);
+                new Q4Z(o).Data_Set(a3);
             }
             return 0;
         }
@@ -2476,40 +2476,40 @@ public static partial class LegacyCheats
             switch (Mem.S32(Gv.LegacyCheats_WarpIndex))
             {
             default:
-                new Q4Z(o).f14_Set(Gv.Menu_BlankLabelText);
+                new Q4Z(o).Data_Set(Gv.Menu_BlankLabelText);
                 break;
             case 0:
-                new Q4Z(o).f14_Set(0x800D7BB8u);
+                new Q4Z(o).Data_Set(0x800D7BB8u);
                 break;
             case 1:
-                new Q4Z(o).f14_Set(0x800D7BBCu);
+                new Q4Z(o).Data_Set(0x800D7BBCu);
                 break;
             case 2:
-                new Q4Z(o).f14_Set(0x800D7BC0u);
+                new Q4Z(o).Data_Set(0x800D7BC0u);
                 break;
             case 3:
-                new Q4Z(o).f14_Set(0x800D7BC4u);
+                new Q4Z(o).Data_Set(0x800D7BC4u);
                 break;
             case 4:
-                new Q4Z(o).f14_Set(0x800D7BC8u);
+                new Q4Z(o).Data_Set(0x800D7BC8u);
                 break;
             case 5:
-                new Q4Z(o).f14_Set(0x800D7BCCu);
+                new Q4Z(o).Data_Set(0x800D7BCCu);
                 break;
             case 6:
-                new Q4Z(o).f14_Set(0x800D7BD4u);
+                new Q4Z(o).Data_Set(0x800D7BD4u);
                 break;
             case 7:
-                new Q4Z(o).f14_Set(0x800D7BD0u);
+                new Q4Z(o).Data_Set(0x800D7BD0u);
                 break;
             case 8:
-                new Q4Z(o).f14_Set(0x800D7BD8u);
+                new Q4Z(o).Data_Set(0x800D7BD8u);
                 break;
             case 9:
-                new Q4Z(o).f14_Set(0x800D7BDCu);
+                new Q4Z(o).Data_Set(0x800D7BDCu);
                 break;
             case 10:
-                new Q4Z(o).f14_Set(0x800D7BE0u);
+                new Q4Z(o).Data_Set(0x800D7BE0u);
                 break;
             }
             return 0;
@@ -2568,19 +2568,19 @@ public static partial class LegacyCheats
             if (Dbg.On) Dbg.Enter("func_0043D458", (uint)o);
             if (((Mem.U32(Gv.Settings_UnlockedCheats) & (uint)(1)) != 0u))
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) | (uint)(16777216)));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) | (uint)(16777216)));
             }
             else
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) & 4278190079u));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) & 4278190079u));
             }
             if (((Mem.U32(Gv.Settings) & (uint)(1)) != 0u))
             {
-                new Q4Z(o).f14_Set(0x800D7B38u);
+                new Q4Z(o).Data_Set(0x800D7B38u);
             }
             else
             {
-                new Q4Z(o).f14_Set(0x800D7B3Cu);
+                new Q4Z(o).Data_Set(0x800D7B3Cu);
             }
             return 0;
         }
@@ -2603,19 +2603,19 @@ public static partial class LegacyCheats
             if (Dbg.On) Dbg.Enter("func_0043D4E0", (uint)o);
             if (((Mem.U32(Gv.Settings_UnlockedCheats) & (uint)(2)) != 0u))
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) | (uint)(16777216)));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) | (uint)(16777216)));
             }
             else
             {
-                new Q4Z(o).f8_Set((uint)((uint)(new Q4Z(o).f8) & 4278190079u));
+                new Q4Z(o).Flags_Set((uint)((uint)(new Q4Z(o).Flags) & 4278190079u));
             }
             if (((Mem.U32(Gv.Settings) & (uint)(2)) != 0u))
             {
-                new Q4Z(o).f14_Set(0x800D7B40u);
+                new Q4Z(o).Data_Set(0x800D7B40u);
             }
             else
             {
-                new Q4Z(o).f14_Set(0x800D7B44u);
+                new Q4Z(o).Data_Set(0x800D7B44u);
             }
             return 0;
         }

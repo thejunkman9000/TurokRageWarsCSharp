@@ -116,10 +116,10 @@ public static partial class Flyby
                     tgt = Mem.U32((Gv.PlayerListHead + (uint)(18 * 4)));
                     if ((tgt != 0u))
                     {
-                        new B10Tgt(tgt).f29C_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportWidth));
-                        new B10Tgt(tgt).f2A0_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportHeight));
-                        new B10Tgt(tgt).f2A4_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportX));
-                        new B10Tgt(tgt).f2A8_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportY));
+                        new B10Tgt(tgt).ViewportWidth_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportWidth));
+                        new B10Tgt(tgt).ViewportHeight_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportHeight));
+                        new B10Tgt(tgt).ViewportX_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportX));
+                        new B10Tgt(tgt).ViewportY_Set((float)(new B10Ctl(Mem.U32(Gv.FlybyCtlPtr)).ViewportY));
                     }
                 }
             }
@@ -2315,11 +2315,11 @@ public static partial class Flyby
                 int seg = 0;
                 int i = 0;
                 uint n = 0u;
-                while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
+                while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0))
                 {
                     seg = i;
                     n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 0);
-                    cnt = new O01Node(n).unk4;
+                    cnt = new O01Node(n).KeyCount_4;
                     keys = (n + (uint)8);
                     cumBefore = cumAfter;
                     cumAfter = (cumBefore + Mem.F32(((keys + (uint)(cnt * 36)) - (uint)8)));
@@ -2330,7 +2330,7 @@ public static partial class Flyby
                             break;
                         }
                     }
-                    if ((seg == (new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0 - 1)))
+                    if ((seg == (new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0 - 1)))
                     {
                         if ((cumAfter < t))
                         {
@@ -2347,7 +2347,7 @@ public static partial class Flyby
                     i = (seg + 1);
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 2);
-                if ((new O01Node(n).unk0 != 0))
+                if ((new O01Node(n).Count_0 != 0))
                 {
                     t = cumBefore;
                 }
@@ -2374,11 +2374,11 @@ public static partial class Flyby
                 int seg = 0;
                 int i = 0;
                 uint n = 0u;
-                while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
+                while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0))
                 {
                     seg = i;
                     n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 1);
-                    cnt = new O01Node(n).unk4;
+                    cnt = new O01Node(n).KeyCount_4;
                     keys = (n + (uint)8);
                     cumBefore = cumAfter;
                     cumAfter = (cumBefore + Mem.F32(((keys + (uint)(cnt * 36)) - (uint)8)));
@@ -2389,7 +2389,7 @@ public static partial class Flyby
                             break;
                         }
                     }
-                    if ((seg == (new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0 - 1)))
+                    if ((seg == (new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0 - 1)))
                     {
                         if ((cumAfter < t))
                         {
@@ -2406,7 +2406,7 @@ public static partial class Flyby
                     i = (seg + 1);
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), seg), 2);
-                if ((new O01Node(n).unk4 != 0))
+                if ((new O01Node(n).KeyCount_4 != 0))
                 {
                     t = cumBefore;
                 }
@@ -2428,7 +2428,7 @@ public static partial class Flyby
                 if (Dbg.On) Dbg.Enter("func_00401564", (uint)@out);
                 uint n = Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 1);
                 uint keys = (n + (uint)8);
-                int cnt = new O01Node(n).unk4;
+                int cnt = new O01Node(n).KeyCount_4;
                 uint k = 0u;
                 float u = 0f;
                 if ((cnt == 0))
@@ -2496,7 +2496,7 @@ public static partial class Flyby
             if (Dbg.On) Dbg.Enter("func_0040170C");
             uint n = Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 1);
             uint keys = (n + (uint)8);
-            int cnt = new O01Node(n).unk4;
+            int cnt = new O01Node(n).KeyCount_4;
             float u = 0f;
             float w = 0f;
             float res = 0f;
@@ -2679,7 +2679,7 @@ public static partial class Flyby
                 fs0 = Mem.F32(0x800E0B70u);
                 Vec.Scale(_fp, _fp, fs0);
                 Vec.Scale((_fp + 16u), (_fp + 16u), fs0);
-                new Q01Out_v2(arg0).f28_Set(0.0f);
+                new Q01Out_v2(arg0).Yaw_Set(0.0f);
                 Vec.Sub((_fp + 32u), (_fp + 16u), _fp);
                 if (((((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 1) != 0) && (new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr != 0u)) || ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 2) != 0)))
                 {
@@ -2733,10 +2733,10 @@ public static partial class Flyby
                 fs1 = Vec.GetYaw((_fp + 32u));
                 {
                     float t = Vec.GetPitch((_fp + 32u));
-                    new Q01Out_v2(arg0).f28_Set((new Q01Out_v2(arg0).f28 + fs1));
-                    new Q01Out_v2(arg0).f2C_Set((-t));
+                    new Q01Out_v2(arg0).Yaw_Set((new Q01Out_v2(arg0).Yaw + fs1));
+                    new Q01Out_v2(arg0).Pitch_Set((-t));
                 }
-                Mem.Copy(new Q01Out_v2(arg0).v38.P, _fp, 12);
+                Mem.Copy(new Q01Out_v2(arg0).PosX.P, _fp, 12);
             }
         }
         finally { Stack.Free(204); }
@@ -2925,10 +2925,10 @@ public static partial class Flyby
                 float v = 0f;
                 if ((new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).IsActive != 0))
                 {
-                    s1 = Cpu.TruncU32(new Q01Out(arg0).f2A4);
-                    s0 = Cpu.TruncU32(new Q01Out(arg0).f2A8);
-                    s3 = Cpu.TruncU32(((float)(s1) + new Q01Out(arg0).f29C));
-                    s2 = Cpu.TruncU32(((float)(s0) + new Q01Out(arg0).f2A0));
+                    s1 = Cpu.TruncU32(new Q01Out(arg0).ViewportX);
+                    s0 = Cpu.TruncU32(new Q01Out(arg0).ViewportY);
+                    s3 = Cpu.TruncU32(((float)(s1) + new Q01Out(arg0).ViewportWidth));
+                    s2 = Cpu.TruncU32(((float)(s0) + new Q01Out(arg0).ViewportHeight));
                     Flyby.EvalFadeColor((_fp + 16u), new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                     ft = Flyby.EvalFadeAlpha(new Q01Anim_v3(Mem.U32(Gv.FlybyCtlPtr)).Clock);
                     Mem.Copy(_fp, (_fp + 16u), 12);
@@ -3029,9 +3029,9 @@ public static partial class Flyby
                     e = (uint)((Mem.S32(r) + 8));
                     for (i = 0; (i < n); ++i, e += 76u)
                     {
-                        if ((new O01Rec(e).unk4 == k4))
+                        if ((new O01Rec(e).TriggerKey == k4))
                         {
-                            if ((new O01Rec(e).unk0 == k0))
+                            if ((new O01Rec(e).LevelId == k0))
                             {
                                 found = i;
                             }
@@ -3085,11 +3085,11 @@ public static partial class Flyby
                 for (; (i < n); ++i)
                 {
                     e = (ents + (uint)(i * 76));
-                    if ((new O01Rec(e).unk8 == a))
+                    if ((new O01Rec(e).FlybyId == a))
                     {
-                        if (((new O01Rec(e).unkC & 3) == 0))
+                        if (((new O01Rec(e).Flags & 3) == 0))
                         {
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).unk0);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).LevelId);
                         }
                         new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set(a);
                         new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set(i);
@@ -3139,8 +3139,8 @@ public static partial class Flyby
                         e = (ents + (uint)(i * 76));
                         if ((StrUtil.Compare((uint)(a), (e + (uint)24)) == 0))
                         {
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set(new O01Rec(e).unk8);
-                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).unk0);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).FlybyId_Set(new O01Rec(e).FlybyId);
+                            new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingLevelId_Set(new O01Rec(e).LevelId);
                             new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PendingIndex_Set(i);
                             new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).IsFreshRequest_Set(1);
                             break;
@@ -3196,20 +3196,20 @@ public static partial class Flyby
             int any = 0;
             int i = 0;
             uint n = Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 2);
-            int cnt = new O01Node(n).unk4;
+            int cnt = new O01Node(n).KeyCount_4;
             uint ents = (n + (uint)8);
             uint e = 0u;
             uint k = 0u;
             for (i = 0; (i < cnt); ++i)
             {
                 e = (ents + (uint)(i * 12));
-                if ((new O01Ent12(e).unk4 == 0))
+                if ((new O01Ent12(e).TableSelect == 0))
                 {
-                    k = (new O01G(Gv.LevelMgr).unk11D0_ + (uint)(new O01Ent12(e).unk8 * 20));
+                    k = (new O01G(Gv.LevelMgr).unk11D0_ + (uint)(new O01Ent12(e).TriggerIndex * 20));
                 }
                 else
                 {
-                    k = (new O01G(Gv.LevelMgr).unk11D4_ + (uint)(new O01Ent12(e).unk8 * 20));
+                    k = (new O01G(Gv.LevelMgr).unk11D4_ + (uint)(new O01Ent12(e).TriggerIndex * 20));
                 }
                 if ((func_0040332C_O01KindOk(k) != 0))
                 {
@@ -3273,7 +3273,7 @@ public static partial class Flyby
                 if ((new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).AreTrackEventsEnabled != 0))
                 {
                     n = Chunk.Get(new O01CtxD(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 2);
-                    cnt = new O01Node(n).unk4;
+                    cnt = new O01Node(n).KeyCount_4;
                     ents = (n + (uint)8);
                     if ((cnt != 0))
                     {
@@ -3284,24 +3284,24 @@ public static partial class Flyby
                         for (i = 0; (i < cnt); ++i)
                         {
                             e = (ents + (uint)(i * 12));
-                            if ((new O01EntF(e).time <= Mem.F32(0x800E0CA0u)))
+                            if ((new O01EntF(e).Time <= Mem.F32(0x800E0CA0u)))
                             {
                                 continue;
                             }
-                            if ((now < new O01EntF(e).time))
+                            if ((now < new O01EntF(e).Time))
                             {
                                 if ((flag == 0))
                                 {
                                     continue;
                                 }
                             }
-                            if ((new O01EntF(e).unk4 == 0))
+                            if ((new O01EntF(e).TableSelect == 0))
                             {
-                                k = (new O01G(Gv.LevelMgr).unk11D0_ + (uint)(new O01EntF(e).unk8 * 20));
+                                k = (new O01G(Gv.LevelMgr).unk11D0_ + (uint)(new O01EntF(e).TriggerIndex * 20));
                             }
                             else
                             {
-                                k = (new O01G(Gv.LevelMgr).unk11D4_ + (uint)(new O01EntF(e).unk8 * 20));
+                                k = (new O01G(Gv.LevelMgr).unk11D4_ + (uint)(new O01EntF(e).TriggerIndex * 20));
                             }
                             if ((func_00403458_O01KindOk(k) != 0))
                             {
@@ -3312,7 +3312,7 @@ public static partial class Flyby
                             {
                                 Level.ActivateTriggerRecord(k);
                             }
-                            new O01EntF(e).time_Set(Mem.F32(0x800E0CA4u));
+                            new O01EntF(e).Time_Set(Mem.F32(0x800E0CA4u));
                             new O01Kind_v2(k).unkE_Set((byte)((((int)(new O01Kind_v2(k).unkE) | 1) & 239)));
                             Level.SetTriggerSavedFlag(Gv.LevelMgr, k, 0);
                         }
@@ -3341,7 +3341,7 @@ public static partial class Flyby
                     return _ret;
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 0);
-                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
+                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).KeyCount_4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
             }
@@ -3367,7 +3367,7 @@ public static partial class Flyby
                     return _ret;
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 1);
-                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
+                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).KeyCount_4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
             }
@@ -3483,7 +3483,7 @@ public static partial class Flyby
                     return _ret;
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 0);
-                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
+                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).KeyCount_4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
             }
@@ -3510,7 +3510,7 @@ public static partial class Flyby
                     return _ret;
                 }
                 n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), 0), 1);
-                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
+                Mem.Copy((_fp + 16u), C.Seq(Flyby.EvalSpline(_fp, (n + (uint)8), new O01Node(n).KeyCount_4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
             }
@@ -3526,10 +3526,10 @@ public static partial class Flyby
             if (Dbg.On) Dbg.Enter("func_004039C4");
             float sum = 0.0f;
             int i = 0;
-            while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0))
+            while ((i < new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0))
             {
                 uint n = Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), i), 0);
-                n = (n + (uint)(new O01Node(n).unk4 * 36));
+                n = (n + (uint)(new O01Node(n).KeyCount_4 * 36));
                 sum = (float)((float)(sum) + Mem.F32(n));
                 ++i;
             }
@@ -3543,7 +3543,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403A64");
-            return new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).unk0;
+            return new O01Node(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0)).Count_0;
         }
     }
 
@@ -3585,8 +3585,8 @@ public static partial class Flyby
             if (Dbg.On) Dbg.Enter("func_00403B70", (uint)t);
             uint x = Chunk.Get(t, 0);
             uint y = Chunk.Get(t, 2);
-            int a = (new O01Node(x).unk4 * 9);
-            int b = (new O01Node(y).unk4 * 9);
+            int a = (new O01Node(x).KeyCount_4 * 9);
+            int b = (new O01Node(y).KeyCount_4 * 9);
             return (((b + a) * 4) + 48);
         }
     }
@@ -3663,7 +3663,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403CFC", (uint)a);
-            return new O01Node(Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).unk0;
+            return new O01Node(Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).Count_0;
         }
     }
 
@@ -3673,7 +3673,7 @@ public static partial class Flyby
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403D4C", (uint)a);
-            return new O01Node(Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).unk4;
+            return new O01Node(Chunk.Get(Chunk.Get(Chunk.Get(new O01Ctx(Mem.U32(Gv.FlybyCtlPtr)).PathDataPtr, 0), a), 2)).KeyCount_4;
         }
     }
 

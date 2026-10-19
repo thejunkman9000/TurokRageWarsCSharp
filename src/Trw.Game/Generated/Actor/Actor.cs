@@ -670,18 +670,18 @@ public static partial class Actor
                 float u3 = 0f;
                 float k = 0f;
                 float t = 0f;
-                t = ((new M2Cam(c).f740 + new M2Cam(c).f780) - new M2Cam(c).f718);
-                a = ((new M2Cam(c).f724 + new M2Cam(c).f730) - new M2Cam(c).f708);
-                b = (new M2Cam(c).f728 + new M2Cam(c).f734);
-                u1 = (new M2Cam(c).f72C + new M2Cam(c).f738);
-                px = (new M2Cam(c).px + new M2Cam(c).f73C);
-                d = new M2Cam(c).f6C;
-                pz = (new M2Cam(c).pz + new M2Cam(c).f744);
-                py = new M2Cam(c).py;
+                t = ((new M2Cam(c).EyeHeight + new M2Cam(c).EyeHeightOffset) - new M2Cam(c).CrouchOffset);
+                a = ((new M2Cam(c).ViewPitch + new M2Cam(c).SwayPitch) - new M2Cam(c).ViewPitchBase);
+                b = (new M2Cam(c).ViewYawOffset + new M2Cam(c).SwayYaw);
+                u1 = (new M2Cam(c).ViewRoll + new M2Cam(c).SwayRoll);
+                px = (new M2Cam(c).Position + new M2Cam(c).EyeOffsetX);
+                d = new M2Cam(c).Yaw;
+                pz = (new M2Cam(c).PositionZ + new M2Cam(c).EyeOffsetZ);
+                py = new M2Cam(c).PositionY;
                 y = ((t < 40.9599991f) ? 40.9599991f : t);
                 k = 0.5f;
                 h1 = (u1 * k);
-                Mem.Copy((_fp + 48u), new M2Cam(c).q5C.P, 16);
+                Mem.Copy((_fp + 48u), new M2Cam(c).Rotation.P, 16);
                 Mem.Set(Gv.Quat_SinScratch, sinf(h1));
                 new M2Quat((_fp + 32u)).x_Set(0.0f);
                 new M2Quat((_fp + 32u)).y_Set(0.0f);
@@ -1309,16 +1309,16 @@ public static partial class Actor
         {
             if (Dbg.On) Dbg.Enter("func_00246174", (uint)o);
             Actor.ResetModelSlots_0024DD00(o);
-            new B10Init(o).f1C_Set(0);
-            new B10Init(o).f20_Set(0);
-            new B10Init(o).f24_Set(0);
+            new B10Init(o).Velocity_Set(0);
+            new B10Init(o).VelocityY_Set(0);
+            new B10Init(o).VelocityZ_Set(0);
             new B10Init(o).f28_Set(0);
             new B10Init(o).f2C_Set(0);
             new B10Init(o).f30_Set(0);
-            new B10Init(o).f34_Set(0);
-            new B10Init(o).f38_Set(0);
-            new B10Init(o).f3C_Set((-1));
-            new B10Init(o).f40_Set(0);
+            new B10Init(o).StandingOnPtr_Set(0);
+            new B10Init(o).GroundFlags_Set(0);
+            new B10Init(o).FloorMaterial_3C_Set((-1));
+            new B10Init(o).FloorY_Set(0);
             new B10Init(o).f44_Set(0);
             new B10Init(o).f4C_Set(0);
             new B10Init(o).f48_Set(Mem.F32(0x800C8914u));
@@ -1338,19 +1338,19 @@ public static partial class Actor
                 float d = 0f;
                 uint new_var2 = 0u;
                 int s = 0;
-                float h = Collision.GetFloorHeightAt((uint)((int)(new B10Obj(o).p14_)), Cpu.U2F((uint)(new B10Obj(o).Position)), Cpu.U2F((uint)(new B10Obj(o).u10)));
-                d = (new B10Obj(o).fC - h);
+                float h = Collision.GetFloorHeightAt((uint)((int)(new B10Obj(o).p14_)), Cpu.U2F((uint)(new B10Obj(o).Position)), Cpu.U2F((uint)(new B10Obj(o).PositionZ)));
+                d = (new B10Obj(o).PositionY - h);
                 Mem.Copy(_fp, new B10Obj(o).Velocity.P, 12);
                 new_var2 = o;
                 new B10Obj(new_var2).Velocity.x_Set(new B10Obj((new_var = new_var2)).Velocity.y_Set(new B10Obj(new_var2).Velocity.z_Set(0.0f)));
                 new Vec3f((_fp + 16u)).x_Set(x);
-                new Vec3f((_fp + 16u)).y_Set(new B10Obj(new_var2).fC);
+                new Vec3f((_fp + 16u)).y_Set(new B10Obj(new_var2).PositionY);
                 new Vec3f((_fp + 16u)).z_Set(z);
                 s = Mem.S32((Gv.Collision_MoveCtx + (uint)(0 * 4)));
                 Collision.MoveActor((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(Gv.Collision_MoveCtx));
                 Mem.Set((Gv.Collision_MoveCtx + (uint)(0 * 4)), s);
                 Mem.Copy(new B10Obj(new_var2).Velocity.P, _fp, 12);
-                new B10Obj(new_var2).fC_Set((Collision.GetFloorHeightAt((uint)((int)(new B10Obj(new_var2).p14_)), Cpu.U2F((uint)(new B10Obj(new_var2).Position)), Cpu.U2F((uint)(new B10Obj(new_var2).u10))) + d));
+                new B10Obj(new_var2).PositionY_Set((Collision.GetFloorHeightAt((uint)((int)(new B10Obj(new_var2).p14_)), Cpu.U2F((uint)(new B10Obj(new_var2).Position)), Cpu.U2F((uint)(new B10Obj(new_var2).PositionZ))) + d));
             }
         }
         finally { Stack.Free(28); }
@@ -1422,7 +1422,7 @@ public static partial class Actor
                 int r = 0;
                 Mem.Copy(_fp, o, 80);
                 k = Mem.F32(0x800C8918u);
-                new B10Obj(o).fC_Set((float)((float)(new B10Obj(o).fC) + (Actor.GetHeight(o) * k)));
+                new B10Obj(o).PositionY_Set((float)((float)(new B10Obj(o).PositionY) + (Actor.GetHeight(o) * k)));
                 Mem.Copy((_fp + 80u), (other + 8u), 12);
                 new Vec3f((_fp + 80u)).y_Set((float)((float)(new Vec3f((_fp + 80u)).y) + (Actor.GetHeight(other) * k)));
                 r = Collision.MoveActor((int)(o), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)), (int)(Gv.Collision_LosResult));
@@ -1523,8 +1523,8 @@ public static partial class Actor
                 MathUtil.MtxIdentity((o + 116u));
                 new B10Obj(o).BoneMatricesPtr_Set(0);
                 new B10Obj(o).pB8__Set(0u);
-                new B10Obj(o).fBC_Set(0);
-                new B10Obj(o).b13B_Set((byte)(0));
+                new B10Obj(o).PoseWord_BC_Set(0);
+                new B10Obj(o).TrailCount_13B_Set((byte)(0));
                 new B10Obj(o).Flags_Set((uint)((uint)(new B10Obj(o).Flags) | (uint)(65536)));
                 new B10Obj(o).Flags_Set((uint)((uint)(new B10Obj(o).Flags) | (uint)(131072)));
                 if (!(((Mem.S32(new B10Obj(o).p18_) == 0) || ((new B10Obj(o).Flags & (uint)(1)) != 0u)))) goto _f2;
@@ -2537,11 +2537,11 @@ public static partial class Actor
                 uint n = 0u;
                 uint r = 0u;
                 float k = 0f;
-                if ((new B11R(b).unk4 != 0))
+                if ((new B11R(b).DrawsShadow_4 != 0))
                 {
                     Shadow.DrawForActor((uint)(a), (uint)(unused), (uint)(b), default(uint));
                 }
-                if ((new B11R(b).unk0 != 0))
+                if ((new B11R(b).DrawsModel_0 != 0))
                 {
                     Light.ShadeVertices(new B11R(b).unkC_, new ObjView(a).BoneMatricesPtr, 1, (int)((new ObjView(a).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new ObjView(a).ShadeParam_3));
                     if ((Model.GetViewFlag() != 0))
@@ -2558,8 +2558,8 @@ public static partial class Actor
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B40u);
-                                    new B11Fx(r).f150_Set((Actor.GetRadius(a) * k));
-                                    new B11Fx(r).f154_Set((Actor.GetHeight(a) * k));
+                                    new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
+                                    new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
                             }
                         }
@@ -2583,11 +2583,11 @@ public static partial class Actor
                 uint n = 0u;
                 uint r = 0u;
                 float k = 0f;
-                if ((new B11R(b).unk4 != 0))
+                if ((new B11R(b).DrawsShadow_4 != 0))
                 {
                     Shadow.DrawForActor(a, (uint)(c), b, default(uint));
                 }
-                if ((new B11R(b).unk0 != 0))
+                if ((new B11R(b).DrawsModel_0 != 0))
                 {
                     Model.DrawCharacterParts(new B11R(b).unkC_, (uint)(b1), new ObjView(a).BoneMatricesPtr, 1, (new ObjView(a).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24)), (uint)(0), (int)(new ObjView(a).ShadeParam_3));
                     if ((Model.GetViewFlag() != 0))
@@ -2604,8 +2604,8 @@ public static partial class Actor
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B48u);
-                                    new B11Fx(r).f150_Set((Actor.GetRadius(a) * k));
-                                    new B11Fx(r).f154_Set((Actor.GetHeight(a) * k));
+                                    new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
+                                    new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
                             }
                         }
@@ -2629,11 +2629,11 @@ public static partial class Actor
                 uint n = 0u;
                 uint r = 0u;
                 float k = 0f;
-                if ((new B11R(b).unk4 != 0))
+                if ((new B11R(b).DrawsShadow_4 != 0))
                 {
                     Shadow.DrawForActor(a, (uint)(c), b, default(uint));
                 }
-                if ((new B11R(b).unk0 != 0))
+                if ((new B11R(b).DrawsModel_0 != 0))
                 {
                     Model.DrawOverlayParts(new B11R(b).unkC_, b1, new ObjView(a).BoneMatricesPtr, 1, (int)((new ObjView(a).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new ObjView(a).ShadeParam_3));
                     if ((Model.GetViewFlag() != 0))
@@ -2650,8 +2650,8 @@ public static partial class Actor
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B50u);
-                                    new B11Fx(r).f150_Set((Actor.GetRadius(a) * k));
-                                    new B11Fx(r).f154_Set((Actor.GetHeight(a) * k));
+                                    new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
+                                    new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                                 }
                             }
                         }
@@ -2978,7 +2978,7 @@ public static partial class Actor
                 new Quat4(_fp).w_Set(cosf((new ObjView(a).Yaw.f * Mem.F32(0x800C8C40u))));
                 Quat.Multiply((_fp + 16u), _fp, (_fp + 32u));
                 Quat.ToMatrix((_fp + 16u), new ObjView(a).TransformMtx.P);
-                MathUtil.MtxScaleRows(new ObjView(a).TransformMtx.P, new ObjView(a).Scale, new ObjView(a).unk54, new ObjView(a).unk58);
+                MathUtil.MtxScaleRows(new ObjView(a).TransformMtx.P, new ObjView(a).Scale, new ObjView(a).ScaleY, new ObjView(a).ScaleZ);
                 Vec.ClampLengthChecked(new ObjView(a).Position.P, 2.0E+4f);
                 MathUtil.MtxTranslate(new ObjView(a).TransformMtx.P, new ObjView(a).Position.x, new ObjView(a).Position.y, new ObjView(a).Position.z);
                 MathUtil.MtxSwapRowsYZ(new ObjView(a).TransformMtx.P);
@@ -3039,8 +3039,8 @@ public static partial class Actor
             if (Dbg.On) Dbg.Enter("func_0024B8B4", (uint)a);
             int t = new ObjView(a).BoneMatricesPtr;
             new ObjView(a).BoneMatricesPtr_Set(0);
-            new ObjView(a).unkBC_Set(0);
-            new ObjView(a).unkC0_Set(0);
+            new ObjView(a).PoseWord_BC_Set(0);
+            new ObjView(a).PoseWord_C0_Set(0);
             new ObjView(a).Flags_Set((uint)((uint)(new ObjView(a).Flags) & (uint)((~512))));
             new ObjView(a).PrevBoneMatricesPtr_Set(t);
         }
@@ -3057,21 +3057,21 @@ public static partial class Actor
             if (((uint)(new Actor_v2(a).f1) != (0u - (new_var2 = (uint)(1)))))
             {
                 new Actor_v2(a).f17C_Set((uint)((1 << (int)(int)(new Actor_v2(a).f1))));
-                if ((new ActorCmd(c).f4 != 0))
+                if ((new ActorCmd(c).DrawsShadow_4 != 0))
                 {
                     Shadow.DrawForActor((uint)(a), (uint)(unused), (uint)(c), default(uint));
                 }
                 new_var = c;
-                if ((new ActorCmd(new_var).f0 != 0))
+                if ((new ActorCmd(new_var).DrawsModel_0 != 0))
                 {
-                    if ((new ActorCmd(c).f4 != 0))
+                    if ((new ActorCmd(c).DrawsShadow_4 != 0))
                     {
-                        Light.ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light.ShadeVertices(new ActorCmd(c).ModelPtr, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor.SpawnMaterialEffect_0024C444(a, c);
                     }
                     else
                     {
-                        Light.ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light.ShadeVertices(new ActorCmd(c).ModelPtr, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor.SpawnMaterialEffect_0024C444(a, c);
                     }
                 }
@@ -3089,20 +3089,20 @@ public static partial class Actor
             if (((int)(new Actor_v2(a).f1) != (-1)))
             {
                 new Actor_v2(a).f17C_Set((uint)((1 << (int)(int)(new Actor_v2(a).f1))));
-                if ((new ActorCmd(c).f4 != 0))
+                if ((new ActorCmd(c).DrawsShadow_4 != 0))
                 {
                     Shadow.DrawForActor((uint)(a), (uint)(unused), (uint)(c), default(uint));
                 }
-                if ((new ActorCmd(c).f0 != 0))
+                if ((new ActorCmd(c).DrawsModel_0 != 0))
                 {
-                    if ((new ActorCmd(c).fC != 0u))
+                    if ((new ActorCmd(c).ModelPtr != 0u))
                     {
-                        Light.ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light.ShadeVertices(new ActorCmd(c).ModelPtr, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor.SpawnMaterialEffect_0024C444(a, c);
                     }
                     else
                     {
-                        Light.ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light.ShadeVertices(new ActorCmd(c).ModelPtr, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor.SpawnMaterialEffect_0024C444(a, c);
                     }
                 }
@@ -3346,7 +3346,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BECC", (uint)a);
-            return sqrtf(((((new ObjView(a).Scale * new ObjView(a).Scale) + (new ObjView(a).unk54 * new ObjView(a).unk54)) + (new ObjView(a).unk58 * new ObjView(a).unk58)) * Mem.F32(0x800C8C48u)));
+            return sqrtf(((((new ObjView(a).Scale * new ObjView(a).Scale) + (new ObjView(a).ScaleY * new ObjView(a).ScaleY)) + (new ObjView(a).ScaleZ * new ObjView(a).ScaleZ)) * Mem.F32(0x800C8C48u)));
         }
     }
 
@@ -3476,8 +3476,8 @@ public static partial class Actor
                             if ((r != 0u))
                             {
                                 k = Mem.F32(0x800C8C54u);
-                                new B11Fx(r).f150_Set((Actor.GetRadius(a) * k));
-                                new B11Fx(r).f154_Set((Actor.GetHeight(a) * k));
+                                new B11Fx(r).Width_Set((Actor.GetRadius(a) * k));
+                                new B11Fx(r).Height_Set((Actor.GetHeight(a) * k));
                             }
                         }
                     }
@@ -4530,11 +4530,11 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E640", (uint)o);
-            if (((int)(new ObjDef_v2(o).kind) == 1))
+            if (((int)(new ObjDef_v2(o).Type) == 1))
             {
-                return new ObjDef_v2(o).f40;
+                return new ObjDef_v2(o).FloorY;
             }
-            return new ObjDef_v2(o).fC;
+            return new ObjDef_v2(o).PositionY;
         }
     }
 
@@ -4613,9 +4613,9 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E768", (uint)o);
-            if (((int)(new ObjDef_v2(o).kind) == 1))
+            if (((int)(new ObjDef_v2(o).Type) == 1))
             {
-                return (int)((new ObjDef_v2(o).f38 & (uint)(7)));
+                return (int)((new ObjDef_v2(o).GroundFlags & (uint)(7)));
             }
             return 0;
         }
@@ -5273,7 +5273,7 @@ public static partial class Actor
                 float len = 0f;
                 for (i = (n - 1); (i != (-1)); --i)
                 {
-                    if (((new B16Ent(ents).flags & new B16Obj(obj).unk2E0) != 0u))
+                    if (((new B16Ent(ents).flags & new B16Obj(obj).EventBits) != 0u))
                     {
                         flag = ((((int)(Mem.U8((tab + (uint)(((int)(new B16Ent(ents).bone) * Mem.S32(tab)) + 110)))) == 5) ? 1 : 0) * 2);
                         MathUtil.MtxTransformPoint((mtxs + (uint)(new B16Ent(ents).bone * 64)), new B16Ent(ents).pos.P, (_fp + 16u));
@@ -5292,7 +5292,7 @@ public static partial class Actor
                         case (uint)(64):
                             Mem.Copy(new B16Obj(obj).unk248.P, (_fp + 16u), 12);
                             kind = Mem.S32(new B16Obj(obj).def_);
-                            if ((((kind == 1) && ((int)(new B16Obj(obj).unk1A4) == 33)) || ((kind == 11) && ((int)(new B16Obj(obj).owner.unk650) == 38))))
+                            if ((((kind == 1) && ((int)(new B16Obj(obj).unk1A4) == 33)) || ((kind == 11) && ((int)(new B16Obj(obj).OwnerPtr.unk650) == 38))))
                             {
                                 Collision.LocatePoint_0024E78C(obj, (_fp + 16u), (_fp + 32u), (_fp + 88u));
                                 Mem.Copy((_fp + 64u), C.Seq(Quat.FromDirection(_fp, new B16Obj(obj).unk254.P), _fp), 16);
@@ -6165,7 +6165,7 @@ public static partial class ActorState
                 Mem.Set(Gv.FrameTime, 0.0f);
                 return;
             }
-            if (((new M1Actor(actor).unk19C != 0) && (new M1Actor(actor).def_ != 0u)))
+            if (((new M1Actor(actor).ActorStateTablePtr != 0) && (new M1Actor(actor).def_ != 0u)))
             {
                 if ((new M1Actor(actor).DefPtr.Kind == 2))
                 {
@@ -6467,7 +6467,7 @@ public static partial class ObjectUtil
         {
             if (Dbg.On) Dbg.Enter("func_0044AD14", (uint)arg0, (uint)arg1);
             int var_a2 = 0;
-            new func_8044AD14_S1(arg0).unk5E0_Set(arg1);
+            new func_8044AD14_S1(arg0).CharacterId_Set(arg1);
             Player.ApplyCharacterClass((uint)(arg0));
             Player.InitWeapons(arg0, default(int));
             if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0))
@@ -6476,17 +6476,17 @@ public static partial class ObjectUtil
             }
             else
             {
-                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).unk5D8).unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).unk8F) != 0)))
                 {
                     var_a2 = Mem.S32(Gv.Player_RemoteBodyType_800CE47C);
                 }
                 else
                 {
-                    var_a2 = Mem.S32((0x800CE430u + (uint)(new func_8021C9B4_S3(new func_8044AD14_S1(arg0).unk18).unkC * 4)));
-                    new func_8044AD14_S1(arg0).unk3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).unk5D8).unk81);
+                    var_a2 = Mem.S32((0x800CE430u + (uint)(new func_8021C9B4_S3(new func_8044AD14_S1(arg0).DefPtr).unkC * 4)));
+                    new func_8044AD14_S1(arg0).ShadeParam_3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).unk81);
                 }
             }
-            Funcs.CallReg(0x0028B250u, Gv.LevelMgr, arg0, (uint)(var_a2), (uint)(new func_8044AD14_S1(arg0).unk86C));
+            Funcs.CallReg(0x0028B250u, Gv.LevelMgr, arg0, (uint)(var_a2), (uint)(new func_8044AD14_S1(arg0).AnimId));
         }
     }
 }

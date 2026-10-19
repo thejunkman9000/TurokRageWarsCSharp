@@ -604,15 +604,15 @@ public static partial class AnimCodec
             Mem.Set(0x8010EC74u, 0);
             Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9288u));
             Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C928Cu));
-            Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
-            if ((AnimCodec.DecodeTracks((int)(a1), b1, new B14Hdr(h).f14, 3, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0))
+            Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
+            if ((AnimCodec.DecodeTracks((int)(a1), b1, new B14Hdr(h).PositionTrackCount, 3, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0))
             {
                 Mem.Set(0x8010EC78u, 0);
                 Mem.Set(0x8010EC74u, 1);
                 Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9290u));
                 Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C9294u));
-                Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
-                r = ((AnimCodec.DecodeTracks((int)(a2), b2, new B14Hdr(h).f10, 4, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0) ? 1 : 0);
+                Mem.Set(0x8010EC70u, new B14Hdr(h).QuantScale);
+                r = ((AnimCodec.DecodeTracks((int)(a2), b2, new B14Hdr(h).RotationTrackCount, 4, new B14Hdr(h).BlurWidth_0, new B14Hdr(h).EncodingKind) != 0) ? 1 : 0);
             }
             else
             {

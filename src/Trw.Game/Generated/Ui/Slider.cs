@@ -31,16 +31,16 @@ public static partial class Slider
             o = ResourcePool.Malloc((uint)(88));
             MemUtil.Fill(o, 0, (uint)(88));
             Mem.Copy(o, src, 44);
-            new O3Bar(o).h.Type_Set((ushort)(2915));
-            Mem.Copy(new O3Bar(o).col.P, new O3Bar(src).col.P, 20);
+            new O3Bar(o).Header.Type_Set((ushort)(2915));
+            Mem.Copy(new O3Bar(o).NodeData.P, new O3Bar(src).NodeData.P, 20);
             g = UiTree.FindNode((uint)(s), (uint)((b & 65535)), default(uint), default(uint));
             new O3Bar(o).g__Set(g);
-            new O3Bar(o).width_Set((int)(new O3BarG(g).w));
-            new O3Bar(o).max_Set(max);
-            new O3Bar(o).val_Set(0);
-            new O3Bar(o).f54_Set(2);
+            new O3Bar(o).BarWidth_Set((int)(new O3BarG(g).w));
+            new O3Bar(o).MaxValue_Set(max);
+            new O3Bar(o).Value_Set(0);
+            new O3Bar(o).RepeatDir_Set(2);
             UiTree.ReplaceNode(src, o, default(uint), default(uint));
-            new O3Bar(src).h.Id_Set((short)((-1)));
+            new O3Bar(src).Header.Id_Set((short)((-1)));
             UiTree.ReplaceRefs((uint)(s), src, o, default(uint));
             return o;
         }
@@ -52,7 +52,7 @@ public static partial class Slider
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A760", (uint)o);
-            return new O3Menu(o).cnt;
+            return new O3Menu(o).Count;
         }
     }
 
@@ -62,8 +62,8 @@ public static partial class Slider
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A76C", (uint)o, (uint)v);
-            new O3Bar(o).val_Set(v);
-            new O3Bar(o).g.w_Set((short)(int)((((float)(v) / (float)(new O3Bar(o).max)) * (float)(new O3Bar(o).width))));
+            new O3Bar(o).Value_Set(v);
+            new O3Bar(o).BarNodePtr.w_Set((short)(int)((((float)(v) / (float)(new O3Bar(o).MaxValue)) * (float)(new O3Bar(o).BarWidth))));
         }
     }
 
@@ -126,9 +126,9 @@ public static partial class Slider
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A968", (uint)o);
-            if ((new O3Bar(o).val > 0))
+            if ((new O3Bar(o).Value > 0))
             {
-                Slider.SetValue(o, (new O3Bar(o).val - 1));
+                Slider.SetValue(o, (new O3Bar(o).Value - 1));
             }
         }
     }
@@ -139,9 +139,9 @@ public static partial class Slider
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A990", (uint)o);
-            if ((new O3Bar(o).val < new O3Bar(o).max))
+            if ((new O3Bar(o).Value < new O3Bar(o).MaxValue))
             {
-                Slider.SetValue(o, (new O3Bar(o).val + 1));
+                Slider.SetValue(o, (new O3Bar(o).Value + 1));
             }
         }
     }
@@ -153,8 +153,8 @@ public static partial class Slider
         {
             if (Dbg.On) Dbg.Enter("func_0041A9C0", (uint)o);
             uint p = 0u;
-            new O3Bar(o).f54_Set(2);
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            new O3Bar(o).RepeatDir_Set(2);
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -172,8 +172,8 @@ public static partial class Slider
         {
             if (Dbg.On) Dbg.Enter("func_0041A9F8", (uint)o);
             uint p = 0u;
-            new O3Bar(o).f54_Set(2);
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            new O3Bar(o).RepeatDir_Set(2);
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -191,9 +191,9 @@ public static partial class Slider
         {
             if (Dbg.On) Dbg.Enter("func_0041AA30", (uint)o);
             uint p = 0u;
-            new O3Bar(o).f54_Set(2);
+            new O3Bar(o).RepeatDir_Set(2);
             Audio.PlaySound2D(3700);
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -212,11 +212,11 @@ public static partial class Slider
             if (Dbg.On) Dbg.Enter("func_0041AA90", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if ((MathUtil.AbsInt(a4) < Menu.GetStickDeadzone()))
             {
-                new O3Bar(o).f54_Set(2);
+                new O3Bar(o).RepeatDir_Set(2);
             }
             if ((a3 == 1))
             {
-                new O3Bar(o).f54_Set(a3);
+                new O3Bar(o).RepeatDir_Set(a3);
                 Slider.Increment(o);
                 return 0;
             }
@@ -232,11 +232,11 @@ public static partial class Slider
             if (Dbg.On) Dbg.Enter("func_0041AB00", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if ((MathUtil.AbsInt(a4) < Menu.GetStickDeadzone()))
             {
-                new O3Bar(o).f54_Set(2);
+                new O3Bar(o).RepeatDir_Set(2);
             }
             if ((a3 == 1))
             {
-                new O3Bar(o).f54_Set(0);
+                new O3Bar(o).RepeatDir_Set(0);
                 Slider.Decrement(o);
                 return 0;
             }
@@ -252,7 +252,7 @@ public static partial class Slider
             if (Dbg.On) Dbg.Enter("func_0041AB70", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if (((((a2 >> (int)16) == (uint)(3)) && (a3 < 8)) && (a3 >= 6)))
             {
-                new O3Bar(o).f54_Set(2);
+                new O3Bar(o).RepeatDir_Set(2);
             }
             return 0;
         }
@@ -265,7 +265,7 @@ public static partial class Slider
         {
             if (Dbg.On) Dbg.Enter("func_0041AB9C", (uint)o);
             uint p = o;
-            switch (new O3Bar(o).f54)
+            switch (new O3Bar(o).RepeatDir)
             {
             case 0:
                 Slider.Decrement(o);
@@ -301,13 +301,13 @@ public static partial class UiSlider
         {
             if (Dbg.On) Dbg.Enter("func_0040C77C", (uint)w, (uint)cmd, (uint)a2, (uint)a3);
             uint s = w;
-            if ((new O02Slider(s).val < new O02Slider(s).min))
+            if ((new O02Slider(s).Value < new O02Slider(s).BarNodePtr))
             {
-                new O02Slider(s).val_Set(new O02Slider(s).min);
+                new O02Slider(s).Value_Set(new O02Slider(s).BarNodePtr);
             }
-            if ((new O02Slider(s).val > new O02Slider(s).max))
+            if ((new O02Slider(s).Value > new O02Slider(s).BarWidth))
             {
-                new O02Slider(s).val_Set(new O02Slider(s).max);
+                new O02Slider(s).Value_Set(new O02Slider(s).BarWidth);
             }
             switch (cmd)
             {
@@ -315,10 +315,10 @@ public static partial class UiSlider
             case 8:
                 if ((a3 != 0))
                 {
-                    new O02Slider(s).val_Set((int)((int)(new O02Slider(s).val) + new O02Slider(s).step));
-                    if ((new O02Slider(s).max < new O02Slider(s).val))
+                    new O02Slider(s).Value_Set((int)((int)(new O02Slider(s).Value) + new O02Slider(s).MaxValue));
+                    if ((new O02Slider(s).BarWidth < new O02Slider(s).Value))
                     {
-                        new O02Slider(s).val_Set(new O02Slider(s).max);
+                        new O02Slider(s).Value_Set(new O02Slider(s).BarWidth);
                     }
                 }
                 break;
@@ -326,53 +326,53 @@ public static partial class UiSlider
             case 7:
                 if ((a3 != 0))
                 {
-                    new O02Slider(s).val_Set((int)((int)(new O02Slider(s).val) - new O02Slider(s).step));
-                    if ((new O02Slider(s).val < new O02Slider(s).min))
+                    new O02Slider(s).Value_Set((int)((int)(new O02Slider(s).Value) - new O02Slider(s).MaxValue));
+                    if ((new O02Slider(s).Value < new O02Slider(s).BarNodePtr))
                     {
-                        new O02Slider(s).val_Set(new O02Slider(s).min);
+                        new O02Slider(s).Value_Set(new O02Slider(s).BarNodePtr);
                     }
                 }
                 break;
             case 4096:
-                return new O02Slider(s).val;
+                return new O02Slider(s).Value;
             case 4098:
-                return new O02Slider(s).min;
+                return new O02Slider(s).BarNodePtr;
             case 4099:
-                return new O02Slider(s).max;
+                return new O02Slider(s).BarWidth;
             case 4102:
-                return new O02Slider(s).step;
+                return new O02Slider(s).MaxValue;
             case 4104:
-                return new O02Slider(s).unk6C;
+                return new O02Slider(s).SliderFlags;
             case 4101:
-                if (((a2 >= new O02Slider(s).min) && (a2 <= new O02Slider(s).max)))
+                if (((a2 >= new O02Slider(s).BarNodePtr) && (a2 <= new O02Slider(s).BarWidth)))
                 {
-                    new O02Slider(s).val_Set(a2);
+                    new O02Slider(s).Value_Set(a2);
                 }
                 break;
             case 4100:
-                if ((new O02Slider(s).min < a2))
+                if ((new O02Slider(s).BarNodePtr < a2))
                 {
-                    new O02Slider(s).max_Set(a2);
+                    new O02Slider(s).BarWidth_Set(a2);
                 }
-                if ((a3 < new O02Slider(s).max))
+                if ((a3 < new O02Slider(s).BarWidth))
                 {
-                    new O02Slider(s).min_Set(a3);
+                    new O02Slider(s).BarNodePtr_Set(a3);
                 }
                 break;
             case 4103:
-                if ((a2 < (new O02Slider(s).max - new O02Slider(s).min)))
+                if ((a2 < (new O02Slider(s).BarWidth - new O02Slider(s).BarNodePtr)))
                 {
-                    new O02Slider(s).step_Set(a2);
+                    new O02Slider(s).MaxValue_Set(a2);
                 }
                 break;
             case 4105:
-                new O02Slider(s).unk6C_Set(a2);
+                new O02Slider(s).SliderFlags_Set(a2);
                 break;
             default:
                 return 0;
             }
             UiSlider.UpdateThumb(s);
-            Menu.SendEvent((uint)(Menu.GetCurrentScreenId()), (uint)(4106), (uint)((int)(new O02Widget(w).Id)), (uint)(new O02Slider(s).val), (uint)(0));
+            Menu.SendEvent((uint)(Menu.GetCurrentScreenId()), (uint)(4106), (uint)((int)(new O02Widget(w).Id)), (uint)(new O02Slider(s).Value), (uint)(0));
             Menu.ConsumeEvent();
             return 0;
         }
@@ -394,23 +394,23 @@ public static partial class UiSlider
         {
             if (Dbg.On) Dbg.Enter("func_0040C9D0", (uint)w);
             int t = 0;
-            if (((new O02Bar(w).flags & 1) != 0))
+            if (((new O02Bar(w).SliderFlags & 1) != 0))
             {
-                t = (((Mem.S32(new O02Bar(w).u60.P) - new O02Bar(w).f58) * (new O02Bar(w).val - new O02Bar(w).min)) / (new O02Bar(w).max - new O02Bar(w).min));
-                new O02Bar(w).thumb.f16_Set((ushort)(t));
-                new O02Bar(w).thumb.f1A_Set((ushort)(((int)(Mem.U16((new O02Bar(w).u60.P + 2u))) - t)));
+                t = (((Mem.S32(new O02Bar(w).TrackY1.P) - new O02Bar(w).TrackY0) * (new O02Bar(w).Value - new O02Bar(w).BarNodePtr)) / (new O02Bar(w).BarWidth - new O02Bar(w).BarNodePtr));
+                new O02Bar(w).FillNodePtr.Y_Set((ushort)(t));
+                new O02Bar(w).FillNodePtr.Height_Set((ushort)(((int)(Mem.U16((new O02Bar(w).TrackY1.P + 2u))) - t)));
                 if ((new O02Bar(w).child64_ != 0u))
                 {
-                    new O02Bar(w).child64.f16_Set((ushort)((t - ((int)((short)(new O02Bar(w).child64.f1A)) / 2))));
+                    new O02Bar(w).KnobNodePtr.Y_Set((ushort)((t - ((int)((short)(new O02Bar(w).KnobNodePtr.Height)) / 2))));
                 }
             }
             else
             {
-                t = (((new O02Bar(w).f5C - new O02Bar(w).f54) * (new O02Bar(w).val - new O02Bar(w).min)) / (new O02Bar(w).max - new O02Bar(w).min));
-                new O02Bar(w).thumb.f18_Set((ushort)(t));
+                t = (((new O02Bar(w).TrackX1 - new O02Bar(w).RepeatDir) * (new O02Bar(w).Value - new O02Bar(w).BarNodePtr)) / (new O02Bar(w).BarWidth - new O02Bar(w).BarNodePtr));
+                new O02Bar(w).FillNodePtr.Width_Set((ushort)(t));
                 if ((new O02Bar(w).child64_ != 0u))
                 {
-                    new O02Bar(w).child64.f14_Set((ushort)(((int)(new O02Bar(w).thumb.f14) - (t - ((int)((short)(new O02Bar(w).child64.f18)) / 2)))));
+                    new O02Bar(w).KnobNodePtr.X_Set((ushort)(((int)(new O02Bar(w).FillNodePtr.X) - (t - ((int)((short)(new O02Bar(w).KnobNodePtr.Width)) / 2)))));
                 }
             }
         }

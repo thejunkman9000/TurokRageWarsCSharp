@@ -13,12 +13,12 @@ public static partial class TrialResetConfirm
         {
             if (Dbg.On) Dbg.Enter("func_004378F8", (uint)cfg);
             Mem.Set(Gv.TrialResetConfirm_PagePtr, ResourcePool.Malloc((uint)(20)));
-            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f0_Set(PopupPanel.Create(972, 973));
-            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f4_Set(Flicker.Create((uint)(975), (uint)(110), default(uint), default(uint)));
-            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_Set(UiTree.FindNode(cfg, (uint)(974), default(uint), default(uint)));
-            new O05Obj10(new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8).b10_Set((byte)(15));
-            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).fC_Set(3);
-            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f10_Set((-1));
+            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).PopupPanelPtr_Set(PopupPanel.Create(972, 973));
+            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).FlickerPtr_Set(Flicker.Create((uint)(975), (uint)(110), default(uint), default(uint)));
+            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr_Set(UiTree.FindNode(cfg, (uint)(974), default(uint), default(uint)));
+            new O05Obj10(new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).b10_Set((byte)(15));
+            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerTimer_Set(3);
+            new O05M84_v3(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId_Set((-1));
             return 0;
         }
     }
@@ -57,25 +57,25 @@ public static partial class TrialResetConfirm
             switch (t)
             {
             case 3:
-                new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).fC_Set((int)(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).fC - 1));
-                if ((new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).fC <= 0))
+                new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerTimer_Set((int)(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerTimer - 1));
+                if ((new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerTimer <= 0))
                 {
-                    new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_).h16_Set((short)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_).h16 - 1));
-                    if ((((int)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_).h16) + (int)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_).h1A)) < 0))
+                    new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).h16_Set((short)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).h16 - 1));
+                    if ((((int)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).h16) + (int)(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).h1A)) < 0))
                     {
-                        new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f8_).h16_Set(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f0.f44_).h1A);
+                        new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerNodePtr).h16_Set(new O05Wd_v2(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).PopupPanelPtr.f44_).h1A);
                     }
-                    new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).fC_Set(t);
+                    new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).TickerTimer_Set(t);
                 }
                 break;
             case 4:
                 Menu.ConsumeEvent();
-                if ((new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f10 == (-1)))
+                if ((new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId == (-1)))
                 {
                     Menu.GoBack();
                     return 0;
                 }
-                Menu.GotoScreen(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f10);
+                Menu.GotoScreen(new O05M84_v2(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId);
                 break;
             default:
                 return 0;
@@ -109,14 +109,14 @@ public static partial class TrialResetConfirm
             switch (Menu.GetMessage())
             {
             case 977:
-                new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f10_Set((-1));
+                new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId_Set((-1));
                 break;
             case 976:
-                new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f10_Set(7);
+                new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).NextScreenId_Set(7);
                 memset(0x80102B7Eu, 0, (uint)(5));
                 break;
             }
-            PopupPanel.SetState(new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).f0, 2);
+            PopupPanel.SetState(new O05M84(Mem.U32(Gv.TrialResetConfirm_PagePtr)).PopupPanelPtr, 2);
             return 0;
         }
     }

@@ -221,8 +221,8 @@ public static partial class UiText
                     for (i = 0; (i < Mem.S32(Gv.UiText_BatchCount)); ++i)
                     {
                         it = new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).items_;
-                        lo = (ushort)((((int)(lo) < (int)(new O02Item(it).f14)) ? (int)(lo) : (int)(new O02Item(it).f14)));
-                        hi = (ushort)((((int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).f14) < (int)(hi)) ? (int)(hi) : (int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).f14)));
+                        lo = (ushort)((((int)(lo) < (int)(new O02Item(it).GlyphIndex)) ? (int)(lo) : (int)(new O02Item(it).GlyphIndex)));
+                        hi = (ushort)((((int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).GlyphIndex) < (int)(hi)) ? (int)(hi) : (int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).GlyphIndex)));
                     }
                     for (i = (int)(lo); (i <= (int)(hi)); ++i)
                     {
@@ -230,7 +230,7 @@ public static partial class UiText
                         for (j = 0; (j < Mem.S32(Gv.UiText_BatchCount)); ++j)
                         {
                             e = (Gv.UiDraw_BatchTable + (uint)(j * 24));
-                            while (((i == (int)(new O02Ent(e).items.f14)) && (new O02Ent(e).count > 0)))
+                            while (((i == (int)(new O02Ent(e).items.GlyphIndex)) && (new O02Ent(e).count > 0)))
                             {
                                 it = new O02Ent(e).items_;
                                 if (!(started != 0))
@@ -244,7 +244,7 @@ public static partial class UiText
                                     Gfx.LoadTextureImage((uint)(r2));
                                     started = 1;
                                 }
-                                Gfx.DrawTexturedRectFullUv((int)(new O02Item(it).f4), (int)(new O02Item(it).f8), (int)Cpu.F2U(10.0f), (int)Cpu.F2U(new O02Item(it).fC), new O02Item(it).f10, new O02Item(it).w0);
+                                Gfx.DrawTexturedRectFullUv((int)(new O02Item(it).X), (int)(new O02Item(it).Y), (int)Cpu.F2U(10.0f), (int)Cpu.F2U(new O02Item(it).Width), new O02Item(it).Height, new O02Item(it).Color);
                                 new O02Ent(e).items__Set((uint)(new O02Ent(e).items_ + 24u));
                                 new O02Ent(e).count_Set((int)(new O02Ent(e).count - 1));
                             }

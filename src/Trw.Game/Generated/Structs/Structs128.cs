@@ -701,27 +701,27 @@ public readonly struct func_80262ABC_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80262ABC_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80262ABC_S1(uint p) => new(p);
     // +0x0
-    public S8x24320 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x24320 EffectArray { [MethodImpl(Inl)] get => new(P); }
     // +0x5F00
-    public func_80262ABC_S1_U5F00 unk5F00 { [MethodImpl(Inl)] get => new(P + 0x5F00u); }
+    public func_80262ABC_S1_U5F00 FreeList { [MethodImpl(Inl)] get => new(P + 0x5F00u); }
     // +0x5F04
     public S8x16 pad5F00 { [MethodImpl(Inl)] get => new(P + 0x5F04u); }
     // +0x5F14
-    public sbyte unk5F14
+    public sbyte ActiveList
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x5F14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5F14u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk5F14_Set(sbyte v) => Mem.Set(P + 0x5F14u, v);
+    [MethodImpl(Inl)] public sbyte ActiveList_Set(sbyte v) => Mem.Set(P + 0x5F14u, v);
     // +0x5F15
     public S8x15 pad5F14 { [MethodImpl(Inl)] get => new(P + 0x5F15u); }
     // +0x5F24
-    public int unk5F24
+    public int ActiveCount_5F24
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5F24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5F24u, value);
     }
-    [MethodImpl(Inl)] public int unk5F24_Set(int v) => Mem.Set(P + 0x5F24u, v);
+    [MethodImpl(Inl)] public int ActiveCount_5F24_Set(int v) => Mem.Set(P + 0x5F24u, v);
 }
 
 /// <summary>union func_80262ABC_S1_U5F00, 0x4 bytes, at a guest address.</summary>
@@ -763,13 +763,13 @@ public readonly struct func_80262ABC_S1_v2
     [MethodImpl(Inl)] public static implicit operator uint(func_80262ABC_S1_v2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80262ABC_S1_v2(uint p) => new(p);
     // +0x0
-    public Effect_func_80262A9C_de_v2x32 effects { [MethodImpl(Inl)] get => new(P); }
+    public Effect_func_80262A9C_de_v2x32 EffectArray { [MethodImpl(Inl)] get => new(P); }
     // +0x5F00
-    public IntrusiveList unk5F00 { [MethodImpl(Inl)] get => new(P + 0x5F00u); }
+    public IntrusiveList FreeList { [MethodImpl(Inl)] get => new(P + 0x5F00u); }
     // +0x5F14
-    public S8x0 pad5F00 { [MethodImpl(Inl)] get => new(P + 0x5F14u); }
+    public S8x0 ActiveList { [MethodImpl(Inl)] get => new(P + 0x5F14u); }
     // +0x5F14
-    public IntrusiveList unk5F14 { [MethodImpl(Inl)] get => new(P + 0x5F14u); }
+    public IntrusiveList ActiveList_2 { [MethodImpl(Inl)] get => new(P + 0x5F14u); }
 }
 
 /// <summary>struct func_80262CA8_S1, 0x2F4 bytes, at a guest address.</summary>

@@ -422,8 +422,8 @@ public static partial class MenuItem
         {
             if (Dbg.On) Dbg.Enter("func_0043F404_func_00443030", (uint)a);
             uint d = new O06A_v8(a).Data;
-            uint p = Funcs.CallReg(new O06D_v3(d).unk18, a, 0u, 0u, 0u);
-            switch (new O06D_v3(d).unk4)
+            uint p = Funcs.CallReg(new O06D_v3(d).GetValuePtrCallback, a, 0u, 0u, 0u);
+            switch (new O06D_v3(d).ValueType)
             {
             default:
                 return 0.0f;
@@ -454,8 +454,8 @@ public static partial class MenuItem
         {
             if (Dbg.On) Dbg.Enter("func_0043F404_func_00443120", (uint)a);
             uint d = new O06A_v8(a).Data;
-            uint p = Funcs.CallReg(new O06D_v3(d).unk18, a, 0u, 0u, 0u);
-            switch (new O06D_v3(d).unk4)
+            uint p = Funcs.CallReg(new O06D_v3(d).GetValuePtrCallback, a, 0u, 0u, 0u);
+            switch (new O06D_v3(d).ValueType)
             {
             case 0:
                 Mem.Set(p, v);
@@ -865,9 +865,9 @@ public static partial class MenuItem
                 case 0:
                 case 5:
                     E = func_0043F69C_Q04TypeEnt(it);
-                    if ((new Q04Ent_v2(E).mode == 0))
+                    if ((new Q04Ent_v2(E).DrawPass == 0))
                     {
-                        fs = new Q04Ent_v2(E).f4;
+                        fs = new Q04Ent_v2(E).CharWidth;
                         if (((int)(new Q04Item(it).Type) == 5))
                         {
                             p = MenuItem.FormatValue(it, default(uint), default(uint), default(uint));
@@ -886,7 +886,7 @@ public static partial class MenuItem
                         {
                             ++n;
                         }
-                        v = ((float)(n) * new Q04Ent_v2(E).f4);
+                        v = ((float)(n) * new Q04Ent_v2(E).CharWidth);
                     }
                     new Q04Info(o).Width_Set((int)(v));
                     if (((new Q04Item(it).Flags & (uint)(134217728)) != 0u))
@@ -897,15 +897,15 @@ public static partial class MenuItem
                     }
                     else
                     {
-                        if (((new Q04Ent_v2(E).mode == 2) && (Mem.S32(Gv.ScreenHeight) >= 223)))
+                        if (((new Q04Ent_v2(E).DrawPass == 2) && (Mem.S32(Gv.ScreenHeight) >= 223)))
                         {
                             hh = (float)(Mem.S32(Gv.ScreenHeight));
-                            v = ((new Q04Ent_v2(E).f8 + 0.5f) * hh);
+                            v = ((new Q04Ent_v2(E).LineHeight + 0.5f) * hh);
                         }
                         else
                         {
                             hh = (float)(Mem.S32(Gv.ScreenHeight));
-                            v = (new Q04Ent_v2(E).f8 * hh);
+                            v = (new Q04Ent_v2(E).LineHeight * hh);
                         }
                         k = 0.00450450461f;
                     }
@@ -918,8 +918,8 @@ public static partial class MenuItem
                     break;
                 case 4:
                     E = func_0043F69C_Q04TypeEnt(it);
-                    new Q04Info(o).Width_Set((int)(new Q04Ent_v2(E).f4));
-                    new Q04Info(o).Height_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f)));
+                    new Q04Info(o).Width_Set((int)(new Q04Ent_v2(E).CharWidth));
+                    new Q04Info(o).Height_Set((int)(((new Q04Ent_v2(E).LineHeight * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f)));
                     break;
                 case 1:
                     if ((((Game_IsInState13() != 0) && ((new Q04Item(it).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).Flags) < 0)) && ((int)(MemUtil.GetRamSize()) == 4194304))))
@@ -933,8 +933,8 @@ public static partial class MenuItem
                     }
                     if (((((new Q04Item(it).Flags & (uint)(268435456)) != 0u) && ((float)(new Q04Info(o).Width) != 0.0f)) && ((float)(new Q04Info(o).Height) != 0.0f)))
                     {
-                        fa = (new Q04Cam(cam).f29C / (float)(new Q04Info(o).Width));
-                        fb = (new Q04Cam(cam).f2A0 / (float)(new Q04Info(o).Height));
+                        fa = (new Q04Cam(cam).ViewportWidth / (float)(new Q04Info(o).Width));
+                        fb = (new Q04Cam(cam).ViewportHeight / (float)(new Q04Info(o).Height));
                     }
                     else
                     {
@@ -969,8 +969,8 @@ public static partial class MenuItem
                     break;
                 case 3:
                     sub = (uint)(new Q04Item(it).Data);
-                    new Q04Info(o).Width_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).f29C) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
-                    new Q04Info(o).Height_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).f2A0) / (float)(Mem.S32(Gv.ScreenHeight)))));
+                    new Q04Info(o).Width_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).ViewportWidth) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
+                    new Q04Info(o).Height_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).ViewportHeight) / (float)(Mem.S32(Gv.ScreenHeight)))));
                     break;
                 default:
                     new Q04Info(o).Width_Set(1);
@@ -1071,24 +1071,24 @@ public static partial class MenuItem
             en = (byte)(1);
             if ((((Game_IsInState13() != 0) && ((new Q04Item(it).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).Flags) < 0)) && ((int)(MemUtil.GetRamSize()) == 4194304))))
             {
-                new Q04W(w).f38_Set(0);
+                new Q04W(w).IsEnabled_Set(0);
             }
             if (((new Q04Item(it).Flags & (uint)(134217728)) != 0u))
             {
-                if ((new Q04W(w).f3C != 0))
+                if ((new Q04W(w).DisableOnTitle_3C != 0))
                 {
-                    new Q04W(w).f38_Set(0);
+                    new Q04W(w).IsEnabled_Set(0);
                 }
                 MenuPanel.DrawTitleBar(w, it, (uint)(1), default(uint));
                 MenuPanel.DrawTitleBar(w, it, (uint)(0), default(uint));
                 en = (byte)(0);
             }
-            if ((new Q04W(w).f38 == 0))
+            if ((new Q04W(w).IsEnabled == 0))
             {
                 en = (byte)(0);
             }
             E = func_0043FFAC_Q04TypeEnt(it);
-            m = new Q04Ent(E).mode;
+            m = new Q04Ent(E).DrawPass;
             if ((f != 0))
             {
                 m = 6;
@@ -1116,7 +1116,7 @@ public static partial class MenuItem
                 }
                 Mem.Set(Gv.Menu_CurrentDrawPass, m);
             }
-            if ((new Q04B(b).x0 == (int)((short)(new Q04W(w).w0))))
+            if ((new Q04B(b).x0 == (int)((short)(new Q04W(w).CursorIndex))))
             {
                 k = 1.25f;
             }
@@ -1124,39 +1124,39 @@ public static partial class MenuItem
             {
                 k = (!((new Q04Item(it).Flags & (uint)(16777216)) != 0u) ? 0.25f : 0.899999976f);
             }
-            t = (int)(((float)(new Q04Ent(E).b15) * k));
+            t = (int)(((float)(new Q04Ent(E).TopR) * k));
             r = 255;
             if ((t < 256))
             {
                 r = t;
             }
-            t = (int)(((float)(new Q04Ent(E).b16) * k));
+            t = (int)(((float)(new Q04Ent(E).TopG) * k));
             g = 255;
             if ((t < 256))
             {
                 g = t;
             }
-            t = (int)(((float)(new Q04Ent(E).b17) * k));
+            t = (int)(((float)(new Q04Ent(E).TopB) * k));
             bl = 255;
             if ((t < 256))
             {
                 bl = t;
             }
-            t = (int)(((float)(new Q04Ent(E).b18) * k));
+            t = (int)(((float)(new Q04Ent(E).BottomR) * k));
             a = 255;
             if ((t < 256))
             {
                 a = t;
             }
-            TextUtil.SetColors(r, g, bl, a, (((t = (int)(((float)(new Q04Ent(E).b19) * k))) < 256) ? t : 255), (((t2 = (int)(((float)(new Q04Ent(E).b1A) * k))) < 256) ? t2 : 255));
-            Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), (int)(new Q04Ent(E).b14));
-            Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), (int)(new Q04Ent(E).b14));
-            TextUtil.SetScale(((new Q04Ent(E).fC * (float)(Mem.S32(Gv.ScreenWidth))) * 0.00352112669f), ((new Q04Ent(E).f10 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f));
+            TextUtil.SetColors(r, g, bl, a, (((t = (int)(((float)(new Q04Ent(E).BottomG) * k))) < 256) ? t : 255), (((t2 = (int)(((float)(new Q04Ent(E).BottomB) * k))) < 256) ? t2 : 255));
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), (int)(new Q04Ent(E).TextStyle));
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), (int)(new Q04Ent(E).TextStyle));
+            TextUtil.SetScale(((new Q04Ent(E).ScaleX * (float)(Mem.S32(Gv.ScreenWidth))) * 0.00352112669f), ((new Q04Ent(E).ScaleY * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f));
             if (((int)(en) != 0))
             {
-                en = new Q04Ent(E).b14;
+                en = new Q04Ent(E).TextStyle;
             }
-            TextUtil.Draw((uint)(e), new Q04B(b).x, new Q04B(b).y, (int)((new Q04W(w).f30 * (new Q04W(w).f34 * 255.0f))), 0, (int)(en), 1.0f, 1.0f);
+            TextUtil.Draw((uint)(e), new Q04B(b).x, new Q04B(b).y, (int)((new Q04W(w).PanelFade * (new Q04W(w).TextFade * 255.0f))), 0, (int)(en), 1.0f, 1.0f);
         }
     }
 
@@ -1173,16 +1173,16 @@ public static partial class MenuItem
             float t2 = 0f;
             if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new O06A_v9(a).Flags) < 0)) && ((int)(MemUtil.GetRamSize()) == 4194304))))
             {
-                new O06D_v6(d).unk3C_Set(1);
+                new O06D_v6(d).DisableOnTitle_3C_Set(1);
                 if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
                 {
                     Mem.Set(Gv.Menu_CurrentDrawPass, 3);
                 }
                 Gfx.BeginFillRectPass();
-                t1 = ((float)(new O06B_v11(b).unk4) * new O06B_v11(b).unkC);
-                t2 = ((float)(new O06B_v11(b).unk8) * new O06B_v11(b).unk10);
-                fy = (float)(new O06B_v11(b).unk1C);
-                fx = (float)(new O06B_v11(b).unk14);
+                t1 = ((float)(new O06B_v11(b).Width) * new O06B_v11(b).ScaleX);
+                t2 = ((float)(new O06B_v11(b).Height) * new O06B_v11(b).ScaleY);
+                fy = (float)(new O06B_v11(b).Top);
+                fx = (float)(new O06B_v11(b).Left);
                 fx = (fx + t1);
                 fy = (fy + t2);
                 if ((Mem.S32((Gv.GamePaused + (uint)(0 * 4))) != 0))
@@ -1207,16 +1207,16 @@ public static partial class MenuItem
                 {
                     alpha = 128;
                 }
-                Gfx.DrawBevelRect(new O06B_v11(b).unk14, new O06B_v11(b).unk1C, (int)(fx), (int)(fy), 1, 0, (byte)(0), (byte)(0), (byte)(0), (byte)(alpha));
+                Gfx.DrawBevelRect(new O06B_v11(b).Left, new O06B_v11(b).Top, (int)(fx), (int)(fy), 1, 0, (byte)(0), (byte)(0), (byte)(0), (byte)(alpha));
             }
             else
             {
                 if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
                 {
                     Mem.Set(Gv.Menu_CurrentDrawPass, 3);
-                    Gfx.BeginFlatColorPass((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
+                    Gfx.BeginFlatColorPass((uint)((int)((new O06D_v6(d).PanelFade * (new O06D_v6(d).TextFade * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
                 }
-                Sprite.Draw(new O06A_v9(a).Data, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
+                Sprite.Draw(new O06A_v9(a).Data, 0, (short)(new O06B_v11(b).Left), (short)(new O06B_v11(b).Top), new O06B_v11(b).ScaleX, new O06B_v11(b).ScaleY, 1);
             }
         }
     }
@@ -1308,55 +1308,55 @@ public static partial class MenuItem
                 {
                     x = new Q4O_v2(o).f20_;
                     p = new Q4O_v2(o).f14_;
-                    fx = new Q4X(x).fx.P;
-                    if ((new Q4X(x).f478 != 0))
+                    fx = new Q4X(x).ModelActor.P;
+                    if ((new Q4X(x).HasIntelligence != 0))
                     {
                         {
                             uint pp = Gv.DisplayListPtr;
                             d = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                             new Q4Gfx(d).w0_Set(3661103111u);
-                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).cam.mtx380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
+                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).cam.ProjMatrices_380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                         }
                         c = new Q4Win(w).cam_;
-                        k = (new Q4Cam(c).f29C / (float)(Mem.S32(Gv.ScreenWidth)));
-                        k2 = (new Q4Cam(c).f2A0 / (float)(Mem.S32(Gv.ScreenHeight)));
-                        new Q4V3((_fp + 48u)).x_Set((new Q4Part(p).f18.x * k));
-                        new Q4V3((_fp + 48u)).z_Set((new Q4Part(p).f18.z * k));
-                        new Q4V3((_fp + 48u)).y_Set((new Q4Part(p).f18.y * k2));
-                        new Q4X(x).f47C_Set(new Q4X(x).fF8);
+                        k = (new Q4Cam(c).ViewportWidth / (float)(Mem.S32(Gv.ScreenWidth)));
+                        k2 = (new Q4Cam(c).ViewportHeight / (float)(Mem.S32(Gv.ScreenHeight)));
+                        new Q4V3((_fp + 48u)).x_Set((new Q4Part(p).Scale.x * k));
+                        new Q4V3((_fp + 48u)).z_Set((new Q4Part(p).Scale.z * k));
+                        new Q4V3((_fp + 48u)).y_Set((new Q4Part(p).Scale.y * k2));
+                        new Q4X(x).HeightOffset_47C_Set(new Q4X(x).CopyParamF4_F8);
                         s3 = 0u;
-                        if (!((new Q4O_v2(o).f8 & (uint)(33554432)) != 0u))
+                        if (!((new Q4O_v2(o).Flags & (uint)(33554432)) != 0u))
                         {
-                            s2 = new Q4Part(p).f4;
+                            s2 = new Q4Part(p).IntelligenceKey;
                             x2 = new Q4O_v2(o).f20_;
-                            src = Level.FindDefinition(Gv.LevelMgr, s2, new Q4Part(p).f8);
+                            src = Level.FindDefinition(Gv.LevelMgr, s2, new Q4Part(p).IntelligenceVariant_8);
                             if ((src == 0u))
                             {
-                                new Q4X(x2).f478_Set(0);
+                                new Q4X(x2).HasIntelligence_Set(0);
                             }
                             else
                             {
-                                new Q4X(x2).id_Set(s2);
-                                new Q4X(x2).f478_Set(1);
+                                new Q4X(x2).IntelligenceKey_Set(s2);
+                                new Q4X(x2).HasIntelligence_Set(1);
                                 Mem.Copy((x2 + 4u), src, 392);
                                 s3 = (x2 + 4u);
-                                new Q4X(x2).f4_Set(0);
+                                new Q4X(x2).IntelligenceCopy_Set(0);
                                 new Q4X(x2).f8_Set(0);
                                 new Q4X(x2).f18_Set(0);
                                 new Q4X(x2).f1C_Set(0);
                                 new Q4X(x2).f20_Set(0);
                                 new Q4X(x2).fC_Set(10240.0f);
-                                new Q4X(x2).f47C_Set(new Q4X(x2).fF8);
+                                new Q4X(x2).HeightOffset_47C_Set(new Q4X(x2).CopyParamF4_F8);
                             }
                         }
-                        Mem.Copy((_fp + 16u), new Q4Part(p).pos.P, 12);
-                        new Q4V3((_fp + 16u)).y_Set((new Q4V3((_fp + 16u)).y - ((new Q4X(x).f47C * new Q4V3((_fp + 48u)).y) * 0.800000011f)));
-                        MathUtil.MtxTransformPoint(new Q4Win(w).cam.view.P, (_fp + 16u), (_fp + 32u));
-                        if (((s3 != 0u) && !((new Q4O_v2(o).f8 & (uint)(33554432)) != 0u)))
+                        Mem.Copy((_fp + 16u), new Q4Part(p).Position.P, 12);
+                        new Q4V3((_fp + 16u)).y_Set((new Q4V3((_fp + 16u)).y - ((new Q4X(x).HeightOffset_47C * new Q4V3((_fp + 48u)).y) * 0.800000011f)));
+                        MathUtil.MtxTransformPoint(new Q4Win(w).cam.ViewMatrix.P, (_fp + 16u), (_fp + 32u));
+                        if (((s3 != 0u) && !((new Q4O_v2(o).Flags & (uint)(33554432)) != 0u)))
                         {
-                            Actor.Init(fx, (-1), new Q4Part(p).f0, Mem.S32(Gv.NoRegionId), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
+                            Actor.Init(fx, (-1), new Q4Part(p).ActorTypeId, Mem.S32(Gv.NoRegionId), s3, (-1), (uint)(0), (new Q4Win(w).cam.Yaw + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).Scale.P, _fp);
                             Actor.CallRestore(fx);
-                            new Q4O_v2(o).f8_Set((new Q4O_v2(o).f8 | (uint)(33554432)));
+                            new Q4O_v2(o).Flags_Set((new Q4O_v2(o).Flags | (uint)(33554432)));
                         }
                         tt = sinf(((float)((uint)((Mem.S32(Gv.LevelFrameCount) * 10))) * 0.0174532942f));
                         ta = new Q4Win(w).f30;
@@ -1374,7 +1374,7 @@ public static partial class MenuItem
                         {
                             Resource.SetLoadFlags(1);
                         }
-                        if ((new Q4X(x).id == 11))
+                        if ((new Q4X(x).IntelligenceKey == 11))
                         {
                             Level.SetActorType(Gv.LevelMgr, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).DefPtr).h0C * 4))), 1);
                         }
@@ -1413,7 +1413,7 @@ public static partial class MenuItem
                         Mem.Copy(new Q4Fx(fx).Position.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Actor.Advance(fx, default(uint), default(uint), default(uint));
-                        new Q4Fx(fx).Yaw_Set((new Q4Fx(fx).Yaw + (new Q4Part(p).f2C * Mem.F32(Gv.FrameTime))));
+                        new Q4Fx(fx).Yaw_Set((new Q4Fx(fx).Yaw + (new Q4Part(p).SpinSpeed * Mem.F32(Gv.FrameTime))));
                         Mem.Copy(new Q4Fx(fx).Position.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Model.ClearBatchQueue();
@@ -1507,20 +1507,20 @@ public static partial class MenuItem
             uint v = Level.FindDefinition(Gv.LevelMgr, b, c);
             if ((v == 0u))
             {
-                new O06A_v41(p).unk478_Set(0);
+                new O06A_v41(p).IsLoaded_Set(0);
                 return 0u;
             }
-            new O06A_v41(p).unk0_Set(b);
-            new O06A_v41(p).unk478_Set(1);
-            Mem.Copy(new O06A_v41(p).blob.P, v, 392);
-            new O06A_v41(p).blob.unk0_Set(0);
-            new O06A_v41(p).blob.unk4_Set(0);
-            new O06A_v41(p).blob.unk14_Set(0);
-            new O06A_v41(p).blob.unk18_Set(0);
-            new O06A_v41(p).blob.unk1C_Set(0);
-            new O06A_v41(p).blob.unk8_Set(Mem.F32(0x800E2524u));
-            new O06A_v41(p).unk47C_Set(new O06A_v41(p).blob.unkF4);
-            return new O06A_v41(p).blob.P;
+            new O06A_v41(p).DefId_Set(b);
+            new O06A_v41(p).IsLoaded_Set(1);
+            Mem.Copy(new O06A_v41(p).DefCopy.P, v, 392);
+            new O06A_v41(p).DefCopy.Kind_Set(0);
+            new O06A_v41(p).DefCopy.Flags_Set(0);
+            new O06A_v41(p).DefCopy.Params_Set(0);
+            new O06A_v41(p).DefCopy.BaseHealth_Set(0);
+            new O06A_v41(p).DefCopy.ShapeHeight_1C_Set(0);
+            new O06A_v41(p).DefCopy.Scale_8_Set(Mem.F32(0x800E2524u));
+            new O06A_v41(p).ModelHeight_Set(new O06A_v41(p).DefCopy.CharacterHeight);
+            return new O06A_v41(p).DefCopy.P;
         }
     }
 
@@ -1546,7 +1546,7 @@ public static partial class MenuItem
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044251C", (uint)a);
-            return new O06B_v2(new O06A_v37(a).unk14_).unk1C;
+            return new O06B_v2(new O06A_v37(a).unk14_).PlayerPtr;
         }
     }
 
@@ -1629,15 +1629,15 @@ public static partial class MenuItem
             if (Dbg.On) Dbg.Enter("func_00442E80", (uint)a, (uint)b, (uint)c, (uint)d);
             int sz = 0;
             new O06E_v3(a).Index_Set(d);
-            new O06E_v3(a).Type_Set(new O06S(b).unk0);
-            new O06E_v3(a).Flags_Set((uint)((new O06S(b).unk4 | 25165824)));
-            new O06E_v3(a).PosX_Set(new O06S(b).unk8);
-            new O06E_v3(a).PosY_Set(new O06S(b).unkA);
-            new O06E_v3(a).unk10_Set(new O06S(b).unkC);
-            new O06E_v3(a).unk11_Set(new O06S(b).unkD);
-            new O06E_v3(a).unk12_Set(new O06S(b).unkE);
-            new O06E_v3(a).unk13_Set(new O06S(b).unkF);
-            new O06E_v3(a).Data_Set(new O06S(b).unk10);
+            new O06E_v3(a).Type_Set(new O06S(b).Type);
+            new O06E_v3(a).Flags_Set((uint)((new O06S(b).Flags | 25165824)));
+            new O06E_v3(a).PosX_Set(new O06S(b).PosX);
+            new O06E_v3(a).PosY_Set(new O06S(b).PosY);
+            new O06E_v3(a).NavSteps_Set(new O06S(b).NavStepLeft);
+            new O06E_v3(a).NavStepRight_Set(new O06S(b).NavStepRight);
+            new O06E_v3(a).NavStepUp_Set(new O06S(b).NavStepUp);
+            new O06E_v3(a).NavStepDown_Set(new O06S(b).NavStepDown);
+            new O06E_v3(a).Data_Set(new O06S(b).Data);
             new O06E_v3(a).TemplatePtr_Set((int)(b));
             new O06E_v3(a).Value_Set((-1));
             new O06E_v3(a).OwnerPanelPtr_Set(e);

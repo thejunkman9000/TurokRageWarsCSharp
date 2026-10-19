@@ -65,14 +65,14 @@ public static partial class UiGrid
             byte lim = 0;
             byte lim2 = 0;
             Mem.Copy(cell, new S_grid(g).NodeHeader.P, 44);
-            new S_cell2(cell).b2C_Set(new S_grid(g).CellFont);
-            new S_cell2(cell).b2D_Set(new S_grid(g).CellPalette);
+            new S_cell2(cell).FontId_Set(new S_grid(g).CellFont);
+            new S_cell2(cell).PaletteId_Set(new S_grid(g).CellPalette);
             lim = new S_grid(g).FixedCols;
             if ((col < (uint)(lim)))
             {
                 c = (int)(col);
-                new S_cell2(cell).b2C_Set(new S_grid(g).HeaderFont);
-                new S_cell2(cell).b2D_Set(new S_grid(g).HeaderPalette);
+                new S_cell2(cell).FontId_Set(new S_grid(g).HeaderFont);
+                new S_cell2(cell).PaletteId_Set(new S_grid(g).HeaderPalette);
                 ci = (-1);
                 if ((c != 0))
                 {
@@ -92,8 +92,8 @@ public static partial class UiGrid
             if ((row < (uint)(lim)))
             {
                 r = (int)(row);
-                new S_cell2(cell).b2C_Set(new S_grid(g).HeaderFont);
-                new S_cell2(cell).b2D_Set(new S_grid(g).HeaderPalette);
+                new S_cell2(cell).FontId_Set(new S_grid(g).HeaderFont);
+                new S_cell2(cell).PaletteId_Set(new S_grid(g).HeaderPalette);
                 ri = (-1);
                 if ((r != 0))
                 {
@@ -158,33 +158,33 @@ public static partial class UiGrid
             }
             if ((col < (uint)(lim)))
             {
-                new S_cell2(cell).f18_Set(Mem.U16((new S_grid(g).colw_ + (uint)(((col * (uint)(2)) + (uint)(1)) * 2))));
+                new S_cell2(cell).Width_Set(Mem.U16((new S_grid(g).colw_ + (uint)(((col * (uint)(2)) + (uint)(1)) * 2))));
             }
             else
             {
-                new S_cell2(cell).f18_Set(Mem.U16((new S_grid(g).colw_ + (uint)((((int)(lim) * 2) - 1) * 2))));
+                new S_cell2(cell).Width_Set(Mem.U16((new S_grid(g).colw_ + (uint)((((int)(lim) * 2) - 1) * 2))));
             }
             if ((row < (uint)(new S_grid(g).FixedRows)))
             {
-                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)(((row * (uint)(2)) + (uint)(1)) * 2))));
+                new S_cell2(cell).Height_Set(Mem.U16((new S_grid(g).rowh_ + (uint)(((row * (uint)(2)) + (uint)(1)) * 2))));
             }
             else
             {
-                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)((((int)(new S_grid(g).FixedRows) * 2) - 1) * 2))));
+                new S_cell2(cell).Height_Set(Mem.U16((new S_grid(g).rowh_ + (uint)((((int)(new S_grid(g).FixedRows) * 2) - 1) * 2))));
             }
-            new S_cell2(cell).f38_Set(Mem.S32((new S_grid(g).cells_ + (uint)((((r * (int)(new S_grid(g).ColCount)) + c) * 2) * 4))));
+            new S_cell2(cell).TextPtr_Set(Mem.S32((new S_grid(g).cells_ + (uint)((((r * (int)(new S_grid(g).ColCount)) + c) * 2) * 4))));
             if (((r == (int)(new S_grid(g).CursorRow)) && (c == (int)(new S_grid(g).CursorCol))))
             {
-                new S_cell2(cell).b2E_Set(new S_grid(g).CursorFont);
-                new S_cell2(cell).b2F_Set(new S_grid(g).CursorPalette);
+                new S_cell2(cell).FocusFontId_Set(new S_grid(g).CursorFont);
+                new S_cell2(cell).FocusPaletteId_Set(new S_grid(g).CursorPalette);
             }
             else
             {
-                new S_cell2(cell).b2E_Set(new S_cell2(cell).b2C);
-                new S_cell2(cell).b2F_Set(new S_cell2(cell).b2D);
+                new S_cell2(cell).FocusFontId_Set(new S_cell2(cell).FontId);
+                new S_cell2(cell).FocusPaletteId_Set(new S_cell2(cell).PaletteId);
             }
-            new S_cell2(cell).f14_Set((ushort)((int)(new S_cell2(cell).f14) + sx));
-            new S_cell2(cell).f16_Set((ushort)((int)(new S_cell2(cell).f16) + sy));
+            new S_cell2(cell).X_Set((ushort)((int)(new S_cell2(cell).X) + sx));
+            new S_cell2(cell).Y_Set((ushort)((int)(new S_cell2(cell).Y) + sy));
         }
     }
 

@@ -240,7 +240,7 @@ public static partial class PreviewModel
                 float sc = 0f;
                 int h = 0;
                 Mem.Set(Gv.Render_FogEnabled, 0);
-                if ((new O05Obj_v2(o).f34 != (-1)))
+                if ((new O05Obj_v2(o).ModelId != (-1)))
                 {
                     Gfx.ApplyRenderFlags((uint)(209717));
                     {
@@ -273,46 +273,46 @@ public static partial class PreviewModel
                         uint pp_5 = Gv.DisplayListPtr;
                         uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
                         new O05Gfx(q_5).w0_Set(3661103111u);
-                        new O05Gfx(q_5).w1_Set((uint)((new O05Cam(cam).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
+                        new O05Gfx(q_5).w1_Set((uint)((new O05Cam(cam).ProjMatrices_380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                     }
-                    Mem.Copy((_fp + 64u), new O05Obj_v2(o).v10.P, 12);
-                    MathUtil.MtxTransformPoint(new O05Cam(cam).view.P, (_fp + 64u), (_fp + 80u));
+                    Mem.Copy((_fp + 64u), new O05Obj_v2(o).Position.P, 12);
+                    MathUtil.MtxTransformPoint(new O05Cam(cam).ViewMatrix.P, (_fp + 64u), (_fp + 80u));
                     MathUtil.MtxMakeTranslate(_fp, Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)));
                     t = (float)(Menu.GetFrameCounter());
-                    if ((new O05Obj_v2(o).f28 != 0.0f))
+                    if ((new O05Obj_v2(o).SpinRateC != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsC_00273860(_fp, ((t * new O05Obj_v2(o).f28) * 0.0174532942f));
+                        MathUtil.MtxRotateRowsC_00273860(_fp, ((t * new O05Obj_v2(o).SpinRateC) * 0.0174532942f));
                     }
-                    if ((new O05Obj_v2(o).f2C != 0.0f))
+                    if ((new O05Obj_v2(o).SpinRateB != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsB_00273A34(_fp, ((t * new O05Obj_v2(o).f2C) * 0.0174532942f));
+                        MathUtil.MtxRotateRowsB_00273A34(_fp, ((t * new O05Obj_v2(o).SpinRateB) * 0.0174532942f));
                     }
-                    if ((new O05Obj_v2(o).f30 != 0.0f))
+                    if ((new O05Obj_v2(o).SpinRateA != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsA_00273C08(_fp, ((t * new O05Obj_v2(o).f30) * 0.0174532942f));
+                        MathUtil.MtxRotateRowsA_00273C08(_fp, ((t * new O05Obj_v2(o).SpinRateA) * 0.0174532942f));
                     }
-                    if ((new O05Obj_v2(o).f1C != 0.0f))
+                    if ((new O05Obj_v2(o).RotationC != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsC_00273860(_fp, (new O05Obj_v2(o).f1C * 0.0174532942f));
+                        MathUtil.MtxRotateRowsC_00273860(_fp, (new O05Obj_v2(o).RotationC * 0.0174532942f));
                     }
-                    if ((new O05Obj_v2(o).f20 != 0.0f))
+                    if ((new O05Obj_v2(o).RotationB != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsB_00273A34(_fp, (new O05Obj_v2(o).f20 * 0.0174532942f));
+                        MathUtil.MtxRotateRowsB_00273A34(_fp, (new O05Obj_v2(o).RotationB * 0.0174532942f));
                     }
-                    if ((new O05Obj_v2(o).f24 != 0.0f))
+                    if ((new O05Obj_v2(o).RotationA != 0.0f))
                     {
-                        MathUtil.MtxRotateRowsA_00273C08(_fp, (new O05Obj_v2(o).f24 * 0.0174532942f));
+                        MathUtil.MtxRotateRowsA_00273C08(_fp, (new O05Obj_v2(o).RotationA * 0.0174532942f));
                     }
-                    sc = (new O05Cam(cam).f29C / (float)(Mem.S32(Gv.ScreenWidth)));
-                    Mem.Set(((_fp + 96u) + (uint)(0 * 4)), (new O05Obj_v2(o).f4 * sc));
-                    Mem.Set(((_fp + 96u) + (uint)(2 * 4)), (new O05Obj_v2(o).fC * sc));
-                    Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).f8 * (new O05Cam(cam).f2A0 / (float)(Mem.S32(Gv.ScreenHeight)))));
+                    sc = (new O05Cam(cam).ViewportWidth / (float)(Mem.S32(Gv.ScreenWidth)));
+                    Mem.Set(((_fp + 96u) + (uint)(0 * 4)), (new O05Obj_v2(o).ScaleX * sc));
+                    Mem.Set(((_fp + 96u) + (uint)(2 * 4)), (new O05Obj_v2(o).ScaleZ * sc));
+                    Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).ScaleY * (new O05Cam(cam).ViewportHeight / (float)(Mem.S32(Gv.ScreenHeight)))));
                     MathUtil.MtxScaleRows(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
                     MathUtil.MtxSwapRowsYZ(_fp);
                     MathUtil.MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(Gv.FrameParity) * 64) + 56)));
-                    h = Level.GetModelKey(Gv.LevelMgr, new O05Obj_v2(o).f34);
+                    h = Level.GetModelKey(Gv.LevelMgr, new O05Obj_v2(o).ModelId);
                     Model.ClearBatchQueue();
-                    Model.QueueByIndex(h, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 64) + 56))), (int)(Gv.Model_DefaultLights), 0, new O05Obj_v2(o).fB8);
+                    Model.QueueByIndex(h, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 64) + 56))), (int)(Gv.Model_DefaultLights), 0, new O05Obj_v2(o).DrawArg_B8);
                     Model.FlushBatches();
                 }
                 Mem.Set(Gv.Render_FogEnabled, saved);

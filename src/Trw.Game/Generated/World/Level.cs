@@ -212,11 +212,11 @@ public static partial class Level
                     p = (uint)(Obj.GetField20_0022A404((Gv.Settings - (uint)4744)));
                     if ((p != 0u))
                     {
-                        if (((new B14Mgr(m).b == 1) && ((Mem.S32(Gv.Level_StartPointId) != new B14Pl_v2(p).f5EC) || ((uint)(((int)(new B14Pl_v2(p).f650) - 22)) < (uint)(12)))))
+                        if (((new B14Mgr(m).b == 1) && ((Mem.S32(Gv.Level_StartPointId) != new B14Pl_v2(p).SpawnPointId) || ((uint)(((int)(new B14Pl_v2(p).StateId) - 22)) < (uint)(12)))))
                         {
                             new B14Mgr(m).b_Set(2);
                         }
-                        new B14Mgr(m).d_Set(new B14Pl_v2(p).f5EC);
+                        new B14Mgr(m).d_Set(new B14Pl_v2(p).SpawnPointId);
                     }
                 }
             }
@@ -684,7 +684,7 @@ public static partial class Level
             {
                 idx = (-1);
             }
-            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).LevelIndex)), ((new B19Owner(owner).LoadState != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).DefPtr)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
+            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).LevelIndex)), ((new B19Owner(owner).LoadState != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).DefPtr)), ((((((uint)((new B19Info18(inf).Kind - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).Flags & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
             {
                 n = (int)(Chunk.Get((uint)((int)(Chunk.Get((uint)((int)(Chunk.Get((uint)(new B19Owner(owner).SaveDataPtr), 0))), key))), 0));
                 Chunk.Get((uint)(n), 0);
@@ -768,8 +768,8 @@ public static partial class Level
             }
             Level.UpdateTransitionFade(ow);
             Level.ResetActorLists(ow);
-            new B19Owner(ow).f120_Set(0);
-            new B19Owner(ow).f124_Set(0);
+            new B19Owner(ow).Field_120_Set(0);
+            new B19Owner(ow).ObjectsDisplayListPtr_124_Set(0);
             MtxStack.Reset((ow + (uint)296));
             Resource.MarkUsedInFrame(0, (uint)(new B19Owner(ow).MatrixPoolRes));
             Trail.ResetVertexPool(Gv.Fx_TrailMgr);
@@ -816,7 +816,7 @@ public static partial class Level
             while ((i < n))
             {
                 o = Mem.U32((arr + (uint)(i * 4)));
-                if ((new B19Info18(new B19Obj(o).DefPtr).type != 2))
+                if ((new B19Info18(new B19Obj(o).DefPtr).Kind != 2))
                 {
                     break;
                 }
@@ -889,13 +889,13 @@ public static partial class Level
                 float y = 0f;
                 float z = 0f;
                 uint o = 0u;
-                if ((new B19Owner(ow).f124 != 0))
+                if ((new B19Owner(ow).ObjectsDisplayListPtr_124 != 0))
                 {
                     {
                         uint pp = Gv.DisplayListPtr;
                         uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                         new B19Dl(q).w0_Set(3724541952u);
-                        new B19Dl(q).w1_Set((uint)(new B19Owner(ow).f124));
+                        new B19Dl(q).w1_Set((uint)(new B19Owner(ow).ObjectsDisplayListPtr_124));
                     }
                 }
                 n = new B19Owner(ow).TranslucentActorCount;
@@ -1005,36 +1005,36 @@ public static partial class Level
             for (i = 0; (i < new B19Owner(owner).EntityCount); ++i)
             {
                 inf = new B19Obj(p).DefPtr;
-                if ((new B19Info18(inf).type == 13))
+                if ((new B19Info18(inf).Kind == 13))
                 {
-                    if (((Mem.U32(Gv.ArenaTreeRecordPtr) != 0u) && ((uint)((new B19Info18(inf).f20 - 3380)) < (uint)(4))))
+                    if (((Mem.U32(Gv.ArenaTreeRecordPtr) != 0u) && ((uint)((new B19Info18(inf).ShapeParam_20 - 3380)) < (uint)(4))))
                     {
-                        switch ((int)(new B19Info18(inf).sC))
+                        switch ((int)(new B19Info18(inf).VariantId_C))
                         {
                         case 3371:
                             if (((int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)1))) == 0))
                             {
-                                new B19Info18(inf).f4_Set((uint)((uint)(new B19Info18(inf).f4) | (uint)(4)));
+                                new B19Info18(inf).Flags_Set((uint)((uint)(new B19Info18(inf).Flags) | (uint)(4)));
                             }
                             else
                             {
-                                new B19Info18(inf).f4_Set((uint)((uint)(new B19Info18(inf).f4) & (uint)((~4))));
+                                new B19Info18(inf).Flags_Set((uint)((uint)(new B19Info18(inf).Flags) & (uint)((~4))));
                             }
                             break;
                         case 3372:
                         case 3373:
                         case 3374:
-                            if (((int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((int)(new B19Info18(new B19Obj(p).DefPtr).sC) - 3370)))) == 0))
+                            if (((int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((int)(new B19Info18(new B19Obj(p).DefPtr).VariantId_C) - 3370)))) == 0))
                             {
-                                new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) | (uint)(4)));
+                                new B19Info18(new B19Obj(p).DefPtr).Flags_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).Flags) | (uint)(4)));
                             }
                             else
                             {
-                                new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) & (uint)((~4))));
+                                new B19Info18(new B19Obj(p).DefPtr).Flags_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).Flags) & (uint)((~4))));
                             }
                             break;
                         default:
-                            new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) & (uint)((~4))));
+                            new B19Info18(new B19Obj(p).DefPtr).Flags_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).Flags) & (uint)((~4))));
                             break;
                         }
                     }
@@ -2330,7 +2330,7 @@ public static partial class Level
             if (!((((((sflag != 0) && !((fl & 2) != 0)) && ((int)(new B19bObj(o).AnimChanged) == 0)) && !((fl & 1024) != 0)) && (new B19bInfo(info).Kind != 3)))) goto _f8;
             if (!((new B19bInfo(info).Kind != 14))) goto _f9;
             if (!((Actor.IsAlwaysActive_0024D150(o) == 0))) goto _f10;
-            if (!(((((((Mem.F32((bB + (uint)(0 * 4))) > new B19bObj(o).Bounds) && (Mem.F32((bB + (uint)((-3) * 4))) < new B19bObj(o).fF4)) && (Mem.F32((bB + (uint)(2 * 4))) > new B19bObj(o).fF0)) && (Mem.F32((bB + (uint)((-1) * 4))) < new B19bObj(o).fFC)) && (Mem.F32((bB + (uint)(1 * 4))) > new B19bObj(o).fEC)) && (Mem.F32((bB + (uint)((-2) * 4))) < new B19bObj(o).fF8)))) goto _f11;
+            if (!(((((((Mem.F32((bB + (uint)(0 * 4))) > new B19bObj(o).Bounds) && (Mem.F32((bB + (uint)((-3) * 4))) < new B19bObj(o).BoundsMaxX)) && (Mem.F32((bB + (uint)(2 * 4))) > new B19bObj(o).BoundsMinZ)) && (Mem.F32((bB + (uint)((-1) * 4))) < new B19bObj(o).BoundsMaxZ)) && (Mem.F32((bB + (uint)(1 * 4))) > new B19bObj(o).BoundsMinY)) && (Mem.F32((bB + (uint)((-2) * 4))) < new B19bObj(o).BoundsMaxY)))) goto _f11;
             if (!((s5 != 0))) goto _f12;
             s2 = Frustum.OverlapsBox((uint)((s5 + 752)), (o + 232u));
             goto _f13;
@@ -2357,7 +2357,7 @@ public static partial class Level
             goto _f19;
             _f17: ;
             s2 = 0;
-            if (!(((((((Mem.F32((bA + (uint)(0 * 4))) > new B19bObj(o).Bounds) && (Mem.F32((bA + (uint)((-3) * 4))) < new B19bObj(o).fF4)) && (Mem.F32((bA + (uint)(2 * 4))) > new B19bObj(o).fF0)) && (Mem.F32((bA + (uint)((-1) * 4))) < new B19bObj(o).fFC)) && (Mem.F32((bA + (uint)(1 * 4))) > new B19bObj(o).fEC)) && (Mem.F32((bA + (uint)((-2) * 4))) < new B19bObj(o).fF8)))) goto _f20;
+            if (!(((((((Mem.F32((bA + (uint)(0 * 4))) > new B19bObj(o).Bounds) && (Mem.F32((bA + (uint)((-3) * 4))) < new B19bObj(o).BoundsMaxX)) && (Mem.F32((bA + (uint)(2 * 4))) > new B19bObj(o).BoundsMinZ)) && (Mem.F32((bA + (uint)((-1) * 4))) < new B19bObj(o).BoundsMaxZ)) && (Mem.F32((bA + (uint)(1 * 4))) > new B19bObj(o).BoundsMinY)) && (Mem.F32((bA + (uint)((-2) * 4))) < new B19bObj(o).BoundsMaxY)))) goto _f20;
             L_set1: ;
             s2 = 1;
             _f20: ;
@@ -2563,12 +2563,12 @@ public static partial class Level
                     {
                         idx = (i + @base);
                         cell = (E + (uint)(idx * 20));
-                        if ((new B19Cell(cell).n == (uint)(0)))
+                        if ((new B19Cell(cell).ItemCount == (uint)(0)))
                         {
                             found = 0;
                             for (q = cam; (q != 0u); q = new B19Cam(q).next_)
                             {
-                                if (((((new B19Cam(q).a < new B19Cell(cell).x1) && (new B19Cell(cell).x0 < new B19Cam(q).c)) && (new B19Cell(cell).z1 > new B19Cam(q).b)) && (new B19Cell(cell).z0 < new B19Cam(q).d)))
+                                if (((((new B19Cam(q).a < new B19Cell(cell).MaxX) && (new B19Cell(cell).MinX < new B19Cam(q).c)) && (new B19Cell(cell).MaxZ > new B19Cam(q).b)) && (new B19Cell(cell).MinZ < new B19Cam(q).d)))
                                 {
                                     found = 1;
                                     break;
@@ -4678,19 +4678,19 @@ public static partial class Level
             {
                 ListUtil.Remove((lv + 4588u), n, default(uint), default(uint));
                 ListUtil.Add((lv + 4568u), n);
-                new Obj2(n).unk8_Set(s);
+                new Obj2(n).SpawnDescPtr_Set(s);
             }
             else
             {
                 n = new LevelView(lv).unk11DC_;
-                Entity.Spawn(new Obj2(n).unk8);
-                new Obj2(n).unk8_Set(s);
+                Entity.Spawn(new Obj2(n).SpawnDescPtr);
+                new Obj2(n).SpawnDescPtr_Set(s);
             }
             f = Trunc16ToF32(new SndDesc(s).unkC);
-            new Obj2(n).unkC_Set(f);
+            new Obj2(n).Timer_Set(f);
             if ((((int)(new SndDesc(s).unkE) & 2) != 0))
             {
-                new Obj2(n).unkC_Set((f * 15.0f));
+                new Obj2(n).Timer_Set((f * 15.0f));
             }
         }
     }
@@ -6534,19 +6534,19 @@ public static partial class Level
                 for (i = 0; (i < count); ++i)
                 {
                     ent = Chunk.Get(obj, i);
-                    switch (new Ent(ent).kind)
+                    switch (new Ent(ent).Kind)
                     {
                     case (uint)(1):
-                        new Ent(ent).unk28_Set((new Ent(ent).unk28 * scale));
-                        new Ent(ent).unk30_Set((new Ent(ent).unk30 * scale));
-                        new Ent(ent).unk34_Set((new Ent(ent).unk34 * scale));
-                        new Ent(ent).unk50_Set((new Ent(ent).unk50 * scale));
-                        new Ent(ent).unk54_Set((new Ent(ent).unk54 * scale));
-                        new Ent(ent).unk58_Set((new Ent(ent).unk58 * scale));
+                        new Ent(ent).CreatureRadius_Set((new Ent(ent).CreatureRadius * scale));
+                        new Ent(ent).CreatureHeight_Set((new Ent(ent).CreatureHeight * scale));
+                        new Ent(ent).CreatureDeadHeight_Set((new Ent(ent).CreatureDeadHeight * scale));
+                        new Ent(ent).CreatureParam_50_Set((new Ent(ent).CreatureParam_50 * scale));
+                        new Ent(ent).CreatureParam_54_Set((new Ent(ent).CreatureParam_54 * scale));
+                        new Ent(ent).CreatureParam_58_Set((new Ent(ent).CreatureParam_58 * scale));
                         break;
                     case (uint)(11):
-                        new Ent(ent).unkEC_Set((new Ent(ent).unkEC * scale));
-                        new Ent(ent).unkF0_Set((new Ent(ent).unkF0 * scale));
+                        new Ent(ent).CharacterRadius_Set((new Ent(ent).CharacterRadius * scale));
+                        new Ent(ent).CharacterCollisionRadius_Set((new Ent(ent).CharacterCollisionRadius * scale));
                         break;
                     case (uint)(0):
                     case (uint)(2):
@@ -7299,7 +7299,7 @@ public static partial class Prop
                     if ((r != 0u))
                     {
                         Resource.MarkUsedInFrame(0, r);
-                        blk = (uint)(new B12Node(r).key);
+                        blk = (uint)(new B12Node(r).Key);
                         if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
                         {
                             off = Mem.S32((blk + (uint)(1 * 4)));
@@ -7360,7 +7360,7 @@ public static partial class Prop
                     if ((r != 0u))
                     {
                         Resource.MarkUsedInFrame(0, r);
-                        blk = (uint)(new B12Node(r).key);
+                        blk = (uint)(new B12Node(r).Key);
                         if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
                         {
                             off = Mem.S32((blk + (uint)(1 * 4)));
@@ -7422,10 +7422,10 @@ public static partial class Prop
                         p = (@base + (uint)(2 * 4));
                         for (i = 0; (i < cnt); ++i)
                         {
-                            if (((flag != 0) || ((int)(new B12Rec((p + (uint)(i * 28))).unk2) == 8)))
+                            if (((flag != 0) || ((int)(new B12Rec((p + (uint)(i * 28))).EventKind) == 8)))
                             {
-                                MathUtil.MtxTransformPoint((o + (uint)104), new B12Rec((p + (uint)(i * 28))).unk8.P, (_fp + 8u));
-                                Event.Send(o, o, (int)(new B12Rec((p + (uint)(i * 28))).unk2), (-1), (_fp + 8u), new B12Rec((p + (uint)(i * 28))).tail.P);
+                                MathUtil.MtxTransformPoint((o + (uint)104), new B12Rec((p + (uint)(i * 28))).LocalPoint.P, (_fp + 8u));
+                                Event.Send(o, o, (int)(new B12Rec((p + (uint)(i * 28))).EventKind), (-1), (_fp + 8u), new B12Rec((p + (uint)(i * 28))).EventArgs.P);
                             }
                         }
                         ResourcePool.Unref(0, n);
@@ -7618,7 +7618,7 @@ public static partial class Prop
                 if ((r != 0u))
                 {
                     Resource.MarkUsedInFrame(0, r);
-                    blk = (uint)(new B12Node(r).key);
+                    blk = (uint)(new B12Node(r).Key);
                     if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
                     {
                         off = Mem.S32((blk + (uint)(1 * 4)));
@@ -7939,8 +7939,8 @@ public static partial class Scene
                 new S5Scene(lv).LinkGroupTypes_Set(Mem.U32(p));
                 new S5Scene(lv).LevelDataIndexKey_Set(0);
                 new S5Scene(lv).LevelDataIndexSize_Set(0);
-                new S5Scene(lv).f14_Set(0);
-                new S5Scene(lv).f18_Set((-1));
+                new S5Scene(lv).IndexedCacheHandle_Set(0);
+                new S5Scene(lv).IndexedCacheId_Set((-1));
                 if ((Mem.S32(Mem.U32(_fp)) >= 22))
                 {
                     new S5Scene(lv).LevelDataIndexKey_Set(Resource.GetCartridgeKeyNoSize(Mem.U32(_fp), data, 21));
@@ -7963,18 +7963,18 @@ public static partial class Scene
                 }
                 Level.Level_InitState_0044DC48(lv);
                 Mem.Set(Gv.Level_DataLoaded, 1);
-                Scene.HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(0 * 28)), 3500);
-                Scene.HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(1 * 28)), 3501);
-                Scene.HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(2 * 28)), 3502);
-                Scene.HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(3 * 28)), 3503);
-                Scene.HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(4 * 28)), 3504);
+                Scene.HelperA_0044C250(lv, (new S5Scene(lv).MapModels.P + (uint)(0 * 28)), 3500);
+                Scene.HelperA_0044C250(lv, (new S5Scene(lv).MapModels.P + (uint)(1 * 28)), 3501);
+                Scene.HelperA_0044C250(lv, (new S5Scene(lv).MapModels.P + (uint)(2 * 28)), 3502);
+                Scene.HelperA_0044C250(lv, (new S5Scene(lv).MapModels.P + (uint)(3 * 28)), 3503);
+                Scene.HelperA_0044C250(lv, (new S5Scene(lv).MapModels.P + (uint)(4 * 28)), 3504);
                 new S5Scene(lv).NavNodesRes_Set(0);
                 new S5Scene(lv).SectionRes10_F4_Set(0);
                 new S5Scene(lv).SectionRes11_FC_Set(0);
                 new S5Scene(lv).StaticPropBlob_Set(0);
                 new S5Scene(lv).StaticPropCache_Set(0);
-                new S5Scene(lv).f120_Set(0);
-                new S5Scene(lv).f124_Set(0);
+                new S5Scene(lv).Field_120_Set(0);
+                new S5Scene(lv).ObjectsDisplayListPtr_124_Set(0);
                 Level.Load(lv, (uint)(0), (uint)(0), default(uint));
             }
         }

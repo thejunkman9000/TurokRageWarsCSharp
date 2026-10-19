@@ -136,7 +136,7 @@ public static partial class OptionList
         {
             if (Dbg.On) Dbg.Enter("func_0041AFC0", (uint)o);
             uint p = 0u;
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -154,7 +154,7 @@ public static partial class OptionList
         {
             if (Dbg.On) Dbg.Enter("func_0041AFF0", (uint)o);
             uint p = 0u;
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {
@@ -173,7 +173,7 @@ public static partial class OptionList
             if (Dbg.On) Dbg.Enter("func_0041B020", (uint)o);
             uint p = 0u;
             Audio.PlaySound2D(3700);
-            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
+            for (p = new O3Bar(o).Header.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).Type) != 8))
                 {

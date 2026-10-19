@@ -238,10 +238,10 @@ public static partial class Trail
                 uint pa = 0u;
                 uint pb = 0u;
                 uint v = 0u;
-                t = (0.5f - (cosf(((new VInfo2(info).f8 / new VObj(o).def.f8) * 3.14159274f)) * 0.5f));
-                if ((new VObj(o).f24 <= new VObj(o).def.f4))
+                t = (0.5f - (cosf(((new VInfo2(info).f8 / new VObj(o).DefPtr.SegmentLifetime) * 3.14159274f)) * 0.5f));
+                if ((new VObj(o).LifeTime <= new VObj(o).DefPtr.FadeOutTime))
                 {
-                    t2 = (0.5f - (cosf(((new VObj(o).f24 / new VObj(o).def.f4) * 3.14159274f)) * 0.5f));
+                    t2 = (0.5f - (cosf(((new VObj(o).LifeTime / new VObj(o).DefPtr.FadeOutTime) * 3.14159274f)) * 0.5f));
                     t = (t * t2);
                 }
                 n = new VAnim_v2(an).n;
@@ -302,14 +302,14 @@ public static partial class Trail
                 uint pa = 0u;
                 uint pb = 0u;
                 uint v = 0u;
-                t = (0.5f - (cosf(((new VInfo2(info).f8 / new VObj(o).def.f8) * 3.14159274f)) * 0.5f));
-                if ((new VObj(o).f24 <= new VObj(o).def.f4))
+                t = (0.5f - (cosf(((new VInfo2(info).f8 / new VObj(o).DefPtr.SegmentLifetime) * 3.14159274f)) * 0.5f));
+                if ((new VObj(o).LifeTime <= new VObj(o).DefPtr.FadeOutTime))
                 {
-                    t2 = (0.5f - (cosf(((new VObj(o).f24 / new VObj(o).def.f4) * 3.14159274f)) * 0.5f));
+                    t2 = (0.5f - (cosf(((new VObj(o).LifeTime / new VObj(o).DefPtr.FadeOutTime) * 3.14159274f)) * 0.5f));
                     t = (t * t2);
                 }
                 acc = 0.0f;
-                n = new VAnim(an).n;
+                n = new VAnim(an).VertexCount;
                 e = new VAnim(an).ents_;
                 --n;
                 t = (1.0f - t);
@@ -318,13 +318,13 @@ public static partial class Trail
                     o8 = @out;
                     pa = (new VAnim(an).tabA_ + (uint)((int)(new VEnt(e).i0) * 20));
                     pb = (new VAnim(an).tabC_ + (uint)((int)(new VEnt(e).i1) * 20));
-                    Vec.Scale(_fp, pa, Cpu.U2F((uint)(new VAnim(an).u10)));
-                    Vec.Scale((_fp + 16u), pb, Cpu.U2F((uint)(new VAnim(an).u14)));
+                    Vec.Scale(_fp, pa, Cpu.U2F((uint)(new VAnim(an).StartShapeScale_10)));
+                    Vec.Scale((_fp + 16u), pb, Cpu.U2F((uint)(new VAnim(an).EndShapeScale_14)));
                     Mem.Set((@out + (uint)(0 * 2)), (short)((int)((new V3(_fp).x + (t * (new V3((_fp + 16u)).x - new V3(_fp).x))))));
                     Mem.Set((@out + (uint)(1 * 2)), (short)((int)((new V3(_fp).y + (t * (new V3((_fp + 16u)).y - new V3(_fp).y))))));
                     Mem.Set((@out + (uint)(2 * 2)), (short)((int)((new V3(_fp).z + (t * (new V3((_fp + 16u)).z - new V3(_fp).z))))));
-                    Mem.Set((@out + (uint)(4 * 2)), (short)((int)((new VAnim(an).f18 * scale))));
-                    Mem.Set((@out + (uint)(5 * 2)), (short)((int)((new VAnim(an).f1C * acc))));
+                    Mem.Set((@out + (uint)(4 * 2)), (short)((int)((new VAnim(an).TexScaleS_18 * scale))));
+                    Mem.Set((@out + (uint)(5 * 2)), (short)((int)((new VAnim(an).TexScaleT_1C * acc))));
                     pc = e;
                     if ((Model.GetViewFlag() != 0))
                     {
@@ -343,7 +343,7 @@ public static partial class Trail
                     }
                     e += 12u;
                     @out = (uint)(@out + (uint)(8 * 2));
-                    acc = (float)((float)(acc) + new VAnim(an).f20);
+                    acc = (float)((float)(acc) + new VAnim(an).TexStepT_20);
                 }
             }
         }
@@ -364,30 +364,30 @@ public static partial class Trail
             uint ow = 0u;
             int r = 0;
             saved = Mem.F32(Gv.FrameTime);
-            if (((new SSlot(s).flags & (uint)(2)) != 0u))
+            if (((new SSlot(s).Flags & (uint)(2)) != 0u))
             {
                 Mem.Set(Gv.FrameTime, (saved * Mem.F32(0x800D2990u)));
             }
-            if (((new SSlot(s).flags & (uint)(1)) != 0u))
+            if (((new SSlot(s).Flags & (uint)(1)) != 0u))
             {
                 Mem.Set(Gv.FrameTime, (Mem.F32(Gv.FrameTime) * Mem.F32(0x800D298Cu)));
             }
-            if (((new SSlot(s).flags & (uint)(8)) != 0u))
+            if (((new SSlot(s).Flags & (uint)(8)) != 0u))
             {
-                new SSlot(s).unk50_Set((new SSlot(s).unk50 + 1));
-                if ((new SSlot(s).unk50 >= 3))
+                new SSlot(s).OwnerGraceFrames_50_Set((new SSlot(s).OwnerGraceFrames_50 + 1));
+                if ((new SSlot(s).OwnerGraceFrames_50 >= 3))
                 {
-                    new SSlot(s).owner_Set(0u);
+                    new SSlot(s).OwnerPtr_Set(0u);
                 }
             }
-            if ((new SSlot(s).unk2C >= 0.0f))
+            if ((new SSlot(s).EndMark_2C >= 0.0f))
             {
-                new SSlot(s).unk30_Set((new SSlot(s).unk30 + Mem.F32(Gv.FrameTime)));
+                new SSlot(s).Age_Set((new SSlot(s).Age + Mem.F32(Gv.FrameTime)));
             }
-            new SSlot(s).unk24_Set((new SSlot(s).unk24 - Mem.F32(Gv.FrameTime)));
-            if ((new SSlot(s).unk24 < 0.0f))
+            new SSlot(s).LifeTime_Set((new SSlot(s).LifeTime - Mem.F32(Gv.FrameTime)));
+            if ((new SSlot(s).LifeTime < 0.0f))
             {
-                new SSlot(s).unk24_Set(0.0f);
+                new SSlot(s).LifeTime_Set(0.0f);
             }
             e = new SSlot(s).list_;
             if ((e != 0u))
@@ -397,37 +397,37 @@ public static partial class Trail
                 do
                 {
                     next = new SEnt(e).next_;
-                    if (((new SSlot(s).unk24 <= 0.0f) && (new SEnt(e).unk8 > 0.0f)))
+                    if (((new SSlot(s).LifeTime <= 0.0f) && (new SEnt(e).Width_8 > 0.0f)))
                     {
-                        new SEnt(e).unk8_Set(0.0f);
+                        new SEnt(e).Width_8_Set(0.0f);
                     }
-                    if ((new SEnt(e).unk8 <= 0.0f))
+                    if ((new SEnt(e).Width_8 <= 0.0f))
                     {
-                        new SEnt(e).unk8_Set((new SEnt(e).unk8 - k1));
-                        if ((new SEnt(e).unk8 < k2))
+                        new SEnt(e).Width_8_Set((new SEnt(e).Width_8 - k1));
+                        if ((new SEnt(e).Width_8 < k2))
                         {
                             Trail.FreeSegment((uint)(a0), s, e);
                         }
                     }
                     else
                     {
-                        new SEnt(e).unk8_Set((new SEnt(e).unk8 - Mem.F32(Gv.FrameTime)));
-                        if ((new SEnt(e).unk8 < 0.0f))
+                        new SEnt(e).Width_8_Set((new SEnt(e).Width_8 - Mem.F32(Gv.FrameTime)));
+                        if ((new SEnt(e).Width_8 < 0.0f))
                         {
-                            new SEnt(e).unk8_Set(0.0f);
+                            new SEnt(e).Width_8_Set(0.0f);
                         }
                     }
                     e = next;
                 }
                 while ((e != 0u));
             }
-            ow = new SSlot(s).owner;
-            if ((((ow != 0u) && ((new SSlot(s).flags & (uint)(1)) != 0u)) && !((new Owner3F94(ow).flags & (uint)(512)) != 0u)))
+            ow = new SSlot(s).OwnerPtr;
+            if ((((ow != 0u) && ((new SSlot(s).Flags & (uint)(1)) != 0u)) && !((new Owner3F94(ow).flags & (uint)(512)) != 0u)))
             {
                 Trail.ReleaseOwner(s);
             }
             Mem.Set(Gv.FrameTime, saved);
-            if (((new SSlot(s).unk48 != 0) || ((new SSlot(s).unk24 != 0.0f) && (new SSlot(s).owner != 0u))))
+            if (((new SSlot(s).SegmentCount != 0) || ((new SSlot(s).LifeTime != 0.0f) && (new SSlot(s).OwnerPtr != 0u))))
             {
                 return 1;
             }
@@ -495,7 +495,7 @@ public static partial class Trail
                 uint n = 0u;
                 uint p = 0u;
                 uint q = 0u;
-                if ((new S438C(slot).unk48 < 2))
+                if ((new S438C(slot).SegmentCount < 2))
                 {
                     return;
                 }
@@ -503,7 +503,7 @@ public static partial class Trail
                 n = new E438C(e).next_;
                 if ((e != 0u))
                 {
-                    MathUtil.MtxMakeScale(_fp, new E438C(e).unk1C, new E438C(e).unk20, new E438C(e).unk24);
+                    MathUtil.MtxMakeScale(_fp, new E438C(e).Scale, new E438C(e).ScaleY, new E438C(e).ScaleZ);
                 }
                 else
                 {
@@ -524,10 +524,10 @@ public static partial class Trail
                 {
                     goto L_copy;
                 }
-                if (((new E438C(e).pos.x == new E438C(n).pos.x) && (new E438C(e).pos.y == new E438C(n).pos.y)))
+                if (((new E438C(e).Position.x == new E438C(n).Position.x) && (new E438C(e).Position.y == new E438C(n).Position.y)))
                 {
                     L_again: ;
-                    if ((new E438C(p).pos.z == new E438C(q).pos.z))
+                    if ((new E438C(p).Position.z == new E438C(q).Position.z))
                     {
                         p = q;
                         q = new E438C(q).next_;
@@ -539,7 +539,7 @@ public static partial class Trail
                         {
                             goto L_check;
                         }
-                        if (((new E438C(p).pos.x == new E438C(q).pos.x) && (new E438C(p).pos.y == new E438C(q).pos.y)))
+                        if (((new E438C(p).Position.x == new E438C(q).Position.x) && (new E438C(p).Position.y == new E438C(q).Position.y)))
                         {
                             goto L_again;
                         }
@@ -557,11 +557,11 @@ public static partial class Trail
                 Trail.BuildFacingBasis(p, q, arg, _fp);
                 goto L_next;
                 L_copy: ;
-                new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
-                new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
-                new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
+                new Vec3f((_fp + 48u)).x_Set(new E438C(e).Position.x);
+                new Vec3f((_fp + 48u)).y_Set(new E438C(e).Position.y);
+                new Vec3f((_fp + 48u)).z_Set(new E438C(e).Position.z);
                 L_next: ;
-                MathUtil.MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
+                MathUtil.MtxFloatToFixed(_fp, (new E438C(e).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                 e = n;
                 n = new E438C(e).next_;
                 if ((e != 0u))
@@ -569,10 +569,10 @@ public static partial class Trail
                     goto L_loop;
                 }
                 L_tail: ;
-                new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
-                new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
-                new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
-                MathUtil.MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
+                new Vec3f((_fp + 48u)).x_Set(new E438C(e).Position.x);
+                new Vec3f((_fp + 48u)).y_Set(new E438C(e).Position.y);
+                new Vec3f((_fp + 48u)).z_Set(new E438C(e).Position.z);
+                MathUtil.MtxFloatToFixed(_fp, (new E438C(e).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
             }
         }
         finally { Stack.Free(60); }
@@ -596,14 +596,14 @@ public static partial class Trail
                 }
                 MathUtil.MtxScaleRows(_fp, k, k, k);
                 MathUtil.MtxClampFixedRange(_fp);
-                MathUtil.MtxGetTranslationVec(_fp, new SEnt(e).m10.P);
-                if (((new SSlot(slot).flags & (uint)(4)) != 0u))
+                MathUtil.MtxGetTranslationVec(_fp, new SEnt(e).Position.P);
+                if (((new SSlot(slot).Flags & (uint)(4)) != 0u))
                 {
-                    MathUtil.MtxGetScale(_fp, new SEnt(e).m1C.P);
+                    MathUtil.MtxGetScale(_fp, new SEnt(e).Scale.P);
                 }
                 else
                 {
-                    MathUtil.MtxFloatToFixed(_fp, (new SEnt(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
+                    MathUtil.MtxFloatToFixed(_fp, (new SEnt(e).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                 }
             }
         }
@@ -631,7 +631,7 @@ public static partial class Trail
                 {
                     e = new SSlot(slot).list_;
                     changed = 0;
-                    new SSlot(slot).unk4C_Set(0.0f);
+                    new SSlot(slot).TotalLength_Set(0.0f);
                     if ((e == 0u))
                     {
                         goto L_done;
@@ -639,7 +639,7 @@ public static partial class Trail
                     L_loop: ;
                     {
                         {
-                            act = new SEnt(e).unkB0;
+                            act = new SEnt(e).OwnerPtr;
                             if ((act != 0u))
                             {
                                 if ((act == (uint)((-1))))
@@ -654,22 +654,22 @@ public static partial class Trail
                                         dst = (uint)(dst + (uint)(16 * 1));
                                     }
                                     while ((src != (t + (uint)104)));
-                                    new SEnt(e).unkB0_Set(0u);
+                                    new SEnt(e).OwnerPtr_Set(0u);
                                 }
                                 else
                                 {
                                     func_002A453C_Attach453C(slot, e, act);
                                 }
                                 changed = 1;
-                                new SEnt(e).unk8_Set(new SSlot(slot).shape.unk8);
+                                new SEnt(e).Width_8_Set(new SSlot(slot).DefPtr.unk8);
                             }
                             pv = new SEnt(e).prev_;
                             if ((pv != 0u))
                             {
-                                Vec.Sub(_fp, new SEnt(e).m10.P, new SEnt(pv).m10.P);
+                                Vec.Sub(_fp, new SEnt(e).Position.P, new SEnt(pv).Position.P);
                                 d = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
-                                new SEnt(pv).unkAC_Set(d);
-                                new SSlot(slot).unk4C_Set((new SSlot(slot).unk4C + d));
+                                new SEnt(pv).Length_Set(d);
+                                new SSlot(slot).TotalLength_Set((new SSlot(slot).TotalLength + d));
                             }
                             e = new SEnt(e).next_;
                         }
@@ -681,7 +681,7 @@ public static partial class Trail
                     L_done: ;
                     if ((changed != 0))
                     {
-                        new SSlot(slot).unk24_Set(new SSlot(slot).shape.unk0);
+                        new SSlot(slot).LifeTime_Set(new SSlot(slot).DefPtr.unk0);
                     }
                 }
                 while ((0 != 0));
@@ -715,52 +715,52 @@ public static partial class Trail
                 float k = 0f;
                 info = new S8Emit(e).info_;
                 total = 0;
-                if (((int)(new S8Info(info).unk1C) == 2))
+                if (((int)(new S8Info(info).TexCoordMode) == 2))
                 {
-                    if ((new S8Emit(e).unk4C > 0.0f))
+                    if ((new S8Emit(e).TotalLength > 0.0f))
                     {
                         acc = 0.0f;
                         for (part = new S8Emit(e).parts_; (part != 0u); part = new S8Part(part).next_)
                         {
-                            new S8Part(part).unkA8_Set((acc / new S8Emit(e).unk4C));
+                            new S8Part(part).unkA8_Set((acc / new S8Emit(e).TotalLength));
                             acc = (float)((float)(acc) + new S8Part(part).unkAC);
                         }
                     }
                 }
-                handle = (int)(Material.Lookup(new S8Emit(e).unk14.P, (uint)((-1)), default(uint), default(uint)));
+                handle = (int)(Material.Lookup(new S8Emit(e).MaterialName.P, (uint)((-1)), default(uint), default(uint)));
                 if ((handle != 0))
                 {
                     Material.GetFrameInfo((uint)(handle), _fp);
                     new S8Sp((_fp + 16u)).unk4__Set((new S8Emit(e).info_ + (uint)36));
-                    new S8Sp((_fp + 16u)).unk0_Set((int)(new S8Emit(e).info.unk23));
+                    new S8Sp((_fp + 16u)).FrameCount_0_Set((int)(new S8Emit(e).DefPtr.SegmentCount_23));
                     qp = _fp;
-                    if (((new S8Emit(e).flags & (uint)(2)) != 0u))
+                    if (((new S8Emit(e).Flags & (uint)(2)) != 0u))
                     {
-                        new S8Sp((_fp + 16u)).unk8_Set(new S8Emit(e).unkC);
-                        new S8Sp((_fp + 16u)).unkC_Set(new S8Emit(e).unk10);
+                        new S8Sp((_fp + 16u)).FrameA_8_Set(new S8Emit(e).Color1_C);
+                        new S8Sp((_fp + 16u)).FrameB_C_Set(new S8Emit(e).Color2_10);
                     }
                     else
                     {
-                        new S8Sp((_fp + 16u)).unk8_Set(new S8Emit(e).unkC);
-                        new S8Sp((_fp + 16u)).unkC_Set(new S8Emit(e).unkC);
+                        new S8Sp((_fp + 16u)).FrameA_8_Set(new S8Emit(e).Color1_C);
+                        new S8Sp((_fp + 16u)).FrameB_C_Set(new S8Emit(e).Color1_C);
                     }
-                    new S8Sp((_fp + 16u)).unk10_Set(((float)(new S8Emit(e).info.unk21) * Mem.F32(0x800CAF88u)));
-                    new S8Sp((_fp + 16u)).unk14_Set(((float)(new S8Emit(e).info.unk22) * Mem.F32(0x800CAF88u)));
+                    new S8Sp((_fp + 16u)).ScrollU_10_Set(((float)(new S8Emit(e).DefPtr.StartWidth_21) * Mem.F32(0x800CAF88u)));
+                    new S8Sp((_fp + 16u)).ScrollV_14_Set(((float)(new S8Emit(e).DefPtr.EndWidth_22) * Mem.F32(0x800CAF88u)));
                     if ((qp != 0u))
                     {
-                        new S8Sp((_fp + 16u)).unk18_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)2))) + 5))));
-                        new S8Sp((_fp + 16u)).unk18_Set(((new S8Sp((_fp + 16u)).unk18 * (float)(new S8Emit(e).info.unk1D)) - Mem.F32(0x800CAF8Cu)));
-                        new S8Sp((_fp + 16u)).unk1C_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)3))) + 5))));
-                        new S8Sp((_fp + 16u)).unk20_Set((Mem.F32(0x800CAF90u) / ((float)(new S8Sp((_fp + 16u)).unk0) - Mem.F32(0x800CAF90u))));
+                        new S8Sp((_fp + 16u)).TexWidth_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)2))) + 5))));
+                        new S8Sp((_fp + 16u)).TexWidth_Set(((new S8Sp((_fp + 16u)).TexWidth * (float)(new S8Emit(e).DefPtr.TexRepeat_1D)) - Mem.F32(0x800CAF8Cu)));
+                        new S8Sp((_fp + 16u)).TexHeight_Set((float)((1 << (int)((int)(Mem.U8((new S8Q(qp).p_ + (uint)3))) + 5))));
+                        new S8Sp((_fp + 16u)).FrameStep_20_Set((Mem.F32(0x800CAF90u) / ((float)(new S8Sp((_fp + 16u)).FrameCount_0) - Mem.F32(0x800CAF90u))));
                     }
                     k = Mem.F32(0x800CAF94u);
-                    f = new S8Emit(e).unk28;
+                    f = new S8Emit(e).TexScroll_28;
                     if ((k <= f))
                     {
                         do
                         {
                             f = (float)((float)(f) - k);
-                            new S8Emit(e).unk28_Set(f);
+                            new S8Emit(e).TexScroll_28_Set(f);
                         }
                         while ((k <= f));
                     }
@@ -776,7 +776,7 @@ public static partial class Trail
                         if ((new S8Ctx(c).unk120 != 0))
                         {
                             {
-                                uint w = (((((uint)((((int)(new S8Info(info).unk19) + (int)(new S8Info(info).unk1A)) + (int)(new S8Info(info).unk1B))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
+                                uint w = (((((uint)((((int)(new S8Info(info).EnvColorR) + (int)(new S8Info(info).EnvColorG)) + (int)(new S8Info(info).EnvColorB))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
                                 {
                                     uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new S8Dl(_g_2).w0_Set(4211081216u);
@@ -784,7 +784,7 @@ public static partial class Trail
                                 }
                             }
                             {
-                                uint w_2 = (((((uint)((((int)(new S8Info(info).unk16) + (int)(new S8Info(info).unk17)) + (int)(new S8Info(info).unk18))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
+                                uint w_2 = (((((uint)((((int)(new S8Info(info).PrimColorR) + (int)(new S8Info(info).PrimColorG)) + (int)(new S8Info(info).PrimColorB))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
                                 {
                                     uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new S8Dl(_g_3).w0_Set(4194304000u);
@@ -797,12 +797,12 @@ public static partial class Trail
                             {
                                 uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_4).w0_Set(4211081216u);
-                                new S8Dl(_g_4).w1_Set((uint)((((((int)(new S8Info(info).unk19) << (int)24) | ((int)(new S8Info(info).unk1A) << (int)16)) | ((int)(new S8Info(info).unk1B) << (int)8)) | 255)));
+                                new S8Dl(_g_4).w1_Set((uint)((((((int)(new S8Info(info).EnvColorR) << (int)24) | ((int)(new S8Info(info).EnvColorG) << (int)16)) | ((int)(new S8Info(info).EnvColorB) << (int)8)) | 255)));
                             }
                             {
                                 uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_5).w0_Set(4194304000u);
-                                new S8Dl(_g_5).w1_Set((uint)((((((int)(new S8Info(info).unk16) << (int)24) | ((int)(new S8Info(info).unk17) << (int)16)) | ((int)(new S8Info(info).unk18) << (int)8)) | 255)));
+                                new S8Dl(_g_5).w1_Set((uint)((((((int)(new S8Info(info).PrimColorR) << (int)24) | ((int)(new S8Info(info).PrimColorG) << (int)16)) | ((int)(new S8Info(info).PrimColorB) << (int)8)) | 255)));
                             }
                         }
                         break;
@@ -813,23 +813,23 @@ public static partial class Trail
                     }
                     Gfx.SetOtherModeL((uint)(13));
                     n1 = new S8Emit(e).nodes_;
-                    id = (int)(new S8Info(info).unk23);
+                    id = (int)(new S8Info(info).SegmentCount_23);
                     n2 = new S8Node(n1).next_;
-                    Texture.EmitLoad_00295FB4(new S8Emit(e).unk14.P, (uint)(handle), Trail.GetTextureFrame(e, info, _fp), 0, 65535, 65535, 0, 0, 0);
+                    Texture.EmitLoad_00295FB4(new S8Emit(e).MaterialName.P, (uint)(handle), Trail.GetTextureFrame(e, info, _fp), 0, 65535, 65535, 0, 0, 0);
                     idm1 = (id - 1);
                     {
                         uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new S8Dl(_g_6).w0_Set(3661103107u);
-                        new S8Dl(_g_6).w1_Set((uint)((new S8Node(n1).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
+                        new S8Dl(_g_6).w1_Set((uint)((new S8Node(n1).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                     }
-                    while ((((((n1 != 0u) && (n2 != 0u)) && (new S8Node(n1).unk8 > 0.0f)) && (new S8Node(n2).unk8 > 0.0f)) && ((total + (id * 2)) < 32)))
+                    while ((((((n1 != 0u) && (n2 != 0u)) && (new S8Node(n1).Width_8 > 0.0f)) && (new S8Node(n2).Width_8 > 0.0f)) && ((total + (id * 2)) < 32)))
                     {
                         r = (int)(Trail.AllocVertices((uint)(arg0), id));
                         if ((r == 0))
                         {
                             break;
                         }
-                        Trail.BuildVerticesTextured(e, n1, (uint)(r), new S8Node(n1).unkA8, (_fp + 16u));
+                        Trail.BuildVerticesTextured(e, n1, (uint)(r), new S8Node(n1).TexV, (_fp + 16u));
                         total = (int)((int)(total) + id);
                         {
                             uint wt = 0u;
@@ -842,15 +842,15 @@ public static partial class Trail
                         {
                             uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new S8Dl(_g_8).w0_Set(3661103107u);
-                            new S8Dl(_g_8).w1_Set((uint)((new S8Node(n2).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
+                            new S8Dl(_g_8).w1_Set((uint)((new S8Node(n2).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                         }
                         r = (int)(Trail.AllocVertices((uint)(arg0), id));
                         if ((r == 0))
                         {
                             break;
                         }
-                        f = new S8Node(n2).unkA8;
-                        while ((new S8Node(n1).unkA8 < f))
+                        f = new S8Node(n2).TexV;
+                        while ((new S8Node(n1).TexV < f))
                         {
                             f = (float)((float)(f) - k);
                         }
@@ -874,7 +874,7 @@ public static partial class Trail
                                 new S8Dl(_g_10).w1_Set(((t0 | (uint)(((((a + 1) * 2) & 255) << (int)8))) | (uint)((((i + 1) * 2) & 255))));
                             }
                         }
-                        if (((int)(new S8Emit(e).info.unk12) != 0))
+                        if (((int)(new S8Emit(e).DefPtr.unk12) != 0))
                         {
                             uint t = (uint)((((i * 2) & 255) << (int)16));
                             {
@@ -910,22 +910,22 @@ public static partial class Trail
                 int i = 0;
                 int r = 0;
                 new R4Sp(p).unk4__Set((new R4Emit(e).info_ + (uint)36));
-                new R4Sp(_fp).unk0_Set((int)(new R4Emit(e).info.unk23));
-                if (((new R4Emit(e).flags & (uint)(2)) != 0u))
+                new R4Sp(_fp).FrameCount_0_Set((int)(new R4Emit(e).DefPtr.SegmentCount_23));
+                if (((new R4Emit(e).Flags & (uint)(2)) != 0u))
                 {
-                    new R4Sp(p).unk8_Set(new R4Emit(e).unkC);
-                    new R4Sp(p).unkC_Set(new R4Emit(e).unk10);
+                    new R4Sp(p).FrameA_8_Set(new R4Emit(e).Color1_C);
+                    new R4Sp(p).FrameB_C_Set(new R4Emit(e).Color2_10);
                 }
                 else
                 {
-                    new R4Sp(p).unk8_Set(new R4Emit(e).unkC);
-                    new R4Sp(p).unkC_Set(new R4Emit(e).unkC);
+                    new R4Sp(p).FrameA_8_Set(new R4Emit(e).Color1_C);
+                    new R4Sp(p).FrameB_C_Set(new R4Emit(e).Color1_C);
                 }
-                new R4Sp(p).unk10_Set(((float)(new R4Emit(e).info.unk21) * Mem.F32(0x800CAF98u)));
-                new R4Sp(p).unk14_Set(((float)(new R4Emit(e).info.unk22) * Mem.F32(0x800CAF98u)));
+                new R4Sp(p).ScrollU_10_Set(((float)(new R4Emit(e).DefPtr.StartWidth_21) * Mem.F32(0x800CAF98u)));
+                new R4Sp(p).ScrollV_14_Set(((float)(new R4Emit(e).DefPtr.EndWidth_22) * Mem.F32(0x800CAF98u)));
                 n1 = new R4Emit(e).nodes_;
                 n2 = new R4Node(n1).next_;
-                id = (int)(new R4Emit(e).info.unk23);
+                id = (int)(new R4Emit(e).DefPtr.SegmentCount_23);
                 {
                     uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3661103107u);
@@ -977,7 +977,7 @@ public static partial class Trail
                             new DlCmd(_g_5).w1_Set(((t0 | (uint)(((((a + 1) * 2) & 255) << (int)8))) | (uint)((((i + 1) * 2) & 255))));
                         }
                     }
-                    if (((int)(new R4Emit(e).info.unk12) != 0))
+                    if (((int)(new R4Emit(e).DefPtr.unk12) != 0))
                     {
                         uint t = (uint)((((i * 2) & 255) << (int)16));
                         {
@@ -1006,14 +1006,14 @@ public static partial class Trail
                 uint p = _fp;
                 int n = 0;
                 int two = 0;
-                Mem.Set(p, (int)(new Obj5124(o).unk30));
+                Mem.Set(p, (int)(new Obj5124(o).Age));
                 switch ((int)(new Def5124(d).mode))
                 {
                 case 0:
                     if ((Mem.S32(p) >= (Mem.S32(lenp) - 1)))
                     {
                         Mem.Set(p, (Mem.S32(lenp) - 1));
-                        new Obj5124(o).unk2C_Set((float)(Mem.S32(lenp)));
+                        new Obj5124(o).EndMark_2C_Set((float)(Mem.S32(lenp)));
                     }
                     break;
                 case 1:
@@ -1048,11 +1048,11 @@ public static partial class Trail
                     Mem.Set(p, (RandomGen.Next() % Mem.S32(lenp)));
                     break;
                 case 5:
-                    if ((new Obj5124(o).unk38 == (-1)))
+                    if ((new Obj5124(o).RandomFrame == (-1)))
                     {
-                        new Obj5124(o).unk38_Set((RandomGen.Next() % Mem.S32(lenp)));
+                        new Obj5124(o).RandomFrame_Set((RandomGen.Next() % Mem.S32(lenp)));
                     }
-                    Mem.Set(p, new Obj5124(o).unk38);
+                    Mem.Set(p, new Obj5124(o).RandomFrame);
                     break;
                 }
                 return Mem.S32(_fp);
@@ -1420,19 +1420,19 @@ public static partial class Trail
             }
             for (e = new Rend(r).ents_; (e != 0u); e = new REnt(e).next_)
             {
-                if ((new REnt(e).unk34 < 0))
+                if ((new REnt(e).TextureId < 0))
                 {
-                    if (((new REnt(e).flags & (uint)(8)) != 0u))
+                    if (((new REnt(e).Flags & (uint)(8)) != 0u))
                     {
                         Trail.FollowOwner(e);
                     }
-                    if (((new REnt(e).flags & (uint)(4)) != 0u))
+                    if (((new REnt(e).Flags & (uint)(4)) != 0u))
                     {
                         Trail.OrientSegments(e, (uint)(arg));
                     }
-                    if ((new REnt(e).unk48 >= 2))
+                    if ((new REnt(e).SegmentCount >= 2))
                     {
-                        if ((new REnt(e).unk34 >= 0))
+                        if ((new REnt(e).TextureId >= 0))
                         {
                             Trail.DrawTextured((int)(r), e, (uint)(arg));
                         }
@@ -1445,19 +1445,19 @@ public static partial class Trail
             }
             for (e = new Rend(r).ents_; (e != 0u); e = new REnt(e).next_)
             {
-                if ((new REnt(e).unk34 > 0))
+                if ((new REnt(e).TextureId > 0))
                 {
-                    if (((new REnt(e).flags & (uint)(8)) != 0u))
+                    if (((new REnt(e).Flags & (uint)(8)) != 0u))
                     {
                         Trail.FollowOwner(e);
                     }
-                    if (((new REnt(e).flags & (uint)(4)) != 0u))
+                    if (((new REnt(e).Flags & (uint)(4)) != 0u))
                     {
                         Trail.OrientSegments(e, (uint)(arg));
                     }
-                    if ((new REnt(e).unk48 >= 2))
+                    if ((new REnt(e).SegmentCount >= 2))
                     {
-                        if ((new REnt(e).unk34 >= 0))
+                        if ((new REnt(e).TextureId >= 0))
                         {
                             Trail.DrawTextured((int)(r), e, (uint)(arg));
                         }
@@ -1649,25 +1649,25 @@ public static partial class Trail
                 {
                     if ((tt != 0u))
                     {
-                        if (((new Slot697C(s).flags & (uint)(1)) != 0u))
+                        if (((new Slot697C(s).Flags & (uint)(1)) != 0u))
                         {
-                            if (((int)(new Tgt697C(tt).unk13B) != 0))
+                            if (((int)(new Tgt697C(tt).TrailCount_13B) != 0))
                             {
-                                new Tgt697C(tt).unk13B_Set((byte)(((int)(new Tgt697C(tt).unk13B) - 1)));
+                                new Tgt697C(tt).TrailCount_13B_Set((byte)(((int)(new Tgt697C(tt).TrailCount_13B) - 1)));
                             }
                         }
-                        if (((new Slot697C(s).flags & (uint)(2)) != 0u))
+                        if (((new Slot697C(s).Flags & (uint)(2)) != 0u))
                         {
-                            if (((int)(new Slot697C(s).target.unk1D9) != 0))
+                            if (((int)(new Slot697C(s).OwnerPtr.unk1D9) != 0))
                             {
-                                new Slot697C(s).target.unk1D9_Set((byte)(((int)(new Slot697C(s).target.unk1D9) - 1)));
+                                new Slot697C(s).OwnerPtr.unk1D9_Set((byte)(((int)(new Slot697C(s).OwnerPtr.unk1D9) - 1)));
                             }
                         }
                     }
                     new Slot697C(s).target__Set(0u);
-                    if ((new Slot697C(s).unk24 < new Slot697C(s).cfg.unk4))
+                    if ((new Slot697C(s).LifeTime < new Slot697C(s).DefPtr.unk4))
                     {
-                        new Slot697C(s).unk24_Set(new Slot697C(s).cfg.unk4);
+                        new Slot697C(s).LifeTime_Set(new Slot697C(s).DefPtr.unk4);
                     }
                 }
             }
@@ -1694,25 +1694,25 @@ public static partial class Trail
                         t = new Slot697C(s).target_;
                         if ((t != 0u))
                         {
-                            if (((new Slot697C(s).flags & (uint)(1)) != 0u))
+                            if (((new Slot697C(s).Flags & (uint)(1)) != 0u))
                             {
-                                if (((int)(new Tgt697C(t).unk13B) != 0))
+                                if (((int)(new Tgt697C(t).TrailCount_13B) != 0))
                                 {
-                                    new Tgt697C(t).unk13B_Set((byte)(((int)(new Tgt697C(t).unk13B) - 1)));
+                                    new Tgt697C(t).TrailCount_13B_Set((byte)(((int)(new Tgt697C(t).TrailCount_13B) - 1)));
                                 }
                             }
-                            if (((new Slot697C(s).flags & (uint)(2)) != 0u))
+                            if (((new Slot697C(s).Flags & (uint)(2)) != 0u))
                             {
-                                if (((int)(new Slot697C(s).target.unk1D9) != 0))
+                                if (((int)(new Slot697C(s).OwnerPtr.unk1D9) != 0))
                                 {
-                                    new Slot697C(s).target.unk1D9_Set((byte)(((int)(new Slot697C(s).target.unk1D9) - 1)));
+                                    new Slot697C(s).OwnerPtr.unk1D9_Set((byte)(((int)(new Slot697C(s).OwnerPtr.unk1D9) - 1)));
                                 }
                             }
                         }
                         new Slot697C(s).target__Set(0u);
-                        if ((new Slot697C(s).unk24 < new Slot697C(s).cfg.unk4))
+                        if ((new Slot697C(s).LifeTime < new Slot697C(s).DefPtr.unk4))
                         {
-                            new Slot697C(s).unk24_Set(new Slot697C(s).cfg.unk4);
+                            new Slot697C(s).LifeTime_Set(new Slot697C(s).DefPtr.unk4);
                         }
                         Pool.ReturnToFree((o + (uint)29980), s);
                     }
@@ -1749,25 +1749,25 @@ public static partial class Trail
             if (Dbg.On) Dbg.Enter("func_002A6FE0", (uint)e);
             if ((new Emit(e).owner_ != 0u))
             {
-                if (((new Emit(e).flags & (uint)(1)) != 0u))
+                if (((new Emit(e).Flags & (uint)(1)) != 0u))
                 {
-                    if (((int)(new Emit(e).owner.unk13B) != 0))
+                    if (((int)(new Emit(e).OwnerPtr.unk13B) != 0))
                     {
-                        new Emit(e).owner.unk13B_Set((byte)(new Emit(e).owner.unk13B - 1));
+                        new Emit(e).OwnerPtr.unk13B_Set((byte)(new Emit(e).OwnerPtr.unk13B - 1));
                     }
                 }
-                if (((new Emit(e).flags & (uint)(2)) != 0u))
+                if (((new Emit(e).Flags & (uint)(2)) != 0u))
                 {
-                    if (((int)(new Emit(e).owner.unk1D9) != 0))
+                    if (((int)(new Emit(e).OwnerPtr.unk1D9) != 0))
                     {
-                        new Emit(e).owner.unk1D9_Set((byte)(new Emit(e).owner.unk1D9 - 1));
+                        new Emit(e).OwnerPtr.unk1D9_Set((byte)(new Emit(e).OwnerPtr.unk1D9 - 1));
                     }
                 }
             }
             new Emit(e).owner__Set(0u);
-            if ((new Emit(e).unk24 < Mem.F32((new Emit(e).def_ + (uint)4))))
+            if ((new Emit(e).LifeTime < Mem.F32((new Emit(e).def_ + (uint)4))))
             {
-                new Emit(e).unk24_Set(Mem.F32((new Emit(e).def_ + (uint)4)));
+                new Emit(e).LifeTime_Set(Mem.F32((new Emit(e).def_ + (uint)4)));
             }
         }
     }
@@ -1780,25 +1780,25 @@ public static partial class Trail
             if (Dbg.On) Dbg.Enter("func_002A7058", (uint)e, (uint)e2, (uint)o);
             float t = 0f;
             new EmitOut(o).unk4_Set((int)((new Emit(e).def_ + 36u)));
-            new EmitOut(o).unk0_Set((int)(new Emit(e).def.unk23));
-            if (((new Emit(e).flags & (uint)(2)) != 0u))
+            new EmitOut(o).unk0_Set((int)(new Emit(e).DefPtr.SegmentCount_23));
+            if (((new Emit(e).Flags & (uint)(2)) != 0u))
             {
-                new EmitOut(o).unk8_Set(new Emit(e).unkC);
-                new EmitOut(o).unkC_Set(new Emit(e).unk10);
+                new EmitOut(o).unk8_Set(new Emit(e).Color1_C);
+                new EmitOut(o).unkC_Set(new Emit(e).Color2_10);
             }
             else
             {
-                new EmitOut(o).unk8_Set(new Emit(e).unkC);
-                new EmitOut(o).unkC_Set(new Emit(e).unkC);
+                new EmitOut(o).unk8_Set(new Emit(e).Color1_C);
+                new EmitOut(o).unkC_Set(new Emit(e).Color1_C);
             }
-            new EmitOut(o).unk10_Set(((float)((int)(new Emit(e).def.unk21)) * Mem.F32(0x800CB03Cu)));
-            new EmitOut(o).unk14_Set(((float)((int)(new Emit(e).def.unk22)) * Mem.F32(0x800CB03Cu)));
+            new EmitOut(o).unk10_Set(((float)((int)(new Emit(e).DefPtr.StartWidth_21)) * Mem.F32(0x800CB03Cu)));
+            new EmitOut(o).unk14_Set(((float)((int)(new Emit(e).DefPtr.EndWidth_22)) * Mem.F32(0x800CB03Cu)));
             if ((e2 != 0u))
             {
-                t = (float)((1 << (int)((int)(new Emit(e2).def.unk2) + 5)));
+                t = (float)((1 << (int)((int)(new Emit(e2).DefPtr.TexWidthLog2) + 5)));
                 new EmitOut(o).unk18_Set(t);
-                new EmitOut(o).unk18_Set(((t * (float)((int)(new Emit(e).def.unk1D))) - Mem.F32(0x800CB040u)));
-                new EmitOut(o).unk1C_Set((float)((1 << (int)((int)(new Emit(e2).def.unk3) + 5))));
+                new EmitOut(o).unk18_Set(((t * (float)((int)(new Emit(e).DefPtr.TexRepeat_1D))) - Mem.F32(0x800CB040u)));
+                new EmitOut(o).unk1C_Set((float)((1 << (int)((int)(new Emit(e2).DefPtr.TexHeightLog2) + 5))));
                 new EmitOut(o).unk20_Set((Mem.F32(0x800CB044u) / ((float)(new EmitOut(o).unk0) - Mem.F32(0x800CB044u))));
             }
         }
@@ -1820,7 +1820,7 @@ public static partial class Trail
                 {
                     if ((o == (uint)((-1))))
                     {
-                        Mem.Copy((new EmitNode(n).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64)), (new EmitNode(n).mtx.P + (uint)((Mem.S32(Gv.FrameParity) ^ 1) * 64)), 64);
+                        Mem.Copy((new EmitNode(n).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64)), (new EmitNode(n).Matrices.P + (uint)((Mem.S32(Gv.FrameParity) ^ 1) * 64)), 64);
                         new EmitNode(n).unkB0__Set(0u);
                     }
                     else
@@ -1833,17 +1833,17 @@ public static partial class Trail
                         }
                         MathUtil.MtxScaleRows(_fp, s, s, s);
                         MathUtil.MtxClampFixedRange(_fp);
-                        MathUtil.MtxGetTranslationVec(_fp, new EmitNode(n).v10.P);
-                        if (((new Emit(e).flags & (uint)(4)) != 0u))
+                        MathUtil.MtxGetTranslationVec(_fp, new EmitNode(n).Position.P);
+                        if (((new Emit(e).Flags & (uint)(4)) != 0u))
                         {
-                            MathUtil.MtxGetScale(_fp, new EmitNode(n).v1C.P);
+                            MathUtil.MtxGetScale(_fp, new EmitNode(n).Scale.P);
                         }
                         else
                         {
-                            MathUtil.MtxFloatToFixed(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
+                            MathUtil.MtxFloatToFixed(_fp, (new EmitNode(n).Matrices.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                         }
                     }
-                    new EmitNode(n).unk8_Set(Mem.F32((new Emit(e).def_ + (uint)8)));
+                    new EmitNode(n).Width_8_Set(Mem.F32((new Emit(e).def_ + (uint)8)));
                 }
             }
         }
@@ -1858,15 +1858,15 @@ public static partial class Trail
             if (Dbg.On) Dbg.Enter("func_002A72AC", (uint)e);
             uint n = 0u;
             float acc = 0f;
-            if ((new Emit(e).unk4C > 0.0f))
+            if ((new Emit(e).TotalLength > 0.0f))
             {
-                n = new Emit(e).list_;
+                n = new Emit(e).SegmentList;
                 acc = 0.0f;
                 while ((n != 0u))
                 {
-                    new EmitNode(n).unkA8_Set((acc / new Emit(e).unk4C));
-                    acc = (float)((float)(acc) + new EmitNode(n).unkAC);
-                    n = new EmitNode(n).next_;
+                    new EmitNode(n).TexV_Set((acc / new Emit(e).TotalLength));
+                    acc = (float)((float)(acc) + new EmitNode(n).Length);
+                    n = new EmitNode(n).Next;
                 }
             }
         }
@@ -1878,17 +1878,17 @@ public static partial class Trail
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A72F4", (uint)a, (uint)e, (uint)c);
-            if (((new Emit(e).flags & (uint)(8)) != 0u))
+            if (((new Emit(e).Flags & (uint)(8)) != 0u))
             {
                 Trail.FollowOwner(e);
             }
-            if (((new Emit(e).flags & (uint)(4)) != 0u))
+            if (((new Emit(e).Flags & (uint)(4)) != 0u))
             {
                 Trail.OrientSegments(e, (uint)(c));
             }
-            if ((new Emit(e).unk48 >= 2))
+            if ((new Emit(e).SegmentCount >= 2))
             {
-                if ((new Emit(e).unk34 >= 0))
+                if ((new Emit(e).TextureId >= 0))
                 {
                     Trail.DrawTextured(a, e, (uint)(c));
                 }
@@ -1910,7 +1910,7 @@ public static partial class Trail
             {
                 if (Dbg.On) Dbg.Enter("func_002A7394", (uint)a, (uint)e, (uint)own, (uint)d);
                 float s = 0f;
-                if (((new Emit(e).owner_ == own) && (new Emit(e).unk24 > 0.0f)))
+                if (((new Emit(e).owner_ == own) && (new Emit(e).LifeTime > 0.0f)))
                 {
                     MathUtil.MtxFixedToFloatAffine(_fp, (uint)(d), default(uint), default(uint));
                     s = Mem.F32(0x800CB050u);
@@ -1951,17 +1951,17 @@ public static partial class Trail
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A7480_upd", (uint)m, (uint)e, (uint)c);
-            if (((new Emit(e).flags & (uint)(8)) != 0u))
+            if (((new Emit(e).Flags & (uint)(8)) != 0u))
             {
                 Trail.FollowOwner(e);
             }
-            if (((new Emit(e).flags & (uint)(4)) != 0u))
+            if (((new Emit(e).Flags & (uint)(4)) != 0u))
             {
                 Trail.OrientSegments(e, (uint)(c));
             }
-            if ((new Emit(e).unk48 >= 2))
+            if ((new Emit(e).SegmentCount >= 2))
             {
-                if ((new Emit(e).unk34 >= 0))
+                if ((new Emit(e).TextureId >= 0))
                 {
                     Trail.DrawTextured((int)(m), e, (uint)(c));
                 }
@@ -1981,14 +1981,14 @@ public static partial class Trail
             uint e = 0u;
             for (e = new EmitMgr(m).head_; (e != 0u); e = new Emit(e).next_)
             {
-                if ((new Emit(e).unk34 < 0))
+                if ((new Emit(e).TextureId < 0))
                 {
                     func_002A7480_upd(m, e, c);
                 }
             }
             for (e = new EmitMgr(m).head_; (e != 0u); e = new Emit(e).next_)
             {
-                if ((new Emit(e).unk34 > 0))
+                if ((new Emit(e).TextureId > 0))
                 {
                     func_002A7480_upd(m, e, c);
                 }

@@ -270,9 +270,9 @@ public static partial class Destructible
         {
             if (Dbg.On) Dbg.Enter("func_00205628", (uint)obj, (uint)state, (uint)evt);
             new B01Actor(obj).PartMask_Set((1 << (int)new ActorStateView(state).ClassVar_124));
-            if ((new B01Evt(evt).unk0 != 0))
+            if ((new B01Evt(evt).DrawsModel_0 != 0))
             {
-                Model.QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).BoneMatricesPtr, 1, (int)((new B01Actor(obj).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorStateView(state).ClassVar_128.P));
+                Model.QueueBatched((uint)(new B01Evt(evt).ModelPtr), new B01Actor(obj).BoneMatricesPtr, 1, (int)((new B01Actor(obj).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorStateView(state).ClassVar_128.P));
             }
         }
     }

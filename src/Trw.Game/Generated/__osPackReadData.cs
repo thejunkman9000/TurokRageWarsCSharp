@@ -21,18 +21,18 @@ public static partial class Game
                     Mem.Set((Gv.__osContPifRam + (uint)(i * 4)), (uint)(0));
                 }
                 Mem.Set(0x8014D4ACu, (uint)(1));
-                new OSContPackedRead(_fp).unk00_Set((byte)(255));
-                new OSContPackedRead(_fp).unk01_Set((byte)(1));
-                new OSContPackedRead(_fp).unk02_Set((byte)(4));
-                new OSContPackedRead(_fp).unk03_Set((byte)(1));
-                new OSContPackedRead(_fp).button_Set((ushort)(65535));
-                new OSContPackedRead(_fp).rawStickX_Set((sbyte)((-1)));
-                new OSContPackedRead(_fp).rawStickY_Set((sbyte)((-1)));
+                new OSContPackedRead(_fp).Dummy_Set((byte)(255));
+                new OSContPackedRead(_fp).TxSize_Set((byte)(1));
+                new OSContPackedRead(_fp).RxSize_Set((byte)(4));
+                new OSContPackedRead(_fp).Command_Set((byte)(1));
+                new OSContPackedRead(_fp).Buttons_Set((ushort)(65535));
+                new OSContPackedRead(_fp).StickX_Set((sbyte)((-1)));
+                new OSContPackedRead(_fp).StickY_Set((sbyte)((-1)));
                 for (i = 0; (i < (int)(Mem.U8(Gv.__osMaxControllers))); ++i)
                 {
                     Mem.Copy(((pkt += 8u) - 8u), _fp, 8);
                 }
-                new OSContPackedRead(pkt).unk00_Set((byte)(254));
+                new OSContPackedRead(pkt).Dummy_Set((byte)(254));
             }
         }
         finally { Stack.Free(8); }

@@ -68,9 +68,9 @@ public static partial class PressStart
                 return 0;
             }
             Menu.EnableInput();
-            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4_Set((int)((int)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4) + c));
-            x = ((cosf(((float)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4) * 0.00499999989f)) * 100.0f) + 150.0f);
-            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f0.b10_Set((byte)(Cpu.TruncU32(x)));
+            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).PulseTimer_Set((int)((int)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).PulseTimer) + c));
+            x = ((cosf(((float)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).PulseTimer) * 0.00499999989f)) * 100.0f) + 150.0f);
+            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).PromptNodePtr.b10_Set((byte)(Cpu.TruncU32(x)));
             return 0;
         }
     }

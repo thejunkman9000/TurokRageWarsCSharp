@@ -46,21 +46,21 @@ public static partial class TitleScreen
             if (Dbg.On) Dbg.Enter("func_0041C21C");
             int i = 0;
             int r = 0;
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(0);
             for (i = 0; (i < 4); ++i)
             {
                 CPak.DetectPort(i);
                 r = CPak.GetStatus(i);
                 if ((r == (-1)))
                 {
-                    new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
+                    new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(1);
                     return;
                 }
                 if ((r >= 0))
                 {
                     if ((r == 0))
                     {
-                        new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
+                        new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(1);
                         return;
                     }
                 }
@@ -70,7 +70,7 @@ public static partial class TitleScreen
                     {
                         if ((r >= (-4)))
                         {
-                            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
+                            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(1);
                             return;
                         }
                     }
@@ -105,24 +105,24 @@ public static partial class TitleScreen
         {
             if (Dbg.On) Dbg.Enter("func_0041C32C", (uint)parent);
             Mem.Set(Gv.TitleScreen_PagePtr, ResourcePool.Malloc((uint)(44)));
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).parent_Set(parent);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w1_Set((int)(UiTree.FindNode((uint)(parent), (uint)(963), default(uint), default(uint))));
-            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w1), 1);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2_Set((int)(UiTree.FindNode((uint)(parent), (uint)(969), default(uint), default(uint))));
-            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2), 0);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w3_Set((int)(UiTree.FindNode((uint)(parent), (uint)(964), default(uint), default(uint))));
-            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w3), 0);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w4_Set((int)(UiTree.FindNode((uint)(parent), (uint)(965), default(uint), default(uint))));
-            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w4), 0);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14_Set(0);
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f18_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).RootNode_Set(parent);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node963Ptr_Set((int)(UiTree.FindNode((uint)(parent), (uint)(963), default(uint), default(uint))));
+            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node963Ptr), 1);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).PakDialogNode_Set((int)(UiTree.FindNode((uint)(parent), (uint)(969), default(uint), default(uint))));
+            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).PakDialogNode), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node964Ptr_Set((int)(UiTree.FindNode((uint)(parent), (uint)(964), default(uint), default(uint))));
+            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node964Ptr), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node965Ptr_Set((int)(UiTree.FindNode((uint)(parent), (uint)(965), default(uint), default(uint))));
+            UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).Node965Ptr), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).FrameCount_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).WaitFlag_18_Set(0);
             Video.RequestResolution(0);
             Menu.DisableInput();
             Mem.Set(Gv.PakMenu_BootPad, (-1));
             Mem.Set(0x80146D70u, 0);
             Game_InitCameras(Gv.GameCtx, 0, 0);
             Level.Load((Gv.GameCtx + (uint)968), (uint)(0), (uint)(0), default(uint));
-            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).HasPakProblem_Set(0);
             return 0;
         }
     }
@@ -149,9 +149,9 @@ public static partial class TitleScreen
             int n = 0;
             if ((Mem.S32(Gv.Video_ResChangeCountdown) < 2))
             {
-                a = new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f18;
-                n = (new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14 + 1);
-                new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14_Set(n);
+                a = new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).WaitFlag_18;
+                n = (new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).FrameCount + 1);
+                new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).FrameCount_Set(n);
                 if ((a == 0))
                 {
                     if ((n < 6))
@@ -197,7 +197,7 @@ public static partial class TitleScreen
             switch (Menu.GetMessage())
             {
             case 971:
-                UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2), 0);
+                UiNode.SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).PakDialogNode), 0);
                 SaveSlot.UpdateDialog(default(uint), default(uint), default(uint), default(uint));
                 break;
             case 970:

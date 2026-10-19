@@ -242,9 +242,9 @@ public static partial class Video
             uint u = 0u;
             int w11c = 0;
             int w120 = 0;
-            t = (new B21Slot(s).task.P + (uint)(0 * 104));
-            new B21Task(t).DisplayListPtr_Set(new B21Slot(s).unk114);
-            w11c = new B21Slot(s).unk11C;
+            t = (new B21Slot(s).Tasks.P + (uint)(0 * 104));
+            new B21Task(t).DisplayListPtr_Set(new B21Slot(s).DisplayListPtr);
+            w11c = new B21Slot(s).DisplayListSize;
             new B21Task(t).TaskType_Set(1);
             new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
             new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
@@ -262,9 +262,9 @@ public static partial class Video
             new B21Task(t).DisplayListSize_Set(w11c);
             new B21Task(t).NextPtr_Set(0);
             new B21Task(t).MsgQueuePtr_Set((int)(0x80146980u));
-            new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).unkF0.P));
-            new B21Task(t).FramebufferPtr_Set(new B21Slot(s).unk110);
-            if ((new B21Slot(s).unk128 != 0))
+            new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).DoneMsg.P));
+            new B21Task(t).FramebufferPtr_Set(new B21Slot(s).FramebufferPtr);
+            if ((new B21Slot(s).HasSecondTask != 0))
             {
                 new B21Task(t).Flags_Set(3);
             }
@@ -272,11 +272,11 @@ public static partial class Video
             {
                 new B21Task(t).Flags_Set(35);
             }
-            if ((new B21Slot(s).unk128 != 0))
+            if ((new B21Slot(s).HasSecondTask != 0))
             {
-                t = (new B21Slot(s).task.P + (uint)(1 * 104));
-                new B21Task(t).DisplayListPtr_Set(new B21Slot(s).unk118);
-                w120 = new B21Slot(s).unk120;
+                t = (new B21Slot(s).Tasks.P + (uint)(1 * 104));
+                new B21Task(t).DisplayListPtr_Set(new B21Slot(s).DisplayList2Ptr);
+                w120 = new B21Slot(s).DisplayList2Size;
                 new B21Task(t).TaskType_Set(1);
                 new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
                 new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
@@ -295,23 +295,23 @@ public static partial class Video
                 new B21Task(t).NextPtr_Set(0);
                 new B21Task(t).Flags_Set(35);
                 new B21Task(t).MsgQueuePtr_Set((int)(0x80146980u));
-                new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).unkF0.P));
-                new B21Task(t).FramebufferPtr_Set(new B21Slot(s).unk110);
+                new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).DoneMsg.P));
+                new B21Task(t).FramebufferPtr_Set(new B21Slot(s).FramebufferPtr);
             }
             osWritebackDCacheAll();
-            Sched.SubmitTask(Gv.Sched_Main, (new B21Slot(s).task.P + (uint)(0 * 104)));
-            if ((new B21Slot(s).unk128 != 0))
+            Sched.SubmitTask(Gv.Sched_Main, (new B21Slot(s).Tasks.P + (uint)(0 * 104)));
+            if ((new B21Slot(s).HasSecondTask != 0))
             {
-                Sched.SubmitTask(Gv.Sched_Main, (new B21Slot(s).task.P + (uint)(1 * 104)));
+                Sched.SubmitTask(Gv.Sched_Main, (new B21Slot(s).Tasks.P + (uint)(1 * 104)));
             }
             Mem.Set(Gv.Video_FrameCount, (uint)(Mem.U32(Gv.Video_FrameCount) + 1));
             idx = (Mem.U32(Gv.Video_FrameCount) % Mem.U32(Gv.Video_FrameSlotCount));
             Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
             Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
             new B21Game(g).curSlot__Set((new B21Game(g).FrameSlots.P + (uint)(idx * 320)));
-            new B21Slot((new B21Game(g).FrameSlots.P + (uint)(idx * 320))).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            new B21Slot((new B21Game(g).FrameSlots.P + (uint)(idx * 320))).DisplayListPtr_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             u = new B21Game(g).curSlot_;
-            new B21Slot(u).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
+            new B21Slot(u).DisplayList2Ptr_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
     }
 
@@ -329,9 +329,9 @@ public static partial class Video
             Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
             Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
             s = new B21Game(g).curSlot__Set((new B21Game(g).FrameSlots.P + (uint)(idx * 320)));
-            new B21Slot(s).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            new B21Slot(s).DisplayListPtr_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             t = new B21Game(g).curSlot_;
-            new B21Slot(t).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
+            new B21Slot(t).DisplayList2Ptr_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
     }
 
@@ -741,17 +741,17 @@ public static partial class Video
             Vi.EditMode((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
             if ((new O02CamList(Gv.Camera_ListHead).cam.P != 0u))
             {
-                new O02CamList(Gv.Camera_ListHead).cam.f29C_Set((float)(Mem.S32(Gv.ScreenWidth)));
-                new O02CamList(Gv.Camera_ListHead).cam.w2A4_Set(0);
-                new O02CamList(Gv.Camera_ListHead).cam.w2A8_Set(0);
-                new O02CamList(Gv.Camera_ListHead).cam.f2A0_Set((float)(Mem.S32(Gv.ScreenHeight)));
+                new O02CamList(Gv.Camera_ListHead).cam.ViewportWidth_Set((float)(Mem.S32(Gv.ScreenWidth)));
+                new O02CamList(Gv.Camera_ListHead).cam.ViewportX_Set(0);
+                new O02CamList(Gv.Camera_ListHead).cam.ViewportY_Set(0);
+                new O02CamList(Gv.Camera_ListHead).cam.ViewportHeight_Set((float)(Mem.S32(Gv.ScreenHeight)));
             }
             for (n = new O02CamList(Gv.Camera_ListHead).head_; (n != 0u); n = new O02Cam(n).next_)
             {
-                new O02Cam(n).w2A4_Set(0);
-                new O02Cam(n).w2A8_Set(0);
-                new O02Cam(n).f29C_Set((float)(Mem.S32(Gv.ScreenWidth)));
-                new O02Cam(n).f2A0_Set((float)(Mem.S32(Gv.ScreenHeight)));
+                new O02Cam(n).ViewportX_Set(0);
+                new O02Cam(n).ViewportY_Set(0);
+                new O02Cam(n).ViewportWidth_Set((float)(Mem.S32(Gv.ScreenWidth)));
+                new O02Cam(n).ViewportHeight_Set((float)(Mem.S32(Gv.ScreenHeight)));
             }
         }
     }

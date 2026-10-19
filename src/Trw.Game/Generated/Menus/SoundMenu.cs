@@ -14,15 +14,15 @@ public static partial class SoundMenu
         {
             if (Dbg.On) Dbg.Enter("func_004390EC");
             Mem.Set(Gv.SoundMenu_StatePtr, ResourcePool.Malloc((uint)(28)));
-            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f0_Set(PopupPanel.Create(108, 109));
-            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f8_Set(Slider.Create(111, 112, 255));
-            Slider.SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f8, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
-            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).fC_Set(Slider.Create(113, 114, 255));
-            Slider.SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).fC, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).PopupPanelPtr_Set(PopupPanel.Create(108, 109));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).MusicVolumeSlider_Set(Slider.Create(111, 112, 255));
+            Slider.SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).MusicVolumeSlider, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).SoundVolumeSlider_Set(Slider.Create(113, 114, 255));
+            Slider.SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).SoundVolumeSlider, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
             MenuButton.Create(115);
-            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f4_Set(Flicker.Create((uint)(110), (uint)(110), default(uint), default(uint)));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).FlickerPtr_Set(Flicker.Create((uint)(110), (uint)(110), default(uint), default(uint)));
             new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f18_Set(3);
-            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f14_Set((-1));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).NextScreenId_Set((-1));
             return 0;
         }
     }
@@ -120,27 +120,27 @@ public static partial class SoundMenu
         {
             if (Dbg.On) Dbg.Enter("func_004391F8");
             int t = 0;
-            switch (PopupPanel.GetState(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f0))
+            switch (PopupPanel.GetState(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).PopupPanelPtr))
             {
             case 3:
                 break;
             case 4:
                 Menu.ConsumeEvent();
-                if ((new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f14 != (-1)))
+                if ((new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).NextScreenId != (-1)))
                 {
-                    Menu.GotoScreen(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f14);
+                    Menu.GotoScreen(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).NextScreenId);
                     return 0;
                 }
                 Menu.GoBack();
                 return 0;
             }
-            t = Slider.GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).fC);
+            t = Slider.GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).SoundVolumeSlider);
             if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1)))))
             {
                 Mem.Set((Gv.Settings_MusicVolume + (uint)1), (byte)(t));
                 Audio.PlaySound2D(1120);
             }
-            t = Slider.GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f8);
+            t = Slider.GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).MusicVolumeSlider);
             if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0)))))
             {
                 Mem.Set((Gv.Settings_MusicVolume + (uint)0), (byte)(t));

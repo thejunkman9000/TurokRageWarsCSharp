@@ -1028,19 +1028,19 @@ public static partial class Image
                 if ((a != 0u))
                 {
                     Mem.Set(0x80153D58u, a);
-                    Mem.Copy(_fp, (Gv.Image_PixelFormatTable + (uint)(new S_fmt(a).fmt * 52)), 52);
+                    Mem.Copy(_fp, (Gv.Image_PixelFormatTable + (uint)(new S_fmt(a).PixelFormat * 52)), 52);
                     Mem.Copy(0x80153D20u, _fp, 52);
                     if ((new S_row(_fp).w[(int)(1)] != 0))
                     {
-                        Mem.Set(Gv.Image_DstPixelsPtr, new S_fmt(a).f14);
+                        Mem.Set(Gv.Image_DstPixelsPtr, new S_fmt(a).PalettePtr);
                     }
                     else
                     {
-                        Mem.Set(Gv.Image_DstPixelsPtr, new S_fmt(a).f18);
+                        Mem.Set(Gv.Image_DstPixelsPtr, new S_fmt(a).PixelsPtr);
                     }
                     if ((new S_row(_fp).w[(int)(1)] != 0))
                     {
-                        Mem.Set(Gv.Image_DstIndexPixelsPtr, new S_fmt(a).f18);
+                        Mem.Set(Gv.Image_DstIndexPixelsPtr, new S_fmt(a).PixelsPtr);
                     }
                     else
                     {
@@ -1087,19 +1087,19 @@ public static partial class Image
                 if ((b != 0u))
                 {
                     Mem.Set(0x80153D54u, b);
-                    Mem.Copy((_fp + 56u), (Gv.Image_PixelFormatTable + (uint)(new S_fmt(b).fmt * 52)), 52);
+                    Mem.Copy((_fp + 56u), (Gv.Image_PixelFormatTable + (uint)(new S_fmt(b).PixelFormat * 52)), 52);
                     Mem.Copy(0x80153CE0u, (_fp + 56u), 52);
                     if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
                     {
-                        Mem.Set(Gv.Image_SrcPixelsPtr, new S_fmt(b).f14);
+                        Mem.Set(Gv.Image_SrcPixelsPtr, new S_fmt(b).PalettePtr);
                     }
                     else
                     {
-                        Mem.Set(Gv.Image_SrcPixelsPtr, new S_fmt(b).f18);
+                        Mem.Set(Gv.Image_SrcPixelsPtr, new S_fmt(b).PixelsPtr);
                     }
                     if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
                     {
-                        Mem.Set(Gv.Image_SrcIndexPixelsPtr, new S_fmt(b).f18);
+                        Mem.Set(Gv.Image_SrcIndexPixelsPtr, new S_fmt(b).PixelsPtr);
                     }
                     else
                     {
@@ -1185,15 +1185,15 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00413484", (uint)p);
-            if ((((int)(new S_func_00413484(p).b1) & 1) != 0))
+            if ((((int)(new S_func_00413484(p).OwnershipFlags) & 1) != 0))
             {
-                ResourcePool.MallocFree((uint)(new S_func_00413484(p).f18));
+                ResourcePool.MallocFree((uint)(new S_func_00413484(p).PixelsPtr));
             }
-            if ((((int)(new S_func_00413484(p).b1) & 2) != 0))
+            if ((((int)(new S_func_00413484(p).OwnershipFlags) & 2) != 0))
             {
-                if ((new S_func_00413484(p).f10 > 0))
+                if ((new S_func_00413484(p).PaletteSize > 0))
                 {
-                    ResourcePool.MallocFree((uint)(new S_func_00413484(p).f14));
+                    ResourcePool.MallocFree((uint)(new S_func_00413484(p).PalettePtr));
                 }
             }
             MemUtil.Fill(p, 0, (uint)(32));
@@ -1217,50 +1217,50 @@ public static partial class Image
         {
             if (Dbg.On) Dbg.Enter("func_00413500", (uint)d, (uint)s);
             int n = 0;
-            if ((((int)(new S_func_00413500(d).b1) & 1) != 0))
+            if ((((int)(new S_func_00413500(d).OwnershipFlags) & 1) != 0))
             {
-                ResourcePool.MallocFree((uint)(new S_func_00413500(d).f18));
+                ResourcePool.MallocFree((uint)(new S_func_00413500(d).PixelsPtr));
             }
-            if ((((int)(new S_func_00413500(d).b1) & 2) != 0))
+            if ((((int)(new S_func_00413500(d).OwnershipFlags) & 2) != 0))
             {
-                if ((new S_func_00413500(d).f10 > 0))
+                if ((new S_func_00413500(d).PaletteSize > 0))
                 {
-                    ResourcePool.MallocFree((uint)(new S_func_00413500(d).f14));
+                    ResourcePool.MallocFree((uint)(new S_func_00413500(d).PalettePtr));
                 }
             }
             MemUtil.Fill(d, 0, (uint)(32));
             Mem.Copy(d, s, 32);
-            if ((new S_func_00413500(d).f10 == 0))
+            if ((new S_func_00413500(d).PaletteSize == 0))
             {
-                new S_func_00413500(d).f14_Set(0);
+                new S_func_00413500(d).PalettePtr_Set(0);
             }
-            new S_func_00413500(d).b1_Set((byte)(1));
-            if ((new S_func_00413500(d).f14 != 0))
+            new S_func_00413500(d).OwnershipFlags_Set((byte)(1));
+            if ((new S_func_00413500(d).PalettePtr != 0))
             {
-                new S_func_00413500(d).b1_Set((byte)(3));
+                new S_func_00413500(d).OwnershipFlags_Set((byte)(3));
             }
             n = Image.GetPixelDataSize(s);
-            new S_func_00413500(d).f18_Set((int)(ResourcePool.Malloc((uint)(n))));
-            if ((new S_func_00413500(d).f18 == 0))
+            new S_func_00413500(d).PixelsPtr_Set((int)(ResourcePool.Malloc((uint)(n))));
+            if ((new S_func_00413500(d).PixelsPtr == 0))
             {
                 return 1;
             }
             else
             {
-                MemUtil.Copy((uint)(new S_func_00413500(d).f18), (uint)(new S_func_00413500(s).f18), (uint)(n));
-                if ((new S_func_00413500(s).f10 != 0))
+                MemUtil.Copy((uint)(new S_func_00413500(d).PixelsPtr), (uint)(new S_func_00413500(s).PixelsPtr), (uint)(n));
+                if ((new S_func_00413500(s).PaletteSize != 0))
                 {
                     n = Image.GetPaletteSize(s);
-                    new S_func_00413500(d).f14_Set((int)(ResourcePool.Malloc((uint)(n))));
-                    if ((new S_func_00413500(d).f14 == 0))
+                    new S_func_00413500(d).PalettePtr_Set((int)(ResourcePool.Malloc((uint)(n))));
+                    if ((new S_func_00413500(d).PalettePtr == 0))
                     {
-                        ResourcePool.MallocFree((uint)(new S_func_00413500(d).f18));
+                        ResourcePool.MallocFree((uint)(new S_func_00413500(d).PixelsPtr));
                         MemUtil.Fill(d, 0, (uint)(32));
                         return 1;
                     }
                     else
                     {
-                        MemUtil.Copy((uint)(new S_func_00413500(d).f14), (uint)(new S_func_00413500(s).f14), (uint)(n));
+                        MemUtil.Copy((uint)(new S_func_00413500(d).PalettePtr), (uint)(new S_func_00413500(s).PalettePtr), (uint)(n));
                         return 0;
                     }
                 }
@@ -1436,24 +1436,24 @@ public static partial class Image
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004137A0", (uint)p, (uint)a, (uint)b, (uint)c);
-            new S_func_004137A0(p).b0_Set((byte)(a));
-            new S_func_004137A0(p).f4_Set((short)(b));
-            new S_func_004137A0(p).f6_Set((short)(c));
-            new S_func_004137A0(p).b1_Set((byte)(0));
-            new S_func_004137A0(p).f2_Set((short)(j));
-            new S_func_004137A0(p).f8_Set((short)(d));
-            new S_func_004137A0(p).fA_Set((short)(e));
-            new S_func_004137A0(p).f18_Set(g);
-            new S_func_004137A0(p).fC_Set(f);
-            new S_func_004137A0(p).f14_Set(i);
-            new S_func_004137A0(p).f10_Set(h);
+            new S_func_004137A0(p).PixelFormat_Set((byte)(a));
+            new S_func_004137A0(p).Width_Set((short)(b));
+            new S_func_004137A0(p).Height_Set((short)(c));
+            new S_func_004137A0(p).OwnershipFlags_Set((byte)(0));
+            new S_func_004137A0(p).PaletteCount_Set((short)(j));
+            new S_func_004137A0(p).LoadWidth_Set((short)(d));
+            new S_func_004137A0(p).LoadHeight_Set((short)(e));
+            new S_func_004137A0(p).PixelsPtr_Set(g);
+            new S_func_004137A0(p).PixelDataSize_Set(f);
+            new S_func_004137A0(p).PalettePtr_Set(i);
+            new S_func_004137A0(p).PaletteSize_Set(h);
             if ((flag1 != 0))
             {
-                new S_func_004137A0(p).b1_Set((byte)(1));
+                new S_func_004137A0(p).OwnershipFlags_Set((byte)(1));
             }
             if ((flag2 != 0))
             {
-                new S_func_004137A0(p).b1_Set((byte)((int)(new S_func_004137A0(p).b1) | 2));
+                new S_func_004137A0(p).OwnershipFlags_Set((byte)((int)(new S_func_004137A0(p).OwnershipFlags) | 2));
             }
         }
     }
@@ -2434,14 +2434,14 @@ public static partial class Material
             if ((new B21Node_v2(n).unk0 != 0))
             {
                 new B21Triple(t).unk8__Set(Chunk.Get(n, 0));
-                new B21Triple(t).unk0_Set(Mem.S32(Chunk.Get(n, 1)));
-                new B21Triple(t).unk4_Set(Mem.S32(Chunk.Get(n, 2)));
+                new B21Triple(t).FrameCount_Set(Mem.S32(Chunk.Get(n, 1)));
+                new B21Triple(t).FrameParam_4_Set(Mem.S32(Chunk.Get(n, 2)));
             }
             else
             {
                 new B21Triple(t).unk8__Set(0u);
-                new B21Triple(t).unk0_Set(0);
-                new B21Triple(t).unk4_Set(0);
+                new B21Triple(t).FrameCount_Set(0);
+                new B21Triple(t).FrameParam_4_Set(0);
             }
         }
     }

@@ -21,19 +21,19 @@ public static partial class Game
                 }
                 new OSPifRam(Gv.__osContPifRam).pifstatus_Set((uint)(1));
                 pkt = new OSPifRam(Gv.__osContPifRam).ramarray.P;
-                new OSContPackedRequest(_fp).unk00_Set((byte)(255));
-                new OSContPackedRequest(_fp).unk01_Set((byte)(1));
-                new OSContPackedRequest(_fp).unk02_Set((byte)(3));
-                new OSContPackedRequest(_fp).unk03_Set(cmd);
-                new OSContPackedRequest(_fp).unk04_Set((byte)(255));
-                new OSContPackedRequest(_fp).unk05_Set((byte)(255));
-                new OSContPackedRequest(_fp).unk06_Set((byte)(255));
-                new OSContPackedRequest(_fp).unk07_Set((byte)(255));
+                new OSContPackedRequest(_fp).Dummy_Set((byte)(255));
+                new OSContPackedRequest(_fp).TxSize_Set((byte)(1));
+                new OSContPackedRequest(_fp).RxSize_Set((byte)(3));
+                new OSContPackedRequest(_fp).Command_Set(cmd);
+                new OSContPackedRequest(_fp).TypeH_Set((byte)(255));
+                new OSContPackedRequest(_fp).TypeL_Set((byte)(255));
+                new OSContPackedRequest(_fp).Status_Set((byte)(255));
+                new OSContPackedRequest(_fp).Dummy1_Set((byte)(255));
                 for (i = 0; (i < (int)(Mem.U8(Gv.__osMaxControllers))); ++i)
                 {
                     Mem.Copy(((pkt += 8u) - 8u), _fp, 8);
                 }
-                new OSContPackedRequest(pkt).unk00_Set((byte)(254));
+                new OSContPackedRequest(pkt).Dummy_Set((byte)(254));
             }
         }
         finally { Stack.Free(8); }

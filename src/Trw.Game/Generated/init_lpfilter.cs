@@ -15,9 +15,9 @@ public static partial class Game
             short fc = 0;
             double ffc = 0.0;
             double fcoef = 0.0;
-            temp = ((int)(new ALLowPassFx(lp).fc) * 16384);
+            temp = ((int)(new ALLowPassFx(lp).Cutoff) * 16384);
             fc = (short)((temp >> (int)15));
-            new ALLowPassFx(lp).fgain_Set((short)((16384 - (int)(fc))));
+            new ALLowPassFx(lp).Gain_Set((short)((16384 - (int)(fc))));
             new ALLowPassFx(lp).first_Set(1);
             for (i = 0; (i < 8); ++i)
             {

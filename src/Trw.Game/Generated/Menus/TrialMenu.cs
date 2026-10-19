@@ -178,11 +178,11 @@ public static partial class TrialMenu
             switch (t)
             {
             case 1:
-                if ((new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f14 != 0))
+                if ((new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).IsFocusSet != 0))
                 {
                     return 0;
                 }
-                new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f14_Set(t);
+                new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).IsFocusSet_Set(t);
                 if ((Bits.Test(0x80102B7Eu, 0) != 0))
                 {
                     return 0;
@@ -190,20 +190,20 @@ public static partial class TrialMenu
                 Menu.MoveFocus((uint)(315), default(uint), default(uint), default(uint));
                 return 0;
             case 3:
-                new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).fC_Set((int)(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).fC - 1));
-                if ((new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).fC <= 0))
+                new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerTimer_Set((int)(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerTimer - 1));
+                if ((new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerTimer <= 0))
                 {
-                    new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f8_).h16_Set((short)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f8_).h16 - 1));
-                    if ((((int)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f8_).h16) + (int)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f8_).h1A)) < 0))
+                    new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerNodePtr).h16_Set((short)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerNodePtr).h16 - 1));
+                    if ((((int)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerNodePtr).h16) + (int)(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerNodePtr).h1A)) < 0))
                     {
-                        new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f8_).h16_Set(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f0.f44_).h1A);
+                        new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerNodePtr).h16_Set(new O05Wd_v2(new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).PopupPanelPtr.f44_).h1A);
                     }
-                    new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).fC_Set(t);
+                    new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).TickerTimer_Set(t);
                 }
                 break;
             case 4:
                 Menu.ConsumeEvent();
-                a = new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).f10;
+                a = new O05M80(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId;
                 if ((a == (-1)))
                 {
                     a = 3;
@@ -242,24 +242,24 @@ public static partial class TrialMenu
             switch (Menu.GetMessage())
             {
             case 316:
-                new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).f10_Set((-1));
+                new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set((-1));
                 break;
             case 315:
                 if ((Bits.Test(0x80102B7Eu, 0) == 0))
                 {
-                    new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).f10_Set(7);
+                    new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set(7);
                 }
                 else
                 {
-                    new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).f10_Set(30);
+                    new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set(30);
                 }
                 break;
             case 314:
                 Mem.Set(0x80146418u, Mem.U8(0x80102B0Fu));
-                new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).f10_Set(10);
+                new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).NextScreenId_Set(10);
                 break;
             }
-            PopupPanel.SetState(new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).f0, 2);
+            PopupPanel.SetState(new O05M80_v2(Mem.U32(Gv.TrialMenu_PagePtr)).PopupPanelPtr, 2);
             return 0;
         }
     }

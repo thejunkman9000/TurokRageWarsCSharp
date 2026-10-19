@@ -330,7 +330,7 @@ public static partial class PopupPanel
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A4F0", (uint)o);
-            return new O3Menu(o).f58;
+            return new O3Menu(o).Period;
         }
     }
 
@@ -340,7 +340,7 @@ public static partial class PopupPanel
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A4FC", (uint)o);
-            new O3Menu(o).flags_Set(1);
+            new O3Menu(o).Flags_Set(1);
         }
     }
 
@@ -350,7 +350,7 @@ public static partial class PopupPanel
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A508", (uint)o);
-            new O3Menu(o).flags_Set(0);
+            new O3Menu(o).Flags_Set(0);
         }
     }
 

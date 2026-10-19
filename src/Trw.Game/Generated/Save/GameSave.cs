@@ -383,19 +383,19 @@ public static partial class GameSave
             uint c = 0u;
             uint c2 = 0u;
             uint src = 0u;
-            Mem.Copy(new O01Dst(dst).unk5E0.P, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).blk18.P, 112);
-            Mem.Copy(Gv.Settings, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).blk88.P, 1412);
+            Mem.Copy(new O01Dst(dst).unk5E0.P, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).PlayerBlock.P, 112);
+            Mem.Copy(Gv.Settings, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).SettingsBlock.P, 1412);
             c = Mem.U32(Gv.GameSave_DataPtr);
             c2 = c;
-            Mem.Set((Gv.Settings_MatchRules + (uint)(0 * 4)), new O01Cfg2(c2).unk8);
-            Mem.Set((Gv.Settings_MatchRules + (uint)(1 * 4)), new O01Cfg2(c).unkC);
-            Mem.Set((Gv.Settings_MatchRules + (uint)(2 * 4)), new O01Cfg2(c).unk10);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(0 * 4)), new O01Cfg2(c2).MatchRulesWord0);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(1 * 4)), new O01Cfg2(c).MatchRulesWord1);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(2 * 4)), new O01Cfg2(c).MatchRulesWord2);
             c3 = c2;
-            Mem.Set((Gv.Settings_MatchRules + (uint)(3 * 4)), new O01Cfg2(c3).unk14);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(3 * 4)), new O01Cfg2(c3).MatchRulesWord3);
             zero = 0;
             Mem.Set((0x8013B2D4u + (uint)(zero * 4)), Mem.S32((Gv.Settings_MatchRules - (uint)1492)));
             Mem.Set((Gv.Settings_MatchRules + (uint)(-88)), save);
-            src = new O01Cfg2(c3).unk60C.P;
+            src = new O01Cfg2(c3).LevelPersistData.P;
             {
                 uint d = Gv.LevelPersistBuffer;
                 for (i = zero; (i < new O01G2(g).SaveDataSize); ++i)

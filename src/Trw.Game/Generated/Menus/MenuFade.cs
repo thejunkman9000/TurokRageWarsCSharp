@@ -12,7 +12,7 @@ public static partial class MenuFade
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00421E90", (uint)o);
-            return new O3Z(o).f4;
+            return new O3Z(o).IsDone;
         }
     }
 
@@ -22,18 +22,18 @@ public static partial class MenuFade
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00421E9C", (uint)o, (uint)v);
-            if ((new O3Z(o).f8 != v))
+            if ((new O3Z(o).Direction != v))
             {
-                new O3Z(o).f8_Set(v);
+                new O3Z(o).Direction_Set(v);
                 if ((v == 0))
                 {
-                    new O3Z(o).f0_Set(0);
+                    new O3Z(o).Timer_Set(0);
                 }
                 else
                 {
-                    new O3Z(o).f0_Set(1000);
+                    new O3Z(o).Timer_Set(1000);
                 }
-                new O3Z(o).f4_Set(0);
+                new O3Z(o).IsDone_Set(0);
             }
         }
     }
@@ -85,11 +85,11 @@ public static partial class MenuFade
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042201C", (uint)o, (uint)v);
-            new O3Z(o).f4_Set(0);
-            new O3Z(o).f0_Set(0);
-            new O3Z(o).f8_Set(0);
-            new O3Z(o).fC_Set(v);
-            new O3Z(o).f10_Set(1);
+            new O3Z(o).IsDone_Set(0);
+            new O3Z(o).Timer_Set(0);
+            new O3Z(o).Direction_Set(0);
+            new O3Z(o).ItemPtr_Set(v);
+            new O3Z(o).Flag_10_Set(1);
             Menu.DisableInput();
         }
     }

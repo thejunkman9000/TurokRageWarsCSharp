@@ -519,68 +519,68 @@ public static partial class TrialResults
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043847C");
-            int sel = new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f94;
+            int sel = new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).PlayerIndex;
             uint r = (Gv.Settings_PlayerRecords + (uint)(sel * 150));
             uint w = 0u;
             uint w6 = 0u;
             int a = 0;
             byte col = (byte)(175);
             uint fmt = Str.Lit("%d");
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(633), default(uint), default(uint));
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(633), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set((byte)(150));
-            new O05Wd2(w).f2C_Set((uint)(new O05T112((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new O05R150c(r).CharacterId)) * 112))).f0));
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(634), default(uint), default(uint));
+            new O05Wd2(w).Alpha_Set((byte)(150));
+            new O05Wd2(w).f2C_Set((uint)(new O05T112((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new O05R150c(r).CharacterId)) * 112))).PortraitImageIndex));
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(634), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set(col);
+            new O05Wd2(w).Alpha_Set(col);
             new O05Wd2(w).f38_Set((Gv.ProfileTable + (uint)(sel * 400)));
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(635), default(uint), default(uint));
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(635), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set((byte)(115));
+            new O05Wd2(w).Alpha_Set((byte)(115));
             new O05Wd2(w).f38_Set(Profile.GetRankName(sel));
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(636), default(uint), default(uint));
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(636), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set(col);
-            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf28.P, fmt, (uint)((int)(new O05R150c(r).Frags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf28.P);
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(637), default(uint), default(uint));
+            new O05Wd2(w).Alpha_Set(col);
+            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).FragsText.P, fmt, (uint)((int)(new O05R150c(r).Frags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).FragsText.P);
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(637), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set(col);
-            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).Deaths) + (int)(new O05R150c(r).SelfDeaths_0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf32.P);
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(638), default(uint), default(uint));
+            new O05Wd2(w).Alpha_Set(col);
+            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).DeathsText.P, fmt, (uint)(((int)(new O05R150c(r).Deaths) + (int)(new O05R150c(r).SelfDeaths_0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).DeathsText.P);
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(638), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set(col);
+            new O05Wd2(w).Alpha_Set(col);
             a = 0;
             if ((Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(sel * 4))) > 0))
             {
                 a = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(sel * 4))));
             }
-            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf3C.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf3C.P);
-            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(639), default(uint), default(uint));
+            StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).PercentText.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).PercentText.P);
+            w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(639), default(uint), default(uint));
             UiNode.SetVisible(w, 1);
-            new O05Wd2(w).b10_Set(col);
+            new O05Wd2(w).Alpha_Set(col);
             w6 = w;
             switch (Mem.S32(Gv.ArenaType))
             {
             case 0:
-                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).Tags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).ScoreText.P, fmt, (uint)((int)(new O05R150c(r).Tags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             case 1:
-                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).Captures_6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).ScoreText.P, fmt, (uint)((int)(new O05R150c(r).Captures_6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             default:
-                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                StrUtil.FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).ScoreText.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             }
-            new O05Wd2(w6).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P);
-            if ((new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f98 != (-1)))
+            new O05Wd2(w6).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).ScoreText.P);
+            if ((new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RankIndex != (-1)))
             {
-                w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(640), default(uint), default(uint));
-                new O05Wd2(w).b10_Set((byte)(150));
+                w = UiTree.FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RootNodePtr, (uint)(640), default(uint), default(uint));
+                new O05Wd2(w).Alpha_Set((byte)(150));
                 UiNode.SetVisible(w, 1);
-                new O05Wd2(w).f2C_Set((uint)(Mem.S32((0x800E4200u + (uint)(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f98 * 4)))));
+                new O05Wd2(w).f2C_Set((uint)(Mem.S32((0x800E4200u + (uint)(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).RankIndex * 4)))));
             }
         }
     }
@@ -601,8 +601,8 @@ public static partial class TrialResults
                 {
                     w = UiTree.FindNode(new O05M30(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(642), default(uint), default(uint));
                     UiNode.SetVisible(w, 1);
-                    new O05ItemWd(w).b10_Set((byte)(175));
-                    new O05ItemWd(w).f38_Set(new O05M30(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].ac);
+                    new O05ItemWd(w).Alpha_Set((byte)(175));
+                    new O05ItemWd(w).TextPtr_Set(new O05M30(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].ac);
                     if ((((((((v == 5001) || (v == 5002)) || (v == 5023)) || (v == 5024)) || (v == 5057)) || (v == 5016)) || (v == 5053)))
                     {
                         new O05Vec3(_fp).z_Set(new O05Vec3(_fp).y_Set(new O05Vec3(_fp).x_Set(0.300000012f)));
@@ -645,59 +645,59 @@ public static partial class TrialResults
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00438A08");
-            int sel = new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).f188;
+            int sel = new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardIndex;
             uint pf = 0u;
             int one = 0;
             int t = 0;
-            if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].v9C < 0))
+            if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].v9C < 0))
             {
                 return;
             }
-            if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).f1C0 == 0))
+            if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).IsContentVisible == 0))
             {
                 return;
             }
             one = 1;
             Mem.Set(Gv.Model_ColorOverrideMode, one);
-            new O05F(Gv.Draw_TintColor).f_Set((float)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4));
-            PreviewModel.Draw(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).obj.P);
+            new O05F(Gv.Draw_TintColor).f_Set((float)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4));
+            PreviewModel.Draw(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).PreviewModelBlock.P);
             new O05F(Gv.Draw_TintColor).f_Set(255.0f);
-            t = new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a0;
+            t = new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a0;
             Mem.Set(Gv.Model_ColorOverrideMode, 0);
             switch (t)
             {
             case 0:
-                new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4_Set((int)((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4) + 2));
-                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4 >= 151))
+                new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4_Set((int)((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4) + 2));
+                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4 >= 151))
                 {
-                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4_Set(150);
-                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a0_Set(2);
-                    if (((sel <= 0) && (new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)((sel + 1))].v9C > 0)))
+                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4_Set(150);
+                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a0_Set(2);
+                    if (((sel <= 0) && (new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)((sel + 1))].v9C > 0)))
                     {
-                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8_Set(150);
+                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8_Set(150);
                     }
                     else
                     {
-                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8_Set(911);
+                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8_Set(911);
                     }
                 }
                 break;
             case 2:
-                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8 != 911))
+                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8 != 911))
                 {
-                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8_Set((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8 - 1));
-                    if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a8 <= 0))
+                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8_Set((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8 - 1));
+                    if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a8 <= 0))
                     {
-                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a0_Set(one);
+                        new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a0_Set(one);
                     }
                 }
                 break;
             case 1:
-                new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4_Set((int)((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4) - 2));
-                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4 < 10))
+                new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4_Set((int)((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4) - 2));
+                if ((new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4 < 10))
                 {
-                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).ent[(int)(sel)].a4_Set(10);
-                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).f188_Set((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).f188 + 1));
+                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardEntries[(int)(sel)].a4_Set(10);
+                    new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardIndex_Set((int)(new O05M30_v4(Mem.U32(Gv.TrialResults_PagePtr)).RewardIndex + 1));
                     TrialResults.ShowReward();
                 }
                 break;
@@ -893,9 +893,9 @@ public static partial class TrialResults
             {
                 return 0;
             }
-            if ((new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f90 == 0))
+            if ((new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).IsFocusInitialized == 0))
             {
-                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f90_Set(1);
+                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).IsFocusInitialized_Set(1);
                 if ((UiNode.IsDisabledInherited(UiTree.FindNode(cfg, (uint)(627), default(uint), default(uint))) == 0))
                 {
                     Menu.MoveFocus((uint)(627), default(uint), default(uint), default(uint));
@@ -919,15 +919,15 @@ public static partial class TrialResults
             Mem.Set((g + (uint)(0 * 4)), 0);
             if ((Mem.S32((g + (uint)((-1) * 4))) != (-1)))
             {
-                UiNode.SetVisible(new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f24, 0);
-                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f1C0_Set(0);
+                UiNode.SetVisible(new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).ContentNodePtr, 0);
+                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).IsContentVisible_Set(0);
                 Menu.ConsumeEvent();
                 Menu.GotoScreen(Mem.S32((g + (uint)((-1) * 4))));
             }
             else
             {
-                UiNode.SetVisible(new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f24, 1);
-                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).f1C0_Set(t);
+                UiNode.SetVisible(new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).ContentNodePtr, 1);
+                new O05M30_v3(Mem.U32(Gv.TrialResults_PagePtr)).IsContentVisible_Set(t);
             }
             return 0;
         }

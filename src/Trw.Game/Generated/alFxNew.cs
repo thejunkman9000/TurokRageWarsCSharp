@@ -94,7 +94,7 @@ public static partial class Game
                 {
                     new ALDelayFx(d).lp__Set(alHeapDBAlloc(0u, 0, hp, 1, (int)(48u)));
                     new ALDelayFx(d).lp.fstate__Set(alHeapDBAlloc(0u, 0, hp, 1, 8));
-                    new ALDelayFx(d).lp.fc_Set((short)(Mem.S32((param + (uint)((j++) * 4)))));
+                    new ALDelayFx(d).lp.Cutoff_Set((short)(Mem.S32((param + (uint)((j++) * 4)))));
                     {
                         uint lp = new ALDelayFx(d).lp_;
                         int n = 0;
@@ -102,9 +102,9 @@ public static partial class Game
                         short fc = 0;
                         double ffc = 0.0;
                         double fcoef = 0.0;
-                        temp = ((int)(new ALLowPassFx(lp).fc) * 16384);
+                        temp = ((int)(new ALLowPassFx(lp).Cutoff) * 16384);
                         fc = (short)((temp >> (int)15));
-                        new ALLowPassFx(lp).fgain_Set((short)((16384 - (int)(fc))));
+                        new ALLowPassFx(lp).Gain_Set((short)((16384 - (int)(fc))));
                         new ALLowPassFx(lp).first_Set(1);
                         for (n = 0; (n < 8); ++n)
                         {

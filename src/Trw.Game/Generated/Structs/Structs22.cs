@@ -4072,7 +4072,7 @@ public readonly struct Object_func_8024EB90_de
     }
     [MethodImpl(Inl)] public uint type__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public S8x76 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x76 Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x68
     public S8x64x4 matrices { [MethodImpl(Inl)] get => new(P + 0x68u); }
     // +0x168

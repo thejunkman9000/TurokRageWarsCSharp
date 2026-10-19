@@ -569,13 +569,13 @@ public static partial class Ai
                 if (((new Brain(brain).IsFireRequested == 0) && (new Brain(brain).SecondaryFireTicks_240 <= 0)))
                 {
                     k = Mem.F32(0x800C6E1Cu);
-                    if (((RandomGen.Float(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).unk18)))
+                    if (((RandomGen.Float(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).UseChancePercent)))
                     {
                         new Brain(brain).SecondaryFireTicks_240_Set(1);
                         Ai.ResetFireTimers(brain, cfg);
                     }
-                    new Brain(brain).BurstCooldown_Set(new AiCfg(cfg).unk10);
-                    new Brain(brain).BurstCooldown_Set((int)(((float)(new Brain(brain).BurstCooldown) + (RandomGen.Float(k) * (float)(new AiCfg(cfg).unk14)))));
+                    new Brain(brain).BurstCooldown_Set(new AiCfg(cfg).BurstCooldownBase);
+                    new Brain(brain).BurstCooldown_Set((int)(((float)(new Brain(brain).BurstCooldown) + (RandomGen.Float(k) * (float)(new AiCfg(cfg).BurstCooldownRandom)))));
                 }
             }
             else

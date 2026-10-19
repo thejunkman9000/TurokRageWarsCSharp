@@ -20495,7 +20495,7 @@ public static partial class Player
             uint p = 0u;
             if (((Mem.S32(Gv.Debug_Freeze_8013B29C) == 0) && (Mem.S32(Gv.GamePaused) == 0)))
             {
-                p = ((new Plr(a).ViewPtr != 0u) ? new Pawn(new Plr(a).ViewPtr).pos128.P : (a + (uint)8));
+                p = ((new Plr(a).ViewPtr != 0u) ? new Pawn(new Plr(a).ViewPtr).EyePosition.P : (a + (uint)8));
                 LoopSound.Stop((uint)((int)(LoopSound.GetPool())), (uint)(Mem.S32((a + (uint)4544))));
                 Mem.Set((a + (uint)4544), (int)(LoopSound.Start((uint)((int)(LoopSound.GetPool())), b, p, (int)(p), (int)(a))));
             }
@@ -21579,13 +21579,13 @@ public static partial class SndFx
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025D178", (uint)fx, (uint)m);
-            new SndFxView(fx).owner__Set(m);
+            new SndFxView(fx).OwnerPtr_Set(m);
             new SndFxView(fx).unk4_Set((-1));
             new SndFxView(fx).unkC_Set((-1));
-            new SndFxView(fx).unk8_Set(0);
+            new SndFxView(fx).State_Set(0);
             new SndFxView(fx).unk14_Set(0);
-            new SndFxView(fx).unk18_Set(64);
-            new SndFxView(fx).sndId_Set((int)(alSndpAllocate(Sound.GetPlayer(new SndFxView(fx).owner_), 0x800D0D78u)));
+            new SndFxView(fx).Pan_18_Set(64);
+            new SndFxView(fx).SndpSoundId_Set((int)(alSndpAllocate(Sound.GetPlayer(new SndFxView(fx).OwnerPtr), 0x800D0D78u)));
         }
     }
 
@@ -21596,15 +21596,15 @@ public static partial class SndFx
         {
             if (Dbg.On) Dbg.Enter("func_0025D1DC", (uint)s);
             uint sndp = 0u;
-            Sound.Lock(new P3SndObj(s).owner);
-            if (((new P3SndObj(s).state != 2) && (new P3SndObj(s).state != 0)))
+            Sound.Lock(new P3SndObj(s).OwnerPtr);
+            if (((new P3SndObj(s).State != 2) && (new P3SndObj(s).State != 0)))
             {
-                new P3SndObj(s).state_Set(2);
-                sndp = Sound.GetPlayer(new P3SndObj(s).owner);
+                new P3SndObj(s).State_Set(2);
+                sndp = Sound.GetPlayer(new P3SndObj(s).OwnerPtr);
                 alSndpSetSound(sndp, new P3SndObj(s).sndId);
                 alSndpStop(sndp);
             }
-            Sound.Unlock(new P3SndObj(s).owner);
+            Sound.Unlock(new P3SndObj(s).OwnerPtr);
         }
     }
 
@@ -21620,7 +21620,7 @@ public static partial class SndFx
                 int total = 0;
                 int i = 0;
                 int r = 0;
-                if ((Sort.FindEqualRange(new SndMgr(new SndFxView(fx).owner_).SongIndexTablePtr, new SndMgr(new SndFxView(fx).owner_).SongIndexCount, (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
+                if ((Sort.FindEqualRange(new SndMgr(new SndFxView(fx).OwnerPtr).SongIndexTablePtr, new SndMgr(new SndFxView(fx).OwnerPtr).SongIndexCount, (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
                 {
                     return (-1);
                 }
@@ -21680,10 +21680,10 @@ public static partial class SndFx
         {
             if (Dbg.On) Dbg.Enter("func_0025D404", (uint)fx);
             uint p = 0u;
-            if (((new SndFxView(fx).unk8 != 2) && (new SndFxView(fx).unk8 != 0)))
+            if (((new SndFxView(fx).State != 2) && (new SndFxView(fx).State != 0)))
             {
-                new SndFxView(fx).unk8_Set(2);
-                p = Sound.GetPlayer(new SndFxView(fx).owner_);
+                new SndFxView(fx).State_Set(2);
+                p = Sound.GetPlayer(new SndFxView(fx).OwnerPtr);
                 alSndpSetSound(p, (short)((int)(Mem.S16(((fx + 28u) + (uint)(1 * 2))))));
                 alSndpStop(p);
             }

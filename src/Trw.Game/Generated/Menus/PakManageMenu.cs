@@ -158,22 +158,22 @@ public static partial class PakManageMenu
             switch (st)
             {
             case 3:
-                t = (new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).fC - 1);
-                new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).fC_Set(t);
+                t = (new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).TickerTimer - 1);
+                new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).TickerTimer_Set(t);
                 if ((t <= 0))
                 {
-                    new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).w8.f16_Set((short)(((int)(new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).w8.f16) - 1)));
+                    new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).TickerNode.Y_Set((short)(((int)(new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).TickerNode.Y) - 1)));
                     sp = new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).w8_;
-                    if ((((int)(new O3Spr(sp).f16) + (int)(new O3Spr(sp).f1A)) < 0))
+                    if ((((int)(new O3Spr(sp).Y) + (int)(new O3Spr(sp).Height)) < 0))
                     {
-                        new O3Spr(sp).f16_Set(Mem.S16((new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).bar.g_ + (uint)26)));
+                        new O3Spr(sp).Y_Set(Mem.S16((new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).PopupPanelPtr.g_ + (uint)26)));
                     }
-                    new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).fC_Set(st);
+                    new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).TickerTimer_Set(st);
                 }
                 return 0;
             case 4:
                 Menu.ConsumeEvent();
-                a = new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).f10;
+                a = new O3Pn_v2(Mem.U32(Gv.PakManageMenu_StatePtr)).NextScreenId;
                 if ((a == (-1)))
                 {
                     a = 3;
@@ -213,10 +213,10 @@ public static partial class PakManageMenu
                 n = 2;
                 L_go: ;
                 PlayerMenu.SetMode(n);
-                new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).f10_Set(19);
+                new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).NextScreenId_Set(19);
                 goto L_fin;
             case 934:
-                new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).f10_Set((-1));
+                new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).NextScreenId_Set((-1));
                 L_fin: ;
                 PopupPanel.SetState(new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).bar_, 2);
                 break;
@@ -234,7 +234,7 @@ public static partial class PakManageMenu
         {
             if (Dbg.On) Dbg.Enter("func_00421DC4");
             Menu.ConsumeEvent();
-            new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).f10_Set((-1));
+            new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).NextScreenId_Set((-1));
             PopupPanel.SetState(new O3Pn(Mem.U32(Gv.PakManageMenu_StatePtr)).bar_, 2);
             return 0;
         }

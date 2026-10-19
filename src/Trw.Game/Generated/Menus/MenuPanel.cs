@@ -26,19 +26,19 @@ public static partial class MenuPanel
                 int new_var2 = 0;
                 uint ib = 0u;
                 uint pc = 0u;
-                new Q04Panel(p).CursorIndex_Set(new Q04Hdr(t).w18);
-                new Q04Panel(p).w2_Set(new Q04Hdr(t).w1A);
-                new Q04Panel(p).w4_Set(new Q04Hdr(t).w1C);
-                new Q04Panel(p).p8_Set(a1);
+                new Q04Panel(p).CursorIndex_Set(new Q04Hdr(t).InitialCursor);
+                new Q04Panel(p).w2_Set(new Q04Hdr(t).Param1A_1A);
+                new Q04Panel(p).w4_Set(new Q04Hdr(t).Param1C_1C);
+                new Q04Panel(p).AllocRecordPtr_Set(a1);
                 ib = (p + (uint)472);
                 new Q04Panel(p).items__Set(ib);
-                new Q04Panel(p).ItemCount_Set((int)(new Q04Hdr(t).n));
+                new Q04Panel(p).ItemCount_Set((int)(new Q04Hdr(t).ItemCount));
                 Mem.Set(_fp, ib);
-                Mem.Set(_fp, (ib + (uint)((int)(new Q04Hdr(t).n) * 40)));
-                for (i = 0; (i < (int)(new Q04Hdr(t).n)); ++i)
+                Mem.Set(_fp, (ib + (uint)((int)(new Q04Hdr(t).ItemCount) * 40)));
+                for (i = 0; (i < (int)(new Q04Hdr(t).ItemCount)); ++i)
                 {
                     uint it = (uint)(((i * 40) + (int)(new Q04Panel(p).items_)));
-                    uint tp = (uint)(((i * 36) + (int)(new Q04Hdr(t).unk0)));
+                    uint tp = (uint)(((i * 36) + (int)(new Q04Hdr(t).ItemTemplatesPtr)));
                     new Q04Itm(it).Index_Set(i);
                     pc = _fp;
                     {
@@ -46,11 +46,11 @@ public static partial class MenuPanel
                         new Q04Itm(it).Flags_Set((new Q04Tpl(tp).flags | (uint)(25165824)));
                         new Q04Itm(it).PosX_Set(new Q04Tpl(tp).w8);
                         new Q04Itm(it).PosY_Set(new Q04Tpl(tp).wA);
-                        new Q04Itm(it).b10_Set(new Q04Tpl(tp).bC);
+                        new Q04Itm(it).NavSteps_Set(new Q04Tpl(tp).bC);
                     }
-                    new Q04Itm(it).b11_Set(new Q04Tpl(tp).bD);
-                    new Q04Itm(it).b12_Set(new Q04Tpl(tp).bE);
-                    new Q04Itm(it).b13_Set(new Q04Tpl(tp).bF);
+                    new Q04Itm(it).NavStepRight_Set(new Q04Tpl(tp).bD);
+                    new Q04Itm(it).NavStepUp_Set(new Q04Tpl(tp).bE);
+                    new Q04Itm(it).NavStepDown_Set(new Q04Tpl(tp).bF);
                     new_var2 = new Q04Tpl(tp).f10;
                     new Q04Itm(it).def__Set(tp);
                     new Q04Itm(it).Value_Set((-1));
@@ -78,17 +78,17 @@ public static partial class MenuPanel
                     }
                 }
                 new Q04Panel(p).TemplatePtr_Set(t);
-                new Q04Panel(p).f18_Set(a3);
+                new Q04Panel(p).InitArg_18_Set(a3);
                 new Q04Panel(p).PlayerPtr_Set(a4);
                 new Q04Panel(p).PadPtr_Set(a5);
-                new Q04Panel(p).f24_Set(a6);
+                new Q04Panel(p).UserParam_Set(a6);
                 new Q04Panel(p).State_Set((ushort)(0));
-                new Q04Panel(p).w2A_Set(Mem.U16((a7 + (uint)20)));
-                new Q04Panel(p).f2C_Set(0);
-                new Q04Panel(p).f30_Set(0);
-                new Q04Panel(p).f34_Set(0);
-                new Q04Panel(p).f38_Set(1);
-                new Q04Panel(p).f3C_Set(0);
+                new Q04Panel(p).ListSlot_Set(Mem.U16((a7 + (uint)20)));
+                new Q04Panel(p).OpenTime_Set(0);
+                new Q04Panel(p).PanelFade_Set(0);
+                new Q04Panel(p).TextFade_Set(0);
+                new Q04Panel(p).IsEnabled_Set(1);
+                new Q04Panel(p).DisableOnTitle_3C_Set(0);
                 new Q04Panel(p).ListViewPtr_Set((int)(MenuPanel.GetListView(a7)));
                 new Q04Panel(p).ContextPtr_Set(a7);
                 for (j = 0; (j < 2); ++j)
@@ -113,9 +113,9 @@ public static partial class MenuPanel
                 Mem.Set((a5 + (uint)188), 0);
                 MenuPanel.ResetOpenAnim(p);
                 MenuPanel.StartOpenAnim(p);
-                if ((new Q04Hdr(t).unk8 != 0u))
+                if ((new Q04Hdr(t).InitCallback != 0u))
                 {
-                    Funcs.CallReg(new Q04Hdr(t).unk8, p, a7, 0u, 0u);
+                    Funcs.CallReg(new Q04Hdr(t).InitCallback, p, a7, 0u, 0u);
                 }
                 {
                     uint it_2 = 0u;
@@ -174,32 +174,32 @@ public static partial class MenuPanel
                 switch ((int)(idx))
                 {
                 case 16:
-                    if (((new O06E_v4(e).unk8 & (uint)(524288)) != 0u))
+                    if (((new O06E_v4(e).Flags & (uint)(524288)) != 0u))
                     {
-                        new O06E_v4(e).b.Set((int)(1), (byte)(d));
+                        new O06E_v4(e).NavSteps.Set((int)(1), (byte)(d));
                     }
                     break;
                 case 17:
-                    if (((new O06E_v4(e).unk8 & (uint)(262144)) != 0u))
+                    if (((new O06E_v4(e).Flags & (uint)(262144)) != 0u))
                     {
-                        new O06E_v4(e).b.Set((int)(0), (byte)(d));
+                        new O06E_v4(e).NavSteps.Set((int)(0), (byte)(d));
                     }
                     break;
                 case 18:
-                    if (((new O06E_v4(e).unk8 & (uint)(2097152)) != 0u))
+                    if (((new O06E_v4(e).Flags & (uint)(2097152)) != 0u))
                     {
-                        new O06E_v4(e).b.Set((int)(3), (byte)(d));
+                        new O06E_v4(e).NavSteps.Set((int)(3), (byte)(d));
                     }
                     break;
                 case 19:
-                    if (((new O06E_v4(e).unk8 & (uint)(1048576)) != 0u))
+                    if (((new O06E_v4(e).Flags & (uint)(1048576)) != 0u))
                     {
-                        new O06E_v4(e).b.Set((int)(2), (byte)(d));
+                        new O06E_v4(e).NavSteps.Set((int)(2), (byte)(d));
                     }
                     break;
                 }
             }
-            while ((((new O06E_v4(e).unk8 & (uint)(25165824)) != (uint)(25165824)) || (new O06Q_v4(new O06E_v4(e).unk18_).unk1C == 0)));
+            while ((((new O06E_v4(e).Flags & (uint)(25165824)) != (uint)(25165824)) || (new O06Q_v4(new O06E_v4(e).TemplatePtr).unk1C == 0)));
         }
     }
 
@@ -808,19 +808,19 @@ public static partial class MenuPanel
             int i = 0;
             uint r = 0u;
             int s = 0;
-            uint b = new O06C_v11(c).unk18_;
+            uint b = new O06C_v11(c).InitArg_18;
             int p1 = 0;
             int p2 = 0;
             int p3 = 0;
             int p4 = 0;
             if ((b != 0u))
             {
-                p1 = new O06B_v19(b).unk20;
-                p2 = new O06C_v11(c).unk1C;
-                p3 = new O06C_v11(c).unk20;
-                p4 = new O06C_v11(c).unk24;
-                size = (((int)(new O06B_v19(b).unk4) * 40) + 472);
-                for (i = 0; (i < (int)(new O06B_v19(b).unk4)); ++i)
+                p1 = new O06B_v19(b).ParentTemplatePtr;
+                p2 = new O06C_v11(c).PlayerPtr;
+                p3 = new O06C_v11(c).PadPtr;
+                p4 = new O06C_v11(c).UserParam;
+                size = (((int)(new O06B_v19(b).ItemCount) * 40) + 472);
+                for (i = 0; (i < (int)(new O06B_v19(b).ItemCount)); ++i)
                 {
                     size = (int)((int)(size) + func_00442020_O06_ItemSize((new O06B_v19(b).unk0_ + (uint)(i * 36))));
                 }
@@ -833,11 +833,11 @@ public static partial class MenuPanel
                         MenuPanel.Init((uint)(s), r, b, p1, p2, (uint)(p3), p4, a);
                         ListUtil.Add(a, (uint)(s));
                         {
-                            short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
-                            new O06A_v6(a).unk14_Set(t);
+                            short t = (short)(((int)(new O06A_v6(a).OpenCounter_14) + 1));
+                            new O06A_v6(a).OpenCounter_14_Set(t);
                             if (((int)(t) >= 4))
                             {
-                                new O06A_v6(a).unk14_Set((short)(0));
+                                new O06A_v6(a).OpenCounter_14_Set((short)(0));
                             }
                         }
                         return s;
@@ -875,7 +875,7 @@ public static partial class MenuPanel
         {
             if (Dbg.On) Dbg.Enter("func_004426B4", (uint)a);
             ListUtil.Init(a, 464, 468);
-            new O06A_v6(a).unk14_Set((short)(0));
+            new O06A_v6(a).OpenCounter_14_Set((short)(0));
         }
     }
 
@@ -902,8 +902,8 @@ public static partial class MenuPanel
             int i = 0;
             uint r = 0u;
             int s = 0;
-            size = (((int)(new O06B_v3(b).unk4) * 40) + 472);
-            for (i = 0; (i < (int)(new O06B_v3(b).unk4)); ++i)
+            size = (((int)(new O06B_v3(b).ItemCount) * 40) + 472);
+            for (i = 0; (i < (int)(new O06B_v3(b).ItemCount)); ++i)
             {
                 size = (int)((int)(size) + func_004426E4_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
@@ -920,11 +920,11 @@ public static partial class MenuPanel
             MenuPanel.Init((uint)(s), r, b, 0, c, (uint)(d), e, a);
             ListUtil.Add(a, (uint)(s));
             {
-                short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
-                new O06A_v6(a).unk14_Set(t);
+                short t = (short)(((int)(new O06A_v6(a).OpenCounter_14) + 1));
+                new O06A_v6(a).OpenCounter_14_Set(t);
                 if (((int)(t) >= 4))
                 {
-                    new O06A_v6(a).unk14_Set((short)(0));
+                    new O06A_v6(a).OpenCounter_14_Set((short)(0));
                 }
             }
             return s;
@@ -954,12 +954,12 @@ public static partial class MenuPanel
             int i = 0;
             uint r = 0u;
             int s = 0;
-            int p1 = new O06C(c).unk18;
-            int p2 = new O06C(c).unk1C;
-            int p3 = new O06C(c).unk20;
-            int p4 = new O06C(c).unk24;
-            size = (((int)(new O06B_v3(b).unk4) * 40) + 472);
-            for (i = 0; (i < (int)(new O06B_v3(b).unk4)); ++i)
+            int p1 = new O06C(c).InitArg_18;
+            int p2 = new O06C(c).PlayerPtr;
+            int p3 = new O06C(c).PadPtr;
+            int p4 = new O06C(c).UserParam;
+            size = (((int)(new O06B_v3(b).ItemCount) * 40) + 472);
+            for (i = 0; (i < (int)(new O06B_v3(b).ItemCount)); ++i)
             {
                 size = (int)((int)(size) + func_00442800_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
@@ -976,11 +976,11 @@ public static partial class MenuPanel
             MenuPanel.Init((uint)(s), r, b, p1, p2, (uint)(p3), p4, a);
             ListUtil.Add(a, (uint)(s));
             {
-                short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
-                new O06A_v6(a).unk14_Set(t);
+                short t = (short)(((int)(new O06A_v6(a).OpenCounter_14) + 1));
+                new O06A_v6(a).OpenCounter_14_Set(t);
                 if (((int)(t) >= 4))
                 {
-                    new O06A_v6(a).unk14_Set((short)(0));
+                    new O06A_v6(a).OpenCounter_14_Set((short)(0));
                 }
             }
             return s;
@@ -1010,12 +1010,12 @@ public static partial class MenuPanel
             int i = 0;
             uint r = 0u;
             int s = 0;
-            int p1 = new O06C(c).unk14;
-            int p2 = new O06C(c).unk1C;
-            int p3 = new O06C(c).unk20;
-            int p4 = new O06C(c).unk24;
-            size = (((int)(new O06B_v3(b).unk4) * 40) + 472);
-            for (i = 0; (i < (int)(new O06B_v3(b).unk4)); ++i)
+            int p1 = new O06C(c).TemplatePtr;
+            int p2 = new O06C(c).PlayerPtr;
+            int p3 = new O06C(c).PadPtr;
+            int p4 = new O06C(c).UserParam;
+            size = (((int)(new O06B_v3(b).ItemCount) * 40) + 472);
+            for (i = 0; (i < (int)(new O06B_v3(b).ItemCount)); ++i)
             {
                 size = (int)((int)(size) + func_00442934_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
@@ -1032,11 +1032,11 @@ public static partial class MenuPanel
             MenuPanel.Init((uint)(s), r, b, p1, p2, (uint)(p3), p4, a);
             ListUtil.Add(a, (uint)(s));
             {
-                short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
-                new O06A_v6(a).unk14_Set(t);
+                short t = (short)(((int)(new O06A_v6(a).OpenCounter_14) + 1));
+                new O06A_v6(a).OpenCounter_14_Set(t);
                 if (((int)(t) >= 4))
                 {
-                    new O06A_v6(a).unk14_Set((short)(0));
+                    new O06A_v6(a).OpenCounter_14_Set((short)(0));
                 }
             }
             return s;
@@ -1054,8 +1054,8 @@ public static partial class MenuPanel
             uint p = 0u;
             for (n = new O06H(a).unk0_; (n != 0u); n = next)
             {
-                next = new O06N(n).unk1D4_;
-                if (((((int)(new O06N(n).unk28) == 2) && (a != Gv.MenuPanel_SharedList)) && (new O06H(Gv.MenuPanel_SharedList).unk10 != 0)))
+                next = new O06N(n).NextPanelPtr;
+                if (((((int)(new O06N(n).State) == 2) && (a != Gv.MenuPanel_SharedList)) && (new O06H(Gv.MenuPanel_SharedList).unk10 != 0)))
                 {
                     continue;
                 }
@@ -1063,16 +1063,16 @@ public static partial class MenuPanel
                 {
                     continue;
                 }
-                if ((new O06V(new O06N(n).unk14_).unkC != 0u))
+                if ((new O06V(new O06N(n).TemplatePtr).OnCloseCallback != 0u))
                 {
-                    Funcs.CallReg(new O06V(new O06N(n).unk14_).unkC, n, a, 0u, 0u);
+                    Funcs.CallReg(new O06V(new O06N(n).TemplatePtr).OnCloseCallback, n, a, 0u, 0u);
                 }
-                p = new O06N(n).unk20_;
-                new O06B_v4(p).unkB0_Set(0);
-                new O06B_v4(p).unkB4_Set(0);
-                new O06B_v4(p).unkBC_Set(0);
+                p = new O06N(n).PadPtr;
+                new O06B_v4(p).Buttons_Set(0);
+                new O06B_v4(p).PressedButtons_Set(0);
+                new O06B_v4(p).DoubleTapButtons_Set(0);
                 ListUtil.Remove(a, n, default(uint), default(uint));
-                ResourcePool.Release(0, (uint)(new O06N(n).unk8));
+                ResourcePool.Release(0, (uint)(new O06N(n).AllocRecordPtr));
             }
         }
     }
@@ -1134,16 +1134,16 @@ public static partial class MenuPanel
             {
                 return;
             }
-            if ((new O06V(new O06A_v47(n).TemplatePtr).unkC != 0u))
+            if ((new O06V(new O06A_v47(n).TemplatePtr).OnCloseCallback != 0u))
             {
-                Funcs.CallReg(new O06V(new O06A_v47(n).TemplatePtr).unkC, n, a, 0u, 0u);
+                Funcs.CallReg(new O06V(new O06A_v47(n).TemplatePtr).OnCloseCallback, n, a, 0u, 0u);
             }
             p = new O06A_v47(n).PadPtr;
-            new O06B_v4(p).unkB0_Set(0);
-            new O06B_v4(p).unkB4_Set(0);
-            new O06B_v4(p).unkBC_Set(0);
+            new O06B_v4(p).Buttons_Set(0);
+            new O06B_v4(p).PressedButtons_Set(0);
+            new O06B_v4(p).DoubleTapButtons_Set(0);
             ListUtil.Remove(a, n, default(uint), default(uint));
-            ResourcePool.Release(0, (uint)(new O06A_v47(n).unk8));
+            ResourcePool.Release(0, (uint)(new O06A_v47(n).AllocRecordPtr));
             goto L_top;
         }
     }
@@ -1222,15 +1222,15 @@ public static partial class MenuPanel
             v = ((t < 24) ? t : (47 - t));
             TextUtil.BeginFontPass();
             Gfx.SetOtherModeL((uint)(21));
-            x = new O06V_v3(new O06A_v29(a).ListViewPtr).unk29C;
-            y = new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A0;
+            x = new O06V_v3(new O06A_v29(a).ListViewPtr).ViewportWidth;
+            y = new O06V_v3(new O06A_v29(a).ListViewPtr).ViewportHeight;
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4211081216u);
             new O06Gfx(g).w1_Set(4278190335u);
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4194304000u);
             new O06Gfx(g).w1_Set(3758096639u);
-            Sprite.Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A8)), ((x / (float)(Mem.S32(Gv.ScreenWidth))) * 5.0f), ((y / (float)(Mem.S32(Gv.ScreenHeight))) * 4.0f), 1);
+            Sprite.Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).ViewportX)), (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).ViewportY)), ((x / (float)(Mem.S32(Gv.ScreenWidth))) * 5.0f), ((y / (float)(Mem.S32(Gv.ScreenHeight))) * 4.0f), 1);
         }
     }
 }

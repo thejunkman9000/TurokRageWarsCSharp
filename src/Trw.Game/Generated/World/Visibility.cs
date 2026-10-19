@@ -184,8 +184,8 @@ public static partial class Pvs
                 float p0 = 0f;
                 int v = 0;
                 uint sd = 0u;
-                new B21Grid(g).x_Set(x);
-                new B21Grid(g).y_Set(y);
+                new B21Grid(g).CenterX_Set(x);
+                new B21Grid(g).CenterY_Set(y);
                 sd = seeds;
                 n = Mem.U32(sd);
                 for (i = (uint)(1); (i < n); ++i)
@@ -233,16 +233,16 @@ public static partial class Pvs
                         }
                         goto L_end;
                         L_c0: ;
-                        new B21Grid(g).map.Set((int)(idx), (short)((-3)));
+                        new B21Grid(g).CellMap.Set((int)(idx), (short)((-3)));
                         goto L_end;
                         L_c1: ;
-                        new B21Grid(g).map.Set((int)(idx), (short)((-2)));
+                        new B21Grid(g).CellMap.Set((int)(idx), (short)((-2)));
                         goto L_end;
                         L_c2: ;
-                        new B21Grid(g).map.Set((int)(idx), (short)(0));
+                        new B21Grid(g).CellMap.Set((int)(idx), (short)(0));
                         goto L_end;
                         L_c3: ;
-                        new B21Grid(g).map.Set((int)(idx), (short)(v));
+                        new B21Grid(g).CellMap.Set((int)(idx), (short)(v));
                         L_end: ;
                     }
                 }
@@ -252,10 +252,10 @@ public static partial class Pvs
                 {
                     for (k = 0; (k < 17); ++k, ++idx)
                     {
-                        if (((int)(new B21Grid(g).map[(int)(idx)]) == 0))
+                        if (((int)(new B21Grid(g).CellMap[(int)(idx)]) == 0))
                         {
-                            new B21Grid(g).map.Set((int)(idx), (short)(Mem.U16((g + (uint)6))));
-                            new B21Grid(g).unk4_Set((int)((int)(new B21Grid(g).unk4) + BitStream.ReadBitsLsb(g, 9)));
+                            new B21Grid(g).CellMap.Set((int)(idx), (short)(Mem.U16((g + (uint)6))));
+                            new B21Grid(g).BitPosition_Set((int)((int)(new B21Grid(g).BitPosition) + BitStream.ReadBitsLsb(g, 9)));
                         }
                     }
                 }
@@ -273,17 +273,17 @@ public static partial class Pvs
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - new B21Grid_v2(o).x)) < 0.0f) ? (-(x - new B21Grid_v2(o).x)) : (x - new B21Grid_v2(o).x)) < 9))
+            if (!((((float)((x - new B21Grid_v2(o).CenterX)) < 0.0f) ? (-(x - new B21Grid_v2(o).CenterX)) : (x - new B21Grid_v2(o).CenterX)) < 9))
             {
                 return 0;
             }
-            if (!((((float)((y - new B21Grid_v2(o).y)) < 0.0f) ? (-(y - new B21Grid_v2(o).y)) : (y - new B21Grid_v2(o).y)) < 9))
+            if (!((((float)((y - new B21Grid_v2(o).CenterY)) < 0.0f) ? (-(y - new B21Grid_v2(o).CenterY)) : (y - new B21Grid_v2(o).CenterY)) < 9))
             {
                 return 0;
             }
-            dx = ((x - new B21Grid_v2(o).x) + 8);
-            dy = ((y - new B21Grid_v2(o).y) + 8);
-            t = (int)(new B21Grid_v2(o).map[(int)((dx + (dy * 17)))]);
+            dx = ((x - new B21Grid_v2(o).CenterX) + 8);
+            dy = ((y - new B21Grid_v2(o).CenterY) + 8);
+            t = (int)(new B21Grid_v2(o).CellMap[(int)((dx + (dy * 17)))]);
             if ((t == (-2)))
             {
                 return 1;
@@ -309,17 +309,17 @@ public static partial class Pvs
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - new B21Grid(o).x)) < 0.0f) ? (-(x - new B21Grid(o).x)) : (x - new B21Grid(o).x)) < 9))
+            if (!((((float)((x - new B21Grid(o).CenterX)) < 0.0f) ? (-(x - new B21Grid(o).CenterX)) : (x - new B21Grid(o).CenterX)) < 9))
             {
                 return 0;
             }
-            if (!((((float)((y - new B21Grid(o).y)) < 0.0f) ? (-(y - new B21Grid(o).y)) : (y - new B21Grid(o).y)) < 9))
+            if (!((((float)((y - new B21Grid(o).CenterY)) < 0.0f) ? (-(y - new B21Grid(o).CenterY)) : (y - new B21Grid(o).CenterY)) < 9))
             {
                 return 0;
             }
-            dx = (x - new B21Grid(o).x);
-            dy = ((y - new B21Grid(o).y) + 8);
-            t = (int)(new B21Grid(o).map[(int)(((8 + dx) + (dy * 17)))]);
+            dx = (x - new B21Grid(o).CenterX);
+            dy = ((y - new B21Grid(o).CenterY) + 8);
+            t = (int)(new B21Grid(o).CellMap[(int)(((8 + dx) + (dy * 17)))]);
             if ((t == (-2)))
             {
                 return 1;
@@ -330,7 +330,7 @@ public static partial class Pvs
             }
             {
                 int u = (k + 9);
-                new B21Grid(o).unk4_Set((t + u));
+                new B21Grid(o).BitPosition_Set((t + u));
             }
             return ((BitStream.ReadBitsLsb(o, 1) != 0) ? 1 : 0);
         }
@@ -345,38 +345,38 @@ public static partial class Pvs
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - new B21Grid(o).x)) < 0.0f) ? (-(x - new B21Grid(o).x)) : (x - new B21Grid(o).x)) < 9))
+            if (!((((float)((x - new B21Grid(o).CenterX)) < 0.0f) ? (-(x - new B21Grid(o).CenterX)) : (x - new B21Grid(o).CenterX)) < 9))
             {
                 return;
             }
-            if (!((((float)((y - new B21Grid(o).y)) < 0.0f) ? (-(y - new B21Grid(o).y)) : (y - new B21Grid(o).y)) < 9))
+            if (!((((float)((y - new B21Grid(o).CenterY)) < 0.0f) ? (-(y - new B21Grid(o).CenterY)) : (y - new B21Grid(o).CenterY)) < 9))
             {
                 return;
             }
-            dx = (x - new B21Grid(o).x);
-            dy = ((y - new B21Grid(o).y) + 8);
-            t = (int)(new B21Grid(o).map[(int)(((8 + dx) + (dy * 17)))]);
+            dx = (x - new B21Grid(o).CenterX);
+            dy = ((y - new B21Grid(o).CenterY) + 8);
+            t = (int)(new B21Grid(o).CellMap[(int)(((8 + dx) + (dy * 17)))]);
             if ((t == (-2)))
             {
-                new B21Grid(o).unk10_Set(1);
+                new B21Grid(o).CellState_Set(1);
             }
             else
             {
                 if ((t == (-3)))
                 {
-                    new B21Grid(o).unk10_Set(0);
+                    new B21Grid(o).CellState_Set(0);
                 }
                 else
                 {
                     if ((t == (-1)))
                     {
-                        new B21Grid(o).unk10_Set(3);
+                        new B21Grid(o).CellState_Set(3);
                     }
                     else
                     {
-                        new B21Grid(o).unk10_Set(2);
-                        new B21Grid(o).unk4_Set(t);
-                        new B21Grid(o).unk14_Set(BitStream.ReadBitsLsb(o, 9));
+                        new B21Grid(o).CellState_Set(2);
+                        new B21Grid(o).BitPosition_Set(t);
+                        new B21Grid(o).CellBitCount_Set(BitStream.ReadBitsLsb(o, 9));
                     }
                 }
             }

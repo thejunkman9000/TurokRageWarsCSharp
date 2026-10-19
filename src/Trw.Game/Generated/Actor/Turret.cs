@@ -58,7 +58,7 @@ public static partial class Turret
                 new M1Quat(_fp).w_Set(cosf((new M1State(state).HomeYaw * Mem.F32(0x800C6B08u))));
                 Quat.Multiply((_fp + 16u), _fp, new M1Actor(actor).Rotation.P);
                 Quat.ToMatrix((_fp + 16u), (_fp + 32u));
-                MathUtil.MtxScaleRows((_fp + 32u), new M1Actor(actor).Scale, new M1Actor(actor).f54, new M1Actor(actor).f58);
+                MathUtil.MtxScaleRows((_fp + 32u), new M1Actor(actor).Scale, new M1Actor(actor).ScaleY, new M1Actor(actor).ScaleZ);
                 Vec.ClampLengthChecked(new M1Actor(actor).Position.P, 2.0E+4f);
                 MathUtil.MtxTranslate((_fp + 32u), new M1Actor(actor).Position.x, new M1Actor(actor).Position.y, new M1Actor(actor).Position.z);
                 MathUtil.MtxMulAffine(new M1Actor(actor).TransformMtx.P, (_fp + 96u), (_fp + 32u));
@@ -336,7 +336,7 @@ public static partial class Turret
                     new B801Out(_fp).f8_Set(fs0);
                     if ((new B801Out(_fp).f40 <= new M1Info(info).SightRange_54))
                     {
-                        la = (new M1Info(info).f58 * fs1);
+                        la = (new M1Info(info).SinkDepth_58 * fs1);
                         if ((((fs0 < 0.0f) ? (-fs0) : fs0) < la))
                         {
                             s7 = 1;

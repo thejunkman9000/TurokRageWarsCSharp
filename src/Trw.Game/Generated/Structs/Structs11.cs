@@ -1915,21 +1915,21 @@ public readonly struct Frm
     // +0x0
     public U8x272 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x110
-    public int unk110
+    public int FramebufferPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x110u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x110u, value);
     }
-    [MethodImpl(Inl)] public int unk110_Set(int v) => Mem.Set(P + 0x110u, v);
+    [MethodImpl(Inl)] public int FramebufferPtr_Set(int v) => Mem.Set(P + 0x110u, v);
     // +0x114
     public U8x16 pad114 { [MethodImpl(Inl)] get => new(P + 0x114u); }
     // +0x124
-    public uint unk124
+    public uint MinRetraceCount_124
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x124u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x124u, value);
     }
-    [MethodImpl(Inl)] public uint unk124_Set(uint v) => Mem.Set(P + 0x124u, v);
+    [MethodImpl(Inl)] public uint MinRetraceCount_124_Set(uint v) => Mem.Set(P + 0x124u, v);
 }
 
 /// <summary>struct Func802172C4Value, 0x8 bytes, at a guest address.</summary>
@@ -2835,7 +2835,7 @@ public readonly struct Fx24
     [MethodImpl(Inl)] public static implicit operator uint(Fx24 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2849,42 +2849,42 @@ public readonly struct Fx24
     // +0x4
     public U8x2 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
     // +0xA
     public U8x2 padA { [MethodImpl(Inl)] get => new(P + 0xAu); }
     // +0xC
-    public short unkC
+    public short Param1
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short unkC_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Param1_Set(short v) => Mem.Set(P + 0xCu, v);
     // +0xE
-    public short unkE
+    public short Param2
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public short unkE_Set(short v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public short Param2_Set(short v) => Mem.Set(P + 0xEu, v);
     // +0x10
-    public short unk10
+    public short Param3
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public short unk10_Set(short v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public short Param3_Set(short v) => Mem.Set(P + 0x10u, v);
 }
 
 /// <summary>struct Fx24, 0x10 bytes, at a guest address.</summary>
@@ -2899,7 +2899,7 @@ public readonly struct Fx24_v2
     [MethodImpl(Inl)] public static implicit operator uint(Fx24_v2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24_v2(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2913,28 +2913,28 @@ public readonly struct Fx24_v2
     // +0x4
     public U8x2 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
     // +0xA
     public U8x2 padA { [MethodImpl(Inl)] get => new(P + 0xAu); }
     // +0xC
-    public ushort unkC
+    public ushort Param1
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public ushort unkC_Set(ushort v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public ushort Param1_Set(ushort v) => Mem.Set(P + 0xCu, v);
 }
 
 /// <summary>struct Fx24, 0x10 bytes, at a guest address.</summary>
@@ -2949,7 +2949,7 @@ public readonly struct Fx24_v3
     [MethodImpl(Inl)] public static implicit operator uint(Fx24_v3 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24_v3(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2963,28 +2963,28 @@ public readonly struct Fx24_v3
     // +0x4
     public U8x2 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
     // +0xA
     public U8x2 padA { [MethodImpl(Inl)] get => new(P + 0xAu); }
     // +0xC
-    public int unkC
+    public int Param1
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int Param1_Set(int v) => Mem.Set(P + 0xCu, v);
 }
 
 /// <summary>struct Fx24, 0x10 bytes, at a guest address.</summary>
@@ -2999,7 +2999,7 @@ public readonly struct Fx24_v4
     [MethodImpl(Inl)] public static implicit operator uint(Fx24_v4 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24_v4(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -3013,35 +3013,35 @@ public readonly struct Fx24_v4
     // +0x4
     public U8x2 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
     // +0xA
     public U8x2 padA { [MethodImpl(Inl)] get => new(P + 0xAu); }
     // +0xC
-    public short unkC
+    public short Param1
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short unkC_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Param1_Set(short v) => Mem.Set(P + 0xCu, v);
     // +0xE
-    public short unkE
+    public short Param2
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public short unkE_Set(short v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public short Param2_Set(short v) => Mem.Set(P + 0xEu, v);
 }
 
 /// <summary>struct Fx24, 0xC bytes, at a guest address.</summary>
@@ -3056,7 +3056,7 @@ public readonly struct Fx24_v5
     [MethodImpl(Inl)] public static implicit operator uint(Fx24_v5 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24_v5(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -3068,26 +3068,26 @@ public readonly struct Fx24_v5
     }
     [MethodImpl(Inl)] public uint unk0__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public ushort unk4
+    public ushort ItemId
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public ushort unk4_Set(ushort v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public ushort ItemId_Set(ushort v) => Mem.Set(P + 0x4u, v);
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
 }
 
 /// <summary>struct Fx24b, 0x10 bytes, at a guest address.</summary>
@@ -3102,7 +3102,7 @@ public readonly struct Fx24b
     [MethodImpl(Inl)] public static implicit operator uint(Fx24b v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Fx24b(uint p) => new(p);
     // +0x0
-    public S32Ptr unk0
+    public S32Ptr MessagePtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -3116,28 +3116,28 @@ public readonly struct Fx24b
     // +0x4
     public U8x2 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x6
-    public short unk6
+    public short SoundId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public short unk6_Set(short v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public short SoundId_Set(short v) => Mem.Set(P + 0x6u, v);
     // +0x8
-    public short unk8
+    public short SndFxId
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public short unk8_Set(short v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public short SndFxId_Set(short v) => Mem.Set(P + 0x8u, v);
     // +0xA
     public U8x2 padA { [MethodImpl(Inl)] get => new(P + 0xAu); }
     // +0xC
-    public short unkC
+    public short Param1
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short unkC_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Param1_Set(short v) => Mem.Set(P + 0xCu, v);
 }
 
 /// <summary>struct G, 0x450 bytes, at a guest address.</summary>
@@ -3263,7 +3263,7 @@ public readonly struct G21Ctl
     // +0x0
     public U8x496 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x1F0
-    public F32x8 fb { [MethodImpl(Inl)] get => new(P + 0x1F0u); }
+    public F32x8 SectorWalkDistances { [MethodImpl(Inl)] get => new(P + 0x1F0u); }
 }
 
 /// <summary>struct G462, 0x8 bytes, at a guest address.</summary>
