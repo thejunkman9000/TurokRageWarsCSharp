@@ -203,8 +203,8 @@ public static partial class Game
             int id = 0;
             n = new B21Ent((new B21Menu(Mem.U32(Gv.MenuMgrPtr)).ents_ + (uint)(new B21Menu(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).node_;
             id = (-1);
-            l = new B21Node(n).link.P;
-            if (((n != 0u) && (((int)(new B21Node(n).flags) & 16) != 0)))
+            l = new B21Node(n).NavLinks.P;
+            if (((n != 0u) && (((int)(new B21Node(n).Flags) & 16) != 0)))
             {
                 switch (dir)
                 {
@@ -212,22 +212,22 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(0 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(0 * 4)));
-                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
+                        if (!(((int)(new B21Node(c).Flags) & 256) != 0))
                         {
-                            id = (int)(new B21Node(c).id);
+                            id = (int)(new B21Node(c).Id);
                             break;
                         }
-                        l = new B21Node(c).link.P;
+                        l = new B21Node(c).NavLinks.P;
                     }
                     break;
                 case 6:
                     while ((Mem.U32((l + (uint)(1 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(1 * 4)));
-                        l = new B21Node(c).link.P;
-                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
+                        l = new B21Node(c).NavLinks.P;
+                        if (!(((int)(new B21Node(c).Flags) & 256) != 0))
                         {
-                            id = (int)(new B21Node(c).id);
+                            id = (int)(new B21Node(c).Id);
                             break;
                         }
                     }
@@ -236,10 +236,10 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(2 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(2 * 4)));
-                        l = new B21Node(c).link.P;
-                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
+                        l = new B21Node(c).NavLinks.P;
+                        if (!(((int)(new B21Node(c).Flags) & 256) != 0))
                         {
-                            id = (int)(new B21Node(c).id);
+                            id = (int)(new B21Node(c).Id);
                             break;
                         }
                     }
@@ -248,10 +248,10 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(3 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(3 * 4)));
-                        l = new B21Node(c).link.P;
-                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
+                        l = new B21Node(c).NavLinks.P;
+                        if (!(((int)(new B21Node(c).Flags) & 256) != 0))
                         {
-                            id = (int)(new B21Node(c).id);
+                            id = (int)(new B21Node(c).Id);
                             break;
                         }
                     }
@@ -3973,11 +3973,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044252C", (uint)a, (uint)cur, (uint)step, (uint)lo);
-            if ((Pad_IsLeft(new O06A_v19(a).unk20) != 0))
+            if ((Pad_IsLeft(new O06A_v19(a).ExtraPtr) != 0))
             {
                 cur = (int)((int)(cur) - step);
             }
-            if (((Pad_IsRight(new O06A_v19(a).unk20) != 0) || ((int)(Pad_IsConfirm(new O06A_v19(a).unk20)) != 0)))
+            if (((Pad_IsRight(new O06A_v19(a).ExtraPtr) != 0) || ((int)(Pad_IsConfirm(new O06A_v19(a).ExtraPtr)) != 0)))
             {
                 cur = (int)((int)(cur) + step);
             }
@@ -4016,7 +4016,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004425F8", (uint)a, (uint)cur, (uint)step, (uint)lo);
-            if ((Pad_IsLeft(new O06A_v19(a).unk20) != 0))
+            if ((Pad_IsLeft(new O06A_v19(a).ExtraPtr) != 0))
             {
                 cur = (int)((int)(cur) - step);
                 if ((cur < lo))
@@ -4031,7 +4031,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((Pad_IsRight(new O06A_v19(a).unk20) != 0))
+            if ((Pad_IsRight(new O06A_v19(a).ExtraPtr) != 0))
             {
                 cur = (int)((int)(cur) + step);
                 if ((cur > hi))
@@ -4346,11 +4346,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004434BC", (uint)a, (uint)b);
             uint p = 0u;
-            if ((new O06V(new O06A_v20(b).unk14_).unkC != 0u))
+            if ((new O06V(new O06A_v20(b).TemplatePtr).unkC != 0u))
             {
-                Funcs.CallReg(new O06V(new O06A_v20(b).unk14_).unkC, b, a, 0u, 0u);
+                Funcs.CallReg(new O06V(new O06A_v20(b).TemplatePtr).unkC, b, a, 0u, 0u);
             }
-            p = new O06A_v20(b).unk20_;
+            p = new O06A_v20(b).PadPtr;
             new O06B_v4(p).unkB0_Set(0);
             new O06B_v4(p).unkB4_Set(0);
             new O06B_v4(p).unkBC_Set(0);

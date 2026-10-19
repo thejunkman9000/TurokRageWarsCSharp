@@ -32,8 +32,8 @@ public static partial class Game
             }
             new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f0_Set(UiTree_FindNode(cfg, (uint)(919), default(uint), default(uint)));
             new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f4_Set(0);
-            new O05GX(Gv.Settings).f24_Set((byte)(10));
-            new O05GX(Gv.Settings).f25_Set((byte)(10));
+            new O05GX(Gv.Settings).TimeLimit_Set((byte)(10));
+            new O05GX(Gv.Settings).FragLimit_Set((byte)(10));
             for (i = 0; (i < 4); ++i)
             {
                 Profile_Init((Gv.ProfileTable + (uint)(i * 400)));

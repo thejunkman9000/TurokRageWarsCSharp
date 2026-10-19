@@ -154,7 +154,7 @@
 0x800E5E70	Menu_CurrentDrawPass	medium	cached menu draw pass (-1 reset, 5 flat colour...) so MenuItem_Draw* switch modes only on change
 0x800F6F40	DevLink_RequestQueue	medium	OSMesgQueue the DevLink I/O thread receives requests on
 0x800F7110	DevLink_ReplyQueue	medium	OSMesgQueue requests reply to (IoReq.reply) for DevLink_Read/Write
-0x80102B10	CharacterClassTable	high	400-byte rows per character: health/ammo caps (Player_GetMaxHealth, Player_GetAmmoCapacity)
+0x80102B10	ProfileTable_Plus10	high	400-byte rows per character: health/ammo caps (Player_GetMaxHealth, Player_GetAmmoCapacity)
 0x80103224	View_Timer_80103224	low	float set to 30 or constants, decremented by frame time in View_UpdateAll / camera approach
 0x80103B50	Resource_PageTable	medium	16-byte page nodes with tlb index (Resource_MapPage, Resource_AllocTlbIndex)
 0x801040D0	Collision_MoveCtx	medium	collision context passed to Collision_MoveActor by Actor_TryMove/SlideToXZ

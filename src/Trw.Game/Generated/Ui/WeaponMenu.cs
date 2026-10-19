@@ -607,7 +607,7 @@ public static partial class Game
             if (!((Player_IsDying(p) != 0))) goto _f0;
             s0v = 0;
             _f0: ;
-            if (!(((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk8F) == 1)))) goto _f1;
+            if (!(((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.IsMonkey) == 1)))) goto _f1;
             s0v = 0;
             new B04Roster(o).w0_Set(3);
             _f1: ;
@@ -731,9 +731,9 @@ public static partial class Game
             float t = 0f;
             int a0 = 0;
             if (!((((((uint)((new B04Act(p).CharacterId - 17)) >= (uint)(2)) && (new B04Act(p).TeamMenuState == 0)) && !(new B04Act(p).StunTime > 0.0f)) && (Flyby_IsActive() == 0)))) goto _f0;
-            new B04Menu(o).w380_Set((((int)(new B04Act(p).PlayerEntryPtr.unk82) == 1) ? 1 : 0));
+            new B04Menu(o).w380_Set((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) == 1) ? 1 : 0));
             if (!((new B04Act(p).CharacterId == 14))) goto _f1;
-            if (!(((int)(new B04Act(p).unk48C) != 0))) goto _f2;
+            if (!(((int)(new B04Act(p).WeaponActorMode_48C) != 0))) goto _f2;
             if (!(((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
             new B04Act(p).PendingWeaponIndex_Set((short)(Player_PickRandomWeapon(p)));
             _f3: ;
@@ -741,11 +741,11 @@ public static partial class Game
             _f2: ;
             goto _f4;
             _f1: ;
-            if (!((((new B04Act(p).ControllerPtr.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).PlayerEntryPtr.unk82) != 0)))) goto _f5;
+            if (!((((new B04Act(p).ControllerPtr.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) != 0)))) goto _f5;
             new B04Act(p).PendingWeaponIndex_Set((short)((int)(Player_PickNextWeapon(p, default(uint), default(uint), default(uint)))));
             goto _f6;
             _f5: ;
-            if (!((((int)(new B04Act(p).PlayerEntryPtr.unk82) != 1) || ((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
+            if (!((((int)(new B04Act(p).PlayerEntryPtr.WeaponSelectMode) != 1) || ((new B04Act(p).WeaponMenuSelection != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
             WeaponMenu_UpdateSelection(o, p);
             _f7: ;
             _f6: ;
@@ -1233,7 +1233,7 @@ public static partial class Game
             wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
             k = new B04Mn3(o).w0;
             if (!(((k == 0) || (k == 3)))) goto _f2;
-            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk92) == 255)))) goto _f3;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.TeamId) == 255)))) goto _f3;
             TeamMenu_BuildSlots(o);
             new B04Mn3(o).w0_Set(1);
             goto L_blk9;
@@ -1257,7 +1257,7 @@ public static partial class Game
             if (!((v != new B04Mn3(o).w6C))) goto _f10;
             new B04Mn3(o).w6C_Set(v);
             _f10: ;
-            new B04Act(p).PlayerEntryPtr.unk92_Set((byte)(a1));
+            new B04Act(p).PlayerEntryPtr.TeamId_Set((byte)(a1));
             goto L_blk17;
             _f9: ;
             _f7: ;
@@ -1282,7 +1282,7 @@ public static partial class Game
             new B04Mn3(o).w0_Set(3);
             new B04Act(p).IsStickCaptured_Set(0);
             Mem.Set((p + (uint)4536), 0);
-            switch ((int)(new B04Act(p).PlayerEntryPtr.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
+            switch ((int)(new B04Act(p).PlayerEntryPtr.TeamId)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
             _f19: ;
             Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
             a0 = 742;
@@ -1498,7 +1498,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021917C", (uint)t, (uint)p);
-            if ((((new B04Pl(p).wpn.flagsB0 & (uint)(32768)) != 0u) && ((int)(new B04Pl(p).stats.unk92) != 255)))
+            if ((((new B04Pl(p).wpn.flagsB0 & (uint)(32768)) != 0u) && ((int)(new B04Pl(p).stats.TeamId) != 255)))
             {
                 new B04Tgt(t).unk6C_Set((-1));
                 return 1;
@@ -1543,7 +1543,7 @@ public static partial class Game
             wf = (int)((new B04Act(p).ControllerPtr.flagsB0 & (uint)(32768)));
             k = new B04MenuL(o).kind;
             if (!(((k == 0) || (k == 3)))) goto _f0;
-            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.unk92) == 255)))) goto _f1;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).PlayerEntryPtr.TeamId) == 255)))) goto _f1;
             TeamMenu_BuildSlots(o);
             new B04MenuL(o).kind_Set(1);
             goto L_blk5;
@@ -1567,7 +1567,7 @@ public static partial class Game
             if (!((v != new B04MenuL(o).unk6C))) goto _f7;
             new B04MenuL(o).unk6C_Set(v);
             _f7: ;
-            new B04Act(p).PlayerEntryPtr.unk92_Set((byte)(a1));
+            new B04Act(p).PlayerEntryPtr.TeamId_Set((byte)(a1));
             goto L_blk13;
             _f5: ;
             goto _f8;

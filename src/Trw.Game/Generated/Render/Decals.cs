@@ -346,7 +346,7 @@ public static partial class Game
             new State_func_8044DD50_de(state).IsTeamPlay_Set(0);
             new State_func_8044DD50_de(state).IsMonkeyTagMode_Set(0);
             new State_func_8044DD50_de(state).TagObjectiveMode_78_Set(0);
-            new State_func_8044DD50_de(state).d_Set(0);
+            new State_func_8044DD50_de(state).IsFlybyHoldStarted_Set(0);
             new State_func_8044DD50_de(state).IsDemoActive_Set(0);
             new func_8044E9A0_S1(match).FadeMode_Set((byte)(2));
             new func_8044E9A0_S1(match).NextStateId_Set(1);

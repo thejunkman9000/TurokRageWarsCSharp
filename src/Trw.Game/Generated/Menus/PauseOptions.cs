@@ -31,28 +31,28 @@ public static partial class Game
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).page_Set(1);
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).pages_Set(4);
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab__Set(UiTree_FindNode(node, (uint)(897), default(uint), default(uint)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.x) - (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.width)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.width) / 4));
-            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep * 4));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.x) + rem));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X) - (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width)));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width) / 4));
+            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftStep * 4));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).leftTab.X) + rem));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab__Set(UiTree_FindNode(node, (uint)(904), default(uint), default(uint)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.x) + (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.width)));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.width) / 4));
-            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep * 4));
-            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.x) - rem));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X) + (int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width)));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width) / 4));
+            rem = ((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.Width) - (new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightStep * 4));
+            new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rightTab.X) - rem));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).title_Set((int)(Flicker_Create((uint)(883), (uint)(110), default(uint), default(uint))));
             marker = UiTree_FindNode(node, (uint)(882), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).marker__Set(marker);
             UiNode_SetVisible(marker, 0);
-            new MenuWidget(UiTree_FindNode(node, (uint)(902), default(uint), default(uint))).alpha_Set((byte)(110));
+            new MenuWidget(UiTree_FindNode(node, (uint)(902), default(uint), default(uint))).Alpha_Set((byte)(110));
             header = UiTree_FindNode(node, (uint)(903), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).header__Set(header);
-            new MenuWidget(header).alpha_Set((byte)(140));
+            new MenuWidget(header).Alpha_Set((byte)(140));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).footer__Set(UiTree_FindNode(node, (uint)(880), default(uint), default(uint)));
             rumble = UiTree_FindNode(node, (uint)(900), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).rumbleIcon__Set(rumble);
             UiNode_SetVisible(rumble, 1);
-            new MenuWidget(UiTree_FindNode(node, (uint)(901), default(uint), default(uint))).alpha_Set((byte)(110));
+            new MenuWidget(UiTree_FindNode(node, (uint)(901), default(uint), default(uint))).Alpha_Set((byte)(110));
             pak = UiTree_FindNode(node, (uint)(884), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(Gv.PauseOptions_PagePtr)).pakIcon__Set(pak);
             UiNode_SetVisible(pak, 0);
@@ -190,19 +190,19 @@ public static partial class Game
                         for (i = 0; (i < 4); ++i)
                         {
                             q = (g - (uint)1484);
-                            if ((((int)(new O3Cfg(q).pl[(int)(i)].f91) == 0) && ((int)(new O3Cfg(q).pl[(int)(i)].f78) == 1)))
+                            if ((((int)(new O3Cfg(q).PlayerRecords[(int)(i)].IsBot) == 0) && ((int)(new O3Cfg(q).PlayerRecords[(int)(i)].IsActive) == 1)))
                             {
                                 ++n;
                             }
                         }
                         c = Gv.Settings;
-                        if ((((int)(new O3Cfg(c).f580) == 2) && (n >= 2)))
+                        if ((((int)(new O3Cfg(c).ResolutionMode) == 2) && (n >= 2)))
                         {
                             Video_RequestResolution(1);
                         }
                         else
                         {
-                            Video_RequestResolution((int)(new O3Cfg(c).f580));
+                            Video_RequestResolution((int)(new O3Cfg(c).ResolutionMode));
                         }
                         Menu_RequestShutdown();
                         return 0;
@@ -366,9 +366,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423370");
-            new O3Cfg(Gv.Settings).f1B_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(21)]))));
-            new O3Cfg(Gv.Settings).f580_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(22)]))));
-            new O3Cfg(Gv.Settings).f10_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(20)])));
+            new O3Cfg(Gv.Settings).BloodColor_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(21)]))));
+            new O3Cfg(Gv.Settings).ResolutionMode_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(22)]))));
+            new O3Cfg(Gv.Settings).Brightness_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.PauseOptions_PagePtr)).w[(int)(20)])));
         }
     }
 

@@ -83,7 +83,7 @@ public static partial class Game
                 return 0;
             }
             UiSlider_UpdateThumb(s);
-            Menu_SendEvent((uint)(Menu_GetCurrentScreenId()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
+            Menu_SendEvent((uint)(Menu_GetCurrentScreenId()), (uint)(4106), (uint)((int)(new O02Widget(w).Id)), (uint)(new O02Slider(s).val), (uint)(0));
             Menu_ConsumeEvent();
             return 0;
         }
@@ -152,7 +152,7 @@ public static partial class Game
             o = ResourcePool_Malloc((uint)(88));
             Mem_Fill(o, 0, (uint)(88));
             Mem.Copy(o, src, 44);
-            new O3Bar(o).h.id2_Set((ushort)(2915));
+            new O3Bar(o).h.Type_Set((ushort)(2915));
             Mem.Copy(new O3Bar(o).col.P, new O3Bar(src).col.P, 20);
             g = UiTree_FindNode((uint)(s), (uint)((b & 65535)), default(uint), default(uint));
             new O3Bar(o).g__Set(g);
@@ -161,7 +161,7 @@ public static partial class Game
             new O3Bar(o).val_Set(0);
             new O3Bar(o).f54_Set(2);
             UiTree_ReplaceNode(src, o, default(uint), default(uint));
-            new O3Bar(src).h.id_Set((short)((-1)));
+            new O3Bar(src).h.Id_Set((short)((-1)));
             UiTree_ReplaceRefs((uint)(s), src, o, default(uint));
             return o;
         }
@@ -199,7 +199,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E3390u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3390u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3390u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E3390u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3390u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E3390u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
@@ -222,7 +222,7 @@ public static partial class Game
                 int flag = 0;
                 if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), self, _fp) != 0))
                 {
-                    if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
+                    if ((((int)(new O3Hdr(self).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -277,9 +277,9 @@ public static partial class Game
             new O3Bar(o).f54_Set(2);
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(100));
+                    new O3Hdr(p).Alpha_Set((byte)(100));
                 }
             }
             return 0;
@@ -296,9 +296,9 @@ public static partial class Game
             new O3Bar(o).f54_Set(2);
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(200));
+                    new O3Hdr(p).Alpha_Set((byte)(200));
                 }
             }
             return 0;
@@ -316,9 +316,9 @@ public static partial class Game
             Audio_PlaySound2D(3700);
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(100));
+                    new O3Hdr(p).Alpha_Set((byte)(100));
                 }
             }
             return 0;

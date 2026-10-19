@@ -119,7 +119,7 @@ public static partial class Game
             new Level(lv).unk26DC8_Set(1);
             new Level(lv).unk26DCC_Set(0);
             new Level(lv).unk26DD4_Set(0);
-            new R07Blk(Gv.Settings_MatchRules).a88_Set(0);
+            new R07Blk(Gv.Settings_MatchRules).IsFlybyHoldStarted_Set(0);
             new R07Blk(Gv.Settings_MatchRules).a8C_Set(0);
             sl = lv;
             while ((i < Mem.U32(Gv.Video_FrameSlotCount)))

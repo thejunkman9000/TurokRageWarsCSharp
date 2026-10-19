@@ -303,20 +303,20 @@ public static partial class Game
             int flag = 0;
             int id = 0;
             int b = 0;
-            new B05P13(p).f7BC_Set((new B05P13(p).f7BC + Mem.F32(Gv.FrameTime)));
-            if ((new B05P13(p).unk788 == 0))
+            new B05P13(p).CrosshairAnimTime_Set((new B05P13(p).CrosshairAnimTime + Mem.F32(Gv.FrameTime)));
+            if ((new B05P13(p).LockOnState == 0))
             {
                 return;
             }
-            if ((((int)(new B05Sta13(new B05P13(p).stats).b8F) == 1) && (Mem.S32(Gv.Settings_MonkeyTagMode) != 0)))
+            if ((((int)(new B05Sta13(new B05P13(p).PlayerEntryPtr).b8F) == 1) && (Mem.S32(Gv.Settings_MonkeyTagMode) != 0)))
             {
                 return;
             }
-            if (((int)(new B05P13(p).state) == 39))
+            if (((int)(new B05P13(p).StateId) == 39))
             {
                 return;
             }
-            if (((new B05P13(p).mode == 2) && ((int)(new B05P13(p).s62E) == 3)))
+            if (((new B05P13(p).FireMode == 2) && ((int)(new B05P13(p).WeaponIndex) == 3)))
             {
                 return;
             }
@@ -324,63 +324,63 @@ public static partial class Game
             {
                 return;
             }
-            if ((new B05P13(p).id798 == 730))
+            if ((new B05P13(p).CrosshairSpriteId == 730))
             {
-                if ((new B05P13(p).mode == 1))
+                if ((new B05P13(p).FireMode == 1))
                 {
-                    if ((((int)(new B05P13(p).unkE4) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))) && ((int)(new B05P13(p).unkE4) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4))))))
+                    if ((((int)(new B05P13(p).TypeId) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))) && ((int)(new B05P13(p).TypeId) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4))))))
                     {
-                        new B05P13(p).id798_Set(751);
-                        if (((uint)(((int)((byte)(new B05P13(p).b48C)) - 2)) < (uint)(2)))
+                        new B05P13(p).CrosshairSpriteId_Set(751);
+                        if (((uint)(((int)((byte)(new B05P13(p).WeaponActorMode_48C)) - 2)) < (uint)(2)))
                         {
-                            new B05P13(p).f7BC_Set((float)(0));
+                            new B05P13(p).CrosshairAnimTime_Set((float)(0));
                         }
                         else
                         {
-                            if (((int)(new B05P13(p).b523) != 0))
+                            if (((int)(new B05P13(p).WeaponActorFlag_523) != 0))
                             {
-                                new B05P13(p).f7BC_Set((float)(0));
+                                new B05P13(p).CrosshairAnimTime_Set((float)(0));
                             }
                             else
                             {
-                                new B05P13(p).f7BC_Set(Mem.F32(0x800C74D0u));
+                                new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
                             }
                         }
                     }
                 }
                 else
                 {
-                    if (((int)(new B05P13(p).unkE4) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))))
+                    if (((int)(new B05P13(p).TypeId) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(0 * 4)))))
                     {
-                        if (((int)(new B05P13(p).unkE4) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4)))))
+                        if (((int)(new B05P13(p).TypeId) != Mem.S32((Gv.Player_SpecialCharacterIds + (uint)(1 * 4)))))
                         {
-                            new B05P13(p).id798_Set(753);
-                            if ((((int)(new B05P13(p).s62E) == 9) && (new B05P13(p).f5A0 > 0.0f)))
+                            new B05P13(p).CrosshairSpriteId_Set(753);
+                            if ((((int)(new B05P13(p).WeaponIndex) == 9) && (new B05P13(p).WeaponCharge_5A0 > 0.0f)))
                             {
-                                new B05P13(p).f7BC_Set(Mem.F32(0x800C74D0u));
+                                new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
                             }
                             else
                             {
-                                b = (int)(new B05P13(p).b48C);
+                                b = (int)(new B05P13(p).WeaponActorMode_48C);
                                 if (((b == 11) || (b == 3)))
                                 {
-                                    new B05P13(p).f7BC_Set((float)(0));
+                                    new B05P13(p).CrosshairAnimTime_Set((float)(0));
                                 }
                                 else
                                 {
                                     if ((b == 2))
                                     {
-                                        new B05P13(p).f7BC_Set((float)(0));
+                                        new B05P13(p).CrosshairAnimTime_Set((float)(0));
                                     }
                                     else
                                     {
-                                        if (((int)(new B05P13(p).b523) != 0))
+                                        if (((int)(new B05P13(p).WeaponActorFlag_523) != 0))
                                         {
-                                            new B05P13(p).f7BC_Set((float)(0));
+                                            new B05P13(p).CrosshairAnimTime_Set((float)(0));
                                         }
                                         else
                                         {
-                                            new B05P13(p).f7BC_Set(Mem.F32(0x800C74D0u));
+                                            new B05P13(p).CrosshairAnimTime_Set(Mem.F32(0x800C74D0u));
                                         }
                                     }
                                 }
@@ -388,19 +388,19 @@ public static partial class Game
                         }
                         else
                         {
-                            new B05P13(p).id798_Set(770);
-                            new B05P13(p).f7BC_Set((float)(0));
+                            new B05P13(p).CrosshairSpriteId_Set(770);
+                            new B05P13(p).CrosshairAnimTime_Set((float)(0));
                         }
                     }
                     else
                     {
-                        new B05P13(p).id798_Set(770);
-                        new B05P13(p).f7BC_Set((float)(0));
+                        new B05P13(p).CrosshairSpriteId_Set(770);
+                        new B05P13(p).CrosshairAnimTime_Set((float)(0));
                     }
                 }
             }
             Gfx_BeginFlatColorPass((uint)(255), default(uint), default(uint), default(uint));
-            id = new B05P13(p).id7B8;
+            id = new B05P13(p).CrosshairSprite2Id_7B8;
             flag = 1;
             if (((id == 730) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0)))
             {
@@ -433,10 +433,10 @@ public static partial class Game
                 }
                 if ((flag != 0))
                 {
-                    Hud_DrawIconSprite(s, new B05P13(p).v7C0.P, id, new B05P13(p).f7BC, val, Mem.F32(0x800C74E0u));
+                    Hud_DrawIconSprite(s, new B05P13(p).CrosshairPos2.P, id, new B05P13(p).CrosshairAnimTime, val, Mem.F32(0x800C74E0u));
                 }
             }
-            id = new B05P13(p).id798;
+            id = new B05P13(p).CrosshairSpriteId;
             flag = 1;
             if (((id == 730) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0)))
             {
@@ -467,7 +467,7 @@ public static partial class Game
                 }
                 if ((flag != 0))
                 {
-                    Hud_DrawIconSprite(s, new B05P13(p).v79C.P, id, new B05P13(p).f7BC, val, Mem.F32(0x800C7688u));
+                    Hud_DrawIconSprite(s, new B05P13(p).CrosshairPos.P, id, new B05P13(p).CrosshairAnimTime, val, Mem.F32(0x800C7688u));
                 }
             }
         }
@@ -776,7 +776,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021EED8_hudRules");
-            return new HudStatusShared_Settings(Gv.Settings).rules.P;
+            return new HudStatusShared_Settings(Gv.Settings).MatchRules.P;
         }
     }
 
@@ -2793,61 +2793,61 @@ public static partial class Game
                 n = new TextSrc_v4(b).listE40_;
                 if ((n != 0u))
                 {
-                    p = new TextNode_v4(n).next4_;
-                    new TextNode_v4(n).unk34_Set(((float)(Mem.S32(Gv.ScreenHeight)) * 0.810000002f));
+                    p = new TextNode_v4(n).NextPtr;
+                    new TextNode_v4(n).Y_Set(((float)(Mem.S32(Gv.ScreenHeight)) * 0.810000002f));
                     while ((p != 0u))
                     {
-                        new TextNode_v4(p).unk34_Set((new TextNode_v4(n).unk34 + dy));
+                        new TextNode_v4(p).Y_Set((new TextNode_v4(n).Y + dy));
                         n = p;
-                        p = new TextNode_v4(p).next4_;
+                        p = new TextNode_v4(p).NextPtr;
                     }
                 }
-                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).next0_)
+                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).PrevPtr)
                 {
-                    Text_Draw(new TextNode_v4(p).unk24_, (int)(new TextNode_v4(p).unk30), (int)(new TextNode_v4(p).unk34), new TextNode_v4(p).unk18, 1, 1, 1.0f, 1.0f);
+                    Text_Draw(new TextNode_v4(p).unk24_, (int)(new TextNode_v4(p).X), (int)(new TextNode_v4(p).Y), new TextNode_v4(p).Alpha, 1, 1, 1.0f, 1.0f);
                 }
-                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).next0_)
+                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).PrevPtr)
                 {
                     {
                         n = p;
                         step = (Mem.F32(Gv.FrameTime) * 0.0666666701f);
-                        switch (new TextNode_v4(p).unk14)
+                        switch (new TextNode_v4(p).FadeState)
                         {
                         case 2:
-                            new TextNode_v4(p).unk18_Set((int)((sinf((new TextNode_v4(p).unk28 * 1.57079637f)) * 255.0f)));
-                            new TextNode_v4(p).unk28_Set((new TextNode_v4(p).unk28 + step));
-                            if ((1.0f < new TextNode_v4(p).unk28))
+                            new TextNode_v4(p).Alpha_Set((int)((sinf((new TextNode_v4(p).FadeProgress * 1.57079637f)) * 255.0f)));
+                            new TextNode_v4(p).FadeProgress_Set((new TextNode_v4(p).FadeProgress + step));
+                            if ((1.0f < new TextNode_v4(p).FadeProgress))
                             {
-                                new TextNode_v4(p).unk14_Set(3);
-                                new TextNode_v4(p).unk28_Set(0.0f);
+                                new TextNode_v4(p).FadeState_Set(3);
+                                new TextNode_v4(p).FadeProgress_Set(0.0f);
                             }
                             break;
                         case 1:
-                            new TextNode_v4(p).unk18_Set(0);
+                            new TextNode_v4(p).Alpha_Set(0);
                             break;
                         case 3:
-                            new TextNode_v4(p).unk18_Set(255);
+                            new TextNode_v4(p).Alpha_Set(255);
                             break;
                         case 4:
-                            new TextNode_v4(p).unk18_Set((int)((cosf((new TextNode_v4(p).unk28 * 1.57079637f)) * 255.0f)));
-                            new TextNode_v4(p).unk28_Set((new TextNode_v4(p).unk28 + step));
-                            if ((1.0f < new TextNode_v4(p).unk28))
+                            new TextNode_v4(p).Alpha_Set((int)((cosf((new TextNode_v4(p).FadeProgress * 1.57079637f)) * 255.0f)));
+                            new TextNode_v4(p).FadeProgress_Set((new TextNode_v4(p).FadeProgress + step));
+                            if ((1.0f < new TextNode_v4(p).FadeProgress))
                             {
-                                for (q = new TextSrc_v4(b).listE40_; (q != 0u); q = new TextNode_v4(q).next4_)
+                                for (q = new TextSrc_v4(b).listE40_; (q != 0u); q = new TextNode_v4(q).NextPtr)
                                 {
-                                    if ((new TextNode_v4(q).unk14 == 1))
+                                    if ((new TextNode_v4(q).FadeState == 1))
                                     {
-                                        new TextNode_v4(q).unk14_Set(2);
-                                        new TextNode_v4(q).unk28_Set(0.0f);
+                                        new TextNode_v4(q).FadeState_Set(2);
+                                        new TextNode_v4(q).FadeProgress_Set(0.0f);
                                     }
                                 }
-                                new TextNode_v4(n).unk14_Set(0);
-                                new TextNode_v4(n).unk28_Set(0.0f);
+                                new TextNode_v4(n).FadeState_Set(0);
+                                new TextNode_v4(n).FadeProgress_Set(0.0f);
                             }
                             break;
                         default:
-                            new TextNode_v4(n).unk18_Set(0);
-                            new TextNode_v4(n).unk14_Set(0);
+                            new TextNode_v4(n).Alpha_Set(0);
+                            new TextNode_v4(n).FadeState_Set(0);
                             break;
                         }
                     }
@@ -2857,8 +2857,8 @@ public static partial class Game
                 {
                     do
                     {
-                        next = new TextNode_v4(p).next0_;
-                        if ((new TextNode_v4(p).unk14 == 0))
+                        next = new TextNode_v4(p).PrevPtr;
+                        if ((new TextNode_v4(p).FadeState == 0))
                         {
                             List_Remove((b + 3648u), p, default(uint), default(uint));
                             List_Add((o + 3876u), p);
@@ -3154,19 +3154,19 @@ public static partial class Game
                             n = func_00239760_takeNode(o, b);
                             if ((n != 0u))
                             {
-                                new TextNode(n).unk14_Set(type);
+                                new TextNode(n).FadeState_Set(type);
                                 new TextNode(n).unk24__Set(start);
-                                new TextNode(n).unk18_Set(0);
+                                new TextNode(n).Alpha_Set(0);
                                 new TextNode(n).unk10_Set(1.0f);
-                                new TextNode(n).unk1C_Set(id);
+                                new TextNode(n).MessageId_Set(id);
                                 new TextNode(n).unk20_Set(0);
-                                new TextNode(n).unk28_Set(0);
+                                new TextNode(n).FadeProgress_Set(0);
                                 new TextNode(n).unk2C_Set(0);
-                                new TextNode(n).unk38_Set(1.0f);
-                                new TextNode(n).unk3C_Set(1.0f);
-                                new TextNode(n).unk30_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
-                                new TextNode(n).unk34_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
-                                new TextNode(n).unkC_Set((sc * 15.0f));
+                                new TextNode(n).Scale_38_Set(1.0f);
+                                new TextNode(n).Scale_3C_Set(1.0f);
+                                new TextNode(n).X_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
+                                new TextNode(n).Y_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
+                                new TextNode(n).FontSize_Set((sc * 15.0f));
                             }
                             start = (p + (uint)1);
                         }
@@ -3237,19 +3237,19 @@ public static partial class Game
                             n = func_002398F8_takeNode(o, b);
                             if ((n != 0u))
                             {
-                                new TextNode_v3(n).unk14_Set(type);
+                                new TextNode_v3(n).FadeState_Set(type);
                                 new TextNode_v3(n).unk24__Set(start);
-                                new TextNode_v3(n).unk18_Set(0);
+                                new TextNode_v3(n).Alpha_Set(0);
                                 new TextNode_v3(n).unk10_Set(1.0f);
-                                new TextNode_v3(n).unk1C_Set(id);
+                                new TextNode_v3(n).MessageId_Set(id);
                                 new TextNode_v3(n).unk20_Set(0);
-                                new TextNode_v3(n).unk28_Set(0);
+                                new TextNode_v3(n).FadeProgress_Set(0);
                                 new TextNode_v3(n).unk2C_Set(0);
-                                new TextNode_v3(n).unk38_Set(1.0f);
-                                new TextNode_v3(n).unk3C_Set(1.0f);
-                                new TextNode_v3(n).unk30_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
-                                new TextNode_v3(n).unk34_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
-                                new TextNode_v3(n).unkC_Set((sc * 15.0f));
+                                new TextNode_v3(n).Scale_38_Set(1.0f);
+                                new TextNode_v3(n).Scale_3C_Set(1.0f);
+                                new TextNode_v3(n).X_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
+                                new TextNode_v3(n).Y_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
+                                new TextNode_v3(n).FontSize_Set((sc * 15.0f));
                             }
                             start = (p + (uint)1);
                         }
@@ -3467,19 +3467,19 @@ public static partial class Game
                             n = func_0023A334_takeNode(o, b);
                             if ((n != 0u))
                             {
-                                new TextNode(n).unk14_Set(type);
+                                new TextNode(n).FadeState_Set(type);
                                 new TextNode(n).unk24__Set(start);
-                                new TextNode(n).unk18_Set(0);
+                                new TextNode(n).Alpha_Set(0);
                                 new TextNode(n).unk10_Set(1.0f);
-                                new TextNode(n).unk1C_Set(id);
+                                new TextNode(n).MessageId_Set(id);
                                 new TextNode(n).unk20_Set(0);
-                                new TextNode(n).unk28_Set(0);
+                                new TextNode(n).FadeProgress_Set(0);
                                 new TextNode(n).unk2C_Set(0);
-                                new TextNode(n).unk38_Set(1.0f);
-                                new TextNode(n).unk3C_Set(1.0f);
-                                new TextNode(n).unk30_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
-                                new TextNode(n).unk34_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
-                                new TextNode(n).unkC_Set((sc * 15.0f));
+                                new TextNode(n).Scale_38_Set(1.0f);
+                                new TextNode(n).Scale_3C_Set(1.0f);
+                                new TextNode(n).X_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
+                                new TextNode(n).Y_Set((float)((Mem.S32(Gv.ScreenHeight) - 80)));
+                                new TextNode(n).FontSize_Set((sc * 15.0f));
                             }
                             start = (p + (uint)1);
                         }

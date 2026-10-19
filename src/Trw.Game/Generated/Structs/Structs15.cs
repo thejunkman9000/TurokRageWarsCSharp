@@ -1705,55 +1705,55 @@ public readonly struct MenuWidget
     [MethodImpl(Inl)] public static implicit operator uint(MenuWidget v) => v.P;
     [MethodImpl(Inl)] public static explicit operator MenuWidget(uint p) => new(p);
     // +0x0
-    public S8x12 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x12 ParentPtr { [MethodImpl(Inl)] get => new(P); }
     // +0xC
-    public short resource
+    public short Id
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short resource_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Id_Set(short v) => Mem.Set(P + 0xCu, v);
     // +0xE
-    public S8x2 padE { [MethodImpl(Inl)] get => new(P + 0xEu); }
+    public S8x2 Type { [MethodImpl(Inl)] get => new(P + 0xEu); }
     // +0x10
-    public byte alpha
+    public byte Alpha
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public byte alpha_Set(byte v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public byte Alpha_Set(byte v) => Mem.Set(P + 0x10u, v);
     // +0x11
     public S8x3 pad11 { [MethodImpl(Inl)] get => new(P + 0x11u); }
     // +0x14
-    public short x
+    public short X
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public short x_Set(short v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public short X_Set(short v) => Mem.Set(P + 0x14u, v);
     // +0x16
-    public short y
+    public short Y
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public short y_Set(short v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public short Y_Set(short v) => Mem.Set(P + 0x16u, v);
     // +0x18
-    public short width
+    public short Width
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public short width_Set(short v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public short Width_Set(short v) => Mem.Set(P + 0x18u, v);
     // +0x1A
-    public short height
+    public short Height
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x1Au);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Au, value);
     }
-    [MethodImpl(Inl)] public short height_Set(short v) => Mem.Set(P + 0x1Au, v);
+    [MethodImpl(Inl)] public short Height_Set(short v) => Mem.Set(P + 0x1Au, v);
     // +0x1C
-    public S8x16 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x16 OffsetX { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x2C
     public int value
     {

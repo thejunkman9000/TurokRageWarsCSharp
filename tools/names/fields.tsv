@@ -766,7 +766,7 @@ ActorState	0x130	ClassVec_130	low	per-class Vec3f: turret base axis (Turret_Init
 ActorState	0x13C	ClassVar_13C	low	per-class float: platform spin/bob phase (Platform_Update += params rate*dt, sinf)
 ActorDef	0x0	Kind	high	class kind (1 creature, 2 moving, 4/7 breakable...); Actor_HasDefFlag* / ActorState_InitHealth / ActorState_Update switch on it
 ActorDef	0x4	Flags	medium	Level_BuildActiveActorLists tests (flags & mask), 0x100, 0x200; Actor_HasDefFlag4x04 bit 2
-ActorDef	0xE	SpawnParam_E	low	ActorState_InitHealth copies the byte to the spawn record +1
+ActorDef	0xE	DefaultModelIndex	medium	ActorState_InitHealth copies the byte to the spawn record +1
 ActorDef	0x10	SpawnParam_10	low	ActorState_InitHealth copies the byte to the spawn record +2
 ActorDef	0x12	SpawnParam_12	low	ActorState_InitHealth copies the byte to the spawn record +3
 ActorDef	0x14	Params	medium	embedded per-class parameter block (decomp def->info, object ActorDefParams; first word = flags, Actor_HasDefFlag14x*)
@@ -818,3 +818,556 @@ WeaponState	0x13C	FireMode	high	1 = primary, 2 = alternate: idle states switch v
 WeaponState	0x144	AltReady_144	low	Weapon_UpdateIdleBoomerang sets 1; Weapon_CanFire weapon 1 needs it != 0
 WeaponState	0x148	AltFireCooldown	medium	Weapon_Update counts it down; Weapon_CanFire weapon 9 refuses alt mode while > 0
 Player	0x16C0	ClimbLookYaw	medium	Player_UpdateClimbState accumulates TurnInput*0.0625 clamped to [-1,1]; ViewYawOffset approaches it*45 deg; zeroed on climb start
+ArenaSelectPage	0x0	RootNode	high	ArenaSelect_Open stores the screen window; every UiTree_FindNode of the page searches from it
+ArenaSelectPage	0x8	Models	high	5 x 0xC0 PreviewModel blocks: ArenaSelect_Open builds the 4 category models 0xEA6..0xEA9 plus a fifth; OnDraw draws them
+ArenaSelectPage	0x308	CategoryPreviewModel	high	models[4]: PreviewModel_SetModel(+0x308, category+0xEA6) on Up/Left; drawn by OnDraw when the index is 0
+ArenaSelectPage	0x3C8	CursorGroup	high	CursorGroup_Create(window,4) in ArenaSelect_Open
+ArenaSelectPage	0x3CC	LeftArrowNode	high	node 0x306, shifted by its width in Open; ArenaSelect_Update slides it by LeftArrowStep
+ArenaSelectPage	0x3D0	LeftArrowStep	medium	left arrow width/4; Update adds/subtracts it from the arrow x each frame
+ArenaSelectPage	0x3D4	RightArrowNode	high	node 0x30F, mirror of LeftArrowNode
+ArenaSelectPage	0x3D8	RightArrowStep	medium	right arrow width/4, per-frame slide step
+ArenaSelectPage	0x3DC	State	high	page phase 1..9: Open 1, Update 2/3/4/9, OnMessage 8, OnBack 5; input handlers only act in 3
+ArenaSelectPage	0x3E0	StateTimer	high	set 4 at open/phase changes and decremented by ArenaSelect_Update before the next phase
+ArenaSelectPage	0x3E4	TextFlicker	medium	Flicker_Create(0x303,0x6E) in Open; Update Flicker_Trigger/IsSteady/Stop it
+ArenaSelectPage	0x3E8	BannerNode_3E8	low	node 0x301 hidden at open, shown by Update when the slide-in ends (then the flicker runs)
+ArenaSelectPage	0x3EC	NameLabelNode	high	node 0x30E; its text pointer (+0x38) is set to NameText by ArenaSelect_UpdateNameText
+ArenaSelectPage	0x3F0	NameFrameNode_3F0	low	node 0x310, hidden with the label on confirm (ArenaSelect_OnMessage/Confirm), shown in Update
+ArenaSelectPage	0x3F4	NameText	high	char[64]: GAUNTLET or the upper-cased level name (ArenaSelect_UpdateNameText/RefreshSelection)
+ArenaSelectPage	0x434	Category	high	screen category 0..3 (game type via ArenaSelect_CategoryToGameType); Left/Right change it
+ArenaSelectPage	0x438	ArenaIndex	high	selected arena within the category (0 = gauntlet); Up/Down move it, Confirm/Arena_GetLevelForType use it
+ArenaSelectPage	0x43C	SelectedArenaNode	high	UiTree_FindNode of the selected arena node (RefreshSelection); alpha 65 when the cursor moves
+ArenaSelectPage	0x440	GauntletPanelNode_440	low	node 0x30B alpha 0x8C: shown when ArenaIndex == 0, hidden otherwise and on confirm
+ArenaSelectPage	0x444	ArenaPanelNode_444	low	node 0x30D alpha 0x8C: shown when ArenaIndex != 0 (counterpart of +0x440)
+ArenaSelectPage	0x448	CategoryCursorNode	medium	node 0x35D; x (+0x14) = Category*34+124 in OnLeft/OnUp; hidden on confirm
+ArenaSelectPage	0x44C	ConfirmFadeNode_44C	low	node 0x30C alpha 0xFF, set to 90 by ArenaSelect_OnMessage on confirm
+ArenaSelectPage	0x450	MarkerNodeA	medium	node 0x2FE; ArenaSelect_ShowMarkers sets alpha 0xFF, OnDraw fades it
+ArenaSelectPage	0x454	MarkerNodeB	medium	node 0x308; faded with MarkerNodeA in OnDraw, its alpha is read as the fade value
+ArenaSelectPage	0x45C	IdleTime	medium	accumulated by Update while State == 3, reset to 0 on every cursor move
+ArenaSelectPage	0x464	FlybyDelay	medium	OnDraw counts it up; at 20 (and index > 0) plays the arena flyby; reset on cursor moves
+ArenaSelectPage	0x468	MarkerFadeDelay	medium	-1 idle; OnDraw counts to 6 then sets IsMarkerFading
+ArenaSelectPage	0x46C	IsMarkerFading	medium	1 = OnDraw fades MarkerNodeA/B out; ShowMarkers clears it
+MissionTreePage	0x0	ScreenWipe	medium	MissionTree_OnOpen calls ScreenWipe_Init(page, 0x67,...): the page starts with the wipe block
+MissionTreePage	0x20	TrialPortrait	medium	0x950-byte block passed to Portrait_CreateActor by MissionTree_ShowTrialCharacter (TRIAL OF [CHARACTER])
+MissionTreePage	0x970	RootNode	high	OnOpen stores the screen window; UiTree_FindNode of links/info texts search from it
+MissionTreePage	0x974	CursorGroup	high	CursorGroup_Create(window,4) in OnOpen
+MissionTreePage	0x978	LeftArrowNode	high	node 0x145 shifted by its width in OnOpen (same arrow setup as the arena select)
+MissionTreePage	0x97C	LeftArrowStep	medium	left arrow width/4
+MissionTreePage	0x980	RightArrowNode	high	node 0x144, mirror of LeftArrowNode
+MissionTreePage	0x984	RightArrowStep	medium	right arrow width/4
+MissionTreePage	0x988	State	high	page phase: OnOpen 1, OnButton 8, MissionTree_Update switches on it and writes the next phase
+MissionTreePage	0x98C	StateTimer	high	set 4 in OnOpen; MissionTree_Update decrements it and changes phase at 0
+MissionTreePage	0x990	TextFlicker	medium	Flicker_Create(0x141,0x6E); Update triggers/stops it
+MissionTreePage	0x994	BannerNode_994	low	node 0x13F hidden at open, shown by Update with the flicker, hidden again afterwards
+MissionTreePage	0x998	ArenaNameNode	high	node 0x154; text pointer set to ArenaNameText by MissionTree_UpdateArenaName
+MissionTreePage	0x99C	InfoNode_99C	low	node 0x155 found in OnOpen
+MissionTreePage	0x9A0	InfoText	high	char[50] header text built by MissionTree_UpdateInfoText (UiString 105 + character), shown in node 339
+MissionTreePage	0x9D2	InfoDetailText	medium	char[50] second info line (UiString 61 with time replaced) from MissionTree_UpdateInfoText
+MissionTreePage	0xA04	ArenaNameText	high	char[64] upper-cased cursor arena name (MissionTree_UpdateArenaName)
+MissionTreePage	0xA44	CursorArena	high	index into the 36-entry arena node table MissionTree_NodeTable; Nav* move it, Select uses it
+MissionTreePage	0xA48	CursorArenaNode	high	node of the cursor arena (alpha 70/170 on nav)
+MissionTreePage	0xA4C	HasTrialPortrait	medium	1 when mode 3/4 and MissionTree_ShowTrialCharacter ran in OnOpen
+MissionTreePage	0xA50	ConfirmFadeNode_A50	low	node 0x151 alpha 0xFF, OnButton sets 90 (like the arena select confirm fade)
+MissionTreePage	0xA54	IdleTime	medium	MissionTree_Update adds the frame delta while State == 3
+MissionTreePage	0xA58	IsInputEnabled	medium	MissionTree_Update calls Menu_EnableInput once and sets it 1
+MissionTreePage	0xA5C	PlayerIndex	high	first joined player record (records +0x78 == 1); indexes ProfileTable (400-byte rows) for played arenas/weapons
+MissionTreePage	0xA60	InfoPanelNodeA	medium	node 0x13D (modes 1/3/4); MissionTree_ShowInfoPanels sets alpha 0xFF
+MissionTreePage	0xA64	InfoPanelNodeB	medium	node 0x147; shown with InfoPanelNodeA
+MissionTreePage	0xA68	InfoPanelTimer_A68	low	cleared in OnOpen and by MissionTree_ShowInfoPanels
+MissionTreePage	0xA6C	NavTimer_A6C	low	cleared in OnOpen and on every successful cursor move (OnNav*)
+MissionTreePage	0xA74	PlayedArenaBits	high	36-bit set: MissionTree_LoadPlayedArenas copies the profile played bits; RefreshMap reads it
+MissionTreePage	0xA79	OpenArenaBits	high	36-bit set of newly opened arenas (MissionTree_OpenNeighbours); Nav* only move onto set arenas
+ResultsPage	0x0	ScreenWipe	high	Results_Open: ScreenWipe_Init(page,0x67); OnDraw ScreenWipe_Advance/GetState(page)
+ResultsPage	0x1C	WipeAction	medium	1 at open (wipe-in from the game), 0 when continue is chosen; Results_OnDraw switches on it when the wipe ends
+ResultsPage	0x20	RewardModel	high	0xC0 PreviewModel block: Results_ShowReward inits/sets model RewardModelId, Results_DrawReward draws it
+ResultsPage	0xE0	RootNode	high	Results_Open stores the screen window; FillRows/emblem code UiTree_FindNode from it
+ResultsPage	0xE4	PromptNode_E4	low	node 0x23D; Results_OnTick toggles its visibility
+ResultsPage	0xE8	ScrollOffset	high	first visible ranking row; Results_ScrollUp/Down change it, FillRows reads Ranking[+0xE8+i]
+ResultsPage	0xEC	RowCount	high	number of ranked players; FillRows loop bound, ScrollDown checks offset+4 < it
+ResultsPage	0xF0	Ranking	high	int[8] sorted player indices (Results_SortPlayers); [0] gets Profile_AddWin
+ResultsPage	0x110	Awards	high	8 x {a,b} award pairs cleared to -1 in Open, filled by Results_Compute*Awards, read by FillRows
+ResultsPage	0x150	FragsText_150	low	char[4][25] row column 1: %d of player record +4 (Results_FillRows)
+ResultsPage	0x1B4	DeathsText_1B4	low	char[4][25] row column 2: %d of record +0 + +2 (Results_FillRows)
+ResultsPage	0x218	HitPercentText	medium	char[4][25] column 3 formatted with the %d%% string (Results_FillRows)
+ResultsPage	0x27C	ObjectiveText	medium	char[4][25] column 4: tags (+8) or flags (+6) per game type, else 0 (Results_FillRows)
+ResultsPage	0x2E0	LevelNameText	high	char[64] upper-cased level name shown in node 0x235 (Results_Open)
+ResultsPage	0x320	IsStarted	medium	0 at open; Results_OnTick first tick focuses the default item, enables input and sets 1
+ResultsPage	0x324	IsMissionFailed	medium	mode 2: 1 when the trial was not won (shows the MISSION FAILED text), 0 otherwise
+ResultsPage	0x328	IsRewardVisible	medium	Results_DrawReward draws only while set; Open 1, OnTick clears/restores it
+ResultsPage	0x32C	RewardModelId	high	-1 = none; Trial_MarkKeyArenaWon result; Results_ShowReward PreviewModel_SetModel(+0x20, it)
+PlayerCountPage	0x0	PopupPanel	high	PopupPanel_Create(0x398,0x399) in PlayerCount_Open; OnTick polls the popup state
+PlayerCountPage	0x4	TextFlicker	medium	Flicker_Create(923,110) in PlayerCount_Open
+PlayerCountPage	0x8	TickerNode	medium	node 0x39A (alpha 0xF) animated by PlayerCount_OnTick (same ticker as the main menu)
+PlayerCountPage	0xC	OpenDelay	medium	3 at open; PlayerCount_OnTick counts it down before enabling the popup
+PlayerCountPage	0x10	NextScreenId	high	screen to go to when the popup closes: 7 on select, -1 on back; OnTick Menu_GotoScreen(it)
+PlayerCountPage	0x14	CountText	high	char[12] %d of PlayerCount shown in node 0x39D
+PlayerCountPage	0x20	PlayerCount	high	number of players 1..4: OnLeft/OnRight change it, OnSelect activates that many records
+MatchOptionsPage	0x0	ScreenWipe	medium	MatchOptions_Open: ScreenWipe_Init(page,0x67) on the 0x40-byte page
+MatchOptionsPage	0x1C	FriendlyFireList	high	OptionList_Create(0x367,0x368) NO/YES; stored to Settings+0x28 by MatchOptions_StoreSettings
+MatchOptionsPage	0x20	BotSkillList	high	OptionList_Create(0x36E,0x36F) NOVICE..EXPERT; read by MatchOptions_UpdateBots
+MatchOptionsPage	0x24	FragLimitField	high	NumberField 0x363 0..100 <-> Settings+0x25 (Store/LoadSettings)
+MatchOptionsPage	0x28	TimeLimitField	high	NumberField 0x361 0..100 <-> Settings+0x24
+MatchOptionsPage	0x2C	FlagLimitField	medium	NumberField 0x35F <-> Settings+0x26 (disabled in frag tag)
+MatchOptionsPage	0x30	TagLimitField	medium	NumberField 0x365 <-> Settings+0x27 (disabled in CTF)
+MatchOptionsPage	0x34	BotCountField	high	NumberField 0x36C, range MinBots..MaxBots; MatchOptions_UpdateBots / OnSelect read it
+MatchOptionsPage	0x38	MaxBots	high	BotSetup_GetMaxBots() in Open; upper bound of the bot count field
+MatchOptionsPage	0x3C	MinBots	medium	lower bound of the bot count field: 0, or 1 when MaxBots == 3
+MainMenuPage	0x0	PopupPanel	high	PopupPanel_Create(0x42,0x24) in MainMenu_OnOpen; MainMenu_Update polls PopupPanel_GetState (3 open, 4 closed)
+MainMenuPage	0x4	TextFlicker	medium	Flicker_Create(0x44,0x6E) in MainMenu_OnOpen
+MainMenuPage	0x8	TickerNode	high	node 0x43; MainMenu_Update scrolls its +0x16 and wraps it (ticker text)
+MainMenuPage	0xC	OpenDelay	high	9 or 1 at open; MainMenu_Update counts it down then PopupPanel_Enable
+MainMenuPage	0x14	TickerStepTimer	high	MainMenu_Update: decremented each frame, the ticker moves one step at 0 and it reloads 3
+MainMenuPage	0x18	NextScreenId	high	set by OnConfirm/OnButton (0x1A, 7, 0x13, 0x1C...); Update Menu_GotoScreen(it) when the popup closes
+Settings	0x0	ActiveCheats	medium	flag word at Settings+0: bits 0x20/0x40 sound/event gates, 0x4000 black vertex colours, 0x20000000 unlocks the extra main-menu modes
+Settings	0x4	UnlockedCheats	medium	global Settings_UnlockedCheats: unlocked cheat mask
+Settings	0xD	GameMode	high	global Settings_GameMode: 0 custom match, 1..4 trial modes; switched on by Results/MissionTree/MatchSetup
+Settings	0x10	Brightness	high	slider 0..128 in OptionsMenu/PauseOptions/TrialPauseMenu, InGameMenu_OnBrightnessSelect; lighting scales by it/255
+Settings	0x1B	BloodColor	high	global Settings_BloodColor; option list 89/90 (3 choices) in the options menus
+Settings	0x1D	IsMultiplayer	medium	global Settings_IsMultiplayer; LegacyMenu single player sets 0
+Settings	0x1E	MaxPlayers	medium	Settings+0x1E player/view count; LegacyMenu single player sets 1
+Settings	0x1F	SplitScreenLayout	high	2-player layout 0/1: View_UpdateLayout orientation, InGameMenu_OnTwoPlayerLayoutSelect, options list 85/86
+Settings	0x20	GameSpeed	medium	float multiplier applied to actor speed (B05Cfg7.unk20 in Actor.cs) when +0x1D set; globals note game speed +0x20
+Settings	0x24	TimeLimit	high	MatchOptions_StoreSettings from the time field; MatchSetup_ApplySettings arg 0 (minutes)
+Settings	0x25	FragLimit	high	MatchOptions frag field; MatchSetup_Apply{Team,Bloodlust}Rules pass it
+Settings	0x26	FlagLimit	medium	MatchOptions field 0x35F (disabled in frag tag); MatchSetup_ApplySettings arg 3
+Settings	0x27	TagLimit	medium	MatchOptions field 0x365 (disabled in CTF); MatchSetup_ApplySettings arg 2
+Settings	0x28	FriendlyFire	high	MatchOptions NO/YES list stored here by MatchOptions_StoreSettings
+Settings	0x2D	IsWeapon0Enabled	medium	LegacyMenu_ToggleWeapon toggles bytes +0x2D..+0x35 (^1), one per weapon
+Settings	0x2E	IsWeapon1Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x2F	IsWeapon2Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x30	IsWeapon3Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x31	IsWeapon4Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x32	IsWeapon5Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x33	IsWeapon6Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x34	IsWeapon7Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0x35	IsWeapon8Enabled	medium	LegacyMenu_ToggleWeapon weapon toggle byte
+Settings	0xD0	PlayerRecords	high	global Settings_PlayerRecords: 8 x 150-byte player setup records (+0x78 active, +0x91 pending)
+Settings	0x580	ResolutionMode	high	global Settings_ResolutionMode; options list 81/82 (hi-res only with 8MB), Video_RequestResolution(it)
+Settings	0x581	Language_581	low	only the HudStatusShared_Settings view names it language
+Settings	0x5CC	GamePaused	high	global GamePaused (Settings+0x5CC); B15Globals.unk5CC gates events/sounds
+Settings	0x5D8	MatchRules	high	global Settings_MatchRules: the MatchRules block (GStateB6.sub is GameB6)
+Settings	0x5FC	IsTeamPlay	medium	MatchRules+0x24 (IsTeamPlay) seen through S11Game in Player.cs
+Settings	0x62C	IsMonkeyTagMode	medium	global Settings_MonkeyTagMode (MatchRules+0x54); gates monkey/tag item and player code
+Settings	0x680	TrialWon_680	low	Results_Open mode 2 checks == 1 (else MISSION FAILED); Trials checks it with mode 1; Health clears it
+UiNode	0x0	ParentPtr	high	UiNode_GetInheritedFlags/IsVisibleInherited/GetAbsolutePosition walk +0 up to the root; UiTree_SwapNodes/Relocate rewrite it (src/ovl_a/func_0040F75C.c: parent)
+UiNode	0x4	NextSiblingPtr	high	UiNode_DrawSiblings walks the sibling chain via +4; MenuButton/OptionList OnFocus iterate children via +4
+UiNode	0x8	FirstChildPtr	high	UiNode_DrawScreen/DrawChildrenClipped pass +8 to UiNode_DrawSiblings; UiTree_ScaleForHiRes/LoadImages recurse into it
+UiNode	0xC	Id	high	UiTree_FindNode / UiTree_HitTest match the node id at +0xC; Menu_MoveFocusDir returns it; *_HandleMessage read it
+UiNode	0xE	Type	high	UiNode_Draw switches on it: 1 group, 2 screen, 3 image, 4 text, 6 gradient rect, 8 state button, else class widget (Menu_CallClassDraw)
+UiNode	0x10	Alpha	high	UiNode_ComputeRect scales the context alpha by it (<0xFF); menus set 110/140/200 for dim/normal/focus (MenuButton_OnFocus, PauseOptions_OnOpen)
+UiNode	0x12	Flags	high	bits: 0x01 dimmed, 0x08 visible, 0x10 has focus links, 0x40 highlighted, 0x100 disabled, 0x200 clip children, 0x400/0x800 rect mode (UiNode_Set*/Is*Inherited, ComputeRect)
+UiNode	0x14	X	high	UiNode_SetPosition stores x; UiNode_GetAbsolutePosition sums it over parents; ComputeRect/HitTest use it
+UiNode	0x16	Y	high	UiNode_SetPosition stores y; summed by UiNode_GetAbsolutePosition
+UiNode	0x18	Width	high	UiNode_ComputeRect w (rect = x + w - 1); scaled by UiTree_ScaleForHiRes; Slider_Create sets the bar width
+UiNode	0x1A	Height	high	UiNode_ComputeRect h; UiTree_HitTest and UiTree_ScaleForHiRes
+UiNode	0x1C	OffsetX	medium	UiNode_ComputeRect adds ox to x for the drawn rect (not for the clip rect) (src/ovl_a/func_0040E154.c S_node.ox)
+UiNode	0x1E	OffsetY	medium	UiNode_ComputeRect adds oy to y for the drawn rect (S_node.oy)
+UiNode	0x20	ScaleX	high	UiNode_ComputeRect multiplies the context sx by it; UiTree_ScaleForHiRes stores the hi-res x scale for text nodes
+UiNode	0x24	ScaleY	high	UiNode_ComputeRect multiplies the context sy by it; UiTree_ScaleForHiRes
+UiNode	0x28	IsHiResScaled	medium	UiTree_ScaleForHiRes checks/sets it so each node is scaled only once (Widget_v2.scaled)
+HudTextLine	0x0	PrevPtr	medium	list link at the list's prev offset: Hud_UpdateMessages walks from the tail (+0xE44) through +0
+HudTextLine	0x4	NextPtr	medium	list link at the next offset: Hud_UpdateMessages walks from the head (+0xE40) through +4 stacking the lines
+HudTextLine	0xC	FontSize	medium	text-line spawners store scale*15
+HudTextLine	0x14	FadeState	high	Hud_UpdateMessages: 1 waiting, 2 fading in, 3 shown, 4 fading out, 0 done (returned to the free list +0xF24); Hud_ResetTextNode clears it
+HudTextLine	0x18	Alpha	high	Hud_UpdateMessages sets 0/255 or sin/cos of the fade progress *255; passed to Text_Draw
+HudTextLine	0x1C	MessageId	medium	spawners store the id argument (-1 for Hud_SpawnTextLineC); Hud_ResetTextNode clears it
+HudTextLine	0x24	TextPtr	high	start of the line inside the source string (spawners split on newlines); Text_Draw argument
+HudTextLine	0x28	FadeProgress	high	0..1, advanced by FrameTime/15 per update; at >1 the fade state advances
+HudTextLine	0x30	X	high	spawners set ScreenWidth/2; Text_Draw x
+HudTextLine	0x34	Y	high	spawners set ScreenHeight-80; Hud_UpdateMessages restacks lines from ScreenHeight*0.81 in 9-pixel steps
+HudTextLine	0x38	Scale_38	low	spawners set 1.0 (pair with +0x3C)
+HudTextLine	0x3C	Scale_3C	low	spawners set 1.0 (pair with +0x38)
+Settings	0x8	DifficultyMask	high	init 16; InGameMenu_OnDifficultySelect sets 8/16/32, InGameMenu_FormatDifficultyLabel reads it
+Settings	0x14	Opacity	high	u16 opacity setting, init 128 (globals.tsv Settings_Opacity, InGameMenu_OnOpacitySelect)
+Settings	0x18	MusicVolume	high	init 128; SoundMenu/PauseSoundMenu sliders
+Settings	0x19	SfxVolume	medium	init 250; InGameMenu_OnSfxVolumeSelect steps it by 8; Sound_Init scales it
+Settings	0x1A	Volume_1A	low	init 255; neighbour of the music/sfx volumes
+Settings	0x3A	DefaultPlayerRecord	medium	150-byte player control record used when a menu page has no player (Settings_InitPlayerRecordTwin(a+58))
+CharSelectSlot	0x0	RootNodePtr	medium	slot 0 only: the page's UI tree root passed to UiTree_FindNode / CursorGroup_SetCursorById
+CharSelectSlot	0x4	CursorGroupPtr	medium	slot 0 only: cursor group of the page (CursorGroup_SetLocked/GetItemId/GetItem with the player index)
+CharSelectSlot	0x8	CursorNodePtr	medium	per-player marker node: CharSelect_JoinPlayer finds it, positions it at the entry node -2 and makes it visible
+CharSelectSlot	0x10	CharacterNodeId	high	chosen character node id (-1 none): CharSelect_GetCharacterForNode(+0x10), CharSelect_OnButton/LockInCharacter store it
+CharSelectSlot	0x14	State	high	per-player state: 1 choosing, 3 locked in (CharSelect_OnConfirm/OnBack); CharSelect_CountChoosing counts states 1..2
+CharSelectSlot	0x18	SkinIndex	high	CharSelect_NextSkin cycles it, CharSelect_ResetSkin zeroes it, PickRandomCharacter randomises it; byte +0x1B copied to the player record
+CharSelectSlot	0x20	PortraitBlock	medium	inline portrait model block passed to Portrait_CreateActor / MenuModel_SetWord49C
+CheatsMenuPage	0x0	PopupPanelPtr	high	CheatsMenu_OnOpen stores PopupPanel_Create(936,937); CheatsMenu_Update switches on PopupPanel_GetState
+CheatsMenuPage	0x4	FlickerPtr	high	CheatsMenu_OnOpen stores Flicker_Create(938,110)
+CheatsMenuPage	0x8	RootNodePtr	high	page UI root: CheatsMenu_* UiTree_FindNode(+0x8, id) for every node
+CheatsMenuPage	0xC	ToggleList0Ptr	medium	OptionList 948 off/on, mirrors Settings flag 0x08000000 (CheatsMenu_OnOpen/ApplyToggles)
+CheatsMenuPage	0x10	ToggleList1Ptr	medium	OptionList 945 off/on, mirrors Settings flag 0x10000000
+CheatsMenuPage	0x14	ToggleList2Ptr	medium	OptionList 941 off/on, mirrors Settings flag 0x8
+CheatsMenuPage	0x18	ToggleList3Ptr	medium	OptionList 943 off/on, mirrors Settings flag 0x20000000
+CheatsMenuPage	0x20	CreditsNodePtr	high	node 951: CheatsMenu_StartCredits shows it, CheatsMenu_UpdateCredits scrolls its y (+0x16) up
+CheatsMenuPage	0x28	CreditsLinesPending	medium	StartCredits sets 8, ScrollCredits fills that many lines and counts it down
+CheatsMenuPage	0x2C	CreditsScrollTimer	high	CheatsMenu_UpdateCredits decrements it and scrolls one pixel when it reaches 0
+CheatsMenuPage	0x30	CreditsTextIndex	high	index into the credits string table 0x800D7E40 (ScrollCredits advances it; a 0 entry ends the credits)
+CheatsMenuPage	0x34	IsCreditsStopped	high	1 at open and after StopCredits, 0 while the credits run (CheatsMenu_Update calls UpdateCredits when 0)
+CheatsMenuPage	0x38	IsCodeEntered_38	low	set 1 by CheatsMenu_Update when 0x8010F190 == 1075, then CheatsMenu_UpdateUnlocked re-enables the toggles
+UiImageNode	0x2C	ImageIndex	high	UiNode_SetImage stores it; UiNode_DrawImage passes it to Texture_GetResourceId; UiTree_Relocate clamps it to Image_ArchiveCount; Loadout_SetSlotWeapon sets it on type-3 nodes
+UiRectNode	0x2C	CornerColor0	high	UiNode_SetCornerColors word a; UiNode_DrawGradientRect corner colours (+0x2C..+0x38), skipped when all four alphas are 0
+UiRectNode	0x30	CornerColor1	high	UiNode_SetCornerColors word b
+UiRectNode	0x34	CornerColor2	high	UiNode_SetCornerColors word c
+UiRectNode	0x38	CornerColor3	high	UiNode_SetCornerColors word d
+UiTextNode	0x2C	FontId	high	UiNode_SetFont byte a: normal font read by UiNode_DrawText (O02Text.c2C in src/ovl_a/func_0040D350.c)
+UiTextNode	0x2D	PaletteId	high	UiNode_SetFont byte b: normal palette paired with the font
+UiStateButtonNode	0x2C	NormalNodePtr	high	UiNode_DrawStateButton draws sub-node +0x2C in the normal state; UiTree_Relocate resolves it (screen id<<16|offset); LoadImages/ScaleForHiRes recurse into it
+UiStateButtonNode	0x30	HighlightNodePtr	high	UiNode_DrawStateButton uses +0x30 when flag 0x40 (highlighted)
+UiStateButtonNode	0x34	DisabledNodePtr	high	UiNode_DrawStateButton uses +0x34 when flag 0x100 (disabled)
+UiFocusNode	0x2C	NavLinks	high	4 node pointers (dirs 5..8) Menu_MoveFocusDir follows when flag 0x10 is set, skipping disabled (0x100) nodes; UiTree_Relocate rebases them
+MenuItem	0x0	Index	high	MenuPanel_Init / MenuItem_Init store the item's index in the panel list; LegacyMenu_SetWeaponLabel reads it
+MenuItem	0x4	Type	high	MenuItem_ComputeRect switch: 0 text, 1 sprite, 2 slider, 3 model, 4, 5 value (MenuItem_GetTextLength formats type 5)
+MenuItem	0x8	Flags	high	template flags | 0x01800000 at init; 0x8 skipped by the cursor, 0x08000000 title bar, 0x4000/0x8000/0x10000/0x20000 position modes; label fns toggle 0x01000000
+MenuItem	0xC	PosX	medium	MenuItem_ComputeRect scales it by ScreenWidth/284 into the rect x0
+MenuItem	0xE	PosY	medium	MenuItem_ComputeRect scales it by ScreenHeight/222 into the rect y0
+MenuItem	0x14	Data	medium	per type: text items hold the address of the label string pointer (label fns store 0x800D75D4..; MenuItem_GetTextLength derefs it), sprites a sprite id, model/value a descriptor
+MenuItem	0x17	CharCode	medium	MenuItem_DrawChar draws the single character in this byte (low byte of Data)
+MenuItem	0x18	TemplatePtr	high	MenuPanel_Init stores the 36-byte item template; its +0x18 update and +0x1C select callbacks are called by the panel input handler
+MenuItem	0x1C	Value	high	init -1; light/fog editors cache the edited value (-1 = load from the setting); slider value 0..255 (MenuItem_DrawSlider f1C/256)
+MenuItem	0x20	ExtraPtr	medium	per-item extra block (model state 0x480 bytes for type 3: MenuItem_LoadModelDef/GetModelEffect; MenuSpinner_Step state)
+MenuItem	0x24	OwnerPanelPtr	high	MenuPanel_Init stores the panel; MenuItem_ComputeRect reads the panel's list view through it
+MenuItemList	0x30	Item1Flags	medium	panel item array (0x28-byte MenuItems): item 1 +0x8 flags; NameEntry_OpenPage / LegacyMenu_OpenTimedMessage toggle 0x01800000
+MenuItemList	0x58	Item2Flags	medium	item 2 flags; InGameMenu_OnDeathPageOpen / OnPlayerPageReopen / NameEntry_OpenPage set or clear 0x01800000
+MenuItemList	0x80	Item3Flags	medium	item 3 flags; NameEntry_OpenPage, InGameMenu_OnPauseOpen
+MenuItemList	0xA8	Item4Flags	medium	item 4 flags; NameEntry_OpenPage, InGameMenu_OnPauseOpen
+MenuItemList	0x120	Item7Flags	medium	item 7 flags; bit 0x01000000 follows Settings_MonkeyTagMode (InGameMenu_OnDeathPageOpen, UpdateTagItemFlag)
+MenuItemList	0x1C0	Item11Flags	medium	item 11 flags; InGameMenu death/player page open handlers
+MenuItemList	0x210	Item13Flags	medium	item 13 flags; InGameMenu death/player page open handlers
+MenuItemList	0x238	Item14Flags	medium	item 14 flags; InGameMenu death/player page open handlers
+MenuItemList	0x260	Item15Flags	medium	item 15 flags; InGameMenu death/player page open handlers
+MenuPanel	0x0	CursorIndex	high	selected item index: MenuPanel_MoveCursor steps it over ItemCount; initialised from the template by MenuPanel_Init
+MenuPanel	0xC	ItemsPtr	high	MenuPanel_Init points it at the inline 0x28-byte MenuItem array (panel+0x1D8); page open handlers set item flags through it
+MenuPanel	0x10	ItemCount	high	MenuPanel_Init copies the template count; the input handler loops over it
+MenuPanel	0x14	TemplatePtr	high	MenuPanel_Init stores the panel template; its +0x14 callback is called each update (Ui_InvokeHeaderCallback)
+MenuPanel	0x1C	PlayerPtr	high	owning player: Player_GetIndex(PlayerPool, +0x1C); InGameMenu_GetPlayerSettings reads the player's settings record +0x5D8 through it
+MenuPanel	0x20	PadPtr	medium	controller state the panel reads (Pad_IsConfirm/IsLeft/IsRight(ctl), ctl.btn); MenuPanel_Init clears its +0xB0/+0xB4/+0xBC
+MenuPanel	0x28	State	high	panel state set 2/3/4 by the input handler (3 after a select callback, 4 when the update callback asks to close)
+MenuPanel	0x40	ListViewPtr	medium	MenuPanel_GetListView(ctx) result; MenuPanel_DrawOpenAnim reads the view rect +0x29C..+0x2A8
+MenuPanel	0x44	ContextPtr	medium	the a7 context of MenuPanel_Init; MenuItem_ComputeRect calls MenuPanel_GetListView on it
+MenuPanel	0x48	SlotRecords	medium	2x8 16-byte records filled from MenuPanel_SlotTemplates by MenuPanel_Init
+MenuPanel	0x1C8	OpenAnimFrame	high	MenuPanel_StepOpenAnim adds the step until 48, then resets; MenuPanel_DrawOpenAnim / GetOpenAnimFrame read it
+MenuPanel	0x1CC	OpenAnimStep	high	0 = open animation idle, MenuPanel_StartOpenAnim sets 1; added to OpenAnimFrame each step
+ProfileRecord	0x0	Name	high	Profile_InitSlot Str_FormatInto(rec, "Player %d"); Profile_Init clears 8 bytes; Results shows ProfileTable+sel*400 as the name text
+ProfileRecord	0x8	PakId	medium	Profile_FindByIdAndRecord matches it with arg a; PlayerMenu_ProfilesMatchPakId compares it with the lobby player pak id (+0xB64)
+ProfileRecord	0xC	PakRecordIndex	high	index of the record among the pad's 4 pak records: PlayerMenu_ApplySlot/StoreActiveProfiles copy Players[k].rec + bC*400 <-> ProfileTable[i]
+ProfileRecord	0xD	OwnerPadIndex	high	lobby player/pad owning the profile (-1 = none): PlayerMenu_AssignSelectedProfile sets k; Profile_NextActiveSlot and menus test >= 0
+ProfileRecord	0xE	IsDefaultProfile	medium	Profile_InitSlot sets 1 (unsaved "Player N"); only records with 0 are stored back to the pak (PlayerMenu_StoreActiveProfiles); PlayerMenu_Open drops bE==1 owners
+ProfileRecord	0xF	SelectedCharacter	high	CharacterSelect stores the chosen character; TrialMenu copies it to setup record +0x80; Trial_CompleteArena indexes lives/arena bits with it
+ProfileRecord	0x10	HealthBonus	high	added to max/start health (1/256) in trial mode via CharacterClassTable(=ProfileTable+0x10)+0; trial reward 57 adds 1280 (Profile_AddField10)
+ProfileRecord	0x14	AmmoCapBonus2	high	max-ammo bonus for ammo type 2 (func_00228F94_max_ammo bonus2); Profile_AddField14 adds 10 (trial reward 16)
+ProfileRecord	0x15	AmmoCapBonus0	high	max-ammo bonus for ammo type 0 (max_ammo bonus0); Profile_AddField15 adds 50 (trial reward 24)
+ProfileRecord	0x16	AmmoCapBonus1	high	max-ammo bonus for ammo type 1 (max_ammo bonus1); Profile_AddField16 adds 50 (trial reward 23)
+ProfileRecord	0x17	RewardCount_17	low	pickup/trial reward 53 (5053) increments it; shown on the profile stats page (O3Rec f17)
+ProfileRecord	0x18	CharacterLives	high	13 bytes per character (ids 0..10,17,18), lives in half units: Profile_Set/GetCharacterLives, Profile_AddCharacterHalfLife; respawns = (v>>1)+1
+ProfileRecord	0x26	ArenaWinCounts	medium	36 bytes per arena: Profile_AddWin(idx, ArenaLevel) increments (max 5); Profile_AwardMatchMedals awards medal i when count >= 2
+ProfileRecord	0x4A	AwardBits	high	50-bit medal set (global Profile_AwardBits): Profile_AwardMatchMedals/AwardKeyArenasMedal assign, Profile_CountMedals/GetRankName count
+ProfileRecord	0x51	CharacterUnlockBits	high	Profile_UnlockCharacter/IsCharacterUnlocked Bits_* at +81; Profile_Init unlocks 0, 5, 7
+ProfileRecord	0x57	CharacterSkinCounts	medium	20 bytes per character: selectable skin count (CharSelect cycles cur % n); Profile_UnlockSkinsByMedals raises entries to 2/3
+ProfileRecord	0x6C	TotalFrags	high	Profile_AddMatchKillsAndDeaths adds the match frags (setup +4), capped 99999
+ProfileRecord	0x70	TotalWins	high	Profile_AddWin increments (cap 99999); profile stats page
+ProfileRecord	0x74	TotalDeaths	high	Profile_AddMatchKillsAndDeaths adds the match deaths (setup +2), capped 99999
+ProfileRecord	0x78	SpecialAltFireBits	medium	Profile_UnlockAltFire / HasAltFire bits 0/1 for weapon kinds 16/17
+ProfileRecord	0x79	WeaponUnlockBits	high	Profile_UnlockWeapon / IsWeaponUnlocked Bits_* at +121; Profile_Init unlocks 0,2,3,4
+ProfileRecord	0x7B	AltFireUnlockBits	high	Profile_UnlockAltFire / HasAltFire Bits_* at +123 for the other weapon kinds
+ProfileRecord	0x7E	ArenaPlayedBitsMode1	medium	Profile_MarkArenaPlayed sets bit ArenaLevel when Settings_GameMode == 1
+ProfileRecord	0x83	ArenaPlayedBitsMode2	medium	Profile_MarkArenaPlayed, game mode 2
+ProfileRecord	0x88	ArenaPlayedBitsMode3	medium	Profile_MarkArenaPlayed, game mode 3
+ProfileRecord	0x8D	ArenaPlayedBitsMode4	medium	Profile_MarkArenaPlayed, game mode 4
+ProfileRecord	0x94	ArenaBestTimes	medium	36 s32 per arena: MissionTree shows v/60:v%60 for the selected arena; Profile_Init zeroes
+ProfileRecord	0x125	TrialArenaBits	high	5 bytes per character: Trial_CompleteArena Bits_Test/Assign(grid + SelectedCharacter*5, ArenaLevel)
+ProfileRecord	0x189	ControlType	high	copied to/from setup record +0x7B (ControllerMenu option list f14, Profile_InitSlot); default 0
+ProfileRecord	0x18A	LookSpring	high	copied to/from setup record +0x7D (ControllerMenu off/on list f10); default 1
+ProfileRecord	0x18B	StickHorzSensitivity	high	copied to/from setup record +0x79 (ControllerMenu slider f8); default 134
+ProfileRecord	0x18C	StickVertSensitivity	high	copied to/from setup record +0x7A (ControllerMenu slider fC); default 132
+ProfileRecord	0x18D	WeaponSelectMode	high	copied to/from setup record +0x82 (ControllerMenu 3-option list f18); default 0
+PlayerSetupRecord	0x0	SelfDeaths_0	low	Results shows +0 + +2 as the deaths column; medal 39 needs >= 5; Player_InitSlot zeroes
+PlayerSetupRecord	0x2	Deaths	high	Profile_AddMatchKillsAndDeaths adds it to profile TotalDeaths; Results deaths column; medal 44 needs 0
+PlayerSetupRecord	0x4	Frags	high	Match_IsFragLimitReached compares with the frag limit; Results frags column; added to profile TotalFrags
+PlayerSetupRecord	0x6	Captures_6	low	Results tags/flags column when ArenaType == 1; Player_InitSlot zeroes
+PlayerSetupRecord	0x8	Tags	medium	Objective_UpdateTriggered increments it when the monkey is cured at a tag point; Results column when ArenaType == 0
+PlayerSetupRecord	0x1C	KillsByVictim	high	8 x s16 kills of each other player: Match_IsKillLimitReached sums [i != self]; Player_InitSlot zeroes
+PlayerSetupRecord	0x3C	TeamKillsByVictim	medium	8 x s16 per-victim kills summed per team (+0x92) by Match_GetLeadingTeam / Match_FindTopFragger
+PlayerSetupRecord	0x78	IsActive	high	1 = slot in the match: MatchSetup_AddBot/PlayerCount set 1; Player_InitPool calls Player_InitSlot only when set; medals/results require 1
+PlayerSetupRecord	0x79	StickHorzSensitivity	high	InGameMenu stick horizontal value (v-128)/8; default 134 (Settings_InitPlayerRecord); copied from profile +0x18B
+PlayerSetupRecord	0x7A	StickVertSensitivity	high	InGameMenu stick vertical value; default 132; copied from profile +0x18C
+PlayerSetupRecord	0x7B	ControlType	high	InGameMenu_OnControlTypeSelect (O06C_v4.f); Player/Controls reads it (<2 preset); copied from profile +0x189
+PlayerSetupRecord	0x7C	ControlSide	high	InGameMenu_OnControlSideSelect (O06C_v6.f); default 0
+PlayerSetupRecord	0x7D	LookSpring	high	InGameMenu_OnLookSpringSelect (O06C_v5.f); default 1; copied from profile +0x18A
+PlayerSetupRecord	0x7E	AutoAim	high	InGameMenu_OnAutoAimSelect (O06C_v3.f); default 0
+PlayerSetupRecord	0x7F	PlayerIndex	high	slot index: Settings_InitPlayerRecord(a, b) / MatchSetup_AddBot store i; Player_InitPool copies it to player +0x5D4; picks the default name
+PlayerSetupRecord	0x80	CharacterId	high	character id: MatchSetup_AddBot / CharSelect set it; Player_InitSlot(obj, +0x80); Player_GetCharacterSoundId, portraits
+PlayerSetupRecord	0x81	SkinIndex	medium	body variant: Player_SetBodyModel sets player +0x3 from it; bots get the skill value or rand%3; selects the bot name row
+PlayerSetupRecord	0x82	WeaponSelectMode	high	InGameMenu_OnWeaponSelectModeSelect toggles 0/1; WeaponMenu behaviour; copied from profile +0x18D
+PlayerSetupRecord	0x84	Name	high	13-char name: Settings_SetDefaultPlayerName, MatchSetup_AddBot copies the bot name, Results shows it for bots
+PlayerSetupRecord	0x8E	EndAck_8E	low	Match_EndForAllPlayers sets it; Match_CheckEndAcknowledged counts players with 1; InGameMenu_SetRecordFlag8E
+PlayerSetupRecord	0x8F	IsMonkey	high	Monkey/Frag Tag monkey flag: Player_BecomeMonkey sets 1, Match_FindMonkeyPlayer, Objective cures (0)
+PlayerSetupRecord	0x90	IsIt	medium	tag "it" role: Match_FindTaggedPlayer (+0x8F or +0x90 == 1); Match_UpdateMonkeyAssignment counts players with 0
+PlayerSetupRecord	0x91	IsBot	high	1 = computer player: MatchSetup_AddBot sets 1; Player_InitPool copies it to player IsComputer +0x1450; bots skip medals/profile
+PlayerSetupRecord	0x92	TeamId	high	team (0xFF none): TeamMenu sets it, Turret/Ai friendly checks compare it, Match_GetLeadingTeam groups by it
+PlayerSetupRecord	0x93	BotSkill	high	bot difficulty 0..2: MatchSetup_AddBot (rand%3 for random), Ai_GetAccuracy / Player_AdjustIncomingDamage scale by it
+PlayerSetupRecord	0x94	IsBoss	medium	boss flag: with MatchRules_IsBossMode gives boss health/shield (Player_GetMaxHealth), BossBar and Ai brain tests
+PlayerSetupRecord	0x95	Flag_95	low	Player_InitPool clears IsActive when set; Ai brain respawn check; Settings_InitPlayerRecord/AttractDemo clear
+LoadoutPage	0x0	RootNode	high	Loadout_Open stores the screen UI node (arg a); UiTree_FindNode(page+0, id) everywhere
+LoadoutPage	0x4	CursorGroup	high	CursorGroup_Create(a, 4) in Loadout_Open; CursorGroup_SetLocked(+4, idx) on confirm/back
+LoadoutPage	0x8	Columns	high	4 x 0x4D0 per-player columns (O05Row2): portrait actor (Portrait_CreateActor at col+0), state +0x4A8, row +0x4AC, weapons +0x4B0, widget +0x4C8, mode +0x4CC
+LoadoutPage	0x1348	SlidePanelNodeA	medium	UI node 206: Loadout_Open offsets its h14 by -h18, Loadout_Update slides it by +0x134C per frame
+LoadoutPage	0x134C	SlideStepA	medium	node 206 h18 / 4 (Loadout_Open); per-frame slide step
+LoadoutPage	0x134E	SlideStepA16	medium	low halfword of SlideStepA read as u16 by Loadout_Update (O05L2.h134E)
+LoadoutPage	0x1350	SlidePanelNodeB	medium	UI node 246: Loadout_Open offsets its h14 by +h18, Loadout_Update slides it the other way
+LoadoutPage	0x1354	SlideStepB	medium	node 246 h18 / 4 (Loadout_Open)
+LoadoutPage	0x1356	SlideStepB16	medium	low halfword of SlideStepB read as u16 by Loadout_Update (O05L2.h1356)
+LoadoutPage	0x1358	Phase	high	page state machine in Loadout_Update/OnDraw: 1 open slide, 2 close slide, 3 idle, 4 flicker, 5 closing; Loadout_OnBack/OnConfirm set 5
+LoadoutPage	0x135C	PhaseTimer	high	frames left in the phase (set 4, decremented in Loadout_Update)
+LoadoutPage	0x1360	ConfirmFlicker	medium	Flicker_Create(201, 255): Flicker_Trigger/IsSteady/Stop in Loadout_Update
+LoadoutPage	0x1364	ConfirmPromptNode	medium	UI node 201, shown when the open slide ends, hidden when closing
+LoadoutPage	0x1368	NextScreenId	high	Menu_GotoScreen(+0x1368) after the close slide; -1 on open, set by Loadout_OnConfirm / OnBack (7)
+MenuItemRect	0x4	Width	high	MenuItem_ComputeRect: text width / sprite frame width (Sprite_GetFrameSize(o+4,o+8)), scaled by ScreenWidth/284
+MenuItemRect	0x8	Height	high	MenuItem_ComputeRect: text height / sprite frame height
+MenuItemRect	0xC	ScaleX	high	MenuItem_ComputeRect sets 1.0 or screen/frame ratio; Right = Left + Width*ScaleX
+MenuItemRect	0x10	ScaleY	high	MenuItem_ComputeRect sets 1.0 or ratio; Bottom = Top + Height*ScaleY
+MenuItemRect	0x14	Left	high	MenuItem_ComputeRect: item x (wC scaled) or relative to Right (flag 0x4000)
+MenuItemRect	0x18	Right	high	Left + Width*ScaleX
+MenuItemRect	0x1C	Top	high	MenuItem_ComputeRect: item y (wE scaled) or relative to Bottom (flag 0x10000)
+MenuItemRect	0x20	Bottom	high	Top + Height*ScaleY
+Player	0x674	PlaneWalkerTime	medium	Pickup_GiveItem item 1801 sets it from a constant (item 1800 sets InvulnerableTime 0x670); Player_InitSlot zeroes
+AiNavNode	0x0	NodeId	high	AiNav_FindSearchNode/func_*_find match it against the key; AiNav_InitSearchNode stores idx; index into the nav node pool
+AiNavNode	0x10	NextPtr	high	singly-linked search-node list walked from graph +0x24 by every AiNav_* loop
+AiNavNode	0x14	BranchOffsetScale	medium	Ai_TakeBestBranch/Ai_UpdateBranchOffset scale the enemy-away vector by it; InitSearchNode sets a constant when node record flag 2
+AiNavNode	0x18	ExtraCost	high	A* adds it to the edge cost; AiNav_PenalizeDanger/EnemyNodes set it, FavorPickupNodes/AddTimerCosts add to it; ResetSearch clears
+AiNavNode	0x1C	CostFromStart	high	A* g: start=0, g = cur + edge cost, compared before relaxing
+AiNavNode	0x20	HeuristicCost	high	A* h = AiNav_Heuristic(m, node)
+AiNavNode	0x24	TotalCost	high	A* f = g + h; open node with the lowest value is popped (AiNav_AStar, AiNav_PopBestOpen)
+AiNavNode	0x28	SearchState	high	0 unvisited / 1 open / 2 closed (AiNav_MarkOpen/MarkClosed/IsOpen/IsClosed/MarkUnvisited)
+AiNavNode	0x2C	IsGoal	high	AiNav_AddGoal sets 1; A* stops and stores the id in graph +0x18 when the popped node has it
+AiNavNode	0x30	ParentPtr	high	A* came-from node; AiNav_BuildPath walks it back to the start
+AiNavNode	0x34	ObjectPtr_34	low	B2Obj pointer only cleared by AiNav_InitSearchNode
+AiNavNode	0x38	TimerCost	medium	InitSearchNode sets rand%5+5 when record flag 0x40; AiNav_AddTimerCosts adds it*30*k to ExtraCost
+AiNavNode	0x3C	Timer_3C	low	InitSearchNode sets rand%5+5 when record flag 0x80, else 0
+AiNavNode	0x40	PlatformPtr	high	AiNav_LinkPlatformNodes stores the nearest moving platform object; Ai_FollowPath edge kind 5 rides to its Position
+AiNavNode	0x44	PlatformStopPos	medium	Vec3f platform stop point nearest the node (LinkPlatformNodes); Ai_FollowPath waits until the platform reaches it
+AiNavGraph	0x0	NodePoolPtr	high	B2Pool of node records; AiNav_GetNode = data + idx*elemSize
+AiNavGraph	0x4	NodeCount	high	AiNav_FindNearestNode loops to it; row stride of the visibility table (AiNav_IsNodeVisible i*count+j)
+AiNavGraph	0x8	EdgePoolPtr	high	B2Pool of edges; AiNav_GetEdge = data + idx*elemSize
+AiNavGraph	0xC	EdgeCount	high	all edge loops (AiNav_GetAllNeighbors, AiNav_FindEdge ...) iterate to it
+AiNavGraph	0x10	VisibilityPoolPtr	medium	B2Pool byte matrix read by AiNav_IsNodeVisible(m, i, j)
+AiNavGraph	0x18	FoundGoalId	high	A* stores the reached goal node id; AiNav_BuildPath starts from it; Brain copies it to GoalNode
+AiNavGraph	0x1C	SearchF_1C	low	float reset to a constant by AiNav_ResetSearch
+AiNavGraph	0x20	SearchI_20	low	reset to -1 by AiNav_ResetSearch
+AiNavGraph	0x24	SearchListHeadPtr	high	head of the AiNavNode search list (Gv.AiNavGraph+0x24 = 0x8013B388 read by AiNav_AddTimerCosts)
+AiNavGraph	0x38	GoalIds	high	64 goal node ids; AiNav_ClearGoals fills -1, AiNav_AddGoal takes the first free slot
+AiFireProfile	0x0	FireDelayBase	high	copied to AiBrain FireDelay by Ai_ResetFireTimers/Ai_FireRandomBursts (28-byte entries, [1] = secondary fire)
+AiFireProfile	0x4	FireDelayRandom	high	FireDelay += Random_Float(k) * it
+AiFireProfile	0x8	ShotCountBase	high	copied to AiBrain ShotsRemaining (Ai_FireChargeOrAim/Ai_FireRemoteDetonate/Ai_ResetFireTimers)
+AiFireProfile	0xC	ShotCountRandom	high	ShotsRemaining += Random_Float(k) * it
+AiFireProfile	0x10	BurstCooldownBase	high	copied to AiBrain BurstCooldown
+AiFireProfile	0x14	BurstCooldownRandom	high	BurstCooldown += Random_Float(k) * it
+AiFireProfile	0x18	UseChancePercent	medium	Ai_FireChargeOrAim compares random+k > it for the secondary entry; Ai_ResetFireTimers: ==100 sets SecondaryFireTicks=1
+GfxTask	0x0	NextPtr	high	OSScTask.next; Video_SubmitGfxTasks sets 0 before Sched_SubmitTask
+GfxTask	0x8	Flags	high	OSScTask.flags; 3 or 35 (0x23) depending on frame slot +0x128 (Video_SubmitGfxTasks)
+GfxTask	0xC	FramebufferPtr	high	OSScTask.framebuffer = frame slot +0x110
+GfxTask	0x10	TaskType	high	OSTask.type = 1 (M_GFXTASK)
+GfxTask	0x14	TaskFlags	high	OSTask.flags = 0
+GfxTask	0x18	UcodeBootPtr	high	= Gv.Rsp_BootUcode
+GfxTask	0x1C	UcodeBootSize	high	= 0x800DCD10 - Rsp_BootUcode
+GfxTask	0x20	UcodePtr	high	microcode text address (0x800DCD10 / 0x800DE0A0)
+GfxTask	0x24	UcodeSize	high	= 4096
+GfxTask	0x28	UcodeDataPtr	high	microcode data address (0x800E0050 / 0x800E0470)
+GfxTask	0x2C	UcodeDataSize	high	= 2048
+GfxTask	0x30	DramStackPtr	medium	OSTask.dram_stack (set 0 here)
+GfxTask	0x34	DramStackSize	medium	OSTask.dram_stack_size (set 0 here)
+GfxTask	0x38	OutputBuffPtr	high	OSTask.output_buff = word at 0x801536B8
+GfxTask	0x3C	OutputBuffEnd	high	OSTask.output_buff_size (end pointer) = buffer + size word 0x801536B4
+GfxTask	0x40	DisplayListPtr	high	OSTask.data_ptr = frame slot +0x114/+0x118 display list
+GfxTask	0x44	DisplayListSize	high	OSTask.data_size = frame slot +0x11C/+0x120
+GfxTask	0x48	YieldDataPtr	high	OSTask.yield_data_ptr = 0x800E8000
+GfxTask	0x4C	YieldDataSize	high	OSTask.yield_data_size = 3072 (OS_YIELD_DATA_SIZE)
+GfxTask	0x50	MsgQueuePtr	high	OSScTask.msgQ = 0x80146980
+GfxTask	0x54	DoneMsgPtr	high	OSScTask.msg = frame slot +0xF0
+Camera	0x38	PosX	high	Camera_SetTracker stores f; Collision_FindFloorTriangle(LevelMgr, t+0x38); floor height looked up at (x,z)
+Camera	0x3C	PosY	high	Camera_SetTracker stores g; region test uses (y + EyeHeight) - floor height
+Camera	0x40	PosZ	high	Camera_SetTracker stores h; floor height looked up at (x,z)
+Camera	0x44	EyeHeight	medium	added to PosY before comparing with the floor height (Camera_SetTracker/Camera_UpdateRegionAttribute)
+Camera	0x48	Rotation	medium	16-byte quaternion; the player camera update passes the player's +0x5C Rotation into Camera_SetTracker
+Camera	0x58	FloorTriPtr	high	SurfNode; caller value or Collision_FindFloorTriangle during flyby; passed to Collision_GetFloorHeightAt
+Camera	0x5C	Override_5C	low	Camera_SetTracker stores j; >0 forces RegionId = NoRegionId (Camera_UpdateRegionAttribute)
+Camera	0x64	RegionId	high	SurfNode +0x1C region of the floor under the camera when close to it, else Gv.NoRegionId
+CollisionSolid	0x1C	Velocity	medium	Vec3f; Collision_MarkBlockedPush adds the solid's +0x5C push vector to the other object's +0x1C (Actor Velocity offset)
+CollisionSolid	0x38	GroundFlags	medium	Collision_MarkBlocked sets bit 0x10 on the second object (same bit as Actor GroundFlags collision push)
+CollisionSolid	0x3C	ContactFlags	medium	Collision_PushActorByBox/CylinderSolid and MarkBlocked OR in 8 (hit), 0x20 (landed on top), 0x40 (player body on top)
+CollisionSolid	0x5C	PushX	medium	push vector x; nonzero (or +0x64) triggers the side sweep; added to the pushed object's velocity
+CollisionSolid	0x60	PushY	medium	>0 sweeps upward (type 3), <0 downward (type 2) in Collision_PushActorByBoxSolid/CylinderSolid
+CollisionSolid	0x64	PushZ	medium	push vector z; nonzero (or +0x5C) triggers the side sweep
+CollisionSolid	0xB0	LastContact	medium	B10Dc 220-byte contact record copied from the sweep ctx when Collision_CheckActorMove hits
+Particle	0x0	Type	high	actor-style type byte: Particle_InitSlot sets 2; Actor_GetCollisionRadius treats Type==2 as a particle (radius from its def)
+Particle	0x4	TypeId	high	ushort particle type id compared with 1054/1063/1007/86 (Particle_IsTriggerClass*, DetonateOwnedCharges, effect_spawn_aim)
+Particle	0x8	Position	high	Vec3 world position; Event_Send/LoopSound_Start source, Vec_Sub(target - pos) in Particle_UpdateHoming
+Particle	0x18	DefPtr	medium	Particle_InitSlot sets the static ObjDef 0x8011EE70 so Actor_GetRadius/Height work on particles
+Particle	0x1C	Velocity	high	speed vector: UpdateHoming speed=|v| then Vec_Scale(v, dir, speed); hit handlers use it as the impact direction
+Particle	0x50	AttachOffset	medium	hit point transformed into the attached object's bone space (func_0027CCD0_attach_actor, effect_spawn_aim)
+Particle	0x5C	Flags	high	0x100 allocated (Particle_Alloc), 0x800 kept on FreeAll, 0x10000 attached/stuck, 0x1000000 in type list (LinkToTypeList)
+Particle	0x118	ParticleDefPtr	high	per-type definition (flags, info38.idx = slot list); Particle_FindByKey/LinkToTypeList compare it
+Particle	0x124	OwnerKey	medium	Particle_FindByKey / effect_spawn_find_owned match it with the key (Effect view calls it ownerId)
+Particle	0x12C	OwnerPtr	high	owner actor: Player_AddDamageOverTime attacker, Effect_SpawnFromTemplates owner, DetonateOwnedCharges compares it
+Particle	0x130	RefCountPtr	high	pointer to a counter: Particle_FreeAll decrements *it; passed to Effect_SpawnFromTemplates
+Particle	0x134	TargetPtr	medium	homing target (Particle_UpdateHoming) or the actor it stuck to (attach stores the hit actor, DetonateAttachedTo compares)
+Particle	0x138	LightHandle	high	Light_Release(Light_Pool, it) then 0 in Particle_FreeAll/FreeTwin/DetonateOwnedCharges
+Particle	0x140	Age	medium	float time alive; Particle_UpdateHoming only steers once it exceeds a constant (Shared view: time)
+Particle	0x14C	LifeFrames	medium	short life counter; Particle_TriggerNearby/UpdateProximityTriggers set 1 to make it expire next frame (Shared view: life)
+Particle	0x174	Direction	medium	unit heading: UpdateHoming Quat_FromDirection(it), turns it toward the target, then Velocity = it*speed (Effect view: direction)
+Particle	0x180	SpriteOffsetX_180	low	Particle_GetOffsetX returns it when def+0x14 == 0
+Particle	0x184	SpriteOffsetY_184	low	Particle_GetOffsetY returns it when def+0x14 == 0
+Particle	0x18C	SpinVelocity_18C	low	Vec3 scaled by +0x1C4 on wall/floor/ceiling hits (Shared view: rotSpeed)
+Particle	0x198	Alpha_198	low	float; Effect/Shared views call it alpha; no direct access found
+Particle	0x1B9	WallHitMode_1B9	low	Particle_OnHitWall frees the particle when ==1; Particle_OnHitObject tests ==8; zeroed by the homing init
+Particle	0x1BA	FloorHitMode_1BA	low	Particle_OnHitFloor/OnHitCeiling free the particle when ==1
+Particle	0x1C4	HitDamping_1C4	low	float bits; +0x18C is multiplied by it on each surface hit
+Particle	0x1D0	HitMode_1D0	low	set -4 when stuck to a bone (effect_spawn_aim); passed to Particle_SpawnEffect by the expire/trail/touch events
+Particle	0x1D1	HitBoneIndex	medium	bone/matrix index of the contact it stuck to (Collision_Contacts idx / HitInfo byte)
+Particle	0x1D9	HasTrail	medium	when set FreeAll/FreeTwin update the matrix and Trail_DetachOwner(Fx_TrailMgr, o)
+Particle	0x1DC	LoopSoundHandle	high	LoopSound_Start/Stop handle (Particle_PlayLoopSound, Particle_UpdateHoming)
+Particle	0x1E4	SlotListPtr	high	the owner slot list it is in: Particle_Alloc sets it, FreeAll List_Remove(it, o)
+Particle	0x1EC	Next	high	next particle in the slot list (FreeAll/FindByKey loops)
+Particle	0x1F0	AllocField_1F0	low	cleared by Particle_Alloc and effect_spawn_allocate; no readers found
+Particle	0x1F4	TypeListNext	high	next in the per-type list (Particle_LinkToTypeList walks it; Alloc/spawn clear it)
+Prop	0x0	Type	medium	type byte, Prop_InitFromRecord/InitFromFullRecord set 0 (actors 1, particles 2, pickups 3)
+Prop	0x1	ModelIndex	medium	model variant passed to Prop_AcquireModel (Prop_PreloadModel, level preload loop); reset by Actor_ResetModelSlots
+Prop	0x4	Id	medium	placed-object id copied from the level record
+Prop	0x8	Position	high	Vec3 world position from the record; Prop_UpdateLodFade measures the camera distance from it
+Prop	0x14	RegionPtr	medium	segment/region record = segments + idx*32 (0 when the record has 0xFFFF)
+Prop	0x18	DefPtr	high	Level_GetDefinition(record model): radius, near/far model index, LOD distance
+Prop	0x1C	ModelResourceKey	medium	owner arg of Prop_InitFromRecord; hashed as a resource key by Prop_AcquireModel/Prop_SpawnAttachedEffects
+Prop	0x20	LevelBlockPtr	medium	level preload loop stores the level data block (ObjA.block); Light_FillVertexCache derefs it; Resource_Request arg
+Prop	0x28	TransformFixed	high	Math_MtxFloatToFixed of the placement matrix; Light_BuildVertexCache input
+Prop	0x68	TransformMtx	high	float placement matrix (Math_MtxCopy in Prop_InitFromRecord)
+Prop	0xA8	LoadedModelIndex	medium	-1 at init; Prop_AcquireModel reloads when the requested index differs and stores it
+Prop	0xAC	LoadedModelKey	medium	Prop_AcquireModel stores the selected model's cartridge key and hashes it
+Prop	0xB0	LoadedModelSize	medium	size out-param (o+0xB0) of the +0xAC key used by its ResourceCache_Hash
+Prop	0xB4	PinnedModelHandle	medium	Prop_PinModelHandles stores the model; Prop_AcquireModel returns it (addref) when set
+Prop	0xB8	BoundsMin	high	AABB min (pos -102.4 or from record extents); Light_BuildVertexCache input
+Prop	0xC4	BoundsMax	high	AABB max paired with +0xB8
+Prop	0xD0	LightCacheKey	medium	dynamic resource key (NextDynamicKey<<10) OR'd with Model_VariantKeyBits for the vertex-light cache request
+Prop	0xD4	RegionId	medium	record value, or NoRegionId when flag 0x40
+Prop	0xD8	Flags	high	record flags: 0x40 no model/large bounds, 0x4 hidden this frame (LOD fade), 0x200 instant fade
+Prop	0xDA	LitFrame	medium	Video_FrameCountLowByte when its lit vertices were last updated (Prop_Draw, Prop_FreeStaleLightCache)
+Prop	0xDC	CameraDistSq	medium	Prop_UpdateLodFade stores the squared camera distance; compared with def RadiusSquared*2 to pick near/far model
+Prop	0xE0	FadeLevel	medium	LOD fade 0..8 stepped by Prop_UpdateLodFade, alpha = it<<5 in Prop_DrawLodFaded; init 16
+PropDef	0x8	Radius	high	Prop_InitFromRecord squares it into +0x24
+PropDef	0xE	NearModelIndex	medium	Prop_Draw/Prop_GetNearModelIndex model index; LOD picks it when the camera is near
+PropDef	0xF	FarModelIndex	medium	Prop_UpdateLodFade picks it when CameraDistSq >= RadiusSquared*2 (-1 = fade out)
+PropDef	0x12	ShadeFlags	medium	Prop_GetShadeFlags returns it; last arg of Light_ShadeVertices/Model_QueueBatched in Prop_Draw
+PropDef	0x24	RadiusSquared	high	= Radius*Radius set by Prop_InitFromRecord; LOD distance threshold
+Pickup	0x0	Type	high	Pickup_InitFromRecord sets 3
+Pickup	0x1	ModelIndex	high	Pickup_Update sets Pickup_SelectModelVariant(); Pickup_AcquireModel/PreloadModel use it
+Pickup	0x3	ShadeFlags	medium	Pickup_Update copies def+0x12; last arg of Light_ShadeVertices in Pickup_Draw
+Pickup	0x4	TypeIndex	medium	record u14; Pickup_SelectModelVariant Level_GetTypeIdByIndex(+0x4)
+Pickup	0x8	Position	high	record pos + a y offset (Pickup_InitFromRecord); Pickup_BuildMatrix translate
+Pickup	0x14	RegionPtr	medium	base + idx*32 region record; Pickup_Update copies its +0x1C into RegionId
+Pickup	0x18	DefPtr	high	Level_GetDefinition or PickupPool_PickupDef; kind 8/12 change the spin
+Pickup	0x50	ModelTableKey	medium	id arg of Pickup_InitFromRecord; hashed and Resource_GetCartridgeKeyNoSize'd by Pickup_AcquireModel
+Pickup	0x54	LoadedModelIndex	medium	-1 at init; Pickup_AcquireModel reloads when the index differs
+Pickup	0x58	LoadedModelKey	medium	Pickup_AcquireModel stores the selected model's cartridge key
+Pickup	0x5C	LoadedModelSize	medium	size out-param (a+0x5C) of the +0x58 key
+Pickup	0x60	LevelBlockPtr	medium	level preload loop stores the level data block (ObjB.block); Resource_Request arg in Pickup_PreloadModel
+Pickup	0x174	Yaw	medium	record angle; Pickup_BuildMatrix/Pickup_Draw Math_MtxMakeRotateY(it)
+Pickup	0x17C	BoundsMin	medium	record pos - radius
+Pickup	0x188	BoundsMax	medium	record pos + radius
+Pickup	0x194	Scale	high	Math_MtxScaleRows(it,it,it); grown in by Pickup_UpdateGrowIn
+Pickup	0x198	HeightOffset	medium	added to y in Pickup_BuildMatrix/Draw; 0 at init
+Pickup	0x19C	Flags	high	record flags | 2; bit 0x10 = growing in (Pickup_Update/UpdateGrowIn clear it)
+Pickup	0x19E	RecordParam_19E	low	record u1A copied at init; no readers found
+Pickup	0x1A0	GrowTime	medium	+= FrameTime*k while flag 0x10; Scale = it*k until the limit
+Pickup	0x1A4	SpinStep	medium	FrameTime * def+0x20 (Pickup_UpdateSpinStep, Pickup_Update for kind 12)
+Pickup	0x1A8	LightSet	medium	24-byte light set copied from Light_AmbientColor; passed to Light_ShadeVertices
+Pickup	0x1C0	RegionId	medium	record w0 at init; Pickup_Update sets region+0x1C or NoRegionId
+Pickup	0x1C4	CachedDisplayList	medium	Pickup_Draw stores the display list and re-calls it while set; Pickup_ClearDisplayList zeroes it
+ActorDef	0x1C	ShapeHeight_1C	low	union: height for kinds 0/5/8/10/12-14 (Actor_GetHeight), radius for kinds 2/7 (Actor_GetRadius)
+ActorDef	0x20	ShapeParam_20	low	union: kind 0 bottom offset (Actor_GetBottomOffset), kind 7 height, kind 12 pickup spin speed
+ActorDef	0x28	CreatureRadius	medium	kind 1/4 radius (Actor_GetRadius)
+ActorDef	0x2C	CreatureCollisionRadius	medium	kind 1/4 collision radius and shadow size (Actor_GetCollisionRadius, Actor_GetShadowSize)
+ActorDef	0x30	CreatureHeight	medium	kind 1/4 height (Actor_GetHeight)
+ActorDef	0x34	CreatureDeadHeight	medium	kind 1/4 height when dead (Actor_GetDeadHeight)
+ActorDef	0x3C	SightRange	medium	kind 1 sight range (Actor_GetSightRange, used by the AI brain)
+ActorDef	0x50	CreatureParam_50	low	kind 1 float returned by Actor_GetDefField50; no callers found
+ActorDef	0xEC	CharacterRadius	medium	kind 11 (player character) radius / shadow size (Actor_GetRadius, Actor_GetShadowSize)
+ActorDef	0xF0	CharacterCollisionRadius	medium	kind 11 collision radius (Actor_GetCollisionRadius)
+ActorDef	0xF4	CharacterHeight	medium	kind 11 height (Actor_GetHeight; player bodies use owner +0x6F4 instead)
+ActorDef	0xF8	CharacterDeadHeight	medium	kind 11 dead height (Actor_GetDeadHeight)
+MatchRules	0x0	PlayTimeTicks	medium	Game_TickPlayClock adds FrameTime and carries into +0x4 at a threshold; cleared by Game_FadeToLevel/Game_StartMatchLevel; saved in the game note
+MatchRules	0x4	PlayTimeSeconds	medium	carry chain of Game_TickPlayClock (+1, wraps into +0x8)
+MatchRules	0x8	PlayTimeMinutes	medium	carry chain of Game_TickPlayClock (+1, wraps into +0xC)
+MatchRules	0xC	PlayTimeHours	medium	last carry of Game_TickPlayClock (no wrap)
+MatchRules	0x64	PlayInitValue_64	low	State_PlayInit sets 3; no readers found
+MatchRules	0x88	IsFlybyHoldStarted	medium	Game_CheckEndFlybyHold sets 1 (and Flyby_SetFlagB4) for flyby 120; raw 0x80146928 cleared by State_PlayResumeInit, Game_FadeToLevel
+Player	0x48C	WeaponActorMode_48C	low	byte in the embedded weapon actor (+0x2E8+0x1A4); Hud_DrawCrosshair hides the lock bar when it is 2/3/11
+Player	0x523	WeaponActorFlag_523	low	byte in the embedded weapon actor (+0x2E8+0x23B); Hud_DrawCrosshair zeroes crosshair anim time when set
+Player	0x5A0	WeaponCharge_5A0	low	float; Hud_DrawCrosshair: weapon 9 with +0x5A0 > 0 keeps the crosshair animating
+Player	0x864	SpawnState_864	low	Player_InitPool and Player_PlaceAtSpawn clear it (with 0x868); no reader found
+Player	0x868	IsAwaitingSpawn_868	low	Player_InitSlot sets 1 before Player_ResetForNewLife; Player_PlaceAtSpawn / Player_InitPool clear it
+Player	0x11E8	AttachedFxPtr_11E8	low	event 1140..1143 stores the spawned fx on the target player (B15Own.unk11E8), next to BurnTime_11EC; Player_InitPool clears it
+CollisionMover	0x0	OwnerPtr	high	moving actor: Collision_MoveActor stores the actor at mover+0; Collision_SweepVsActors skips self = *mover
+CollisionMover	0x4	IsForcedSweep_4	low	Collision_TestMove returns early only when length==0 and this is 0; MoveActor sets it for players with flags&0x300000
+CollisionMover	0x8	CollisionRadius	medium	Collision_InitShape a = Actor_GetCollisionRadius (MoveActor)
+CollisionMover	0xC	Radius	medium	InitShape 3rd arg = Actor_GetRadius; Collision_ComputeSweepBounds uses it as bounds radius
+CollisionMover	0x10	Height	medium	InitShape b = Actor_GetHeight; sweep bounds top = bottom + this
+CollisionMover	0x14	BottomOffset	medium	InitShape c = Actor_GetBottomOffset; sweep bounds bottom = this
+CollisionMover	0x18	MaxExtent_18	low	InitShape: max(CollisionRadius, Height) + constant
+CollisionMover	0x28	HasGravity	medium	Collision_IntegrateMotion adds def+0x8 as up-accel when set; MoveActor sets it from !(GroundFlags bit 2)
+CollisionMover	0x2C	IsIntegrating_2C	low	Collision_IntegrateMotion only runs when nonzero; MoveActor sets 1
+CollisionMover	0x40	DefPtr	high	B09BodyDef (flags select SweepVsActors/Objects/RayHits/Floor; f8 gravity, f14 drag)
+CollisionMover	0x44	StartPos	high	actor Position copied in by MoveActor; delta = EndPos - StartPos in Collision_TestMove
+CollisionMover	0x50	EndPos	high	target position (MoveActor args); integrated by Collision_IntegrateMotion
+CollisionMover	0x5C	Delta	high	Vec_Sub(EndPos, StartPos) in Collision_TestMove (M03CMover f5C = x)
+CollisionMover	0x60	DeltaY	medium	M03CMover.f60 = Delta.y; SweepVsActor divides height differences by it
+CollisionMover	0x68	Direction	medium	Collision_TestMove: Delta scaled by const / MoveLength
+CollisionMover	0x74	Velocity	high	actor Velocity (+0x1C) copied in; Collision_IntegrateMotion applies drag/gravity to it
+CollisionMover	0x80	MoveLength	high	sqrtf(len^2 of Delta) in Collision_TestMove; can_hit functions test != 0
+CollisionMover	0x84	SweepMinX	high	min(Start.x, End.x) in Collision_TestMove
+CollisionMover	0x88	SweepMinY	high	min(Start.y, End.y)
+CollisionMover	0x8C	SweepMinZ	high	min(Start.z, End.z)
+CollisionMover	0x90	SweepMaxX	high	max(Start.x, End.x)
+CollisionMover	0x94	SweepMaxY	high	max(Start.y, End.y)
+CollisionMover	0x98	SweepMaxZ	high	max(Start.z, End.z)
+CollisionMover	0x9C	SweepBoxXZ	high	B09Box2 minx/minz/maxx/maxz copied from the sweep extents in Collision_TestMove
+CollisionMover	0xB0	Hit	high	nearest hit quad (B09Quad qcopy; first word = hit type, B09SrcObj.type); Collision_ResetHit clears, sweeps overwrite when closer
+CollisionMover	0xBC	HitParamC_BC	low	hit quad +0xC; Collision_RecordContact copies it to contact +0xD4 for type 5
+CollisionMover	0xC0	HitParam10_C0	low	hit quad +0x10; Collision_RecordContact copies it to contact +0x100
+CollisionMover	0xF8	HitNormal	high	hit quad normal (nx,ny,nz); RecordContact copies it to contact HitNormal (+0xF0)
+CollisionMover	0x104	HitObjectPtr	medium	hit quad ref: SweepVsActor sets it to the hit actor (type 7); RecordContact copies it to contact +0x0
+CollisionMover	0x108	HitBoxIndex	medium	hit quad +0x58: -1 for actor hits, copied to contact +0x14 for type 8
+CollisionMover	0x10C	HitBoxBlock	medium	0x70-byte block of the hit quad, copied to contact +0x18 for type 8
+CollisionMover	0x180	HitPoint	high	hit quad hit position; RecordContact copies it to contact HitPos (+0xE4) and the per-type slots
+CollisionContact	0x0	HitObjectPtr	medium	record at *Collision_ContactPtr: RecordContact stores hit ref (types 1-4,7,8); Turret/Brain test it == target; B05Hit.tgt, B15Slot.owner
+CollisionContact	0x4	HitObjectRegion_4	low	ref->+0x14 (actor RegionPtr offset) for the same hit types, else 0
+CollisionContact	0x8	HitObjectPos	medium	hit point copied for hit types 1-4,7,8 (Collision_RecordContact)
+CollisionContact	0x14	HitBoxIndex	medium	-1 for actor hits, hitbox index for type 8; Damage checks != -1 before using HitBoxBlock
+CollisionContact	0x18	HitBoxBlock	medium	0x70 block copied for type 8 hits; Damage reads it as B15Slot.eff
+CollisionContact	0x88	Type9ObjectPtr_88	low	hit ref stored for hit type 9; cleared by ClearContacts / ResetContacts
+CollisionContact	0x8C	Type9Region_8C	low	ref->+0x14 for hit type 9
+CollisionContact	0x90	Type9HitPos_90	low	hit point copied for hit type 9
+CollisionContact	0x9C	BlockerFlag_9C	low	cleared by ClearContacts; Actor test-move helper treats +0x0 or +0x9C nonzero as blocked
+CollisionContact	0xC4	Type5Region_C4	low	ref->+0x14 for hit type 5
+CollisionContact	0xC8	Type5HitPos_C8	low	hit point copied for hit type 5
+CollisionContact	0xD4	Type5Param_D4	low	hit quad +0xC copied for hit type 5
+CollisionContact	0xE4	HitPos	high	impact position (always copied); Player_UpdateAiming AimHitPos, laser beam, Events fx spawn
+CollisionContact	0xF0	HitNormal	high	hit surface normal (always copied); laser beam, B15Fx vec2A0, Player AimHitNormal
+CollisionContact	0xFC	HitType	high	hit quad type (7 actor, 8 hitbox ...); B2Hit.type checks 7/8; ClearContacts zeroes
+CollisionContact	0x100	HitParam_100	low	hit quad +0x10 copied by RecordContact; cleared by ClearContacts
+UiGrid	0x0	NodeHeader	medium	44-byte UI node header copied from the parent node in UiGrid_Create and into each cell in UiGrid_BuildCell
+UiGrid	0xE	NodeType	medium	UiGrid_Create sets 11 (grid node type)
+UiGrid	0x44	CellsPtr	high	malloc'd rows*cols*8 cell array (UiGrid_Create); SetCell/GetCell index it; OnDestroy frees it
+UiGrid	0x48	VisibleRows	high	UiGrid_Draw row loop bound; ClampCursor scrolls when CursorRow-ScrollRow >= VisibleRows-FixedRows
+UiGrid	0x49	VisibleCols	high	UiGrid_Draw column loop bound; ClampCursor column scroll limit
+UiGrid	0x4A	RowCount	high	total rows: OnDown stops at RowCount-1; ClampCursor clamps CursorRow
+UiGrid	0x4B	ColCount	high	total columns: cell index row*ColCount+col; OnRight stops at ColCount-1
+UiGrid	0x4C	CursorRow	high	OnUp/OnDown move it; GetCursor returns it; BuildCell highlights row==CursorRow
+UiGrid	0x4D	CursorCol	high	OnLeft/OnRight move it; GetCursor returns it
+UiGrid	0x4E	ScrollRow	high	first scrolled row: BuildCell r = row - FixedRows + ScrollRow; ClampCursor adjusts it
+UiGrid	0x4F	ScrollCol	high	first scrolled column: BuildCell c = col - FixedCols + ScrollCol
+UiGrid	0x50	FixedRows	medium	header rows that do not scroll (BuildCell uses header font when row < it); OnUp lower bound
+UiGrid	0x51	FixedCols	medium	header columns that do not scroll; OnLeft lower bound
+UiGrid	0x52	HeaderFont	medium	UiGrid_SetFonts a; BuildCell uses it for fixed rows/cols
+UiGrid	0x53	HeaderPalette	medium	UiGrid_SetPalettes a; fixed rows/cols
+UiGrid	0x54	CellFont	medium	UiGrid_SetFonts b; default cell font
+UiGrid	0x55	CellPalette	medium	UiGrid_SetPalettes b; default cell palette
+UiGrid	0x56	CursorFont	medium	UiGrid_SetFonts c; cell under the cursor
+UiGrid	0x57	CursorPalette	medium	UiGrid_SetPalettes c; cell under the cursor
+UiGrid	0x58	ColWidthsPtr	high	UiGrid_SetSizeTables a; BuildCell sums column widths for x
+UiGrid	0x5C	RowHeightsPtr	high	UiGrid_SetSizeTables b; BuildCell sums row heights for y

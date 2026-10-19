@@ -1250,14 +1250,14 @@ public readonly struct func_8024F460_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_8024F460_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8024F460_S1(uint p) => new(p);
     // +0x0
-    public S8x452 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x452 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x1C4
-    public int unk1C4
+    public int CachedDisplayList
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1C4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1C4u, value);
     }
-    [MethodImpl(Inl)] public int unk1C4_Set(int v) => Mem.Set(P + 0x1C4u, v);
+    [MethodImpl(Inl)] public int CachedDisplayList_Set(int v) => Mem.Set(P + 0x1C4u, v);
 }
 
 /// <summary>struct func_8024F490_Inner, 0x13 bytes, at a guest address.</summary>
@@ -1612,40 +1612,40 @@ public readonly struct func_802500A4_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_802500A4_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_802500A4_S1(uint p) => new(p);
     // +0x0
-    public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x8 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public Vec3 unk8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public S8x4 pad8 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public S8x4 RegionPtr { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
-    public uint unk18
+    public uint DefPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public uint unk18_Set(uint v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public uint DefPtr_Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public S8x188 pad18 { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x188 ModelResourceKey { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0xD8
-    public ushort unkD8
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public ushort unkD8_Set(ushort v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
     // +0xDA
-    public S8x2 padD8 { [MethodImpl(Inl)] get => new(P + 0xDAu); }
+    public S8x2 LitFrame { [MethodImpl(Inl)] get => new(P + 0xDAu); }
     // +0xDC
-    public int unkDC
+    public int CameraDistSq
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public int unkDC_Set(int v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public int CameraDistSq_Set(int v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public S8x0 padDC { [MethodImpl(Inl)] get => new(P + 0xE0u); }
+    public S8x0 FadeLevel { [MethodImpl(Inl)] get => new(P + 0xE0u); }
     // +0xE0
-    public func_802500A4_S1_UE0 unkE0 { [MethodImpl(Inl)] get => new(P + 0xE0u); }
+    public func_802500A4_S1_UE0 FadeLevel_2 { [MethodImpl(Inl)] get => new(P + 0xE0u); }
 }
 
 /// <summary>union func_802500A4_S1_UE0, 0x1 bytes, at a guest address.</summary>

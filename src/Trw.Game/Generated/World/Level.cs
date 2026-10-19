@@ -340,19 +340,19 @@ public static partial class Game
                 float x = 0f;
                 float z = 0f;
                 Actor_ResetModelSlots_0024DD00(prop);
-                new PlacedProp(prop).state_Set((byte)(0));
-                new PlacedProp(prop).id_Set(new Record_func_8024F960_eu(record).id);
-                new PlacedProp(prop).owner_Set(owner);
-                new PlacedProp(prop).fieldA8_Set((-1));
-                new PlacedProp(prop).fieldAC_Set(0);
-                new PlacedProp(prop).fieldB0_Set(0);
-                new PlacedProp(prop).fieldB4_Set(0);
+                new PlacedProp(prop).Type_Set((byte)(0));
+                new PlacedProp(prop).Id_Set(new Record_func_8024F960_eu(record).id);
+                new PlacedProp(prop).ModelResourceKey_Set(owner);
+                new PlacedProp(prop).LoadedModelIndex_Set((-1));
+                new PlacedProp(prop).LoadedModelKey_Set(0);
+                new PlacedProp(prop).LoadedModelSize_Set(0);
+                new PlacedProp(prop).PinnedModelHandle_Set(0);
                 turn = 0.0f;
                 new PlacedProp(prop).model__Set(Level_GetDefinition(Gv.LevelMgr, (int)(new Record_func_8024F960_eu(record).model)));
-                new PlacedProp(prop).fade_Set((byte)(16));
-                new PlacedProp(prop).fieldDC_Set(0);
+                new PlacedProp(prop).FadeLevel_Set((byte)(16));
+                new PlacedProp(prop).CameraDistSq_Set(0);
                 model = new PlacedProp(prop).model_;
-                new PropGeometry(model).radiusSquared_Set(Cpu.TruncU32((new PropGeometry(model).radius * new PropGeometry(model).radius)));
+                new PropGeometry(model).RadiusSquared_Set(Cpu.TruncU32((new PropGeometry(model).Radius * new PropGeometry(model).Radius)));
                 x = ((float)((int)(new Record_func_8024F960_eu(record).cellX)) * spacing);
                 new Vec3((_fp + 64u)).x_Set(x);
                 if ((((int)(new Record_func_8024F960_eu(record).placement) & 16) != 0))
@@ -381,44 +381,44 @@ public static partial class Game
                     turn = 4.71238947f;
                     break;
                 }
-                new PlacedProp(prop).flags_Set(new Record_func_8024F960_eu(record).flags);
+                new PlacedProp(prop).Flags_Set(new Record_func_8024F960_eu(record).flags);
                 Math_MtxMakeRotateY(_fp, turn);
                 Math_MtxScaleRows(_fp, new Record_func_8024F960_eu(record).scale, new Record_func_8024F960_eu(record).scale, new Record_func_8024F960_eu(record).scale);
                 Math_MtxTranslate(_fp, new Vec3((_fp + 64u)).x, new Vec3((_fp + 64u)).y, new Vec3((_fp + 64u)).z);
                 Math_MtxSwapRowsYZ(_fp);
-                if ((((int)(new PlacedProp(prop).flags) & 64) != 0))
+                if ((((int)(new PlacedProp(prop).Flags) & 64) != 0))
                 {
-                    new PlacedProp(prop).min.x_Set((new Vec3((_fp + 64u)).x - 102.399994f));
-                    new PlacedProp(prop).min.y_Set((new Vec3((_fp + 64u)).y - 102.399994f));
-                    new PlacedProp(prop).min.z_Set((new Vec3((_fp + 64u)).z - 102.399994f));
-                    new PlacedProp(prop).max.x_Set((new Vec3((_fp + 64u)).x + 102.399994f));
-                    new PlacedProp(prop).max.y_Set((new Vec3((_fp + 64u)).y + 102.399994f));
-                    new PlacedProp(prop).max.z_Set((new Vec3((_fp + 64u)).z + 102.399994f));
-                    new PlacedProp(prop).fieldD4_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
+                    new PlacedProp(prop).BoundsMin.x_Set((new Vec3((_fp + 64u)).x - 102.399994f));
+                    new PlacedProp(prop).BoundsMin.y_Set((new Vec3((_fp + 64u)).y - 102.399994f));
+                    new PlacedProp(prop).BoundsMin.z_Set((new Vec3((_fp + 64u)).z - 102.399994f));
+                    new PlacedProp(prop).BoundsMax.x_Set((new Vec3((_fp + 64u)).x + 102.399994f));
+                    new PlacedProp(prop).BoundsMax.y_Set((new Vec3((_fp + 64u)).y + 102.399994f));
+                    new PlacedProp(prop).BoundsMax.z_Set((new Vec3((_fp + 64u)).z + 102.399994f));
+                    new PlacedProp(prop).RegionId_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
                 }
                 else
                 {
-                    new PlacedProp(prop).min.x_Set(((new Vec3((_fp + 64u)).x + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(0)])) * 10.2399998f)) - 0.5f));
-                    new PlacedProp(prop).min.y_Set(((new Vec3((_fp + 64u)).y + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(2)])) * 10.2399998f)) - 0.5f));
-                    new PlacedProp(prop).min.z_Set(((new Vec3((_fp + 64u)).z + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(4)])) * 10.2399998f)) - 0.5f));
-                    new PlacedProp(prop).max.x_Set(((new Vec3((_fp + 64u)).x + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(1)])) * 10.2399998f)) + 0.5f));
-                    new PlacedProp(prop).max.y_Set(((new Vec3((_fp + 64u)).y + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(3)])) * 10.2399998f)) + 0.5f));
-                    new PlacedProp(prop).max.z_Set(((new Vec3((_fp + 64u)).z + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(5)])) * 10.2399998f)) + 0.5f));
-                    new PlacedProp(prop).fieldD4_Set(new Record_func_8024F960_eu(record).value);
+                    new PlacedProp(prop).BoundsMin.x_Set(((new Vec3((_fp + 64u)).x + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(0)])) * 10.2399998f)) - 0.5f));
+                    new PlacedProp(prop).BoundsMin.y_Set(((new Vec3((_fp + 64u)).y + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(2)])) * 10.2399998f)) - 0.5f));
+                    new PlacedProp(prop).BoundsMin.z_Set(((new Vec3((_fp + 64u)).z + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(4)])) * 10.2399998f)) - 0.5f));
+                    new PlacedProp(prop).BoundsMax.x_Set(((new Vec3((_fp + 64u)).x + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(1)])) * 10.2399998f)) + 0.5f));
+                    new PlacedProp(prop).BoundsMax.y_Set(((new Vec3((_fp + 64u)).y + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(3)])) * 10.2399998f)) + 0.5f));
+                    new PlacedProp(prop).BoundsMax.z_Set(((new Vec3((_fp + 64u)).z + ((float)((int)(new Record_func_8024F960_eu(record).extents[(int)(5)])) * 10.2399998f)) + 0.5f));
+                    new PlacedProp(prop).RegionId_Set(new Record_func_8024F960_eu(record).value);
                 }
-                Math_MtxCopy(new PlacedProp(prop).matrix.P, _fp);
-                Math_MtxFloatToFixed(_fp, new PlacedProp(prop).transform.P);
-                Mem.Copy(new PlacedProp(prop).position.P, (_fp + 64u), 12);
+                Math_MtxCopy(new PlacedProp(prop).TransformMtx.P, _fp);
+                Math_MtxFloatToFixed(_fp, new PlacedProp(prop).TransformFixed.P);
+                Mem.Copy(new PlacedProp(prop).Position.P, (_fp + 64u), 12);
                 if (((int)(new Record_func_8024F960_eu(record).segment) == 65535))
                 {
-                    new PlacedProp(prop).segment_Set(0u);
+                    new PlacedProp(prop).RegionPtr_Set(0u);
                 }
                 else
                 {
-                    new PlacedProp(prop).segment_Set((segments + (uint)((int)(new Record_func_8024F960_eu(record).segment) * 32)));
+                    new PlacedProp(prop).RegionPtr_Set((segments + (uint)((int)(new Record_func_8024F960_eu(record).segment) * 32)));
                 }
-                new PlacedProp(prop).key_Set((Resource_NextDynamicKeyTwin() << (int)10));
-                new PlacedProp(prop).colorFrame_Set((byte)(((int)(Mem.U8(Gv.Video_FrameCountLowByte)) - 1)));
+                new PlacedProp(prop).LightCacheKey_Set((Resource_NextDynamicKeyTwin() << (int)10));
+                new PlacedProp(prop).LitFrame_Set((byte)(((int)(Mem.U8(Gv.Video_FrameCountLowByte)) - 1)));
             }
         }
         finally { Stack.Free(76); }
@@ -435,18 +435,18 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0024FD4C", (uint)a, (uint)r, (uint)arg2, (uint)@base);
                 float k = 0f;
                 Actor_ResetModelSlots_0024DD00((uint)(a));
-                new M03Fx(a).type_Set((byte)(0));
-                new M03Fx(a).id_Set(new M03FxRecB(r).u28);
-                new M03Fx(a).w1C_Set(arg2);
-                new M03Fx(a).hA8_Set((-1));
-                new M03Fx(a).hAC_Set(0);
-                new M03Fx(a).hB0_Set(0);
-                new M03Fx(a).hB4_Set(0);
+                new M03Fx(a).Type_Set((byte)(0));
+                new M03Fx(a).Id_Set(new M03FxRecB(r).u28);
+                new M03Fx(a).ModelResourceKey_Set(arg2);
+                new M03Fx(a).LoadedModelIndex_Set((-1));
+                new M03Fx(a).LoadedModelKey_Set(0);
+                new M03Fx(a).LoadedModelSize_Set(0);
+                new M03Fx(a).PinnedModelHandle_Set(0);
                 new M03Fx(a).cls__Set(Level_GetDefinition(Gv.LevelMgr, (int)(new M03FxRecB(r).u2C)));
-                new M03Fx(a).bE0_Set((byte)(16));
-                new M03Fx(a).wDC_Set(0);
-                new M03Fx(a).cls.w24_Set(Cpu.TruncU32((new M03Fx(a).cls.f8 * new M03Fx(a).cls.f8)));
-                new M03Fx(a).flags_Set((ushort)(new M03FxRecB(r).flags));
+                new M03Fx(a).FadeLevel_Set((byte)(16));
+                new M03Fx(a).CameraDistSq_Set(0);
+                new M03Fx(a).DefPtr.RadiusSquared_Set(Cpu.TruncU32((new M03Fx(a).DefPtr.Radius * new M03Fx(a).DefPtr.Radius)));
+                new M03Fx(a).Flags_Set((ushort)(new M03FxRecB(r).flags));
                 Mem.Set((_fp + (uint)(0 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(0)])) * 0.00787401571f));
                 Mem.Set((_fp + (uint)(1 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(1)])) * 0.00787401571f));
                 Mem.Set((_fp + (uint)(2 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(2)])) * 0.00787401571f));
@@ -456,45 +456,45 @@ public static partial class Game
                 Math_MtxScaleRows((_fp + 16u), new M03FxRecB(r).sx, new M03FxRecB(r).sy, new M03FxRecB(r).sz);
                 Math_MtxTranslate((_fp + 16u), new M03FxRecB(r).pos.x, new M03FxRecB(r).pos.y, new M03FxRecB(r).pos.z);
                 Math_MtxSwapRowsYZ((_fp + 16u));
-                if ((((int)(new M03Fx(a).flags) & 64) != 0))
+                if ((((int)(new M03Fx(a).Flags) & 64) != 0))
                 {
-                    new M03Fx(a).bmin.Set((int)(0), (new M03FxRecB(r).pos.x - 102.399994f));
-                    new M03Fx(a).bmin.Set((int)(1), (new M03FxRecB(r).pos.y - 102.399994f));
-                    new M03Fx(a).bmin.Set((int)(2), (new M03FxRecB(r).pos.z - 102.399994f));
-                    new M03Fx(a).bmax.Set((int)(0), (new M03FxRecB(r).pos.x + 102.399994f));
-                    new M03Fx(a).bmax.Set((int)(1), (new M03FxRecB(r).pos.y + 102.399994f));
-                    new M03Fx(a).bmax.Set((int)(2), (new M03FxRecB(r).pos.z + 102.399994f));
-                    new M03Fx(a).wD4_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
+                    new M03Fx(a).BoundsMin.Set((int)(0), (new M03FxRecB(r).pos.x - 102.399994f));
+                    new M03Fx(a).BoundsMin.Set((int)(1), (new M03FxRecB(r).pos.y - 102.399994f));
+                    new M03Fx(a).BoundsMin.Set((int)(2), (new M03FxRecB(r).pos.z - 102.399994f));
+                    new M03Fx(a).BoundsMax.Set((int)(0), (new M03FxRecB(r).pos.x + 102.399994f));
+                    new M03Fx(a).BoundsMax.Set((int)(1), (new M03FxRecB(r).pos.y + 102.399994f));
+                    new M03Fx(a).BoundsMax.Set((int)(2), (new M03FxRecB(r).pos.z + 102.399994f));
+                    new M03Fx(a).RegionId_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
                 }
                 else
                 {
                     k = 0.5f;
-                    new M03Fx(a).bmin.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(0)]) + new M03FxRecB(r).pos.x) - k));
-                    new M03Fx(a).bmin.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(1)]) + new M03FxRecB(r).pos.y) - k));
-                    new M03Fx(a).bmin.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(2)]) + new M03FxRecB(r).pos.z) - k));
-                    new M03Fx(a).bmax.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(3)]) + new M03FxRecB(r).pos.x) + k));
-                    new M03Fx(a).bmax.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(4)]) + new M03FxRecB(r).pos.y) + k));
-                    new M03Fx(a).bmax.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(5)]) + new M03FxRecB(r).pos.z) + k));
-                    new M03Fx(a).wD4_Set(new M03FxRecB(r).w0);
+                    new M03Fx(a).BoundsMin.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(0)]) + new M03FxRecB(r).pos.x) - k));
+                    new M03Fx(a).BoundsMin.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(1)]) + new M03FxRecB(r).pos.y) - k));
+                    new M03Fx(a).BoundsMin.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(2)]) + new M03FxRecB(r).pos.z) - k));
+                    new M03Fx(a).BoundsMax.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(3)]) + new M03FxRecB(r).pos.x) + k));
+                    new M03Fx(a).BoundsMax.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(4)]) + new M03FxRecB(r).pos.y) + k));
+                    new M03Fx(a).BoundsMax.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(5)]) + new M03FxRecB(r).pos.z) + k));
+                    new M03Fx(a).RegionId_Set(new M03FxRecB(r).w0);
                 }
-                Math_MtxCopy(new M03Fx(a).m68.P, (_fp + 16u));
-                Math_MtxFloatToFixed((_fp + 16u), new M03Fx(a).m28.P);
-                Mem.Copy(new M03Fx(a).pos.P, new M03FxRecB(r).pos.P, 12);
+                Math_MtxCopy(new M03Fx(a).TransformMtx.P, (_fp + 16u));
+                Math_MtxFloatToFixed((_fp + 16u), new M03Fx(a).TransformFixed.P);
+                Mem.Copy(new M03Fx(a).Position.P, new M03FxRecB(r).pos.P, 12);
                 if (((int)(new M03FxRecB(r).u2A) == 65535))
                 {
-                    new M03Fx(a).p14_Set(0);
+                    new M03Fx(a).RegionPtr_Set(0);
                 }
                 else
                 {
-                    new M03Fx(a).p14_Set((@base + ((int)(new M03FxRecB(r).u2A) << (int)5)));
+                    new M03Fx(a).RegionPtr_Set((@base + ((int)(new M03FxRecB(r).u2A) << (int)5)));
                 }
                 Mem.Set(Gv.Resource_DynamicKeyCounter, (Mem.S32(Gv.Resource_DynamicKeyCounter) + 1));
                 if ((Mem.S32(Gv.Resource_DynamicKeyCounter) == 4194303))
                 {
                     Mem.Set(Gv.Resource_DynamicKeyCounter, 3670016);
                 }
-                new M03Fx(a).wD0_Set((Mem.S32(Gv.Resource_DynamicKeyCounter) << (int)10));
-                new M03Fx(a).bDA_Set((byte)(((int)(Mem.U8(Gv.Video_FrameCountLowByte)) - 1)));
+                new M03Fx(a).LightCacheKey_Set((Mem.S32(Gv.Resource_DynamicKeyCounter) << (int)10));
+                new M03Fx(a).LitFrame_Set((byte)(((int)(Mem.U8(Gv.Video_FrameCountLowByte)) - 1)));
             }
         }
         finally { Stack.Free(80); }
@@ -584,58 +584,58 @@ public static partial class Game
                 uint dist = 0u;
                 int e = 0;
                 uint def = 0u;
-                Vec_Sub(_fp, (uint)((a1 + 296)), new B12Obj(o).pos.P);
+                Vec_Sub(_fp, (uint)((a1 + 296)), new B12Obj(o).Position.P);
                 d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                 dist = Cpu.TruncU32(d);
-                new B12Obj(o).unkDC_Set(dist);
+                new B12Obj(o).CameraDistSq_Set(dist);
                 def = new B12Obj(o).def_;
-                if ((dist >= (new B12Def(def).unk24 * (uint)(2))))
+                if ((dist >= (new B12Def(def).RadiusSquared * (uint)(2))))
                 {
-                    e = (int)(new B12Def(def).unkF);
+                    e = (int)(new B12Def(def).FarModelIndex);
                 }
                 else
                 {
-                    e = (int)(new B12Def(def).unkE);
+                    e = (int)(new B12Def(def).NearModelIndex);
                 }
                 if ((e == (-1)))
                 {
-                    if (((int)(new B12Obj(o).unkE0) <= 0))
+                    if (((int)(new B12Obj(o).FadeLevel) <= 0))
                     {
-                        new B12Obj(o).unkE0_Set((sbyte)(0));
-                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                        new B12Obj(o).FadeLevel_Set((sbyte)(0));
+                        new B12Obj(o).Flags_Set((ushort)((int)(new B12Obj(o).Flags) | 4));
                         return 0;
                     }
-                    if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
+                    if ((((int)(new B12Obj(o).Flags) & 512) != 0))
                     {
-                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
-                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                        new B12Obj(o).Flags_Set((ushort)((int)(new B12Obj(o).Flags) | 4));
+                        new B12Obj(o).FadeLevel_Set((sbyte)(0));
                         return 0;
                     }
-                    new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) - 1)));
-                    if (((int)(new B12Obj(o).unkE0) < 0))
+                    new B12Obj(o).FadeLevel_Set((sbyte)(((int)((byte)(new B12Obj(o).FadeLevel)) - 1)));
+                    if (((int)(new B12Obj(o).FadeLevel) < 0))
                     {
-                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                        new B12Obj(o).FadeLevel_Set((sbyte)(0));
                     }
-                    new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                    new B12Obj(o).Flags_Set((ushort)((int)(new B12Obj(o).Flags) | 4));
                 }
                 else
                 {
-                    if (((int)(new B12Obj(o).unkE0) < 8))
+                    if (((int)(new B12Obj(o).FadeLevel) < 8))
                     {
-                        if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
+                        if ((((int)(new B12Obj(o).Flags) & 512) != 0))
                         {
-                            new B12Obj(o).unkE0_Set((sbyte)(8));
-                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) & (~4)));
+                            new B12Obj(o).FadeLevel_Set((sbyte)(8));
+                            new B12Obj(o).Flags_Set((ushort)((int)(new B12Obj(o).Flags) & (~4)));
                         }
                         else
                         {
-                            new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) + 1)));
-                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                            new B12Obj(o).FadeLevel_Set((sbyte)(((int)((byte)(new B12Obj(o).FadeLevel)) + 1)));
+                            new B12Obj(o).Flags_Set((ushort)((int)(new B12Obj(o).Flags) | 4));
                         }
                     }
                     else
                     {
-                        new B12Obj(o).unkE0_Set((sbyte)(8));
+                        new B12Obj(o).FadeLevel_Set((sbyte)(8));
                     }
                 }
                 return 1;
@@ -662,39 +662,39 @@ public static partial class Game
             int off = 0;
             uint src = 0u;
             int len = 0;
-            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            if (!(((int)(new B12Obj(o).Flags) & 64) != 0))
             {
                 uint d = new B12Obj(o).def_;
-                s4 = (int)(new B12Def(d).unk12);
-                if ((new B12Obj(o).unkDC >= (new B12Def(d).unk24 * (uint)(2))))
+                s4 = (int)(new B12Def(d).ShadeFlags);
+                if ((new B12Obj(o).CameraDistSq >= (new B12Def(d).RadiusSquared * (uint)(2))))
                 {
-                    e = (int)(new B12Def(d).unkF);
+                    e = (int)(new B12Def(d).FarModelIndex);
                 }
                 else
                 {
-                    e = (int)(new B12Def(d).unkE);
+                    e = (int)(new B12Def(d).NearModelIndex);
                 }
                 a1 = e;
                 if ((a1 == (-1)))
                 {
                     do
                     {
-                        if (((int)(new B12Obj(o).unkE0) <= 0))
+                        if (((int)(new B12Obj(o).FadeLevel) <= 0))
                         {
                             return;
                         }
                         Mem.Set(Gv.Model_ColorOverrideMode, 1);
-                        Mem.Set(Gv.Draw_TintColor, (float)(((int)(new B12Obj(o).unkE0) << (int)5)));
+                        Mem.Set(Gv.Draw_TintColor, (float)(((int)(new B12Obj(o).FadeLevel) << (int)5)));
                     }
                     while ((0 != 0));
-                    a1 = (int)(new B12Obj(o).def.unkE);
+                    a1 = (int)(new B12Obj(o).DefPtr.NearModelIndex);
                 }
                 else
                 {
-                    if (((int)(new B12Obj(o).unkE0) < 8))
+                    if (((int)(new B12Obj(o).FadeLevel) < 8))
                     {
                         Mem.Set(Gv.Model_ColorOverrideMode, 1);
-                        f = (float)(((int)(new B12Obj(o).unkE0) << (int)5));
+                        f = (float)(((int)(new B12Obj(o).FadeLevel) << (int)5));
                     }
                     else
                     {
@@ -706,7 +706,7 @@ public static partial class Game
                 h = (int)(Prop_AcquireModel(o, a1));
                 if ((h != 0))
                 {
-                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
                     if ((r != 0u))
                     {
                         Resource_MarkUsedInFrame(0, r);
@@ -717,7 +717,7 @@ public static partial class Game
                             len = Mem.S32((blk + (uint)(2 * 4)));
                             data = (blk + (uint)off);
                             src = (blk + (uint)len);
-                            if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
+                            if (((int)(new B12Obj(o).LitFrame) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
                             {
                                 Light_ApplyVertexFlicker(data, src);
                             }
@@ -729,16 +729,16 @@ public static partial class Game
                         }
                         if ((Mem.S32(Gv.Model_ColorOverrideMode) != 0))
                         {
-                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                         }
                         else
                         {
-                            Model_QueueBatched((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                            Model_QueueBatched((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                         }
                         ResourcePool_Unref(0, r);
                     }
                     ResourcePool_Unref(0, (uint)(h));
-                    new B12Obj(o).unkDA_Set(Mem.U8(Gv.Video_FrameCountLowByte));
+                    new B12Obj(o).LitFrame_Set(Mem.U8(Gv.Video_FrameCountLowByte));
                 }
                 Mem.Set(Gv.Model_ColorOverrideMode, 0);
                 Mem.Set(Gv.Draw_TintColor, 255.0f);
@@ -761,13 +761,13 @@ public static partial class Game
             int off = 0;
             uint src = 0u;
             int len = 0;
-            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            if (!(((int)(new B12Obj(o).Flags) & 64) != 0))
             {
-                s4 = (int)(new B12Obj(o).def.unk12);
-                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).def.unkE)));
+                s4 = (int)(new B12Obj(o).DefPtr.ShadeFlags);
+                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).DefPtr.NearModelIndex)));
                 if ((h != 0))
                 {
-                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
                     if ((r != 0u))
                     {
                         Resource_MarkUsedInFrame(0, r);
@@ -778,7 +778,7 @@ public static partial class Game
                             len = Mem.S32((blk + (uint)(2 * 4)));
                             data = (blk + (uint)off);
                             src = (blk + (uint)len);
-                            if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
+                            if (((int)(new B12Obj(o).LitFrame) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
                             {
                                 Light_ApplyVertexFlicker(data, src);
                             }
@@ -790,16 +790,16 @@ public static partial class Game
                         }
                         if ((Mem.S32(Gv.Model_ColorOverrideMode) != 0))
                         {
-                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                         }
                         else
                         {
-                            Model_QueueBatched((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                            Model_QueueBatched((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                         }
                         ResourcePool_Unref(0, r);
                     }
                     ResourcePool_Unref(0, (uint)(h));
-                    new B12Obj(o).unkDA_Set(Mem.U8(Gv.Video_FrameCountLowByte));
+                    new B12Obj(o).LitFrame_Set(Mem.U8(Gv.Video_FrameCountLowByte));
                 }
             }
         }
@@ -821,10 +821,10 @@ public static partial class Game
                 uint p = 0u;
                 int i = 0;
                 int cnt = 0;
-                h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
+                h = ResourceCache_Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
                 if ((h != 0u))
                 {
-                    r = (int)(Resource_GetCartridgeKey(Mem.U32(h), (uint)(new B12Obj(o).unk1C), 3, _fp));
+                    r = (int)(Resource_GetCartridgeKey(Mem.U32(h), (uint)(new B12Obj(o).ModelResourceKey), 3, _fp));
                     n = ResourceCache_Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
                     if ((n != 0u))
                     {
@@ -860,30 +860,30 @@ public static partial class Game
                 uint h = 0u;
                 uint n = 0u;
                 int s2 = 0;
-                if ((new B12Obj(o).unkB4 != 0))
+                if ((new B12Obj(o).PinnedModelHandle != 0))
                 {
-                    ResourcePool_TouchAndRef(0, (uint)(new B12Obj(o).unkB4));
-                    return (uint)(new B12Obj(o).unkB4);
+                    ResourcePool_TouchAndRef(0, (uint)(new B12Obj(o).PinnedModelHandle));
+                    return (uint)(new B12Obj(o).PinnedModelHandle);
                 }
-                if ((key != new B12Obj(o).unkA8))
+                if ((key != new B12Obj(o).LoadedModelIndex))
                 {
-                    h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
+                    h = ResourceCache_Hash(0, (uint)(new B12Obj(o).ModelResourceKey), new B12Obj(o).ModelResourceKey, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
                     if ((h != 0u))
                     {
-                        s2 = Resource_GetCartridgeKeyNoSize((uint)((int)(Mem.U32(h))), new B12Obj(o).unk1C, 1);
+                        s2 = Resource_GetCartridgeKeyNoSize((uint)((int)(Mem.U32(h))), new B12Obj(o).ModelResourceKey, 1);
                         ResourcePool_Release(0, h);
                         n = Resource_LoadIndexTable(0, _fp, s2, 0x800C8F70u, 1);
                         if ((n != 0u))
                         {
-                            new B12Obj(o).unkAC_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
-                            new B12Obj(o).unkA8_Set(key);
+                            new B12Obj(o).LoadedModelKey_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
+                            new B12Obj(o).LoadedModelIndex_Set(key);
                             ResourcePool_Release(0, n);
                         }
                     }
                 }
-                if ((new B12Obj(o).unkAC != 0))
+                if ((new B12Obj(o).LoadedModelKey != 0))
                 {
-                    return ResourceCache_Hash(0, (uint)(new B12Obj(o).unkAC), new B12Obj(o).unkAC, (uint)(new B12Obj(o).unkB0), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
+                    return ResourceCache_Hash(0, (uint)(new B12Obj(o).LoadedModelKey), new B12Obj(o).LoadedModelKey, (uint)(new B12Obj(o).LoadedModelSize), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
                 }
                 return 0u;
             }
@@ -899,13 +899,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00250950", (uint)o);
             int h = 0;
             int r = 0;
-            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            if (!(((int)(new B12Obj(o).Flags) & 64) != 0))
             {
-                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).unk1)));
+                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).ModelIndex)));
                 if ((h != 0))
                 {
                     Model_PreloadTextures((uint)(h));
-                    r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
+                    r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
                     if ((r != 0))
                     {
                         ResourcePool_Unref(0, (uint)(r));
@@ -922,11 +922,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00250A0C", (uint)o);
-            if ((((int)(new B12Obj(o).unkD8) & 64) != 0))
+            if ((((int)(new B12Obj(o).Flags) & 64) != 0))
             {
                 return 0;
             }
-            return (int)(new B12Obj(o).def.unk12);
+            return (int)(new B12Obj(o).DefPtr.ShadeFlags);
         }
     }
 
@@ -936,7 +936,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00250A34", (uint)o);
-            return (int)(new B12Obj(o).def.unkE);
+            return (int)(new B12Obj(o).DefPtr.NearModelIndex);
         }
     }
 
@@ -978,9 +978,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00250A7C", (uint)o);
-            if ((!(((int)(new B12Obj(o).unkD8) & 64) != 0) && ((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(Gv.Video_FrameCountLowByte)))))
+            if ((!(((int)(new B12Obj(o).Flags) & 64) != 0) && ((int)(new B12Obj(o).LitFrame) != (int)(Mem.U8(Gv.Video_FrameCountLowByte)))))
             {
-                Resource_TouchByKey((uint)(0), (new B12Obj(o).unkD0 | Mem.U32(Gv.Model_VariantKeyBits)), default(uint), default(uint));
+                Resource_TouchByKey((uint)(0), (new B12Obj(o).LightCacheKey | Mem.U32(Gv.Model_VariantKeyBits)), default(uint), default(uint));
             }
         }
     }
@@ -995,10 +995,10 @@ public static partial class Game
             int r = 0;
             if ((h != 0))
             {
-                new B12Obj(o).unkB4_Set(h);
+                new B12Obj(o).PinnedModelHandle_Set(h);
                 Mem.Set(@out, h);
                 @out = Model_CollectTextureHandles((uint)(h), a1, (@out + (uint)(1 * 4)));
-                r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
+                r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
                 if ((r != 0))
                 {
                     Mem.Set(@out, r);
@@ -1025,7 +1025,7 @@ public static partial class Game
             int len = 0;
             if ((h != 0))
             {
-                r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).LightCacheKey | (uint)(Mem.S32(Gv.Model_VariantKeyBits))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
                 if ((r != 0u))
                 {
                     Resource_MarkUsedInFrame(0, r);
@@ -1036,7 +1036,7 @@ public static partial class Game
                         len = Mem.S32((blk + (uint)(2 * 4)));
                         data = (blk + (uint)off);
                         src = (blk + (uint)len);
-                        if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
+                        if (((int)(new B12Obj(o).LitFrame) != (int)(Mem.U8(Gv.Video_FrameCountLowByte))))
                         {
                             Light_ApplyVertexFlicker(data, src);
                         }
@@ -1048,16 +1048,16 @@ public static partial class Game
                     }
                     if ((Mem.S32(Gv.Model_ColorOverrideMode) != 0))
                     {
-                        Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                     }
                     else
                     {
-                        Model_QueueBatched((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        Model_QueueBatched((uint)(h), (int)(new B12Obj(o).TransformFixed.P), 0, 0, v1, s4);
                     }
                     ResourcePool_Unref(0, r);
                 }
                 ResourcePool_Unref(0, (uint)(h));
-                new B12Obj(o).unkDA_Set(Mem.U8(Gv.Video_FrameCountLowByte));
+                new B12Obj(o).LitFrame_Set(Mem.U8(Gv.Video_FrameCountLowByte));
             }
         }
     }
@@ -1069,11 +1069,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00250D88", (uint)o);
             uint d = new B12Obj(o).def_;
-            if ((new B12Obj(o).unkDC < (new B12Def(d).unk24 * (uint)(2))))
+            if ((new B12Obj(o).CameraDistSq < (new B12Def(d).RadiusSquared * (uint)(2))))
             {
-                return (int)(new B12Def(d).unkE);
+                return (int)(new B12Def(d).NearModelIndex);
             }
-            return (int)(new B12Def(d).unkF);
+            return (int)(new B12Def(d).FarModelIndex);
         }
     }
 
@@ -1086,14 +1086,14 @@ public static partial class Game
             uint d = 0u;
             if ((Mem.U8(Gv.Settings_IsMultiplayer) != 0))
             {
-                return (int)(new B12Obj(o).def.unkE);
+                return (int)(new B12Obj(o).DefPtr.NearModelIndex);
             }
             d = new B12Obj(o).def_;
-            if ((new B12Obj(o).unkDC < (new B12Def(d).unk24 * (uint)(2))))
+            if ((new B12Obj(o).CameraDistSq < (new B12Def(d).RadiusSquared * (uint)(2))))
             {
-                return (int)(new B12Def(d).unkE);
+                return (int)(new B12Def(d).NearModelIndex);
             }
-            return (int)(new B12Def(d).unkF);
+            return (int)(new B12Def(d).FarModelIndex);
         }
     }
 
@@ -1145,7 +1145,7 @@ public static partial class Game
                 while ((0 != 0));
                 Level_SavePlayersForRestart();
                 new B14Mgr(m).d_Set(Mem.S32(Gv.Level_StartPointId));
-                if (((int)(new B14G2(Gv.Settings).f1D) == 0))
+                if (((int)(new B14G2(Gv.Settings).IsMultiplayer) == 0))
                 {
                     p = (uint)(Obj_GetField20_0022A404((Gv.Settings - (uint)4744)));
                     if ((p != 0u))
@@ -1677,7 +1677,7 @@ public static partial class Game
             {
                 idx = (-1);
             }
-            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).LevelIndex)), ((new B19Owner(owner).LoadState != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).info)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
+            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).LevelIndex)), ((new B19Owner(owner).LoadState != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).DefPtr)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
             {
                 n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).SaveDataPtr), 0))), key))), 0));
                 Chunk_Get((uint)(n), 0);
@@ -1741,12 +1741,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00286050", (uint)ow);
             int old = Mem.S32(Gv.Model_VariantKeyBits);
-            Mem.Set(Gv.Model_VariantKeyBits, new B19Inp(Gv.Settings).val);
-            if (((new B19Inp(Gv.Settings).flags & (uint)(16384)) != 0u))
+            Mem.Set(Gv.Model_VariantKeyBits, new B19Inp(Gv.Settings).Brightness);
+            if (((new B19Inp(Gv.Settings).ActiveCheats & (uint)(16384)) != 0u))
             {
-                Mem.Set(Gv.Model_VariantKeyBits, (new B19Inp(Gv.Settings).val | 256));
+                Mem.Set(Gv.Model_VariantKeyBits, (new B19Inp(Gv.Settings).Brightness | 256));
             }
-            if (((new B19Inp(Gv.Settings).flags & (uint)(32768)) != 0u))
+            if (((new B19Inp(Gv.Settings).ActiveCheats & (uint)(32768)) != 0u))
             {
                 Mem.Set(Gv.Model_VariantKeyBits, (int)((int)(Mem.S32(Gv.Model_VariantKeyBits)) | 512));
             }
@@ -1809,7 +1809,7 @@ public static partial class Game
             while ((i < n))
             {
                 o = Mem.U32((arr + (uint)(i * 4)));
-                if ((new B19Info18(new B19Obj(o).info).type != 2))
+                if ((new B19Info18(new B19Obj(o).DefPtr).type != 2))
                 {
                     break;
                 }
@@ -1997,7 +1997,7 @@ public static partial class Game
             }
             for (i = 0; (i < new B19Owner(owner).EntityCount); ++i)
             {
-                inf = new B19Obj(p).info;
+                inf = new B19Obj(p).DefPtr;
                 if ((new B19Info18(inf).type == 13))
                 {
                     if (((Mem.U32(Gv.ArenaTreeRecordPtr) != 0u) && ((uint)((new B19Info18(inf).f20 - 3380)) < (uint)(4))))
@@ -2017,17 +2017,17 @@ public static partial class Game
                         case 3372:
                         case 3373:
                         case 3374:
-                            if (((int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((int)(new B19Info18(new B19Obj(p).info).sC) - 3370)))) == 0))
+                            if (((int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((int)(new B19Info18(new B19Obj(p).DefPtr).sC) - 3370)))) == 0))
                             {
-                                new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) | (uint)(4)));
+                                new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) | (uint)(4)));
                             }
                             else
                             {
-                                new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) & (uint)((~4))));
+                                new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) & (uint)((~4))));
                             }
                             break;
                         default:
-                            new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) & (uint)((~4))));
+                            new B19Info18(new B19Obj(p).DefPtr).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).DefPtr).f4) & (uint)((~4))));
                             break;
                         }
                     }
@@ -7375,7 +7375,7 @@ public static partial class Game
                                     cfg = (cfg0 + (uint)(p * 150));
                                     if ((nobj != 0))
                                     {
-                                        if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).LevelIndex == 9)))
+                                        if (((((int)(new S6Cfg(cfg).CharacterId) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).LevelIndex == 9)))
                                         {
                                             Level_FindPlacedObjects(world, 9, 3101, (_fp + 160u), 1);
                                             obj = (_fp + 160u);
@@ -7501,9 +7501,9 @@ public static partial class Game
                             for (i = 0; (i < n); ++i)
                             {
                                 a = (objsA + (uint)(i * 232));
-                                new ObjA(a).block_Set(block);
+                                new ObjA(a).LevelBlockPtr_Set(block);
                                 Prop_PreloadModel(a);
-                                handle = Prop_AcquireModel(a, (int)(new ObjA(a).type));
+                                handle = Prop_AcquireModel(a, (int)(new ObjA(a).ModelIndex));
                                 if ((handle != 0u))
                                 {
                                     Model_PreloadTextures(handle);
@@ -7516,9 +7516,9 @@ public static partial class Game
                             for (i = 0; (i < m); ++i)
                             {
                                 b = (objsB + (uint)(i * 456));
-                                new ObjB(b).block_Set(block);
+                                new ObjB(b).LevelBlockPtr_Set(block);
                                 Pickup_PreloadModel(b);
-                                handle = Pickup_AcquireModel(b, (int)(new ObjB(b).type));
+                                handle = Pickup_AcquireModel(b, (int)(new ObjB(b).ModelIndex));
                                 if ((handle != 0u))
                                 {
                                     Model_PreloadTextures(handle);

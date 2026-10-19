@@ -221,7 +221,7 @@ public static partial class Game
                 for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
                 {
                     pl = new B2Mgr(m).pool0_;
-                    r = (new B2Pool(pl).data.P + (uint)(new B2Node(n).id * new B2Pool(pl).elemSize));
+                    r = (new B2Pool(pl).data.P + (uint)(new B2Node(n).NodeId * new B2Pool(pl).elemSize));
                     sel = 0u;
                     if ((((int)(Mem.U16((r + (uint)12))) & 512) != 0))
                     {
@@ -293,7 +293,7 @@ public static partial class Game
                         if ((sel != 0u))
                         {
                             new B2Node(n).unk40__Set(sel);
-                            Mem.Copy(new B2Node(n).v44.P, (_fp + 120u), 12);
+                            Mem.Copy(new B2Node(n).PlatformStopPos.P, (_fp + 120u), 12);
                         }
                         else
                         {
@@ -337,7 +337,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020AF9C_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -639,7 +639,7 @@ public static partial class Game
             }
             k = 0;
             cnt = 0;
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020B95C_getEdge(m, k);
                 if ((mode != 0))
@@ -736,7 +736,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020BE7C_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -771,7 +771,7 @@ public static partial class Game
                 float best = Mem.F32(0x800C6E60u);
                 uint src = 0u;
                 uint e = 0u;
-                for (i = 0; (i < new B2Mgr(m).count); ++i)
+                for (i = 0; (i < new B2Mgr(m).EdgeCount); ++i)
                 {
                     e = func_0020BE7C_getEdge(m, i);
                     if (((int)(new B2Edge(e).a) == a))
@@ -830,7 +830,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020C078_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -866,7 +866,7 @@ public static partial class Game
                 uint src = 0u;
                 uint rec = 0u;
                 uint e = 0u;
-                for (; (i < new B2Mgr(m).count); ++i)
+                for (; (i < new B2Mgr(m).EdgeCount); ++i)
                 {
                     e = func_0020C078_getEdge(m, i);
                     if ((((int)(new B2Edge(e).a) == goal) && ((int)(new B2Edge(e).kind) == (int)(kind))))
@@ -941,7 +941,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020C2E8_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -981,9 +981,9 @@ public static partial class Game
                 src = func_0020C2E8_getRec0(m, new B2Edge2(obj).id0);
                 for (i = 0; (i < 64); ++i)
                 {
-                    if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
+                    if ((new B2Mgr(m).GoalIds[(int)(i)] != (-1)))
                     {
-                        d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
+                        d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).GoalIds[(int)(i)]));
                         if (((d < best) || (best == Mem.F32(0x800C6E68u))))
                         {
                             best = d;
@@ -1005,9 +1005,9 @@ public static partial class Game
                         src = func_0020C2E8_getRec0(m, (int)(new B2Edge(e).b));
                         for (i = 0; (i < 64); ++i)
                         {
-                            if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
+                            if ((new B2Mgr(m).GoalIds[(int)(i)] != (-1)))
                             {
-                                d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
+                                d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).GoalIds[(int)(i)]));
                                 if (((d < best) || (best == Mem.F32(0x800C6E6Cu))))
                                 {
                                     best = d;
@@ -1069,7 +1069,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).id == key))
+                if ((new B2Node(n).NodeId == key))
                 {
                     return n;
                 }
@@ -1087,7 +1087,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020C5A0_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -1115,7 +1115,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).unk28 == 1))
+                if ((new B2Node(n).SearchState == 1))
                 {
                     return 1;
                 }
@@ -1145,32 +1145,32 @@ public static partial class Game
                 int i = 0;
                 int cnt = 0;
                 int key = 0;
-                new B2Node(start).unk1C_Set((float)(0));
-                new B2Node(start).unk20_Set(AiNav_Heuristic(m, start));
-                new B2Node(start).unk24_Set((new B2Node(start).unk1C + new B2Node(start).unk20));
+                new B2Node(start).CostFromStart_Set((float)(0));
+                new B2Node(start).HeuristicCost_Set(AiNav_Heuristic(m, start));
+                new B2Node(start).TotalCost_Set((new B2Node(start).CostFromStart + new B2Node(start).HeuristicCost));
                 new B2Node(start).link30__Set(0u);
-                new B2Node(start).unk28_Set(1);
+                new B2Node(start).SearchState_Set(1);
                 while ((func_0020C5A0_hasOpen(m) != 0))
                 {
                     bestf = Mem.F32(0x800C6E74u);
                     sel = 0u;
                     for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
                     {
-                        if (((new B2Node(n).unk28 == 1) && ((new B2Node(n).unk24 < bestf) || (bestf == Mem.F32(0x800C6E70u)))))
+                        if (((new B2Node(n).SearchState == 1) && ((new B2Node(n).TotalCost < bestf) || (bestf == Mem.F32(0x800C6E70u)))))
                         {
                             sel = n;
-                            bestf = new B2Node(n).unk24;
+                            bestf = new B2Node(n).TotalCost;
                         }
                     }
                     if ((sel != 0u))
                     {
-                        new B2Node(sel).unk28_Set(0);
+                        new B2Node(sel).SearchState_Set(0);
                     }
                     cur = sel;
-                    rec = func_0020C5A0_getRec0(m, new B2Node(cur).id);
-                    if ((new B2Node(cur).unk2C != 0))
+                    rec = func_0020C5A0_getRec0(m, new B2Node(cur).NodeId);
+                    if ((new B2Node(cur).IsGoal != 0))
                     {
-                        new B2Mgr(m).unk18_Set(new B2Node(cur).id);
+                        new B2Mgr(m).FoundGoalId_Set(new B2Node(cur).NodeId);
                         return;
                     }
                     for (i = 0; (i < 64); ++i)
@@ -1178,14 +1178,14 @@ public static partial class Game
                         Mem.Set((_fp + (uint)(i * 4)), (-1));
                         Mem.Set(((_fp + 256u) + (uint)(i * 4)), (-1));
                     }
-                    key = new B2Node(cur).id;
+                    key = new B2Node(cur).NodeId;
                     cnt = func_0020C5A0_adj(m, key, _fp, (_fp + 256u));
                     for (i = 0; (i < cnt); ++i)
                     {
                         rec2 = func_0020C5A0_getRec0(m, Mem.S32((_fp + (uint)(i * 4))));
                         nbr = func_0020C5A0_find(m, Mem.S32((_fp + (uint)(i * 4))));
                         e = func_0020C5A0_getEdge(m, Mem.S32(((_fp + 256u) + (uint)(i * 4))));
-                        if (((func_0020C5A0_isBi(new B2Edge(e).kind) != 0) || ((int)(new B2Edge(e).a) == new B2Node(cur).id)))
+                        if (((func_0020C5A0_isBi(new B2Edge(e).kind) != 0) || ((int)(new B2Edge(e).a) == new B2Node(cur).NodeId)))
                         {
                             if (((int)(new B2Edge(e).kind) == 10))
                             {
@@ -1201,7 +1201,7 @@ public static partial class Game
                                 {
                                     d = Vec_Distance(rec2, rec);
                                 }
-                                d = (float)((float)(d) + new B2Node(nbr).unk18);
+                                d = (float)((float)(d) + new B2Node(nbr).ExtraCost);
                                 if ((((int)(Mem.U16((rec2 + (uint)12))) & 1024) != 0))
                                 {
                                     d = (float)((float)(d) + Mem.F32(0x800C6E78u));
@@ -1210,27 +1210,27 @@ public static partial class Game
                                 {
                                     d = 0.0f;
                                 }
-                                g = (new B2Node(cur).unk1C + d);
-                                if (!((((new B2Node(nbr).unk28 ^ 2) == 0) || ((new B2Node(nbr).unk28 ^ 1) == 0)) && (new B2Node(nbr).unk1C <= g)))
+                                g = (new B2Node(cur).CostFromStart + d);
+                                if (!((((new B2Node(nbr).SearchState ^ 2) == 0) || ((new B2Node(nbr).SearchState ^ 1) == 0)) && (new B2Node(nbr).CostFromStart <= g)))
                                 {
                                     new B2Node(nbr).link30__Set(cur);
-                                    new B2Node(nbr).unk1C_Set(g);
-                                    new B2Node(nbr).unk20_Set(AiNav_Heuristic(m, nbr));
-                                    new B2Node(nbr).unk24_Set((new B2Node(nbr).unk1C + new B2Node(nbr).unk20));
-                                    if (((new B2Node(nbr).unk28 ^ 2) == 0))
+                                    new B2Node(nbr).CostFromStart_Set(g);
+                                    new B2Node(nbr).HeuristicCost_Set(AiNav_Heuristic(m, nbr));
+                                    new B2Node(nbr).TotalCost_Set((new B2Node(nbr).CostFromStart + new B2Node(nbr).HeuristicCost));
+                                    if (((new B2Node(nbr).SearchState ^ 2) == 0))
                                     {
-                                        new B2Node(nbr).unk28_Set(0);
+                                        new B2Node(nbr).SearchState_Set(0);
                                     }
-                                    if (((new B2Node(nbr).unk28 ^ 1) != 0))
+                                    if (((new B2Node(nbr).SearchState ^ 1) != 0))
                                     {
-                                        new B2Node(nbr).unk28_Set(1);
+                                        new B2Node(nbr).SearchState_Set(1);
                                     }
                                 }
                             }
                         }
                         L_skip: ;
                     }
-                    new B2Node(cur).unk28_Set(2);
+                    new B2Node(cur).SearchState_Set(2);
                 }
             }
         }
@@ -1295,7 +1295,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020CA10", (uint)n, (uint)idx);
             uint r = 0u;
-            new B2Node(n).id_Set(idx);
+            new B2Node(n).NodeId_Set(idx);
             new B2Node(n).unk8_Set((-1));
             new B2Node(n).unkC_Set(0);
             new B2Node(n).next__Set(0u);
@@ -1303,22 +1303,22 @@ public static partial class Game
             r = func_0020CA10_getRec0(Gv.AiNavGraph, idx);
             if ((((int)(new B2Rec(r).flags) & 2) != 0))
             {
-                new B2Node(n).unk14_Set(Mem.F32(0x800C6E80u));
+                new B2Node(n).BranchOffsetScale_Set(Mem.F32(0x800C6E80u));
             }
             new B2Node(n).unk34__Set(0u);
-            new B2Node(n).unk38_Set(0);
-            new B2Node(n).unk3C_Set(0);
+            new B2Node(n).TimerCost_Set(0);
+            new B2Node(n).Timer_3C_Set(0);
             new B2Node(n).unk40__Set(0u);
-            new B2Node(n).v44.x_Set((float)(0));
-            new B2Node(n).v44.y_Set((float)(0));
-            new B2Node(n).v44.z_Set((float)(0));
+            new B2Node(n).PlatformStopPos.x_Set((float)(0));
+            new B2Node(n).PlatformStopPos.y_Set((float)(0));
+            new B2Node(n).PlatformStopPos.z_Set((float)(0));
             if ((((int)(new B2Rec(r).flags) & 64) != 0))
             {
-                new B2Node(n).unk38_Set(((Random_Next() % 5) + 5));
+                new B2Node(n).TimerCost_Set(((Random_Next() % 5) + 5));
             }
             if ((((int)(new B2Rec(r).flags) & 128) != 0))
             {
-                new B2Node(n).unk3C_Set(((Random_Next() % 5) + 5));
+                new B2Node(n).Timer_3C_Set(((Random_Next() % 5) + 5));
             }
         }
     }
@@ -1346,7 +1346,7 @@ public static partial class Game
                 float bestd = 0.0f;
                 int i = 0;
                 float d2 = 0f;
-                for (i = 0; (i < new B2Mgr(m).unk4); ++i)
+                for (i = 0; (i < new B2Mgr(m).NodeCount); ++i)
                 {
                     Vec_Sub(_fp, p, func_0020CB3C_getRec0(m, i));
                     d2 = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
@@ -1398,7 +1398,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0020CC0C", (uint)m, (uint)x, (uint)y);
             int i = 0;
             uint e = 0u;
-            for (i = 0; (i < new B2Mgr(m).count); ++i)
+            for (i = 0; (i < new B2Mgr(m).EdgeCount); ++i)
             {
                 e = func_0020CC0C_getEdge(m, i);
                 if ((((int)(new B2Edge(e).a) == x) && ((int)(new B2Edge(e).b) == y)))
@@ -1438,7 +1438,7 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < new B2Mgr(m).count); ++k)
+            for (; (k < new B2Mgr(m).EdgeCount); ++k)
             {
                 e = func_0020CCE8_getEdge(m, k);
                 if (((int)(new B2Edge(e).a) == key))
@@ -1530,7 +1530,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).id == key))
+                if ((new B2Node(n).NodeId == key))
                 {
                     return n;
                 }
@@ -1550,16 +1550,16 @@ public static partial class Game
             {
                 new B2Node(n).unk4_Set(Mem.F32(0x800C6E88u));
                 new B2Node(n).unk8_Set((-1));
-                new B2Node(n).unk18_Set((float)(0));
-                new B2Node(n).unk1C_Set((float)(0));
-                new B2Node(n).unk20_Set((float)(0));
-                new B2Node(n).unk24_Set((float)(0));
-                new B2Node(n).unk28_Set(0);
-                new B2Node(n).unk2C_Set(0);
+                new B2Node(n).ExtraCost_Set((float)(0));
+                new B2Node(n).CostFromStart_Set((float)(0));
+                new B2Node(n).HeuristicCost_Set((float)(0));
+                new B2Node(n).TotalCost_Set((float)(0));
+                new B2Node(n).SearchState_Set(0);
+                new B2Node(n).IsGoal_Set(0);
                 new B2Node(n).link30__Set(0u);
             }
-            new B2Mgr(m).unk1C_Set(Mem.F32(0x800C6E8Cu));
-            new B2Mgr(m).unk20_Set((-1));
+            new B2Mgr(m).SearchF_1C_Set(Mem.F32(0x800C6E8Cu));
+            new B2Mgr(m).SearchI_20_Set((-1));
         }
     }
 
@@ -1585,7 +1585,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).id == key))
+                if ((new B2Node(n).NodeId == key))
                 {
                     return n;
                 }
@@ -1612,7 +1612,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).id == key))
+                if ((new B2Node(n).NodeId == key))
                 {
                     return n;
                 }
@@ -1634,10 +1634,10 @@ public static partial class Game
                 Mem.Set((@out + (uint)(i * 4)), (-1));
             }
             done = 0;
-            node = func_0020D114_find(m, new B2Mgr(m).unk18);
+            node = func_0020D114_find(m, new B2Mgr(m).FoundGoalId);
             if ((new B2Node(node).link30_ == 0u))
             {
-                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).id);
+                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).NodeId);
                 return;
             }
             while (!(done != 0))
@@ -1646,7 +1646,7 @@ public static partial class Game
                 {
                     Mem.Set((@out + (uint)(i * 4)), Mem.S32((@out + (uint)((i - 1) * 4))));
                 }
-                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).id);
+                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).NodeId);
                 node = new B2Node(node).link30_;
                 if ((new B2Node(node).link30_ == 0u))
                 {
@@ -1663,7 +1663,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020D1CC", (uint)m, (uint)i, (uint)j);
             uint pool = new B2Mgr(m).unk10_;
-            return (int)(Mem.U8((((new B2Pool(pool).data.P + (uint)0) + (uint)(((i * new B2Mgr(m).unk4) + j) * new B2Pool(pool).elemSize)) + (uint)0)));
+            return (int)(Mem.U8((((new B2Pool(pool).data.P + (uint)0) + (uint)(((i * new B2Mgr(m).NodeCount) + j) * new B2Pool(pool).elemSize)) + (uint)0)));
         }
     }
 
@@ -1677,7 +1677,7 @@ public static partial class Game
             int v = (-1);
             for (i = 63; (i >= 0); --i)
             {
-                new B2Mgr(m).slots.Set((int)(i), v);
+                new B2Mgr(m).GoalIds.Set((int)(i), v);
             }
         }
     }
@@ -1691,7 +1691,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).id == key))
+                if ((new B2Node(n).NodeId == key))
                 {
                     return n;
                 }
@@ -1708,10 +1708,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((new B2Mgr(m).slots[(int)(i)] == (-1)))
+                if ((new B2Mgr(m).GoalIds[(int)(i)] == (-1)))
                 {
-                    new B2Mgr(m).slots.Set((int)(i), key);
-                    new B2Node(func_0020D220_find(m, key)).unk2C_Set(1);
+                    new B2Mgr(m).GoalIds.Set((int)(i), key);
+                    new B2Node(func_0020D220_find(m, key)).IsGoal_Set(1);
                     return;
                 }
             }
@@ -1724,7 +1724,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D280", (uint)n);
-            new B2Node(n).unk28_Set(1);
+            new B2Node(n).SearchState_Set(1);
         }
     }
 
@@ -1741,15 +1741,15 @@ public static partial class Game
             best = 0u;
             for (n = new TimedList(list).head_; (n != 0u); n = new TimedNode(n).next_)
             {
-                if (((new TimedNode(n).unk28 == 1) && ((new TimedNode(n).unk24 < min) || (min == Mem.F32(0x800C6E90u)))))
+                if (((new TimedNode(n).SearchState == 1) && ((new TimedNode(n).TotalCost < min) || (min == Mem.F32(0x800C6E90u)))))
                 {
                     best = n;
-                    min = new TimedNode(n).unk24;
+                    min = new TimedNode(n).TotalCost;
                 }
             }
             if ((best != 0u))
             {
-                new TimedNode(best).unk28_Set(0);
+                new TimedNode(best).SearchState_Set(0);
             }
             return best;
         }
@@ -1761,7 +1761,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D2FC", (uint)n);
-            new B2Node(n).unk28_Set(2);
+            new B2Node(n).SearchState_Set(2);
         }
     }
 
@@ -1771,7 +1771,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D308", (uint)n);
-            return ((new B2Node(n).unk28 == 1) ? 1 : 0);
+            return ((new B2Node(n).SearchState == 1) ? 1 : 0);
         }
     }
 
@@ -1781,7 +1781,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D318", (uint)n);
-            return ((new B2Node(n).unk28 == 2) ? 1 : 0);
+            return ((new B2Node(n).SearchState == 2) ? 1 : 0);
         }
     }
 
@@ -1794,7 +1794,7 @@ public static partial class Game
             uint n = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((new B2Node(n).unk28 == 1))
+                if ((new B2Node(n).SearchState == 1))
                 {
                     return 1;
                 }
@@ -1809,7 +1809,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D35C", (uint)n);
-            new B2Node(n).unk28_Set(0);
+            new B2Node(n).SearchState_Set(0);
         }
     }
 
@@ -1856,7 +1856,7 @@ public static partial class Game
             _f17: ;
             _f12: ;
             _f20: ;
-            new B2Node(AiNav_FindSearchNode(m, AiNav_FindNearestNode(m, new B2Actor(n).Position.P))).unk18_Set(Mem.F32(0x800C6F50u));
+            new B2Node(AiNav_FindSearchNode(m, AiNav_FindNearestNode(m, new B2Actor(n).Position.P))).ExtraCost_Set(Mem.F32(0x800C6F50u));
             _f21: ;
             if ((0 != 0)) goto _f20;
             _f22: ;
@@ -1891,7 +1891,7 @@ public static partial class Game
                 {
                     if ((new B2Ctl(ctl).EnemyPtrs[(int)(i)] != 0u))
                     {
-                        new B2Node(AiNav_FindSearchNode(m, new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).OwnerPtr.BrainPtr.key)).unk18_Set(Mem.F32(0x800C6FCCu));
+                        new B2Node(AiNav_FindSearchNode(m, new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).OwnerPtr.BrainPtr.key)).ExtraCost_Set(Mem.F32(0x800C6FCCu));
                     }
                 }
             }
@@ -1907,7 +1907,7 @@ public static partial class Game
             uint n = 0u;
             for (n = Mem.U32(0x8013B388u); (n != 0u); n = new B2Node(n).next_)
             {
-                new B2Node(n).unk18_Set((new B2Node(n).unk18 + ((float)((new B2Node(n).unk38 * 30)) * Mem.F32(0x800C6FD0u))));
+                new B2Node(n).ExtraCost_Set((new B2Node(n).ExtraCost + ((float)((new B2Node(n).TimerCost * 30)) * Mem.F32(0x800C6FD0u))));
             }
         }
     }
@@ -1923,12 +1923,12 @@ public static partial class Game
             uint r = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                r = AiNav_GetNode(m, new B2Node(n).id);
+                r = AiNav_GetNode(m, new B2Node(n).NodeId);
                 if ((((int)(new B2Rec(r).flags) & 1) != 0))
                 {
                     if (((Ai_IsHealthItemId((int)(new B2Rec(r).id)) != 0) || (Ai_IsAmmoItemId((int)(new B2Rec(r).id)) != 0)))
                     {
-                        new B2Node(n).unk18_Set((float)((float)(new B2Node(n).unk18) + Mem.F32(0x800C6FD4u)));
+                        new B2Node(n).ExtraCost_Set((float)((float)(new B2Node(n).ExtraCost) + Mem.F32(0x800C6FD4u)));
                     }
                 }
             }

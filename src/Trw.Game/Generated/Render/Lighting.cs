@@ -13,7 +13,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00250BD4", (uint)o, (uint)b);
             int x = Mem.S32(Mem.U32(b));
-            int r = (int)(Light_BuildVertexCache((uint)(x), (uint)(Mem.S32(new B12Obj(o).unk20_)), new B12Obj(o).unkB8.P, new B12Obj(o).unk28.P, (uint)(0), o));
+            int r = (int)(Light_BuildVertexCache((uint)(x), (uint)(Mem.S32(new B12Obj(o).unk20_)), new B12Obj(o).BoundsMin.P, new B12Obj(o).TransformFixed.P, (uint)(0), o));
             return (int)(Resource_SetRequestResult_00253E04((uint)(0), b, (uint)(r), default(uint)));
         }
     }
@@ -1986,9 +1986,9 @@ public static partial class Game
                 float m2_4 = 0f;
                 float m1_5 = 0f;
                 float m2_5 = 0f;
-                scale = ((float)(new B19bG8(Gv.Settings).f10) * 0.00392156886f);
+                scale = ((float)(new B19bG8(Gv.Settings).Brightness) * 0.00392156886f);
                 last = 0u;
-                if (((new B19bG8(Gv.Settings).flags & (uint)(16384)) != 0u))
+                if (((new B19bG8(Gv.Settings).ActiveCheats & (uint)(16384)) != 0u))
                 {
                     Mem.Set((@out + (uint)0), Mem.Set((@out + (uint)4), (byte)(0)));
                     Mem.Set((@out + (uint)1), Mem.Set((@out + (uint)5), (byte)(0)));

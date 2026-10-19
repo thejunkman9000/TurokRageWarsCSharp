@@ -29,10 +29,10 @@ public static partial class Game
             o = ResourcePool_Malloc((uint)(68));
             Mem_Fill(o, 0, (uint)(68));
             Mem.Copy(o, src, 44);
-            new O3B61(o).h.id2_Set((ushort)(2913));
+            new O3B61(o).h.Type_Set((ushort)(2913));
             Mem.Copy(new O3B61(o).col.P, new O3B61(src).col.P, 20);
             UiTree_ReplaceNode(src, o, default(uint), default(uint));
-            new O3B61(src).h.id_Set((short)((-1)));
+            new O3B61(src).h.Id_Set((short)((-1)));
             UiTree_ReplaceRefs((uint)(s), src, o, default(uint));
         }
     }
@@ -45,16 +45,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041B2AC", (uint)src);
             int s = 0;
             uint o = 0u;
-            if (((int)(new O3B61(src).h.id2) != 2913))
+            if (((int)(new O3B61(src).h.Type) != 2913))
             {
                 s = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
                 o = ResourcePool_Malloc((uint)(68));
                 Mem_Fill(o, 0, (uint)(68));
                 Mem.Copy(o, src, 44);
-                new O3B61(o).h.id2_Set((ushort)(2913));
+                new O3B61(o).h.Type_Set((ushort)(2913));
                 Mem.Copy(new O3B61(o).col.P, new O3B61(src).col.P, 20);
                 UiTree_ReplaceNode(src, o, default(uint), default(uint));
-                new O3B61(src).h.id_Set((short)((-1)));
+                new O3B61(src).h.Id_Set((short)((-1)));
                 UiTree_ReplaceRefs((uint)(s), src, o, default(uint));
             }
         }
@@ -71,7 +71,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E3460u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3460u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3460u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E3460u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3460u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E3460u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
@@ -94,7 +94,7 @@ public static partial class Game
                 int flag = 0;
                 if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), self, _fp) != 0))
                 {
-                    if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
+                    if ((((int)(new O3Hdr(self).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -122,9 +122,9 @@ public static partial class Game
             uint p = 0u;
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(100));
+                    new O3Hdr(p).Alpha_Set((byte)(100));
                 }
             }
             return 0;
@@ -140,9 +140,9 @@ public static partial class Game
             uint p = 0u;
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(200));
+                    new O3Hdr(p).Alpha_Set((byte)(200));
                 }
             }
             return 0;
@@ -159,9 +159,9 @@ public static partial class Game
             Audio_PlaySound2D(3700);
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(new O3Hdr(p).id2) != 8))
+                if (((int)(new O3Hdr(p).Type) != 8))
                 {
-                    new O3Hdr(p).alpha_Set((byte)(100));
+                    new O3Hdr(p).Alpha_Set((byte)(100));
                 }
             }
             return 0;

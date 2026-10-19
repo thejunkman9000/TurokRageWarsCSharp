@@ -401,7 +401,7 @@ public static class Gv
     /// <summary>inline array of player profile records (400 bytes each): unlocks, lives, settings; Profile_Init/PlayerMenu_* [high]</summary>
     public const uint ProfileTable = 0x80102B00u;
     /// <summary>400-byte rows per character: health/ammo caps (Player_GetMaxHealth, Player_GetAmmoCapacity) [high]</summary>
-    public const uint CharacterClassTable = 0x80102B10u;
+    public const uint ProfileTable_Plus10 = 0x80102B10u;
     /// <summary>ProfileTable+0x4A: per-profile award/medal bit set (Bits_Test/Bits_Assign with stride 400) [medium]</summary>
     public const uint Profile_AwardBits = 0x80102B4Au;
     /// <summary>per-player s32 counts; Results/TrialResults compute accuracy = 0x80102AE0[i]*100/this[i]; zeroed in Player_InitSlot [medium]</summary>

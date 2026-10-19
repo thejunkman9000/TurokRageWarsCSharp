@@ -164,11 +164,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436898", (uint)i);
             Mem.Set((0x80146410u + (uint)((i * 150) + 7)), (byte)(i));
-            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b189));
-            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18A));
-            Slider_SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18B));
-            Slider_SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18C));
-            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18D));
+            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).ControlType));
+            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).LookSpring));
+            Slider_SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickHorzSensitivity));
+            Slider_SetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).StickVertSensitivity));
+            OptionList_SetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).WeaponSelectMode));
         }
     }
 
@@ -179,16 +179,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436988", (uint)k);
             uint r = (Gv.Settings_PlayerRecords + (uint)(k * 150));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b189_Set((sbyte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18A_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18B_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18C_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC)));
-            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18D_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18)));
-            new O05R150b(r).b7B_Set((byte)(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b189));
-            new O05R150b(r).b7D_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18A);
-            new O05R150b(r).b79_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18B);
-            new O05R150b(r).b7A_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18C);
-            new O05R150b(r).b82_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18D);
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).ControlType_Set((sbyte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f14)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).LookSpring_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f10)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickHorzSensitivity_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f8)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickVertSensitivity_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).fC)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).WeaponSelectMode_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(Gv.ControllerMenu_PagePtr)).f18)));
+            new O05R150b(r).ControlType_Set((byte)(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).ControlType));
+            new O05R150b(r).LookSpring_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).LookSpring);
+            new O05R150b(r).StickHorzSensitivity_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickHorzSensitivity);
+            new O05R150b(r).StickVertSensitivity_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).StickVertSensitivity);
+            new O05R150b(r).WeaponSelectMode_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).WeaponSelectMode);
         }
     }
 

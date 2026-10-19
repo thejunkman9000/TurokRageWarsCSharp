@@ -340,25 +340,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204A68_r01_check", (uint)actor, (uint)state);
-            if (((int)(new B01Actor(actor).unkE6) == 1))
+            if (((int)(new B01Actor(actor).AnimCount) == 1))
             {
                 return 1;
             }
-            if ((((int)(new B01Actor(actor).unk108) != (int)((sbyte)(new B01State(state).AnimClipIndex))) || ((int)(new B01Actor(actor).unk10A) != (int)((sbyte)(new B01State(state).AnimClipIndex)))))
+            if ((((int)(new B01Actor(actor).AnimClipId) != (int)((sbyte)(new B01State(state).AnimClipIndex))) || ((int)(new B01Actor(actor).AnimRequestedClipId) != (int)((sbyte)(new B01State(state).AnimClipIndex)))))
             {
                 return 0;
             }
-            if ((((int)(new B01State(state).AnimLoopCount) != 0) && !((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new B01State(state).AnimLoopCount) != 0) && !((new B01Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
                 return 1;
             }
-            if ((((int)(new B01Actor(actor).unk10C) < 3) && ((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new B01Actor(actor).AnimClipLength) < 3) && ((new B01Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
-                return ((((float)(new B01Actor(actor).unk12C) * scale) <= new B01Actor(actor).unk134) ? 1 : 0);
+                return ((((float)(new B01Actor(actor).BlendFrames) * scale) <= new B01Actor(actor).BlendTime) ? 1 : 0);
             }
             else
             {
-                return ((((float)(new B01Actor(actor).unk10C) * scale) <= new B01Actor(actor).unk104) ? 1 : 0);
+                return ((((float)(new B01Actor(actor).AnimClipLength) * scale) <= new B01Actor(actor).AnimTime) ? 1 : 0);
             }
             return 0;
         }
@@ -378,7 +378,7 @@ public static partial class Game
                     if ((func_00204A68_r01_check(actor, state, ((float)(idx) * 0.00787401571f)) != 0))
                     {
                         new B01Pair(_fp).a_Set(0);
-                        Event_Invoke((int)(actor), (int)(actor), 7, new B01Actor(actor).pos.P, _fp);
+                        Event_Invoke((int)(actor), (int)(actor), 7, new B01Actor(actor).Position.P, _fp);
                         Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
                     }
                 }
@@ -462,8 +462,8 @@ public static partial class Game
                 Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));
                 if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != 4))
                 {
-                    Event_Invoke((int)(actor), (int)(actor), 6, new B01Actor(actor).pos.P, _fp);
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
+                    Event_Invoke((int)(actor), (int)(actor), 6, new B01Actor(actor).Position.P, _fp);
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(134217728)));
                 }
             }
         }
@@ -485,8 +485,8 @@ public static partial class Game
                 Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));
                 if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != 4))
                 {
-                    Event_Invoke((int)(actor), (int)(actor), 7, new B01Actor(actor).pos.P, _fp);
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
+                    Event_Invoke((int)(actor), (int)(actor), 7, new B01Actor(actor).Position.P, _fp);
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(134217728)));
                 }
             }
         }

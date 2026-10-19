@@ -1110,48 +1110,48 @@ public readonly struct func_80293268_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_80293268_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_80293268_S1(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int PlayTimeTicks
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int PlayTimeTicks_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public S8x0 pad0 { [MethodImpl(Inl)] get => new(P + 0x4u); }
+    public S8x0 PlayTimeSeconds { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x4
-    public int unk4
+    public int PlayTimeSeconds_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int PlayTimeSeconds_2_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public S8x0 pad4 { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public S8x0 PlayTimeMinutes { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x8
-    public int unk8
+    public int PlayTimeMinutes_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int PlayTimeMinutes_2_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public S8x0 pad8 { [MethodImpl(Inl)] get => new(P + 0xCu); }
+    public S8x0 PlayTimeHours { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0xC
-    public int unkC
+    public int PlayTimeHours_2
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int PlayTimeHours_2_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
     public S8x120 MessageTimer { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x88
-    public int unk88
+    public int IsFlybyHoldStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int unk88_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int IsFlybyHoldStarted_Set(int v) => Mem.Set(P + 0x88u, v);
 }
 
 /// <summary>struct func_80293268_S2, 0x26DE0 bytes, at a guest address.</summary>

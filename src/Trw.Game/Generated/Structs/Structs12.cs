@@ -21,21 +21,21 @@ public readonly struct Glob24
     // +0x0
     public U8x29 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1D
-    public byte unk1D
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x1Du);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Du, value);
     }
-    [MethodImpl(Inl)] public byte unk1D_Set(byte v) => Mem.Set(P + 0x1Du, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x1Du, v);
     // +0x1E
     public U8x1550 pad1E { [MethodImpl(Inl)] get => new(P + 0x1Eu); }
     // +0x62C
-    public int unk62C
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x62Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x62Cu, value);
     }
-    [MethodImpl(Inl)] public int unk62C_Set(int v) => Mem.Set(P + 0x62Cu, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x62Cu, v);
 }
 
 /// <summary>struct Glob24b, 0x88 bytes, at a guest address.</summary>
@@ -1515,28 +1515,28 @@ public readonly struct HudStatusShared_Settings
     [MethodImpl(Inl)] public static implicit operator uint(HudStatusShared_Settings v) => v.P;
     [MethodImpl(Inl)] public static explicit operator HudStatusShared_Settings(uint p) => new(p);
     // +0x0
-    public int flags
+    public int ActiveCheats
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int flags_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int ActiveCheats_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public int selection
+    public int UnlockedCheats
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int selection_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int UnlockedCheats_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public S8x5 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public S8x5 DifficultyMask { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xD
-    public byte trialKind
+    public byte GameMode
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xDu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDu, value);
     }
-    [MethodImpl(Inl)] public byte trialKind_Set(byte v) => Mem.Set(P + 0xDu, v);
+    [MethodImpl(Inl)] public byte GameMode_Set(byte v) => Mem.Set(P + 0xDu, v);
     // +0xE
     public S8x8 padE { [MethodImpl(Inl)] get => new(P + 0xEu); }
     // +0x16
@@ -1549,25 +1549,25 @@ public readonly struct HudStatusShared_Settings
     // +0x17
     public S8x6 pad17 { [MethodImpl(Inl)] get => new(P + 0x17u); }
     // +0x1D
-    public byte hudShown
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x1Du);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Du, value);
     }
-    [MethodImpl(Inl)] public byte hudShown_Set(byte v) => Mem.Set(P + 0x1Du, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x1Du, v);
     // +0x1E
-    public S8x178 pad1E { [MethodImpl(Inl)] get => new(P + 0x1Eu); }
+    public S8x178 MaxPlayers { [MethodImpl(Inl)] get => new(P + 0x1Eu); }
     // +0xD0
-    public ListScreenRecordx8 roster { [MethodImpl(Inl)] get => new(P + 0xD0u); }
+    public ListScreenRecordx8 PlayerRecords { [MethodImpl(Inl)] get => new(P + 0xD0u); }
     // +0x580
-    public S8x1 pad580 { [MethodImpl(Inl)] get => new(P + 0x580u); }
+    public S8x1 ResolutionMode { [MethodImpl(Inl)] get => new(P + 0x580u); }
     // +0x581
-    public byte language
+    public byte Language_581
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x581u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x581u, value);
     }
-    [MethodImpl(Inl)] public byte language_Set(byte v) => Mem.Set(P + 0x581u, v);
+    [MethodImpl(Inl)] public byte Language_581_Set(byte v) => Mem.Set(P + 0x581u, v);
     // +0x582
     public S8x50 pad582 { [MethodImpl(Inl)] get => new(P + 0x582u); }
     // +0x5B4
@@ -1580,16 +1580,16 @@ public readonly struct HudStatusShared_Settings
     // +0x5B8
     public S8x32 pad5B8 { [MethodImpl(Inl)] get => new(P + 0x5B8u); }
     // +0x5D8
-    public HudStatusShared_MatchRules rules { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
+    public HudStatusShared_MatchRules MatchRules { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
     // +0x674
     public S8x12 pad674 { [MethodImpl(Inl)] get => new(P + 0x674u); }
     // +0x680
-    public int humanWon
+    public int TrialWon_680
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x680u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x680u, value);
     }
-    [MethodImpl(Inl)] public int humanWon_Set(int v) => Mem.Set(P + 0x680u, v);
+    [MethodImpl(Inl)] public int TrialWon_680_Set(int v) => Mem.Set(P + 0x680u, v);
 }
 
 /// <summary>struct HudSubB6, 0x20 bytes, at a guest address.</summary>

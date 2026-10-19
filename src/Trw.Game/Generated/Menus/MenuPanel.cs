@@ -25,26 +25,26 @@ public static partial class Game
                 int new_var2 = 0;
                 uint ib = 0u;
                 uint pc = 0u;
-                new Q04Panel(p).w0_Set(new Q04Hdr(t).w18);
+                new Q04Panel(p).CursorIndex_Set(new Q04Hdr(t).w18);
                 new Q04Panel(p).w2_Set(new Q04Hdr(t).w1A);
                 new Q04Panel(p).w4_Set(new Q04Hdr(t).w1C);
                 new Q04Panel(p).p8_Set(a1);
                 ib = (p + (uint)472);
                 new Q04Panel(p).items__Set(ib);
-                new Q04Panel(p).n_Set((int)(new Q04Hdr(t).n));
+                new Q04Panel(p).ItemCount_Set((int)(new Q04Hdr(t).n));
                 Mem.Set(_fp, ib);
                 Mem.Set(_fp, (ib + (uint)((int)(new Q04Hdr(t).n) * 40)));
                 for (i = 0; (i < (int)(new Q04Hdr(t).n)); ++i)
                 {
                     uint it = (uint)(((i * 40) + (int)(new Q04Panel(p).items_)));
                     uint tp = (uint)(((i * 36) + (int)(new Q04Hdr(t).unk0)));
-                    new Q04Itm(it).idx_Set(i);
+                    new Q04Itm(it).Index_Set(i);
                     pc = _fp;
                     {
-                        new Q04Itm(it).w4_Set((ushort)(new Q04Tpl(tp).type));
-                        new Q04Itm(it).flags_Set((new Q04Tpl(tp).flags | (uint)(25165824)));
-                        new Q04Itm(it).wC_Set(new Q04Tpl(tp).w8);
-                        new Q04Itm(it).wE_Set(new Q04Tpl(tp).wA);
+                        new Q04Itm(it).Type_Set((ushort)(new Q04Tpl(tp).type));
+                        new Q04Itm(it).Flags_Set((new Q04Tpl(tp).flags | (uint)(25165824)));
+                        new Q04Itm(it).PosX_Set(new Q04Tpl(tp).w8);
+                        new Q04Itm(it).PosY_Set(new Q04Tpl(tp).wA);
                         new Q04Itm(it).b10_Set(new Q04Tpl(tp).bC);
                     }
                     new Q04Itm(it).b11_Set(new Q04Tpl(tp).bD);
@@ -52,9 +52,9 @@ public static partial class Game
                     new Q04Itm(it).b13_Set(new Q04Tpl(tp).bF);
                     new_var2 = new Q04Tpl(tp).f10;
                     new Q04Itm(it).def__Set(tp);
-                    new Q04Itm(it).f1C_Set((-1));
-                    new Q04Itm(it).owner_Set(p);
-                    new Q04Itm(it).f14_Set(new_var2);
+                    new Q04Itm(it).Value_Set((-1));
+                    new Q04Itm(it).OwnerPanelPtr_Set(p);
+                    new Q04Itm(it).Data_Set(new_var2);
                     k = 0;
                     if (((int)(new Q04Tpl(tp).type) == 3))
                     {
@@ -63,7 +63,7 @@ public static partial class Game
                     if ((k != 0))
                     {
                         e = Mem.U32(pc);
-                        new Q04Itm(it).p20_Set(e);
+                        new Q04Itm(it).ExtraPtr_Set(e);
                         if (((int)(new Q04Tpl(tp).type) == 3))
                         {
                             Mem.Set((e + (uint)1144), 1);
@@ -76,20 +76,20 @@ public static partial class Game
                         Mem.Set(pc, (uint)(Mem.U32(pc) + (uint)(k2 * 1)));
                     }
                 }
-                new Q04Panel(p).hdr_Set(t);
+                new Q04Panel(p).TemplatePtr_Set(t);
                 new Q04Panel(p).f18_Set(a3);
-                new Q04Panel(p).f1C_Set(a4);
-                new Q04Panel(p).f20_Set(a5);
+                new Q04Panel(p).PlayerPtr_Set(a4);
+                new Q04Panel(p).PadPtr_Set(a5);
                 new Q04Panel(p).f24_Set(a6);
-                new Q04Panel(p).w28_Set((ushort)(0));
+                new Q04Panel(p).State_Set((ushort)(0));
                 new Q04Panel(p).w2A_Set(Mem.U16((a7 + (uint)20)));
                 new Q04Panel(p).f2C_Set(0);
                 new Q04Panel(p).f30_Set(0);
                 new Q04Panel(p).f34_Set(0);
                 new Q04Panel(p).f38_Set(1);
                 new Q04Panel(p).f3C_Set(0);
-                new Q04Panel(p).f40_Set((int)(MenuPanel_GetListView(a7)));
-                new Q04Panel(p).f44_Set(a7);
+                new Q04Panel(p).ListViewPtr_Set((int)(MenuPanel_GetListView(a7)));
+                new Q04Panel(p).ContextPtr_Set(a7);
                 for (j = 0; (j < 2); ++j)
                 {
                     for (i = 0; (i < 8); ++i)
@@ -118,7 +118,7 @@ public static partial class Game
                 }
                 {
                     uint it_2 = 0u;
-                    i = new Q04Panel(p).n;
+                    i = new Q04Panel(p).ItemCount;
                     it_2 = new Q04Panel(p).items_;
                     --i;
                     if ((i != (-1)))
@@ -152,24 +152,24 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044121C", (uint)a, (uint)idx);
             uint e = 0u;
             int d = 0;
-            e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).unk0) * 40));
+            e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).CursorIndex) * 40));
             do
             {
-                d = (int)(new O06A_v43(a).unk0);
-                new O06A_v43(a).unk0_Set((short)((int)(new O06A_v43(a).unk0) + (int)((sbyte)(Mem.U8((e + (uint)idx))))));
-                if (((int)(new O06A_v43(a).unk0) < 0))
+                d = (int)(new O06A_v43(a).CursorIndex);
+                new O06A_v43(a).CursorIndex_Set((short)((int)(new O06A_v43(a).CursorIndex) + (int)((sbyte)(Mem.U8((e + (uint)idx))))));
+                if (((int)(new O06A_v43(a).CursorIndex) < 0))
                 {
-                    new O06A_v43(a).unk0_Set((short)((new O06A_v43(a).unk10 - 1)));
+                    new O06A_v43(a).CursorIndex_Set((short)((new O06A_v43(a).ItemCount - 1)));
                 }
                 else
                 {
-                    if (((int)(new O06A_v43(a).unk0) >= new O06A_v43(a).unk10))
+                    if (((int)(new O06A_v43(a).CursorIndex) >= new O06A_v43(a).ItemCount))
                     {
-                        new O06A_v43(a).unk0_Set((short)(0));
+                        new O06A_v43(a).CursorIndex_Set((short)(0));
                     }
                 }
-                e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).unk0) * 40));
-                d = (d - (int)(new O06A_v43(a).unk0));
+                e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).CursorIndex) * 40));
+                d = (d - (int)(new O06A_v43(a).CursorIndex));
                 switch ((int)(idx))
                 {
                 case 16:
@@ -1133,11 +1133,11 @@ public static partial class Game
             {
                 return;
             }
-            if ((new O06V(new O06A_v47(n).unk14_).unkC != 0u))
+            if ((new O06V(new O06A_v47(n).TemplatePtr).unkC != 0u))
             {
-                Funcs.CallReg(new O06V(new O06A_v47(n).unk14_).unkC, n, a, 0u, 0u);
+                Funcs.CallReg(new O06V(new O06A_v47(n).TemplatePtr).unkC, n, a, 0u, 0u);
             }
-            p = new O06A_v47(n).unk20_;
+            p = new O06A_v47(n).PadPtr;
             new O06B_v4(p).unkB0_Set(0);
             new O06B_v4(p).unkB4_Set(0);
             new O06B_v4(p).unkBC_Set(0);
@@ -1153,8 +1153,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00442CA4", (uint)a);
-            new O06A_v10(a).unk1CC_Set(0);
-            new O06A_v10(a).unk1C8_Set(0);
+            new O06A_v10(a).OpenAnimStep_Set(0);
+            new O06A_v10(a).OpenAnimFrame_Set(0);
         }
     }
 
@@ -1164,10 +1164,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00442CB0", (uint)a);
-            if ((new O06A_v10(a).unk1CC == 0))
+            if ((new O06A_v10(a).OpenAnimStep == 0))
             {
-                new O06A_v10(a).unk1CC_Set(1);
-                new O06A_v10(a).unk1C8_Set(0);
+                new O06A_v10(a).OpenAnimStep_Set(1);
+                new O06A_v10(a).OpenAnimFrame_Set(0);
             }
         }
     }
@@ -1178,11 +1178,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00442CCC", (uint)a);
-            new O06A_v10(a).unk1C8_Set((int)((int)(new O06A_v10(a).unk1C8) + new O06A_v10(a).unk1CC));
-            if ((new O06A_v10(a).unk1C8 >= 48))
+            new O06A_v10(a).OpenAnimFrame_Set((int)((int)(new O06A_v10(a).OpenAnimFrame) + new O06A_v10(a).OpenAnimStep));
+            if ((new O06A_v10(a).OpenAnimFrame >= 48))
             {
-                new O06A_v10(a).unk1C8_Set(0);
-                new O06A_v10(a).unk1CC_Set(0);
+                new O06A_v10(a).OpenAnimFrame_Set(0);
+                new O06A_v10(a).OpenAnimStep_Set(0);
             }
         }
     }
@@ -1193,7 +1193,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00442CF8", (uint)a);
-            int v = new O06A_v44(a).unk1C8;
+            int v = new O06A_v44(a).OpenAnimFrame;
             if ((v < 24))
             {
                 return v;
@@ -1213,23 +1213,23 @@ public static partial class Game
             float x = 0f;
             float y = 0f;
             uint g = 0u;
-            if ((new O06A_v29(a).unk1CC == 0))
+            if ((new O06A_v29(a).OpenAnimStep == 0))
             {
                 return;
             }
-            t = new O06A_v29(a).unk1C8;
+            t = new O06A_v29(a).OpenAnimFrame;
             v = ((t < 24) ? t : (47 - t));
             Text_BeginFontPass();
             Gfx_SetOtherModeL((uint)(21));
-            x = new O06V_v3(new O06A_v29(a).unk40_).unk29C;
-            y = new O06V_v3(new O06A_v29(a).unk40_).unk2A0;
+            x = new O06V_v3(new O06A_v29(a).ListViewPtr).unk29C;
+            y = new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A0;
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4211081216u);
             new O06Gfx(g).w1_Set(4278190335u);
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4194304000u);
             new O06Gfx(g).w1_Set(3758096639u);
-            Sprite_Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A8)), ((x / (float)(Mem.S32(Gv.ScreenWidth))) * 5.0f), ((y / (float)(Mem.S32(Gv.ScreenHeight))) * 4.0f), 1);
+            Sprite_Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).ListViewPtr).unk2A8)), ((x / (float)(Mem.S32(Gv.ScreenWidth))) * 5.0f), ((y / (float)(Mem.S32(Gv.ScreenHeight))) * 4.0f), 1);
         }
     }
 }

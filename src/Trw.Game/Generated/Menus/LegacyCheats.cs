@@ -2874,19 +2874,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D568", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 4) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 4) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B48u);
+                new O06A(a).Data_Set(0x800D7B48u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B4Cu);
+                new O06A(a).Data_Set(0x800D7B4Cu);
             }
             return 0;
         }
@@ -2911,19 +2911,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D5F0", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 8) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 8) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B50u);
+                new O06A(a).Data_Set(0x800D7B50u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B54u);
+                new O06A(a).Data_Set(0x800D7B54u);
             }
             return 0;
         }
@@ -2948,19 +2948,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D678", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 16) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 16) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B58u);
+                new O06A(a).Data_Set(0x800D7B58u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B5Cu);
+                new O06A(a).Data_Set(0x800D7B5Cu);
             }
             return 0;
         }
@@ -2985,19 +2985,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D700", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 32) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 32) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B60u);
+                new O06A(a).Data_Set(0x800D7B60u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B64u);
+                new O06A(a).Data_Set(0x800D7B64u);
             }
             return 0;
         }
@@ -3022,19 +3022,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D788", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 64) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 64) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B68u);
+                new O06A(a).Data_Set(0x800D7B68u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B6Cu);
+                new O06A(a).Data_Set(0x800D7B6Cu);
             }
             return 0;
         }
@@ -3059,19 +3059,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D810", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 128) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 128) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B70u);
+                new O06A(a).Data_Set(0x800D7B70u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B74u);
+                new O06A(a).Data_Set(0x800D7B74u);
             }
             return 0;
         }
@@ -3096,19 +3096,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D898", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 256) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 256) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B78u);
+                new O06A(a).Data_Set(0x800D7B78u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B7Cu);
+                new O06A(a).Data_Set(0x800D7B7Cu);
             }
             return 0;
         }
@@ -3133,19 +3133,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D920", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 512) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 512) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B80u);
+                new O06A(a).Data_Set(0x800D7B80u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B84u);
+                new O06A(a).Data_Set(0x800D7B84u);
             }
             return 0;
         }
@@ -3170,19 +3170,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043D9A8", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 1024) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 1024) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B88u);
+                new O06A(a).Data_Set(0x800D7B88u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B8Cu);
+                new O06A(a).Data_Set(0x800D7B8Cu);
             }
             return 0;
         }
@@ -3207,19 +3207,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DA30", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 2048) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 2048) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B90u);
+                new O06A(a).Data_Set(0x800D7B90u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B94u);
+                new O06A(a).Data_Set(0x800D7B94u);
             }
             return 0;
         }
@@ -3244,19 +3244,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DAB8", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 4096) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 4096) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7B98u);
+                new O06A(a).Data_Set(0x800D7B98u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7B9Cu);
+                new O06A(a).Data_Set(0x800D7B9Cu);
             }
             return 0;
         }
@@ -3281,19 +3281,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DB40", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 8192) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 8192) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7BA0u);
+                new O06A(a).Data_Set(0x800D7BA0u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7BA4u);
+                new O06A(a).Data_Set(0x800D7BA4u);
             }
             return 0;
         }
@@ -3318,19 +3318,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DBC8", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 16384) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 16384) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7BA8u);
+                new O06A(a).Data_Set(0x800D7BA8u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7BACu);
+                new O06A(a).Data_Set(0x800D7BACu);
             }
             return 0;
         }
@@ -3355,19 +3355,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DC50", (uint)a);
             if (((Mem.S32(Gv.Settings_UnlockedCheats) & 32768) != 0))
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) | (uint)(16777216)));
             }
             else
             {
-                new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) & (uint)((~16777216))));
+                new O06A(a).Flags_Set((uint)((uint)(new O06A(a).Flags) & (uint)((~16777216))));
             }
             if (((Mem.S32(Gv.Settings) & 32768) != 0))
             {
-                new O06A(a).unk14_Set(0x800D7BB0u);
+                new O06A(a).Data_Set(0x800D7BB0u);
             }
             else
             {
-                new O06A(a).unk14_Set(0x800D7BB4u);
+                new O06A(a).Data_Set(0x800D7BB4u);
             }
             return 0;
         }

@@ -41,14 +41,14 @@ public static partial class Game
                         if (((Random_Next() % 100) < 2))
                         {
                             new O3A(p).flag_Set(1);
-                            new O3A(p).gobj.alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
+                            new O3A(p).gobj.Alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
                             Audio_PlaySound2D(3701);
                         }
                     }
                 }
                 else
                 {
-                    new O3A(o).gobj.alpha_Set((byte)(new O3A(o).@base));
+                    new O3A(o).gobj.Alpha_Set((byte)(new O3A(o).@base));
                     new O3A(o).cnts.Set((int)(new O3A(o).idx), (int)(new O3A(o).cnts[(int)(new O3A(o).idx)] - 1));
                     if (((new O3A(o).cnts[(int)(new O3A(o).idx)] <= 0) || ((new O3A(o).idx + 1) >= new O3A(o).count)))
                     {
@@ -56,12 +56,12 @@ public static partial class Game
                         if ((new O3A(o).idx >= new O3A(o).count))
                         {
                             Flicker_Randomize(o, (-1));
-                            new O3A(o).gobj.alpha_Set((byte)(new O3A(o).@base));
+                            new O3A(o).gobj.Alpha_Set((byte)(new O3A(o).@base));
                             new O3A(o).timer_Set(50);
                         }
                         else
                         {
-                            new O3A(p).gobj.alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
+                            new O3A(p).gobj.Alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
                             Audio_PlaySound2D(3701);
                         }
                     }
@@ -287,7 +287,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00419FA4", (uint)o);
             new O3A(o).state_Set(0);
-            new O3A(o).gobj.alpha_Set((byte)(new O3A(o).@base));
+            new O3A(o).gobj.Alpha_Set((byte)(new O3A(o).@base));
         }
     }
 
@@ -313,7 +313,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00419FD8", (uint)o, (uint)n);
             Flicker_Randomize(o, n);
             new O3A(o).flag_Set(1);
-            new O3A(o).gobj.alpha_Set((byte)(new O3A(o).vals[(int)(new O3A(o).idx)]));
+            new O3A(o).gobj.Alpha_Set((byte)(new O3A(o).vals[(int)(new O3A(o).idx)]));
         }
     }
 
@@ -328,7 +328,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E3330u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3330u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3330u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E3330u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3330u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E3330u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }

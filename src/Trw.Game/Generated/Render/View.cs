@@ -3341,39 +3341,39 @@ public static partial class Game
                 new Tracker(t).unk2C_Set(c);
                 new Tracker(t).unk30_Set(d);
                 new Tracker(t).unk34_Set(e);
-                new Tracker(t).unk38_Set(f);
-                new Tracker(t).unk3C_Set(g);
-                new Tracker(t).unk40_Set(h);
-                new Tracker(t).unk44_Set(i);
-                Mem.Copy(new Tracker(t).unk48.P, _fp, 16);
+                new Tracker(t).PosX_Set(f);
+                new Tracker(t).PosY_Set(g);
+                new Tracker(t).PosZ_Set(h);
+                new Tracker(t).EyeHeight_Set(i);
+                Mem.Copy(new Tracker(t).Rotation.P, _fp, 16);
                 new Tracker(t).unk58__Set(n);
-                new Tracker(t).unk5C_Set(j);
+                new Tracker(t).Override_5C_Set(j);
                 new Tracker(t).unk60_Set(k);
                 if ((Flyby_IsInWindow() != 0))
                 {
                     new Tracker(t).unk58__Set(Collision_FindFloorTriangle(Gv.LevelMgr, (t + 56u)));
                 }
                 node = new Tracker(t).unk58_;
-                x = new Tracker(t).unk38;
-                y = new Tracker(t).unk3C;
-                z = new Tracker(t).unk40;
-                w = new Tracker(t).unk44;
-                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+                x = new Tracker(t).PosX;
+                y = new Tracker(t).PosY;
+                z = new Tracker(t).PosZ;
+                w = new Tracker(t).EyeHeight;
+                new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
                 if (((node != 0u) && (Flyby_IsInWindow() == 0)))
                 {
                     dist = (((y + w) - Collision_GetFloorHeightAt(node, x, z)) * Mem.F32(0x800C8610u));
                     if (((dist < Mem.F32(0x800C8614u)) && (Mem.F32(0x800C8618u) < dist)))
                     {
-                        new Tracker(t).unk64_Set(new SurfNode(node).unk1C);
+                        new Tracker(t).RegionId_Set(new SurfNode(node).unk1C);
                     }
                 }
                 if ((Flyby_IsInWindow() != 0))
                 {
-                    new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+                    new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
                 }
-                if ((new Tracker(t).unk5C > 0.0f))
+                if ((new Tracker(t).Override_5C > 0.0f))
                 {
-                    new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+                    new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
                 }
             }
         }
@@ -3986,26 +3986,26 @@ public static partial class Game
                 new Tracker(t).unk58__Set(Collision_FindFloorTriangle(Gv.LevelMgr, (t + 56u)));
             }
             n = new Tracker(t).unk58_;
-            x = new Tracker(t).unk38;
-            y = new Tracker(t).unk3C;
-            z = new Tracker(t).unk40;
-            w = new Tracker(t).unk44;
-            new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+            x = new Tracker(t).PosX;
+            y = new Tracker(t).PosY;
+            z = new Tracker(t).PosZ;
+            w = new Tracker(t).EyeHeight;
+            new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
             if (((n != 0u) && (Flyby_IsInWindow() == 0)))
             {
                 d = (((y + w) - Collision_GetFloorHeightAt(n, x, z)) * Mem.F32(0x800C8680u));
                 if (((d < Mem.F32(0x800C8684u)) && (Mem.F32(0x800C8688u) < d)))
                 {
-                    new Tracker(t).unk64_Set(new SurfNode(n).unk1C);
+                    new Tracker(t).RegionId_Set(new SurfNode(n).unk1C);
                 }
             }
             if ((Flyby_IsInWindow() != 0))
             {
-                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+                new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
             }
-            if ((new Tracker(t).unk5C > 0.0f))
+            if ((new Tracker(t).Override_5C > 0.0f))
             {
-                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
+                new Tracker(t).RegionId_Set(Mem.S32(Gv.NoRegionId));
             }
         }
     }

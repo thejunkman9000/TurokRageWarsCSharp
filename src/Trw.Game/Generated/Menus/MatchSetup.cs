@@ -437,10 +437,10 @@ public static partial class Game
             for (; (i < 8); ++i)
             {
                 uint q = (e + (uint)(i * 150));
-                if ((((int)(new Q03Ent(q).f78) == 1) && ((int)(new Q03Ent(q).f91) == (int)(new Q03Ent(q).f78))))
+                if ((((int)(new Q03Ent(q).IsActive) == 1) && ((int)(new Q03Ent(q).IsBot) == (int)(new Q03Ent(q).IsActive))))
                 {
-                    new Q03Ent(q).f78_Set((byte)(0));
-                    new Q03Ent(q).f91_Set((byte)(0));
+                    new Q03Ent(q).IsActive_Set((byte)(0));
+                    new Q03Ent(q).IsBot_Set((byte)(0));
                 }
             }
             for (i = 0; (i < 7); ++i)
@@ -455,45 +455,45 @@ public static partial class Game
                 case 0:
                     new O04GFlags(G).IsBossMode_Set(1);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
-                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(2));
+                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(2));
                     new O04GFlags(G).BossShieldPercent_Set(100);
                     new O04GFlags(G).BossShieldRegenTimer_Set((-1));
                     break;
                 case 1:
                     new O04GFlags(G).IsBossMode_Set(1);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
-                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
+                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(1));
                     break;
                 case 4:
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
-                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(2));
+                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(2));
                     break;
                 case 2:
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
                     if ((s7 == 0))
                     {
                         new O04GFlags(G).IsBossMode_Set(1);
-                        new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
+                        new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(1));
                         s7 = 1;
                     }
                     else
                     {
-                        new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(0));
+                        new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(0));
                     }
                     break;
                 case 3:
                     new O04GFlags(G).IsBossMode_Set(1);
                     new O04GFlags(G).TrialCounter_9C_Set(0);
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
-                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(1));
+                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(1));
                     s6 = 1;
                     break;
                 default:
                     idx = MatchSetup_AddBot((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)((i * 4) + 5)));
-                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).ent[(int)(0)].f94_Set((byte)(0));
+                    new Q03Cfg((uint)(((uint)((idx * 150)) + (uint)(Gv.Settings)))).PlayerRecords[(int)(0)].IsBoss_Set((byte)(0));
                     if ((s6 != 0))
                     {
-                        new Q03Cfg(Gv.Settings).ent[(int)(idx)].f95_Set((byte)(1));
+                        new Q03Cfg(Gv.Settings).PlayerRecords[(int)(idx)].Flag_95_Set((byte)(1));
                     }
                     break;
                 }
@@ -514,7 +514,7 @@ public static partial class Game
             uint e = 0u;
             for (i = 7; (i > 0); --i)
             {
-                if (((int)(new Q03Cfg(Gv.Settings).ent[(int)(i)].f78) != 1))
+                if (((int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(i)].IsActive) != 1))
                 {
                     break;
                 }
@@ -522,35 +522,35 @@ public static partial class Game
             r = (-1);
             if ((i >= 0))
             {
-                e = (new Q03Cfg(Gv.Settings).ent.P + (uint)(i * 150));
-                new Q03Ent(e).f91_Set((byte)(1));
-                new Q03Ent(e).f78_Set((byte)(1));
-                new Q03Ent(e).f7F_Set((byte)(i));
+                e = (new Q03Cfg(Gv.Settings).PlayerRecords.P + (uint)(i * 150));
+                new Q03Ent(e).IsBot_Set((byte)(1));
+                new Q03Ent(e).IsActive_Set((byte)(1));
+                new Q03Ent(e).PlayerIndex_Set((byte)(i));
                 t = ((int)(Mem.U8((a + (uint)0))) - 1);
                 if ((t == 19))
                 {
-                    new Q03Ent(e).f80_Set((sbyte)(MatchSetup_PickRandomBotCharacter()));
+                    new Q03Ent(e).CharacterId_Set((sbyte)(MatchSetup_PickRandomBotCharacter()));
                 }
                 else
                 {
-                    new Q03Ent(e).f80_Set((sbyte)(t));
+                    new Q03Ent(e).CharacterId_Set((sbyte)(t));
                 }
                 t = (int)(Mem.U8((a + (uint)1)));
                 if ((t == 3))
                 {
-                    new Q03Ent(e).f93_Set((byte)((Random_Next() % 3)));
+                    new Q03Ent(e).BotSkill_Set((byte)((Random_Next() % 3)));
                 }
                 else
                 {
-                    new Q03Ent(e).f93_Set((byte)(t));
+                    new Q03Ent(e).BotSkill_Set((byte)(t));
                 }
-                if (((int)(new Q03Ent(e).f93) >= 3))
+                if (((int)(new Q03Ent(e).BotSkill) >= 3))
                 {
-                    new Q03Ent(e).f93_Set((byte)(2));
+                    new Q03Ent(e).BotSkill_Set((byte)(2));
                 }
-                new Q03Ent(e).f81_Set((sbyte)(new Q03Ent(e).f93));
-                new Q03Ent(e).f92_Set(Mem.U8((a + (uint)2)));
-                switch ((int)(new Q03Ent(e).f80))
+                new Q03Ent(e).SkinIndex_Set((sbyte)(new Q03Ent(e).BotSkill));
+                new Q03Ent(e).TeamId_Set(Mem.U8((a + (uint)2)));
+                switch ((int)(new Q03Ent(e).CharacterId))
                 {
                 case 15:
                     s = Mem.U32(0x800D7330u);
@@ -559,10 +559,10 @@ public static partial class Game
                     s = Mem.U32(0x800D72F0u);
                     break;
                 default:
-                    s = Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f93) * 17) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).f80))) * 8))).p);
+                    s = Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).BotSkill) * 17) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p);
                     break;
                 }
-                LibC_StrCopy(new Q03Ent(e).name.P, s);
+                LibC_StrCopy(new Q03Ent(e).Name.P, s);
                 r = i;
             }
             return r;
@@ -611,47 +611,47 @@ public static partial class Game
                 c = Gv.Settings;
                 for (i = 0; (i < 8); ++i)
                 {
-                    e = (new Q03Cfg(c).ent.P + (uint)(i * 150));
-                    new Q03Ent(e).f94_Set((byte)(0));
-                    new Q03Ent(e).f95_Set((byte)(0));
-                    new Q03Ent(e).f78_Set((byte)(0));
-                    new Q03Ent(e).f91_Set((byte)(0));
+                    e = (new Q03Cfg(c).PlayerRecords.P + (uint)(i * 150));
+                    new Q03Ent(e).IsBoss_Set((byte)(0));
+                    new Q03Ent(e).Flag_95_Set((byte)(0));
+                    new Q03Ent(e).IsActive_Set((byte)(0));
+                    new Q03Ent(e).IsBot_Set((byte)(0));
                 }
                 for (i = 0; (i < s4); ++i)
                 {
-                    e = (new Q03Cfg(c).ent.P + (uint)((4 + i) * 150));
-                    new Q03Ent(e).f78_Set((byte)(1));
-                    new Q03Ent(e).f80_Set((sbyte)(Mem.S32((_fp + (uint)(i * 4)))));
-                    new Q03Ent(e).f91_Set((byte)(0));
-                    new Q03Ent(e).f93_Set((byte)(2));
-                    new Q03Ent(e).f81_Set((sbyte)((Random_Next() % 3)));
-                    LibC_StrCopy(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * 17) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).f80))) * 8))).p));
+                    e = (new Q03Cfg(c).PlayerRecords.P + (uint)((4 + i) * 150));
+                    new Q03Ent(e).IsActive_Set((byte)(1));
+                    new Q03Ent(e).CharacterId_Set((sbyte)(Mem.S32((_fp + (uint)(i * 4)))));
+                    new Q03Ent(e).IsBot_Set((byte)(0));
+                    new Q03Ent(e).BotSkill_Set((byte)(2));
+                    new Q03Ent(e).SkinIndex_Set((sbyte)((Random_Next() % 3)));
+                    LibC_StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).SkinIndex) * 17) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
                 }
                 for (i = 0; (i < (s6 - s4)); ++i)
                 {
                     int t2 = (i + 4);
-                    e = (new Q03Cfg(c).ent.P + (uint)((s4 + t2) * 150));
-                    new Q03Ent(e).f78_Set((byte)(1));
-                    new Q03Ent(e).f80_Set((sbyte)(Mem.S32((_fp + (uint)((i + s4) * 4)))));
-                    new Q03Ent(e).f91_Set((byte)(1));
-                    new Q03Ent(e).f93_Set((byte)(2));
-                    new Q03Ent(e).f81_Set((sbyte)((Random_Next() % 3)));
-                    LibC_StrCopy(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * (a = 17)) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).f80))) * 8))).p));
+                    e = (new Q03Cfg(c).PlayerRecords.P + (uint)((s4 + t2) * 150));
+                    new Q03Ent(e).IsActive_Set((byte)(1));
+                    new Q03Ent(e).CharacterId_Set((sbyte)(Mem.S32((_fp + (uint)((i + s4) * 4)))));
+                    new Q03Ent(e).IsBot_Set((byte)(1));
+                    new Q03Ent(e).BotSkill_Set((byte)(2));
+                    new Q03Ent(e).SkinIndex_Set((sbyte)((Random_Next() % 3)));
+                    LibC_StrCopy(new Q03Ent(e).Name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).SkinIndex) * (a = 17)) + CharSelect_FindRowByCharacter((int)(new Q03Ent(e).CharacterId))) * 8))).p));
                 }
                 for (i = 0; (i < 8); ++i)
                 {
-                    e = (new Q03Cfg(c).ent.P + (uint)(i * 150));
-                    if (((int)(new Q03Ent(e).f78) == 1))
+                    e = (new Q03Cfg(c).PlayerRecords.P + (uint)(i * 150));
+                    if (((int)(new Q03Ent(e).IsActive) == 1))
                     {
                         a = 1;
                     }
                 }
                 Mem.Set(Gv.Demo_Active, 1);
-                new Q03Cfg(c).unk1D_Set((byte)(1));
-                new Q03Cfg(c).unk1E_Set((byte)(8));
-                new Q03Cfg(c).unkD_Set((byte)(0));
-                new Q03Cfg(c).s24_Set((sbyte)(0));
-                new Q03Cfg(c).s25_Set((sbyte)(0));
+                new Q03Cfg(c).IsMultiplayer_Set((byte)(1));
+                new Q03Cfg(c).MaxPlayers_Set((byte)(8));
+                new Q03Cfg(c).GameMode_Set((byte)(0));
+                new Q03Cfg(c).TimeLimit_Set((sbyte)(0));
+                new Q03Cfg(c).FragLimit_Set((sbyte)(0));
                 Mem.Set((Gv.ArenaType + (uint)(0 * 4)), 2);
                 Mem.Set((Gv.ArenaType + (uint)(1 * 4)), trw_arena_index(-1, Mem.S32(((_fp + 16u) + (uint)((Random_Next() % 4) * 4)))));       // tools/overrides/AttractDemo_Setup.c: TRW_ARENA pins the demo arena too
             }
@@ -679,13 +679,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042ECF0");
-            if ((new O04Cfg(Gv.Settings).unkD != 0))
+            if ((new O04Cfg(Gv.Settings).GameMode != 0))
             {
                 MatchSetup_ApplySettings((float)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u24), 0, (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u21), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u23), 1, 0, 0);
             }
             else
             {
-                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).s24), 0, (int)(new O04Cfg(Gv.Settings).s27), (int)(new O04Cfg(Gv.Settings).s26), 1, 0, 0);
+                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).TimeLimit), 0, (int)(new O04Cfg(Gv.Settings).TagLimit), (int)(new O04Cfg(Gv.Settings).FlagLimit), 1, 0, 0);
             }
             Game_StartMatchLevel(Gv.GameCtx, MatchSetup_GetLevelCueId_0042F014());
         }
@@ -697,13 +697,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042ED84");
-            if ((new O04Cfg(Gv.Settings).unkD != 0))
+            if ((new O04Cfg(Gv.Settings).GameMode != 0))
             {
                 MatchSetup_ApplySettings((float)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u24), 0, (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u21), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u23), 0, 1, 1);
             }
             else
             {
-                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).s24), 0, (int)(new O04Cfg(Gv.Settings).s27), (int)(new O04Cfg(Gv.Settings).s26), 0, 1, 1);
+                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).TimeLimit), 0, (int)(new O04Cfg(Gv.Settings).TagLimit), (int)(new O04Cfg(Gv.Settings).FlagLimit), 0, 1, 1);
             }
             Game_StartMatchLevel(Gv.GameCtx, MatchSetup_GetLevelCueId_0042F014());
         }
@@ -715,13 +715,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042EE18", _a0);
-            if ((new O04Cfg(Gv.Settings).unkD != 0))
+            if ((new O04Cfg(Gv.Settings).GameMode != 0))
             {
                 MatchSetup_ApplySettings((float)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u24), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u22), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u21), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u23), 0, 1, 0);
             }
             else
             {
-                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).s24), (int)(new O04Cfg(Gv.Settings).s25), (int)(new O04Cfg(Gv.Settings).s27), (int)(new O04Cfg(Gv.Settings).s26), 0, 1, 0);
+                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).TimeLimit), (int)(new O04Cfg(Gv.Settings).FragLimit), (int)(new O04Cfg(Gv.Settings).TagLimit), (int)(new O04Cfg(Gv.Settings).FlagLimit), 0, 1, 0);
             }
             Game_StartMatchLevel(Gv.GameCtx, MatchSetup_GetLevelCueId_0042F014());
         }
@@ -733,13 +733,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042EEB8", _a0);
-            if ((new O04Cfg(Gv.Settings).unkD != 0))
+            if ((new O04Cfg(Gv.Settings).GameMode != 0))
             {
                 MatchSetup_ApplySettings((float)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u24), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u21), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u21), (int)(new O04ModeS4680(Mem.U32(Gv.ArenaTreeRecordPtr)).u23), 0, 0, 0);
             }
             else
             {
-                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).s24), (int)(new O04Cfg(Gv.Settings).s25), (int)(new O04Cfg(Gv.Settings).s27), (int)(new O04Cfg(Gv.Settings).s26), 0, 0, 0);
+                MatchSetup_ApplySettings((float)(new O04Cfg(Gv.Settings).TimeLimit), (int)(new O04Cfg(Gv.Settings).FragLimit), (int)(new O04Cfg(Gv.Settings).TagLimit), (int)(new O04Cfg(Gv.Settings).FlagLimit), 0, 0, 0);
             }
             Game_StartMatchLevel(Gv.GameCtx, MatchSetup_GetLevelCueId_0042F014());
         }
@@ -868,7 +868,7 @@ public static partial class Game
                     for (i = 0; (i < 8); ++i)
                     {
                         e = (Gv.Settings_PlayerRecords + (uint)(i * 150));
-                        if ((((int)(new O04Ent96c(e).unk78) != 0) && ((int)(new O04Ent96c(e).unk80) == r)))
+                        if ((((int)(new O04Ent96c(e).IsActive) != 0) && ((int)(new O04Ent96c(e).CharacterId) == r)))
                         {
                             ok = 0;
                         }
@@ -1057,20 +1057,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444030_func_00444204", (uint)a, (uint)b);
-            new O06A_v17(a).unk78_Set((byte)(0));
-            new O06A_v17(a).unk79_Set((byte)(134));
-            new O06A_v17(a).unk7A_Set((byte)(132));
-            new O06A_v17(a).unk7C_Set((byte)(0));
-            new O06A_v17(a).unk7B_Set((byte)(0));
-            new O06A_v17(a).unk7D_Set((byte)(1));
-            new O06A_v17(a).unk7E_Set((byte)(0));
-            new O06A_v17(a).unk7F_Set(b);
-            new O06A_v17(a).unk80_Set((byte)(0));
-            new O06A_v17(a).unk82_Set((byte)(0));
+            new O06A_v17(a).IsActive_Set((byte)(0));
+            new O06A_v17(a).StickHorzSensitivity_Set((byte)(134));
+            new O06A_v17(a).StickVertSensitivity_Set((byte)(132));
+            new O06A_v17(a).ControlSide_Set((byte)(0));
+            new O06A_v17(a).ControlType_Set((byte)(0));
+            new O06A_v17(a).LookSpring_Set((byte)(1));
+            new O06A_v17(a).AutoAim_Set((byte)(0));
+            new O06A_v17(a).PlayerIndex_Set(b);
+            new O06A_v17(a).CharacterId_Set((byte)(0));
+            new O06A_v17(a).WeaponSelectMode_Set((byte)(0));
             new O06A_v17(a).unk83_Set((byte)(0));
-            new O06A_v17(a).unk81_Set((byte)(0));
-            new O06A_v17(a).unk94_Set((byte)(0));
-            new O06A_v17(a).unk95_Set((byte)(0));
+            new O06A_v17(a).SkinIndex_Set((byte)(0));
+            new O06A_v17(a).IsBoss_Set((byte)(0));
+            new O06A_v17(a).Flag_95_Set((byte)(0));
             Settings_SetDefaultPlayerName(a);
         }
     }
@@ -1082,31 +1082,31 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00444030", (uint)a);
             int i = 0;
             new O06B_v10(a).unk17_Set((byte)(1));
-            new O06B_v10(a).unk18_Set((byte)(128));
-            new O06B_v10(a).unk19_Set((byte)(250));
-            new O06B_v10(a).unk1A_Set((byte)(255));
-            new O06B_v10(a).unk14_Set((short)(128));
-            new O06B_v10(a).unk8_Set(16);
-            new O06B_v10(a).unk0_Set(0);
-            new O06B_v10(a).unk4_Set(0);
-            new O06B_v10(a).unk0_Set(67108864);
-            new O06B_v10(a).unk4_Set(67108864);
-            new O06B_v10(a).unk10_Set(0);
-            new O06B_v10(a).unk4_Set((-1));
-            new O06B_v10(a).unk1B_Set((byte)(1));
+            new O06B_v10(a).MusicVolume_Set((byte)(128));
+            new O06B_v10(a).SfxVolume_Set((byte)(250));
+            new O06B_v10(a).Volume_1A_Set((byte)(255));
+            new O06B_v10(a).Opacity_Set((short)(128));
+            new O06B_v10(a).DifficultyMask_Set(16);
+            new O06B_v10(a).ActiveCheats_Set(0);
+            new O06B_v10(a).UnlockedCheats_Set(0);
+            new O06B_v10(a).ActiveCheats_Set(67108864);
+            new O06B_v10(a).UnlockedCheats_Set(67108864);
+            new O06B_v10(a).Brightness_Set(0);
+            new O06B_v10(a).UnlockedCheats_Set((-1));
+            new O06B_v10(a).BloodColor_Set((byte)(1));
             new O06B_v10(a).unk1C_Set((byte)(0));
-            new O06B_v10(a).unk1F_Set((byte)(0));
-            new O06B_v10(a).unk580_Set((byte)(0));
-            new O06B_v10(a).unk24_Set((byte)(10));
-            new O06B_v10(a).unk25_Set((byte)(10));
-            new O06B_v10(a).unk26_Set((byte)(10));
-            new O06B_v10(a).unk27_Set((byte)(10));
-            new O06B_v10(a).unk28_Set((byte)(1));
+            new O06B_v10(a).SplitScreenLayout_Set((byte)(0));
+            new O06B_v10(a).ResolutionMode_Set((byte)(0));
+            new O06B_v10(a).TimeLimit_Set((byte)(10));
+            new O06B_v10(a).FragLimit_Set((byte)(10));
+            new O06B_v10(a).FlagLimit_Set((byte)(10));
+            new O06B_v10(a).TagLimit_Set((byte)(10));
+            new O06B_v10(a).FriendlyFire_Set((byte)(1));
             new O06B_v10(a).unk29_Set((byte)(0));
             new O06B_v10(a).unk2A_Set((byte)(0));
             new O06B_v10(a).unk2B_Set((byte)(1));
-            new O06B_v10(a).unk16_Set((byte)(new O06B_v10(a).unk14));
-            new O06B_v10(a).unk20_Set(Mem.F32(0x800E2798u));
+            new O06B_v10(a).unk16_Set((byte)(new O06B_v10(a).Opacity));
+            new O06B_v10(a).GameSpeed_Set(Mem.F32(0x800E2798u));
             for (i = 0; (i < 10); ++i)
             {
                 new O06B_v10(a).unk2C.Set((int)(i), (byte)(1));
@@ -1121,9 +1121,9 @@ public static partial class Game
             }
             Settings_InitPlayerRecordTwin((a + (uint)58), (byte)(0));
             new O06B_v10(a).unkB2_Set((byte)(1));
-            new O06B_v10(a).unk1D_Set((byte)(0));
-            new O06B_v10(a).unk1E_Set((byte)(1));
-            new O06B_v10(a).unkD_Set((byte)(0));
+            new O06B_v10(a).IsMultiplayer_Set((byte)(0));
+            new O06B_v10(a).MaxPlayers_Set((byte)(1));
+            new O06B_v10(a).GameMode_Set((byte)(0));
         }
     }
 
@@ -1133,20 +1133,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444204", (uint)a, (uint)b);
-            new O06A_v17(a).unk79_Set((byte)(134));
-            new O06A_v17(a).unk7A_Set((byte)(132));
-            new O06A_v17(a).unk78_Set((byte)(0));
-            new O06A_v17(a).unk7C_Set((byte)(0));
-            new O06A_v17(a).unk7B_Set((byte)(0));
-            new O06A_v17(a).unk7D_Set((byte)(1));
-            new O06A_v17(a).unk7E_Set((byte)(0));
-            new O06A_v17(a).unk7F_Set(b);
-            new O06A_v17(a).unk80_Set((byte)(0));
-            new O06A_v17(a).unk82_Set((byte)(0));
+            new O06A_v17(a).StickHorzSensitivity_Set((byte)(134));
+            new O06A_v17(a).StickVertSensitivity_Set((byte)(132));
+            new O06A_v17(a).IsActive_Set((byte)(0));
+            new O06A_v17(a).ControlSide_Set((byte)(0));
+            new O06A_v17(a).ControlType_Set((byte)(0));
+            new O06A_v17(a).LookSpring_Set((byte)(1));
+            new O06A_v17(a).AutoAim_Set((byte)(0));
+            new O06A_v17(a).PlayerIndex_Set(b);
+            new O06A_v17(a).CharacterId_Set((byte)(0));
+            new O06A_v17(a).WeaponSelectMode_Set((byte)(0));
             new O06A_v17(a).unk83_Set((byte)(0));
-            new O06A_v17(a).unk81_Set((byte)(0));
-            new O06A_v17(a).unk94_Set((byte)(0));
-            new O06A_v17(a).unk95_Set((byte)(0));
+            new O06A_v17(a).SkinIndex_Set((byte)(0));
+            new O06A_v17(a).IsBoss_Set((byte)(0));
+            new O06A_v17(a).Flag_95_Set((byte)(0));
             Settings_SetDefaultPlayerName(a);
         }
     }
@@ -1158,31 +1158,31 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00444260", (uint)a);
             int i = 0;
-            switch ((int)(new O06A_v24(a).unk7F))
+            switch ((int)(new O06A_v24(a).PlayerIndex))
             {
             default:
             case 0:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
                 }
                 break;
             case 1:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
                 }
                 break;
             case 2:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
                 }
                 break;
             case 3:
                 for (i = 0; (i < 8); ++i)
                 {
-                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
+                    new O06A_v24(a).Name.Set((int)(i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
                 }
                 break;
             case 4:

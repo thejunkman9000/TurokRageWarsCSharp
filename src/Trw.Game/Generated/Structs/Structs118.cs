@@ -2280,7 +2280,7 @@ public readonly struct Shared_ActorView
     }
     [MethodImpl(Inl)] public int EmbryoTimer_Set(int v) => Mem.Set(P + 0x11E4u, v);
     // +0x11E8
-    public S8x20 pad11E8 { [MethodImpl(Inl)] get => new(P + 0x11E8u); }
+    public S8x20 AttachedFxPtr_11E8 { [MethodImpl(Inl)] get => new(P + 0x11E8u); }
     // +0x11FC
     public int MarkerTime
     {
@@ -2883,39 +2883,39 @@ public readonly struct Shared_ControlView
     [MethodImpl(Inl)] public static implicit operator uint(Shared_ControlView v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Shared_ControlView(uint p) => new(p);
     // +0x0
-    public S8x128 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x128 SelfDeaths_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x80
-    public sbyte mode
+    public sbyte CharacterId
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public sbyte mode_Set(sbyte v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public sbyte CharacterId_Set(sbyte v) => Mem.Set(P + 0x80u, v);
     // +0x81
-    public S8x14 pad81 { [MethodImpl(Inl)] get => new(P + 0x81u); }
+    public S8x14 SkinIndex { [MethodImpl(Inl)] get => new(P + 0x81u); }
     // +0x8F
-    public byte transientFlag
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte transientFlag_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
     // +0x90
-    public sbyte resetFlag
+    public sbyte IsIt
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x90u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x90u, value);
     }
-    [MethodImpl(Inl)] public sbyte resetFlag_Set(sbyte v) => Mem.Set(P + 0x90u, v);
+    [MethodImpl(Inl)] public sbyte IsIt_Set(sbyte v) => Mem.Set(P + 0x90u, v);
     // +0x91
-    public S8x3 pad91 { [MethodImpl(Inl)] get => new(P + 0x91u); }
+    public S8x3 IsBot { [MethodImpl(Inl)] get => new(P + 0x91u); }
     // +0x94
-    public byte germanActive
+    public byte IsBoss
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x94u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x94u, value);
     }
-    [MethodImpl(Inl)] public byte germanActive_Set(byte v) => Mem.Set(P + 0x94u, v);
+    [MethodImpl(Inl)] public byte IsBoss_Set(byte v) => Mem.Set(P + 0x94u, v);
 }
 
 /// <summary>struct Shared_ControllerPort, 0x8 bytes, at a guest address.</summary>

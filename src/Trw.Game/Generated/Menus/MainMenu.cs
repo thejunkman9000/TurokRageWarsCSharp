@@ -612,18 +612,18 @@ public static partial class Game
             switch (Menu_GetMessage())
             {
             case 69:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(26);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(26);
                 Mem.Set((Gv.Settings_PlayerRecords + (uint)(-195)), (byte)(0));
                 break;
             case 73:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(7);
-                new Q2Cfg_v2(Gv.Settings).f0D_Set((byte)(2));
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(7);
+                new Q2Cfg_v2(Gv.Settings).GameMode_Set((byte)(2));
                 for (i = 0; (i < 2); ++i)
                 {
-                    p = (new Q2Cfg_v2(Gv.Settings).pl.P + (uint)(i * 150));
-                    new Q2Ent96(p).unk78_Set((byte)(1));
-                    new Q2Ent96(p).unk7F_Set((byte)(i));
-                    if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(i * 400))).unkD) < 0))
+                    p = (new Q2Cfg_v2(Gv.Settings).PlayerRecords.P + (uint)(i * 150));
+                    new Q2Ent96(p).IsActive_Set((byte)(1));
+                    new Q2Ent96(p).PlayerIndex_Set((byte)(i));
+                    if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) < 0))
                     {
                         Profile_InitSlot(i);
                     }
@@ -631,28 +631,28 @@ public static partial class Game
                 break;
             case 70:
                 p = Gv.Settings_PlayerRecords;
-                new Q2Ent96(p).unk78_Set((byte)(1));
-                new Q2Ent96(p).unk7F_Set((byte)(0));
+                new Q2Ent96(p).IsActive_Set((byte)(1));
+                new Q2Ent96(p).PlayerIndex_Set((byte)(0));
                 Profile_Init(Gv.ProfileTable);
                 PlayerMenu_SetMode(7);
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(19);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(19);
                 Mem.Set((p + (uint)(-195)), (byte)(1));
                 break;
             case 75:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(27);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(27);
                 break;
             case 71:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(4);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(4);
                 break;
             case 76:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(16);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(16);
                 break;
             case 72:
                 p = Gv.Settings_PlayerRecords;
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(7);
-                new Q2Ent96(p).unk78_Set((byte)(1));
-                new Q2Ent96(p).unk7F_Set((byte)(0));
-                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).unkD) < 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(7);
+                new Q2Ent96(p).IsActive_Set((byte)(1));
+                new Q2Ent96(p).PlayerIndex_Set((byte)(0));
+                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).OwnerPadIndex) < 0))
                 {
                     Profile_InitSlot(0);
                     for (i = 0; (i < 20); ++i)
@@ -664,10 +664,10 @@ public static partial class Game
                 break;
             case 74:
                 p = Gv.Settings_PlayerRecords;
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(10);
-                new Q2Ent96(p).unk78_Set((byte)(1));
-                new Q2Ent96(p).unk7F_Set((byte)(0));
-                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).unkD) < 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(10);
+                new Q2Ent96(p).IsActive_Set((byte)(1));
+                new Q2Ent96(p).PlayerIndex_Set((byte)(0));
+                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).OwnerPadIndex) < 0))
                 {
                     Profile_InitSlot(0);
                 }
@@ -677,7 +677,7 @@ public static partial class Game
             default:
                 return 0;
             }
-            PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0), 2);
+            PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel), 2);
             return 0;
         }
     }
@@ -707,34 +707,34 @@ public static partial class Game
                 return 0;
             }
             Menu_EnableInput();
-            if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC > 0))
+            if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).OpenDelay > 0))
             {
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC - 1));
-                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC == 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).OpenDelay_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).OpenDelay - 1));
+                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).OpenDelay == 0))
                 {
-                    PopupPanel_Enable((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0));
+                    PopupPanel_Enable((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel));
                     return 0;
                 }
                 return 0;
             }
-            r = PopupPanel_GetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0));
+            r = PopupPanel_GetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel));
             switch (r)
             {
             case 3:
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14 - 1));
-                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14 <= 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer - 1));
+                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer <= 0))
                 {
-                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16) - 1)));
-                    if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk1A)) < 0))
+                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16) - 1)));
+                    if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk1A)) < 0))
                     {
-                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0)).unk44.unk1A));
+                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel)).unk44.unk1A));
                     }
-                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14_Set(3);
+                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer_Set(3);
                 }
                 break;
             case 4:
                 Menu_ConsumeEvent();
-                Menu_GotoScreen(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18);
+                Menu_GotoScreen(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId);
                 break;
             }
             return 0;
@@ -750,8 +750,8 @@ public static partial class Game
             if ((((c >> (int)16) == (uint)(3)) && (d == 10)))
             {
                 Menu_ConsumeEvent();
-                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(28);
-                PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0), 2);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).NextScreenId_Set(28);
+                PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel), 2);
             }
             return 0;
         }

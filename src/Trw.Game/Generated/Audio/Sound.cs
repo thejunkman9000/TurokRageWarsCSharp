@@ -6214,7 +6214,7 @@ public static partial class Game
                 uint s = 0u;
                 vol = Mem.F32(0x800C9514u);
                 s = (uint)((-1));
-                if ((new B15Globals(Gv.Settings).unk5CC == 0))
+                if ((new B15Globals(Gv.Settings).GamePaused == 0))
                 {
                     if ((src != 0u))
                     {
@@ -6223,13 +6223,13 @@ public static partial class Game
                         case 1:
                             if ((new B15Src(src).def.type == 1))
                             {
-                                if (((new B15Globals(Gv.Settings).flags0 & (uint)(64)) != 0u))
+                                if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(64)) != 0u))
                                 {
                                     vol = Mem.F32(0x800C9518u);
                                 }
                                 else
                                 {
-                                    if (((new B15Globals(Gv.Settings).flags0 & (uint)(32)) != 0u))
+                                    if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(32)) != 0u))
                                     {
                                         vol = Mem.F32(0x800C951Cu);
                                     }

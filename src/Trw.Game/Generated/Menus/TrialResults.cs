@@ -528,7 +528,7 @@ public static partial class Game
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(633), default(uint), default(uint));
             UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set((byte)(150));
-            new O05Wd2(w).f2C_Set((uint)(new O05T112((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect_FindRowByCharacter((int)(new O05R150c(r).b80)) * 112))).f0));
+            new O05Wd2(w).f2C_Set((uint)(new O05T112((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect_FindRowByCharacter((int)(new O05R150c(r).CharacterId)) * 112))).f0));
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(634), default(uint), default(uint));
             UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
@@ -540,12 +540,12 @@ public static partial class Game
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(636), default(uint), default(uint));
             UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
-            Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf28.P, fmt, (uint)((int)(new O05R150c(r).h4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf28.P, fmt, (uint)((int)(new O05R150c(r).Frags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf28.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(637), default(uint), default(uint));
             UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
-            Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).h2) + (int)(new O05R150c(r).h0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).Deaths) + (int)(new O05R150c(r).SelfDeaths_0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf32.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).f20, (uint)(638), default(uint), default(uint));
             UiNode_SetVisible(w, 1);
@@ -564,10 +564,10 @@ public static partial class Game
             switch (Mem.S32(Gv.ArenaType))
             {
             case 0:
-                Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).Tags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             case 1:
-                Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, fmt, (uint)((int)(new O05R150c(r).Captures_6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             default:
                 Str_FormatInto(new O05M30_v2(Mem.U32(Gv.TrialResults_PagePtr)).buf46.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));

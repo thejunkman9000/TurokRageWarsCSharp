@@ -240,7 +240,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E3300u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3300u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3300u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E3300u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3300u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E3300u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }

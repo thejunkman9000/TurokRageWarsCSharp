@@ -289,8 +289,8 @@ public static partial class Game
             if (!((new B2Ctl(ctl).AttackerTimer > 0))) goto _f5;
             new B2Ctl(ctl).AttackerTimer_Set((int)(new B2Ctl(ctl).AttackerTimer - 1));
             _f5: ;
-            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0))) goto _f6;
-            t = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80);
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsBoss) != 0))) goto _f6;
+            t = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId);
             s0 = (new B2Ctl(ctl).OwnerPtr.Health >> (int)8);
             if (!((t == 11))) goto _f7;
             goto L_big;
@@ -313,7 +313,7 @@ public static partial class Game
             _f11: ;
             _f9: ;
             fs = (((float)(s0) / (float)(v)) * Mem.F32(0x800C6CA0u));
-            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80) == 14))) goto _f14;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId) == 14))) goto _f14;
             if (!((fs == 0.0f))) goto _f15;
             fs = (float)(((3 - Mem.S32(0x8014693Cu)) * 33));
             goto _f16;
@@ -327,7 +327,7 @@ public static partial class Game
             _f14: ;
             g = Gv.Settings_MatchRules;
             if (!((new B2GameFlags(g).IsBossMode != 0))) goto _f18;
-            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80) == 11))) goto _f19;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId) == 11))) goto _f19;
             BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).BossShieldPercent)));
             if (!((new B2GameFlags(g).BossShieldRegenTimer > 0))) goto _f20;
             new B2GameFlags(g).BossShieldRegenTimer_Set((int)(new B2GameFlags(g).BossShieldRegenTimer - 1));
@@ -341,7 +341,7 @@ public static partial class Game
             Player_SetState(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).owner_), 2);
             _f21: ;
             _f19: ;
-            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) == 1))) goto _f22;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsBoss) == 1))) goto _f22;
             BossBar_SetPercent1(0x8013B7B8u, (int)(fs));
             goto _f23;
             _f22: ;
@@ -507,14 +507,14 @@ public static partial class Game
                                 if ((st == 1))
                                 {
                                     n = AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode);
-                                    if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CB8u)))
+                                    if ((Vec_Distance(new B2Node(n).PlatformPtr.Position.P, new B2Node(n).PlatformStopPos.P) < Mem.F32(0x800C6CB8u)))
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).unk40.Position.P, 12);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).PlatformPtr.Position.P, 12);
                                         new B2Actor(o).ButtonsPressed_Set((uint)((uint)(new B2Actor(o).ButtonsPressed) | (uint)(16)));
                                         new B2Ctl(ctl).EdgeStep_Set(2);
                                         return;
                                     }
-                                    Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).v44.P, 12);
+                                    Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).PlatformStopPos.P, 12);
                                     new B2Ctl(ctl).IsMoveHalted_Set(st);
                                 }
                                 if ((new B2Ctl(ctl).EdgeStep == 2))
@@ -525,7 +525,7 @@ public static partial class Game
                                     {
                                         flag = ((Mem.S32(new B2T(t).p18_) == 2) ? 1 : 0);
                                     }
-                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).unk40.Position.P);
+                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).PlatformPtr.Position.P);
                                     len = sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                                     if (((flag != 0) && (len < Mem.F32(0x800C6CBCu))))
                                     {
@@ -533,7 +533,7 @@ public static partial class Game
                                     }
                                     else
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).unk40.Position.P, 12);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).PlatformPtr.Position.P, 12);
                                         return;
                                     }
                                 }
@@ -551,7 +551,7 @@ public static partial class Game
                                     }
                                     cur = AiNav_GetNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
                                     n = AiNav_FindSearchNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
-                                    if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CC0u)))
+                                    if ((Vec_Distance(new B2Node(n).PlatformPtr.Position.P, new B2Node(n).PlatformStopPos.P) < Mem.F32(0x800C6CC0u)))
                                     {
                                         Mem.Copy(new B2Ctl(ctl).MoveTarget.P, cur, 12);
                                         new B2Actor(o).ButtonsPressed_Set((uint)((uint)(new B2Actor(o).ButtonsPressed) | (uint)(16)));
@@ -1134,12 +1134,12 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00209B64", (uint)@ref);
             uint a = new ActorRef(@ref).actor_;
             float v = (new ActorDef(new Actor(a).DefPtr).Params.SpawnTypeIndex_14 * Mem.F32(0x800C6D8Cu));
-            switch ((int)(new Actor(a).PlayerEntryPtr.unk93))
+            switch ((int)(new Actor(a).PlayerEntryPtr.BotSkill))
             {
             case 1:
                 break;
             default:
-                new Actor(new ActorRef(@ref).actor_).PlayerEntryPtr.unk93_Set((byte)(0));
+                new Actor(new ActorRef(@ref).actor_).PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D90u));
@@ -1159,12 +1159,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00209BE0", (uint)ctl);
             float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.BreakSoundId_20 * Mem.F32(0x800C6D98u));
-            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill))
             {
             case 1:
                 break;
             default:
-                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D9Cu));
@@ -1184,12 +1184,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00209C5C", (uint)ctl);
             float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.BreakEffectId_1C * Mem.F32(0x800C6DA4u));
-            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill))
             {
             case 1:
                 break;
             default:
-                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6DA8u));
@@ -1215,7 +1215,7 @@ public static partial class Game
             uint g = 0u;
             if ((Mem.S32(Gv.MatchRules_IsBossMode) != 0))
             {
-                st = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80);
+                st = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.CharacterId);
                 if ((st != 12))
                 {
                     lim = 30;
@@ -1241,16 +1241,16 @@ public static partial class Game
                 {
                     o = new B2Ctl(ctl).owner_;
                     stats = new B2Actor(o).stats_;
-                    if (((int)(new B2Stats(stats).unk94) == 0))
+                    if (((int)(new B2Stats(stats).IsBoss) == 0))
                     {
-                        if ((((int)(new B2Stats(stats).unk95) != 0) && (new B2GameFlags(g).TrialCounter_9C != 3)))
+                        if ((((int)(new B2Stats(stats).Flag_95) != 0) && (new B2GameFlags(g).TrialCounter_9C != 3)))
                         {
                             return;
                         }
                     }
                     else
                     {
-                        st = (int)(new B2Stats(stats).unk80);
+                        st = (int)(new B2Stats(stats).CharacterId);
                         if (((st != 12) && (st != 15)))
                         {
                             return;
@@ -1431,7 +1431,7 @@ public static partial class Game
                 }
                 if (((new B2Ctl(ctl).BranchNode != (-1)) && (new B2Ctl(ctl).BranchEdgeCount == 0)))
                 {
-                    for (i = 0; (i < new B2Mgr(m).count); ++i)
+                    for (i = 0; (i < new B2Mgr(m).EdgeCount); ++i)
                     {
                         e = AiNav_GetEdge(m, i);
                         if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).BranchNode) && ((int)(new B2Edge(e).kind) == 6)))
@@ -1563,7 +1563,7 @@ public static partial class Game
                 tp = 0u;
                 cnt = 0;
                 i = 0;
-                for (; (i < new B2Mgr(m).count); ++i)
+                for (; (i < new B2Mgr(m).EdgeCount); ++i)
                 {
                     e = AiNav_GetEdge(m, i);
                     if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).BranchNode) && ((int)(new B2Edge(e).kind) == 6)))
@@ -1716,9 +1716,9 @@ public static partial class Game
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * k));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * k));
                 n = AiNav_FindSearchNode(m, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
-                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).unk14));
-                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).unk14));
-                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).unk14));
+                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).BranchOffsetScale));
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).BranchOffsetScale));
+                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).BranchOffsetScale));
                 p = AiNav_GetNode(m, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
                 new B2Ctl(ctl).BranchPoint.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
                 new B2Ctl(ctl).BranchPoint.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
@@ -1766,9 +1766,9 @@ public static partial class Game
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * k));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * k));
                 n = AiNav_FindSearchNode(m, new B2Ctl(ctl).BranchTargetNode);
-                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).unk14));
-                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).unk14));
-                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).unk14));
+                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).BranchOffsetScale));
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).BranchOffsetScale));
+                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).BranchOffsetScale));
                 p = AiNav_GetNode(m, new B2Ctl(ctl).BranchTargetNode);
                 new B2Ctl(ctl).BranchPoint.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
                 new B2Ctl(ctl).BranchPoint.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
@@ -1792,7 +1792,7 @@ public static partial class Game
             new B2Ctl(ctl).BranchEdgeCount_Set(0);
             for (i = 0; (i < 4); ++i)
             {
-                for (j = 0; (j < new B2Mgr(m).count); ++j)
+                for (j = 0; (j < new B2Mgr(m).EdgeCount); ++j)
                 {
                     uint e = AiNav_GetEdge(m, j);
                     if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).PathNodes[(int)(i)]) && ((int)(new B2Edge(e).kind) == 6)))
@@ -1959,7 +1959,7 @@ public static partial class Game
             float v = 0f;
             if ((new B2GameFlags(Gv.Settings_MatchRules).TagObjectiveMode_78 != 0))
             {
-                if (((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) == 0))
+                if (((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsMonkey) == 0))
                 {
                     if (((int)(Match_FindTaggedPlayer((Gv.Settings_MatchRules - (uint)6240))) == 0))
                     {
@@ -2036,7 +2036,7 @@ public static partial class Game
             AiNav_PenalizeDangerNodes(ctl);
             AiNav_ClearGoals(m);
             AiNav_AddGoal(m, new B2Ctl(ctl).GoalNode);
-            new B2Mgr(m).unk18_Set((-1));
+            new B2Mgr(m).FoundGoalId_Set((-1));
             AiNav_SearchFrom(m, new B2Ctl(ctl).CurrentNode);
             AiNav_BuildPath(m, new B2Ctl(ctl).PathNodes.P, 4);
             new B2Ctl(ctl).BranchStep_Set(0);
@@ -2148,13 +2148,13 @@ public static partial class Game
                         new B2Ctl(ctl).WantedItemKind_Set((-1));
                         return 1;
                     }
-                    new B2Mgr(m).unk18_Set((-1));
+                    new B2Mgr(m).FoundGoalId_Set((-1));
                     AiNav_SearchFrom(m, new B2Ctl(ctl).CurrentNode);
-                    id = new B2Mgr(m).unk18;
+                    id = new B2Mgr(m).FoundGoalId;
                     if ((id != (-1)))
                     {
                         n = AiNav_FindSearchNode(m, id);
-                        new B2Ctl(ctl).GoalNode_Set(new B2Mgr(m).unk18);
+                        new B2Ctl(ctl).GoalNode_Set(new B2Mgr(m).FoundGoalId);
                         new B2Ctl(ctl).unk68__Set(new B2Node(n).unk34_);
                         AiNav_BuildPath(m, new B2Ctl(ctl).PathNodes.P, 4);
                         return 1;
@@ -2629,7 +2629,7 @@ public static partial class Game
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
-                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk92) == (int)(new ActorB(cur).PlayerEntryPtr.unk92))))
+                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.TeamId) == (int)(new ActorB(cur).PlayerEntryPtr.TeamId))))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
@@ -2983,7 +2983,7 @@ public static partial class Game
             goto L_done;
             _f7: ;
             _f5: ;
-            if (!(((new B2GameFlags(Gv.Settings_MatchRules).IsMonkeyTagMode != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) != 0)))) goto _f8;
+            if (!(((new B2GameFlags(Gv.Settings_MatchRules).IsMonkeyTagMode != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsMonkey) != 0)))) goto _f8;
             if (!((new B2GameFlags(Gv.Settings_MatchRules).MonkeyState_68 > 0))) goto _f9;
             if (!((new B2Ctl(ctl).StateId != 2))) goto _f10;
             Ai_SetState(ctl, 2);
@@ -2997,7 +2997,7 @@ public static partial class Game
             goto L_done;
             _f8: ;
             var_s0 = (int)(((Mem.F32(0x800C7018u) - Ai_GetAggression_00209B64(ctl)) * Mem.F32(0x800C701Cu)));
-            if (!(((Mem.S32(Gv.MatchRules_IsBossMode) != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0)))) goto _f11;
+            if (!(((Mem.S32(Gv.MatchRules_IsBossMode) != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.IsBoss) != 0)))) goto _f11;
             var_s0 = 0;
             _f11: ;
             if (!((Ai_IsSeekingItem(ctl) == 0))) goto _f12;
@@ -3031,8 +3031,8 @@ public static partial class Game
             if (!((((Ai_IsSeekingItem(ctl) == 0) || !((float)(var_s0) < fs0f)) || !(Mem.F32(0x800C7024u) < fs0)))) goto _f20;
             if (!((((Ai_IsInCombatState(ctl) == 0) && (Ai_IsSeekingItem(ctl) == 0)) && (new B2Ctl(ctl).target_ != 0u)))) goto _f21;
             st = new B2Ctl(ctl).OwnerPtr.stats_;
-            if (!(((int)(new B2Stats(st).unk94) != 0))) goto _f22;
-            if (!(((int)(new B2Stats(st).unk80) == 12))) goto _f23;
+            if (!(((int)(new B2Stats(st).IsBoss) != 0))) goto _f22;
+            if (!(((int)(new B2Stats(st).CharacterId) == 12))) goto _f23;
             Ai_SetState(ctl, 13);
             goto L_done;
             goto _f24;
@@ -3173,7 +3173,7 @@ public static partial class Game
             for (i = 0, g = Gv.PlayerPool, gf = new GameB(g).gf.P; (i < 8); ++i)
             {
                 a = Player_GetByIndex(g, (uint)(i));
-                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).PlayerEntryPtr.unk92) != (int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
+                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).PlayerEntryPtr.TeamId) != (int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.TeamId)))) && ((new ActorB(a).Health >> (int)8) > 0)))
                 {
                     new BrainB(b).EnemyPtrs.Set((int)(n), a);
                     new BrainB(b).EnemyDistances.Set((int)(n), (int)(Vec_Distance(new BrainB(b).OwnerPtr.Position.P, new ActorB(a).Position.P)));
@@ -3351,14 +3351,14 @@ public static partial class Game
             }
             if ((Mem.S32(Gv.MatchRules_IsBossMode) != 0))
             {
-                if (((((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk94) ^ 0) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk80) == 12)))
+                if (((((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.IsBoss) ^ 0) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.CharacterId) == 12)))
                 {
                     hit = 1;
                 }
             }
             if ((hit != 0))
             {
-                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).PlayerEntryPtr.unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).PlayerEntryPtr.IsMonkey) != 0)))
                 {
                     new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(new BrainB(b).EnemyDistances[(int)(idx)]) * Mem.F32(0x800C705Cu))));
                 }
@@ -4703,7 +4703,7 @@ public static partial class Game
             uint a = 0u;
             int busy = 0;
             int t = 0;
-            if (((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk8F) == 0))
+            if (((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.IsMonkey) == 0))
             {
                 Ai_SetState(b, 2);
                 return;
@@ -4955,7 +4955,7 @@ public static partial class Game
             if (((new BrainB(b).CurrentNode == new BrainB(b).unk22C) || (new BrainB(b).unk22C >= Mem.S32(0x8013B368u))))
             {
                 st = new BrainB(b).OwnerPtr.stats_;
-                if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
+                if ((((int)(new ActorStats(st).IsBoss) != 0) && ((int)(new ActorStats(st).CharacterId) == 12)))
                 {
                     Ai_PickFlaggedRoamNode(b);
                 }
@@ -5029,7 +5029,7 @@ public static partial class Game
             int id = 0;
             new BrainB(b).ThinkStep_Set(0);
             st = new BrainB(b).OwnerPtr.stats_;
-            if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
+            if ((((int)(new ActorStats(st).IsBoss) != 0) && ((int)(new ActorStats(st).CharacterId) == 12)))
             {
                 Ai_PickFlaggedRoamNode(b);
             }

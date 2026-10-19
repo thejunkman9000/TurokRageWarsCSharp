@@ -11,9 +11,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423304");
-            new O3Cfg(Gv.Settings).f1B_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]))));
-            new O3Cfg(Gv.Settings).f580_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]))));
-            new O3Cfg(Gv.Settings).f10_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(0)])));
+            new O3Cfg(Gv.Settings).BloodColor_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]))));
+            new O3Cfg(Gv.Settings).ResolutionMode_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]))));
+            new O3Cfg(Gv.Settings).Brightness_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(0)])));
         }
     }
 
@@ -31,7 +31,7 @@ public static partial class Game
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), (int)(new O3Cfg(Gv.Settings).f1B));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(1)]), (int)(new O3Cfg(Gv.Settings).BloodColor));
             new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w.Set((int)(2), (int)(OptionList_Create(446, 447)));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
             if (((int)(Mem_GetRamSize()) != 4194304))
@@ -39,10 +39,10 @@ public static partial class Game
                 OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
                 OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
             }
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), (int)(new O3Cfg(Gv.Settings).f580));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w[(int)(2)]), (int)(new O3Cfg(Gv.Settings).ResolutionMode));
             t = (int)(Slider_Create(448, 449, 128));
             new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w.Set((int)(0), t);
-            Slider_SetValue((uint)(t), new O3Cfg(Gv.Settings).f10);
+            Slider_SetValue((uint)(t), new O3Cfg(Gv.Settings).Brightness);
             MenuButton_Create(451);
             MenuButton_Create(452);
             new O3Words(Mem.U32(Gv.TrialPauseMenu_PagePtr)).w.Set((int)(3), 0);

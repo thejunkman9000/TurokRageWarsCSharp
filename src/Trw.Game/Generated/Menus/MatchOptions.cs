@@ -16,7 +16,7 @@ public static partial class Game
             int t = 0;
             Mem.Set(Gv.MatchOptions_PagePtr, ResourcePool_Malloc((uint)(64)));
             ScreenWipe_Init(Mem.U32(Gv.MatchOptions_PagePtr), 103, 0, 0, 0);
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38_Set(BotSetup_GetMaxBots());
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MaxBots_Set(BotSetup_GetMaxBots());
             switch (Mem.S32(Gv.ArenaType))
             {
             case 1:
@@ -34,27 +34,27 @@ public static partial class Game
                 break;
             }
             s0 = 1;
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24_Set((int)(NumberField_Create(867, 868, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28_Set((int)(NumberField_Create(865, 866, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C_Set((int)(NumberField_Create(863, 864, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30_Set((int)(NumberField_Create(869, 870, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C_Set(0);
-            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38 == 3))
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FragLimitField_Set((int)(NumberField_Create(867, 868, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TimeLimitField_Set((int)(NumberField_Create(865, 866, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FlagLimitField_Set((int)(NumberField_Create(863, 864, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TagLimitField_Set((int)(NumberField_Create(869, 870, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MinBots_Set(0);
+            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MaxBots == 3))
             {
-                new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C_Set(s0);
+                new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MinBots_Set(s0);
             }
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34_Set((int)(NumberField_Create(876, 877, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotCountField_Set((int)(NumberField_Create(876, 877, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MinBots, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MaxBots, s0)));
             t = (int)(OptionList_Create(871, 872));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C_Set(t);
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FriendlyFireList_Set(t);
             OptionList_AddOption((uint)(t), (uint)(Mem.S32((0x800D74C0u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C), (uint)(Mem.S32((0x800D74C4u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FriendlyFireList), (uint)(Mem.S32((0x800D74C4u + (uint)(0 * 4)))));
             t = (int)(OptionList_Create(878, 879));
-            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20_Set(t);
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList_Set(t);
             OptionList_AddOption((uint)(t), (uint)(Mem.S32((0x800D74C8u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74CCu + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D0u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D4u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D8u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList), (uint)(Mem.S32((0x800D74CCu + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList), (uint)(Mem.S32((0x800D74D0u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList), (uint)(Mem.S32((0x800D74D4u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList), (uint)(Mem.S32((0x800D74D8u + (uint)(0 * 4)))));
             MenuButton_Create(873);
             MenuButton_Create(874);
             MenuButton_Create(875);
@@ -248,11 +248,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004296A4");
-            new O04Cfg(Gv.Settings).s24_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28))));
-            new O04Cfg(Gv.Settings).s25_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24))));
-            new O04Cfg(Gv.Settings).s26_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C))));
-            new O04Cfg(Gv.Settings).s27_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30))));
-            new O04Cfg(Gv.Settings).u28_Set((byte)(OptionList_GetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C))));
+            new O04Cfg(Gv.Settings).TimeLimit_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TimeLimitField))));
+            new O04Cfg(Gv.Settings).FragLimit_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FragLimitField))));
+            new O04Cfg(Gv.Settings).FlagLimit_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FlagLimitField))));
+            new O04Cfg(Gv.Settings).TagLimit_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TagLimitField))));
+            new O04Cfg(Gv.Settings).FriendlyFire_Set((byte)(OptionList_GetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FriendlyFireList))));
         }
     }
 
@@ -263,22 +263,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429740");
             int b = 0;
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24), (int)(new O04Cfg(Gv.Settings).s25));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28), (int)(new O04Cfg(Gv.Settings).s24));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C), (int)(new O04Cfg(Gv.Settings).s26));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30), (int)(new O04Cfg(Gv.Settings).s27));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FragLimitField), (int)(new O04Cfg(Gv.Settings).FragLimit));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TimeLimitField), (int)(new O04Cfg(Gv.Settings).TimeLimit));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FlagLimitField), (int)(new O04Cfg(Gv.Settings).FlagLimit));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).TagLimitField), (int)(new O04Cfg(Gv.Settings).TagLimit));
             b = BotSetup_CountBots();
-            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38 < b))
+            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MaxBots < b))
             {
-                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38;
+                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MaxBots;
             }
             if ((b == 0))
             {
-                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C;
+                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).MinBots;
             }
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34), b);
-            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C), (int)(new O04Cfg(Gv.Settings).u28));
-            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), BotSetup_GetDifficultyTier());
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotCountField), b);
+            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).FriendlyFireList), (int)(new O04Cfg(Gv.Settings).FriendlyFire));
+            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList), BotSetup_GetDifficultyTier());
         }
     }
 
@@ -290,8 +290,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00429834", (uint)a);
             int s1 = 0;
             int s0 = 0;
-            s1 = OptionList_GetSelection((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).unk20));
-            s0 = NumberField_GetValue((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).unk34));
+            s1 = OptionList_GetSelection((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).BotSkillList));
+            s0 = NumberField_GetValue((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).BotCountField));
             if ((s0 <= 0))
             {
                 BotSetup_Reset();
@@ -341,19 +341,19 @@ public static partial class Game
                 switch (Menu_GetMessage())
                 {
                 case 867:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk24), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).FragLimitField), 0);
                     break;
                 case 865:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk28), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).TimeLimitField), 0);
                     break;
                 case 863:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).FlagLimitField), 0);
                     break;
                 case 869:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk30), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).TagLimitField), 0);
                     break;
                 case 876:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk34), new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).BotCountField), new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).MinBots);
                     break;
                 }
             }
@@ -380,7 +380,7 @@ public static partial class Game
                 Menu_GoBack();
                 break;
             case 873:
-                if ((NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34)) > 0))
+                if ((NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).BotCountField)) > 0))
                 {
                     MatchOptions_StoreSettings();
                     MatchOptions_UpdateBots(0);

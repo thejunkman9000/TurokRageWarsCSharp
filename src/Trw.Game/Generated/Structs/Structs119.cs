@@ -2989,39 +2989,39 @@ public readonly struct Shared_PlayerSettingsRecord
     [MethodImpl(Inl)] public static implicit operator uint(Shared_PlayerSettingsRecord v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Shared_PlayerSettingsRecord(uint p) => new(p);
     // +0x0
-    public S8x120 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x120 SelfDeaths_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x78
-    public byte enabled
+    public byte IsActive
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x78u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x78u, value);
     }
-    [MethodImpl(Inl)] public byte enabled_Set(byte v) => Mem.Set(P + 0x78u, v);
+    [MethodImpl(Inl)] public byte IsActive_Set(byte v) => Mem.Set(P + 0x78u, v);
     // +0x79
-    public S8x6 pad79 { [MethodImpl(Inl)] get => new(P + 0x79u); }
+    public S8x6 StickHorzSensitivity { [MethodImpl(Inl)] get => new(P + 0x79u); }
     // +0x7F
-    public byte slot
+    public byte PlayerIndex
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x7Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x7Fu, value);
     }
-    [MethodImpl(Inl)] public byte slot_Set(byte v) => Mem.Set(P + 0x7Fu, v);
+    [MethodImpl(Inl)] public byte PlayerIndex_Set(byte v) => Mem.Set(P + 0x7Fu, v);
     // +0x80
-    public sbyte character
+    public sbyte CharacterId
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public sbyte character_Set(sbyte v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public sbyte CharacterId_Set(sbyte v) => Mem.Set(P + 0x80u, v);
     // +0x81
-    public S8x20 pad81 { [MethodImpl(Inl)] get => new(P + 0x81u); }
+    public S8x20 SkinIndex { [MethodImpl(Inl)] get => new(P + 0x81u); }
     // +0x95
-    public byte active
+    public byte Flag_95
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x95u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x95u, value);
     }
-    [MethodImpl(Inl)] public byte active_Set(byte v) => Mem.Set(P + 0x95u, v);
+    [MethodImpl(Inl)] public byte Flag_95_Set(byte v) => Mem.Set(P + 0x95u, v);
 }
 
 /// <summary>struct Shared_PlayerSettingsView, 0x5A8 bytes, at a guest address.</summary>

@@ -21,11 +21,11 @@ public static partial class Game
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), (int)(new O3Cfg(Gv.Settings).f1B));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), (int)(new O3Cfg(Gv.Settings).BloodColor));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(4), (int)(OptionList_Create(85, 86)));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), (int)(new O3Cfg(Gv.Settings).f1F));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), (int)(new O3Cfg(Gv.Settings).SplitScreenLayout));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(5), (int)(OptionList_Create(81, 82)));
             OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
             if (((int)(Mem_GetRamSize()) != 4194304))
@@ -33,9 +33,9 @@ public static partial class Game
                 OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
                 OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
             }
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), (int)(new O3Cfg(Gv.Settings).f580));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), (int)(new O3Cfg(Gv.Settings).ResolutionMode));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(2), (int)(Slider_Create(83, 84, 128)));
-            Slider_SetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)]), new O3Cfg(Gv.Settings).f10);
+            Slider_SetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)]), new O3Cfg(Gv.Settings).Brightness);
             MenuButton_Create(80);
             t = (int)(Flicker_Create((uint)(79), (uint)(110), default(uint), default(uint)));
             new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(9), 3);
@@ -182,10 +182,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423280");
-            new O3Cfg(Gv.Settings).f1B_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]))));
-            new O3Cfg(Gv.Settings).f1F_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]))));
-            new O3Cfg(Gv.Settings).f580_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]))));
-            new O3Cfg(Gv.Settings).f10_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)])));
+            new O3Cfg(Gv.Settings).BloodColor_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]))));
+            new O3Cfg(Gv.Settings).SplitScreenLayout_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]))));
+            new O3Cfg(Gv.Settings).ResolutionMode_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]))));
+            new O3Cfg(Gv.Settings).Brightness_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)])));
         }
     }
 
@@ -309,7 +309,7 @@ public static partial class Game
             {
                 if ((new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }

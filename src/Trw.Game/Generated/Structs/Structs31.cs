@@ -96,19 +96,19 @@ public readonly struct S_sub
     // +0x0
     public U8x20 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public short x
+    public short X
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public short x_Set(short v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public short X_Set(short v) => Mem.Set(P + 0x14u, v);
     // +0x16
-    public short y
+    public short Y
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public short y_Set(short v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public short Y_Set(short v) => Mem.Set(P + 0x16u, v);
 }
 
 /// <summary>struct S_v, 0x4C bytes, at a guest address.</summary>

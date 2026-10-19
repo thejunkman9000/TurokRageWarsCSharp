@@ -2165,34 +2165,34 @@ public readonly struct PlacedProp
     [MethodImpl(Inl)] public static implicit operator uint(PlacedProp v) => v.P;
     [MethodImpl(Inl)] public static explicit operator PlacedProp(uint p) => new(p);
     // +0x0
-    public byte state
+    public byte Type
     {
         [MethodImpl(Inl)] get => Mem.U8(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public byte state_Set(byte v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public byte Type_Set(byte v) => Mem.Set(P, v);
     // +0x1
-    public S8x3 pad1 { [MethodImpl(Inl)] get => new(P + 0x1u); }
+    public S8x3 ModelIndex { [MethodImpl(Inl)] get => new(P + 0x1u); }
     // +0x4
-    public ushort id
+    public ushort Id
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public ushort id_Set(ushort v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public ushort Id_Set(ushort v) => Mem.Set(P + 0x4u, v);
     // +0x6
     public S8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public Vec3 position { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public uint segment
+    public uint RegionPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public uint segment_Set(uint v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public uint RegionPtr_Set(uint v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public PropGeometry model
+    public PropGeometry DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -2204,78 +2204,78 @@ public readonly struct PlacedProp
     }
     [MethodImpl(Inl)] public uint model__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int owner
+    public int ModelResourceKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int owner_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int ModelResourceKey_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public S8x8 pad20 { [MethodImpl(Inl)] get => new(P + 0x20u); }
+    public S8x8 LevelBlockPtr { [MethodImpl(Inl)] get => new(P + 0x20u); }
     // +0x28
-    public S8x64 transform { [MethodImpl(Inl)] get => new(P + 0x28u); }
+    public S8x64 TransformFixed { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x68
-    public S8x64 matrix { [MethodImpl(Inl)] get => new(P + 0x68u); }
+    public S8x64 TransformMtx { [MethodImpl(Inl)] get => new(P + 0x68u); }
     // +0xA8
-    public int fieldA8
+    public int LoadedModelIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int fieldA8_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int LoadedModelIndex_Set(int v) => Mem.Set(P + 0xA8u, v);
     // +0xAC
-    public int fieldAC
+    public int LoadedModelKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int fieldAC_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int LoadedModelKey_Set(int v) => Mem.Set(P + 0xACu, v);
     // +0xB0
-    public int fieldB0
+    public int LoadedModelSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value);
     }
-    [MethodImpl(Inl)] public int fieldB0_Set(int v) => Mem.Set(P + 0xB0u, v);
+    [MethodImpl(Inl)] public int LoadedModelSize_Set(int v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public int fieldB4
+    public int PinnedModelHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int fieldB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int PinnedModelHandle_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
-    public Vec3 min { [MethodImpl(Inl)] get => new(P + 0xB8u); }
+    public Vec3 BoundsMin { [MethodImpl(Inl)] get => new(P + 0xB8u); }
     // +0xC4
-    public Vec3 max { [MethodImpl(Inl)] get => new(P + 0xC4u); }
+    public Vec3 BoundsMax { [MethodImpl(Inl)] get => new(P + 0xC4u); }
     // +0xD0
-    public int key
+    public int LightCacheKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD0u, value);
     }
-    [MethodImpl(Inl)] public int key_Set(int v) => Mem.Set(P + 0xD0u, v);
+    [MethodImpl(Inl)] public int LightCacheKey_Set(int v) => Mem.Set(P + 0xD0u, v);
     // +0xD4
-    public int fieldD4
+    public int RegionId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD4u, value);
     }
-    [MethodImpl(Inl)] public int fieldD4_Set(int v) => Mem.Set(P + 0xD4u, v);
+    [MethodImpl(Inl)] public int RegionId_Set(int v) => Mem.Set(P + 0xD4u, v);
     // +0xD8
-    public ushort flags
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public ushort flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
     // +0xDA
-    public byte colorFrame
+    public byte LitFrame
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xDAu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDAu, value);
     }
-    [MethodImpl(Inl)] public byte colorFrame_Set(byte v) => Mem.Set(P + 0xDAu, v);
+    [MethodImpl(Inl)] public byte LitFrame_Set(byte v) => Mem.Set(P + 0xDAu, v);
     // +0xDB
     public sbyte padDB
     {
@@ -2284,19 +2284,19 @@ public readonly struct PlacedProp
     }
     [MethodImpl(Inl)] public sbyte padDB_Set(sbyte v) => Mem.Set(P + 0xDBu, v);
     // +0xDC
-    public int fieldDC
+    public int CameraDistSq
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public int fieldDC_Set(int v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public int CameraDistSq_Set(int v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public byte fade
+    public byte FadeLevel
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xE0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE0u, value);
     }
-    [MethodImpl(Inl)] public byte fade_Set(byte v) => Mem.Set(P + 0xE0u, v);
+    [MethodImpl(Inl)] public byte FadeLevel_Set(byte v) => Mem.Set(P + 0xE0u, v);
 }
 
 /// <summary>struct PlacedPropRecord, 0x34 bytes, at a guest address.</summary>
@@ -2650,12 +2650,12 @@ public readonly struct PlayerDef
     // +0x0
     public U8x144 pad_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x90
-    public byte f90
+    public byte IsIt
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x90u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x90u, value);
     }
-    [MethodImpl(Inl)] public byte f90_Set(byte v) => Mem.Set(P + 0x90u, v);
+    [MethodImpl(Inl)] public byte IsIt_Set(byte v) => Mem.Set(P + 0x90u, v);
 }
 
 /// <summary>struct PlayerEvt, 0x140 bytes, at a guest address.</summary>

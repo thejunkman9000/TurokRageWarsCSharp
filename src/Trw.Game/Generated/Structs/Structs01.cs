@@ -4356,51 +4356,51 @@ public readonly struct ActorStats
     // +0x0
     public U8x128 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x80
-    public sbyte unk80
+    public sbyte CharacterId
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk80_Set(sbyte v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public sbyte CharacterId_Set(sbyte v) => Mem.Set(P + 0x80u, v);
     // +0x81
     public U8x13 pad81 { [MethodImpl(Inl)] get => new(P + 0x81u); }
     // +0x8E
-    public byte unk8E
+    public byte EndAck_8E
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Eu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Eu, value);
     }
-    [MethodImpl(Inl)] public byte unk8E_Set(byte v) => Mem.Set(P + 0x8Eu, v);
+    [MethodImpl(Inl)] public byte EndAck_8E_Set(byte v) => Mem.Set(P + 0x8Eu, v);
     // +0x8F
-    public byte unk8F
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte unk8F_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
     // +0x90
     public U8x2 pad90 { [MethodImpl(Inl)] get => new(P + 0x90u); }
     // +0x92
-    public byte unk92
+    public byte TeamId
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x92u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x92u, value);
     }
-    [MethodImpl(Inl)] public byte unk92_Set(byte v) => Mem.Set(P + 0x92u, v);
+    [MethodImpl(Inl)] public byte TeamId_Set(byte v) => Mem.Set(P + 0x92u, v);
     // +0x93
-    public byte unk93
+    public byte BotSkill
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x93u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x93u, value);
     }
-    [MethodImpl(Inl)] public byte unk93_Set(byte v) => Mem.Set(P + 0x93u, v);
+    [MethodImpl(Inl)] public byte BotSkill_Set(byte v) => Mem.Set(P + 0x93u, v);
     // +0x94
-    public byte unk94
+    public byte IsBoss
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x94u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x94u, value);
     }
-    [MethodImpl(Inl)] public byte unk94_Set(byte v) => Mem.Set(P + 0x94u, v);
+    [MethodImpl(Inl)] public byte IsBoss_Set(byte v) => Mem.Set(P + 0x94u, v);
 }
 
 /// <summary>struct ActorX, 0x16E4 bytes, at a guest address.</summary>

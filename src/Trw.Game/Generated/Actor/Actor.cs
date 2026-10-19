@@ -12,31 +12,31 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204FC4", (uint)actor, (uint)state);
-            if (((int)(new B01Actor(actor).unkE6) == 1))
+            if (((int)(new B01Actor(actor).AnimCount) == 1))
             {
                 return 1;
             }
-            if (((int)(new B01Actor(actor).unk108) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
+            if (((int)(new B01Actor(actor).AnimClipId) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
             {
                 goto L_zero;
             }
-            if (((int)(new B01Actor(actor).unk10A) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
+            if (((int)(new B01Actor(actor).AnimRequestedClipId) != (int)((sbyte)(new B01State(state).AnimClipIndex))))
             {
                 goto L_zero;
             }
-            if ((((int)(new B01State(state).AnimLoopCount) != 0) && !((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new B01State(state).AnimLoopCount) != 0) && !((new B01Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
                 return 1;
             }
-            if ((((int)(new B01Actor(actor).unk10C) < 3) && ((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
+            if ((((int)(new B01Actor(actor).AnimClipLength) < 3) && ((new B01Actor(actor).Flags & (uint)(1024)) != 0u)))
             {
-                if ((((float)(new B01Actor(actor).unk12C) * scale) <= new B01Actor(actor).unk134))
+                if ((((float)(new B01Actor(actor).BlendFrames) * scale) <= new B01Actor(actor).BlendTime))
                 {
                     return 1;
                 }
                 return 0;
             }
-            if ((((float)(new B01Actor(actor).unk10C) * scale) <= new B01Actor(actor).unk104))
+            if ((((float)(new B01Actor(actor).AnimClipLength) * scale) <= new B01Actor(actor).AnimTime))
             {
                 return 1;
             }
@@ -198,7 +198,7 @@ public static partial class Game
                 if ((def != 0u))
                 {
                     t1 = (int)(new DefC_v3(def).SpawnParam_12);
-                    t0 = (int)(new DefC_v3(def).SpawnParam_E);
+                    t0 = (int)(new DefC_v3(def).DefaultModelIndex);
                     a3 = (int)(new DefC_v3(def).SpawnParam_10);
                     switch (new DefC_v3(def).Kind)
                     {
@@ -877,7 +877,7 @@ public static partial class Game
                         }
                         if ((new GameFlagsC(Gv.Settings_MatchRules).IsBossMode != 0))
                         {
-                            if (((int)(new ActorB(a).PlayerEntryPtr.unk80) == 11))
+                            if (((int)(new ActorB(a).PlayerEntryPtr.CharacterId) == 11))
                             {
                                 if ((new GameFlagsC(Gv.Settings_MatchRules).BossShieldPercent > 0))
                                 {
@@ -1168,54 +1168,54 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002228E4", (uint)p, (uint)s, (uint)x);
             float v = 0f;
-            if (((int)(new B05P7(p).state) < 2))
+            if (((int)(new B05P7(p).StateId) < 2))
             {
-                new B05P7(p).f784_Set(Mem.F32(0x800C7938u));
+                new B05P7(p).TimeScale_Set(Mem.F32(0x800C7938u));
                 return;
             }
             v = new B05Src7(s).def.unk1C;
-            new B05P7(p).f784_Set(v);
-            if ((new B05P7(p).unk1450 != 0))
+            new B05P7(p).TimeScale_Set(v);
+            if ((new B05P7(p).IsComputer != 0))
             {
-                switch ((int)(new B05P7(p).stats.unk93))
+                switch ((int)(new B05P7(p).PlayerEntryPtr.unk93))
                 {
                 case 2:
                     break;
                 default:
-                    new B05P7(p).stats.unk93_Set((byte)(0));
+                    new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
                     goto case 0;
                 case 0:
-                    new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C793Cu)));
+                    new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C793Cu)));
                     break;
                 case 1:
-                    new B05P7(p).f784_Set((v * Mem.F32(0x800C7940u)));
+                    new B05P7(p).TimeScale_Set((v * Mem.F32(0x800C7940u)));
                     break;
                 }
-                if ((new B05P7(p).unk1450 != 0))
+                if ((new B05P7(p).IsComputer != 0))
                 {
-                    switch ((int)(new B05P7(p).stats.unk93))
+                    switch ((int)(new B05P7(p).PlayerEntryPtr.unk93))
                     {
                     case 2:
                         break;
                     default:
-                        new B05P7(p).stats.unk93_Set((byte)(0));
+                        new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
                         goto case 0;
                     case 0:
-                        new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C7944u)));
+                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C7944u)));
                         break;
                     case 1:
-                        new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C7948u)));
+                        new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * Mem.F32(0x800C7948u)));
                         break;
                     }
                 }
             }
-            if (((int)(new B05Cfg7(Gv.Settings).unk1D) != 0))
+            if (((int)(new B05Cfg7(Gv.Settings).IsMultiplayer) != 0))
             {
-                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05Cfg7(Gv.Settings).unk20));
+                new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * new B05Cfg7(Gv.Settings).GameSpeed));
             }
             if (((!((new B05Src7(s).flags38 & (uint)(3)) != 0u) && (x != 0u)) && ((Actor_IsOnGround(s) != 0) || (((int)(new B05X7(x).unk52) & 2048) != 0))))
             {
-                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05X7(x).unk30));
+                new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * new B05X7(x).unk30));
             }
         }
     }
@@ -2156,7 +2156,7 @@ public static partial class Game
                 Collision_MoveActor((int)(o), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)((_fp + 96u)));
                 Mem.Copy(o, (_fp + 16u), 80);
                 r = 0;
-                if (((new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).f0 != 0) || (new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).f9C != 0)))
+                if (((new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).HitObjectPtr != 0) || (new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).BlockerFlag_9C != 0)))
                 {
                     r = 1;
                 }
@@ -3608,7 +3608,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B2C0", (uint)a);
-            uint t = (uint)(new ObjDef(new Obj(a).DefPtr).type);
+            uint t = (uint)(new ObjDef(new Obj(a).DefPtr).Kind);
             uint d = 0u;
             uint p = 0u;
             int i = 0;
@@ -4220,7 +4220,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024C654", (uint)a);
-            uint t = (uint)(new ObjDef(new Obj(a).DefPtr).type);
+            uint t = (uint)(new ObjDef(new Obj(a).DefPtr).Kind);
             int i = 0;
             if ((t >= (uint)(15)))
             {
@@ -4267,7 +4267,7 @@ public static partial class Game
             uint o = 0u;
             uint f = 0u;
             uint g = 0u;
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 11:
                 if ((((int)(new Obj(a).Type) == 1) && ((new Obj(a).Flags & (uint)(3145728)) != 0u)))
@@ -4285,7 +4285,7 @@ public static partial class Game
             case 8:
                 return 1;
             case 0:
-                return (int)((new ObjDef(new Obj(a).DefPtr).flags14 & (uint)(2)));
+                return (int)((new ObjDef(new Obj(a).DefPtr).Params & (uint)(2)));
             case 2:
                 if (((int)(new Obj(a).Type) != 1))
                 {
@@ -4322,7 +4322,7 @@ public static partial class Game
                 }
                 return (int)((f & (uint)(65536)));
             case 12:
-                return (int)((new ObjDef(new Obj(a).DefPtr).flags14 & (uint)(1)));
+                return (int)((new ObjDef(new Obj(a).DefPtr).Params & (uint)(1)));
             default:
                 return 0;
             }
@@ -4342,28 +4342,28 @@ public static partial class Game
             {
                 return Actor_GetDeadHeight(a);
             }
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 11:
                 if ((((int)(new Obj(a).Type) == 1) && ((new Obj(a).Flags & (uint)(3145728)) != 0u)))
                 {
                     return new Obj(a).OwnerPtr.unk6F4;
                 }
-                return new ObjDef(new Obj(a).DefPtr).unkF4;
+                return new ObjDef(new Obj(a).DefPtr).CharacterHeight;
             case 1:
             case 4:
-                return new ObjDef(new Obj(a).DefPtr).unk30;
+                return new ObjDef(new Obj(a).DefPtr).CreatureHeight;
             case 8:
                 d = new Obj(a).DefPtr;
-                r = (float)((new ObjDef(d).flags14 & (uint)(1)));
+                r = (float)((new ObjDef(d).Params & (uint)(1)));
                 r = Mem.F32(0x800C8D24u);
-                if (!((new ObjDef(d).flags14 & (uint)(1)) != 0u))
+                if (!((new ObjDef(d).Params & (uint)(1)) != 0u))
                 {
-                    r = new ObjDef(d).unk1C;
+                    r = new ObjDef(d).ShapeHeight_1C;
                 }
                 return r;
             case 7:
-                return new ObjDef(new Obj(a).DefPtr).unk20;
+                return new ObjDef(new Obj(a).DefPtr).ShapeParam_20;
             case 6:
                 return Mem.F32(0x800C8D28u);
             case 0:
@@ -4372,7 +4372,7 @@ public static partial class Game
             case 12:
             case 13:
             case 14:
-                return new ObjDef(new Obj(a).DefPtr).unk1C;
+                return new ObjDef(new Obj(a).DefPtr).ShapeHeight_1C;
             default:
                 return 0.0f;
             }
@@ -4389,14 +4389,14 @@ public static partial class Game
             uint d = 0u;
             float lo = 0f;
             float hi = 0f;
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 11:
                 if (((((int)(new Obj(a).Type) == 1) && ((new Obj(a).Flags & (uint)(3145728)) != 0u)) && (new Obj(a).OwnerPtr.unk80C_ != 0u)))
                 {
                     return Mem.F32(0x800C8D6Cu);
                 }
-                return new ObjDef(new Obj(a).DefPtr).unkEC;
+                return new ObjDef(new Obj(a).DefPtr).CharacterRadius;
             case 0:
             case 5:
             case 8:
@@ -4404,29 +4404,29 @@ public static partial class Game
             case 12:
             case 13:
             case 14:
-                return new ObjDef(new Obj(a).DefPtr).u18.f;
+                return new ObjDef(new Obj(a).DefPtr).BaseHealth.f;
             case 1:
             case 4:
-                return new ObjDef(new Obj(a).DefPtr).unk28;
+                return new ObjDef(new Obj(a).DefPtr).CreatureRadius;
             case 2:
                 d = new Obj(a).DefPtr;
-                if (((int)(new ObjDef(d).u18.h) == 2))
+                if (((int)(new ObjDef(d).BaseHealth.h) == 2))
                 {
-                    lo = new ObjDef(d).unk20;
-                    if (!(new ObjDef(d).unk1C <= lo))
+                    lo = new ObjDef(d).ShapeParam_20;
+                    if (!(new ObjDef(d).ShapeHeight_1C <= lo))
                     {
-                        lo = new ObjDef(d).unk1C;
+                        lo = new ObjDef(d).ShapeHeight_1C;
                     }
-                    hi = new ObjDef(d).unk28;
+                    hi = new ObjDef(d).CreatureRadius;
                     if (!(lo <= hi))
                     {
                         hi = lo;
                     }
                     return (hi * Mem.F32(0x800C8D70u));
                 }
-                return new ObjDef(d).unk1C;
+                return new ObjDef(d).ShapeHeight_1C;
             case 7:
-                return new ObjDef(new Obj(a).DefPtr).unk1C;
+                return new ObjDef(new Obj(a).DefPtr).ShapeHeight_1C;
             default:
                 return 0.0f;
             }
@@ -4497,10 +4497,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DD14", (uint)a);
             uint d = new Obj(a).DefPtr;
-            int t = new ObjDef(d).type;
+            int t = new ObjDef(d).Kind;
             if (((t == 1) || (t == 4)))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(32)));
+                return (int)((new ObjDef(d).Params & (uint)(32)));
             }
             if ((new Obj(a).DefPtr != 0u))
             {
@@ -4521,10 +4521,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DD48", (uint)a);
             uint d = new Obj(a).DefPtr;
-            int t = new ObjDef(d).type;
+            int t = new ObjDef(d).Kind;
             if (((t == 1) || (t == 4)))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(64)));
+                return (int)((new ObjDef(d).Params & (uint)(64)));
             }
             if ((new Obj(a).DefPtr != 0u))
             {
@@ -4545,9 +4545,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DD7C", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(1)));
+                return (int)((new ObjDef(d).Params & (uint)(1)));
             }
             return 0;
         }
@@ -4560,9 +4560,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DDA4", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(2)));
+                return (int)((new ObjDef(d).Params & (uint)(2)));
             }
             return 0;
         }
@@ -4575,10 +4575,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DDCC", (uint)a);
             uint d = new Obj(a).DefPtr;
-            int t = new ObjDef(d).type;
+            int t = new ObjDef(d).Kind;
             if (((t == 1) || (t == 4)))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(128)));
+                return (int)((new ObjDef(d).Params & (uint)(128)));
             }
             if ((new Obj(a).DefPtr != 0u))
             {
@@ -4599,10 +4599,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DE00", (uint)a);
             uint d = new Obj(a).DefPtr;
-            int t = new ObjDef(d).type;
+            int t = new ObjDef(d).Kind;
             if (((t == 1) || (t == 4)))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(256)));
+                return (int)((new ObjDef(d).Params & (uint)(256)));
             }
             if ((new Obj(a).DefPtr != 0u))
             {
@@ -4623,9 +4623,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DE34", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(512)));
+                return (int)((new ObjDef(d).Params & (uint)(512)));
             }
             return 0;
         }
@@ -4638,10 +4638,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DE5C", (uint)a);
             uint d = new Obj(a).DefPtr;
-            int t = new ObjDef(d).type;
+            int t = new ObjDef(d).Kind;
             if (((t == 1) || (t == 4)))
             {
-                return (int)((new ObjDef(d).flags14 & (uint)(16)));
+                return (int)((new ObjDef(d).Params & (uint)(16)));
             }
             if ((new Obj(a).DefPtr != 0u))
             {
@@ -4662,11 +4662,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DE90", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 11))
+            if ((new ObjDef(d).Kind == 11))
             {
                 if ((Mem.U8(Gv.Settings_IsMultiplayer) != 0))
                 {
-                    return (int)((new ObjDef(d).flags14 & (uint)(1)));
+                    return (int)((new ObjDef(d).Params & (uint)(1)));
                 }
                 return 1;
             }
@@ -4681,9 +4681,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DED0", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(1)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(1)));
             }
             return 0;
         }
@@ -4697,13 +4697,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024DEF8", (uint)a);
             uint d = new Obj(a).DefPtr;
             int r = 0;
-            switch (new ObjDef(d).type)
+            switch (new ObjDef(d).Kind)
             {
             case 11:
                 return 1;
             case 1:
                 r = 0;
-                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).flags4C & (uint)(2)) != 0u)))
+                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).CreatureFlags & (uint)(2)) != 0u)))
                 {
                     r = 1;
                 }
@@ -4723,10 +4723,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024DF4C", (uint)a);
             uint d = new Obj(a).DefPtr;
             int r = 0;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
                 r = 0;
-                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).flags4C & (uint)(4)) != 0u)))
+                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).CreatureFlags & (uint)(4)) != 0u)))
                 {
                     r = 1;
                 }
@@ -4743,9 +4743,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DF90", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(8)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(8)));
             }
             return 0;
         }
@@ -4773,9 +4773,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024DFFC", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(4096)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(4096)));
             }
             return 0;
         }
@@ -4789,10 +4789,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024E024", (uint)a);
             uint d = new Obj(a).DefPtr;
             int r = 0;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
                 r = 0;
-                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).flags4C & (uint)(16)) != 0u)))
+                if (((new Obj(a).HitPoints <= 0) || ((new ObjDef(d).CreatureFlags & (uint)(16)) != 0u)))
                 {
                     r = 1;
                 }
@@ -4809,9 +4809,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E068", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(32)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(32)));
             }
             return 0;
         }
@@ -4824,9 +4824,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E090", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(512)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(512)));
             }
             return 0;
         }
@@ -4839,9 +4839,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E0B8", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(1024)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(1024)));
             }
             return 0;
         }
@@ -4854,9 +4854,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E0E0", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(8192)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(8192)));
             }
             return 0;
         }
@@ -4869,9 +4869,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E108", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return (int)((new ObjDef(d).flags4C & (uint)(16384)));
+                return (int)((new ObjDef(d).CreatureFlags & (uint)(16384)));
             }
             return 0;
         }
@@ -4917,7 +4917,7 @@ public static partial class Game
             {
                 return 1;
             }
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 1:
             case 2:
@@ -4965,7 +4965,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E1F8", (uint)a);
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 11:
                 if (((((int)(new Obj(a).Type) == 1) && ((new Obj(a).Flags & (uint)(3145728)) != 0u)) && ((new Obj(a).OwnerPtr.unk80C_ != 0u) || (Flyby_IsInWindow() != 0))))
@@ -4989,7 +4989,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E28C", (uint)a);
-            return (int)(((new ObjDef(new Obj(a).DefPtr).flags4 >> (int)2) & (uint)(1)));
+            return (int)(((new ObjDef(new Obj(a).DefPtr).Flags >> (int)2) & (uint)(1)));
         }
     }
 
@@ -4999,7 +4999,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E2A0", (uint)a);
-            return ((new ObjDef(new Obj(a).DefPtr).type == 1) ? 1 : 0);
+            return ((new ObjDef(new Obj(a).DefPtr).Kind == 1) ? 1 : 0);
         }
     }
 
@@ -5009,7 +5009,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E2B4", (uint)a);
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 0:
             case 14:
@@ -5053,26 +5053,26 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E2EC", (uint)a);
-            switch (new ObjDef(new Obj(a).DefPtr).type)
+            switch (new ObjDef(new Obj(a).DefPtr).Kind)
             {
             case 11:
-                return new ObjDef(new Obj(a).DefPtr).unkEC;
+                return new ObjDef(new Obj(a).DefPtr).CharacterRadius;
             case 1:
-                return new ObjDef(new Obj(a).DefPtr).unk2C;
+                return new ObjDef(new Obj(a).DefPtr).CreatureCollisionRadius;
             case 2:
-                if (((int)(new ObjDef(new Obj(a).DefPtr).u18.h) == 0))
+                if (((int)(new ObjDef(new Obj(a).DefPtr).BaseHealth.h) == 0))
                 {
                     return Mem.F32(0x800C8E5Cu);
                 }
-                return new ObjDef(new Obj(a).DefPtr).unk1C;
+                return new ObjDef(new Obj(a).DefPtr).ShapeHeight_1C;
             case 5:
-                return new ObjDef(new Obj(a).DefPtr).u18.f;
+                return new ObjDef(new Obj(a).DefPtr).BaseHealth.f;
             case 8:
-                if (((new ObjDef(new Obj(a).DefPtr).flags14 & (uint)(1)) != 0u))
+                if (((new ObjDef(new Obj(a).DefPtr).Params & (uint)(1)) != 0u))
                 {
                     return Mem.F32(0x800C8E60u);
                 }
-                return new ObjDef(new Obj(a).DefPtr).u18.f;
+                return new ObjDef(new Obj(a).DefPtr).BaseHealth.f;
             default:
                 return Mem.F32(0x800C8E64u);
             }
@@ -5087,13 +5087,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E3B4", (uint)a);
             uint d = new Obj(a).DefPtr;
-            switch (new ObjDef(d).type)
+            switch (new ObjDef(d).Kind)
             {
             case 11:
-                return new ObjDef(d).unkF8;
+                return new ObjDef(d).CharacterDeadHeight;
             case 1:
             case 4:
-                return new ObjDef(d).unk34;
+                return new ObjDef(d).CreatureDeadHeight;
             default:
                 return 0.0f;
             }
@@ -5113,9 +5113,9 @@ public static partial class Game
                 return new Obj(a).BottomOffset;
             }
             d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 0))
+            if ((new ObjDef(d).Kind == 0))
             {
-                return new ObjDef(d).unk20;
+                return new ObjDef(d).ShapeParam_20;
             }
             return 0.0f;
         }
@@ -5128,19 +5128,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E454", (uint)a);
             uint d = new Obj(a).DefPtr;
-            switch (new ObjDef(d).type)
+            switch (new ObjDef(d).Kind)
             {
             case 11:
                 if (((((int)(new Obj(a).Type) == 1) && ((new Obj(a).Flags & (uint)(3145728)) != 0u)) && (new Obj(a).OwnerPtr.unk80C_ != 0u)))
                 {
                     return Actor_GetCollisionRadius_0024E454(new Obj(a).OwnerPtr.unk80C_);
                 }
-                return new ObjDef(new Obj(a).DefPtr).unkF0;
+                return new ObjDef(new Obj(a).DefPtr).CharacterCollisionRadius;
             case 1:
             case 4:
-                return new ObjDef(d).unk2C;
+                return new ObjDef(d).CreatureCollisionRadius;
             case 5:
-                return new ObjDef(d).u18.f;
+                return new ObjDef(d).BaseHealth.f;
             default:
                 if (((int)(new Obj(a).Type) == 2))
                 {
@@ -5159,9 +5159,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E534", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return new ObjDef(d).unk50;
+                return new ObjDef(d).CreatureParam_50;
             }
             return 0.0f;
         }
@@ -5174,9 +5174,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E560", (uint)a);
             uint d = new Obj(a).DefPtr;
-            if ((new ObjDef(d).type == 1))
+            if ((new ObjDef(d).Kind == 1))
             {
-                return new ObjDef(d).unk3C;
+                return new ObjDef(d).SightRange;
             }
             return 0.0f;
         }

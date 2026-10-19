@@ -212,7 +212,7 @@ public static partial class Game
                                 ok = 1;
                                 if ((Mem.S32(Gv.TeamPlayEnabled) != 0))
                                 {
-                                    ok = (((int)(new M1Actor(o).PlayerEntryPtr.b92) != (int)(new M1Actor(p).PlayerEntryPtr.b92)) ? 1 : 0);
+                                    ok = (((int)(new M1Actor(o).PlayerEntryPtr.TeamId) != (int)(new M1Actor(p).PlayerEntryPtr.TeamId)) ? 1 : 0);
                                 }
                             }
                             if ((ok != 0))
@@ -413,7 +413,7 @@ public static partial class Game
             new B01State(state).DamageCallback_Set(0x00203E78u);
             new B01State(state).TransformCallback_Set(0x00202E4Cu);
             new B01State(state).PartMatrixCallback_Set(0x00203DF0u);
-            if (((int)(new B01Actor(actor).unkE4) == 1036))
+            if (((int)(new B01Actor(actor).TypeId) == 1036))
             {
                 if ((0x00203DF0u != 0u))
                 {
@@ -446,7 +446,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00203908", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            if (((int)(new B01Actor(actor).unkE4) == 1036))
+            if (((int)(new B01Actor(actor).TypeId) == 1036))
             {
                 new B01State(state).ClassVar_124.f_Set((-1.57079649f));
             }
@@ -460,12 +460,12 @@ public static partial class Game
             {
                 if (((new B01Info(info).Flags & (uint)(4096)) != 0u))
                 {
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~8192))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                 }
                 if (((new B01Info(info).Flags & (uint)(2048)) != 0u))
                 {
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                     Actor_DispatchEvent(actor, state, 0);
                 }
                 else
@@ -541,7 +541,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203A94", (uint)obj);
-            int v = new Obj203A94(obj).def.unk1C;
+            int v = new Obj203A94(obj).def.ShapeHeight_1C;
             if ((v != 0))
             {
                 return v;
@@ -600,10 +600,10 @@ public static partial class Game
             new B01State(state).DamageCallback_Set(0u);
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             Level_FireEntityTriggers(actor, 1, (int)(actor));
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~65536))));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~65536))));
             if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != 4))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(134217728)));
             }
         }
     }
@@ -712,11 +712,11 @@ public static partial class Game
             uint info = (new B01Hit(hit).actor.def_ + (uint)20);
             if ((new B01Hit(hit).unk4 == new B01Info(info).TravelTurn_3C))
             {
-                Math_MtxPostRotateX(mtx, new B01Hit(hit).actor.unk294);
+                Math_MtxPostRotateX(mtx, new B01Hit(hit).actor.Pitch_294);
             }
             if ((new B01Hit(hit).unk4 == new B01Info(info).PartId_40.i))
             {
-                Math_MtxPostRotateZ(mtx, (new B01Hit(hit).actor.unk20C - new B01Hit(hit).actor.unk6C));
+                Math_MtxPostRotateZ(mtx, (new B01Hit(hit).actor.unk20C - new B01Hit(hit).actor.Yaw));
             }
         }
     }
@@ -751,7 +751,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new Actor(owner).PlayerEntryPtr.unk92) == (int)(new Actor(other).PlayerEntryPtr.unk92))))
+            if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new Actor(owner).PlayerEntryPtr.TeamId) == (int)(new Actor(other).PlayerEntryPtr.TeamId))))
             {
                 return 0;
             }

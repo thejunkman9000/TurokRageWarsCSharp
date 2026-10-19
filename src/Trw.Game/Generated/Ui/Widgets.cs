@@ -92,52 +92,52 @@ public static partial class Game
             int new_var = 0;
             if ((w != 0u))
             {
-                if ((new Widget_v2(w).child_ != 0u))
+                if ((new Widget_v2(w).NextSiblingPtr != 0u))
                 {
-                    UiTree_ScaleForHiRes(new Widget_v2(w).child_, default(uint));
+                    UiTree_ScaleForHiRes(new Widget_v2(w).NextSiblingPtr, default(uint));
                 }
-                if ((new Widget_v2(w).sibling_ != 0u))
+                if ((new Widget_v2(w).FirstChildPtr != 0u))
                 {
-                    UiTree_ScaleForHiRes(new Widget_v2(w).sibling_, w);
+                    UiTree_ScaleForHiRes(new Widget_v2(w).FirstChildPtr, w);
                 }
-                if (((int)(new Widget_v2(w).type) == 8))
+                if (((int)(new Widget_v2(w).Type) == 8))
                 {
-                    if ((new Widget_v2(w).sub2C_ != 0u))
+                    if ((new Widget_v2(w).NormalNodePtr != 0u))
                     {
-                        UiTree_ScaleForHiRes(new Widget_v2(w).sub2C_, w);
+                        UiTree_ScaleForHiRes(new Widget_v2(w).NormalNodePtr, w);
                     }
-                    if ((new Widget_v2(w).sub34_ != 0u))
+                    if ((new Widget_v2(w).DisabledNodePtr != 0u))
                     {
-                        UiTree_ScaleForHiRes(new Widget_v2(w).sub34_, w);
+                        UiTree_ScaleForHiRes(new Widget_v2(w).DisabledNodePtr, w);
                     }
-                    if ((new Widget_v2(w).sub30_ != 0u))
+                    if ((new Widget_v2(w).HighlightNodePtr != 0u))
                     {
-                        UiTree_ScaleForHiRes(new Widget_v2(w).sub30_, w);
+                        UiTree_ScaleForHiRes(new Widget_v2(w).HighlightNodePtr, w);
                     }
                 }
                 new_var = 4;
-                if ((new Widget_v2(w).scaled == 0))
+                if ((new Widget_v2(w).IsHiResScaled == 0))
                 {
                     float sx = Mem.F32(0x800CAF48u);
                     float sy = Mem.F32(0x800CAF4Cu);
-                    if (((int)(new Widget_v2(w).type) == new_var))
+                    if (((int)(new Widget_v2(w).Type) == new_var))
                     {
-                        new Widget_v2(w).sx_Set(sx);
-                        new Widget_v2(w).sy_Set(sy);
+                        new Widget_v2(w).ScaleX_Set(sx);
+                        new Widget_v2(w).ScaleY_Set(sy);
                     }
                     else
                     {
                         float t = 0f;
-                        t = ((float)((int)(new Widget_v2(w).x)) * sx);
-                        new Widget_v2(w).x_Set((short)(int)(t));
-                        t = ((float)((int)(new Widget_v2(w).y)) * sy);
-                        new Widget_v2(w).y_Set((short)(int)(t));
-                        t = ((float)((int)(new Widget_v2(w).w)) * sx);
-                        new Widget_v2(w).w_Set((short)(int)(t));
-                        t = ((float)((int)(new Widget_v2(w).h)) * sy);
-                        new Widget_v2(w).h_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).X)) * sx);
+                        new Widget_v2(w).X_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).Y)) * sy);
+                        new Widget_v2(w).Y_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).Width)) * sx);
+                        new Widget_v2(w).Width_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).Height)) * sy);
+                        new Widget_v2(w).Height_Set((short)(int)(t));
                     }
-                    new Widget_v2(w).scaled_Set(1);
+                    new Widget_v2(w).IsHiResScaled_Set(1);
                 }
             }
         }
@@ -1316,7 +1316,7 @@ public static partial class Game
                 int pushed = 0;
                 if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), n, (new O02Blob40(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(new O02Node_v2(n).flags) & 512) != 0))
+                    if ((((int)(new O02Node_v2(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -1324,7 +1324,7 @@ public static partial class Game
                         Ui_SetClipRect(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    UiNode_DrawSiblings(new O02Node_v2(n).child_, _fp);
+                    UiNode_DrawSiblings(new O02Node_v2(n).FirstChildPtr, _fp);
                     if ((pushed != 0))
                     {
                         Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
@@ -1460,7 +1460,7 @@ public static partial class Game
                 uint e = 0u;
                 if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(new O02Node_v3(n).flags) & 512) != 0))
+                    if ((((int)(new O02Node_v3(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -1506,7 +1506,7 @@ public static partial class Game
                     {
                         UiText_FlushGlyphBatches();
                     }
-                    h = (int)(Texture_GetResourceId((uint)(new O02Node_v3(n).f2C), (uint)(1), default(uint), default(uint)));
+                    h = (int)(Texture_GetResourceId((uint)(new O02Node_v3(n).ImageIndex), (uint)(1), default(uint), default(uint)));
                     col = (((int)(new O02Ctx(_fp).col) << (int)24) | 16777215);
                     if (((Mem.S32(Gv.Ui_LastBatchRenderKey) != 340787) || (Mem.S32(Gv.Ui_DrawModeValid) == 0)))
                     {
@@ -1543,15 +1543,15 @@ public static partial class Game
                 if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     {
-                        int t = ((int)(Mem.U8((new O02Quad(n).col.P + (uint)(0 * 4)))) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(1 * 4)))));
-                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(2 * 4)))));
-                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(3 * 4)))));
+                        int t = ((int)(Mem.U8((new O02Quad(n).CornerColor0.P + (uint)(0 * 4)))) | (int)(Mem.U8((new O02Quad(n).CornerColor0.P + (uint)(1 * 4)))));
+                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).CornerColor0.P + (uint)(2 * 4)))));
+                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).CornerColor0.P + (uint)(3 * 4)))));
                         if ((t == 0))
                         {
                             return;
                         }
                     }
-                    if ((((int)(new O02Quad(n).flags) & 512) != 0))
+                    if ((((int)(new O02Quad(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -1604,7 +1604,7 @@ public static partial class Game
                         Mem.Set(Gv.Ui_DrawModeValid, 1);
                     }
                     Gfx_LoadTextureImage((uint)(0));
-                    Gfx_DrawFilledRect((float)(new O02Rect((_fp + 56u)).w[(int)(0)]), (float)(new O02Rect((_fp + 56u)).w[(int)(2)]), (int)Cpu.F2U((float)(0)), (float)(((new O02Rect((_fp + 56u)).w[(int)(1)] - new O02Rect((_fp + 56u)).w[(int)(0)]) + 1)), (int)Cpu.F2U((float)(((new O02Rect((_fp + 56u)).w[(int)(3)] - new O02Rect((_fp + 56u)).w[(int)(2)]) + 1))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(0 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(0 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(1 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(1 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(2 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(2 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(3 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(3 * 4))) >> (int)24))) / 255) << (int)24)))));
+                    Gfx_DrawFilledRect((float)(new O02Rect((_fp + 56u)).w[(int)(0)]), (float)(new O02Rect((_fp + 56u)).w[(int)(2)]), (int)Cpu.F2U((float)(0)), (float)(((new O02Rect((_fp + 56u)).w[(int)(1)] - new O02Rect((_fp + 56u)).w[(int)(0)]) + 1)), (int)Cpu.F2U((float)(((new O02Rect((_fp + 56u)).w[(int)(3)] - new O02Rect((_fp + 56u)).w[(int)(2)]) + 1))), (int)(((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(0 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(0 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(1 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(1 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(2 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(2 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(3 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).CornerColor0.P + (uint)(3 * 4))) >> (int)24))) / 255) << (int)24)))));
                     if ((pushed != 0))
                     {
                         Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
@@ -2173,7 +2173,7 @@ public static partial class Game
                 int pushed = 0;
                 if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(new O02Node(n).flags) & 512) != 0))
+                    if ((((int)(new O02Node(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -2184,7 +2184,7 @@ public static partial class Game
                         Ui_SetClipRect(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    UiNode_DrawSiblings(new O02Node(n).child_, _fp);
+                    UiNode_DrawSiblings(new O02Node(n).FirstChildPtr, _fp);
                     if ((pushed != 0))
                     {
                         Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
@@ -2208,7 +2208,7 @@ public static partial class Game
                 Mem.Set(Gv.Ui_DrawModeValid, 0);
                 if ((UiNode_ComputeRect((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(new O02Node(n).flags) & 512) != 0))
+                    if ((((int)(new O02Node(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 72u), (_fp + 56u), 16);
@@ -2219,7 +2219,7 @@ public static partial class Game
                         Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    UiNode_DrawSiblings(new O02Node(n).child_, _fp);
+                    UiNode_DrawSiblings(new O02Node(n).FirstChildPtr, _fp);
                     if ((pushed != 0))
                     {
                         Ui_SetClipRect(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
@@ -2244,17 +2244,17 @@ public static partial class Game
                 {
                     if (((new S_ctx2(_fp).w2 & 256) != 0))
                     {
-                        s = new O02Node(n).f34;
+                        s = new O02Node(n).DisabledNodePtr;
                     }
                     else
                     {
                         if (((new S_ctx2(_fp).w2 & 64) != 0))
                         {
-                            s = new O02Node(n).f30;
+                            s = new O02Node(n).HighlightNodePtr;
                         }
                         else
                         {
-                            s = new O02Node(n).f2C;
+                            s = new O02Node(n).NormalNodePtr;
                         }
                     }
                     if ((s != 0u))
@@ -2279,7 +2279,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84", (uint)n, (uint)c_in);
                 int f = 0;
-                switch ((int)(new O02Node(n).type))
+                switch ((int)(new O02Node(n).Type))
                 {
                 case 3:
                     UiNode_DrawImage(n, _fp);
@@ -2300,7 +2300,7 @@ public static partial class Game
                     func_0040DB84_ovr_c638(n, _fp);
                     break;
                 default:
-                    f = (Menu_GetClassFlag((int)(new O02Node(n).type)) & 1);
+                    f = (Menu_GetClassFlag((int)(new O02Node(n).Type)) & 1);
                     if (!(f != 0))
                     {
                         Ui_ResetModeCache_002A28FC();
@@ -2327,14 +2327,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040E154", (uint)r0, (uint)r1, (uint)n, (uint)c);
-            uint fl = (uint)(new S_node_v2(n).flags);
+            uint fl = (uint)(new S_node_v2(n).Flags);
             uint cf = new S_ctx_v2(c).flags;
             float sx = new S_ctx_v2(c).sx;
             float sy = new S_ctx_v2(c).sy;
             int f800 = (int)((ushort)((fl & (uint)(2048))));
             int f400 = (int)((ushort)((fl & (uint)(1024))));
-            int t6 = ((int)((short)(new S_node_v2(n).w)) >> (int)1);
-            int t7 = ((int)((short)(new S_node_v2(n).h)) >> (int)1);
+            int t6 = ((int)((short)(new S_node_v2(n).Width)) >> (int)1);
+            int t7 = ((int)((short)(new S_node_v2(n).Height)) >> (int)1);
             int t2 = 0;
             int t3 = 0;
             int cx = 0;
@@ -2343,10 +2343,10 @@ public static partial class Game
             {
                 new S_ctx_v2(c).flags_Set((cf | (fl & (uint)(320))));
             }
-            new S_ctx_v2(c).flags_Set((new S_ctx_v2(c).flags | (uint)(((int)(new S_node_v2(n).flags) & 1545))));
-            if (((int)(new S_node_v2(n).alpha) < 255))
+            new S_ctx_v2(c).flags_Set((new S_ctx_v2(c).flags | (uint)(((int)(new S_node_v2(n).Flags) & 1545))));
+            if (((int)(new S_node_v2(n).Alpha) < 255))
             {
-                new S_ctx_v2(c).alpha_Set((byte)((((int)(new S_ctx_v2(c).alpha) * (int)(new S_node_v2(n).alpha)) / 255)));
+                new S_ctx_v2(c).alpha_Set((byte)((((int)(new S_ctx_v2(c).alpha) * (int)(new S_node_v2(n).Alpha)) / 255)));
             }
             if (((new S_ctx_v2(c).flags & (uint)(1)) != 0u))
             {
@@ -2356,25 +2356,25 @@ public static partial class Game
             {
                 return 0;
             }
-            if (!(((int)(new S_node_v2(n).flags) & 8) != 0))
+            if (!(((int)(new S_node_v2(n).Flags) & 8) != 0))
             {
                 return 0;
             }
-            if (((((new S_ctx_v2(c).sx != 1.0f) || (new S_ctx_v2(c).sy != 1.0f)) || (new S_node_v2(n).sx != 1.0f)) || (new S_node_v2(n).sy != 1.0f)))
+            if (((((new S_ctx_v2(c).sx != 1.0f) || (new S_ctx_v2(c).sy != 1.0f)) || (new S_node_v2(n).ScaleX != 1.0f)) || (new S_node_v2(n).ScaleY != 1.0f)))
             {
                 float a = 0f;
                 float b = 0f;
                 float d = 0f;
-                a = ((float)(((int)(new S_node_v2(n).x) + (int)(new S_node_v2(n).ox))) + ((float)((short)(new S_node_v2(n).w)) * 0.5f));
+                a = ((float)(((int)(new S_node_v2(n).X) + (int)(new S_node_v2(n).OffsetX))) + ((float)((short)(new S_node_v2(n).Width)) * 0.5f));
                 a = (a * new S_ctx_v2(c).sx);
-                b = ((float)(((int)(new S_node_v2(n).y) + (int)(new S_node_v2(n).oy))) + ((float)((short)(new S_node_v2(n).h)) * 0.5f));
+                b = ((float)(((int)(new S_node_v2(n).Y) + (int)(new S_node_v2(n).OffsetY))) + ((float)((short)(new S_node_v2(n).Height)) * 0.5f));
                 b = (b * new S_ctx_v2(c).sy);
                 cx = (int)(a);
-                new S_ctx_v2(c).sx_Set((float)((float)(new S_ctx_v2(c).sx) * new S_node_v2(n).sx));
-                new S_ctx_v2(c).sy_Set((float)((float)(new S_ctx_v2(c).sy) * new S_node_v2(n).sy));
+                new S_ctx_v2(c).sx_Set((float)((float)(new S_ctx_v2(c).sx) * new S_node_v2(n).ScaleX));
+                new S_ctx_v2(c).sy_Set((float)((float)(new S_ctx_v2(c).sy) * new S_node_v2(n).ScaleY));
                 cy = (int)(b);
-                t2 = (int)((((float)((short)(new S_node_v2(n).w)) * new S_ctx_v2(c).sx) * 0.5f));
-                d = (((float)((short)(new S_node_v2(n).h)) * new S_ctx_v2(c).sy) * 0.5f);
+                t2 = (int)((((float)((short)(new S_node_v2(n).Width)) * new S_ctx_v2(c).sx) * 0.5f));
+                d = (((float)((short)(new S_node_v2(n).Height)) * new S_ctx_v2(c).sy) * 0.5f);
                 t3 = (int)(d);
                 new O02Rect(r0).w.Set((int)(0), ((cx - t2) + new S_ctx_v2(c).ox));
                 new O02Rect(r0).w.Set((int)(1), ((cx + t2) + new S_ctx_v2(c).ox));
@@ -2383,15 +2383,15 @@ public static partial class Game
             }
             else
             {
-                new O02Rect(r0).w.Set((int)(0), ((new S_ctx_v2(c).ox + (int)(new S_node_v2(n).x)) + (int)(new S_node_v2(n).ox)));
-                new O02Rect(r0).w.Set((int)(2), ((new S_ctx_v2(c).oy + (int)(new S_node_v2(n).y)) + (int)(new S_node_v2(n).oy)));
-                new O02Rect(r0).w.Set((int)(1), ((new O02Rect(r0).w[(int)(0)] + (int)((short)(new S_node_v2(n).w))) - 1));
-                new O02Rect(r0).w.Set((int)(3), ((new O02Rect(r0).w[(int)(2)] + (int)((short)(new S_node_v2(n).h))) - 1));
-                t2 = ((int)((short)(new S_node_v2(n).w)) >> (int)1);
-                t3 = ((int)((short)(new S_node_v2(n).h)) >> (int)1);
+                new O02Rect(r0).w.Set((int)(0), ((new S_ctx_v2(c).ox + (int)(new S_node_v2(n).X)) + (int)(new S_node_v2(n).OffsetX)));
+                new O02Rect(r0).w.Set((int)(2), ((new S_ctx_v2(c).oy + (int)(new S_node_v2(n).Y)) + (int)(new S_node_v2(n).OffsetY)));
+                new O02Rect(r0).w.Set((int)(1), ((new O02Rect(r0).w[(int)(0)] + (int)((short)(new S_node_v2(n).Width))) - 1));
+                new O02Rect(r0).w.Set((int)(3), ((new O02Rect(r0).w[(int)(2)] + (int)((short)(new S_node_v2(n).Height))) - 1));
+                t2 = ((int)((short)(new S_node_v2(n).Width)) >> (int)1);
+                t3 = ((int)((short)(new S_node_v2(n).Height)) >> (int)1);
             }
-            cx = (int)(((float)(((int)(new S_node_v2(n).x) + ((int)((short)(new S_node_v2(n).w)) / 2))) * sx));
-            cy = (int)(((float)(((int)(new S_node_v2(n).y) + ((int)((short)(new S_node_v2(n).h)) / 2))) * sy));
+            cx = (int)(((float)(((int)(new S_node_v2(n).X) + ((int)((short)(new S_node_v2(n).Width)) / 2))) * sx));
+            cy = (int)(((float)(((int)(new S_node_v2(n).Y) + ((int)((short)(new S_node_v2(n).Height)) / 2))) * sy));
             if (((f800 != 0) && (f400 != 0)))
             {
                 Mem.Copy(r1, r0, 16);
@@ -2402,22 +2402,22 @@ public static partial class Game
                 {
                     if ((sx != 1.0f))
                     {
-                        new O02Rect(r1).w.Set((int)(0), ((int)(((float)(new S_node_v2(n).x) * sx)) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(0), ((int)(((float)(new S_node_v2(n).X) * sx)) + new S_ctx_v2(c).ox));
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(0), ((int)(new S_node_v2(n).x) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(0), ((int)(new S_node_v2(n).X) + new S_ctx_v2(c).ox));
                     }
-                    new O02Rect(r1).w.Set((int)(1), (new O02Rect(r1).w[(int)(0)] + (int)((short)(new S_node_v2(n).w))));
+                    new O02Rect(r1).w.Set((int)(1), (new O02Rect(r1).w[(int)(0)] + (int)((short)(new S_node_v2(n).Width))));
                     if ((sy != 1.0f))
                     {
-                        new O02Rect(r1).w.Set((int)(2), ((int)(((float)(new S_node_v2(n).y) * sy)) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(2), ((int)(((float)(new S_node_v2(n).Y) * sy)) + new S_ctx_v2(c).oy));
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(2), ((int)(new S_node_v2(n).y) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(2), ((int)(new S_node_v2(n).Y) + new S_ctx_v2(c).oy));
                     }
-                    new O02Rect(r1).w.Set((int)(3), (new O02Rect(r1).w[(int)(2)] + (int)((short)(new S_node_v2(n).h))));
+                    new O02Rect(r1).w.Set((int)(3), (new O02Rect(r1).w[(int)(2)] + (int)((short)(new S_node_v2(n).Height))));
                 }
                 else
                 {
@@ -2430,10 +2430,10 @@ public static partial class Game
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(0), (((cx - t6) + (int)(new S_node_v2(n).ox)) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(2), (((cy - t7) + (int)(new S_node_v2(n).oy)) + new S_ctx_v2(c).oy));
-                        new O02Rect(r1).w.Set((int)(1), (((cx + t6) + (int)(new S_node_v2(n).ox)) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(3), (((cy + t7) + (int)(new S_node_v2(n).oy)) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(0), (((cx - t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(2), (((cy - t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(1), (((cx + t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(3), (((cy + t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).oy));
                     }
                 }
             }
@@ -2501,7 +2501,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040E6FC", (uint)n, (uint)c_in);
                 int pushed = 0;
-                if ((((int)(new S_func_0040E6FC(n).flags) & 8) != 0))
+                if ((((int)(new S_func_0040E6FC(n).Flags) & 8) != 0))
                 {
                     Mem.Copy((_fp + 104u), _fp, 40);
                     if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx((_fp + 104u)).w.P + (uint)(0 * 4))) != 0))
@@ -2541,11 +2541,11 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040E87C", (uint)n, (uint)b_in);
                 while ((n != 0u))
                 {
-                    if ((((int)(new O02Node_v4(n).flags) & 8) != 0))
+                    if ((((int)(new O02Node_v4(n).Flags) & 8) != 0))
                     {
                         UiNode_Draw(n, _fp);
                     }
-                    n = new O02Node_v4(n).next_;
+                    n = new O02Node_v4(n).NextSiblingPtr;
                 }
             }
         }
@@ -2560,11 +2560,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040E958", (uint)p, (uint)on);
             if ((on != 0))
             {
-                new O02Flags(p).flags_Set((ushort)((int)(new O02Flags(p).flags) | 8));
+                new O02Flags(p).Flags_Set((ushort)((int)(new O02Flags(p).Flags) | 8));
             }
             else
             {
-                new O02Flags(p).flags_Set((ushort)((int)(new O02Flags(p).flags) & (~8)));
+                new O02Flags(p).Flags_Set((ushort)((int)(new O02Flags(p).Flags) & (~8)));
             }
         }
     }
@@ -2577,11 +2577,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040E980", (uint)p, (uint)on);
             if ((on != 0))
             {
-                new S_func_0040E980(p).flags_Set((ushort)((int)(new S_func_0040E980(p).flags) | 1));
+                new S_func_0040E980(p).Flags_Set((ushort)((int)(new S_func_0040E980(p).Flags) | 1));
             }
             else
             {
-                new S_func_0040E980(p).flags_Set((ushort)((int)(new S_func_0040E980(p).flags) & (~1)));
+                new S_func_0040E980(p).Flags_Set((ushort)((int)(new S_func_0040E980(p).Flags) & (~1)));
             }
         }
     }
@@ -2594,11 +2594,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040E9A8", (uint)p, (uint)on);
             if ((on != 0))
             {
-                new S_func_0040E9A8(p).flags_Set((ushort)((int)(new S_func_0040E9A8(p).flags) | 64));
+                new S_func_0040E9A8(p).Flags_Set((ushort)((int)(new S_func_0040E9A8(p).Flags) | 64));
             }
             else
             {
-                new S_func_0040E9A8(p).flags_Set((ushort)((int)(new S_func_0040E9A8(p).flags) & (~64)));
+                new S_func_0040E9A8(p).Flags_Set((ushort)((int)(new S_func_0040E9A8(p).Flags) & (~64)));
             }
         }
     }
@@ -2611,11 +2611,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040E9D0", (uint)p, (uint)on);
             if ((on != 0))
             {
-                new S_func_0040E9D0(p).flags_Set((ushort)((int)(new S_func_0040E9D0(p).flags) | 256));
+                new S_func_0040E9D0(p).Flags_Set((ushort)((int)(new S_func_0040E9D0(p).Flags) | 256));
             }
             else
             {
-                new S_func_0040E9D0(p).flags_Set((ushort)((int)(new S_func_0040E9D0(p).flags) & (~256)));
+                new S_func_0040E9D0(p).Flags_Set((ushort)((int)(new S_func_0040E9D0(p).Flags) & (~256)));
             }
         }
     }
@@ -2649,25 +2649,25 @@ public static partial class Game
                     }
                     if ((new S_hit(hit).hit_ == 0u))
                     {
-                        new S_st(_fp).x_Set((int)((int)(new S_st(_fp).x) + (int)(new S_n(n).x)));
-                        new S_st(_fp).y_Set((int)((int)(new S_st(_fp).y) + (int)(new S_n(n).y)));
+                        new S_st(_fp).x_Set((int)((int)(new S_st(_fp).x) + (int)(new S_n(n).X)));
+                        new S_st(_fp).y_Set((int)((int)(new S_st(_fp).y) + (int)(new S_n(n).Y)));
                         if ((new S_n(n).b_ != 0u))
                         {
                             UiTree_HitTest(hit, new S_n(n).b_, _fp, px, py);
                         }
                         if ((new S_hit(hit).hit_ == 0u))
                         {
-                            if (((int)(new S_n(n).id) != (-1)))
+                            if (((int)(new S_n(n).Id) != (-1)))
                             {
                                 if (!(px < new S_st(_fp).x))
                                 {
-                                    if (!((new S_st(_fp).x + (int)(new S_n(n).w)) < px))
+                                    if (!((new S_st(_fp).x + (int)(new S_n(n).Width)) < px))
                                     {
                                         if (!(py < new S_st(_fp).y))
                                         {
-                                            if (!((new S_st(_fp).y + (int)(new S_n(n).h)) < py))
+                                            if (!((new S_st(_fp).y + (int)(new S_n(n).Height)) < py))
                                             {
-                                                if ((Menu_GetClassHandler((int)(new S_n(n).type)) != 0))
+                                                if ((Menu_GetClassHandler((int)(new S_n(n).Type)) != 0))
                                                 {
                                                     new S_hit(hit).hit__Set(n);
                                                 }
@@ -2693,7 +2693,7 @@ public static partial class Game
             int f = 0;
             while ((n != 0u))
             {
-                f = (int)((int)(f) | (int)(new S_func_0040EBC8(n).flags));
+                f = (int)((int)(f) | (int)(new S_func_0040EBC8(n).Flags));
                 n = new S_func_0040EBC8(n).next_;
             }
             return f;
@@ -2709,7 +2709,7 @@ public static partial class Game
             uint f = (uint)(0);
             while ((n != 0u))
             {
-                f = (uint)((uint)(f) | (uint)(new S_func_0040EBE8(n).flags));
+                f = (uint)((uint)(f) | (uint)(new S_func_0040EBE8(n).Flags));
                 n = new S_func_0040EBE8(n).next_;
             }
             return (int)(((f >> (int)3) & (uint)(1)));
@@ -2725,7 +2725,7 @@ public static partial class Game
             int f = 0;
             while ((n != 0u))
             {
-                f = (int)((int)(f) | (int)(new S_func_0040EC0C(n).flags));
+                f = (int)((int)(f) | (int)(new S_func_0040EC0C(n).Flags));
                 n = new S_func_0040EC0C(n).next_;
             }
             return (f & 1);
@@ -2741,7 +2741,7 @@ public static partial class Game
             uint f = (uint)(0);
             while ((n != 0u))
             {
-                f = (uint)((uint)(f) | (uint)(new S_func_0040EC2C(n).flags));
+                f = (uint)((uint)(f) | (uint)(new S_func_0040EC2C(n).Flags));
                 n = new S_func_0040EC2C(n).next_;
             }
             return (int)(((f >> (int)6) & (uint)(1)));
@@ -2757,7 +2757,7 @@ public static partial class Game
             uint f = (uint)(0);
             while ((n != 0u))
             {
-                f = (uint)((uint)(f) | (uint)(new S_func_0040EC50(n).flags));
+                f = (uint)((uint)(f) | (uint)(new S_func_0040EC50(n).Flags));
                 n = new S_func_0040EC50(n).next_;
             }
             return (int)(((f >> (int)8) & (uint)(1)));
@@ -2770,13 +2770,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040EC74", (uint)n, (uint)px, (uint)py);
-            int x = (int)(new O02Node_v5(n).x);
-            int y = (int)(new O02Node_v5(n).y);
-            while ((new O02Node_v5(n).next_ != 0u))
+            int x = (int)(new O02Node_v5(n).X);
+            int y = (int)(new O02Node_v5(n).Y);
+            while ((new O02Node_v5(n).ParentPtr != 0u))
             {
-                n = new O02Node_v5(n).next_;
-                x = (int)((int)(x) + (int)(new O02Node_v5(n).x));
-                y = (int)((int)(y) + (int)(new O02Node_v5(n).y));
+                n = new O02Node_v5(n).ParentPtr;
+                x = (int)((int)(x) + (int)(new O02Node_v5(n).X));
+                y = (int)((int)(y) + (int)(new O02Node_v5(n).Y));
             }
             Mem.Set(px, x);
             Mem.Set(py, y);
@@ -2953,7 +2953,7 @@ public static partial class Game
             childId = id;
             while (((node != 0u) && (found == 0u)))
             {
-                if (((new Tree_func_8040EDE4_de(node).next_ != 0u) && ((int)(new Tree_func_8040EDE4_de(node).next.id) == (int)((ushort)(id)))))
+                if (((new Tree_func_8040EDE4_de(node).next_ != 0u) && ((int)(new Tree_func_8040EDE4_de(node).NextSiblingPtr.Id) == (int)((ushort)(id)))))
                 {
                     found = node;
                 }
@@ -3042,7 +3042,7 @@ public static partial class Game
             childId = id;
             while (((node != 0u) && (found == 0u)))
             {
-                if (((new Tree_func_8040EEA4_de(node).next_ != 0u) && ((int)(new Tree_func_8040EEA4_de(node).next.id) == (int)((ushort)(id)))))
+                if (((new Tree_func_8040EEA4_de(node).next_ != 0u) && ((int)(new Tree_func_8040EEA4_de(node).NextSiblingPtr.Id) == (int)((ushort)(id)))))
                 {
                     found = node;
                 }
@@ -3205,7 +3205,7 @@ public static partial class Game
                 uint c = 0u;
                 pa = a;
                 L_L1: ;
-                if (((int)(new S_func_0040F0C4(pa).type) == 2))
+                if (((int)(new S_func_0040F0C4(pa).Type) == 2))
                 {
                     goto L_L2;
                 }
@@ -3252,7 +3252,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new S_func_0040F0C4(a).parent.child__Set(b);
+                    new S_func_0040F0C4(a).ParentPtr.child__Set(b);
                 }
                 if ((pb != 0u))
                 {
@@ -3260,7 +3260,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new S_func_0040F0C4(b).parent.child__Set(a);
+                    new S_func_0040F0C4(b).ParentPtr.child__Set(a);
                 }
                 Mem.Copy(_fp, a, 44);
                 new S_func_0040F0C4(a).next__Set(new S_func_0040F0C4(b).next_);
@@ -3278,8 +3278,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040F27C", (uint)p, (uint)a, (uint)b);
-            new S_func_0040F27C(p).a_Set((byte)(a));
-            new S_func_0040F27C(p).b_Set((byte)(b));
+            new S_func_0040F27C(p).FontId_Set((byte)(a));
+            new S_func_0040F27C(p).PaletteId_Set((byte)(b));
         }
     }
 
@@ -3309,10 +3309,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040F298", (uint)p, (uint)a, (uint)b, (uint)c);
-            new S_func_0040F298(p).a_Set(a);
-            new S_func_0040F298(p).b_Set(b);
-            new S_func_0040F298(p).c_Set(c);
-            new S_func_0040F298(p).d_Set(d);
+            new S_func_0040F298(p).CornerColor0_Set(a);
+            new S_func_0040F298(p).CornerColor1_Set(b);
+            new S_func_0040F298(p).CornerColor2_Set(c);
+            new S_func_0040F298(p).CornerColor3_Set(d);
         }
     }
 
@@ -3346,8 +3346,8 @@ public static partial class Game
                     }
                     if ((s != 0u))
                     {
-                        new S_ctx(_fp).w0_Set((int)((int)(new S_ctx(_fp).w0) - (int)(((float)((int)(new S_sub(s).x)) * new S_ctx(_fp).f3))));
-                        new S_ctx(_fp).w1_Set((int)((int)(new S_ctx(_fp).w1) - (int)(((float)((int)(new S_sub(s).y)) * new S_ctx(_fp).f4))));
+                        new S_ctx(_fp).w0_Set((int)((int)(new S_ctx(_fp).w0) - (int)(((float)((int)(new S_sub(s).X)) * new S_ctx(_fp).f3))));
+                        new S_ctx(_fp).w1_Set((int)((int)(new S_ctx(_fp).w1) - (int)(((float)((int)(new S_sub(s).Y)) * new S_ctx(_fp).f4))));
                         UiNode_Draw(s, _fp);
                     }
                 }
@@ -3370,7 +3370,7 @@ public static partial class Game
                 Mem.Set(Gv.Ui_DrawModeValid, 0);
                 if ((UiNode_ComputeRect((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(new O02Node_v2(n).flags) & 512) != 0))
+                    if ((((int)(new O02Node_v2(n).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 72u), (_fp + 56u), 16);
@@ -3381,7 +3381,7 @@ public static partial class Game
                         Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    UiNode_DrawSiblings(new O02Node_v2(n).child_, _fp);
+                    UiNode_DrawSiblings(new O02Node_v2(n).FirstChildPtr, _fp);
                     if ((pushed != 0))
                     {
                         Ui_SetClipRect(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
@@ -3479,7 +3479,7 @@ public static partial class Game
             int p = 0;
             _f0: ;
             if (!((n != 0u))) goto _f1;
-            if (!((((int)(new O02R(n).flags) & 16) != 0))) goto _f2;
+            if (!((((int)(new O02R(n).Flags) & 16) != 0))) goto _f2;
             if (!((new O02R(n).f2C != 0))) goto _f3;
             new O02R(n).f2C_Set(((new O02R(n).f2C + newb) - oldb));
             _f3: ;
@@ -3493,7 +3493,7 @@ public static partial class Game
             new O02R(n).f38_Set(((new O02R(n).f38 + newb) - oldb));
             _f6: ;
             _f2: ;
-            switch ((int)(new O02R(n).type)) { case 3: goto _f8; case 2: goto _f9; case 4: goto _f10; case 8: goto _f11; default: goto _f7; }
+            switch ((int)(new O02R(n).Type)) { case 3: goto _f8; case 2: goto _f9; case 4: goto _f10; case 8: goto _f11; default: goto _f7; }
             _f8: ;
             if (!((new O02R(n).f2C < 0))) goto _f12;
             new O02R(n).f2C_Set(0);
@@ -3508,7 +3508,7 @@ public static partial class Game
             if (!((new O02R(n).f44 != 0))) goto _f15;
             new O02R(n).f44_Set(((new O02R(n).f44 + newb) - oldb));
             _f15: ;
-            new O02R(n).flags_Set((ushort)((int)(new O02R(n).flags) | 2048));
+            new O02R(n).Flags_Set((ushort)((int)(new O02R(n).Flags) | 2048));
             goto _f7;
             _f10: ;
             new O02R(n).f38_Set(0);
@@ -3553,24 +3553,24 @@ public static partial class Game
             _f20: ;
             goto _f7;
             _f7: ;
-            if (!(((new O02R(n).parent != 0) && ((new O02R(n).next != 0) || (new O02R(n).child != 0))))) goto _f22;
+            if (!(((new O02R(n).ParentPtr != 0) && ((new O02R(n).NextSiblingPtr != 0) || (new O02R(n).FirstChildPtr != 0))))) goto _f22;
             goto L_fix;
             _f22: ;
-            if (!(((int)(new O02R(n).type) != 2))) goto _f23;
+            if (!(((int)(new O02R(n).Type) != 2))) goto _f23;
             L_fix: ;
-            new O02R(n).parent_Set(((new O02R(n).parent + newb) - oldb));
+            new O02R(n).ParentPtr_Set(((new O02R(n).ParentPtr + newb) - oldb));
             goto _f24;
             _f23: ;
-            new O02R(n).parent_Set(0);
+            new O02R(n).ParentPtr_Set(0);
             _f24: ;
-            if (!((new O02R(n).child != 0))) goto _f25;
-            new O02R(n).child_Set(((new O02R(n).child + newb) - oldb));
-            UiTree_Relocate((uint)(new O02R(n).child), newb, oldb);
+            if (!((new O02R(n).FirstChildPtr != 0))) goto _f25;
+            new O02R(n).FirstChildPtr_Set(((new O02R(n).FirstChildPtr + newb) - oldb));
+            UiTree_Relocate((uint)(new O02R(n).FirstChildPtr), newb, oldb);
             _f25: ;
-            if (!((new O02R(n).next != 0))) goto _f26;
-            new O02R(n).next_Set(((new O02R(n).next + newb) - oldb));
+            if (!((new O02R(n).NextSiblingPtr != 0))) goto _f26;
+            new O02R(n).NextSiblingPtr_Set(((new O02R(n).NextSiblingPtr + newb) - oldb));
             _f26: ;
-            n = (uint)(new O02R(n).next);
+            n = (uint)(new O02R(n).NextSiblingPtr);
             goto _f0;
             _f1: ;
         }
@@ -3592,7 +3592,7 @@ public static partial class Game
                 {
                     UiTree_LoadImages(new S_func_0041215C(n).child_, a, b);
                 }
-                switch ((int)(new S_func_0041215C(n).type))
+                switch ((int)(new S_func_0041215C(n).Type))
                 {
                 case 3:
                     if ((a != 0))
@@ -3859,18 +3859,18 @@ public static partial class Game
             int t = 0;
             uint s3 = 0u;
             s4 = 0;
-            if ((new Q04Pan2(p).hdr.f14 != 0u))
+            if ((new Q04Pan2(p).TemplatePtr.f14 != 0u))
             {
-                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).hdr.f14, p, a1, 0u, 0u));
+                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).TemplatePtr.f14, p, a1, 0u, 0u));
             }
-            i = new Q04Pan2(p).n;
+            i = new Q04Pan2(p).ItemCount;
             it = new Q04Pan2(p).items_;
             --i;
             if ((i != (-1)))
             {
                 do
                 {
-                    uint cb = Mem.U32((new Q04Item(it).def + (uint)(6 * 4)));
+                    uint cb = Mem.U32((new Q04Item(it).TemplatePtr + (uint)(6 * 4)));
                     if ((cb != 0u))
                     {
                         Funcs.CallReg(cb, it, p, a1, 0u);
@@ -3880,18 +3880,18 @@ public static partial class Game
                 }
                 while ((i != (-1)));
             }
-            it = (new Q04Pan2(p).items_ + (uint)((int)(new Q04Pan2(p).cur) * 40));
+            it = (new Q04Pan2(p).items_ + (uint)((int)(new Q04Pan2(p).CursorIndex) * 40));
             new Q04Pan2(p).f2C_Set((new Q04Pan2(p).f2C + Mem.F32(Gv.FrameTime)));
-            s3 = (new Q04Item(it).flags & (uint)(4194304));
+            s3 = (new Q04Item(it).Flags & (uint)(4194304));
             MenuPanel_StepOpenAnim(p);
-            switch ((int)(new Q04Pan2(p).state))
+            switch ((int)(new Q04Pan2(p).State))
             {
             case 0:
                 new Q04Pan2(p).f30_Set((new Q04Pan2(p).f30 + Mem.F32(Gv.FrameTime)));
                 if ((1.0f <= new Q04Pan2(p).f30))
                 {
                     new Q04Pan2(p).f30_Set(1.0f);
-                    new Q04Pan2(p).state_Set((short)(1));
+                    new Q04Pan2(p).State_Set((short)(1));
                 }
                 break;
             case 1:
@@ -3899,7 +3899,7 @@ public static partial class Game
                 if ((1.0f <= new Q04Pan2(p).f34))
                 {
                     new Q04Pan2(p).f34_Set(1.0f);
-                    new Q04Pan2(p).state_Set((short)(2));
+                    new Q04Pan2(p).State_Set((short)(2));
                 }
                 break;
             case 3:
@@ -3907,7 +3907,7 @@ public static partial class Game
                 if ((new Q04Pan2(p).f34 <= 0.0f))
                 {
                     new Q04Pan2(p).f34_Set(0.0f);
-                    new Q04Pan2(p).state_Set((short)(4));
+                    new Q04Pan2(p).State_Set((short)(4));
                 }
                 break;
             case 4:
@@ -3919,38 +3919,38 @@ public static partial class Game
                 }
                 break;
             }
-            if (((int)(new Q04Pan2(p).state) < 3))
+            if (((int)(new Q04Pan2(p).State) < 3))
             {
-                if (((int)(new Q04Pan2(p).state) >= 0))
+                if (((int)(new Q04Pan2(p).State) >= 0))
                 {
                     if ((s4 != 0))
                     {
-                        new Q04Pan2(p).state_Set((short)(4));
+                        new Q04Pan2(p).State_Set((short)(4));
                     }
-                    if (!((new Q04Item(it).flags & (uint)(8)) != 0u))
+                    if (!((new Q04Item(it).Flags & (uint)(8)) != 0u))
                     {
                         s0 = 1;
-                        if (((int)(new Q04Item(it).w4) == 2))
+                        if (((int)(new Q04Item(it).Type) == 2))
                         {
-                            t = (int)(new Q04Pan2(p).ctl.btn);
+                            t = (int)(new Q04Pan2(p).PadPtr.btn);
                             if (((t & 131586) != 0))
                             {
                                 s0 = 0;
-                                new Q04Item(it).f1C_Set((int)((int)(new Q04Item(it).f1C) - 2));
-                                if ((new Q04Item(it).f1C < 0))
+                                new Q04Item(it).Value_Set((int)((int)(new Q04Item(it).Value) - 2));
+                                if ((new Q04Item(it).Value < 0))
                                 {
-                                    new Q04Item(it).f1C_Set(0);
+                                    new Q04Item(it).Value_Set(0);
                                 }
                             }
                             else
                             {
                                 if (((t & 262401) != 0))
                                 {
-                                    new Q04Item(it).f1C_Set((int)((int)(new Q04Item(it).f1C) + 2));
+                                    new Q04Item(it).Value_Set((int)((int)(new Q04Item(it).Value) + 2));
                                     s0 = 0;
-                                    if ((new Q04Item(it).f1C >= 256))
+                                    if ((new Q04Item(it).Value >= 256))
                                     {
-                                        new Q04Item(it).f1C_Set(255);
+                                        new Q04Item(it).Value_Set(255);
                                     }
                                 }
                             }
@@ -3968,7 +3968,7 @@ public static partial class Game
                         }
                         else
                         {
-                            if (((new Q04Pan2(p).ctl.btn & (uint)(393987)) != 0u))
+                            if (((new Q04Pan2(p).PadPtr.btn & (uint)(393987)) != 0u))
                             {
                                 s0 = 0;
                             }
@@ -3984,12 +3984,12 @@ public static partial class Game
                                 MenuPanel_MoveCursor(p, (byte)(19));
                             }
                         }
-                        if ((((int)(new Q04Pan2(p).state) == 2) && ((((int)(Pad_IsConfirm(new Q04Pan2(p).ctl_)) != 0) || ((Pad_IsLeft(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0)))) || ((Pad_IsRight(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0))))))
+                        if ((((int)(new Q04Pan2(p).State) == 2) && ((((int)(Pad_IsConfirm(new Q04Pan2(p).ctl_)) != 0) || ((Pad_IsLeft(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0)))) || ((Pad_IsRight(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0))))))
                         {
-                            uint cb2 = new Q04Def2(new Q04Item(it).def).f1C;
+                            uint cb2 = new Q04Def2(new Q04Item(it).TemplatePtr).f1C;
                             if (((cb2 == 0u) || ((int)(Funcs.CallReg(cb2, it, p, a1, 0u)) != 0)))
                             {
-                                new Q04Pan2(p).state_Set((short)(3));
+                                new Q04Pan2(p).State_Set((short)(3));
                             }
                         }
                     }

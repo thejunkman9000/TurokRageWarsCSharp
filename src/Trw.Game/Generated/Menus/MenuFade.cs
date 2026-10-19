@@ -49,11 +49,11 @@ public static partial class Game
                 {
                     if ((new O3Fd(o).timer < 1000))
                     {
-                        new O3Fd(o).item.alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
+                        new O3Fd(o).item.Alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
                     }
                     else
                     {
-                        new O3Fd(o).item.alpha_Set((byte)(255));
+                        new O3Fd(o).item.Alpha_Set((byte)(255));
                         new O3Fd(o).done_Set(1);
                         Menu_EnableInput();
                     }
@@ -63,11 +63,11 @@ public static partial class Game
                 {
                     if ((new O3Fd(o).timer > 0))
                     {
-                        new O3Fd(o).item.alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
+                        new O3Fd(o).item.Alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
                     }
                     else
                     {
-                        new O3Fd(o).item.alpha_Set((byte)(0));
+                        new O3Fd(o).item.Alpha_Set((byte)(0));
                         new O3Fd(o).done_Set(1);
                         Menu_EnableInput();
                     }

@@ -996,7 +996,7 @@ public static partial class Game
                     {
                         isFx = 1;
                     }
-                    if ((((((int)(new B15Act2(src).type) == 2) && (new B15Slot(Gv.Collision_Contacts).owner == a)) && (new B15Slot(Gv.Collision_Contacts).unk14 != (-1))) && (C.Seq((object?)((e = new B15Slot(Gv.Collision_Contacts).eff.P)), ((isFx == 0) ? 1 : 0)) != 0)))
+                    if ((((((int)(new B15Act2(src).type) == 2) && (new B15Slot(Gv.Collision_Contacts).HitObjectPtr == a)) && (new B15Slot(Gv.Collision_Contacts).HitBoxIndex != (-1))) && (C.Seq((object?)((e = new B15Slot(Gv.Collision_Contacts).HitBoxBlock.P)), ((isFx == 0) ? 1 : 0)) != 0)))
                     {
                         s4 = 0;
                         goto L_have;

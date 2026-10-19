@@ -202,7 +202,7 @@ public readonly struct Tree_func_8040EDE4_de
     [MethodImpl(Inl)] public static implicit operator uint(Tree_func_8040EDE4_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Tree_func_8040EDE4_de(uint p) => new(p);
     // +0x0
-    public Tree_func_8040EDE4_de parent
+    public Tree_func_8040EDE4_de ParentPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -214,7 +214,7 @@ public readonly struct Tree_func_8040EDE4_de
     }
     [MethodImpl(Inl)] public uint parent__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public Tree_func_8040EDE4_de next
+    public Tree_func_8040EDE4_de NextSiblingPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -226,7 +226,7 @@ public readonly struct Tree_func_8040EDE4_de
     }
     [MethodImpl(Inl)] public uint next__Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public Tree_func_8040EDE4_de child
+    public Tree_func_8040EDE4_de FirstChildPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value.P);
@@ -238,12 +238,12 @@ public readonly struct Tree_func_8040EDE4_de
     }
     [MethodImpl(Inl)] public uint child__Set(uint v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public short id
+    public short Id
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short id_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Id_Set(short v) => Mem.Set(P + 0xCu, v);
 }
 
 /// <summary>struct Tree_func_8040EEA4_de, 0x18 bytes, at a guest address.</summary>
@@ -258,7 +258,7 @@ public readonly struct Tree_func_8040EEA4_de
     [MethodImpl(Inl)] public static implicit operator uint(Tree_func_8040EEA4_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Tree_func_8040EEA4_de(uint p) => new(p);
     // +0x0
-    public Tree_func_8040EEA4_de parent
+    public Tree_func_8040EEA4_de ParentPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -270,7 +270,7 @@ public readonly struct Tree_func_8040EEA4_de
     }
     [MethodImpl(Inl)] public uint parent__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public Tree_func_8040EEA4_de next
+    public Tree_func_8040EEA4_de NextSiblingPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -282,7 +282,7 @@ public readonly struct Tree_func_8040EEA4_de
     }
     [MethodImpl(Inl)] public uint next__Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public Tree_func_8040EEA4_de child
+    public Tree_func_8040EEA4_de FirstChildPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value.P);
@@ -294,40 +294,40 @@ public readonly struct Tree_func_8040EEA4_de
     }
     [MethodImpl(Inl)] public uint child__Set(uint v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public short id
+    public short Id
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public short id_Set(short v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public short Id_Set(short v) => Mem.Set(P + 0xCu, v);
     // +0xE
-    public short pad_0E
+    public short Type
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public short pad_0E_Set(short v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public short Type_Set(short v) => Mem.Set(P + 0xEu, v);
     // +0x10
-    public int pad_10
+    public int Alpha
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public int pad_10_Set(int v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public int Alpha_Set(int v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public short field_14
+    public short X
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public short field_14_Set(short v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public short X_Set(short v) => Mem.Set(P + 0x14u, v);
     // +0x16
-    public short field_16
+    public short Y
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public short field_16_Set(short v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public short Y_Set(short v) => Mem.Set(P + 0x16u, v);
 }
 
 /// <summary>struct Tri3, 0x10 bytes, at a guest address.</summary>

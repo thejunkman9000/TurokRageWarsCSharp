@@ -26,63 +26,63 @@ public static partial class Game
             int m = 0;
             int m2 = 0;
             Mem.Set(Gv.MissionTree_PagePtr, ResourcePool_Malloc((uint)(2688)));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk970_Set(a);
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk974_Set((int)(CursorGroup_Create((uint)(a), 4)));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RootNode_Set(a);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).CursorGroup_Set((int)(CursorGroup_Create((uint)(a), 4)));
             CursorGroup_SetCursorById((uint)(a), 0, 318);
             CursorGroup_SetCursorById((uint)(a), 1, 318);
             CursorGroup_SetCursorById((uint)(a), 2, 318);
             CursorGroup_SetCursorById((uint)(a), 3, 318);
             for (s0 = 0; (s0 < 36); ++s0)
             {
-                Bits_Assign(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0, 0);
-                Bits_Assign(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, s0, 0);
+                Bits_Assign(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0, 0);
+                Bits_Assign(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, s0, 0);
             }
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk988_Set(1);
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk98C_Set(4);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).State_Set(1);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).StateTimer_Set(4);
             new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978__Set(UiTree_FindNode((uint)(a), (uint)(325), default(uint), default(uint)));
             new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978_).w14_Set((ushort)(((int)(new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978_).w14) - (int)(new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978_).w18))));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).u97C.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978.unk18) / 4));
-            m = ((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978.unk18) - (new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).u97C.w * 4));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowStep.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowNode.unk18) / 4));
+            m = ((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowNode.unk18) - (new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowStep.w * 4));
             {
                 int r = m;
-                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk978.unk14) + r)));
+                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowNode.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).LeftArrowNode.unk14) + r)));
             }
             new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980__Set(UiTree_FindNode((uint)(a), (uint)(324), default(uint), default(uint)));
             new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980_).w14_Set((ushort)(((int)(new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980_).w14) + (int)(new Q03U(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980_).w18))));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).u984.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980.unk18) / 4));
-            m = ((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980.unk18) - (new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).u984.w * 4));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowStep.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowNode.unk18) / 4));
+            m = ((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowNode.unk18) - (new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowStep.w * 4));
             {
                 int r_2 = m;
-                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk980.unk14) - r_2)));
+                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowNode.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).RightArrowNode.unk14) - r_2)));
             }
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk990_Set(Flicker_Create((uint)(321), (uint)(110), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk994_Set((h = UiTree_FindNode((uint)(a), (uint)(319), default(uint), default(uint))));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).TextFlicker_Set(Flicker_Create((uint)(321), (uint)(110), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).BannerNode_994_Set((h = UiTree_FindNode((uint)(a), (uint)(319), default(uint), default(uint))));
             s0 = 0;
             UiNode_SetVisible(h, s0);
             new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk998__Set(UiTree_FindNode((uint)(a), (uint)(340), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unk99C_Set(UiTree_FindNode((uint)(a), (uint)(341), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C_Set(0);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).InfoNode_99C_Set(UiTree_FindNode((uint)(a), (uint)(341), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex_Set(0);
             for (; (s0 < 4); ++s0)
             {
                 e = (Gv.Settings_PlayerRecords + (uint)(s0 * 150));
-                if (((int)(new Q03Ent(e).f78) == 1))
+                if (((int)(new Q03Ent(e).IsActive) == 1))
                 {
-                    new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C_Set(s0);
+                    new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex_Set(s0);
                     break;
                 }
             }
             for (s0 = 0; (s0 < 8); ++s0)
             {
                 e = (Gv.Settings_PlayerRecords + (uint)(s0 * 150));
-                if (((int)(new Q03Ent(e).f91) == 1))
+                if (((int)(new Q03Ent(e).IsBot) == 1))
                 {
-                    new Q03Ent(e).f78_Set((byte)(0));
-                    new Q03Ent(e).f91_Set((byte)(0));
+                    new Q03Ent(e).IsActive_Set((byte)(0));
+                    new Q03Ent(e).IsBot_Set((byte)(0));
                 }
             }
             MissionTree_LoadPlayedArenas();
             MissionTree_SelectNextArena();
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav2((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).unk2)), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav2((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).unk2)), default(uint), default(uint)));
             MissionTree_UpdateArenaName();
             p = Gv.Menu_ScreenRequest_Pending;
             t = 0;
@@ -90,16 +90,16 @@ public static partial class Game
             Mem.Set((p + (uint)((-1) * 4)), (-1));
             ScreenWipe_Init(Mem.U32(Gv.MissionTree_PagePtr), 103, 0, 0, 0);
             new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA50__Set(UiTree_FindNode((uint)(a), (uint)(337), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA50.unk10_Set((byte)(255));
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA4C_Set(0);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).ConfirmFadeNode_A50.unk10_Set((byte)(255));
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).HasTrialPortrait_Set(0);
             m2 = (int)(Mem.U8((Gv.Settings_GameMode + (uint)0)));
             if ((((m2 < 5) ? ((m2 >= 3) ? 1 : 0) : 0) != 0))
             {
-                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA4C_Set(1);
+                new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).HasTrialPortrait_Set(1);
                 MissionTree_ShowTrialCharacter();
             }
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA68_Set(0);
-            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA6C_Set(0);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).InfoPanelTimer_A68_Set(0);
+            new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).NavTimer_A6C_Set(0);
             new O04ModeS4690_v2(Mem.U32(Gv.MissionTree_PagePtr)).unkA70_Set((-1));
             switch ((int)(Mem.U8((Gv.Settings_GameMode + (uint)0))))
             {
@@ -1174,33 +1174,33 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 36); ++i)
             {
-                Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, 0);
-                Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, i, 0);
+                Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, 0);
+                Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, i, 0);
             }
             switch ((int)(Mem.U8(Gv.Settings_GameMode)))
             {
             case 1:
                 for (i = 0; (i < 36); ++i)
                 {
-                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 400))).unk7E.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400))).ArenaPlayedBitsMode1.P, i));
                 }
                 break;
             case 2:
                 for (i = 0; (i < 36); ++i)
                 {
-                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 400))).unk83.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400))).ArenaPlayedBitsMode2.P, i));
                 }
                 break;
             case 3:
                 for (i = 0; (i < 36); ++i)
                 {
-                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 400))).unk88.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400))).ArenaPlayedBitsMode3.P, i));
                 }
                 break;
             case 4:
                 for (i = 0; (i < 36); ++i)
                 {
-                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 400))).unk8D.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, Bits_Test(new O04Row190e((Gv.ProfileTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400))).ArenaPlayedBitsMode4.P, i));
                 }
                 break;
             }
@@ -1285,11 +1285,11 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk2)), default(uint), default(uint)))), 0);
-                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk6)), default(uint), default(uint)))), 0);
+                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk2)), default(uint), default(uint)))), 0);
+                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk6)), default(uint), default(uint)))), 0);
                 if ((Mem.S32(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).u8_.P) != (-1)))
                 {
-                    UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16((new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).u8_.P + 2u)))), default(uint), default(uint)))), 0);
+                    UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16((new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).u8_.P + 2u)))), default(uint), default(uint)))), 0);
                 }
             }
         }
@@ -1340,11 +1340,11 @@ public static partial class Game
                 }
                 Bits_Assign(_fp, 0, 1);
                 i = 0;
-                if (((int)(new Q03Cfg(Gv.Settings).unkD) == 1))
+                if (((int)(new Q03Cfg(Gv.Settings).GameMode) == 1))
                 {
                     do
                     {
-                        r = Arena_GetTreeRecord(i, 0, (int)(new Q03Cfg(Gv.Settings).ent[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C)].f80));
+                        r = Arena_GetTreeRecord(i, 0, (int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex)].CharacterId));
                         t = (int)(Mem.U8((r + (uint)1)));
                         if ((t > 0))
                         {
@@ -1380,18 +1380,18 @@ public static partial class Game
                     idx = func_00427690_o04_find(Mem.S32(((Gv.MissionTree_LinkTable + (uint)off) + (uint)0)));
                     if ((Bits_Test(_fp, idx) == one))
                     {
-                        h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)2)))), default(uint), default(uint));
+                        h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)2)))), default(uint), default(uint));
                         UiNode_SetVisible(h, 1);
                         new O04Sub10(h).unk10_Set((byte)(twenty));
                         idx2 = func_00427690_o04_find(Mem.S32(((Gv.MissionTree_LinkTable + (uint)off) + (uint)4)));
                         if ((Bits_Test(_fp, idx2) == one))
                         {
-                            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)6)))), default(uint), default(uint));
+                            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)6)))), default(uint), default(uint));
                             UiNode_SetVisible(h, 1);
                             new O04Sub10(h).unk10_Set((byte)(twenty));
                             if ((Mem.S32(((Gv.MissionTree_LinkTable + (uint)off) + (uint)8)) != (-1)))
                             {
-                                h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)10)))), default(uint), default(uint));
+                                h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off) + (uint)10)))), default(uint), default(uint));
                                 UiNode_SetVisible(h, 1);
                                 new O04Sub10(h).unk10_Set((byte)(twenty));
                             }
@@ -1404,7 +1404,7 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i) == 1))
                     {
                         MissionTree_OpenNeighbours(i);
                     }
@@ -1414,9 +1414,9 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, i) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, i) == 1))
                     {
-                        Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, i, 1);
+                        Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, i, 1);
                     }
                     ++i;
                 }
@@ -1428,10 +1428,10 @@ public static partial class Game
                     c = 170;
                     twenty = off2;
                     idx = func_00427690_o04_find(Mem.S32(((Gv.MissionTree_LinkTable + (uint)twenty) + (uint)0)));
-                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, idx) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, idx) == 1))
                     {
-                        h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)2)))), default(uint), default(uint));
-                        if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, idx) == 1))
+                        h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)2)))), default(uint), default(uint));
+                        if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, idx) == 1))
                         {
                             new O04Sub10(h).unk10_Set((byte)(70));
                             c = 70;
@@ -1441,10 +1441,10 @@ public static partial class Game
                             new O04Sub10(h).unk10_Set((byte)(170));
                         }
                         idx2 = func_00427690_o04_find(Mem.S32(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)4)));
-                        if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, idx2) == 1))
+                        if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, idx2) == 1))
                         {
-                            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)6)))), default(uint), default(uint));
-                            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, idx2) == 1))
+                            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)6)))), default(uint), default(uint));
+                            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, idx2) == 1))
                             {
                                 new O04Sub10(h).unk10_Set((byte)(70));
                                 c = 70;
@@ -1455,7 +1455,7 @@ public static partial class Game
                             }
                             if ((Mem.S32(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)8)) != (-1)))
                             {
-                                new O04Sub10(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)10)))), default(uint), default(uint))).unk10_Set((byte)(c));
+                                new O04Sub10(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16(((Gv.MissionTree_LinkTable + (uint)off2) + (uint)10)))), default(uint), default(uint))).unk10_Set((byte)(c));
                             }
                         }
                     }
@@ -1480,19 +1480,19 @@ public static partial class Game
                 int s1 = 0;
                 int k = 0;
                 uint e = 0u;
-                if (((int)(new O04Cfg(Gv.Settings).unkD) != 4))
+                if (((int)(new O04Cfg(Gv.Settings).GameMode) != 4))
                 {
                     return;
                 }
-                s1 = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44;
-                e = ((Gv.Settings + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 150));
+                s1 = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena;
+                e = ((Gv.Settings + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 150));
                 MissionTree_ShowArenaWeapons(s1);
-                new O04Ent96j(e).unk80_Set((sbyte)(new O04Rec4((uint)(Resource_GetIndexedCached(Gv.LevelMgr, s1))).unk4));
-                k = CharSelect_FindRowByCharacter((int)(new O04Ent96j(e).unk80));
+                new O04Ent96j(e).CharacterId_Set((sbyte)(new O04Rec4((uint)(Resource_GetIndexedCached(Gv.LevelMgr, s1))).unk4));
+                k = CharSelect_FindRowByCharacter((int)(new O04Ent96j(e).CharacterId));
                 new O04V3(_fp).x_Set(new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk4);
                 new O04V3(_fp).y_Set(new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk4);
                 new O04V3(_fp).z_Set(new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk4);
-                Portrait_CreateActor(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk20.P, 9, ((int)(new O04Ent96j(e).unk80) + 911), 75, 24000, _fp, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk24.P, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk14, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk54);
+                Portrait_CreateActor(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).TrialPortrait.P, 9, ((int)(new O04Ent96j(e).CharacterId) + 911), 75, 24000, _fp, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk24.P, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk14, new O04Tbl70((Gv.Menu_CharacterPortraitTable + (uint)(k * 112))).unk54);
             }
         }
         finally { Stack.Free(12); }
@@ -1511,20 +1511,20 @@ public static partial class Game
                 int v = 0;
                 int idx = 0;
                 uint r = 0u;
-                new O04Sub2C(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)(339), default(uint), default(uint))).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9A0.P));
-                switch ((int)(new Q03Cfg(Gv.Settings).unkD))
+                new O04Sub2C(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(339), default(uint), default(uint))).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P));
+                switch ((int)(new Q03Cfg(Gv.Settings).GameMode))
                 {
                 case 1:
-                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9A0.P, (uint)(UiString_Get(105)));
-                    Str_ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9A0.P, 0x800E19ECu, Mem.U32(new Q03Tbl70b((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect_FindRowByCharacter((int)(new Q03Cfg(Gv.Settings).ent[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C)].f80)) * 112))).unk64));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, (uint)(UiString_Get(105)));
+                    Str_ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, 0x800E19ECu, Mem.U32(new Q03Tbl70b((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect_FindRowByCharacter((int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex)].CharacterId)) * 112))).unk64));
                     break;
                 case 3:
-                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9D2.P, (uint)(UiString_Get(61)));
-                    h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)(342), default(uint), default(uint));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, (uint)(UiString_Get(61)));
+                    h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(342), default(uint), default(uint));
                     UiNode_SetVisible(h, 1);
-                    new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9D2.P));
-                    idx = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44;
-                    v = Mem.S32(((0x80102B94u + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 400)));
+                    new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P));
+                    idx = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena;
+                    v = Mem.S32(((0x80102B94u + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400)));
                     if ((v > 0))
                     {
                         Str_FormatInto(_fp, 0x800E19F8u, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
@@ -1534,11 +1534,11 @@ public static partial class Game
                         r = Arena_GetTreeRecord(idx, 3, 0);
                         Str_FormatInto(_fp, 0x800E19F8u, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
-                    Str_ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9D2.P, 0x800E1A00u, _fp);
-                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9A0.P, Mem.U32(0x800D7508u));
+                    Str_ReplaceAll(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, 0x800E1A00u, _fp);
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(0x800D7508u));
                     break;
                 case 4:
-                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk9A0.P, Mem.U32(0x800D7504u));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P, Mem.U32(0x800D7504u));
                     break;
                 }
             }
@@ -1556,10 +1556,10 @@ public static partial class Game
             int s0 = 0;
             int s1 = 0;
             int t = 0;
-            switch ((int)(new Q03Cfg(Gv.Settings).unkD))
+            switch ((int)(new Q03Cfg(Gv.Settings).GameMode))
             {
             case 1:
-                r = Arena_GetTreeRecord(a, 0, (int)(new Q03Cfg(Gv.Settings).ent[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C)].f80));
+                r = Arena_GetTreeRecord(a, 0, (int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex)].CharacterId));
                 break;
             case 2:
                 r = Arena_GetTreeRecord(a, 1, 0);
@@ -1571,16 +1571,16 @@ public static partial class Game
                 r = Arena_GetTreeRecord(a, 2, 0);
                 break;
             default:
-                r = Arena_GetTreeRecord(a, 0, (int)(new Q03Ent((Gv.Settings_PlayerRecords + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 150))).f80));
+                r = Arena_GetTreeRecord(a, 0, (int)(new Q03Ent((Gv.Settings_PlayerRecords + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 150))).CharacterId));
                 break;
             }
             t = (int)(Mem.U8((r + (uint)1)));
             if ((t > 0))
             {
                 s0 = (t - 1);
-                if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0) == 0))
+                if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0) == 0))
                 {
-                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, s0, 1);
+                    Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, s0, 1);
                 }
             }
             for (s1 = 0; (s1 < 3); ++s1)
@@ -1588,9 +1588,9 @@ public static partial class Game
                 t = (int)(Mem.U8(((r + (uint)s1) + (uint)2)));
                 if ((t > 0))
                 {
-                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, (t - 1)) == 0))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, (t - 1)) == 0))
                     {
-                        Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, (t - 1), 1);
+                        Bits_Assign(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, (t - 1), 1);
                     }
                 }
             }
@@ -1608,12 +1608,12 @@ public static partial class Game
             int i = 0;
             int t = 0;
             uint cfg = 0u;
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(Mem.S32(Gv.ArenaLevel));
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(Mem.S32(Gv.ArenaLevel));
             if ((Mem.S32(Gv.ArenaLevel) >= 37))
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(0);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(0);
             }
-            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44) == 0))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena) == 0))
             {
                 return;
             }
@@ -1622,22 +1622,22 @@ public static partial class Game
                 return;
             }
             cfg = (Gv.Settings_MatchRules - (uint)1496);
-            switch ((int)(new O04Cfg(cfg).unkD))
+            switch ((int)(new O04Cfg(cfg).GameMode))
             {
             case 1:
-                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, 0, (int)(new O04Ent96l(((cfg + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 150))).unk80));
+                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, 0, (int)(new O04Ent96l(((cfg + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 150))).CharacterId));
                 break;
             case 2:
-                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, 1, 0);
+                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, 1, 0);
                 break;
             case 3:
-                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, 3, 0);
+                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, 3, 0);
                 break;
             case 4:
-                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, 2, 0);
+                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, 2, 0);
                 break;
             default:
-                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, 0, (int)(new O04Ent96l((Gv.Settings_PlayerRecords + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 150))).unk80));
+                r = Arena_GetTreeRecord(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, 0, (int)(new O04Ent96l((Gv.Settings_PlayerRecords + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 150))).CharacterId));
                 break;
             }
             idx = 0;
@@ -1662,7 +1662,7 @@ public static partial class Game
             {
                 idx = 0;
             }
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(idx);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(idx);
         }
     }
 
@@ -1675,9 +1675,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0042829C");
-                Level_CopyLevelName(Gv.LevelMgr, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44, _fp, 63);
-                LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA04.P, (uint)((int)(Str_ToUpper(_fp))));
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk998.unk38_Set(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA04.P);
+                Level_CopyLevelName(Gv.LevelMgr, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena, _fp, 63);
+                LibC_StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).ArenaNameText.P, (uint)((int)(Str_ToUpper(_fp))));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).ArenaNameNode.unk38_Set(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).ArenaNameText.P);
             }
         }
         finally { Stack.Free(64); }
@@ -1729,11 +1729,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00428388");
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA64.unk10_Set((byte)(255));
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA60.unk10_Set((byte)(255));
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoPanelNodeB.unk10_Set((byte)(255));
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoPanelNodeA.unk10_Set((byte)(255));
             UiNode_SetVisible(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA60_, 1);
             UiNode_SetVisible(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA64_, 1);
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA68_Set(0);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoPanelTimer_A68_Set(0);
         }
     }
 
@@ -1785,8 +1785,8 @@ public static partial class Game
             int row = 0;
             uint r = 0u;
             MissionTree_ClearWeaponIcons();
-            row = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C;
-            r = Level_FindDefinition(Gv.LevelMgr, 11, (int)(new O04Ent96c((Gv.Settings_PlayerRecords + (uint)(row * 150))).unk80));
+            row = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex;
+            r = Level_FindDefinition(Gv.LevelMgr, 11, (int)(new O04Ent96c((Gv.Settings_PlayerRecords + (uint)(row * 150))).CharacterId));
             n = 0;
             for (i = 0; (i < 8); ++i)
             {
@@ -1819,7 +1819,7 @@ public static partial class Game
             uint c = 0u;
             MissionTree_ClearWeaponIcons();
             i = (n = 0);
-            row = (new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA5C * 150);
+            row = (new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 150);
             c = Gv.Settings;
             for (; (i < 22); ++i)
             {
@@ -1893,7 +1893,7 @@ public static partial class Game
                 id = 329;
                 break;
             }
-            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)(id), default(uint), default(uint));
+            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(id), default(uint), default(uint));
             UiNode_SetVisible(UiTree_FindNode(h, (uint)(331), default(uint), default(uint)), 0);
             r = MissionTree_GetWeaponIconId(b);
             p = UiTree_FindNode(h, (uint)(330), default(uint), default(uint));
@@ -1962,7 +1962,7 @@ public static partial class Game
                     id = 335;
                     break;
                 }
-                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk970), (uint)(id), default(uint), default(uint)))), (uint)(331), default(uint), default(uint)))), 1);
+                UiNode_SetVisible((uint)((int)(UiTree_FindNode((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(id), default(uint), default(uint)))), (uint)(331), default(uint), default(uint)))), 1);
             }
         }
     }
@@ -1990,8 +1990,8 @@ public static partial class Game
             if ((((c >> (int)16) == (uint)(3)) && (d == 0)))
             {
                 Menu_ConsumeEvent();
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unk988_Set(8);
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA50.unk10_Set((byte)(90));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).State_Set(8);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).ConfirmFadeNode_A50.unk10_Set((byte)(90));
                 Audio_PlaySound2D(3708);
             }
             return 0;
@@ -2011,35 +2011,35 @@ public static partial class Game
             {
                 return 0;
             }
-            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).unk14;
+            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).unk14;
             if ((s0 == (-1)))
             {
                 return 0;
             }
-            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0);
+            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
             Audio_PlaySound2D(3709);
-            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44) == s1))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena) == s1))
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(70));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(70));
             }
             else
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(170));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(170));
             }
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(s0);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(s0);
             new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav((Gv.MissionTree_NodeTable + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             MissionTree_UpdateArenaName();
-            if (((int)(new O04Cfg(Gv.Settings).unkD) != 2))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) != 2))
             {
                 MissionTree_ShowInfoPanels_00428388();
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA6C_Set(0);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).NavTimer_A6C_Set(0);
                 MissionTree_UpdateInfoText();
             }
-            if (((int)(new O04Cfg(Gv.Settings).unkD) == 4))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) == 4))
             {
                 MissionTree_ShowTrialCharacter();
             }
@@ -2060,35 +2060,35 @@ public static partial class Game
             {
                 return 0;
             }
-            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).unk18;
+            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).unk18;
             if ((s0 == (-1)))
             {
                 return 0;
             }
-            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0);
+            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
             Audio_PlaySound2D(3709);
-            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44) == s1))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena) == s1))
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(70));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(70));
             }
             else
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(170));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(170));
             }
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(s0);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(s0);
             new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav((Gv.MissionTree_NodeTable + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             MissionTree_UpdateArenaName();
-            if (((int)(new O04Cfg(Gv.Settings).unkD) != 2))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) != 2))
             {
                 MissionTree_ShowInfoPanels_00428388();
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA6C_Set(0);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).NavTimer_A6C_Set(0);
                 MissionTree_UpdateInfoText();
             }
-            if (((int)(new O04Cfg(Gv.Settings).unkD) == 4))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) == 4))
             {
                 MissionTree_ShowTrialCharacter();
             }
@@ -2109,35 +2109,35 @@ public static partial class Game
             {
                 return 0;
             }
-            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).unk10;
+            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).unk10;
             if ((s0 == (-1)))
             {
                 return 0;
             }
-            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0);
+            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
             Audio_PlaySound2D(3709);
-            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44) == s1))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena) == s1))
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(70));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(70));
             }
             else
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(170));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(170));
             }
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(s0);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(s0);
             new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav((Gv.MissionTree_NodeTable + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             MissionTree_UpdateArenaName();
-            if (((int)(new O04Cfg(Gv.Settings).unkD) != 2))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) != 2))
             {
                 MissionTree_ShowInfoPanels_00428388();
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA6C_Set(0);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).NavTimer_A6C_Set(0);
                 MissionTree_UpdateInfoText();
             }
-            if (((int)(new O04Cfg(Gv.Settings).unkD) == 4))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) == 4))
             {
                 MissionTree_ShowTrialCharacter();
             }
@@ -2158,35 +2158,35 @@ public static partial class Game
             {
                 return 0;
             }
-            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).unkC;
+            s0 = new O04Nav((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).unkC;
             if ((s0 == (-1)))
             {
                 return 0;
             }
-            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA74.P, s0);
+            s1 = Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayedArenaBits.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
             Audio_PlaySound2D(3709);
-            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA79.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44) == s1))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).OpenArenaBits.P, new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena) == s1))
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(70));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(70));
             }
             else
             {
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48.unk10_Set((byte)(170));
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArenaNode.unk10_Set((byte)(170));
             }
-            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44_Set(s0);
+            new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena_Set(s0);
             new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav((Gv.MissionTree_NodeTable + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             MissionTree_UpdateArenaName();
-            if (((int)(new O04Cfg(Gv.Settings).unkD) != 2))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) != 2))
             {
                 MissionTree_ShowInfoPanels_00428388();
-                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA6C_Set(0);
+                new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).NavTimer_A6C_Set(0);
                 MissionTree_UpdateInfoText();
             }
-            if (((int)(new O04Cfg(Gv.Settings).unkD) == 4))
+            if (((int)(new O04Cfg(Gv.Settings).GameMode) == 4))
             {
                 MissionTree_ShowTrialCharacter();
             }
@@ -2215,7 +2215,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00428FF0");
             Menu_ConsumeEvent();
             MissionTree_HideLinks();
-            Arena_Set(new O04Ent1C((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).a, new O04Ent1C((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).unkA44 * 28))).b);
+            Arena_Set(new O04Ent1C((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).a, new O04Ent1C((Gv.MissionTree_NodeTable + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena * 28))).b);
             Menu_RequestScreen(25);
             return 0;
         }

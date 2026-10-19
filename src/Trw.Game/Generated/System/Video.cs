@@ -36,60 +36,60 @@ public static partial class Game
             int w11c = 0;
             int w120 = 0;
             t = (new B21Slot(s).task.P + (uint)(0 * 104));
-            new B21Task(t).unk40_Set(new B21Slot(s).unk114);
+            new B21Task(t).DisplayListPtr_Set(new B21Slot(s).unk114);
             w11c = new B21Slot(s).unk11C;
-            new B21Task(t).unk10_Set(1);
-            new B21Task(t).unk18_Set((int)(Gv.Rsp_BootUcode));
-            new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
-            new B21Task(t).unk24_Set(4096);
-            new B21Task(t).unk2C_Set(2048);
-            new B21Task(t).unk48_Set((int)(0x800E8000u));
-            new B21Task(t).unk4C_Set(3072);
-            new B21Task(t).unk20_Set((int)((0x800DCD00u + (uint)16)));
-            new B21Task(t).unk28_Set((int)(0x800E0050u));
-            new B21Task(t).unk14_Set(0);
-            new B21Task(t).unk30_Set(0);
-            new B21Task(t).unk34_Set(0);
-            new B21Task(t).unk38_Set(Mem.S32(0x801536B8u));
-            new B21Task(t).unk3C_Set((Mem.S32(0x801536B8u) + Mem.S32(0x801536B4u)));
-            new B21Task(t).unk44_Set(w11c);
-            new B21Task(t).unk0_Set(0);
-            new B21Task(t).unk50_Set((int)(0x80146980u));
-            new B21Task(t).unk54_Set((int)(new B21Slot(s).unkF0.P));
-            new B21Task(t).unkC_Set(new B21Slot(s).unk110);
+            new B21Task(t).TaskType_Set(1);
+            new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
+            new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
+            new B21Task(t).UcodeSize_Set(4096);
+            new B21Task(t).UcodeDataSize_Set(2048);
+            new B21Task(t).YieldDataPtr_Set((int)(0x800E8000u));
+            new B21Task(t).YieldDataSize_Set(3072);
+            new B21Task(t).UcodePtr_Set((int)((0x800DCD00u + (uint)16)));
+            new B21Task(t).UcodeDataPtr_Set((int)(0x800E0050u));
+            new B21Task(t).TaskFlags_Set(0);
+            new B21Task(t).DramStackPtr_Set(0);
+            new B21Task(t).DramStackSize_Set(0);
+            new B21Task(t).OutputBuffPtr_Set(Mem.S32(0x801536B8u));
+            new B21Task(t).OutputBuffEnd_Set((Mem.S32(0x801536B8u) + Mem.S32(0x801536B4u)));
+            new B21Task(t).DisplayListSize_Set(w11c);
+            new B21Task(t).NextPtr_Set(0);
+            new B21Task(t).MsgQueuePtr_Set((int)(0x80146980u));
+            new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).unkF0.P));
+            new B21Task(t).FramebufferPtr_Set(new B21Slot(s).unk110);
             if ((new B21Slot(s).unk128 != 0))
             {
-                new B21Task(t).unk8_Set(3);
+                new B21Task(t).Flags_Set(3);
             }
             else
             {
-                new B21Task(t).unk8_Set(35);
+                new B21Task(t).Flags_Set(35);
             }
             if ((new B21Slot(s).unk128 != 0))
             {
                 t = (new B21Slot(s).task.P + (uint)(1 * 104));
-                new B21Task(t).unk40_Set(new B21Slot(s).unk118);
+                new B21Task(t).DisplayListPtr_Set(new B21Slot(s).unk118);
                 w120 = new B21Slot(s).unk120;
-                new B21Task(t).unk10_Set(1);
-                new B21Task(t).unk18_Set((int)(Gv.Rsp_BootUcode));
-                new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
-                new B21Task(t).unk24_Set(4096);
-                new B21Task(t).unk2C_Set(2048);
-                new B21Task(t).unk48_Set((int)(0x800E8000u));
-                new B21Task(t).unk4C_Set(3072);
-                new B21Task(t).unk20_Set((int)(0x800DE0A0u));
-                new B21Task(t).unk28_Set((int)(0x800E0470u));
-                new B21Task(t).unk14_Set(0);
-                new B21Task(t).unk30_Set(0);
-                new B21Task(t).unk34_Set(0);
-                new B21Task(t).unk38_Set(Mem.S32(0x801536B8u));
-                new B21Task(t).unk3C_Set((Mem.S32(0x801536B8u) + Mem.S32(0x801536B4u)));
-                new B21Task(t).unk44_Set(w120);
-                new B21Task(t).unk0_Set(0);
-                new B21Task(t).unk8_Set(35);
-                new B21Task(t).unk50_Set((int)(0x80146980u));
-                new B21Task(t).unk54_Set((int)(new B21Slot(s).unkF0.P));
-                new B21Task(t).unkC_Set(new B21Slot(s).unk110);
+                new B21Task(t).TaskType_Set(1);
+                new B21Task(t).UcodeBootPtr_Set((int)(Gv.Rsp_BootUcode));
+                new B21Task(t).UcodeBootSize_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
+                new B21Task(t).UcodeSize_Set(4096);
+                new B21Task(t).UcodeDataSize_Set(2048);
+                new B21Task(t).YieldDataPtr_Set((int)(0x800E8000u));
+                new B21Task(t).YieldDataSize_Set(3072);
+                new B21Task(t).UcodePtr_Set((int)(0x800DE0A0u));
+                new B21Task(t).UcodeDataPtr_Set((int)(0x800E0470u));
+                new B21Task(t).TaskFlags_Set(0);
+                new B21Task(t).DramStackPtr_Set(0);
+                new B21Task(t).DramStackSize_Set(0);
+                new B21Task(t).OutputBuffPtr_Set(Mem.S32(0x801536B8u));
+                new B21Task(t).OutputBuffEnd_Set((Mem.S32(0x801536B8u) + Mem.S32(0x801536B4u)));
+                new B21Task(t).DisplayListSize_Set(w120);
+                new B21Task(t).NextPtr_Set(0);
+                new B21Task(t).Flags_Set(35);
+                new B21Task(t).MsgQueuePtr_Set((int)(0x80146980u));
+                new B21Task(t).DoneMsgPtr_Set((int)(new B21Slot(s).unkF0.P));
+                new B21Task(t).FramebufferPtr_Set(new B21Slot(s).unk110);
             }
             osWritebackDCacheAll();
             Sched_SubmitTask(Gv.Sched_Main, (new B21Slot(s).task.P + (uint)(0 * 104)));

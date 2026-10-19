@@ -808,7 +808,7 @@ public static partial class Game
             }
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
             }
         }
     }
@@ -824,12 +824,12 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00207910", (uint)actor, (uint)state);
                 Math_MtxMakeRotateZ(_fp, new B01State(state).ClassVec_130.z);
                 Math_MtxPostRotateX(_fp, new B01State(state).ClassVec_130.y);
-                Math_MtxPostRotateY(_fp, new B01Actor(actor).unk6C);
-                Math_MtxCopy(new B01Actor(actor).mtx74.P, _fp);
-                Math_MtxScaleRows(new B01Actor(actor).mtx74.P, new B01Actor(actor).unk50, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
-                Vec_ClampLengthChecked(new B01Actor(actor).pos.P, 2.0E+4f);
-                Math_MtxTranslate(new B01Actor(actor).mtx74.P, new B01Actor(actor).pos.x, new B01Actor(actor).pos.y, new B01Actor(actor).pos.z);
-                Math_MtxSwapRowsYZ(new B01Actor(actor).mtx74.P);
+                Math_MtxPostRotateY(_fp, new B01Actor(actor).Yaw);
+                Math_MtxCopy(new B01Actor(actor).TransformMtx.P, _fp);
+                Math_MtxScaleRows(new B01Actor(actor).TransformMtx.P, new B01Actor(actor).Scale, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
+                Vec_ClampLengthChecked(new B01Actor(actor).Position.P, 2.0E+4f);
+                Math_MtxTranslate(new B01Actor(actor).TransformMtx.P, new B01Actor(actor).Position.x, new B01Actor(actor).Position.y, new B01Actor(actor).Position.z);
+                Math_MtxSwapRowsYZ(new B01Actor(actor).TransformMtx.P);
             }
         }
         finally { Stack.Free(64); }
@@ -844,11 +844,11 @@ public static partial class Game
             uint info = (new B01Actor(actor).def_ + (uint)20);
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & 4294901759u));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                 return;
             }
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(65536)));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(65536)));
             if ((new B01State(state).link_ != 0u))
             {
                 if ((new B01State(state).StateEntryPtr.cb != 0u))
@@ -893,14 +893,14 @@ public static partial class Game
             }
             if (((new B01Info(info).ClassFlags & (uint)(256)) != 0u))
             {
-                if (!((new B01Actor(actor).flags38 & (uint)(64)) != 0u))
+                if (!((new B01Actor(actor).GroundFlags & (uint)(64)) != 0u))
                 {
                     ok = 0;
                 }
             }
             if (((new B01Info(info).ClassFlags & (uint)(1024)) != 0u))
             {
-                if (((new B01Actor(actor).flags38 & (uint)(64)) != 0u))
+                if (((new B01Actor(actor).GroundFlags & (uint)(64)) != 0u))
                 {
                     ok = 0;
                 }

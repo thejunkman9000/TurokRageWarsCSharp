@@ -28,14 +28,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00206604", (uint)actor, (uint)state);
             new B01State(state).StateTablePtr_Set(0x800CD840u);
             new B01State(state).UpdateCallback_Set(0x00206724u);
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(16777216)));
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(33554432)));
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(131072)));
-            if (((int)(new GFx(Gv.Settings).f) == 0))
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(16777216)));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(33554432)));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(131072)));
+            if (((int)(new GFx(Gv.Settings).IsMultiplayer) == 0))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(268435456)));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(268435456)));
             }
-            if ((((int)(new B01Actor(actor).unkE4) == 1107) && (Flyby_GetId() == 111)))
+            if ((((int)(new B01Actor(actor).TypeId) == 1107) && (Flyby_GetId() == 111)))
             {
                 new B01State(state).DrawCallback_Set(0x0020694Cu);
             }
@@ -117,7 +117,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020676C", (uint)actor, (uint)state, (uint)evt);
             AnimProp_PlayAnim(actor, state, (int)(new B01Evt6(evt).unk6));
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(8448)));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(8448)));
             Actor_ApplyAnimRootMotion(actor);
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
         }
@@ -210,7 +210,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020694C", (uint)actor, (uint)state, (uint)evt);
-            int n = (int)(new B01Actor(actor).unkE7);
+            int n = (int)(new B01Actor(actor).ModelCount);
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
@@ -220,7 +220,7 @@ public static partial class Game
                     new B01Evt(evt).unkC_Set(p);
                     new B01Evt(evt).unk10_Set(p);
                     Shadow_DrawForActor(actor, state, evt, default(uint));
-                    Light_ShadeVertices((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
+                    Light_ShadeVertices((uint)(p), new B01Actor(actor).BoneMatricesPtr, 1, (int)((new B01Actor(actor).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new B01Actor(actor).ShadeParam_3));
                 }
             }
         }

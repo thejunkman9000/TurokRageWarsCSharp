@@ -823,7 +823,7 @@ public static partial class Game
                 uint s = 0u;
                 vol = Mem.F32(0x800C9554u);
                 s = (uint)((-1));
-                if ((new B15Globals(Gv.Settings).unk5CC != 0))
+                if ((new B15Globals(Gv.Settings).GamePaused != 0))
                 {
                     return;
                 }
@@ -839,13 +839,13 @@ public static partial class Game
                 case 1:
                     if ((new B15Src(src).def.type == 1))
                     {
-                        if (((new B15Globals(Gv.Settings).flags0 & (uint)(64)) != 0u))
+                        if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(64)) != 0u))
                         {
                             vol = Mem.F32(0x800C9558u);
                         }
                         else
                         {
-                            if (((new B15Globals(Gv.Settings).flags0 & (uint)(32)) != 0u))
+                            if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(32)) != 0u))
                             {
                                 vol = Mem.F32(0x800C955Cu);
                             }
@@ -1000,7 +1000,7 @@ public static partial class Game
                 new Vec3f((_fp + 24u)).z_Set(new B15PairF((_fp + 16u)).b);
                 if ((new B15PairF((_fp + 16u)).a == 1036))
                 {
-                    Mem.Copy(_fp, new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).posE4.P, 12);
+                    Mem.Copy(_fp, new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitPos.P, 12);
                     new Vec3f((_fp + 40u)).x_Set((float)(0));
                     new Vec3f((_fp + 40u)).y_Set((float)(0));
                     new Vec3f((_fp + 40u)).z_Set((float)(0));
@@ -1011,9 +1011,9 @@ public static partial class Game
                     if ((new B15PairF((_fp + 16u)).a == 1036))
                     {
                         new B15Fx(fx).unk1D8_Set(Particle_GetOwner(tgt));
-                        new B15Fx(fx).vec2A0.x_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).vecF0.x);
-                        new B15Fx(fx).vec2A0.y_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).vecF0.y);
-                        new B15Fx(fx).vec2A0.z_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).vecF0.z);
+                        new B15Fx(fx).vec2A0.x_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.x);
+                        new B15Fx(fx).vec2A0.y_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.y);
+                        new B15Fx(fx).vec2A0.z_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.z);
                     }
                     else
                     {
@@ -1025,7 +1025,7 @@ public static partial class Game
                                 if ((o != 0u))
                                 {
                                     new B15Own(o).unk11E8__Set(fx);
-                                    new B15Fx(fx).unk6C_Set(new B15Own(o).unk6C);
+                                    new B15Fx(fx).unk6C_Set(new B15Own(o).Yaw);
                                 }
                             }
                             else
@@ -1076,7 +1076,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00268768", (uint)act, (uint)src, (uint)c, (uint)pos_in);
                 float vol = Mem.F32(0x800C9568u);
                 uint s = (uint)((-1));
-                if (((new B15Globals(Gv.Settings).unk5CC == 0) && (Actor_GetField3C_0024E958(act) == new B15Blk8((_fp + 16u)).c)))
+                if (((new B15Globals(Gv.Settings).GamePaused == 0) && (Actor_GetField3C_0024E958(act) == new B15Blk8((_fp + 16u)).c)))
                 {
                     switch ((int)(new B15Src(src).type))
                     {
@@ -1086,11 +1086,11 @@ public static partial class Game
                     case 1:
                         if ((new B15Src(act).def.type == 1))
                         {
-                            if (((new B15Globals(Gv.Settings).flags0 & (uint)(64)) != 0u))
+                            if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(64)) != 0u))
                             {
                                 vol = Mem.F32(0x800C956Cu);
                             }
-                            if (((new B15Globals(Gv.Settings).flags0 & (uint)(32)) != 0u))
+                            if (((new B15Globals(Gv.Settings).ActiveCheats & (uint)(32)) != 0u))
                             {
                                 vol = Mem.F32(0x800C9570u);
                             }

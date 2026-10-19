@@ -1,6 +1,6 @@
 # object	alias struct view types (comma separated)	base object	note   (tools/rename/fields.py, docs/NAMING.md)
-Actor	Actor_func_80214624_de,Actor_func_80214DD4_de,B10Obj,B15Flags,B19bObj,B2Obj,Entity,Field_s32_2E0,Obj,P4Ent2,PlrObj,Q4Fx,S6Actor		actor header, 0x2E8 bytes (shared by every actor; players extend it)
-Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView,B2Actor,CloseAttackActor,RespawnPlayer,S11Obj,S5Actor,M2Own,R2P5	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
+Actor	Actor_func_80214624_de,Actor_func_80214DD4_de,B10Obj,B15Flags,B19bObj,B2Obj,Entity,Field_s32_2E0,Obj,P4Ent2,PlrObj,Q4Fx,S6Actor,B01Actor		actor header, 0x2E8 bytes (shared by every actor; players extend it)
+Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView,B2Actor,CloseAttackActor,RespawnPlayer,S11Obj,S5Actor,M2Own,R2P5,Ent24,B05P15,B05P16,B05P17,B05P19,func_804499B0_de_S3,B05P1,B05P2,B05P3,B05P3_v2,B05P7,B05P9,B05P10,B05P11,B05P12,B05P13,B05P14,B05Ply4,B15Own	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
 PlayerMenu	O05Lobby,Q03Lob		from fields_lobby.tsv
 MenuManager	Shared_MenuManager,SndMgr_v2,S410Mgr,Menu_func_802991D4_de,P4SlotTbl,B21Menu		from fields_menu1.tsv
 SoundManager	SndMgr		from fields_sound.tsv
@@ -11,8 +11,44 @@ PadState	B14Ctl,S5Ctl,B14Pad,B14Hist,B14Slot,B14Slot_v2,T808,S10Ctrl,B22Pad,Cont
 SoundVoice	SndVoice,M04Emitter,M04Chaser,View_func_8025AB94_de		from fields_snd.tsv
 MusicSequencer	SndSeq,P3Obj38		from fields_snd_2.tsv
 GameCtx	B21Game,P4Game,S7Match,P4ThrOwner,Shape_func_80291208_de,Shared_Legacy_func_80294608_S1,func_80292FA4_S1,func_80293268_S2,func_80293318_S1,func_80293574_S1,func_80293774_S1,func_80293808_S1,func_8029382C_S1,func_80293904_S1,func_8029397C_S1,func_80293C20_S1,func_802947DC_S1,func_80294AC4_S1,func_8044E9A0_S1		from fields_game.tsv
-MatchRules	GameB6,B01Game,B04GF,B04GF2,B07Game,B15Dbg,B2GameFlags,GameFlags,GameFlagsC,Glob24b,M2G,O04GFlags,O05G,O06G,O06G_v2,O06G_v3,Q2G,R07Blk,S10Game,S7Blk,func_80293268_S1,State_func_8044DD50_de		from fields_game_2.tsv
+MatchRules	GameB6,B01Game,B04GF,B04GF2,B07Game,B15Dbg,B2GameFlags,GameFlags,GameFlagsC,Glob24b,M2G,O04GFlags,O05G,O06G,O06G_v2,O06G_v3,Q2G,R07Blk,S10Game,S7Blk,func_80293268_S1,State_func_8044DD50_de,B21GameBlk		from fields_game_2.tsv
 ActorState	ActorState,B01State,M1State,B2State,StateB		from fields_astate.tsv
-ActorDef	ActorDef,M1Def,B01Def,B2Def,DefC_v3,ActorInfo_v2,B19bInfo		from fields_astate_2.tsv
+ActorDef	ActorDef,M1Def,B01Def,B2Def,DefC_v3,ActorInfo_v2,B19bInfo,ObjDef		from fields_astate_2.tsv
 ActorDefParams	M1Info,B01Info,B2Info,S5Info,ActorInfo		from fields_astate_3.tsv
 WeaponState	M2St		from fields_astate_4.tsv
+ArenaSelectPage	O04ModeF60,ListScreenScreen		from fields_r4o.tsv
+MissionTreePage	O04ModeS4690,O04ModeS4690_v2		from fields_r4o_2.tsv
+ResultsPage	O04ModeS53C0,Q03S53		from fields_r4o_3.tsv
+PlayerCountPage	O04ModeS5430,O04S5430		from fields_r4o_4.tsv
+MatchOptionsPage	O04S4EF0,O04S4EF0b,O04S4EF0c		from fields_r4o_5.tsv
+MainMenuPage	O04ModeS4600		from fields_r4o_6.tsv
+Settings	O04Cfg,O3Cfg,Q03Cfg,Q2Cfg,Q2Cfg_v2,S10State,B15Globals,S5Glob,O05GameState,O04P,S11Game,B19Inp,O06Opt,GStateB6,R2G5,O06O,O05GX,Glob24,B19bG8,B05Cfg7,B04G,S5G,HudStatusShared_Settings,GFx,B14G2,B09Misc,O06B_v10		from fields_r4o_7.tsv
+UiNode	O02R,O02Node_v2,O02Node_v4,O02Node_v5,O02Flags,S_node_v2,S_n,S_sub,S_func_0040F0C4,S_func_0040E6FC,S_func_0040E980,S_func_0040E9A8,S_func_0040E9D0,S_func_0040EBC8,S_func_0040EBE8,S_func_0040EC0C,S_func_0040EC2C,S_func_0040EC50,Tree_func_8040EDE4_de,Tree_func_8040EEA4_de,O3Hdr,O02Widget,SubNode,S1008Node,MenuWidget		from fields_r4p.tsv
+HudTextLine	TextNode,TextNode_v3,TextNode_v4		from fields_r4p_10.tsv
+CharSelectSlot	O3Pj		from fields_r4p_12.tsv
+CheatsMenuPage	O3Pm		from fields_r4p_13.tsv
+UiImageNode	O02Node_v3,O06N_v5	UiNode	from fields_r4p_2.tsv
+UiRectNode	O02Quad,S_func_0040F298	UiNode	from fields_r4p_3.tsv
+UiTextNode	S_func_0040F27C	UiNode	from fields_r4p_4.tsv
+UiStateButtonNode	O02Node,S_func_0040F2B0,S_func_0041215C,Widget_v2	UiNode	from fields_r4p_5.tsv
+UiFocusNode	B21Node	UiNode	from fields_r4p_6.tsv
+MenuItem	Q04Item,Q04Itm,O06E_v3,O06A,O06A_v2,O06A_v4,O06A_v7,O06A_v8,O06A_v9,O06A_v11,O06A_v19,O06A_v25,O06A_v28,O06A_v32,O06A_v35,O06A_v38,O06A_v39,O06A_v40		from fields_r4p_7.tsv
+MenuItemList	O06B_v5,O06B_v9,O06B_v15,O06B_v16,O06B_v21		from fields_r4p_8.tsv
+MenuPanel	Q04Pan,Q04Pan2,Q04Panel,O06A_v3,O06A_v10,O06A_v13,O06A_v16,O06A_v20,O06A_v26,O06A_v27,O06A_v29,O06A_v30,O06A_v43,O06A_v44,O06A_v47		from fields_r4p_9.tsv
+ProfileRecord	O05Rec,B07Row,M2Cfg,O04Row190b,O04Row190e,O04Row190g,O04Row190h,O04Row190r,O04Row190s,O04Row190w,O3Rec,Profile_func_80229554_de,Q03Row,Q2Row190		from fields_r4q.tsv
+PlayerSetupRecord	Q03Ent,B07Rec96,B2Stats,O04Ent96,O04Ent96b,O04Ent96c,O04Ent96d,O04Ent96g,O04Ent96h,O04Ent96i,O04Ent96j,O04Ent96l,O05Q,O05R150b,O05R150c,O06A_v17,O06A_v24,O06R,O06R_v4,O3Pl4,ObjectState96,Q2Ent96,Q2Ent96_v2,Q2Pl,Q2Pl_v2,Q4Pl,Q4Rec,S10Row,S6Cfg,Shared_PlayerSettingsRecord,ActorStats,B04Stat,M1Stats,M2Stats,PlayerDef,PlrStats,R2A5St,S11Rec,Shared_ControlView,Stats24,Stats24b,O06C_v2,O06C_v3,O06C_v4,O06C_v5,O06C_v6,O06C_v9,O06C_v13		from fields_r4q_2.tsv
+LoadoutPage	O05L2,Q04L2,O06M_v2		from fields_r4q_3.tsv
+MenuItemRect	Q04Info		from fields_r4q_4.tsv
+AiNavNode	B2Node,TimedNode		from fields_r4r.tsv
+AiNavGraph	B2Mgr,TimedList		from fields_r4r_2.tsv
+AiFireProfile	B2Cfg		from fields_r4r_3.tsv
+GfxTask	B21Task,OSScTask_s		from fields_r4r_4.tsv
+Camera	Tracker		from fields_r4r_5.tsv
+CollisionSolid	B10A		from fields_r4r_6.tsv
+Particle	B19Obj,M5Obj,B18Ob,B18Fx,CcObj,B18Fy,B18Obj,R06Obj,M5Obj_v2,Effect_func_802800C0_de,Effect_func_802800C0_de_v2,B18DObj,Emitter_v2,func_8027C324_S1,func_8027C808_S1		from fields_r4s.tsv
+Prop	B12Obj,PlacedProp,M03Fx,ObjA,func_802500A4_S1,Owner_func_80250274_de		from fields_r4s_2.tsv
+PropDef	B12Def,PropGeometry,M03FxCls,Descriptor_func_80250274_de		from fields_r4s_3.tsv
+Pickup	ObjH,ObjI,ObjFx,ObjB,ObjR,Object_func_8024EB90_de,func_8024F460_S1,B19aObjB,B19bItemC		from fields_r4s_4.tsv
+CollisionMover	B09Mover,B09Body,B09SrcObj,B09Range,M03CMover		from fields_r4t_2.tsv
+CollisionContact	B09Obj2,B05Hit,B15Cam,CcQ,B2Hit,B15Slot,B10G		from fields_r4t_3.tsv
+UiGrid	S_func_00412270,S_grid,S_node,S_hdr,S_func_004126B4,S_func_00412918,S_func_004129C0,S_func_00412A70,S_func_00412AD8,S_func_00412B40,S_func_00412B98,S_func_00412BF8,S_func_00412C40,S_func_00412C8C,S_func_00412CD4,S_func_00412D20		from fields_r4t_4.tsv

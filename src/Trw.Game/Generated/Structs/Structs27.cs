@@ -566,33 +566,33 @@ public readonly struct R06Obj
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public ushort type
+    public ushort TypeId
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public ushort type_Set(ushort v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public ushort TypeId_Set(ushort v) => Mem.Set(P + 0x4u, v);
     // +0x6
     public U8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public M5Vec3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public M5Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
     public U8x8 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x1C
-    public M5Vec3 pos2 { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public M5Vec3 Velocity { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x28
     public U8x52 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x5C
-    public uint flags
+    public uint Flags
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x5Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5Cu, value);
     }
-    [MethodImpl(Inl)] public uint flags_Set(uint v) => Mem.Set(P + 0x5Cu, v);
+    [MethodImpl(Inl)] public uint Flags_Set(uint v) => Mem.Set(P + 0x5Cu, v);
     // +0x60
     public U8x184 pad60 { [MethodImpl(Inl)] get => new(P + 0x60u); }
     // +0x118
-    public R06Def def
+    public R06Def ParticleDefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x118u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x118u, value.P);
@@ -606,16 +606,16 @@ public readonly struct R06Obj
     // +0x11C
     public U8x24 pad11C { [MethodImpl(Inl)] get => new(P + 0x11Cu); }
     // +0x134
-    public uint tgt_
+    public uint TargetPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x134u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x134u, value);
     }
-    [MethodImpl(Inl)] public uint tgt__Set(uint v) => Mem.Set(P + 0x134u, v);
+    [MethodImpl(Inl)] public uint TargetPtr_Set(uint v) => Mem.Set(P + 0x134u, v);
     // +0x138
     public U8x60 pad138 { [MethodImpl(Inl)] get => new(P + 0x138u); }
     // +0x174
-    public M5Vec3 vel { [MethodImpl(Inl)] get => new(P + 0x174u); }
+    public M5Vec3 Direction { [MethodImpl(Inl)] get => new(P + 0x174u); }
 }
 
 /// <summary>struct R06PBlk, 0x95 bytes, at a guest address.</summary>
@@ -1068,12 +1068,12 @@ public readonly struct R07Blk
     // +0x0
     public U8x136 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x88
-    public int a88
+    public int IsFlybyHoldStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int a88_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int IsFlybyHoldStarted_Set(int v) => Mem.Set(P + 0x88u, v);
     // +0x8C
     public int a8C
     {
@@ -1446,12 +1446,12 @@ public readonly struct R2A5St
     // +0x0
     public U8x143 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8F
-    public byte b8F
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte b8F_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
 }
 
 /// <summary>struct R2Def, 0x38 bytes, at a guest address.</summary>
@@ -1509,21 +1509,21 @@ public readonly struct R2G5
     // +0x0
     public U8x29 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1D
-    public byte b1D
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x1Du);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Du, value);
     }
-    [MethodImpl(Inl)] public byte b1D_Set(byte v) => Mem.Set(P + 0x1Du, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x1Du, v);
     // +0x1E
     public U8x1550 pad1E { [MethodImpl(Inl)] get => new(P + 0x1Eu); }
     // +0x62C
-    public int w62C
+    public int IsMonkeyTagMode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x62Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x62Cu, value);
     }
-    [MethodImpl(Inl)] public int w62C_Set(int v) => Mem.Set(P + 0x62Cu, v);
+    [MethodImpl(Inl)] public int IsMonkeyTagMode_Set(int v) => Mem.Set(P + 0x62Cu, v);
 }
 
 /// <summary>struct R2Hit, 0x8 bytes, at a guest address.</summary>

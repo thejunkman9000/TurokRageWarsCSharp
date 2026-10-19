@@ -188,9 +188,9 @@ public static partial class Game
             new StateObj(o).unk48_Set(0);
             for (; (n != 0u); n = new SubNode(n).next_)
             {
-                if (((int)(new SubNode(n).unkE) != 8))
+                if (((int)(new SubNode(n).Type) != 8))
                 {
-                    new SubNode(n).unk10_Set((byte)(100));
+                    new SubNode(n).Alpha_Set((byte)(100));
                 }
             }
             return 0;
@@ -208,9 +208,9 @@ public static partial class Game
             new StateObj(o).unk48_Set(0);
             for (; (n != 0u); n = new SubNode(n).next_)
             {
-                if (((int)(new SubNode(n).unkE) != 8))
+                if (((int)(new SubNode(n).Type) != 8))
                 {
-                    new SubNode(n).unk10_Set((byte)(200));
+                    new SubNode(n).Alpha_Set((byte)(200));
                 }
             }
             return 0;
@@ -230,9 +230,9 @@ public static partial class Game
             n = new StateObj(o).list_;
             for (; (n != 0u); n = new SubNode(n).next_)
             {
-                if (((int)(new SubNode(n).unkE) != 8))
+                if (((int)(new SubNode(n).Type) != 8))
                 {
-                    new SubNode(n).unk10_Set((byte)(100));
+                    new SubNode(n).Alpha_Set((byte)(100));
                 }
             }
             return 0;

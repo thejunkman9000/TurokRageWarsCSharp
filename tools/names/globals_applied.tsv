@@ -197,7 +197,7 @@
 0x800FD1F0	LevelPersistBuffer
 0x801029F8	Player_TeamMarkerVtx
 0x80102B00	ProfileTable
-0x80102B10	CharacterClassTable
+0x80102B10	ProfileTable_Plus10
 0x80102B4A	Profile_AwardBits
 0x80103140	Stats_ShotsFiredTable
 0x801031B0	Player_LaserBeamVtx

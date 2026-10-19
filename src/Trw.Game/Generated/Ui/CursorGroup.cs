@@ -58,11 +58,11 @@ public static partial class Game
             o = ResourcePool_Malloc((uint)(112));
             Mem_Fill(o, 0, (uint)(112));
             Mem.Copy(o, new O3Own(own).child_, 44);
-            new O3M7D5(o).h.id2_Set((ushort)(2005));
-            new O3M7D5(o).h.unk12_Set((short)(8));
+            new O3M7D5(o).h.Type_Set((ushort)(2005));
+            new O3M7D5(o).h.Flags_Set((short)(8));
             new O3M7D5(o).cnt_Set(n);
             new O3M7D5(o).own__Set(own);
-            new O3M7D5(o).h.id_Set((short)(31313));
+            new O3M7D5(o).h.Id_Set((short)(31313));
             new O3M7D5(o).mode_Set(0);
             UiTree_InsertBefore(new O3Own(own).child_, o, default(uint), default(uint));
             return new O3Own(own).cur__Set(o);
@@ -82,10 +82,10 @@ public static partial class Game
             {
                 if ((new O3M7D5(m).item[(int)(idx)] != 0u))
                 {
-                    Menu_SendEvent((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    Menu_SendEvent((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.Id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
                 it = UiTree_FindNode((uint)((int)(new O3M7D5(m).own_)), (uint)((id & 65535)), default(uint), default(uint));
-                Menu_SendEvent((uint)((int)(new O3Item(it).h.id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
+                Menu_SendEvent((uint)((int)(new O3Item(it).h.Id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
                 if ((new O3M7D5(m).mode == 0))
                 {
                     new O3M7D5(m).item.Set((int)(idx), it);
@@ -164,10 +164,10 @@ public static partial class Game
             {
                 if ((new O3M7D5(m).item[(int)(idx)] != 0u))
                 {
-                    Menu_SendEvent((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    Menu_SendEvent((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.Id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
                 it = UiTree_FindNode((uint)((int)(new O3M7D5(m).own_)), (uint)((id & 65535)), default(uint), default(uint));
-                Menu_SendEvent((uint)((int)(new O3Item(it).h.id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
+                Menu_SendEvent((uint)((int)(new O3Item(it).h.Id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
                 if ((new O3M7D5(m).mode == 0))
                 {
                     new O3M7D5(m).item.Set((int)(idx), it);
@@ -229,7 +229,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E34A0u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E34A0u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E34A0u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E34A0u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E34A0u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E34A0u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
@@ -252,7 +252,7 @@ public static partial class Game
                 int flag = 0;
                 if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), self, _fp) != 0))
                 {
-                    if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
+                    if ((((int)(new O3Hdr(self).Flags) & 512) != 0))
                     {
                         Ui_GetClipRect((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -300,7 +300,7 @@ public static partial class Game
                 return 0;
             }
             it = new O3M7D5(m).item[(int)(idx)];
-            if (((it != 0u) && (((int)(new O3Item(it).h.unk12) & 16) != 0)))
+            if (((it != 0u) && (((int)(new O3Item(it).h.Flags) & 16) != 0)))
             {
                 if ((new O3Item(it).nbr[(int)(2)] != 0u))
                 {
@@ -330,7 +330,7 @@ public static partial class Game
                 return 0;
             }
             it = new O3M7D5(m).item[(int)(idx)];
-            if (((it != 0u) && (((int)(new O3Item(it).h.unk12) & 16) != 0)))
+            if (((it != 0u) && (((int)(new O3Item(it).h.Flags) & 16) != 0)))
             {
                 if ((new O3Item(it).nbr[(int)(0)] != 0u))
                 {
@@ -360,7 +360,7 @@ public static partial class Game
                 return 0;
             }
             it = new O3M7D5(m).item[(int)(idx)];
-            if (((it != 0u) && (((int)(new O3Item(it).h.unk12) & 16) != 0)))
+            if (((it != 0u) && (((int)(new O3Item(it).h.Flags) & 16) != 0)))
             {
                 if ((new O3Item(it).nbr[(int)(3)] != 0u))
                 {
@@ -390,7 +390,7 @@ public static partial class Game
                 return 0;
             }
             it = new O3M7D5(m).item[(int)(idx)];
-            if (((it != 0u) && (((int)(new O3Item(it).h.unk12) & 16) != 0)))
+            if (((it != 0u) && (((int)(new O3Item(it).h.Flags) & 16) != 0)))
             {
                 if ((new O3Item(it).nbr[(int)(1)] != 0u))
                 {
@@ -416,7 +416,7 @@ public static partial class Game
             it = new O3M7D5(m).item[(int)((a2 & 65535))];
             if ((it != 0u))
             {
-                Menu_SendEvent((uint)((int)(new O3Item(it).h.id)), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
+                Menu_SendEvent((uint)((int)(new O3Item(it).h.Id)), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
             }
             return 0;
         }

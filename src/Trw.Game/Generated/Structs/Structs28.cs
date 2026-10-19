@@ -2847,7 +2847,7 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public float InvulnerableTime_Set(float v) => Mem.Set(P + 0x670u, v);
     // +0x674
-    public S8x36 pad674 { [MethodImpl(Inl)] get => new(P + 0x674u); }
+    public S8x36 PlaneWalkerTime { [MethodImpl(Inl)] get => new(P + 0x674u); }
     // +0x698
     public uint ControllerPtr
     {
@@ -2890,7 +2890,7 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public int EmbryoTimer_Set(int v) => Mem.Set(P + 0x11E4u, v);
     // +0x11E8
-    public RespawnCarried carried
+    public RespawnCarried AttachedFxPtr_11E8
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11E8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11E8u, value.P);
@@ -4998,35 +4998,35 @@ public readonly struct S1008Node
     // +0x0
     public U8x16 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x10
-    public byte style
+    public byte Alpha
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public byte style_Set(byte v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public byte Alpha_Set(byte v) => Mem.Set(P + 0x10u, v);
     // +0x11
     public U8x3 pad11 { [MethodImpl(Inl)] get => new(P + 0x11u); }
     // +0x14
-    public ushort x
+    public ushort X
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public ushort x_Set(ushort v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public ushort X_Set(ushort v) => Mem.Set(P + 0x14u, v);
     // +0x16
-    public ushort y
+    public ushort Y
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public ushort y_Set(ushort v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public ushort Y_Set(ushort v) => Mem.Set(P + 0x16u, v);
     // +0x18
-    public short w
+    public short Width
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public short w_Set(short v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public short Width_Set(short v) => Mem.Set(P + 0x18u, v);
 }
 
 /// <summary>struct S1008Pool, 0x5F28 bytes, at a guest address.</summary>

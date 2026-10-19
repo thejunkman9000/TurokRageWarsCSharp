@@ -1125,9 +1125,9 @@ public readonly struct Owner_func_80250274_de
     [MethodImpl(Inl)] public static implicit operator uint(Owner_func_80250274_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Owner_func_80250274_de(uint p) => new(p);
     // +0x0
-    public S8x24 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x24 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x18
-    public Descriptor_func_80250274_de descriptor
+    public Descriptor_func_80250274_de DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -1139,41 +1139,41 @@ public readonly struct Owner_func_80250274_de
     }
     [MethodImpl(Inl)] public uint descriptor__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public S8x4 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public S8x4 ModelResourceKey { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x20
-    public int field20
+    public int LevelBlockPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int field20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int LevelBlockPtr_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
     public S8x4 pad24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
     // +0x28
-    public S8x168 transform { [MethodImpl(Inl)] get => new(P + 0x28u); }
+    public S8x168 TransformFixed { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0xD0
-    public int flagsD0
+    public int LightCacheKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD0u, value);
     }
-    [MethodImpl(Inl)] public int flagsD0_Set(int v) => Mem.Set(P + 0xD0u, v);
+    [MethodImpl(Inl)] public int LightCacheKey_Set(int v) => Mem.Set(P + 0xD0u, v);
     // +0xD4
-    public S8x4 padD4 { [MethodImpl(Inl)] get => new(P + 0xD4u); }
+    public S8x4 RegionId { [MethodImpl(Inl)] get => new(P + 0xD4u); }
     // +0xD8
-    public ushort flagsD8
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public ushort flagsD8_Set(ushort v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
     // +0xDA
-    public byte colorFrame
+    public byte LitFrame
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xDAu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDAu, value);
     }
-    [MethodImpl(Inl)] public byte colorFrame_Set(byte v) => Mem.Set(P + 0xDAu, v);
+    [MethodImpl(Inl)] public byte LitFrame_Set(byte v) => Mem.Set(P + 0xDAu, v);
     // +0xDB
     public sbyte padDB
     {
@@ -1182,19 +1182,19 @@ public readonly struct Owner_func_80250274_de
     }
     [MethodImpl(Inl)] public sbyte padDB_Set(sbyte v) => Mem.Set(P + 0xDBu, v);
     // +0xDC
-    public uint timer
+    public uint CameraDistSq
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public uint timer_Set(uint v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public uint CameraDistSq_Set(uint v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public sbyte fade
+    public sbyte FadeLevel
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xE0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE0u, value);
     }
-    [MethodImpl(Inl)] public sbyte fade_Set(sbyte v) => Mem.Set(P + 0xE0u, v);
+    [MethodImpl(Inl)] public sbyte FadeLevel_Set(sbyte v) => Mem.Set(P + 0xE0u, v);
 }
 
 /// <summary>struct Owner_func_802504B0_de, 0xDC bytes, at a guest address.</summary>

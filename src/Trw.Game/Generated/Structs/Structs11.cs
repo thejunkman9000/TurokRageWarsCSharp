@@ -3370,22 +3370,22 @@ public readonly struct GBlk
 public readonly struct GFx
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public GFx(uint p) { P = p; }
+    [MethodImpl(Inl)] public GFx(uint ActiveCheats) { P = ActiveCheats; }
     public const int SizeOf = 30;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
     [MethodImpl(Inl)] public GFx At(int i) => new(P + (uint)(i * 30));
     [MethodImpl(Inl)] public static implicit operator uint(GFx v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator GFx(uint p) => new(p);
+    [MethodImpl(Inl)] public static explicit operator GFx(uint ActiveCheats) => new(ActiveCheats);
     // +0x0
-    public U8x29 p { [MethodImpl(Inl)] get => new(P); }
+    public U8x29 ActiveCheats { [MethodImpl(Inl)] get => new(P); }
     // +0x1D
-    public byte f
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x1Du);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Du, value);
     }
-    [MethodImpl(Inl)] public byte f_Set(byte v) => Mem.Set(P + 0x1Du, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x1Du, v);
 }
 
 /// <summary>struct GStateB6, 0x684 bytes, at a guest address.</summary>
@@ -3402,21 +3402,21 @@ public readonly struct GStateB6
     // +0x0
     public U8x13 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xD
-    public byte unkD
+    public byte GameMode
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xDu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDu, value);
     }
-    [MethodImpl(Inl)] public byte unkD_Set(byte v) => Mem.Set(P + 0xDu, v);
+    [MethodImpl(Inl)] public byte GameMode_Set(byte v) => Mem.Set(P + 0xDu, v);
     // +0xE
     public U8x15 padE { [MethodImpl(Inl)] get => new(P + 0xEu); }
     // +0x1D
-    public byte unk1D
+    public byte IsMultiplayer
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x1Du);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Du, value);
     }
-    [MethodImpl(Inl)] public byte unk1D_Set(byte v) => Mem.Set(P + 0x1Du, v);
+    [MethodImpl(Inl)] public byte IsMultiplayer_Set(byte v) => Mem.Set(P + 0x1Du, v);
     // +0x1E
     public U8x298 pad1E { [MethodImpl(Inl)] get => new(P + 0x1Eu); }
     // +0x148
@@ -3438,7 +3438,7 @@ public readonly struct GStateB6
     // +0x163
     public U8x1141 pad163 { [MethodImpl(Inl)] get => new(P + 0x163u); }
     // +0x5D8
-    public GameB6 sub { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
+    public GameB6 MatchRules { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
 }
 
 /// <summary>struct Game1308, 0x1308 bytes, at a guest address.</summary>

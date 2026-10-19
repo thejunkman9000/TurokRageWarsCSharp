@@ -92,7 +92,7 @@ public static partial class Game
             else
             {
                 Actor_DispatchEvent(actor, state, 0);
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(65536)));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(65536)));
             }
         }
     }
@@ -149,7 +149,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00205314", (uint)actor);
-            return new B01Actor(actor).def.unk2C;
+            return new B01Actor(actor).DefPtr.CreatureCollisionRadius;
         }
     }
 
@@ -214,7 +214,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002054D0", (uint)actor);
-            return new B01Actor(actor).def.InitParamB_40;
+            return new B01Actor(actor).DefPtr.InitParamB_40;
         }
     }
 
@@ -225,22 +225,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002054E0", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
+            new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & 4294901759u));
             Level_FireEntityTriggers(actor, 262144, (int)(actor));
             if ((new B01Info(info).TravelHeight == 0))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~8192))));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
             }
             if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) == 4))
             {
                 if ((new B01Info(info).TravelYaw.i != (-1)))
                 {
-                    Audio_PlaySound((int)((uint)((int)(new B01Info(info).TravelYaw.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                    Audio_PlaySound((int)((uint)((int)(new B01Info(info).TravelYaw.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).Position.x), Cpu.F2U(new B01Actor(actor).Position.y), Cpu.F2U(new B01Actor(actor).Position.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 }
                 if ((new B01Info(info).TravelDistance != (-1)))
                 {
-                    Effect_SpawnForObject(actor, new B01Info(info).TravelDistance, new B01Actor(actor).pos.P);
+                    Effect_SpawnForObject(actor, new B01Info(info).TravelDistance, new B01Actor(actor).Position.P);
                 }
                 Actor_DropItemsOnce(actor, state, (uint)(8), (uint)(new B01Info(info).TravelTime_38), (uint)(new B01Info(info).TravelTurn_3C));
             }
@@ -268,10 +268,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00205628", (uint)obj, (uint)state, (uint)evt);
-            new B01Actor(obj).unk17C_Set((1 << (int)new ActorState(state).ClassVar_124));
+            new B01Actor(obj).PartMask_Set((1 << (int)new ActorState(state).ClassVar_124));
             if ((new B01Evt(evt).unk0 != 0))
             {
-                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorState(state).ClassVar_128.P));
+                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).BoneMatricesPtr, 1, (int)((new B01Actor(obj).FrameLightSets.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorState(state).ClassVar_128.P));
             }
         }
     }

@@ -21,102 +21,102 @@ public readonly struct Widget_v2
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public uint child_
+    public uint NextSiblingPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint child__Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint NextSiblingPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public uint sibling_
+    public uint FirstChildPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public uint sibling__Set(uint v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public uint FirstChildPtr_Set(uint v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public U8x2 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0xE
-    public ushort type
+    public ushort Type
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public ushort type_Set(ushort v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public ushort Type_Set(ushort v) => Mem.Set(P + 0xEu, v);
     // +0x10
     public U8x4 pad10 { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x14
-    public short x
+    public short X
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public short x_Set(short v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public short X_Set(short v) => Mem.Set(P + 0x14u, v);
     // +0x16
-    public short y
+    public short Y
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x16u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16u, value);
     }
-    [MethodImpl(Inl)] public short y_Set(short v) => Mem.Set(P + 0x16u, v);
+    [MethodImpl(Inl)] public short Y_Set(short v) => Mem.Set(P + 0x16u, v);
     // +0x18
-    public short w
+    public short Width
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public short w_Set(short v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public short Width_Set(short v) => Mem.Set(P + 0x18u, v);
     // +0x1A
-    public short h
+    public short Height
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x1Au);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Au, value);
     }
-    [MethodImpl(Inl)] public short h_Set(short v) => Mem.Set(P + 0x1Au, v);
+    [MethodImpl(Inl)] public short Height_Set(short v) => Mem.Set(P + 0x1Au, v);
     // +0x1C
     public U8x4 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x20
-    public float sx
+    public float ScaleX
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public float sx_Set(float v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public float ScaleX_Set(float v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public float sy
+    public float ScaleY
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public float sy_Set(float v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public float ScaleY_Set(float v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int scaled
+    public int IsHiResScaled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int scaled_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsHiResScaled_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public uint sub2C_
+    public uint NormalNodePtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x2Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2Cu, value);
     }
-    [MethodImpl(Inl)] public uint sub2C__Set(uint v) => Mem.Set(P + 0x2Cu, v);
+    [MethodImpl(Inl)] public uint NormalNodePtr_Set(uint v) => Mem.Set(P + 0x2Cu, v);
     // +0x30
-    public uint sub30_
+    public uint HighlightNodePtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public uint sub30__Set(uint v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public uint HighlightNodePtr_Set(uint v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public uint sub34_
+    public uint DisabledNodePtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public uint sub34__Set(uint v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public uint DisabledNodePtr_Set(uint v) => Mem.Set(P + 0x34u, v);
 }
 
 /// <summary>struct Window_func_80421AE8_de, 0x11 bytes, at a guest address.</summary>

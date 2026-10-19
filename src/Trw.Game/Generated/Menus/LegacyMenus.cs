@@ -12,7 +12,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DCBC", (uint)a, (uint)b);
-            Player_StartRun_0044A37C((uint)(new O06A_v16(b).unk1C));
+            Player_StartRun_0044A37C((uint)(new O06A_v16(b).PlayerPtr));
             return 1;
         }
     }
@@ -57,7 +57,7 @@ public static partial class Game
             }
             else
             {
-                new O06B_v6(new O06A_v3(b).unk1C_).unk5D0_Set(0);
+                new O06B_v6(new O06A_v3(b).PlayerPtr).unk5D0_Set(0);
             }
             return 1;
         }
@@ -69,87 +69,87 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DD2C", (uint)a);
-            switch (new O06A_v28(a).unk0)
+            switch (new O06A_v28(a).Index)
             {
             default:
             case 2:
                 if ((Mem.U8(0x801462F5u) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D40u);
+                    new O06A_v28(a).Data_Set(0x800D7D40u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D44u);
+                    new O06A_v28(a).Data_Set(0x800D7D44u);
                 }
                 break;
             case 3:
                 if ((Mem.U8(0x801462F6u) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D48u);
+                    new O06A_v28(a).Data_Set(0x800D7D48u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D4Cu);
+                    new O06A_v28(a).Data_Set(0x800D7D4Cu);
                 }
                 break;
             case 4:
                 if ((Mem.U8(0x801462F7u) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D50u);
+                    new O06A_v28(a).Data_Set(0x800D7D50u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D54u);
+                    new O06A_v28(a).Data_Set(0x800D7D54u);
                 }
                 break;
             case 5:
                 if ((Mem.U8(0x801462F8u) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D58u);
+                    new O06A_v28(a).Data_Set(0x800D7D58u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D5Cu);
+                    new O06A_v28(a).Data_Set(0x800D7D5Cu);
                 }
                 break;
             case 6:
                 if ((Mem.U8(0x801462F9u) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D60u);
+                    new O06A_v28(a).Data_Set(0x800D7D60u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D64u);
+                    new O06A_v28(a).Data_Set(0x800D7D64u);
                 }
                 break;
             case 7:
                 if ((Mem.U8(0x801462FAu) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D68u);
+                    new O06A_v28(a).Data_Set(0x800D7D68u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D6Cu);
+                    new O06A_v28(a).Data_Set(0x800D7D6Cu);
                 }
                 break;
             case 8:
                 if ((Mem.U8(0x801462FBu) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D70u);
+                    new O06A_v28(a).Data_Set(0x800D7D70u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D74u);
+                    new O06A_v28(a).Data_Set(0x800D7D74u);
                 }
                 break;
             case 9:
                 if ((Mem.U8(0x801462FDu) != 0))
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D78u);
+                    new O06A_v28(a).Data_Set(0x800D7D78u);
                 }
                 else
                 {
-                    new O06A_v28(a).unk14_Set(0x800D7D7Cu);
+                    new O06A_v28(a).Data_Set(0x800D7D7Cu);
                 }
                 break;
             }
@@ -374,8 +374,8 @@ public static partial class Game
                 p = (Gv.Pad_Slots + (uint)(i * 548));
                 if (((int)(Pad_IsConfirm(p)) != 0))
                 {
-                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).b78_Set((byte)(1));
-                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).b7F_Set((byte)(i));
+                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).IsActive_Set((byte)(1));
+                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).PlayerIndex_Set((byte)(i));
                     new Q4A(a).f20_Set(p);
                     break;
                 }
@@ -418,8 +418,8 @@ public static partial class Game
                 if (((int)(Pad_IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
                     uint r = (Gv.Settings_PlayerRecords + (uint)(i * 150));
-                    new S10Row(r).b78_Set((byte)(1));
-                    new S10Row(r).b7F_Set((byte)(i));
+                    new S10Row(r).IsActive_Set((byte)(1));
+                    new S10Row(r).PlayerIndex_Set((byte)(i));
                     break;
                 }
             }
@@ -864,28 +864,28 @@ public static partial class Game
             switch (new S10Msg(a).code)
             {
             case 2:
-                new S10State(Gv.Settings).b2D_Set((byte)((int)(new S10State(Gv.Settings).b2D) ^ 1));
+                new S10State(Gv.Settings).IsWeapon0Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon0Enabled) ^ 1));
                 break;
             case 3:
-                new S10State(Gv.Settings).b2E_Set((byte)((int)(new S10State(Gv.Settings).b2E) ^ 1));
+                new S10State(Gv.Settings).IsWeapon1Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon1Enabled) ^ 1));
                 break;
             case 4:
-                new S10State(Gv.Settings).b2F_Set((byte)((int)(new S10State(Gv.Settings).b2F) ^ 1));
+                new S10State(Gv.Settings).IsWeapon2Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon2Enabled) ^ 1));
                 break;
             case 5:
-                new S10State(Gv.Settings).b30_Set((byte)((int)(new S10State(Gv.Settings).b30) ^ 1));
+                new S10State(Gv.Settings).IsWeapon3Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon3Enabled) ^ 1));
                 break;
             case 6:
-                new S10State(Gv.Settings).b31_Set((byte)((int)(new S10State(Gv.Settings).b31) ^ 1));
+                new S10State(Gv.Settings).IsWeapon4Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon4Enabled) ^ 1));
                 break;
             case 7:
-                new S10State(Gv.Settings).b32_Set((byte)((int)(new S10State(Gv.Settings).b32) ^ 1));
+                new S10State(Gv.Settings).IsWeapon5Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon5Enabled) ^ 1));
                 break;
             case 8:
-                new S10State(Gv.Settings).b33_Set((byte)((int)(new S10State(Gv.Settings).b33) ^ 1));
+                new S10State(Gv.Settings).IsWeapon6Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon6Enabled) ^ 1));
                 break;
             case 9:
-                new S10State(Gv.Settings).b35_Set((byte)((int)(new S10State(Gv.Settings).b35) ^ 1));
+                new S10State(Gv.Settings).IsWeapon8Enabled_Set((byte)((int)(new S10State(Gv.Settings).IsWeapon8Enabled) ^ 1));
                 break;
             }
             return 0;
@@ -970,8 +970,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EC10", (uint)a, (uint)m);
             int i = 0;
-            new S10State(Gv.Settings).b1D_Set((byte)(0));
-            new S10State(Gv.Settings).b1E_Set((byte)(1));
+            new S10State(Gv.Settings).IsMultiplayer_Set((byte)(0));
+            new S10State(Gv.Settings).MaxPlayers_Set((byte)(1));
             for (i = 0; (i < 8); ++i)
             {
                 new S10State(Gv.Settings).rec[(int)(i)].b0_Set((byte)(0));
@@ -980,7 +980,7 @@ public static partial class Game
             {
                 if (((int)(Pad_IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
-                    new S10Row(Gv.Settings_DefaultPlayerRecord).b78_Set((byte)(1));
+                    new S10Row(Gv.Settings_DefaultPlayerRecord).IsActive_Set((byte)(1));
                     Mem.Set(0x80146381u, (byte)(i));
                     new S10Menu(m).ctrl__Set((Gv.Pad_Slots + (uint)(i * 548)));
                     break;
@@ -1022,11 +1022,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043ED5C", (uint)a, (uint)b, (uint)c);
             int i = 0;
-            new O06Opt(Gv.Settings).unk1D_Set((byte)(1));
-            new O06Opt(Gv.Settings).unk1E_Set((byte)(4));
+            new O06Opt(Gv.Settings).IsMultiplayer_Set((byte)(1));
+            new O06Opt(Gv.Settings).MaxPlayers_Set((byte)(4));
             for (i = 7; (i >= 0); --i)
             {
-                new O06Opt(Gv.Settings).rows[(int)(i)].unk78_Set((byte)(0));
+                new O06Opt(Gv.Settings).PlayerRecords[(int)(i)].unk78_Set((byte)(0));
             }
             MenuPanel_OpenChild((uint)(c), (uint)(b), 0x00450AD4u);
             return 1;
@@ -1122,7 +1122,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EF1C", (uint)a);
             Mem.Set((0x801468B0u + (uint)(0 * 4)), Mem.F32(0x800E2390u));
-            new O06B_v16(new O06A_v18(a).unkC_).unk30_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).unkC_).unk30) & (uint)((~67108864))));
+            new O06B_v16(new O06A_v18(a).unkC_).Item1Flags_Set((uint)((uint)(new O06B_v16(new O06A_v18(a).unkC_).Item1Flags) & (uint)((~67108864))));
         }
     }
 
@@ -1194,7 +1194,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EFCC_func_0043F1B8", (uint)a, (uint)b);
-            uint x = new O06A_v39(a).unk18_;
+            uint x = new O06A_v39(a).TemplatePtr;
             int id = (int)(new O06X(x).unk20);
             int idx = (int)(new O06X(x).unk22);
             uint y = new O06B_v7(b).unk1C_;
@@ -1261,7 +1261,7 @@ public static partial class Game
                 new O06Gfx(g3).w0_Set(4211081216u);
                 new O06Gfx(g3).w1_Set((uint)((((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f))) & 255) | 842150400)));
             }
-            Sprite_Draw(new O06A_v39(a).unk14, 0, new O06E_v2(b).unk16, new O06E_v2(b).unk1E, new O06E_v2(b).unkC, new O06E_v2(b).unk10, 1);
+            Sprite_Draw(new O06A_v39(a).Data, 0, new O06E_v2(b).unk16, new O06E_v2(b).unk1E, new O06E_v2(b).unkC, new O06E_v2(b).unk10, 1);
         }
     }
 
@@ -1414,7 +1414,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043F1B8", (uint)a, (uint)b);
-            uint x = new O06A_v11(a).unk18_;
+            uint x = new O06A_v11(a).TemplatePtr;
             int id = (int)(new O06X(x).unk20);
             int idx = (int)(new O06X(x).unk22);
             uint y = new O06B_v7(b).unk1C_;

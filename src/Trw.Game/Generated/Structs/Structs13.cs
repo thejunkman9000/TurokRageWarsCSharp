@@ -3435,25 +3435,25 @@ public readonly struct ListScreenScreen
     [MethodImpl(Inl)] public static implicit operator uint(ListScreenScreen v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ListScreenScreen(uint p) => new(p);
     // +0x0
-    public int window
+    public int RootNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int window_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int RootNode_Set(int v) => Mem.Set(P, v);
     // +0x4
     public S8x4 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x8
-    public ListScreenModelx5 models { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public ListScreenModelx5 Models { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x3C8
-    public int list
+    public int CursorGroup
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3C8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3C8u, value);
     }
-    [MethodImpl(Inl)] public int list_Set(int v) => Mem.Set(P + 0x3C8u, v);
+    [MethodImpl(Inl)] public int CursorGroup_Set(int v) => Mem.Set(P + 0x3C8u, v);
     // +0x3CC
-    public ListScreenItem left
+    public ListScreenItem LeftArrowNode
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x3CCu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3CCu, value.P);
@@ -3465,14 +3465,14 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint left__Set(uint v) => Mem.Set(P + 0x3CCu, v);
     // +0x3D0
-    public int leftCount
+    public int LeftArrowStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3D0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3D0u, value);
     }
-    [MethodImpl(Inl)] public int leftCount_Set(int v) => Mem.Set(P + 0x3D0u, v);
+    [MethodImpl(Inl)] public int LeftArrowStep_Set(int v) => Mem.Set(P + 0x3D0u, v);
     // +0x3D4
-    public ListScreenItem right
+    public ListScreenItem RightArrowNode
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x3D4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3D4u, value.P);
@@ -3484,35 +3484,35 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint right__Set(uint v) => Mem.Set(P + 0x3D4u, v);
     // +0x3D8
-    public int rightCount
+    public int RightArrowStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3D8u, value);
     }
-    [MethodImpl(Inl)] public int rightCount_Set(int v) => Mem.Set(P + 0x3D8u, v);
+    [MethodImpl(Inl)] public int RightArrowStep_Set(int v) => Mem.Set(P + 0x3D8u, v);
     // +0x3DC
-    public int unk_3DC
+    public int State
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3DCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3DCu, value);
     }
-    [MethodImpl(Inl)] public int unk_3DC_Set(int v) => Mem.Set(P + 0x3DCu, v);
+    [MethodImpl(Inl)] public int State_Set(int v) => Mem.Set(P + 0x3DCu, v);
     // +0x3E0
-    public int unk_3E0
+    public int StateTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3E0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3E0u, value);
     }
-    [MethodImpl(Inl)] public int unk_3E0_Set(int v) => Mem.Set(P + 0x3E0u, v);
+    [MethodImpl(Inl)] public int StateTimer_Set(int v) => Mem.Set(P + 0x3E0u, v);
     // +0x3E4
-    public int text3E4
+    public int TextFlicker
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3E4u, value);
     }
-    [MethodImpl(Inl)] public int text3E4_Set(int v) => Mem.Set(P + 0x3E4u, v);
+    [MethodImpl(Inl)] public int TextFlicker_Set(int v) => Mem.Set(P + 0x3E4u, v);
     // +0x3E8
-    public ListScreenItem unk_3E8
+    public ListScreenItem BannerNode_3E8
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x3E8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3E8u, value.P);
@@ -3524,7 +3524,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_3E8__Set(uint v) => Mem.Set(P + 0x3E8u, v);
     // +0x3EC
-    public ListScreenItem label
+    public ListScreenItem NameLabelNode
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x3ECu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3ECu, value.P);
@@ -3536,7 +3536,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint label__Set(uint v) => Mem.Set(P + 0x3ECu, v);
     // +0x3F0
-    public ListScreenItem unk_3F0
+    public ListScreenItem NameFrameNode_3F0
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x3F0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3F0u, value.P);
@@ -3548,23 +3548,23 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_3F0__Set(uint v) => Mem.Set(P + 0x3F0u, v);
     // +0x3F4
-    public S8x64 text { [MethodImpl(Inl)] get => new(P + 0x3F4u); }
+    public S8x64 NameText { [MethodImpl(Inl)] get => new(P + 0x3F4u); }
     // +0x434
-    public int category
+    public int Category
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x434u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x434u, value);
     }
-    [MethodImpl(Inl)] public int category_Set(int v) => Mem.Set(P + 0x434u, v);
+    [MethodImpl(Inl)] public int Category_Set(int v) => Mem.Set(P + 0x434u, v);
     // +0x438
-    public int selection
+    public int ArenaIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x438u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x438u, value);
     }
-    [MethodImpl(Inl)] public int selection_Set(int v) => Mem.Set(P + 0x438u, v);
+    [MethodImpl(Inl)] public int ArenaIndex_Set(int v) => Mem.Set(P + 0x438u, v);
     // +0x43C
-    public ListScreenItem item
+    public ListScreenItem SelectedArenaNode
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x43Cu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x43Cu, value.P);
@@ -3576,7 +3576,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint item__Set(uint v) => Mem.Set(P + 0x43Cu, v);
     // +0x440
-    public ListScreenItem unk_440
+    public ListScreenItem GauntletPanelNode_440
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x440u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x440u, value.P);
@@ -3588,7 +3588,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_440__Set(uint v) => Mem.Set(P + 0x440u, v);
     // +0x444
-    public ListScreenItem unk_444
+    public ListScreenItem ArenaPanelNode_444
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x444u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x444u, value.P);
@@ -3600,7 +3600,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_444__Set(uint v) => Mem.Set(P + 0x444u, v);
     // +0x448
-    public ListScreenItem unk_448
+    public ListScreenItem CategoryCursorNode
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x448u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x448u, value.P);
@@ -3612,7 +3612,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_448__Set(uint v) => Mem.Set(P + 0x448u, v);
     // +0x44C
-    public ListScreenItem unk_44C
+    public ListScreenItem ConfirmFadeNode_44C
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x44Cu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44Cu, value.P);
@@ -3624,7 +3624,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_44C__Set(uint v) => Mem.Set(P + 0x44Cu, v);
     // +0x450
-    public ListScreenItem unk_450
+    public ListScreenItem MarkerNodeA
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x450u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x450u, value.P);
@@ -3636,7 +3636,7 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_450__Set(uint v) => Mem.Set(P + 0x450u, v);
     // +0x454
-    public ListScreenItem unk_454
+    public ListScreenItem MarkerNodeB
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x454u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x454u, value.P);
@@ -3660,12 +3660,12 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public uint unk_458__Set(uint v) => Mem.Set(P + 0x458u, v);
     // +0x45C
-    public int unk_45C
+    public int IdleTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x45Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x45Cu, value);
     }
-    [MethodImpl(Inl)] public int unk_45C_Set(int v) => Mem.Set(P + 0x45Cu, v);
+    [MethodImpl(Inl)] public int IdleTime_Set(int v) => Mem.Set(P + 0x45Cu, v);
     // +0x460
     public int unk_460
     {
@@ -3674,26 +3674,26 @@ public readonly struct ListScreenScreen
     }
     [MethodImpl(Inl)] public int unk_460_Set(int v) => Mem.Set(P + 0x460u, v);
     // +0x464
-    public int unk_464
+    public int FlybyDelay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x464u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x464u, value);
     }
-    [MethodImpl(Inl)] public int unk_464_Set(int v) => Mem.Set(P + 0x464u, v);
+    [MethodImpl(Inl)] public int FlybyDelay_Set(int v) => Mem.Set(P + 0x464u, v);
     // +0x468
-    public int unk_468
+    public int MarkerFadeDelay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x468u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x468u, value);
     }
-    [MethodImpl(Inl)] public int unk_468_Set(int v) => Mem.Set(P + 0x468u, v);
+    [MethodImpl(Inl)] public int MarkerFadeDelay_Set(int v) => Mem.Set(P + 0x468u, v);
     // +0x46C
-    public int unk_46C
+    public int IsMarkerFading
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x46Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x46Cu, value);
     }
-    [MethodImpl(Inl)] public int unk_46C_Set(int v) => Mem.Set(P + 0x46Cu, v);
+    [MethodImpl(Inl)] public int IsMarkerFading_Set(int v) => Mem.Set(P + 0x46Cu, v);
 }
 
 /// <summary>struct List_func_8041BE28_de, 0x50 bytes, at a guest address.</summary>
@@ -4194,7 +4194,7 @@ public readonly struct M03CMover
     [MethodImpl(Inl)] public static implicit operator uint(M03CMover v) => v.P;
     [MethodImpl(Inl)] public static explicit operator M03CMover(uint p) => new(p);
     // +0x0
-    public M03CObj owner
+    public M03CObj OwnerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -4208,7 +4208,7 @@ public readonly struct M03CMover
     // +0x4
     public U8x60 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x40
-    public M03CDef def
+    public M03CDef DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x40u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value.P);
@@ -4220,27 +4220,27 @@ public readonly struct M03CMover
     }
     [MethodImpl(Inl)] public uint def__Set(uint v) => Mem.Set(P + 0x40u, v);
     // +0x44
-    public M03V3 v44 { [MethodImpl(Inl)] get => new(P + 0x44u); }
+    public M03V3 StartPos { [MethodImpl(Inl)] get => new(P + 0x44u); }
     // +0x50
-    public M03V3 v50 { [MethodImpl(Inl)] get => new(P + 0x50u); }
+    public M03V3 EndPos { [MethodImpl(Inl)] get => new(P + 0x50u); }
     // +0x5C
-    public float f5C
+    public float Delta
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x5Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5Cu, value);
     }
-    [MethodImpl(Inl)] public float f5C_Set(float v) => Mem.Set(P + 0x5Cu, v);
+    [MethodImpl(Inl)] public float Delta_Set(float v) => Mem.Set(P + 0x5Cu, v);
     // +0x60
-    public float f60
+    public float DeltaY
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x60u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x60u, value);
     }
-    [MethodImpl(Inl)] public float f60_Set(float v) => Mem.Set(P + 0x60u, v);
+    [MethodImpl(Inl)] public float DeltaY_Set(float v) => Mem.Set(P + 0x60u, v);
     // +0x64
     public U8x76 pad64 { [MethodImpl(Inl)] get => new(P + 0x64u); }
     // +0xB0
-    public M03Quad qcopy { [MethodImpl(Inl)] get => new(P + 0xB0u); }
+    public M03Quad Hit { [MethodImpl(Inl)] get => new(P + 0xB0u); }
     // +0x18C
     public U8x28 pad18C { [MethodImpl(Inl)] get => new(P + 0x18Cu); }
 }
@@ -4950,34 +4950,34 @@ public readonly struct M03Fx
     [MethodImpl(Inl)] public static implicit operator uint(M03Fx v) => v.P;
     [MethodImpl(Inl)] public static explicit operator M03Fx(uint p) => new(p);
     // +0x0
-    public byte type
+    public byte Type
     {
         [MethodImpl(Inl)] get => Mem.U8(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public byte type_Set(byte v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public byte Type_Set(byte v) => Mem.Set(P, v);
     // +0x1
     public U8x3 pad1 { [MethodImpl(Inl)] get => new(P + 0x1u); }
     // +0x4
-    public ushort id
+    public ushort Id
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public ushort id_Set(ushort v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public ushort Id_Set(ushort v) => Mem.Set(P + 0x4u, v);
     // +0x6
     public U8x2 pad6 { [MethodImpl(Inl)] get => new(P + 0x6u); }
     // +0x8
-    public M03V3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public M03V3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public int p14
+    public int RegionPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int p14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int RegionPtr_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public M03FxCls cls
+    public M03FxCls DefPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x18u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value.P);
@@ -4989,78 +4989,78 @@ public readonly struct M03Fx
     }
     [MethodImpl(Inl)] public uint cls__Set(uint v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int w1C
+    public int ModelResourceKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int w1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int ModelResourceKey_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
     public U8x8 pad20 { [MethodImpl(Inl)] get => new(P + 0x20u); }
     // +0x28
-    public F32x16 m28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
+    public F32x16 TransformFixed { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x68
-    public F32x16 m68 { [MethodImpl(Inl)] get => new(P + 0x68u); }
+    public F32x16 TransformMtx { [MethodImpl(Inl)] get => new(P + 0x68u); }
     // +0xA8
-    public int hA8
+    public int LoadedModelIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xA8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA8u, value);
     }
-    [MethodImpl(Inl)] public int hA8_Set(int v) => Mem.Set(P + 0xA8u, v);
+    [MethodImpl(Inl)] public int LoadedModelIndex_Set(int v) => Mem.Set(P + 0xA8u, v);
     // +0xAC
-    public int hAC
+    public int LoadedModelKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public int hAC_Set(int v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public int LoadedModelKey_Set(int v) => Mem.Set(P + 0xACu, v);
     // +0xB0
-    public int hB0
+    public int LoadedModelSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value);
     }
-    [MethodImpl(Inl)] public int hB0_Set(int v) => Mem.Set(P + 0xB0u, v);
+    [MethodImpl(Inl)] public int LoadedModelSize_Set(int v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
-    public int hB4
+    public int PinnedModelHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB4u, value);
     }
-    [MethodImpl(Inl)] public int hB4_Set(int v) => Mem.Set(P + 0xB4u, v);
+    [MethodImpl(Inl)] public int PinnedModelHandle_Set(int v) => Mem.Set(P + 0xB4u, v);
     // +0xB8
-    public F32x3 bmin { [MethodImpl(Inl)] get => new(P + 0xB8u); }
+    public F32x3 BoundsMin { [MethodImpl(Inl)] get => new(P + 0xB8u); }
     // +0xC4
-    public F32x3 bmax { [MethodImpl(Inl)] get => new(P + 0xC4u); }
+    public F32x3 BoundsMax { [MethodImpl(Inl)] get => new(P + 0xC4u); }
     // +0xD0
-    public int wD0
+    public int LightCacheKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD0u, value);
     }
-    [MethodImpl(Inl)] public int wD0_Set(int v) => Mem.Set(P + 0xD0u, v);
+    [MethodImpl(Inl)] public int LightCacheKey_Set(int v) => Mem.Set(P + 0xD0u, v);
     // +0xD4
-    public int wD4
+    public int RegionId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xD4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD4u, value);
     }
-    [MethodImpl(Inl)] public int wD4_Set(int v) => Mem.Set(P + 0xD4u, v);
+    [MethodImpl(Inl)] public int RegionId_Set(int v) => Mem.Set(P + 0xD4u, v);
     // +0xD8
-    public ushort flags
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xD8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xD8u, value);
     }
-    [MethodImpl(Inl)] public ushort flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort v) => Mem.Set(P + 0xD8u, v);
     // +0xDA
-    public byte bDA
+    public byte LitFrame
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xDAu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDAu, value);
     }
-    [MethodImpl(Inl)] public byte bDA_Set(byte v) => Mem.Set(P + 0xDAu, v);
+    [MethodImpl(Inl)] public byte LitFrame_Set(byte v) => Mem.Set(P + 0xDAu, v);
     // +0xDB
     public byte padDB
     {
@@ -5069,19 +5069,19 @@ public readonly struct M03Fx
     }
     [MethodImpl(Inl)] public byte padDB_Set(byte v) => Mem.Set(P + 0xDBu, v);
     // +0xDC
-    public int wDC
+    public int CameraDistSq
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xDCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xDCu, value);
     }
-    [MethodImpl(Inl)] public int wDC_Set(int v) => Mem.Set(P + 0xDCu, v);
+    [MethodImpl(Inl)] public int CameraDistSq_Set(int v) => Mem.Set(P + 0xDCu, v);
     // +0xE0
-    public byte bE0
+    public byte FadeLevel
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0xE0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE0u, value);
     }
-    [MethodImpl(Inl)] public byte bE0_Set(byte v) => Mem.Set(P + 0xE0u, v);
+    [MethodImpl(Inl)] public byte FadeLevel_Set(byte v) => Mem.Set(P + 0xE0u, v);
     // +0xE1
     public U8x3 padE1 { [MethodImpl(Inl)] get => new(P + 0xE1u); }
 }
@@ -5100,21 +5100,21 @@ public readonly struct M03FxCls
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public float f8
+    public float Radius
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public float f8_Set(float v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public float Radius_Set(float v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public U8x24 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x24
-    public uint w24
+    public uint RadiusSquared
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public uint w24_Set(uint v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public uint RadiusSquared_Set(uint v) => Mem.Set(P + 0x24u, v);
 }
 
 /// <summary>struct M03FxRecB, 0x34 bytes, at a guest address.</summary>

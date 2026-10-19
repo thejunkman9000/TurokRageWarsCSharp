@@ -14,20 +14,20 @@ public static partial class Game
             int r = (-1);
             uint row = (Gv.ProfileTable + (uint)(a * 400));
             int t = 0;
-            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4)))) == 0))
+            if ((Bits_Test((new O04Row190w(row).TrialArenaBits.P + (uint)(new O04Row190w(row).SelectedCharacter * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4)))) == 0))
             {
-                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4))), 1);
+                Bits_Assign((new O04Row190w(row).TrialArenaBits.P + (uint)(new O04Row190w(row).SelectedCharacter * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4))), 1);
                 t = (int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)0)));
                 r = (t + 5000);
                 switch (t)
                 {
                 case 1:
-                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
-                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).SelectedCharacter));
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).SelectedCharacter));
                     return r;
                 case 2:
-                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
-                    if (((Profile_GetCharacterLives(row, (int)(new O04Row190w(row).unkF)) & 1) == 0))
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).SelectedCharacter));
+                    if (((Profile_GetCharacterLives(row, (int)(new O04Row190w(row).SelectedCharacter)) & 1) == 0))
                     {
                         r = 5001;
                     }
@@ -129,7 +129,7 @@ public static partial class Game
                     Profile_UnlockWeapon(row, 11);
                     return r;
                 case 53:
-                    new O04Row190w(row).unk17_Set((byte)(new O04Row190w(row).unk17 + 1));
+                    new O04Row190w(row).RewardCount_17_Set((byte)(new O04Row190w(row).RewardCount_17 + 1));
                     break;
                 case 57:
                     Profile_AddField10_0022F378(row);
@@ -165,7 +165,7 @@ public static partial class Game
                     r = Mem.U32(0x800D7510u);
                     break;
                 case 5002:
-                    if (!((Profile_GetCharacterLives(p, (int)(new O04Row190r(p).unkF)) & 1) != 0))
+                    if (!((Profile_GetCharacterLives(p, (int)(new O04Row190r(p).SelectedCharacter)) & 1) != 0))
                     {
                         r = Mem.U32(0x800D7518u);
                     }
@@ -300,9 +300,9 @@ public static partial class Game
             int b2 = 0;
             row = (Gv.ProfileTable + (uint)(a * 400));
             s3 = (-1);
-            if (((((int)(new Q03Cfg(Gv.Settings).unkD) == 1) && (new Q03Cfg(Gv.Settings).unk680 == 1)) && (Mem.S32(Gv.ArenaLevel) >= 35)))
+            if (((((int)(new Q03Cfg(Gv.Settings).GameMode) == 1) && (new Q03Cfg(Gv.Settings).TrialWon_680 == 1)) && (Mem.S32(Gv.ArenaLevel) >= 35)))
             {
-                switch ((int)(new Q03Cfg(Gv.Settings).ent[(int)(a)].f80))
+                switch ((int)(new Q03Cfg(Gv.Settings).PlayerRecords[(int)(a)].CharacterId))
                 {
                 case 0:
                     if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(17), default(uint), default(uint))) != 0))

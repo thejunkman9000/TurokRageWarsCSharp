@@ -3415,12 +3415,12 @@ public readonly struct DefC_v3
     // +0x4
     public U8x10 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0xE
-    public sbyte SpawnParam_E
+    public sbyte DefaultModelIndex
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public sbyte SpawnParam_E_Set(sbyte v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public sbyte DefaultModelIndex_Set(sbyte v) => Mem.Set(P + 0xEu, v);
     // +0xF
     public U8x1 padF { [MethodImpl(Inl)] get => new(P + 0xFu); }
     // +0x10
@@ -3646,37 +3646,37 @@ public readonly struct Descriptor_func_80250274_de
     // +0x0
     public S8x14 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xE
-    public sbyte key
+    public sbyte NearModelIndex
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public sbyte key_Set(sbyte v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public sbyte NearModelIndex_Set(sbyte v) => Mem.Set(P + 0xEu, v);
     // +0xF
-    public sbyte key2
+    public sbyte FarModelIndex
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0xFu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xFu, value);
     }
-    [MethodImpl(Inl)] public sbyte key2_Set(sbyte v) => Mem.Set(P + 0xFu, v);
+    [MethodImpl(Inl)] public sbyte FarModelIndex_Set(sbyte v) => Mem.Set(P + 0xFu, v);
     // +0x10
     public S8x2 pad10 { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x12
-    public sbyte argument
+    public sbyte ShadeFlags
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x12u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12u, value);
     }
-    [MethodImpl(Inl)] public sbyte argument_Set(sbyte v) => Mem.Set(P + 0x12u, v);
+    [MethodImpl(Inl)] public sbyte ShadeFlags_Set(sbyte v) => Mem.Set(P + 0x12u, v);
     // +0x13
     public S8x17 pad13 { [MethodImpl(Inl)] get => new(P + 0x13u); }
     // +0x24
-    public int period
+    public int RadiusSquared
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int period_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int RadiusSquared_Set(int v) => Mem.Set(P + 0x24u, v);
 }
 
 /// <summary>struct Descriptor_func_802504B0_de, 0x13 bytes, at a guest address.</summary>

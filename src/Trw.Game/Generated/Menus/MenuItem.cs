@@ -203,7 +203,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043F290_func_00443030", (uint)a);
-            uint d = new O06A_v8(a).unk14_;
+            uint d = new O06A_v8(a).Data;
             uint p = Funcs.CallReg(new O06D_v2(d).unk18, a, 0u, 0u, 0u);
             switch (new O06D_v2(d).unk4)
             {
@@ -420,7 +420,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043F404_func_00443030", (uint)a);
-            uint d = new O06A_v8(a).unk14_;
+            uint d = new O06A_v8(a).Data;
             uint p = Funcs.CallReg(new O06D_v3(d).unk18, a, 0u, 0u, 0u);
             switch (new O06D_v3(d).unk4)
             {
@@ -452,7 +452,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043F404_func_00443120", (uint)a);
-            uint d = new O06A_v8(a).unk14_;
+            uint d = new O06A_v8(a).Data;
             uint p = Funcs.CallReg(new O06D_v3(d).unk18, a, 0u, 0u, 0u);
             switch (new O06D_v3(d).unk4)
             {
@@ -797,7 +797,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043F69C_Q04TypeEnt", (uint)it);
             int i = 0;
             i = 0;
-            switch ((new Q04Item(it).flags & (uint)(16352)))
+            switch ((new Q04Item(it).Flags & (uint)(16352)))
             {
             case (uint)(32):
                 i = 0;
@@ -856,10 +856,10 @@ public static partial class Game
                 float vt = 0f;
                 float vt2 = 0f;
                 float hh = 0f;
-                cam = MenuPanel_GetListView(new Q04Pan(new Q04Item(it).owner).ctx);
-                new Q04Info(o).f10_Set(1.0f);
-                new Q04Info(o).fC_Set(1.0f);
-                switch ((int)(new Q04Item(it).w4))
+                cam = MenuPanel_GetListView(new Q04Pan(new Q04Item(it).OwnerPanelPtr).ContextPtr);
+                new Q04Info(o).ScaleY_Set(1.0f);
+                new Q04Info(o).ScaleX_Set(1.0f);
+                switch ((int)(new Q04Item(it).Type))
                 {
                 case 0:
                 case 5:
@@ -867,28 +867,28 @@ public static partial class Game
                     if ((new Q04Ent_v2(E).mode == 0))
                     {
                         fs = new Q04Ent_v2(E).f4;
-                        if (((int)(new Q04Item(it).w4) == 5))
+                        if (((int)(new Q04Item(it).Type) == 5))
                         {
                             p = MenuItem_FormatValue(it, default(uint), default(uint), default(uint));
                         }
                         else
                         {
-                            p = Mem.U32((uint)(new Q04Item(it).f14));
+                            p = Mem.U32((uint)(new Q04Item(it).Data));
                         }
                         v = Text_MeasureString(p, fs, fs);
                     }
                     else
                     {
                         n = 0;
-                        p = (((int)(new Q04Item(it).w4) == 5) ? MenuItem_FormatValue(it, default(uint), default(uint), default(uint)) : Mem.U32((uint)(new Q04Item(it).f14)));
+                        p = (((int)(new Q04Item(it).Type) == 5) ? MenuItem_FormatValue(it, default(uint), default(uint), default(uint)) : Mem.U32((uint)(new Q04Item(it).Data)));
                         for (; (((p != 0u) && ((int)(Mem.U8(p)) != 0)) && ((int)(Mem.U8(p)) != 10)); p += 1u)
                         {
                             ++n;
                         }
                         v = ((float)(n) * new Q04Ent_v2(E).f4);
                     }
-                    new Q04Info(o).f4_Set((int)(v));
-                    if (((new Q04Item(it).flags & (uint)(134217728)) != 0u))
+                    new Q04Info(o).Width_Set((int)(v));
+                    if (((new Q04Item(it).Flags & (uint)(134217728)) != 0u))
                     {
                         k = 0.108108111f;
                         hh = (float)(Mem.S32(Gv.ScreenHeight));
@@ -908,100 +908,100 @@ public static partial class Game
                         }
                         k = 0.00450450461f;
                     }
-                    new Q04Info(o).f8_Set((int)((v * k)));
+                    new Q04Info(o).Height_Set((int)((v * k)));
                     do
                     {
-                        new Q04Info(o).f4_Set(((new Q04Info(o).f4 * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
+                        new Q04Info(o).Width_Set(((new Q04Info(o).Width * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
                     }
                     while ((0 != 0));
                     break;
                 case 4:
                     E = func_0043F69C_Q04TypeEnt(it);
-                    new Q04Info(o).f4_Set((int)(new Q04Ent_v2(E).f4));
-                    new Q04Info(o).f8_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f)));
+                    new Q04Info(o).Width_Set((int)(new Q04Ent_v2(E).f4));
+                    new Q04Info(o).Height_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f)));
                     break;
                 case 1:
-                    if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+                    if ((((Game_IsInState13() != 0) && ((new Q04Item(it).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).Flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
                     {
-                        new Q04Info(o).f4_Set(284);
-                        new Q04Info(o).f8_Set(222);
+                        new Q04Info(o).Width_Set(284);
+                        new Q04Info(o).Height_Set(222);
                     }
                     else
                     {
-                        Sprite_GetFrameSize((int)((uint)(new Q04Item(it).f14)), 0, (o + 4u), (o + 8u));
+                        Sprite_GetFrameSize((int)((uint)(new Q04Item(it).Data)), 0, (o + 4u), (o + 8u));
                     }
-                    if (((((new Q04Item(it).flags & (uint)(268435456)) != 0u) && ((float)(new Q04Info(o).f4) != 0.0f)) && ((float)(new Q04Info(o).f8) != 0.0f)))
+                    if (((((new Q04Item(it).Flags & (uint)(268435456)) != 0u) && ((float)(new Q04Info(o).Width) != 0.0f)) && ((float)(new Q04Info(o).Height) != 0.0f)))
                     {
-                        fa = (new Q04Cam(cam).f29C / (float)(new Q04Info(o).f4));
-                        fb = (new Q04Cam(cam).f2A0 / (float)(new Q04Info(o).f8));
+                        fa = (new Q04Cam(cam).f29C / (float)(new Q04Info(o).Width));
+                        fb = (new Q04Cam(cam).f2A0 / (float)(new Q04Info(o).Height));
                     }
                     else
                     {
                         fa = ((float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) * 0.00352112669f);
                         fb = ((float)(Mem.S32(Gv.ScreenHeight)) * 0.00450450461f);
                     }
-                    new Q04Info(o).fC_Set(fa);
-                    new Q04Info(o).f10_Set(fb);
+                    new Q04Info(o).ScaleX_Set(fa);
+                    new Q04Info(o).ScaleY_Set(fb);
                     break;
                 case 2:
                     Mem.Copy((_fp + 40u), o, 36);
                     Mem.Copy(_fp, it, 40);
-                    new Q04Item(_fp).w4_Set((short)(0));
+                    new Q04Item(_fp).Type_Set((short)(0));
                     MenuItem_ComputeRect(_fp, (_fp + 40u));
                     Mem.Copy((_fp + 80u), o, 36);
                     Mem.Copy(_fp, it, 40);
-                    new Q04Item(_fp).w4_Set((short)(1));
-                    new Q04Item(_fp).f14_Set(0);
+                    new Q04Item(_fp).Type_Set((short)(1));
+                    new Q04Item(_fp).Data_Set(0);
                     MenuItem_ComputeRect(_fp, (_fp + 80u));
                     Mem.Copy((_fp + 120u), o, 36);
                     Mem.Copy(_fp, it, 40);
-                    new Q04Item(_fp).w4_Set((short)(1));
-                    new Q04Item(_fp).f14_Set(0);
+                    new Q04Item(_fp).Type_Set((short)(1));
+                    new Q04Item(_fp).Data_Set(0);
                     MenuItem_ComputeRect(_fp, (_fp + 120u));
-                    n2 = (new Q04Info((_fp + 80u)).f4 + new Q04Info((_fp + 120u)).f4);
-                    if ((n2 < new Q04Info((_fp + 40u)).f4))
+                    n2 = (new Q04Info((_fp + 80u)).Width + new Q04Info((_fp + 120u)).Width);
+                    if ((n2 < new Q04Info((_fp + 40u)).Width))
                     {
-                        n2 = new Q04Info((_fp + 40u)).f4;
+                        n2 = new Q04Info((_fp + 40u)).Width;
                     }
-                    new Q04Info(o).f4_Set(n2);
-                    new Q04Info(o).f8_Set(((new Q04Info((_fp + 40u)).f8 + new Q04Info((_fp + 80u)).f8) + ((new Q04Info((_fp + 120u)).f8 - new Q04Info((_fp + 80u)).f8) / 2)));
+                    new Q04Info(o).Width_Set(n2);
+                    new Q04Info(o).Height_Set(((new Q04Info((_fp + 40u)).Height + new Q04Info((_fp + 80u)).Height) + ((new Q04Info((_fp + 120u)).Height - new Q04Info((_fp + 80u)).Height) / 2)));
                     break;
                 case 3:
-                    sub = (uint)(new Q04Item(it).f14);
-                    new Q04Info(o).f4_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).f29C) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
-                    new Q04Info(o).f8_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).f2A0) / (float)(Mem.S32(Gv.ScreenHeight)))));
+                    sub = (uint)(new Q04Item(it).Data);
+                    new Q04Info(o).Width_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).f29C) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
+                    new Q04Info(o).Height_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).f2A0) / (float)(Mem.S32(Gv.ScreenHeight)))));
                     break;
                 default:
-                    new Q04Info(o).f4_Set(1);
-                    new Q04Info(o).f8_Set(1);
+                    new Q04Info(o).Width_Set(1);
+                    new Q04Info(o).Height_Set(1);
                     break;
                 }
-                vt = (float)((((int)((short)(new Q04Item(it).wC)) * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
-                if (!((new Q04Item(it).flags & (uint)(32768)) != 0u))
+                vt = (float)((((int)((short)(new Q04Item(it).PosX)) * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
+                if (!((new Q04Item(it).Flags & (uint)(32768)) != 0u))
                 {
-                    if (((new Q04Item(it).flags & (uint)(16384)) != 0u))
+                    if (((new Q04Item(it).Flags & (uint)(16384)) != 0u))
                     {
-                        new Q04Info(o).x0_Set((int)(((float)(new Q04Info(o).x1) + vt)));
+                        new Q04Info(o).Left_Set((int)(((float)(new Q04Info(o).Right) + vt)));
                     }
                     else
                     {
-                        new Q04Info(o).x0_Set((int)(vt));
+                        new Q04Info(o).Left_Set((int)(vt));
                     }
                 }
-                new Q04Info(o).x1_Set((int)(((float)(new Q04Info(o).x0) + ((float)(new Q04Info(o).f4) * new Q04Info(o).fC))));
-                vt2 = (float)((((int)((short)(new Q04Item(it).wE)) * Mem.S32(Gv.ScreenHeight)) / 222));
-                if (!((new Q04Item(it).flags & (uint)(131072)) != 0u))
+                new Q04Info(o).Right_Set((int)(((float)(new Q04Info(o).Left) + ((float)(new Q04Info(o).Width) * new Q04Info(o).ScaleX))));
+                vt2 = (float)((((int)((short)(new Q04Item(it).PosY)) * Mem.S32(Gv.ScreenHeight)) / 222));
+                if (!((new Q04Item(it).Flags & (uint)(131072)) != 0u))
                 {
-                    if (((new Q04Item(it).flags & (uint)(65536)) != 0u))
+                    if (((new Q04Item(it).Flags & (uint)(65536)) != 0u))
                     {
-                        new Q04Info(o).y0_Set((int)(((float)(new Q04Info(o).y1) + vt2)));
+                        new Q04Info(o).Top_Set((int)(((float)(new Q04Info(o).Bottom) + vt2)));
                     }
                     else
                     {
-                        new Q04Info(o).y0_Set((int)(vt2));
+                        new Q04Info(o).Top_Set((int)(vt2));
                     }
                 }
-                new Q04Info(o).y1_Set((int)(((float)(new Q04Info(o).y0) + ((float)(new Q04Info(o).f8) * new Q04Info(o).f10))));
+                new Q04Info(o).Bottom_Set((int)(((float)(new Q04Info(o).Top) + ((float)(new Q04Info(o).Height) * new Q04Info(o).ScaleY))));
             }
         }
         finally { Stack.Free(156); }
@@ -1015,7 +1015,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043FFAC_Q04TypeEnt", (uint)it);
             int i = 0;
             i = 0;
-            switch ((new Q04Item(it).flags & (uint)(16352)))
+            switch ((new Q04Item(it).Flags & (uint)(16352)))
             {
             case (uint)(32):
                 i = 0;
@@ -1068,11 +1068,11 @@ public static partial class Game
             int t = 0;
             int t2 = 0;
             en = (byte)(1);
-            if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new Q04Item(it).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).Flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new Q04W(w).f38_Set(0);
             }
-            if (((new Q04Item(it).flags & (uint)(134217728)) != 0u))
+            if (((new Q04Item(it).Flags & (uint)(134217728)) != 0u))
             {
                 if ((new Q04W(w).f3C != 0))
                 {
@@ -1121,7 +1121,7 @@ public static partial class Game
             }
             else
             {
-                k = (!((new Q04Item(it).flags & (uint)(16777216)) != 0u) ? 0.25f : 0.899999976f);
+                k = (!((new Q04Item(it).Flags & (uint)(16777216)) != 0u) ? 0.25f : 0.899999976f);
             }
             t = (int)(((float)(new Q04Ent(E).b15) * k));
             r = 255;
@@ -1170,7 +1170,7 @@ public static partial class Game
             float fy = 0f;
             float t1 = 0f;
             float t2 = 0f;
-            if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).Flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new O06A_v9(a).Flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new O06D_v6(d).unk3C_Set(1);
                 if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
@@ -1188,7 +1188,7 @@ public static partial class Game
                 {
                     if (((int)(Mem.U8((Gv.GamePaused + (uint)(-1455)))) != 0))
                     {
-                        if (((int)(new O06A_v9(a).unk8) < 0))
+                        if (((int)(new O06A_v9(a).Flags) < 0))
                         {
                             alpha = 255;
                         }
@@ -1215,7 +1215,7 @@ public static partial class Game
                     Mem.Set(Gv.Menu_CurrentDrawPass, 3);
                     Gfx_BeginFlatColorPass((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
                 }
-                Sprite_Draw(new O06A_v9(a).unk14, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
+                Sprite_Draw(new O06A_v9(a).Data, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
             }
         }
     }
@@ -1226,7 +1226,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00440618_fin", (uint)q, (uint)b, (uint)c, (uint)d);
-            MenuItem_DrawText(q, b, c, (uint)(d), Mem.S32((uint)(new Q04Item(q).f14)), 0);
+            MenuItem_DrawText(q, b, c, (uint)(d), Mem.S32((uint)(new Q04Item(q).Data)), 0);
         }
     }
 
@@ -1242,35 +1242,35 @@ public static partial class Game
                 int t = 0;
                 mid = ((new Q04C(c).l + new Q04C(c).r) / 2);
                 Mem.Copy(_fp, it, 40);
-                new Q04Item(_fp).w4_Set((short)(0));
+                new Q04Item(_fp).Type_Set((short)(0));
                 MenuItem_ComputeRect(_fp, (_fp + 40u));
                 Mem.Copy(_fp, it, 40);
-                new Q04Item(_fp).w4_Set((short)(1));
-                new Q04Item(_fp).f14_Set(0);
+                new Q04Item(_fp).Type_Set((short)(1));
+                new Q04Item(_fp).Data_Set(0);
                 MenuItem_ComputeRect(_fp, (_fp + 80u));
                 Mem.Copy(_fp, it, 40);
-                new Q04Item(_fp).w4_Set((short)(1));
-                new Q04Item(_fp).f14_Set(0);
+                new Q04Item(_fp).Type_Set((short)(1));
+                new Q04Item(_fp).Data_Set(0);
                 MenuItem_ComputeRect(_fp, (_fp + 120u));
                 Mem.Copy(_fp, it, 40);
-                new Q04Item(_fp).f14_Set(0);
-                new Q04B_v2(b).y_Set((new Q04B_v2(b).y + new Q04Info((_fp + 40u)).f8));
-                if (((new Q04Item(it).flags & (uint)(1)) != 0u))
+                new Q04Item(_fp).Data_Set(0);
+                new Q04B_v2(b).y_Set((new Q04B_v2(b).y + new Q04Info((_fp + 40u)).Height));
+                if (((new Q04Item(it).Flags & (uint)(1)) != 0u))
                 {
-                    new Q04B_v2(b).x_Set((mid - ((new Q04Info((_fp + 80u)).f4 + new Q04Info((_fp + 120u)).f4) / 2)));
+                    new Q04B_v2(b).x_Set((mid - ((new Q04Info((_fp + 80u)).Width + new Q04Info((_fp + 120u)).Width) / 2)));
                 }
-                new Q04B_v2(b).x_Set((new Q04B_v2(b).x + (new Q04Info((_fp + 120u)).f4 / 2)));
+                new Q04B_v2(b).x_Set((new Q04B_v2(b).x + (new Q04Info((_fp + 120u)).Width / 2)));
                 MenuItem_DrawSprite(_fp, b, (int)(c), (uint)(d));
                 Mem.Copy(_fp, it, 40);
-                new Q04Item(_fp).f14_Set(0);
-                t = (new Q04Item(it).f1C * new Q04Info((_fp + 80u)).f4);
-                new Q04B_v2(b).x_Set((new Q04B_v2(b).x + ((t / 256) - (new Q04Info((_fp + 120u)).f4 / 2))));
-                new Q04B_v2(b).y_Set((new Q04B_v2(b).y + ((new Q04Info((_fp + 80u)).f8 / 2) - (new Q04Info((_fp + 120u)).f8 / 2))));
+                new Q04Item(_fp).Data_Set(0);
+                t = (new Q04Item(it).Value * new Q04Info((_fp + 80u)).Width);
+                new Q04B_v2(b).x_Set((new Q04B_v2(b).x + ((t / 256) - (new Q04Info((_fp + 120u)).Width / 2))));
+                new Q04B_v2(b).y_Set((new Q04B_v2(b).y + ((new Q04Info((_fp + 80u)).Height / 2) - (new Q04Info((_fp + 120u)).Height / 2))));
                 MenuItem_DrawSprite(_fp, b, (int)(c), (uint)(d));
                 Mem.Copy(_fp, it, 40);
-                if (((new Q04Item(it).flags & (uint)(1)) != 0u))
+                if (((new Q04Item(it).Flags & (uint)(1)) != 0u))
                 {
-                    new Q04B_v2(b).x_Set((mid - (new Q04Info((_fp + 40u)).f4 / 2)));
+                    new Q04B_v2(b).x_Set((mid - (new Q04Info((_fp + 40u)).Width / 2)));
                 }
                 func_00440618_fin(_fp, b, c, d);
             }
@@ -1433,13 +1433,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00442158", (uint)a);
             int n = 0;
             uint s = 0u;
-            if (((int)(new O06A_v25(a).unk4) == 5))
+            if (((int)(new O06A_v25(a).Type) == 5))
             {
                 s = MenuItem_FormatValue((uint)(a), default(uint), default(uint), default(uint));
             }
             else
             {
-                s = Mem.U32(new O06A_v25(a).unk14);
+                s = Mem.U32(new O06A_v25(a).Data);
             }
             for (; (((s != 0u) && ((int)(Mem.U8(s)) != 0)) && ((int)(Mem.U8(s)) != 10)); s += 1u)
             {
@@ -1478,7 +1478,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00442224", (uint)a, (uint)b, (uint)c, (uint)d);
-                Mem.Set((_fp + (uint)0), new O06A_v35(a).unk17);
+                Mem.Set((_fp + (uint)0), new O06A_v35(a).CharCode);
                 Mem.Set((_fp + (uint)1), (byte)(0));
                 MenuItem_DrawText(a, (uint)(b), (uint)(c), (uint)(d), (int)(_fp), 0);
             }
@@ -1556,7 +1556,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00442C4C", (uint)a);
             int o = 0;
-            if (((int)(new O06A_v40(a).unk4) == 5))
+            if (((int)(new O06A_v40(a).Type) == 5))
             {
                 o = (int)(MenuItem_FormatValue((uint)(a), default(uint), default(uint), default(uint)));
             }
@@ -1627,23 +1627,23 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00442E80", (uint)a, (uint)b, (uint)c, (uint)d);
             int sz = 0;
-            new O06E_v3(a).unk0_Set(d);
-            new O06E_v3(a).unk4_Set(new O06S(b).unk0);
-            new O06E_v3(a).unk8_Set((uint)((new O06S(b).unk4 | 25165824)));
-            new O06E_v3(a).unkC_Set(new O06S(b).unk8);
-            new O06E_v3(a).unkE_Set(new O06S(b).unkA);
+            new O06E_v3(a).Index_Set(d);
+            new O06E_v3(a).Type_Set(new O06S(b).unk0);
+            new O06E_v3(a).Flags_Set((uint)((new O06S(b).unk4 | 25165824)));
+            new O06E_v3(a).PosX_Set(new O06S(b).unk8);
+            new O06E_v3(a).PosY_Set(new O06S(b).unkA);
             new O06E_v3(a).unk10_Set(new O06S(b).unkC);
             new O06E_v3(a).unk11_Set(new O06S(b).unkD);
             new O06E_v3(a).unk12_Set(new O06S(b).unkE);
             new O06E_v3(a).unk13_Set(new O06S(b).unkF);
-            new O06E_v3(a).unk14_Set(new O06S(b).unk10);
-            new O06E_v3(a).unk18_Set((int)(b));
-            new O06E_v3(a).unk1C_Set((-1));
-            new O06E_v3(a).unk24_Set(e);
+            new O06E_v3(a).Data_Set(new O06S(b).unk10);
+            new O06E_v3(a).TemplatePtr_Set((int)(b));
+            new O06E_v3(a).Value_Set((-1));
+            new O06E_v3(a).OwnerPanelPtr_Set(e);
             sz = MenuItem_GetExtraSizeTwin(b);
             if ((sz != 0))
             {
-                new O06E_v3(a).unk20__Set(Mem.U32(c));
+                new O06E_v3(a).ExtraPtr_Set(Mem.U32(c));
                 MenuItem_InitExtraTwin(b, Mem.U32(c));
                 Mem.Set(c, (Mem.U32(c) + (uint)MenuItem_GetExtraSizeTwin(b)));
             }
@@ -1658,7 +1658,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00442F4C", (uint)a);
             int i = 0;
             i = 0;
-            switch ((new O06A_v38(a).unk8 & (uint)(16352)))
+            switch ((new O06A_v38(a).Flags & (uint)(16352)))
             {
             case (uint)(32):
                 i = 0;

@@ -271,9 +271,9 @@ public static partial class Game
             s = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
             o = ResourcePool_Malloc((uint)(124));
             Mem_Fill(o, 0, (uint)(124));
-            new O3B60(o).h.id2_Set((ushort)(2912));
-            new O3B60(o).h.unk12_Set((short)(8));
-            new O3B60(o).h.id_Set((short)(2912));
+            new O3B60(o).h.Type_Set((ushort)(2912));
+            new O3B60(o).h.Flags_Set((short)(8));
+            new O3B60(o).h.Id_Set((short)(2912));
             new O3B60(o).g__Set(g);
             new O3B60(o).g2__Set(UiTree_FindNode((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
             new O3B60(o).sp1_Set(0.333333343f);
@@ -364,7 +364,7 @@ public static partial class Game
             {
                 if ((new O3Msg((0x800E3360u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3360u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3360u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((0x800E3360u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).Id)) || (new O3Msg((0x800E3360u + (uint)(i * 12))).type == 30000)))
                     {
                         return (int)(Funcs.CallRegX(new O3Msg((0x800E3360u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }

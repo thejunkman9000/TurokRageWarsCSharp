@@ -11,37 +11,37 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412270", (uint)p);
-            if (((int)(new S_func_00412270(p).b4B) < (int)(new S_func_00412270(p).b4D)))
+            if (((int)(new S_func_00412270(p).ColCount) < (int)(new S_func_00412270(p).CursorCol)))
             {
-                new S_func_00412270(p).b4D_Set(new S_func_00412270(p).b4B);
+                new S_func_00412270(p).CursorCol_Set(new S_func_00412270(p).ColCount);
             }
-            if (((int)(new S_func_00412270(p).b4A) < (int)(new S_func_00412270(p).b4C)))
+            if (((int)(new S_func_00412270(p).RowCount) < (int)(new S_func_00412270(p).CursorRow)))
             {
-                new S_func_00412270(p).b4C_Set(new S_func_00412270(p).b4A);
+                new S_func_00412270(p).CursorRow_Set(new S_func_00412270(p).RowCount);
             }
-            if (((int)(new S_func_00412270(p).b4D) < (int)(new S_func_00412270(p).b51)))
+            if (((int)(new S_func_00412270(p).CursorCol) < (int)(new S_func_00412270(p).FixedCols)))
             {
-                new S_func_00412270(p).b4D_Set(new S_func_00412270(p).b51);
+                new S_func_00412270(p).CursorCol_Set(new S_func_00412270(p).FixedCols);
             }
-            if (((int)(new S_func_00412270(p).b4C) < (int)(new S_func_00412270(p).b50)))
+            if (((int)(new S_func_00412270(p).CursorRow) < (int)(new S_func_00412270(p).FixedRows)))
             {
-                new S_func_00412270(p).b4C_Set(new S_func_00412270(p).b50);
+                new S_func_00412270(p).CursorRow_Set(new S_func_00412270(p).FixedRows);
             }
-            if (!(((int)(new S_func_00412270(p).b4D) - (int)(new S_func_00412270(p).b4F)) < ((int)(new S_func_00412270(p).b49) - (int)(new S_func_00412270(p).b51))))
+            if (!(((int)(new S_func_00412270(p).CursorCol) - (int)(new S_func_00412270(p).ScrollCol)) < ((int)(new S_func_00412270(p).VisibleCols) - (int)(new S_func_00412270(p).FixedCols))))
             {
-                new S_func_00412270(p).b4F_Set((byte)((((int)(new S_func_00412270(p).b4D) - ((int)(new S_func_00412270(p).b49) - (int)(new S_func_00412270(p).b51))) + 1)));
+                new S_func_00412270(p).ScrollCol_Set((byte)((((int)(new S_func_00412270(p).CursorCol) - ((int)(new S_func_00412270(p).VisibleCols) - (int)(new S_func_00412270(p).FixedCols))) + 1)));
             }
-            if (!(((int)(new S_func_00412270(p).b4C) - (int)(new S_func_00412270(p).b4E)) < ((int)(new S_func_00412270(p).b48) - (int)(new S_func_00412270(p).b50))))
+            if (!(((int)(new S_func_00412270(p).CursorRow) - (int)(new S_func_00412270(p).ScrollRow)) < ((int)(new S_func_00412270(p).VisibleRows) - (int)(new S_func_00412270(p).FixedRows))))
             {
-                new S_func_00412270(p).b4E_Set((byte)((((int)(new S_func_00412270(p).b4C) - ((int)(new S_func_00412270(p).b48) - (int)(new S_func_00412270(p).b50))) + 1)));
+                new S_func_00412270(p).ScrollRow_Set((byte)((((int)(new S_func_00412270(p).CursorRow) - ((int)(new S_func_00412270(p).VisibleRows) - (int)(new S_func_00412270(p).FixedRows))) + 1)));
             }
-            if (((int)(new S_func_00412270(p).b4D) < (int)(new S_func_00412270(p).b4F)))
+            if (((int)(new S_func_00412270(p).CursorCol) < (int)(new S_func_00412270(p).ScrollCol)))
             {
-                new S_func_00412270(p).b4F_Set(new S_func_00412270(p).b4D);
+                new S_func_00412270(p).ScrollCol_Set(new S_func_00412270(p).CursorCol);
             }
-            if (((int)(new S_func_00412270(p).b4C) < (int)(new S_func_00412270(p).b4E)))
+            if (((int)(new S_func_00412270(p).CursorRow) < (int)(new S_func_00412270(p).ScrollRow)))
             {
-                new S_func_00412270(p).b4E_Set(new S_func_00412270(p).b4C);
+                new S_func_00412270(p).ScrollRow_Set(new S_func_00412270(p).CursorRow);
             }
         }
     }
@@ -63,15 +63,15 @@ public static partial class Game
             int i = 0;
             byte lim = 0;
             byte lim2 = 0;
-            Mem.Copy(cell, new S_grid(g).h.P, 44);
-            new S_cell2(cell).b2C_Set(new S_grid(g).b54);
-            new S_cell2(cell).b2D_Set(new S_grid(g).b55);
-            lim = new S_grid(g).b51;
+            Mem.Copy(cell, new S_grid(g).NodeHeader.P, 44);
+            new S_cell2(cell).b2C_Set(new S_grid(g).CellFont);
+            new S_cell2(cell).b2D_Set(new S_grid(g).CellPalette);
+            lim = new S_grid(g).FixedCols;
             if ((col < (uint)(lim)))
             {
                 c = (int)(col);
-                new S_cell2(cell).b2C_Set(new S_grid(g).b52);
-                new S_cell2(cell).b2D_Set(new S_grid(g).b53);
+                new S_cell2(cell).b2C_Set(new S_grid(g).HeaderFont);
+                new S_cell2(cell).b2D_Set(new S_grid(g).HeaderPalette);
                 ci = (-1);
                 if ((c != 0))
                 {
@@ -81,18 +81,18 @@ public static partial class Game
             else
             {
                 ci = (-1);
-                c = (int)(((col - (uint)(lim)) + (uint)(new S_grid(g).b4F)));
+                c = (int)(((col - (uint)(lim)) + (uint)(new S_grid(g).ScrollCol)));
                 if (((int)(lim) != 0))
                 {
                     ci = (int)(col);
                 }
             }
-            lim = new S_grid(g).b50;
+            lim = new S_grid(g).FixedRows;
             if ((row < (uint)(lim)))
             {
                 r = (int)(row);
-                new S_cell2(cell).b2C_Set(new S_grid(g).b52);
-                new S_cell2(cell).b2D_Set(new S_grid(g).b53);
+                new S_cell2(cell).b2C_Set(new S_grid(g).HeaderFont);
+                new S_cell2(cell).b2D_Set(new S_grid(g).HeaderPalette);
                 ri = (-1);
                 if ((r != 0))
                 {
@@ -102,7 +102,7 @@ public static partial class Game
             else
             {
                 ri = (-1);
-                r = (int)(((row - (uint)(lim)) + (uint)(new S_grid(g).b4E)));
+                r = (int)(((row - (uint)(lim)) + (uint)(new S_grid(g).ScrollRow)));
                 if (((int)(lim) != 0))
                 {
                     ri = (int)(row);
@@ -110,9 +110,9 @@ public static partial class Game
             }
             sy = (sx = 0);
             n = ci;
-            if (((int)(new S_grid(g).b51) < ci))
+            if (((int)(new S_grid(g).FixedCols) < ci))
             {
-                n = (int)(new S_grid(g).b51);
+                n = (int)(new S_grid(g).FixedCols);
             }
             if ((ci != (-1)))
             {
@@ -128,9 +128,9 @@ public static partial class Game
                 }
             }
             n = ri;
-            if (((int)(new S_grid(g).b50) < ri))
+            if (((int)(new S_grid(g).FixedRows) < ri))
             {
-                n = (int)(new S_grid(g).b50);
+                n = (int)(new S_grid(g).FixedRows);
             }
             if ((ri != (-1)))
             {
@@ -145,12 +145,12 @@ public static partial class Game
                     while ((i < n));
                 }
             }
-            lim = new S_grid(g).b51;
+            lim = new S_grid(g).FixedCols;
             if (((int)(lim) < ci))
             {
                 sx = (int)((int)(sx) + ((ci - (int)(lim)) * Mem.S32((new S_grid(g).colw_ + (uint)(((int)(lim) - 1) * 4)))));
             }
-            lim2 = new S_grid(g).b50;
+            lim2 = new S_grid(g).FixedRows;
             if (((int)(lim2) < ri))
             {
                 sy = (int)((int)(sy) + ((ri - (int)(lim2)) * Mem.S32((new S_grid(g).rowh_ + (uint)(((int)(lim2) - 1) * 4)))));
@@ -163,19 +163,19 @@ public static partial class Game
             {
                 new S_cell2(cell).f18_Set(Mem.U16((new S_grid(g).colw_ + (uint)((((int)(lim) * 2) - 1) * 2))));
             }
-            if ((row < (uint)(new S_grid(g).b50)))
+            if ((row < (uint)(new S_grid(g).FixedRows)))
             {
                 new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)(((row * (uint)(2)) + (uint)(1)) * 2))));
             }
             else
             {
-                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)((((int)(new S_grid(g).b50) * 2) - 1) * 2))));
+                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)((((int)(new S_grid(g).FixedRows) * 2) - 1) * 2))));
             }
-            new S_cell2(cell).f38_Set(Mem.S32((new S_grid(g).cells_ + (uint)((((r * (int)(new S_grid(g).b4B)) + c) * 2) * 4))));
-            if (((r == (int)(new S_grid(g).b4C)) && (c == (int)(new S_grid(g).b4D))))
+            new S_cell2(cell).f38_Set(Mem.S32((new S_grid(g).cells_ + (uint)((((r * (int)(new S_grid(g).ColCount)) + c) * 2) * 4))));
+            if (((r == (int)(new S_grid(g).CursorRow)) && (c == (int)(new S_grid(g).CursorCol))))
             {
-                new S_cell2(cell).b2E_Set(new S_grid(g).b56);
-                new S_cell2(cell).b2F_Set(new S_grid(g).b57);
+                new S_cell2(cell).b2E_Set(new S_grid(g).CursorFont);
+                new S_cell2(cell).b2F_Set(new S_grid(g).CursorPalette);
             }
             else
             {
@@ -221,9 +221,9 @@ public static partial class Game
                 uint r = 0u;
                 uint col = 0u;
                 uint p = o;
-                for (r = (uint)(0); (r < (uint)(new S_func_004126B4(p).rows)); ++r)
+                for (r = (uint)(0); (r < (uint)(new S_func_004126B4(p).VisibleRows)); ++r)
                 {
-                    for (col = (uint)(0); (col < (uint)(new S_func_004126B4(p).cols)); ++col)
+                    for (col = (uint)(0); (col < (uint)(new S_func_004126B4(p).VisibleCols)); ++col)
                     {
                         UiGrid_BuildCell(p, (_fp + 40u), (uint)((int)(r)), (uint)((int)(col)));
                         UiNode_DrawText((_fp + 40u), _fp);
@@ -248,21 +248,21 @@ public static partial class Game
             root = UiScreen_GetData(Menu_GetCurrentScreenId());
             n = ResourcePool_Malloc((uint)(96));
             Mem_Fill(n, 0, (uint)(96));
-            Mem.Copy(new S_node(n).h.P, new S_node(parent).h.P, 44);
-            new S_hdr(n).type_Set((ushort)(11));
-            new S_node(n).b4B_Set(b);
-            new S_node(n).b4A_Set(a);
-            new S_node(n).b49_Set(rows);
-            new S_node(n).b48_Set(cols);
-            new S_node(n).b51_Set(d);
-            new S_node(n).b50_Set(c);
-            new S_node(n).b4F_Set(d);
-            new S_node(n).b4E_Set(c);
-            new S_node(n).b4D_Set(d);
-            new S_node(n).b4C_Set(c);
+            Mem.Copy(new S_node(n).NodeHeader.P, new S_node(parent).NodeHeader.P, 44);
+            new S_hdr(n).NodeType_Set((ushort)(11));
+            new S_node(n).ColCount_Set(b);
+            new S_node(n).RowCount_Set(a);
+            new S_node(n).VisibleCols_Set(rows);
+            new S_node(n).VisibleRows_Set(cols);
+            new S_node(n).FixedCols_Set(d);
+            new S_node(n).FixedRows_Set(c);
+            new S_node(n).ScrollCol_Set(d);
+            new S_node(n).ScrollRow_Set(c);
+            new S_node(n).CursorCol_Set(d);
+            new S_node(n).CursorRow_Set(c);
             size = (((int)(a) * (int)(b)) * 8);
-            new S_node(n).f44_Set(ResourcePool_Malloc((uint)(size)));
-            Mem_Fill(new S_node(n).f44, 0, (uint)(size));
+            new S_node(n).CellsPtr_Set(ResourcePool_Malloc((uint)(size)));
+            Mem_Fill(new S_node(n).CellsPtr, 0, (uint)(size));
             UiTree_ReplaceRefsCopyLinks(root, 0u, parent, n);
             return 1;
         }
@@ -275,8 +275,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412918", (uint)id, (uint)a, (uint)b, (uint)c);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            Mem.Set((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)), c);
-            Mem.Set(((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)) + 4u), d);
+            Mem.Set((new S_func_00412918(p).CellsPtr + (uint)((a * (int)(new S_func_00412918(p).ColCount)) + b)), c);
+            Mem.Set(((new S_func_00412918(p).CellsPtr + (uint)((a * (int)(new S_func_00412918(p).ColCount)) + b)) + 4u), d);
         }
     }
 
@@ -287,8 +287,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004129C0", (uint)id, (uint)a, (uint)b, (uint)c);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            Mem.Set(c, Mem.S32((new S_func_004129C0(p).f44 + (uint)((a * (int)(new S_func_004129C0(p).b4B)) + b))));
-            Mem.Set(d, Mem.S32(((new S_func_004129C0(p).f44 + (uint)((a * (int)(new S_func_004129C0(p).b4B)) + b)) + 4u)));
+            Mem.Set(c, Mem.S32((new S_func_004129C0(p).CellsPtr + (uint)((a * (int)(new S_func_004129C0(p).ColCount)) + b))));
+            Mem.Set(d, Mem.S32(((new S_func_004129C0(p).CellsPtr + (uint)((a * (int)(new S_func_004129C0(p).ColCount)) + b)) + 4u)));
         }
     }
 
@@ -299,9 +299,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412A70", (uint)id, (uint)a, (uint)b, (uint)c);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            new S_func_00412A70(p).b54_Set((byte)(b));
-            new S_func_00412A70(p).b56_Set((byte)(c));
-            new S_func_00412A70(p).b52_Set((byte)(a));
+            new S_func_00412A70(p).CellFont_Set((byte)(b));
+            new S_func_00412A70(p).CursorFont_Set((byte)(c));
+            new S_func_00412A70(p).HeaderFont_Set((byte)(a));
         }
     }
 
@@ -312,9 +312,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412AD8", (uint)id, (uint)a, (uint)b, (uint)c);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            new S_func_00412AD8(p).b55_Set((byte)(b));
-            new S_func_00412AD8(p).b57_Set((byte)(c));
-            new S_func_00412AD8(p).b53_Set((byte)(a));
+            new S_func_00412AD8(p).CellPalette_Set((byte)(b));
+            new S_func_00412AD8(p).CursorPalette_Set((byte)(c));
+            new S_func_00412AD8(p).HeaderPalette_Set((byte)(a));
         }
     }
 
@@ -325,8 +325,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412B40", (uint)id, (uint)a, (uint)b);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            new S_func_00412B40(p).f5C_Set(b);
-            new S_func_00412B40(p).f58_Set(a);
+            new S_func_00412B40(p).RowHeightsPtr_Set(b);
+            new S_func_00412B40(p).ColWidthsPtr_Set(a);
         }
     }
 
@@ -337,8 +337,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412B98", (uint)id, (uint)a, (uint)b);
             uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
-            Mem.Set(a, (int)(new S_func_00412B98(p).b4C));
-            Mem.Set(b, (int)(new S_func_00412B98(p).b4D));
+            Mem.Set(a, (int)(new S_func_00412B98(p).CursorRow));
+            Mem.Set(b, (int)(new S_func_00412B98(p).CursorCol));
         }
     }
 
@@ -348,12 +348,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412BF8", (uint)p, (uint)a, (uint)b, (uint)d);
-            int cur = (int)(new S_func_00412BF8(p).b4C);
+            int cur = (int)(new S_func_00412BF8(p).CursorRow);
             if ((d != 0))
             {
-                if (((int)(new S_func_00412BF8(p).b50) < cur))
+                if (((int)(new S_func_00412BF8(p).FixedRows) < cur))
                 {
-                    new S_func_00412BF8(p).b4C_Set((byte)((cur - 1)));
+                    new S_func_00412BF8(p).CursorRow_Set((byte)((cur - 1)));
                 }
             }
             UiGrid_ClampCursor(p);
@@ -368,12 +368,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412C40", (uint)p, (uint)a, (uint)b, (uint)d);
-            int cur = (int)(new S_func_00412C40(p).b4C);
+            int cur = (int)(new S_func_00412C40(p).CursorRow);
             if ((d != 0))
             {
-                if ((cur < ((int)(new S_func_00412C40(p).b4A) - 1)))
+                if ((cur < ((int)(new S_func_00412C40(p).RowCount) - 1)))
                 {
-                    new S_func_00412C40(p).b4C_Set((byte)((cur + 1)));
+                    new S_func_00412C40(p).CursorRow_Set((byte)((cur + 1)));
                 }
             }
             UiGrid_ClampCursor(p);
@@ -388,12 +388,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412C8C", (uint)p, (uint)a, (uint)b, (uint)d);
-            int cur = (int)(new S_func_00412C8C(p).b4D);
+            int cur = (int)(new S_func_00412C8C(p).CursorCol);
             if ((d != 0))
             {
-                if (((int)(new S_func_00412C8C(p).b51) < cur))
+                if (((int)(new S_func_00412C8C(p).FixedCols) < cur))
                 {
-                    new S_func_00412C8C(p).b4D_Set((byte)((cur - 1)));
+                    new S_func_00412C8C(p).CursorCol_Set((byte)((cur - 1)));
                 }
             }
             UiGrid_ClampCursor(p);
@@ -408,12 +408,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412CD4", (uint)p, (uint)a, (uint)b, (uint)d);
-            int cur = (int)(new S_func_00412CD4(p).b4D);
+            int cur = (int)(new S_func_00412CD4(p).CursorCol);
             if ((d != 0))
             {
-                if ((cur < ((int)(new S_func_00412CD4(p).b4B) - 1)))
+                if ((cur < ((int)(new S_func_00412CD4(p).ColCount) - 1)))
                 {
-                    new S_func_00412CD4(p).b4D_Set((byte)((cur + 1)));
+                    new S_func_00412CD4(p).CursorCol_Set((byte)((cur + 1)));
                 }
             }
             UiGrid_ClampCursor(p);
@@ -429,7 +429,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00412D20", (uint)p);
             uint q = p;
-            uint c = new S_func_00412D20(q).f44;
+            uint c = new S_func_00412D20(q).CellsPtr;
             if ((c != 0u))
             {
                 ResourcePool_MallocFree(c);

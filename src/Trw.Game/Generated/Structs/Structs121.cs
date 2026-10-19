@@ -1645,7 +1645,7 @@ public readonly struct State_func_8044DD50_de
     [MethodImpl(Inl)] public static implicit operator uint(State_func_8044DD50_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator State_func_8044DD50_de(uint p) => new(p);
     // +0x0
-    public S8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x36 PlayTimeTicks { [MethodImpl(Inl)] get => new(P); }
     // +0x24
     public int IsTeamPlay
     {
@@ -1674,12 +1674,12 @@ public readonly struct State_func_8044DD50_de
     // +0x7C
     public S8x12 TeamScoreLimit { [MethodImpl(Inl)] get => new(P + 0x7Cu); }
     // +0x88
-    public int d
+    public int IsFlybyHoldStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int d_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int IsFlybyHoldStarted_Set(int v) => Mem.Set(P + 0x88u, v);
     // +0x8C
     public S8x32 pad8C { [MethodImpl(Inl)] get => new(P + 0x8Cu); }
     // +0xAC
@@ -1722,12 +1722,12 @@ public readonly struct Stats24
     // +0x0
     public U8x143 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8F
-    public byte unk8F
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte unk8F_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
 }
 
 /// <summary>struct Stats24b, 0x93 bytes, at a guest address.</summary>
@@ -1744,33 +1744,33 @@ public readonly struct Stats24b
     // +0x0
     public U8x143 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8F
-    public byte unk8F
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte unk8F_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
     // +0x90
-    public byte unk90
+    public byte IsIt
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x90u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x90u, value);
     }
-    [MethodImpl(Inl)] public byte unk90_Set(byte v) => Mem.Set(P + 0x90u, v);
+    [MethodImpl(Inl)] public byte IsIt_Set(byte v) => Mem.Set(P + 0x90u, v);
     // +0x91
-    public byte pad91
+    public byte IsBot
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x91u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x91u, value);
     }
-    [MethodImpl(Inl)] public byte pad91_Set(byte v) => Mem.Set(P + 0x91u, v);
+    [MethodImpl(Inl)] public byte IsBot_Set(byte v) => Mem.Set(P + 0x91u, v);
     // +0x92
-    public byte unk92
+    public byte TeamId
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x92u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x92u, value);
     }
-    [MethodImpl(Inl)] public byte unk92_Set(byte v) => Mem.Set(P + 0x92u, v);
+    [MethodImpl(Inl)] public byte TeamId_Set(byte v) => Mem.Set(P + 0x92u, v);
 }
 
 /// <summary>struct Status, 0x96 bytes, at a guest address.</summary>
@@ -2237,7 +2237,7 @@ public readonly struct SubNode
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public SubNode next
+    public SubNode NextSiblingPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -2251,19 +2251,19 @@ public readonly struct SubNode
     // +0x8
     public U8x6 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xE
-    public ushort unkE
+    public ushort Type
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0xEu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xEu, value);
     }
-    [MethodImpl(Inl)] public ushort unkE_Set(ushort v) => Mem.Set(P + 0xEu, v);
+    [MethodImpl(Inl)] public ushort Type_Set(ushort v) => Mem.Set(P + 0xEu, v);
     // +0x10
-    public byte unk10
+    public byte Alpha
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public byte unk10_Set(byte v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public byte Alpha_Set(byte v) => Mem.Set(P + 0x10u, v);
 }
 
 /// <summary>struct SumNode, 0x8 bytes, at a guest address.</summary>
@@ -4066,12 +4066,12 @@ public readonly struct TextNode
     // +0x0
     public U8x12 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xC
-    public float unkC
+    public float FontSize
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public float unkC_Set(float v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public float FontSize_Set(float v) => Mem.Set(P + 0xCu, v);
     // +0x10
     public float unk10
     {
@@ -4080,26 +4080,26 @@ public readonly struct TextNode
     }
     [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public int unk14
+    public int FadeState
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int FadeState_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int unk18
+    public int Alpha
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int Alpha_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int unk1C
+    public int MessageId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int MessageId_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
     public int unk20
     {
@@ -4108,7 +4108,7 @@ public readonly struct TextNode
     }
     [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public U8Ptr unk24
+    public U8Ptr TextPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x24u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value.P);
@@ -4120,12 +4120,12 @@ public readonly struct TextNode
     }
     [MethodImpl(Inl)] public uint unk24__Set(uint v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int FadeProgress
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int FadeProgress_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
     public int unk2C
     {
@@ -4134,33 +4134,33 @@ public readonly struct TextNode
     }
     [MethodImpl(Inl)] public int unk2C_Set(int v) => Mem.Set(P + 0x2Cu, v);
     // +0x30
-    public float unk30
+    public float X
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public float unk30_Set(float v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public float X_Set(float v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public float unk34
+    public float Y
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float Y_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
-    public float unk38
+    public float Scale_38
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public float unk38_Set(float v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public float Scale_38_Set(float v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public float unk3C
+    public float Scale_3C
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public float unk3C_Set(float v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public float Scale_3C_Set(float v) => Mem.Set(P + 0x3Cu, v);
 }
 
 /// <summary>struct TextNode, 0x28 bytes, at a guest address.</summary>
@@ -4260,21 +4260,21 @@ public readonly struct TextNode_v3
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public uint next_
+    public uint NextPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint next__Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint NextPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x4 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xC
-    public float unkC
+    public float FontSize
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public float unkC_Set(float v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public float FontSize_Set(float v) => Mem.Set(P + 0xCu, v);
     // +0x10
     public float unk10
     {
@@ -4283,26 +4283,26 @@ public readonly struct TextNode_v3
     }
     [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public int unk14
+    public int FadeState
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int FadeState_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int unk18
+    public int Alpha
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int Alpha_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
-    public int unk1C
+    public int MessageId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int MessageId_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
     public int unk20
     {
@@ -4311,7 +4311,7 @@ public readonly struct TextNode_v3
     }
     [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public U8Ptr unk24
+    public U8Ptr TextPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x24u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value.P);
@@ -4323,12 +4323,12 @@ public readonly struct TextNode_v3
     }
     [MethodImpl(Inl)] public uint unk24__Set(uint v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int FadeProgress
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int FadeProgress_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
     public int unk2C
     {
@@ -4337,33 +4337,33 @@ public readonly struct TextNode_v3
     }
     [MethodImpl(Inl)] public int unk2C_Set(int v) => Mem.Set(P + 0x2Cu, v);
     // +0x30
-    public float unk30
+    public float X
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public float unk30_Set(float v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public float X_Set(float v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public float unk34
+    public float Y
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float Y_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
-    public float unk38
+    public float Scale_38
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public float unk38_Set(float v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public float Scale_38_Set(float v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public float unk3C
+    public float Scale_3C
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public float unk3C_Set(float v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public float Scale_3C_Set(float v) => Mem.Set(P + 0x3Cu, v);
 }
 
 /// <summary>struct TextNode, 0x38 bytes, at a guest address.</summary>
@@ -4378,39 +4378,39 @@ public readonly struct TextNode_v4
     [MethodImpl(Inl)] public static implicit operator uint(TextNode_v4 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator TextNode_v4(uint p) => new(p);
     // +0x0
-    public uint next0_
+    public uint PrevPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public uint next0__Set(uint v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public uint PrevPtr_Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public uint next4_
+    public uint NextPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public uint next4__Set(uint v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public uint NextPtr_Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x12 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public int unk14
+    public int FadeState
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int FadeState_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public int unk18
+    public int Alpha
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x18u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x18u, value);
     }
-    [MethodImpl(Inl)] public int unk18_Set(int v) => Mem.Set(P + 0x18u, v);
+    [MethodImpl(Inl)] public int Alpha_Set(int v) => Mem.Set(P + 0x18u, v);
     // +0x1C
     public U8x8 pad1C { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x24
-    public U8Ptr unk24
+    public U8Ptr TextPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x24u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value.P);
@@ -4422,28 +4422,28 @@ public readonly struct TextNode_v4
     }
     [MethodImpl(Inl)] public uint unk24__Set(uint v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public float unk28
+    public float FadeProgress
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public float unk28_Set(float v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public float FadeProgress_Set(float v) => Mem.Set(P + 0x28u, v);
     // +0x2C
     public U8x4 pad2C { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0x30
-    public float unk30
+    public float X
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x30u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
     }
-    [MethodImpl(Inl)] public float unk30_Set(float v) => Mem.Set(P + 0x30u, v);
+    [MethodImpl(Inl)] public float X_Set(float v) => Mem.Set(P + 0x30u, v);
     // +0x34
-    public float unk34
+    public float Y
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public float Y_Set(float v) => Mem.Set(P + 0x34u, v);
 }
 
 /// <summary>struct TextSrc, 0xF28 bytes, at a guest address.</summary>
@@ -4746,7 +4746,7 @@ public readonly struct TimedList
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public TimedNode head
+    public TimedNode SearchListHeadPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x24u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value.P);
@@ -4773,7 +4773,7 @@ public readonly struct TimedNode
     // +0x0
     public U8x16 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x10
-    public TimedNode next
+    public TimedNode NextPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x10u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value.P);
@@ -4787,19 +4787,19 @@ public readonly struct TimedNode
     // +0x14
     public U8x16 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x24
-    public float unk24
+    public float TotalCost
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public float unk24_Set(float v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public float TotalCost_Set(float v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int SearchState
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int SearchState_Set(int v) => Mem.Set(P + 0x28u, v);
 }
 
 /// <summary>struct TimerVar, 0x8 bytes, at a guest address.</summary>
@@ -5327,37 +5327,37 @@ public readonly struct Tracker
     }
     [MethodImpl(Inl)] public float unk34_Set(float v) => Mem.Set(P + 0x34u, v);
     // +0x38
-    public float unk38
+    public float PosX
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public float unk38_Set(float v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public float PosX_Set(float v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public float unk3C
+    public float PosY
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public float unk3C_Set(float v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public float PosY_Set(float v) => Mem.Set(P + 0x3Cu, v);
     // +0x40
-    public float unk40
+    public float PosZ
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public float unk40_Set(float v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public float PosZ_Set(float v) => Mem.Set(P + 0x40u, v);
     // +0x44
-    public float unk44
+    public float EyeHeight
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public float unk44_Set(float v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public float EyeHeight_Set(float v) => Mem.Set(P + 0x44u, v);
     // +0x48
-    public Quad4 unk48 { [MethodImpl(Inl)] get => new(P + 0x48u); }
+    public Quad4 Rotation { [MethodImpl(Inl)] get => new(P + 0x48u); }
     // +0x58
-    public SurfNode unk58
+    public SurfNode FloorTriPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x58u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x58u, value.P);
@@ -5369,12 +5369,12 @@ public readonly struct Tracker
     }
     [MethodImpl(Inl)] public uint unk58__Set(uint v) => Mem.Set(P + 0x58u, v);
     // +0x5C
-    public float unk5C
+    public float Override_5C
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x5Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5Cu, value);
     }
-    [MethodImpl(Inl)] public float unk5C_Set(float v) => Mem.Set(P + 0x5Cu, v);
+    [MethodImpl(Inl)] public float Override_5C_Set(float v) => Mem.Set(P + 0x5Cu, v);
     // +0x60
     public float unk60
     {
@@ -5383,12 +5383,12 @@ public readonly struct Tracker
     }
     [MethodImpl(Inl)] public float unk60_Set(float v) => Mem.Set(P + 0x60u, v);
     // +0x64
-    public int unk64
+    public int RegionId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x64u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x64u, value);
     }
-    [MethodImpl(Inl)] public int unk64_Set(int v) => Mem.Set(P + 0x64u, v);
+    [MethodImpl(Inl)] public int RegionId_Set(int v) => Mem.Set(P + 0x64u, v);
 }
 
 /// <summary>struct Tracker, 0xD0 bytes, at a guest address.</summary>

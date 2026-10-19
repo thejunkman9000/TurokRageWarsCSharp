@@ -147,12 +147,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00209AE8", (uint)ctl);
             float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.Params.MessageIndex_18 * Mem.F32(0x800C6D80u));
-            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill))
             {
             case 1:
                 break;
             default:
-                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D84u));
@@ -173,10 +173,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00209DAC", (uint)ctl);
             float k = 0f;
             float f = 0f;
-            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill))
             {
             default:
-                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                 goto case 0;
             case 0:
                 k = Mem.F32(0x800CDA30u);
@@ -276,15 +276,15 @@ public static partial class Game
                     if ((Random_Float(k) < Mem.F32(0x800C6DE8u)))
                     {
                         new B2Ctl(ctl).BurstCooldown_Set((-1));
-                        new B2Ctl(ctl).FireDelay_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk0);
-                        new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4))));
-                        new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk8);
-                        new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
+                        new B2Ctl(ctl).FireDelay_Set(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayBase);
+                        new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayRandom))));
+                        new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountBase);
+                        new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom))));
                     }
                     else
                     {
-                        new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg(cfg).unk10);
-                        new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk14))));
+                        new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg(cfg).BurstCooldownBase);
+                        new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg(cfg).BurstCooldownRandom))));
                     }
                 }
             }
@@ -294,12 +294,12 @@ public static partial class Game
                 if ((new B2Ctl(ctl).ShotsRemaining == 0))
                 {
                     k = Mem.F32(0x800C6DECu);
-                    new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg(cfg).unk10);
-                    new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk14))));
-                    new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).unk0);
-                    new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk4))));
-                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).unk8);
-                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg(cfg).unkC))));
+                    new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg(cfg).BurstCooldownBase);
+                    new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg(cfg).BurstCooldownRandom))));
+                    new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).FireDelayBase);
+                    new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg(cfg).FireDelayRandom))));
+                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).ShotCountBase);
+                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg(cfg).ShotCountRandom))));
                     new B2Ctl(ctl).SecondaryFireTicks_240_Set(0);
                 }
                 else
@@ -314,14 +314,14 @@ public static partial class Game
             }
             if ((new B2Ctl(ctl).SecondaryFireTicks_240 > 0))
             {
-                nv = new B2Cfg((cfg + (uint)(1 * 28))).unk0;
-                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4)));
+                nv = new B2Cfg((cfg + (uint)(1 * 28))).FireDelayBase;
+                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).FireDelayRandom)));
                 lim = Mem.F32(0x800C6DF4u);
             }
             else
             {
-                nv = new B2Cfg(cfg).unk0;
-                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).unk4)));
+                nv = new B2Cfg(cfg).FireDelayBase;
+                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).FireDelayRandom)));
                 lim = Mem.F32(0x800C6DFCu);
             }
             a = new B2Ctl(ctl).TargetPtr.owner_;
@@ -347,8 +347,8 @@ public static partial class Game
                 float k = 0f;
                 if ((new B2Ctl(ctl).FireDelay > 0))
                 {
-                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).unk8);
-                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(Mem.F32(0x800C6E00u)) * (float)(new B2Cfg(cfg).unkC))));
+                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).ShotCountBase);
+                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(Mem.F32(0x800C6E00u)) * (float)(new B2Cfg(cfg).ShotCountRandom))));
                     new B2Ctl(ctl).FireDelay_Set((int)(new B2Ctl(ctl).FireDelay - 1));
                     return;
                 }
@@ -365,8 +365,8 @@ public static partial class Game
                         return;
                     }
                     new B2Ctl(ctl).FireDelay_Set((-1));
-                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk8);
-                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(Mem.F32(0x800C6E04u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
+                    new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountBase);
+                    new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(Mem.F32(0x800C6E04u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom))));
                     return;
                 }
                 new B2Ctl(ctl).ShotsRemaining_Set((int)(new B2Ctl(ctl).ShotsRemaining - 1));
@@ -411,13 +411,13 @@ public static partial class Game
                     if ((Mem.F32(_fp) < Mem.F32(0x800C6E0Cu)))
                     {
                         k = Mem.F32(0x800C6E14u);
-                        if (((Random_Float(Mem.F32(0x800C6E10u)) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk18)))
+                        if (((Random_Float(Mem.F32(0x800C6E10u)) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).UseChancePercent)))
                         {
-                            t = new B2Cfg((cfg + (uint)(1 * 28))).unk8;
-                            new B2Ctl(ctl).SecondaryFireTicks_240_Set((int)(((float)(t) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC)))));
+                            t = new B2Cfg((cfg + (uint)(1 * 28))).ShotCountBase;
+                            new B2Ctl(ctl).SecondaryFireTicks_240_Set((int)(((float)(t) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).ShotCountRandom)))));
                         }
-                        new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk10);
-                        new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk14))));
+                        new B2Ctl(ctl).BurstCooldown_Set(new B2Cfg((cfg + (uint)(1 * 28))).BurstCooldownBase);
+                        new B2Ctl(ctl).BurstCooldown_Set((int)((float)(new B2Ctl(ctl).BurstCooldown) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).BurstCooldownRandom))));
                         new B2Ctl(ctl).BurstCooldown_Set((int)((int)(new B2Ctl(ctl).BurstCooldown) + new B2Ctl(ctl).SecondaryFireTicks_240));
                     }
                 }
@@ -591,11 +591,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020A95C", (uint)ctl, (uint)cfg);
             float k = Mem.F32(0x800C6E20u);
-            new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).unk0);
-            new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk4))));
-            new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).unk8);
-            new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg(cfg).unkC))));
-            if ((new B2Cfg(cfg).unk18 == 100))
+            new B2Ctl(ctl).FireDelay_Set(new B2Cfg(cfg).FireDelayBase);
+            new B2Ctl(ctl).FireDelay_Set((int)((float)(new B2Ctl(ctl).FireDelay) + (Random_Float(k) * (float)(new B2Cfg(cfg).FireDelayRandom))));
+            new B2Ctl(ctl).ShotsRemaining_Set(new B2Cfg(cfg).ShotCountBase);
+            new B2Ctl(ctl).ShotsRemaining_Set((int)((float)(new B2Ctl(ctl).ShotsRemaining) + (Random_Float(k) * (float)(new B2Cfg(cfg).ShotCountRandom))));
+            if ((new B2Cfg(cfg).UseChancePercent == 100))
             {
                 new B2Ctl(ctl).SecondaryFireTicks_240_Set(1);
             }
@@ -1984,7 +1984,7 @@ public static partial class Game
                 tt = dt;
                 if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
                 {
-                    if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).type - 7)) >= (uint)(2)))
+                    if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).HitType - 7)) >= (uint)(2)))
                     {
                         return 1;
                     }
@@ -2001,7 +2001,7 @@ public static partial class Game
                     new Vec3f((_fp + 16u)).z_Set(((new Vec3f(_fp).z + (new Vec3f((_fp + 32u)).z * tt)) + az));
                     if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
                     {
-                        if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).type - 7)) >= (uint)(2)))
+                        if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).HitType - 7)) >= (uint)(2)))
                         {
                             return 1;
                         }
@@ -2062,7 +2062,7 @@ public static partial class Game
                     }
                     if (((uint)(w) >= (uint)(2)))
                     {
-                        t = (int)(new CtlB(c).actor.PlayerEntryPtr.unk93);
+                        t = (int)(new CtlB(c).actor.PlayerEntryPtr.BotSkill);
                         if ((t == 1))
                         {
                             goto L_b17;
@@ -2081,7 +2081,7 @@ public static partial class Game
                                 goto L_add;
                             }
                         }
-                        new CtlB(c).actor.PlayerEntryPtr.unk93_Set((byte)(0));
+                        new CtlB(c).actor.PlayerEntryPtr.BotSkill_Set((byte)(0));
                         L_b14: ;
                         if (((int)(new WpnDesc(Mem.U32((Gv.WeaponDefTable + (uint)(w * 4)))).info.type) == 1))
                         {

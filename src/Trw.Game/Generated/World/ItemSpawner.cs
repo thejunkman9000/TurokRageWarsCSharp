@@ -194,7 +194,7 @@ public static partial class Game
                     s5 = (-1);
                     s6 = s5;
                     s3 = s5;
-                    if (((int)(new S5G(Gv.Settings).unk1D) != 0))
+                    if (((int)(new S5G(Gv.Settings).IsMultiplayer) != 0))
                     {
                         if (((new S5Info(info).Flags & (uint)(32)) != 0u))
                         {
@@ -310,7 +310,7 @@ public static partial class Game
             uint info = 0u;
             a2 = actor;
             new_var = (new B01Actor(a2).def_ + (uint)20);
-            if (!((!((new B01Actor(a2).def.Params & (uint)(16)) != 0u) || (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0) && ((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)1))) == 1))))) goto _f0;
+            if (!((!((new B01Actor(a2).DefPtr.Params & (uint)(16)) != 0u) || (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0) && ((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)1))) == 1))))) goto _f0;
             if (!((state != 0u))) goto _f1;
             new B01State(state).Timer_64_Set(Random_Symmetric(45.0f, 60.0f));
             info = new_var;
@@ -323,8 +323,8 @@ public static partial class Game
             new B01State(state).ClassVar_124.i_Set(0);
             new B01State(state).ClassVar_128.i_Set((int)(new B01Info(info).Count_8));
             _f2: ;
-            if (!((((int)(new B01Actor(a2).unkE4) == 1604) || ((new B01Info(info).Flags & (uint)(8)) != 0u)))) goto _f3;
-            new B01Actor(a2).flags_Set((uint)((uint)(new B01Actor(a2).flags) & (uint)((~8192))));
+            if (!((((int)(new B01Actor(a2).TypeId) == 1604) || ((new B01Info(info).Flags & (uint)(8)) != 0u)))) goto _f3;
+            new B01Actor(a2).Flags_Set((uint)((uint)(new B01Actor(a2).Flags) & (uint)((~8192))));
             _f3: ;
             Actor_DispatchEvent(a2, state, 0);
             if (!((((new B01Info(info).Flags & (uint)(16)) != 0u) && ((int)(Mem.U8(0x801462E6u)) != 1)))) goto _f4;
@@ -333,7 +333,7 @@ public static partial class Game
             goto _f5;
             _f0: ;
             L_clear: ;
-            new B01Actor(a2).flags_Set((uint)((uint)(new B01Actor(a2).flags) & (uint)((~256))));
+            new B01Actor(a2).Flags_Set((uint)((uint)(new B01Actor(a2).Flags) & (uint)((~256))));
             _f5: ;
         }
     }
@@ -405,7 +405,7 @@ public static partial class Game
             }
             if ((((new B01Info(info).Flags & (uint)(1)) != 0u) || (new B01State(state).ClassVar_128.i > 0)))
             {
-                if ((((new B01Info(info).Flags & (uint)(2)) != 0u) && ((new B01Actor(actor).flags & (uint)(512)) != 0u)))
+                if ((((new B01Info(info).Flags & (uint)(2)) != 0u) && ((new B01Actor(actor).Flags & (uint)(512)) != 0u)))
                 {
                     new B01State(state).StateTime_Set(0.0f);
                     return;
@@ -504,12 +504,12 @@ public static partial class Game
                         return;
                     }
                 }
-                p = PickupPool_Spawn(0x80131600u, new B01State(state).ClassVar_124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
+                p = PickupPool_Spawn(0x80131600u, new B01State(state).ClassVar_124.P, id, new B01Actor(actor).Velocity.P, _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
-                    new B01Actor(p).unk1A0_Set(0);
+                    new B01Actor(p).CollisionProfilePtr_Set(0);
                     new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - 1));
-                    Effect_SpawnForObject(p, 285, new B01Actor(p).pos.P);
+                    Effect_SpawnForObject(p, 285, new B01Actor(p).Position.P);
                 }
             }
         }
@@ -527,7 +527,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002063EC", (uint)actor, (uint)state, (uint)v1_in);
-                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).ClassVar_124.P)) != 0))
+                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).Yaw, new B01Actor(actor).Velocity.P, (_fp + 16u), new B01State(state).ClassVar_124.P)) != 0))
                 {
                     new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - 1));
                 }
@@ -546,7 +546,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002064A0", (uint)actor, (uint)state, (uint)v_in);
-                new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - Effect_SpawnFromTemplates(Gv.EffectMgr, actor, actor, new B01State(state).ClassVar_124.P, 0, p70, new B01Actor(actor).vec1C.P, new B01Actor(actor).vec5C.P, _fp, 0, (-1), 0)));
+                new B01State(state).ClassVar_128.i_Set((new B01State(state).ClassVar_128.i - Effect_SpawnFromTemplates(Gv.EffectMgr, actor, actor, new B01State(state).ClassVar_124.P, 0, p70, new B01Actor(actor).Velocity.P, new B01Actor(actor).Rotation.P, _fp, 0, (-1), 0)));
             }
         }
         finally { Stack.Free(12); }

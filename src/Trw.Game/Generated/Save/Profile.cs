@@ -14,7 +14,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022EF20", (uint)p);
             int i = 0;
             memset(p, 0, (uint)(8));
-            new M2Cfg(p).unkE_Set((byte)(0));
+            new M2Cfg(p).IsDefaultProfile_Set((byte)(0));
             Profile_SetField14_0022F304(p, (byte)(0));
             Profile_SetField15_0022F328(p, (byte)(0));
             Profile_SetField16_0022F34C(p, (byte)(0));
@@ -32,15 +32,15 @@ public static partial class Game
             Profile_SetCharacterLives(p, 10, 2);
             Profile_SetCharacterLives(p, 17, 2);
             Profile_SetCharacterLives(p, 18, 2);
-            new M2Cfg(p).unk17_Set((byte)(0));
-            new M2Cfg(p).unkF_Set((byte)(0));
-            new M2Cfg(p).unk74_Set(0);
-            new M2Cfg(p).unk6C_Set(0);
-            new M2Cfg(p).unk70_Set(0);
+            new M2Cfg(p).RewardCount_17_Set((byte)(0));
+            new M2Cfg(p).SelectedCharacter_Set((byte)(0));
+            new M2Cfg(p).TotalDeaths_Set(0);
+            new M2Cfg(p).TotalFrags_Set(0);
+            new M2Cfg(p).TotalWins_Set(0);
             new M2Cfg(p).unk25_Set((byte)(0));
-            new M2Cfg(p).unk8_Set(0);
-            new M2Cfg(p).unkC_Set((byte)(0));
-            new M2Cfg(p).unkD_Set((sbyte)((-1)));
+            new M2Cfg(p).PakId_Set(0);
+            new M2Cfg(p).PakRecordIndex_Set((byte)(0));
+            new M2Cfg(p).OwnerPadIndex_Set((sbyte)((-1)));
             memset((p + (uint)38), 0, (uint)(36));
             memset((p + (uint)125), 0, (uint)(1));
             memset((p + (uint)81), 0, (uint)(3));
@@ -64,14 +64,14 @@ public static partial class Game
             memset((p + (uint)131), 0, (uint)(5));
             for (i = 0; (i < 36); ++i)
             {
-                new M2Cfg(p).arr94.Set((int)(i), 0);
+                new M2Cfg(p).ArenaBestTimes.Set((int)(i), 0);
             }
             memset((p + (uint)292), 0, (uint)(1));
-            new M2Cfg(p).unk18A_Set((byte)(1));
-            new M2Cfg(p).unk18B_Set((byte)(134));
-            new M2Cfg(p).unk189_Set((byte)(0));
-            new M2Cfg(p).unk18C_Set((byte)(132));
-            new M2Cfg(p).unk18D_Set((byte)(0));
+            new M2Cfg(p).LookSpring_Set((byte)(1));
+            new M2Cfg(p).StickHorzSensitivity_Set((byte)(134));
+            new M2Cfg(p).ControlType_Set((byte)(0));
+            new M2Cfg(p).StickVertSensitivity_Set((byte)(132));
+            new M2Cfg(p).WeaponSelectMode_Set((byte)(0));
         }
     }
 
@@ -83,17 +83,17 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022F1F4", (uint)i);
             uint r = 0u;
             Profile_Init((Gv.ProfileTable + (uint)(i * 400)));
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk8_Set(0);
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkD_Set((byte)(i));
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkC_Set((byte)(0));
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkE_Set((byte)(1));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).PakId_Set(0);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex_Set((byte)(i));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).PakRecordIndex_Set((byte)(0));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).IsDefaultProfile_Set((byte)(1));
             Str_FormatInto((Gv.ProfileTable + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             r = (Gv.Settings_PlayerRecords + (uint)(i * 150));
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk189_Set(new B07Rec96(r).unk7B);
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18A_Set(new B07Rec96(r).unk7D);
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18B_Set(new B07Rec96(r).unk79);
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18C_Set(new B07Rec96(r).unk7A);
-            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18D_Set(new B07Rec96(r).unk82);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).ControlType_Set(new B07Rec96(r).ControlType);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).LookSpring_Set(new B07Rec96(r).LookSpring);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).StickHorzSensitivity_Set(new B07Rec96(r).StickHorzSensitivity);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).StickVertSensitivity_Set(new B07Rec96(r).StickVertSensitivity);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).WeaponSelectMode_Set(new B07Rec96(r).WeaponSelectMode);
         }
     }
 
@@ -524,11 +524,11 @@ public static partial class Game
                 return;
             }
             e = (Gv.Settings_PlayerRecords + (uint)(p * 150));
-            if (((int)(new Q2Pl(e).f78) != 1))
+            if (((int)(new Q2Pl(e).IsActive) != 1))
             {
                 return;
             }
-            if (((int)(new Q2Pl(e).f91) != 0))
+            if (((int)(new Q2Pl(e).IsBot) != 0))
             {
                 return;
             }
@@ -547,13 +547,13 @@ public static partial class Game
             if ((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 36) == 0))
             {
                 met = 0;
-                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).f4) >= 15)))
+                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).Frags) >= 15)))
                 {
                     met = 1;
                 }
                 else
                 {
-                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
+                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).Frags) >= 15)))
                     {
                         y = (new Q2G(Gv.Settings_MatchRules).TimeRemaining * 0.0666666701f);
                         {
@@ -578,13 +578,13 @@ public static partial class Game
             if ((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 37) == 0))
             {
                 met = 0;
-                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).f4) >= 25)))
+                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).Frags) >= 25)))
                 {
                     met = 1;
                 }
                 else
                 {
-                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
+                    if (((new Q2G(Gv.Settings_MatchRules).TimeRemaining >= 0.0f) && ((int)(new Q2Pl(e).Frags) >= 25)))
                     {
                         y = (new Q2G(Gv.Settings_MatchRules).TimeRemaining * 0.0666666701f);
                         {
@@ -606,7 +606,7 @@ public static partial class Game
                     }
                 }
             }
-            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).Frags) == 0)) && ((int)(new Q2Cfg(Gv.Settings).TimeLimit) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
             {
                 Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 38, 1);
                 if ((n < 2))
@@ -615,7 +615,7 @@ public static partial class Game
                     ++n;
                 }
             }
-            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).SelfDeaths_0) >= 5)))
             {
                 Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 39, 1);
                 if ((n < 2))
@@ -624,9 +624,9 @@ public static partial class Game
                     ++n;
                 }
             }
-            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
             {
-                t = (int)(new Q2Pl(e).f4);
+                t = (int)(new Q2Pl(e).Frags);
                 met = 1;
                 for (i = 0; (i < 4); ++i)
                 {
@@ -636,7 +636,7 @@ public static partial class Game
                     }
                     if ((p != i))
                     {
-                        if (((((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f78) != 1) || ((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f91) != 0)) || (((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f4) - t) < 10)))
+                        if (((((int)(new Q2Cfg(Gv.Settings).PlayerRecords[(int)(i)].IsActive) != 1) || ((int)(new Q2Cfg(Gv.Settings).PlayerRecords[(int)(i)].IsBot) != 0)) || (((int)(new Q2Cfg(Gv.Settings).PlayerRecords[(int)(i)].Frags) - t) < 10)))
                         {
                             met = 0;
                         }
@@ -670,7 +670,7 @@ public static partial class Game
                     ++n;
                 }
             }
-            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).TimeLimit) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
             {
                 Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 43, 1);
                 if ((n < 2))
@@ -679,7 +679,7 @@ public static partial class Game
                     ++n;
                 }
             }
-            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).Deaths) == 0)) && ((int)(new Q2Cfg(Gv.Settings).TimeLimit) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
             {
                 Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 44, 1);
                 if ((n < 2))
@@ -704,26 +704,26 @@ public static partial class Game
             for (i = 0; (i < 4); ++i)
             {
                 e = (Gv.Settings_PlayerRecords + (uint)(i * 150));
-                if (((int)(new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unkD) >= 0))
+                if (((int)(new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).OwnerPadIndex) >= 0))
                 {
-                    x = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C + (int)(new O04Ent96i(e).unk4));
+                    x = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalFrags + (int)(new O04Ent96i(e).Frags));
                     e2 = e;
                     if ((x > 99999))
                     {
-                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C_Set(99999);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalFrags_Set(99999);
                     }
                     else
                     {
-                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C_Set(x);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalFrags_Set(x);
                     }
-                    y = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74 + (int)(new O04Ent96i(e2).unk2));
+                    y = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalDeaths + (int)(new O04Ent96i(e2).Deaths));
                     if ((y > 99999))
                     {
-                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74_Set(99999);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalDeaths_Set(99999);
                     }
                     else
                     {
-                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74_Set(y);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).TotalDeaths_Set(y);
                     }
                 }
             }
@@ -740,7 +740,7 @@ public static partial class Game
             int n = 0;
             int i = 0;
             uint e = 0u;
-            if ((((int)(new O04P(Gv.Settings).a) <= 0) && ((int)(new O04P(Gv.Settings).b) <= 0)))
+            if ((((int)(new O04P(Gv.Settings).TimeLimit) <= 0) && ((int)(new O04P(Gv.Settings).FragLimit) <= 0)))
             {
                 return 0;
             }
@@ -749,7 +749,7 @@ public static partial class Game
             e = Gv.Settings_PlayerRecords;
             for (i = 0; (i < 8); ++i)
             {
-                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).IsActive) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).IsBot) != (int)(new O04Ent96((e + (uint)(i * 150))).IsActive))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
                 {
                     ++n;
                 }
@@ -769,26 +769,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00424E30", (uint)idx, (uint)b);
             int x = 0;
             int v = 0;
-            if (((int)(new O04Ent96((Gv.Settings_PlayerRecords + (uint)(idx * 150))).unk91) == 1))
+            if (((int)(new O04Ent96((Gv.Settings_PlayerRecords + (uint)(idx * 150))).IsBot) == 1))
             {
                 return;
             }
-            x = (new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70 + 1);
+            x = (new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).TotalWins + 1);
             if ((x > 99999))
             {
-                new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70_Set(99999);
+                new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).TotalWins_Set(99999);
             }
             else
             {
                 do
                 {
-                    new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70_Set(x);
+                    new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).TotalWins_Set(x);
                 }
                 while ((0 != 0));
             }
             if ((func_00424E30_o04_chk() == 1))
             {
-                if ((((int)(new O04P(Gv.Settings).a) >= 10) || ((int)(new O04P(Gv.Settings).b) >= 10)))
+                if ((((int)(new O04P(Gv.Settings).TimeLimit) >= 10) || ((int)(new O04P(Gv.Settings).FragLimit) >= 10)))
                 {
                     v = ((int)(Mem.U8((0x80102B26u + (uint)(b + (idx * 400))))) + 1);
                     if ((v >= 6))
@@ -821,7 +821,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits_Test(new O04Row190t((Gv.CharacterClassTable + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits_Test(new O04Row190t((Gv.ProfileTable_Plus10 + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }
@@ -940,7 +940,7 @@ public static partial class Game
                 s = Mem.U32(0x800D7278u);
                 break;
             }
-            new O04Row190t((Gv.CharacterClassTable + (uint)(a * 400))).unk15_Set((byte)(lv));
+            new O04Row190t((Gv.ProfileTable_Plus10 + (uint)(a * 400))).unk15_Set((byte)(lv));
             return s;
         }
     }
@@ -966,103 +966,103 @@ public static partial class Game
             n = c;
             if ((n >= 2))
             {
-                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((87 - 87)), (byte)(2));
             }
             if ((n >= 4))
             {
-                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((92 - 87)), (byte)(2));
             }
             if ((n >= 6))
             {
-                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((88 - 87)), (byte)(2));
             }
             if ((n >= 8))
             {
-                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((96 - 87)), (byte)(2));
             }
             if ((n >= 10))
             {
-                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((89 - 87)), (byte)(2));
             }
             if ((n >= 12))
             {
-                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((90 - 87)), (byte)(2));
             }
             if ((n >= 14))
             {
-                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((97 - 87)), (byte)(2));
             }
             if ((n >= 16))
             {
-                new O04Row190s(r).b.Set((int)((93 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((93 - 87)), (byte)(2));
             }
             if ((n >= 18))
             {
-                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((104 - 87)), (byte)(2));
             }
             if ((n >= 20))
             {
-                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((94 - 87)), (byte)(2));
             }
             if ((n >= 22))
             {
-                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((91 - 87)), (byte)(2));
             }
             if ((n >= 24))
             {
-                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((95 - 87)), (byte)(2));
             }
             if ((n >= 26))
             {
-                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(2));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((105 - 87)), (byte)(2));
             }
             if ((n >= 28))
             {
-                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((87 - 87)), (byte)(3));
             }
             if ((n >= 30))
             {
-                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((92 - 87)), (byte)(3));
             }
             if ((n >= 32))
             {
-                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((88 - 87)), (byte)(3));
             }
             if ((n >= 34))
             {
-                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((96 - 87)), (byte)(3));
             }
             if ((n >= 36))
             {
-                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((89 - 87)), (byte)(3));
             }
             if ((n >= 38))
             {
-                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((90 - 87)), (byte)(3));
             }
             if ((n >= 40))
             {
-                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((97 - 87)), (byte)(3));
             }
             if ((n >= 42))
             {
-                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((104 - 87)), (byte)(3));
             }
             if ((n >= 44))
             {
-                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((94 - 87)), (byte)(3));
             }
             if ((n >= 46))
             {
-                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((91 - 87)), (byte)(3));
             }
             if ((n >= 48))
             {
-                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((95 - 87)), (byte)(3));
             }
             if ((n >= 50))
             {
-                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(3));
+                new O04Row190s(r).CharacterSkinCounts.Set((int)((105 - 87)), (byte)(3));
             }
         }
     }
@@ -1076,16 +1076,16 @@ public static partial class Game
             switch ((int)(Mem.U8(Gv.Settings_GameMode)))
             {
             case 1:
-                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk7E.P, Mem.S32(Gv.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).ArenaPlayedBitsMode1.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 2:
-                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk83.P, Mem.S32(Gv.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).ArenaPlayedBitsMode2.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 3:
-                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk88.P, Mem.S32(Gv.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).ArenaPlayedBitsMode3.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 4:
-                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk8D.P, Mem.S32(Gv.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).ArenaPlayedBitsMode4.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             }
         }
@@ -1101,7 +1101,7 @@ public static partial class Game
             int i = 0;
             int row = 0;
             uint e = (Gv.Settings_PlayerRecords + (uint)(a * 150));
-            if ((((int)(new O04Ent96g(e).unk78) == 1) && ((int)(new O04Ent96g(e).unk91) == 0)))
+            if ((((int)(new O04Ent96g(e).IsActive) == 1) && ((int)(new O04Ent96g(e).IsBot) == 0)))
             {
                 row = (a * 400);
                 if ((Bits_Test((Gv.Profile_AwardBits + (uint)row), 49) == 0))
@@ -1137,7 +1137,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits_Test(new O04Row190((Gv.CharacterClassTable + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits_Test(new O04Row190((Gv.ProfileTable_Plus10 + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }
@@ -1156,7 +1156,7 @@ public static partial class Game
             int n = 0;
             int i = 0;
             uint e = 0u;
-            if ((((int)(new O04P(Gv.Settings).a) <= 0) && ((int)(new O04P(Gv.Settings).b) <= 0)))
+            if ((((int)(new O04P(Gv.Settings).TimeLimit) <= 0) && ((int)(new O04P(Gv.Settings).FragLimit) <= 0)))
             {
                 return 0;
             }
@@ -1165,7 +1165,7 @@ public static partial class Game
             e = Gv.Settings_PlayerRecords;
             for (i = 0; (i < 8); ++i)
             {
-                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).IsActive) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).IsBot) != (int)(new O04Ent96((e + (uint)(i * 150))).IsActive))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
                 {
                     ++n;
                 }
@@ -1187,7 +1187,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bC) == b) && (new O05Rec((Gv.ProfileTable + (uint)(i * 400))).w8 == a)))
+                if ((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakRecordIndex) == b) && (new O05Rec((Gv.ProfileTable + (uint)(i * 400))).PakId == a)))
                 {
                     return i;
                 }

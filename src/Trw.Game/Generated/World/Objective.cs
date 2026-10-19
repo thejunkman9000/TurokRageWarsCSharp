@@ -32,10 +32,10 @@ public static partial class Game
                         if (((new M1Blk(blk).unk68 == 0) && (new M1State(state).ClassVar_12C.i == 0)))
                         {
                             st = new M1Actor(pl).stats_;
-                            if (((int)(new M1Stats(st).b8F) == 1))
+                            if (((int)(new M1Stats(st).IsMonkey) == 1))
                             {
-                                new M1Stats(st).b8F_Set((byte)(0));
-                                new M1Actor(pl).PlayerEntryPtr.b90_Set((byte)(1));
+                                new M1Stats(st).IsMonkey_Set((byte)(0));
+                                new M1Actor(pl).PlayerEntryPtr.IsIt_Set((byte)(1));
                                 new M1Blk(blk).unk74_Set(1);
                                 new M1State(state).ClassVar_12C.i_Set(1);
                                 Audio_PlaySound2D(3597);
@@ -56,7 +56,7 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((int)(new M1Actor(pl).PlayerEntryPtr.b8F) == 0))
+                    if (((int)(new M1Actor(pl).PlayerEntryPtr.IsMonkey) == 0))
                     {
                         return;
                     }
@@ -69,14 +69,14 @@ public static partial class Game
                         return;
                     }
                     {
-                        new M1Actor(pl).PlayerEntryPtr.b8F_Set((byte)(0));
-                        new M1Actor(pl).PlayerEntryPtr.b90_Set((byte)(1));
-                        new M1Actor(pl).PlayerEntryPtr.h8_Set((ushort)(new M1Actor(pl).PlayerEntryPtr.h8 + 1));
+                        new M1Actor(pl).PlayerEntryPtr.IsMonkey_Set((byte)(0));
+                        new M1Actor(pl).PlayerEntryPtr.IsIt_Set((byte)(1));
+                        new M1Actor(pl).PlayerEntryPtr.Tags_Set((ushort)(new M1Actor(pl).PlayerEntryPtr.Tags + 1));
                         Match_AdjustTeamScore(pl, pl, (uint)(3), default(uint));
                         blk2 = new M1World(Gv.PlayerPool).blk.P;
                         new M1Blk(blk2).unk84_Set(0);
                         new M1Blk(blk2).unk80_Set(0);
-                        switch ((int)(new M1Actor(pl).PlayerEntryPtr.b92))
+                        switch ((int)(new M1Actor(pl).PlayerEntryPtr.TeamId))
                         {
                         case 0:
                             id = 742;
@@ -249,15 +249,15 @@ public static partial class Game
             if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
                 Actor_DispatchEvent(actor, state, 1);
-                switch ((int)(new B01Actor(actor).unkE4))
+                switch ((int)(new B01Actor(actor).TypeId))
                 {
                 case 1612:
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~8192))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                     break;
                 case 1611:
                 case 1614:
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4160749567u));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & 4160749567u));
                     break;
                 }
             }
@@ -307,7 +307,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204620", (uint)actor);
-            int v = (int)(new B01Def(new Actor(actor).DefPtr).unk28);
+            int v = (int)(new B01Def(new Actor(actor).DefPtr).CreatureRadius);
             if ((v != 0))
             {
                 new Actor(actor).Flags_Set((uint)((uint)(new Actor(actor).Flags) | (uint)(8192)));
@@ -336,15 +336,15 @@ public static partial class Game
             Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));
             if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != 4))
             {
-                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
+                new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) | (uint)(134217728)));
                 if (((new B01Def(def).Params & (uint)(2)) != 0u))
                 {
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~8192))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                 }
-                if (((int)(new B01Actor(actor).def.unk28) == 0))
+                if (((int)(new B01Actor(actor).DefPtr.CreatureRadius) == 0))
                 {
-                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
+                    new B01Actor(actor).Flags_Set((uint)((uint)(new B01Actor(actor).Flags) & (uint)((~256))));
                 }
             }
         }

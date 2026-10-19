@@ -210,10 +210,10 @@ public static partial class Game
             float w = 0f;
             float x = 0f;
             trw_mouse_reset(p);
-            if (((new B05P10(p).unk11B4 == 0) && !(new B05P10(p).f11D8 > 0.0f)))
+            if (((new B05P10(p).IsStickCaptured == 0) && !(new B05P10(p).StunTime > 0.0f)))
             {
-                om = (new B05P10(p).f7EC * 0.990000009f);
-                st = new B05P10(p).stats;
+                om = (new B05P10(p).ZoomAmount * 0.990000009f);
+                st = new B05P10(p).PlayerEntryPtr;
                 m = (((float)(new B05Sta10(st).b79) * 0.0078125f) - 1.0f);
                 turn = ((m * 0.5f) + 0.875f);
                 m = (((float)(new B05Sta10(st).b7A) * 0.0078125f) - 1.0f);
@@ -237,10 +237,10 @@ public static partial class Game
                 {
                     if ((new B05In10(@in).f0 != 0.0f))
                     {
-                        Math_ApproachProportional((a + 108u), (new B05A10(a).ang + (((new B05P10(p).f69C * 80.0f) * new B05In10(@in).f0) * 0.0174532942f)), turn);
+                        Math_ApproachProportional((a + 108u), (new B05A10(a).ang + (((new B05P10(p).TurnInput * 80.0f) * new B05In10(@in).f0) * 0.0174532942f)), turn);
                     }
                 }
-                w = ((-new B05P10(p).f6A0) * 80.0f);
+                w = ((-new B05P10(p).PitchInput) * 80.0f);
                 if ((w < 0.0f))
                 {
                     x = ((w * (-0.716197133f)) * new B05In10(@in).f10);
@@ -264,39 +264,39 @@ public static partial class Game
             float ang = 0f;
             float @base = 0f;
             float r = 0f;
-            if (!(new B05P9(p).f11D8 > 0.0f))
+            if (!(new B05P9(p).StunTime > 0.0f))
             {
                 Math_ApproachProportional((p + 1836u), 0.0f, 0.25f);
                 Math_ApproachProportional((p + 1832u), 0.0f, 0.5f);
-                new B05P9(p).f730_Set(Math_DecayToZero(new B05P9(p).f730, Mem.F32(0x800C7A04u)));
-                new B05P9(p).f734_Set(Math_DecayToZero(new B05P9(p).f734, Mem.F32(0x800C7A04u)));
-                new B05P9(p).f738_Set(Math_DecayToZero(new B05P9(p).f738, Mem.F32(0x800C7A04u)));
-                if ((new B05P9(p).f75C > Mem.F32(0x800C7A08u)))
+                new B05P9(p).SwayPitch_Set(Math_DecayToZero(new B05P9(p).SwayPitch, Mem.F32(0x800C7A04u)));
+                new B05P9(p).SwayYaw_Set(Math_DecayToZero(new B05P9(p).SwayYaw, Mem.F32(0x800C7A04u)));
+                new B05P9(p).SwayRoll_Set(Math_DecayToZero(new B05P9(p).SwayRoll, Mem.F32(0x800C7A04u)));
+                if ((new B05P9(p).BobFrequency > Mem.F32(0x800C7A08u)))
                 {
-                    new B05P9(p).f75C_Set(Mem.F32(0x800C7A08u));
+                    new B05P9(p).BobFrequency_Set(Mem.F32(0x800C7A08u));
                 }
-                if ((new B05P9(p).f758 > Mem.F32(0x800C7A0Cu)))
+                if ((new B05P9(p).BobAmplitude > Mem.F32(0x800C7A0Cu)))
                 {
-                    new B05P9(p).f758_Set(Mem.F32(0x800C7A0Cu));
+                    new B05P9(p).BobAmplitude_Set(Mem.F32(0x800C7A0Cu));
                 }
-                new B05P9(p).f75C_Set(Math_DecayToZero(new B05P9(p).f75C, Mem.F32(0x800C7A10u)));
-                new B05P9(p).f758_Set(Math_DecayToZero(new B05P9(p).f758, Mem.F32(0x800C7A14u)));
-                if ((new B05P9(p).f758 < Mem.F32(0x800C7A18u)))
+                new B05P9(p).BobFrequency_Set(Math_DecayToZero(new B05P9(p).BobFrequency, Mem.F32(0x800C7A10u)));
+                new B05P9(p).BobAmplitude_Set(Math_DecayToZero(new B05P9(p).BobAmplitude, Mem.F32(0x800C7A14u)));
+                if ((new B05P9(p).BobAmplitude < Mem.F32(0x800C7A18u)))
                 {
-                    new B05P9(p).f758_Set(0.0f);
-                    new B05P9(p).f75C_Set(0.0f);
+                    new B05P9(p).BobAmplitude_Set(0.0f);
+                    new B05P9(p).BobFrequency_Set(0.0f);
                 }
-                ang = ((new B05P9(p).f658 * new B05P9(p).f75C) * Mem.F32(0x800C7A1Cu));
-                if ((new B05P9(p).def != 0u))
+                ang = ((new B05P9(p).StateTime * new B05P9(p).BobFrequency) * Mem.F32(0x800C7A1Cu));
+                if ((new B05P9(p).DefPtr != 0u))
                 {
-                    @base = (new B05Def9(new B05P9(p).def).unkF4 * Mem.F32(0x800C7A20u));
+                    @base = (new B05Def9(new B05P9(p).DefPtr).unkF4 * Mem.F32(0x800C7A20u));
                 }
                 else
                 {
                     @base = Mem.F32(0x800C7A24u);
                 }
-                Math_ApproachProportional((p + 1856u), (@base + (new B05P9(p).f758 * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
-                r = (new B05P9(p).f758 * (cosf(ang) * Mem.F32(0x800C7A30u)));
+                Math_ApproachProportional((p + 1856u), (@base + (new B05P9(p).BobAmplitude * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
+                r = (new B05P9(p).BobAmplitude * (cosf(ang) * Mem.F32(0x800C7A30u)));
                 Math_ApproachProportional((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
                 Math_ApproachProportional((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
             }
