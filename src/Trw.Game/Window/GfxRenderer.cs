@@ -25,6 +25,10 @@ public sealed class GfxRenderer : IDisposable
     private readonly DepthStencilState depthClear = new() { DepthBufferEnable = true, DepthBufferWriteEnable = true, DepthBufferFunction = CompareFunction.Always };   // partial z-buffer clears: a far-plane quad that always passes
     private readonly BlendState noColor = new() { ColorWriteChannels = ColorWriteChannels.None };                                                              // ... and leaves the colour buffer alone
     private readonly RasterizerState raster = new() { CullMode = CullMode.None, ScissorTestEnable = true };
+    // the RDP's translucent z mode (othermode-low bits 11:10 = 2) passes only when strictly in front, without the dz tolerance the opaque modes get;
+    // a translucent surface level with opaque geometry therefore loses on hardware. Tempered's translucent lava layer lies level with the floor slabs
+    // and won from some (grazing) angles here: a small slope-scaled offset pushes translucent-mode draws back the way the RDP decides
+    private readonly RasterizerState rasterXlu = new() { CullMode = CullMode.None, ScissorTestEnable = true, DepthBias = 4e-6f, SlopeScaleDepthBias = 1f };
     private readonly SamplerState[,,] samplers = new SamplerState[2, 3, 3];            // [linear, u, v]
     private bool anyFrame;
     // local view (ViewLayout.cs): the local player's region of the N64 screen is drawn into its own target, sized for the window
@@ -187,7 +191,7 @@ public sealed class GfxRenderer : IDisposable
         bool blend = RdpMath.BlendEnabled(st.OtherHigh, st.OtherLow);
         device.DepthStencilState = st.ZClear ? depthClear : depthStates[RdpMath.DepthStateIndex(st.Geom, st.OtherLow)];
         device.BlendState = st.ZClear ? noColor : blend ? BlendState.NonPremultiplied : BlendState.Opaque;
-        device.RasterizerState = raster;
+        device.RasterizerState = ((st.OtherLow >> 10) & 3) == 2 && !st.ZClear ? rasterXlu : raster;
         var tex0 = st.TextureOn && st.Tex0 != null ? GetTexture(st.Tex0) : white;
         var tex1 = st.TextureOn && st.Tex1 != null ? GetTexture(st.Tex1) : tex0;
         // EffectPass.Apply rebinds the sampler slots from the effect's texture parameters, so they have to be set there

@@ -22,7 +22,15 @@ public static class DiffTest
     private static readonly Dictionary<string, string[]> sigs = new();           // name -> [ret, p0, p1, ...]
     private static readonly Dictionary<string, int[]> sizes = new();             // name -> struct-by-value size in bytes per parameter (0 = scalar)
     // TRW_DIFF_WINDOW=a-b: only calls made while the retrace counter is in [a, b] are tested (TRW_DIFF_N then counts per function inside the window)
-    private static readonly (int lo, int hi)? window = Environment.GetEnvironmentVariable("TRW_DIFF_WINDOW") is { } w && w.Split('-') is { Length: 2 } wp && int.TryParse(wp[0], out var wlo) && int.TryParse(wp[1], out var whi) ? (wlo, whi) : null;
+    private static (int lo, int hi)? window = Environment.GetEnvironmentVariable("TRW_DIFF_WINDOW") is { } w && w.Split('-') is { Length: 2 } wp && int.TryParse(wp[0], out var wlo) && int.TryParse(wp[1], out var whi) ? (wlo, whi) : null;
+    /// <summary>TRW_DIFF_F12=n: F12 (TrwWindow) opens a window of n retraces from now (the window replaces TRW_DIFF_WINDOW; per-function counts restart):
+    /// with TRW_DIFF=* every function called while a glitch is on screen is tested against the ROM.</summary>
+    public static void ArmWindow(int ticks)
+    {
+        window = (Game.CurrentTick, Game.CurrentTick + ticks);
+        lock (done) { done.Clear(); calls.Clear(); } finished.Clear();
+        Console.Error.WriteLine($"[diff] window armed: ticks {window.Value.lo}..{window.Value.hi}");
+    }
     [ThreadStatic] private static bool inTest;
     /// <summary>True while a test runs on this thread (the OS layer refuses to change scheduler state then).</summary>
     public static bool Active => inTest;

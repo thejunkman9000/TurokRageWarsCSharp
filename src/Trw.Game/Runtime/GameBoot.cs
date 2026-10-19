@@ -115,7 +115,8 @@ public static class GameBoot
         Game.RegisterFunctions();
         Game.RegisterRecompiled();
         Game.RegisterPreserved();
-        Dbg.ReadableName = n => Game.ReadableNames.TryGetValue(n, out var r) ? r : null;      // TRW_TRACE_FN accepts readable names (tools/names)
+        Dbg.ReadableName = n => Game.ReadableNames.TryGetValue(n, out var r) ? r : null;
+        Trw.Platform.Gfx.DisplayListInterpreter.UseEyeDepth = () => Mem.S32(Gv.GameState) is 8 or 13 && Game.ScreenId is -1 or 2;      // levels only (Widescreen.InLevel)      // TRW_TRACE_FN accepts readable names (tools/names)
         InstallAudio();
         var t = new Thread(() =>
         {

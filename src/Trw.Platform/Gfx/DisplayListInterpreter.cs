@@ -226,9 +226,22 @@ public sealed class DisplayListInterpreter
         float nx = v.Cx * invw, ny = v.Cy * invw, nz = v.Cz * invw;
         float px = (nx * S.Vsc[0] + S.Vtr[0]) * 0.25f;                                  // 10.2 fixed point viewport
         float py = (-ny * S.Vsc[1] + S.Vtr[1]) * 0.25f;                                 // clip y is up, screen y is down
-        float zs = S.Vsc[2] != 0 ? (nz * S.Vsc[2] + S.Vtr[2]) / 1023f : (nz * 0.5f + 0.5f);
-        if (zs < 0) zs = 0;
-        if (zs > 1) zs = 1;
+        float zs;
+        if (!nearClip && eyeDepth && S.Proj[11] != 0)
+        {
+            // NoN (no near clipping): vertices nearer than the projection's near plane get a z in front of it. Clamping each vertex's z to 0 and then
+            // interpolating made such triangles read farther than they are: the floor under the camera lost to Tempered's lava layer (whose polygon
+            // is the view pyramid flattened onto the lava height, also reaching under the camera). Depth from the eye distance instead,
+            // 1 - 2n/w (n = EyeNear), keeps the viewport's z range and is exact per pixel (Z = zs * w is affine in w), like Project64.
+            float zn = 1f - 2f * EyeNear * invw;
+            zs = S.Vsc[2] != 0 ? (zn * S.Vsc[2] + S.Vtr[2]) / 1023f : (zn * 0.5f + 0.5f);
+        }
+        else
+        {
+            zs = S.Vsc[2] != 0 ? (nz * S.Vsc[2] + S.Vtr[2]) / 1023f : (nz * 0.5f + 0.5f);
+            if (zs < 0) zs = 0;
+            if (zs > 1) zs = 1;
+        }
         var o = new GfxVertex
         {
             X = (px / screenW * 2f - 1f) * v.Cw, Y = (1f - py / screenH * 2f) * v.Cw, Z = zs * v.Cw, W = v.Cw,
@@ -241,6 +254,13 @@ public sealed class DisplayListInterpreter
         batch.Add(o);
     }
 
+    private static readonly bool nearClip = Environment.GetEnvironmentVariable("TRW_NEAR_CLIP") == "1";
+    private const float EyeW = 0.01f;     // NoN: polygons are cut where w reaches this (just in front of the eye), not at the near plane
+    /// <summary>Set by the game per frame: the eye-distance depth is used in levels only. The menus layer their perspective UI by the game's own z
+    /// (viewport z ranges, overlapping panels) and came out wrong with it.</summary>
+    public static Func<bool>? UseEyeDepth;
+    private bool eyeDepth;
+    private const float EyeNear = 2f;     // NoN depth: depth 0 at this eye distance (geometry nearer than it is cut by the depth range)
     private int triTotal, triNear, triFace, triOut;      // debug counters (printed with TRW_GFX_LOG)
     private int vtxLogged, vtxLoadsLogged;
     private void EmitTri(int i0, int i1, int i2)
@@ -248,9 +268,11 @@ public sealed class DisplayListInterpreter
         triTotal++;
         var vs = new[] { S.Vtx[i0], S.Vtx[i1], S.Vtx[i2] };
         if (LogEnabled && traceDl && vtxLogged < 12) { vtxLogged++; Console.Error.WriteLine($"[tri] {i0},{i1},{i2}: " + string.Join(" | ", vs.Select(v => $"c=({v.Cx:F1},{v.Cy:F1},{v.Cz:F1},{v.Cw:F1}) st=({v.S},{v.T})"))); }
-        // near-plane clip (z >= -w, w > 0)
+        // the game runs F3DEX.NoN ("no near clipping"): geometry nearer than the near plane is still drawn (its depth clamps), only what lies behind the eye
+        // is cut. Clipping at z = -w removed the floor right under the camera on Tempered, and the lava layer, whose huge triangle reaches past the near
+        // plane, showed through (both ports did this; Project64 draws the floor). TRW_NEAR_CLIP=1 restores the near-plane clip.
         var poly = new V[6]; int n = 0;
-        static bool Inside(in V a) => a.Cw > 1e-5f && a.Cz >= -a.Cw;
+        static bool Inside(in V a) => nearClip ? a.Cw > 1e-5f && a.Cz >= -a.Cw : a.Cw > EyeW;
         for (int i = 0; i < 3; i++)
         {
             V a = vs[i], b = vs[(i + 1) % 3];
@@ -258,7 +280,7 @@ public sealed class DisplayListInterpreter
             if (ia) poly[n++] = a;
             if (ia != ib)
             {
-                float da = a.Cz + a.Cw, db = b.Cz + b.Cw, t = da / (da - db);
+                float da = nearClip ? a.Cz + a.Cw : a.Cw - EyeW, db = nearClip ? b.Cz + b.Cw : b.Cw - EyeW, t = da / (da - db);
                 poly[n++] = new V
                 {
                     Cx = a.Cx + (b.Cx - a.Cx) * t, Cy = a.Cy + (b.Cy - a.Cy) * t, Cz = a.Cz + (b.Cz - a.Cz) * t, Cw = a.Cw + (b.Cw - a.Cw) * t,
@@ -620,6 +642,7 @@ public sealed class DisplayListInterpreter
         MatIdent(S.Proj); foreach (var m in S.Mv) MatIdent(m); S.MvpDirty = true;
         curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState(); hudTag = 0; hudData = null;
         if (LogEnabled) { Array.Clear(opHist); triTotal = triNear = triFace = triOut = 0; vtxLogged = 0; vtxLoadsLogged = 0; }
+        eyeDepth = UseEyeDepth?.Invoke() ?? false;
         bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
         if (dumpNow) { try { File.Delete(DumpFlag!); } catch (IOException) { } }
         traceDl = LogEnabled && (dumpNow || runs + 1 == DumpRun) && Environment.GetEnvironmentVariable("TRW_GFX_DL") != null;      // TRW_GFX_DL=1: print every command of the dumped list

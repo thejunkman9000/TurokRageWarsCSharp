@@ -481,7 +481,8 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                     renderer.SavePng(file, Math.Max(640, Window.ClientBounds.Width));
                     Console.Error.WriteLine($"[shot] {file} (tick {(global::Trw.Game.Game.CurrentTick)}, state {(global::Trw.Game.Game.StateId)}, screen {(global::Trw.Game.Game.ScreenId)})");
                     Scoreboard.Toast("SCREENSHOT SAVED");
-                    if (Environment.GetEnvironmentVariable("TRW_GFX_DUMP_FLAG") is { Length: > 0 } flag) File.WriteAllText(flag, "");   // with TRW_GFX_LOG: list the next display list in full
+                    if (Environment.GetEnvironmentVariable("TRW_GFX_DUMP_FLAG") is { Length: > 0 } flag) File.WriteAllText(flag, "");
+                    if (int.TryParse(Environment.GetEnvironmentVariable("TRW_DIFF_F12"), out var dw)) global::Trw.Game.Debug.DiffTest.ArmWindow(dw);   // with TRW_DIFF: test the functions of the next dw retraces   // with TRW_GFX_LOG: list the next display list in full
                 }
                 catch (Exception e) { Console.Error.WriteLine($"[shot] failed: {e.Message}"); }
             }
