@@ -39,6 +39,24 @@ Conventions: `Ptr` for a variable that holds a pointer (`FlybyCtlPtr`, `DisplayL
 named as fields (`Settings` = 0x801462C8, `Settings_MusicVolume` = +0x18), SDK names for library globals (`__osPiDevMgr`); low-confidence names end
 with the address (`Debug_Freeze_8013B29C`). Address + offset expressions (`Gv.Settings + 0x5D8`) stay as they are unless the field has a name.
 
+## Struct fields: `tools/names/objects.tsv` + `tools/names/fields.tsv`
+
+The decompilation describes one game object with many per-file C structs, so the generated struct views (`Generated/Structs`) have many
+types for the same memory (19 views of the player: `Plr`, `Plr24d`, `B04Act`, `Actor` ...), each with C field names (`unk5E4`, `f5E4`). Names are
+therefore given per *game object* and offset, not per type:
+
+* `objects.tsv`: `object <TAB> alias view types <TAB> base object <TAB> note`. A base object's field names apply too (`Player` extends `Actor`:
+  the player object starts with the 0x2E8-byte actor header).
+* `fields.tsv`: `object <TAB> offset <TAB> name <TAB> confidence <TAB> note`.
+
+`tools/rename/fields.py` (run by `apply_names.py`) renames, in every alias type, the member at each named offset (and its `_Set` method), and
+every access in the code: the code reaches struct members only as `new Type(x).member`, chained through members of view type, `.At(i)` and array
+view indexers, and the tool follows that chain through the struct definitions, so only accesses that really are that field are renamed. Padding
+members (`padNN` byte arrays) are never renamed. Code then reads `new Actor(other).Health == 0` whichever alias type it came from.
+
+`tools/rename/structs.py` lists every used view type with its layout and use count (`struct_types.tsv`); `tools/rename/field_evidence.py OUT.md
+Type1,Type2` collects, per offset, the alias members there and the functions and lines that access them, for naming.
+
 ## Naming in bulk
 
 * `python tools/rename/graph.py` writes `tools/names/graph.tsv` (per function: callers, callees, the guest data addresses its code uses, its height in

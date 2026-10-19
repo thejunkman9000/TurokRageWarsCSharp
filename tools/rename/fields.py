@@ -7,7 +7,7 @@ canonical name, and renames every access to it in the C# code. Accesses are reso
 `new Type(expr).member`, chained through members of struct view type, `.At(i)` and array view indexers, so the chain is followed through the
 struct definitions. Idempotent; runs after the function / globals renames (apply_names.py calls it).
 
-  objects.tsv:  object <TAB> alias types (comma separated) <TAB> note
+  objects.tsv:  object <TAB> alias types (comma separated) <TAB> base object (its field names apply too, e.g. Player <- Actor) <TAB> note
   fields.tsv:   object <TAB> offset (0x..) <TAB> name <TAB> confidence <TAB> note
 
 Usage: python tools/rename/fields.py [--check]
@@ -41,18 +41,24 @@ def parse_structs():
 
 
 def load_tables():
-    objects, fields = {}, {}
+    objects, fields, bases = {}, {}, {}
     if os.path.exists(OBJECTS):
         for ln, l in enumerate(an.read(OBJECTS).splitlines(), 1):
             if not l.strip() or l.startswith('#'): continue
             f = [x.strip() for x in l.split('\t')] + ['', '']
             objects[f[0]] = [t.strip() for t in f[1].split(',') if t.strip()]
+            bases[f[0]] = f[2] if len(f) > 2 and f[2] and not f[2].startswith(' ') else ''
     if os.path.exists(FIELDS):
         for ln, l in enumerate(an.read(FIELDS).splitlines(), 1):
             if not l.strip() or l.startswith('#'): continue
             f = [x.strip() for x in l.split('\t')] + [''] * 4
             if not f[2]: continue
             fields.setdefault(f[0], {})[int(f[1], 16)] = dict(name=f[2], conf=f[3], note=f[4], line=ln)
+    for o in objects:                                                        # inherited names (a base object's fields, nearest first)
+        b, seen = bases.get(o, ''), {o}
+        while b and b in fields and b not in seen:
+            for off, r in fields[b].items(): fields.setdefault(o, {}).setdefault(off, r)
+            seen.add(b); b = bases.get(b, '')
     return objects, fields
 
 
@@ -71,7 +77,9 @@ def plan(types, objects, fields):
             if t not in types: errs.append(f'objects.tsv: {obj}: unknown struct view type {t}'); continue
             mem = types[t]['members']
             by_off = {}
-            for m, (off, mt) in mem.items(): by_off.setdefault(off, []).append(m)
+            for m, (off, mt) in mem.items():
+                if m.startswith('pad') and re.fullmatch(r'U8x\d+', mt): continue      # padding spans several fields: never named
+                by_off.setdefault(off, []).append(m)
             existing = set(mem)
             for off, r in named.items():
                 ms = by_off.get(off, [])
