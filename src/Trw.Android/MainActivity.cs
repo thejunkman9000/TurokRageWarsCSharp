@@ -54,6 +54,8 @@ public class MainActivity : AndroidGameActivity
         var files = FilesDir!.AbsolutePath;
         AppContext.SetData("APP_CONTEXT_BASE_DIRECTORY", files + "/");
         ExtractAsset("Content/Hud/hud.json", Path.Combine(files, "Content", "Hud", "hud.json"));
+        ExtractAssetTree("Content/Glyphs", files);          // the button glyphs (Glyphs/GlyphRaster.cs) and their font
+        ExtractAsset("Content/Fonts/Peaceful Wars.ttf", Path.Combine(files, "Content", "Fonts", "Peaceful Wars.ttf"));
 
         var rom = FindRom();
         if (rom != null && int.TryParse(Environment.GetEnvironmentVariable("TRW_BENCH"), out var benchTicks)) Bench(rom, benchTicks);
@@ -284,6 +286,18 @@ public class MainActivity : AndroidGameActivity
     }
 
     // ---- helpers ----
+
+    /// <summary>Every asset under <paramref name="dir"/> (recursively) to the same relative path under <paramref name="files"/>.</summary>
+    private void ExtractAssetTree(string dir, string files)
+    {
+        var names = Assets!.List(dir) ?? Array.Empty<string>();
+        foreach (var n in names)
+        {
+            var path = dir + "/" + n;
+            if ((Assets.List(path) ?? Array.Empty<string>()).Length > 0) ExtractAssetTree(path, files);
+            else ExtractAsset(path, Path.Combine(files, path.Replace('/', Path.DirectorySeparatorChar)));
+        }
+    }
 
     private void ExtractAsset(string asset, string dest)
     {

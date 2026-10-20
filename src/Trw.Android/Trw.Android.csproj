@@ -39,12 +39,19 @@
     <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" GlobalPropertiesToRemove="RuntimeIdentifier;SelfContained" />
     <ProjectReference Include="..\Trw.Structs\Trw.Structs.csproj" GlobalPropertiesToRemove="RuntimeIdentifier;SelfContained" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
+    <!-- the button glyphs (Glyphs/, docs/BUTTON_GLYPHS.md): SVGs rasterized with Svg.Skia; SkiaSharp / HarfBuzz need their Android native libraries -->
+    <PackageReference Include="Svg.Skia" Version="5.2.3" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Android" Version="4.148.0" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.Android" Version="14.2.0" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <!-- the content (Combiner effect as GLSL ES, the Peaceful Wars sprite fonts) built for MonoGame's Android platform; only in the outer build: the per-ABI inner
          builds would run the content builder on the same folders at the same time (the APK is packaged by the outer build) -->
     <MonoGameContentReference Include="..\Trw.Game\Content\Content.mgcb" Link="Content\Content.mgcb" Condition="'$(RuntimeIdentifier)' == ''" />
     <!-- the port HUD's default layout: copied out of the APK into the app's files at start (Hud/HudLayer.cs reads it as a file) -->
     <AndroidAsset Include="..\Trw.Game\Content\Hud\hud.json" Link="Assets\Content\Hud\hud.json" />
+    <!-- the glyph SVGs and the font they are drawn in, extracted into the app's files at start (Glyphs/GlyphRaster.cs reads them as files) -->
+    <AndroidAsset Include="..\Trw.Game\Content\Glyphs\**\*.svg" Link="Assets\Content\Glyphs\%(RecursiveDir)%(Filename)%(Extension)" />
+    <AndroidAsset Include="..\Trw.Game\Content\Fonts\Peaceful Wars.ttf" Link="Assets\Content\Fonts\Peaceful Wars.ttf" />
   </ItemGroup>
 
 </Project>
