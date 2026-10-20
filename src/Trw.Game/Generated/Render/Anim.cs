@@ -40,8 +40,8 @@ public static partial class Actor
                     new Vec3(_fp).x_Set(Mem.F32(((cur + (uint)(3 * 16)) + (uint)(0 * 4))));
                     new Vec3(_fp).y_Set(Mem.F32(((cur + (uint)(3 * 16)) + (uint)(1 * 4))));
                     new Vec3(_fp).z_Set(Mem.F32(((cur + (uint)(3 * 16)) + (uint)(2 * 4))));
-                    Mem.Copy((_fp + 16u), new Shared_PosePart(part).unk_18.P, 12);
-                    angle = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)(new Shared_PosePart(part).unk_12)) * 4))) * 0.5f);
+                    Mem.Copy((_fp + 16u), new Shared_PosePart(part).Axis.P, 12);
+                    angle = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)(new Shared_PosePart(part).FlinchFrame)) * 4))) * 0.5f);
                     angle = (float)((float)(angle) * 0.300000012f);
                     angle = (float)((float)(angle) * ((n == 5) ? (-2.0f) : (float)(n)));
                     MathUtil.MtxCopy((_fp + 96u), cur);
@@ -51,9 +51,9 @@ public static partial class Actor
                     MathUtil.MtxMulAffine(cur, (_fp + 96u), (_fp + 32u));
                     Vec.Scale(_fp, _fp, (-1.0f));
                     MathUtil.MtxTranslate(cur, new Vec3(_fp).x, new Vec3(_fp).y, new Vec3(_fp).z);
-                    if (((int)(new Shared_PosePart(part).unk_14[(int)(0)]) == i))
+                    if (((int)(new Shared_PosePart(part).BoneIndex[(int)(0)]) == i))
                     {
-                        new Shared_PosePart(part).unk_12_Set((sbyte)(new Shared_PosePart(part).unk_12 - 1));
+                        new Shared_PosePart(part).FlinchFrame_Set((sbyte)(new Shared_PosePart(part).FlinchFrame - 1));
                     }
                 }
             }
@@ -1831,20 +1831,20 @@ public static partial class Anim
                     for (i = 0; (i < n); ++i)
                     {
                         e = (p + (uint)(i * 28));
-                        f = (float)(new B10Le(e).hu0);
+                        f = (float)(new B10Le(e).Frame);
                         if (((lo <= f) && (f < hi)))
                         {
                             s1 = 1;
-                            if (((int)(new B10Le(e).h4) == (-1)))
+                            if (((int)(new B10Le(e).BoneIndex) == (-1)))
                             {
-                                new Vec3f((_fp + 16u)).x_Set(new B10Le(e).f8);
-                                new Vec3f((_fp + 16u)).y_Set(new B10Le(e).f10);
-                                new Vec3f((_fp + 16u)).z_Set(new B10Le(e).fC);
+                                new Vec3f((_fp + 16u)).x_Set(new B10Le(e).LocalPoint);
+                                new Vec3f((_fp + 16u)).y_Set(new B10Le(e).LocalPointY);
+                                new Vec3f((_fp + 16u)).z_Set(new B10Le(e).LocalPointZ);
                                 MathUtil.MtxTransformPoint((o + 116u), (_fp + 16u), _fp);
                             }
                             else
                             {
-                                if (((fp != 0) && ((new B10Tab((Gv.Anim_EventDefTable + (uint)(new B10Le(e).h2 * 8))).f0 & (uint)(4)) != 0u)))
+                                if (((fp != 0) && ((new B10Tab((Gv.Anim_EventDefTable + (uint)(new B10Le(e).EventKind * 8))).Flags & (uint)(4)) != 0u)))
                                 {
                                     if ((s2 == 0u))
                                     {
@@ -1855,14 +1855,14 @@ public static partial class Anim
                                         }
                                         s5 = Chunk.Get((uint)((int)(Mem.U32(s2))), 5);
                                     }
-                                    s1 = (Mem.S32((uint)(((((int)(new B10Le(e).h4) * Mem.S32(s5)) + (int)(s5)) + 116))) & new B10Obj(o).PartMask);
+                                    s1 = (Mem.S32((uint)(((((int)(new B10Le(e).BoneIndex) * Mem.S32(s5)) + (int)(s5)) + 116))) & new B10Obj(o).PartMask);
                                 }
                                 L_skip: ;
                                 if ((s1 != 0))
                                 {
                                     if ((new B10Obj(o).pB8_ != 0u))
                                     {
-                                        MathUtil.MtxFixedToFloatAffine((_fp + 32u), (new B10Obj(o).pB8_ + (uint)(new B10Le(e).h4 * 64)), default(uint), default(uint));
+                                        MathUtil.MtxFixedToFloatAffine((_fp + 32u), (new B10Obj(o).pB8_ + (uint)(new B10Le(e).BoneIndex * 64)), default(uint), default(uint));
                                         MathUtil.MtxTransformPoint(new B10Mt((_fp + 32u)).m.P, (e + 8u), _fp);
                                     }
                                     else
@@ -1873,7 +1873,7 @@ public static partial class Anim
                             }
                             if ((s1 != 0))
                             {
-                                Event.Send(o, o, (int)(new B10Le(e).h2), (-1), _fp, new B10Le(e).pr.P);
+                                Event.Send(o, o, (int)(new B10Le(e).EventKind), (-1), _fp, new B10Le(e).EventArgs.P);
                                 Mem.Set(Gv.Anim_EventSendCount, (int)(Mem.S32(Gv.Anim_EventSendCount) + 1));
                             }
                         }
@@ -1925,9 +1925,9 @@ public static partial class Anim
                     }
                     ResourcePool.Unref(0, n);
                     new B10Pb(b).b12_Set((sbyte)(25));
-                    new Vec3f((_fp + 48u)).x_Set(new B10Pc(c).f30);
-                    new Vec3f((_fp + 48u)).y_Set(new B10Pc(c).f34);
-                    new Vec3f((_fp + 48u)).z_Set(new B10Pc(c).f38);
+                    new Vec3f((_fp + 48u)).x_Set(new B10Pc(c).TranslationX);
+                    new Vec3f((_fp + 48u)).y_Set(new B10Pc(c).TranslationY);
+                    new Vec3f((_fp + 48u)).z_Set(new B10Pc(c).TranslationZ);
                     Vec.Sub(_fp, _fp, (_fp + 48u));
                     Vec.Cross((_fp + 32u), _fp, (_fp + 16u));
                     Vec.Normalize((_fp + 32u));
@@ -2204,8 +2204,8 @@ public static partial class Anim
                     new Vec3f(_fp).x_Set(Mem.F32((m + (uint)(12 * 4))));
                     new Vec3f(_fp).y_Set(Mem.F32((m + (uint)(13 * 4))));
                     new Vec3f(_fp).z_Set(Mem.F32((m + (uint)(14 * 4))));
-                    Mem.Copy((_fp + 16u), new B11P(p).v18.P, 12);
-                    k = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * 0.5f);
+                    Mem.Copy((_fp + 16u), new B11P(p).Axis.P, 12);
+                    k = (Mem.F32((Gv.Anim_FlinchCurve + (uint)((25 - (int)((sbyte)(new B11P(p).FlinchFrame))) * 4))) * 0.5f);
                     f = 0.3f;
                     k = (k * f);
                     f = (-2f);
@@ -2226,9 +2226,9 @@ public static partial class Anim
                     MathUtil.MtxMulAffine(m, (_fp + 96u), (_fp + 32u));
                     Vec.Scale(_fp, _fp, k2);
                     MathUtil.MtxTranslate(m, new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
-                    if (((int)(new B11P(p).s14) == flag))
+                    if (((int)(new B11P(p).BoneIndex) == flag))
                     {
-                        new B11P(p).u12_Set((byte)(((int)(new B11P(p).u12) - 1)));
+                        new B11P(p).FlinchFrame_Set((byte)(((int)(new B11P(p).FlinchFrame) - 1)));
                     }
                 }
             }

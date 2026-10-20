@@ -1286,11 +1286,11 @@ public static partial class MissionTree
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk2)), default(uint), default(uint)))), 0);
-                UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).unk6)), default(uint), default(uint)))), 0);
-                if ((Mem.S32(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).u8_.P) != (-1)))
+                UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).NodeIdA)), default(uint), default(uint)))), 0);
+                UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).NodeIdB)), default(uint), default(uint)))), 0);
+                if ((Mem.S32(new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).LinkNodeKey.P) != (-1)))
                 {
-                    UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16((new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).u8_.P + 2u)))), default(uint), default(uint)))), 0);
+                    UiNode.SetVisible((uint)((int)(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)((int)(Mem.U16((new O04Ent12((Gv.MissionTree_LinkTable + (uint)(i * 12))).LinkNodeKey.P + 2u)))), default(uint), default(uint)))), 0);
                 }
             }
         }
@@ -1512,7 +1512,7 @@ public static partial class MissionTree
                 int v = 0;
                 int idx = 0;
                 uint r = 0u;
-                new O04Sub2C(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(339), default(uint), default(uint))).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P));
+                new O04Sub2C(UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(339), default(uint), default(uint))).TextPtr_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoText.P));
                 switch ((int)(new Q03Cfg(Gv.Settings).GameMode))
                 {
                 case 1:
@@ -1523,7 +1523,7 @@ public static partial class MissionTree
                     LibC.StrCopy(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P, (uint)(UiString.Get(61)));
                     h = UiTree.FindNode((uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).RootNode), (uint)(342), default(uint), default(uint));
                     UiNode.SetVisible(h, 1);
-                    new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P));
+                    new O04Sub2C(h).TextPtr_Set((int)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).InfoDetailText.P));
                     idx = new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).CursorArena;
                     v = Mem.S32(((Gv.ProfileTable_ArenaBestTimes + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(Gv.MissionTree_PagePtr)).PlayerIndex * 400)));
                     if ((v > 0))
@@ -1715,7 +1715,7 @@ public static partial class MissionTree
             }
             for (i = 0; (i < 64); ++i)
             {
-                if (((new O04Pair((Gv.MissionTree_LinkTable + (uint)(i * 12))).a == a) && (new O04Pair((Gv.MissionTree_LinkTable + (uint)(i * 12))).b == b)))
+                if (((new O04Pair((Gv.MissionTree_LinkTable + (uint)(i * 12))).ArenaKeyA == a) && (new O04Pair((Gv.MissionTree_LinkTable + (uint)(i * 12))).ArenaKeyB == b)))
                 {
                     return 1;
                 }
@@ -1899,7 +1899,7 @@ public static partial class MissionTree
             r = MissionTree.GetWeaponIconId(b);
             p = UiTree.FindNode(h, (uint)(330), default(uint), default(uint));
             new O04Sub2C(p).Alpha_Set((byte)(100));
-            new O04Sub2C(p).unk2C_Set(r);
+            new O04Sub2C(p).Value_Set(r);
         }
     }
 
@@ -1912,26 +1912,26 @@ public static partial class MissionTree
             int i = 0;
             for (i = 0; (i < 8); ++i)
             {
-                if ((new O04Pair16((Gv.Loadout_Slot23WeaponTable + (uint)(i * 16))).k == a))
+                if ((new O04Pair16((Gv.Loadout_Slot23WeaponTable + (uint)(i * 16))).WeaponIndex == a))
                 {
-                    return new O04Pair16((Gv.Loadout_Slot23WeaponTable + (uint)(i * 16))).v;
+                    return new O04Pair16((Gv.Loadout_Slot23WeaponTable + (uint)(i * 16))).IconId;
                 }
             }
             for (i = 0; (i < 4); ++i)
             {
-                if ((new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(i * 16))).k == a))
+                if ((new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(i * 16))).WeaponIndex == a))
                 {
-                    return new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(i * 16))).v;
+                    return new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(i * 16))).IconId;
                 }
             }
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O04Pair16((Gv.Loadout_Slot4WeaponTable + (uint)(i * 16))).k == a))
+                if ((new O04Pair16((Gv.Loadout_Slot4WeaponTable + (uint)(i * 16))).WeaponIndex == a))
                 {
-                    return new O04Pair16((Gv.Loadout_Slot4WeaponTable + (uint)(i * 16))).v;
+                    return new O04Pair16((Gv.Loadout_Slot4WeaponTable + (uint)(i * 16))).IconId;
                 }
             }
-            return new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(0 * 16))).v;
+            return new O04Pair16((Gv.Loadout_WeaponTableA + (uint)(0 * 16))).IconId;
         }
     }
 

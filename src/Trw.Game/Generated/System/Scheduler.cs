@@ -922,14 +922,14 @@ public static partial class Sched
             if (Dbg.On) Dbg.Enter("func_0028FA40", (uint)o, (uint)cur, (uint)next);
             ulong t = 0UL;
             uint tp = 0u;
-            if ((((next != 0u) && ((new Job_v2(next).flags8 & (uint)(32)) != 0u)) && !((new Job_v2(next).flags4 & (uint)(16)) != 0u)))
+            if ((((next != 0u) && ((new Job_v2(next).Flags & (uint)(32)) != 0u)) && !((new Job_v2(next).State & (uint)(16)) != 0u)))
             {
                 t = osGetTime();
                 Mem.Set(Gv.Sched_DpTaskStartTime, t);
             }
             if ((cur != 0u))
             {
-                if ((new Job_v2(cur).unk10 == 2))
+                if ((new Job_v2(cur).TaskType == 2))
                 {
                     osWritebackDCacheAll();
                     tp = (cur + (uint)16);
@@ -938,11 +938,11 @@ public static partial class Sched
                     goto L_start;
                 }
                 tp = (cur + (uint)16);
-                if (((new Job_v2(cur).flags8 & (uint)(32)) != 0u))
+                if (((new Job_v2(cur).Flags & (uint)(32)) != 0u))
                 {
                     t = osGetTime();
                     Mem.Set(Gv.Sched_SpSegmentStartTime, t);
-                    if (((new Job_v2(cur).flags4 & (uint)(16)) != 0u))
+                    if (((new Job_v2(cur).State & (uint)(16)) != 0u))
                     {
                         goto L_start;
                     }
@@ -950,7 +950,7 @@ public static partial class Sched
                     Mem.Set(Gv.Sched_SpTaskTimeMs, 0);
                 }
                 L_start: ;
-                new Job_v2(cur).flags4_Set((uint)((uint)(new Job_v2(cur).flags4) & (uint)((~48))));
+                new Job_v2(cur).State_Set((uint)((uint)(new Job_v2(cur).State) & (uint)((~48))));
                 osSpTaskLoad((cur + (uint)16));
                 osSpTaskStartGo((cur + (uint)16));
                 new Vid_v2(o).CurRspTask_Set(cur);
@@ -961,7 +961,7 @@ public static partial class Sched
             }
             if (((next != 0u) && (next != cur)))
             {
-                osDpSetNextBuffer((uint)(new Job_v2(next).unk38), Mem.U64(new Job_v2(next).unk3C_));
+                osDpSetNextBuffer((uint)(new Job_v2(next).OutputBuffPtr), Mem.U64(new Job_v2(next).unk3C_));
                 Mem.Set(Gv.Sched_RdpBufferQueued_800D2960, 1);
                 Mem.Set(Gv.Sched_RdpBufferDone_800D2964, 0);
                 new Vid_v2(o).CurRdpTask_Set(next);

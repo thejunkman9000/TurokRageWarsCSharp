@@ -30,14 +30,14 @@ public static partial class Objective
                     if ((((pl != 0u) && (new M1Actor(pl).Health != 0)) && ((int)(new M1State(state).PrevStateId) != (int)(new M1State(state).StateId))))
                     {
                         blk = new M1World(Gv.PlayerPool).blk.P;
-                        if (((new M1Blk(blk).unk68 == 0) && (new M1State(state).ClassVar_12C.i == 0)))
+                        if (((new M1Blk(blk).MonkeyState_68 == 0) && (new M1State(state).ClassVar_12C.i == 0)))
                         {
                             st = new M1Actor(pl).stats_;
                             if (((int)(new M1Stats(st).IsMonkey) == 1))
                             {
                                 new M1Stats(st).IsMonkey_Set((byte)(0));
                                 new M1Actor(pl).PlayerEntryPtr.IsIt_Set((byte)(1));
-                                new M1Blk(blk).unk74_Set(1);
+                                new M1Blk(blk).MonkeyEvent_74_Set(1);
                                 new M1State(state).ClassVar_12C.i_Set(1);
                                 Audio.PlaySound2D(3597);
                             }
@@ -75,8 +75,8 @@ public static partial class Objective
                         new M1Actor(pl).PlayerEntryPtr.Tags_Set((ushort)(new M1Actor(pl).PlayerEntryPtr.Tags + 1));
                         Match.AdjustTeamScore(pl, pl, (uint)(3), default(uint));
                         blk2 = new M1World(Gv.PlayerPool).blk.P;
-                        new M1Blk(blk2).unk84_Set(0);
-                        new M1Blk(blk2).unk80_Set(0);
+                        new M1Blk(blk2).TokenState_84_Set(0);
+                        new M1Blk(blk2).IsTokenHeld_80_Set(0);
                         switch ((int)(new M1Actor(pl).PlayerEntryPtr.TeamId))
                         {
                         case 0:
@@ -391,7 +391,7 @@ public static partial class Objective
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020478C", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg20478C(msg).unkA), (int)(new Msg20478C(msg).unk4), 1);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg20478C(msg).TargetMapIndex), (int)(new Msg20478C(msg).TargetEntityIndex), 1);
         }
     }
 
@@ -411,7 +411,7 @@ public static partial class Objective
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002047D8", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2047D8(msg).unkA), (int)(new Msg2047D8(msg).unk4), 0);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2047D8(msg).TargetMapIndex), (int)(new Msg2047D8(msg).TargetEntityIndex), 0);
         }
     }
 

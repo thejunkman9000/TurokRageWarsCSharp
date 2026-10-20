@@ -1011,10 +1011,10 @@ public static partial class Event
                 {
                     if ((new B15PairF((_fp + 16u)).a == 1036))
                     {
-                        new B15Fx(fx).unk1D8_Set(Particle.GetOwner(tgt));
-                        new B15Fx(fx).vec2A0.x_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.x);
-                        new B15Fx(fx).vec2A0.y_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.y);
-                        new B15Fx(fx).vec2A0.z_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.z);
+                        new B15Fx(fx).OwnerPtr_Set(Particle.GetOwner(tgt));
+                        new B15Fx(fx).SurfaceNormal_2A0.x_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.x);
+                        new B15Fx(fx).SurfaceNormal_2A0.y_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.y);
+                        new B15Fx(fx).SurfaceNormal_2A0.z_Set(new B15Cam(Mem.U32(Gv.Collision_ContactPtr)).HitNormal.z);
                     }
                     else
                     {
@@ -1026,7 +1026,7 @@ public static partial class Event
                                 if ((o != 0u))
                                 {
                                     new B15Own(o).unk11E8__Set(fx);
-                                    new B15Fx(fx).unk6C_Set(new B15Own(o).Yaw);
+                                    new B15Fx(fx).Yaw_Set(new B15Own(o).Yaw);
                                 }
                             }
                             else
@@ -1162,7 +1162,7 @@ public static partial class Event
                 if ((((int)(Mem.U8(act)) == 1) && ((new ActorView(act).Flags & (uint)(3145728)) != 0u)))
                 {
                     o = new ActorView(act).OwnerPtr;
-                    if ((new B15Own_v3(o).unk16D4 != 0))
+                    if ((new B15Own_v3(o).IsInfraRedOn != 0))
                     {
                         r = ((float)(new B15Pair((_fp + 16u)).a) * 10.24f);
                         Vec.Sub((_fp + 24u), (o + (uint)8), (src + (uint)8));

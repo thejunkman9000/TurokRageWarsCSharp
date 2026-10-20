@@ -728,7 +728,7 @@ public static partial class MainMenu
                     new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y) - 1)));
                     if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Height)) < 0))
                     {
-                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel)).unk44.Height));
+                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerNode.Y_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).PopupPanel)).TargetNodePtr.Height));
                     }
                     new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).TickerStepTimer_Set(3);
                 }

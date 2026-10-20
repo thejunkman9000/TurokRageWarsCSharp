@@ -14,7 +14,7 @@ public static partial class MatchQuitConfirm
             if (Dbg.On) Dbg.Enter("func_00436000", (uint)cfg);
             Mem.Set(Gv.MatchQuitConfirm_StatePtr, ResourcePool.Malloc((uint)(32)));
             Menu.EnableInput();
-            new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).f1C_Set((-1));
+            new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).TargetScreenId_Set((-1));
             ScreenWipe.Init(Mem.U32(Gv.MatchQuitConfirm_StatePtr), 103, 0, 0, 0);
             if ((Video.GetResolution() == 1))
             {
@@ -87,7 +87,7 @@ public static partial class MatchQuitConfirm
                     Resource.SetLoadFlags(1);
                 }
                 Mem.Set((g + (uint)((-7) * 4)), 8);
-                Menu.GotoScreen(new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).f1C);
+                Menu.GotoScreen(new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).TargetScreenId);
                 Audio.UnduckMusic();
             }
             return 0;

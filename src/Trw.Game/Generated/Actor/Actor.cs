@@ -442,7 +442,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002165F8", (uint)a, (uint)b, (uint)o);
-            Vec.Sub(o, new B04A(a).pos.P, new B04B(b).pos.P);
+            Vec.Sub(o, new B04A(a).Position.P, new B04B(b).pos.P);
             Mem.Copy(new B04Dir(o).n.P, new B04Dir(o).d.P, 12);
             Vec.Normalize(new B04Dir(o).n.P);
             new B04Dir(o).len_Set(sqrtf((((new B04Dir(o).d.x * new B04Dir(o).d.x) + (new B04Dir(o).d.y * new B04Dir(o).d.y)) + (new B04Dir(o).d.z * new B04Dir(o).d.z))));
@@ -452,7 +452,7 @@ public static partial class Actor
             Mem.Copy(new B04Dir(o).e2.P, new B04Dir(o).e.P, 12);
             Vec.Normalize(new B04Dir(o).e2.P);
             new B04Dir(o).elen_Set(sqrtf((((new B04Dir(o).e.x * new B04Dir(o).e.x) + (new B04Dir(o).e.y * new B04Dir(o).e.y)) + (new B04Dir(o).e.z * new B04Dir(o).e.z))));
-            new B04Dir(o).dy_Set((new B04A(a).unk6C - new B04B(b).unk60));
+            new B04Dir(o).dy_Set((new B04A(a).Yaw - new B04B(b).unk60));
         }
     }
 
@@ -503,7 +503,7 @@ public static partial class Actor
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00217074", (uint)o);
-            new B04Obj_v2(o).unk6C_Set((new B04Obj_v2(o).unk6C + d));
+            new B04Obj_v2(o).Yaw_Set((new B04Obj_v2(o).Yaw + d));
             MathUtil.WrapAngleInPlace((o + 108u), default(uint), default(uint), default(uint));
         }
     }
@@ -546,8 +546,8 @@ public static partial class Actor
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00217224", (uint)o, (uint)v_in);
-                Vec.Sub(_fp, _fp, new B04Obj_v3(o).pos.P);
-                new Vec3f(_fp).y_Set((new Vec3f(_fp).y - new B04Obj_v3(o).unk70));
+                Vec.Sub(_fp, _fp, new B04Obj_v3(o).Position.P);
+                new Vec3f(_fp).y_Set((new Vec3f(_fp).y - new B04Obj_v3(o).BottomOffset));
                 return (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
             }
         }
@@ -604,12 +604,12 @@ public static partial class Actor
             new B05P7(p).TimeScale_Set(v);
             if ((new B05P7(p).IsComputer != 0))
             {
-                switch ((int)(new B05P7(p).PlayerEntryPtr.unk93))
+                switch ((int)(new B05P7(p).PlayerEntryPtr.BotSkill))
                 {
                 case 2:
                     break;
                 default:
-                    new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
+                    new B05P7(p).PlayerEntryPtr.BotSkill_Set((byte)(0));
                     goto case 0;
                 case 0:
                     new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * 0.833f));
@@ -620,12 +620,12 @@ public static partial class Actor
                 }
                 if ((new B05P7(p).IsComputer != 0))
                 {
-                    switch ((int)(new B05P7(p).PlayerEntryPtr.unk93))
+                    switch ((int)(new B05P7(p).PlayerEntryPtr.BotSkill))
                     {
                     case 2:
                         break;
                     default:
-                        new B05P7(p).PlayerEntryPtr.unk93_Set((byte)(0));
+                        new B05P7(p).PlayerEntryPtr.BotSkill_Set((byte)(0));
                         goto case 0;
                     case 0:
                         new B05P7(p).TimeScale_Set((new B05P7(p).TimeScale * 0.833f));
@@ -1719,7 +1719,7 @@ public static partial class Actor
                         {
                             new B10Obj(o).AnimChanged_Set((sbyte)(1));
                         }
-                        new B10Obj(o).b1A5_Set((sbyte)((-1)));
+                        new B10Obj(o).ActorAnimStateId_Set((sbyte)((-1)));
                         new B10Obj(o).SpawnAnim_23A_Set((sbyte)(v));
                         ResourcePool.Unref(0, r3);
                     }
@@ -1960,10 +1960,10 @@ public static partial class Actor
                 {
                     c = Gv.Collision_DefaultRegionCtx;
                 }
-                save = new B10C(c).f8;
+                save = new B10C(c).Gravity;
                 if (((int)((ushort)(((int)(new B10Obj(o).StateCode_238) - 11020))) < 8))
                 {
-                    new B10C(c).f8_Set((float)(0));
+                    new B10C(c).Gravity_Set((float)(0));
                 }
                 old = new B10Obj(o).p14_;
                 hit = Collision.MoveActor((int)(o), Cpu.U2F(Mem.U32(v + 0u)), Cpu.U2F(Mem.U32(v + 4u)), Cpu.U2F(Mem.U32(v + 8u)), (int)(c));
@@ -1971,7 +1971,7 @@ public static partial class Actor
                 {
                     new B10Obj(o).PrevRegionPtr_Set(old);
                 }
-                new B10C(c).f8_Set(save);
+                new B10C(c).Gravity_Set(save);
                 if ((old != 0u))
                 {
                     if ((((new B10Obj(o).p14_ != 0u) && ((int)(new B10Hh(old).h0) != (int)(new B10Hh(new B10Obj(o).p14_).h0))) && (Mem.S32(new B10Obj(o).p18_) == 1)))
@@ -3570,7 +3570,7 @@ public static partial class Actor
                     o = new ObjView(a).unk1D8_;
                     if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
                     {
-                        if ((new B11Own(o).unk85C != 0))
+                        if ((new B11Own(o).IsInMenu != 0))
                         {
                             return 0;
                         }
@@ -3642,7 +3642,7 @@ public static partial class Actor
             case 11:
                 if ((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)))
                 {
-                    return new ObjView(a).OwnerPtr.unk6F4;
+                    return new ObjView(a).OwnerPtr.BodyHeight;
                 }
                 return new ObjDef(new ObjView(a).DefPtr).CharacterHeight;
             case 1:
@@ -3687,7 +3687,7 @@ public static partial class Actor
             switch (new ObjDef(new ObjView(a).DefPtr).Kind)
             {
             case 11:
-                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && (new ObjView(a).OwnerPtr.unk80C_ != 0u)))
+                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && (new ObjView(a).OwnerPtr.MountPtr != 0u)))
                 {
                     return 122.88f;
                 }
@@ -4263,7 +4263,7 @@ public static partial class Actor
             switch (new ObjDef(new ObjView(a).DefPtr).Kind)
             {
             case 11:
-                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && ((new ObjView(a).OwnerPtr.unk80C_ != 0u) || (Flyby.IsInWindow() != 0))))
+                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && ((new ObjView(a).OwnerPtr.MountPtr != 0u) || (Flyby.IsInWindow() != 0))))
                 {
                     return 1;
                 }
@@ -4426,9 +4426,9 @@ public static partial class Actor
             switch (new ObjDef(d).Kind)
             {
             case 11:
-                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && (new ObjView(a).OwnerPtr.unk80C_ != 0u)))
+                if (((((int)(new ObjView(a).Type) == 1) && ((new ObjView(a).Flags & (uint)(3145728)) != 0u)) && (new ObjView(a).OwnerPtr.MountPtr != 0u)))
                 {
-                    return Actor.GetCollisionRadius_0024E454(new ObjView(a).OwnerPtr.unk80C_);
+                    return Actor.GetCollisionRadius_0024E454(new ObjView(a).OwnerPtr.MountPtr);
                 }
                 return new ObjDef(new ObjView(a).DefPtr).CharacterCollisionRadius;
             case 1:
@@ -5292,7 +5292,7 @@ public static partial class Actor
                         case (uint)(64):
                             Mem.Copy(new B16Obj(obj).unk248.P, (_fp + 16u), 12);
                             kind = Mem.S32(new B16Obj(obj).def_);
-                            if ((((kind == 1) && ((int)(new B16Obj(obj).unk1A4) == 33)) || ((kind == 11) && ((int)(new B16Obj(obj).OwnerPtr.unk650) == 38))))
+                            if ((((kind == 1) && ((int)(new B16Obj(obj).ActorStateId) == 33)) || ((kind == 11) && ((int)(new B16Obj(obj).OwnerPtr.unk650) == 38))))
                             {
                                 Collision.LocatePoint_0024E78C(obj, (_fp + 16u), (_fp + 32u), (_fp + 88u));
                                 Mem.Copy((_fp + 64u), C.Seq(Quat.FromDirection(_fp, new B16Obj(obj).unk254.P), _fp), 16);
@@ -5588,7 +5588,7 @@ public static partial class Actor
                     }
                     if ((new EntityView(e).HitPoints != 0))
                     {
-                        if (((int)(new EntityView(e).unk1A4) != 61))
+                        if (((int)(new EntityView(e).ActorStateId) != 61))
                         {
                             if ((dist <= 6553600.0f))
                             {
@@ -6476,14 +6476,14 @@ public static partial class ObjectUtil
             }
             else
             {
-                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).IsMonkey) != 0)))
                 {
                     var_a2 = Mem.S32(Gv.Player_RemoteBodyType_800CE47C);
                 }
                 else
                 {
                     var_a2 = Mem.S32((Gv.Player_VariantActorTypeTable + (uint)(new func_8021C9B4_S3(new func_8044AD14_S1(arg0).DefPtr).unkC * 4)));
-                    new func_8044AD14_S1(arg0).ShadeParam_3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).unk81);
+                    new func_8044AD14_S1(arg0).ShadeParam_3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).PlayerEntryPtr).SkinIndex);
                 }
             }
             Funcs.CallReg(0x0028B250u, Gv.LevelMgr, arg0, (uint)(var_a2), (uint)(new func_8044AD14_S1(arg0).AnimId));

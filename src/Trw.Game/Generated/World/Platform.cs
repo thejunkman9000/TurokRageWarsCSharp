@@ -804,7 +804,7 @@ public static partial class PlatformObj
             Actor.DispatchEvent(actor, state, 0);
             if (((int)(new B01State(state).PathCursor) == 1))
             {
-                new B01State(state).unk98_Set(new B01State(state).unk96);
+                new B01State(state).PathCursorPrevPointIndex_Set(new B01State(state).PathCursorPointIndex);
                 Actor.DispatchEvent(actor, state, 4);
             }
             if ((Level.IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))

@@ -103,7 +103,7 @@ public static partial class NumberField
                 int flag = 0;
                 if ((UiNode.ComputeRect((_fp + 40u), (_fp + 56u), o, _fp) != 0))
                 {
-                    if ((((int)(new Obj2BE0(o).unk12) & 512) != 0))
+                    if ((((int)(new Obj2BE0(o).Flags) & 512) != 0))
                     {
                         Ui.GetClipRect((_fp + 72u), ((_fp + 72u) + 8u), ((_fp + 72u) + 4u), ((_fp + 72u) + 12u));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
@@ -111,7 +111,7 @@ public static partial class NumberField
                         flag = 1;
                         Ui.SetClipRect(new IRect4((_fp + 88u)).a, new IRect4((_fp + 88u)).c, new IRect4((_fp + 88u)).b, new IRect4((_fp + 88u)).d);
                     }
-                    UiNode.DrawSiblings((uint)(new Obj2BE0(o).unk8), _fp);
+                    UiNode.DrawSiblings((uint)(new Obj2BE0(o).FirstChildPtr), _fp);
                     if ((flag != 0))
                     {
                         Ui.SetClipRect(new IRect4((_fp + 72u)).a, new IRect4((_fp + 72u)).c, new IRect4((_fp + 72u)).b, new IRect4((_fp + 72u)).d);

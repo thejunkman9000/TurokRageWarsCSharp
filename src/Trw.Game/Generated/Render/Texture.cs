@@ -688,13 +688,13 @@ public static partial class Image
             _f2: ;
             s4 = (((s2 * (int)(new Q01Rec(r).h)) * (int)(new Q01Rec(r).bits)) / 8);
             fp = ResourcePool.Malloc((uint)(s4));
-            FileIo.Seek((uint)(new Q01H(Gv.Image_ArchiveCtx).h), (uint)((new Q01H(Gv.Image_ArchiveCtx).f248 + new Q01Rec(r).off14)), (uint)(0), default(uint));
-            FileIo.Read(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(Gv.Image_ArchiveCtx).h));
+            FileIo.Seek((uint)(new Q01H(Gv.Image_ArchiveCtx).FileHandle), (uint)((new Q01H(Gv.Image_ArchiveCtx).DataBaseOffset + new Q01Rec(r).off14)), (uint)(0), default(uint));
+            FileIo.Read(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(Gv.Image_ArchiveCtx).FileHandle));
             if (!(((int)(new Q01Rec(r).n) > 0))) goto _f8;
             s6 = ((int)(new Q01Rec(r).n) * 2);
             pal = ResourcePool.Malloc((uint)(s6));
-            FileIo.Seek((uint)(new Q01H(Gv.Image_ArchiveCtx).h), (uint)((new Q01H(Gv.Image_ArchiveCtx).f248 + new Q01Rec(r).off18)), (uint)(0), default(uint));
-            FileIo.Read(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(Gv.Image_ArchiveCtx).h));
+            FileIo.Seek((uint)(new Q01H(Gv.Image_ArchiveCtx).FileHandle), (uint)((new Q01H(Gv.Image_ArchiveCtx).DataBaseOffset + new Q01Rec(r).off18)), (uint)(0), default(uint));
+            FileIo.Read(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(Gv.Image_ArchiveCtx).FileHandle));
             t = (int)(new Q01Rec(r).n);
             a0 = 0;
             if (!((t > 0))) goto _f9;
@@ -747,8 +747,8 @@ public static partial class Image
             _f22: ;
             _f20: ;
             Image.InitBitmap((uint)(arg1), a1, (int)(new Q01Rec(r).w), (int)(new Q01Rec(r).h), s2, (int)(new Q01Rec(r).h), 1, s4, (int)(fp), 1, s6, (int)(pal), (int)(new Q01Rec(r).n));
-            FileIo.Close((uint)(new Q01H(Gv.Image_ArchiveCtx).h), default(uint), default(uint), default(uint));
-            new Q01H(Gv.Image_ArchiveCtx).h_Set(0);
+            FileIo.Close((uint)(new Q01H(Gv.Image_ArchiveCtx).FileHandle), default(uint), default(uint), default(uint));
+            new Q01H(Gv.Image_ArchiveCtx).FileHandle_Set(0);
         }
     }
 

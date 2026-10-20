@@ -2209,12 +2209,12 @@ public readonly struct ObjView
     }
     [MethodImpl(Inl)] public uint unk1A0__Set(uint v) => Mem.Set(P + 0x1A0u, v);
     // +0x1A4
-    public float unk1A4
+    public float ActorStateId
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1A4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1A4u, value);
     }
-    [MethodImpl(Inl)] public float unk1A4_Set(float v) => Mem.Set(P + 0x1A4u, v);
+    [MethodImpl(Inl)] public float ActorStateId_Set(float v) => Mem.Set(P + 0x1A4u, v);
     // +0x1A8
     public U8x28 pad1A8 { [MethodImpl(Inl)] get => new(P + 0x1A8u); }
     // +0x1C4
@@ -2619,21 +2619,21 @@ public readonly struct Obj2BE0
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public int unk8
+    public int FirstChildPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int FirstChildPtr_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public U8x6 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x12
-    public ushort unk12
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x12u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12u, value);
     }
-    [MethodImpl(Inl)] public ushort unk12_Set(ushort v) => Mem.Set(P + 0x12u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort v) => Mem.Set(P + 0x12u, v);
 }
 
 /// <summary>struct Obj2F0, 0x2F1 bytes, at a guest address.</summary>
@@ -2670,19 +2670,19 @@ public readonly struct Obj4F
     [MethodImpl(Inl)] public static implicit operator uint(Obj4F v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Obj4F(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int Mode
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int Mode_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public float unk4
+    public float InputAmplitude
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public float unk4_Set(float v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public float InputAmplitude_Set(float v) => Mem.Set(P + 0x4u, v);
 }
 
 /// <summary>struct Obj5124, 0x3C bytes, at a guest address.</summary>
@@ -2826,14 +2826,14 @@ public readonly struct Obj6770
     // +0x0
     public U8x64 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x40
-    public U8x12 sub { [MethodImpl(Inl)] get => new(P + 0x40u); }
+    public U8x12 SegmentList { [MethodImpl(Inl)] get => new(P + 0x40u); }
     // +0x4C
-    public float unk4C
+    public float TotalLength
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x4Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4Cu, value);
     }
-    [MethodImpl(Inl)] public float unk4C_Set(float v) => Mem.Set(P + 0x4Cu, v);
+    [MethodImpl(Inl)] public float TotalLength_Set(float v) => Mem.Set(P + 0x4Cu, v);
 }
 
 /// <summary>struct Obj6A54, 0x40 bytes, at a guest address.</summary>
@@ -3211,12 +3211,12 @@ public readonly struct ObjAC
     // +0x0
     public U8x172 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xAC
-    public float unkAC
+    public float Length
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0xACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value);
     }
-    [MethodImpl(Inl)] public float unkAC_Set(float v) => Mem.Set(P + 0xACu, v);
+    [MethodImpl(Inl)] public float Length_Set(float v) => Mem.Set(P + 0xACu, v);
 }
 
 /// <summary>struct ObjB, 0x1C8 bytes, at a guest address.</summary>
@@ -3269,35 +3269,35 @@ public readonly struct ObjBuf
     [MethodImpl(Inl)] public static implicit operator uint(ObjBuf v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ObjBuf(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int ViewsHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int ViewsHandle_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public int unk4
+    public int Views
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int Views_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public int unk8
+    public int ViewCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int ViewCount_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public U8x52 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x40
-    public int unk40
+    public int DefaultCamera
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public int unk40_Set(int v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public int DefaultCamera_Set(int v) => Mem.Set(P + 0x40u, v);
 }
 
 /// <summary>struct ObjC, 0xE bytes, at a guest address.</summary>
@@ -3897,40 +3897,40 @@ public readonly struct ObjInit
     [MethodImpl(Inl)] public static implicit operator uint(ObjInit Rotation) => Rotation.P;
     [MethodImpl(Inl)] public static explicit operator ObjInit(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int IsThirdPerson
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int Rotation) => Mem.Set(P, Rotation);
+    [MethodImpl(Inl)] public int IsThirdPerson_Set(int Rotation) => Mem.Set(P, Rotation);
     // +0x4
-    public int unk4
+    public int Yaw
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int Rotation) => Mem.Set(P + 0x4u, Rotation);
+    [MethodImpl(Inl)] public int Yaw_Set(int Rotation) => Mem.Set(P + 0x4u, Rotation);
     // +0x8
-    public int unk8
+    public int Pitch
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int Rotation) => Mem.Set(P + 0x8u, Rotation);
+    [MethodImpl(Inl)] public int Pitch_Set(int Rotation) => Mem.Set(P + 0x8u, Rotation);
     // +0xC
-    public int unkC
+    public int YawOffset
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int unkC_Set(int Rotation) => Mem.Set(P + 0xCu, Rotation);
+    [MethodImpl(Inl)] public int YawOffset_Set(int Rotation) => Mem.Set(P + 0xCu, Rotation);
     // +0x10
-    public int unk10
+    public int Roll
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public int unk10_Set(int Rotation) => Mem.Set(P + 0x10u, Rotation);
+    [MethodImpl(Inl)] public int Roll_Set(int Rotation) => Mem.Set(P + 0x10u, Rotation);
     // +0x14
     public int PosX
     {
@@ -3978,12 +3978,12 @@ public readonly struct ObjInit
     }
     [MethodImpl(Inl)] public float Override_38_Set(float Rotation) => Mem.Set(P + 0x38u, Rotation);
     // +0x3C
-    public float unk3C
+    public float Angle_3C
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public float unk3C_Set(float Rotation) => Mem.Set(P + 0x3Cu, Rotation);
+    [MethodImpl(Inl)] public float Angle_3C_Set(float Rotation) => Mem.Set(P + 0x3Cu, Rotation);
     // +0x40
     public int RegionId
     {

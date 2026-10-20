@@ -339,19 +339,19 @@ public readonly struct Tri3
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
     [MethodImpl(Inl)] public Tri3 At(int i) => new(P + (uint)(i * 16));
-    [MethodImpl(Inl)] public static implicit operator uint(Tri3 v) => v.P;
+    [MethodImpl(Inl)] public static implicit operator uint(Tri3 VertexPtrs) => VertexPtrs.P;
     [MethodImpl(Inl)] public static explicit operator Tri3(uint p) => new(p);
     // +0x0
     public U8x2 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x2
-    public ushort fl
+    public ushort Flags
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x2u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2u, value);
     }
-    [MethodImpl(Inl)] public ushort fl_Set(ushort v) => Mem.Set(P + 0x2u, v);
+    [MethodImpl(Inl)] public ushort Flags_Set(ushort VertexPtrs) => Mem.Set(P + 0x2u, VertexPtrs);
     // +0x4
-    public U32x3 v { [MethodImpl(Inl)] get => new(P + 0x4u); }
+    public U32x3 VertexPtrs { [MethodImpl(Inl)] get => new(P + 0x4u); }
 }
 
 /// <summary>struct Tri4, 0x10 bytes, at a guest address.</summary>
@@ -1617,12 +1617,12 @@ public readonly struct VInfo2
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public float f8
+    public float Width_8
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public float f8_Set(float v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public float Width_8_Set(float v) => Mem.Set(P + 0x8u, v);
 }
 
 /// <summary>struct VList, 0x14 bytes, at a guest address.</summary>

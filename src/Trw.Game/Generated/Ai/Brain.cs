@@ -2603,7 +2603,7 @@ public static partial class Ai
             for (n = Mem.U32(Gv.AiNav_TimerNodeList); (n != 0u); n = new EntNode(n).next_)
             {
                 r = AiNav.GetNode(L2, new EntNode(n).key);
-                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.unk1A4) == 0)))
+                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.ActorStateId) == 0)))
                 {
                     AiNav.AddGoal(L2, new EntNode(n).key);
                     ++count;
@@ -6007,7 +6007,7 @@ public static partial class Ai
             }
             if ((Mem.S32(Gv.Game_Flag_8013B290) == 0))
             {
-                if (((((new func_80203C40_S1(target).unk100 & 3145728) != 0) && (new Field_void_794(new func_8020A028_S3(target).unk1D8).value == self)) && (new Field_s32_788(new func_8020A028_S3(target).unk1D8).value == 2)))
+                if (((((new func_80203C40_S1(target).unk100 & 3145728) != 0) && (new Field_void_794(new func_8020A028_S3(target).OwnerPtr).value == self)) && (new Field_s32_788(new func_8020A028_S3(target).OwnerPtr).value == 2)))
                 {
                     return 1;
                 }
@@ -6854,13 +6854,13 @@ public static partial class Ai
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002169AC", (uint)self, (uint)c, (uint)t);
-            if ((new B04Cfg(c).unk4 == 0))
+            if ((new B04Cfg(c).HitPoints == 0))
             {
                 return 6;
             }
             if ((t == 0u))
             {
-                if ((new B04Cfg(c).unk94 != 0))
+                if ((new B04Cfg(c).PathCursor != 0))
                 {
                     return 4;
                 }
@@ -7007,19 +7007,19 @@ public static partial class Ai
         {
             if (Dbg.On) Dbg.Enter("func_00216D3C", (uint)a, (uint)b, (uint)c, (uint)f1);
             float t = 0f;
-            if ((new B04B_v2(b).unk7C > 0.0f))
+            if ((new B04B_v2(b).LockTimer > 0.0f))
             {
-                t = (new B04B_v2(b).unk7C - Mem.F32(Gv.FrameTime));
-                new B04B_v2(b).unk7C_Set(t);
+                t = (new B04B_v2(b).LockTimer - Mem.F32(Gv.FrameTime));
+                new B04B_v2(b).LockTimer_Set(t);
                 if ((t <= 0.0f))
                 {
-                    new B04B_v2(b).unk78_Set(0);
-                    new B04B_v2(b).unk7C_Set(0.0f);
+                    new B04B_v2(b).LockedTargetPtr_Set(0);
+                    new B04B_v2(b).LockTimer_Set(0.0f);
                 }
             }
             if ((f1 != 0))
             {
-                Ai.PickTrackerAim(a, b, (uint)(new B04B_v2(b).unk88), new B04C(c).b.P);
+                Ai.PickTrackerAim(a, b, (uint)(new B04B_v2(b).TrackerParam_88), new B04C(c).b.P);
             }
             else
             {
@@ -7027,7 +7027,7 @@ public static partial class Ai
             }
             if ((f2 != 0))
             {
-                Ai.PickTarget(a, b, (uint)(new B04B_v2(b).unk80), new B04C(c).a.P);
+                Ai.PickTarget(a, b, (uint)(new B04B_v2(b).TargetPtr), new B04C(c).a.P);
                 return;
             }
             func_00216D3C_fill(new B04C(c).a.P, a);

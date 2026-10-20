@@ -424,7 +424,7 @@ public readonly struct Field_s32_2E0
     public int EventBits
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2E0u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, EventBits);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, value);
     }
     [MethodImpl(Inl)] public int EventBits_Set(int v) => Mem.Set(P + 0x2E0u, v);
 }
@@ -3278,19 +3278,19 @@ public readonly struct G462
     [MethodImpl(Inl)] public static implicit operator uint(G462 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator G462(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int ActiveCheats
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int ActiveCheats_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public int unk4
+    public int UnlockedCheats
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int UnlockedCheats_Set(int v) => Mem.Set(P + 0x4u, v);
 }
 
 /// <summary>struct G68A0, 0x7C bytes, at a guest address.</summary>
@@ -3646,12 +3646,12 @@ public readonly struct GameB6
     // +0x80
     public U8x4 pad80 { [MethodImpl(Inl)] get => new(P + 0x80u); }
     // +0x84
-    public int unk84
+    public int TokenState_84
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x84u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x84u, value);
     }
-    [MethodImpl(Inl)] public int unk84_Set(int v) => Mem.Set(P + 0x84u, v);
+    [MethodImpl(Inl)] public int TokenState_84_Set(int v) => Mem.Set(P + 0x84u, v);
     // +0x88
     public U8x16 pad88 { [MethodImpl(Inl)] get => new(P + 0x88u); }
     // +0x98

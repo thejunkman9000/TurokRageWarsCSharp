@@ -671,7 +671,7 @@ public static partial class Profile
                     ++n;
                 }
             }
-            if (((((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).TimeLimit) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
+            if (((((Bits.Test((Gv.Profile_AwardBits + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).MedalStat_A) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).TimeLimit) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).FragLimit) >= 20)))
             {
                 Bits.Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 43, 1);
                 if ((n < 2))
@@ -1138,7 +1138,7 @@ public static partial class Profile
             int n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits.Test(new O04Row190((Gv.ProfileTable_Plus10 + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits.Test(new O04Row190((Gv.ProfileTable_Plus10 + (uint)(a * 400))).AwardBits.P, i) == 1))
                 {
                     ++n;
                 }

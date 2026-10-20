@@ -710,14 +710,14 @@ public static partial class Turret
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203DF0", (uint)mtx, (uint)hit);
-            uint info = (new B01Hit(hit).actor.def_ + (uint)20);
-            if ((new B01Hit(hit).unk4 == new B01Info(info).TravelTurn_3C))
+            uint info = (new B01Hit(hit).ActorPtr.def_ + (uint)20);
+            if ((new B01Hit(hit).PartIndex == new B01Info(info).TravelTurn_3C))
             {
-                MathUtil.MtxPostRotateX(mtx, new B01Hit(hit).actor.Pitch_294);
+                MathUtil.MtxPostRotateX(mtx, new B01Hit(hit).ActorPtr.Pitch_294);
             }
-            if ((new B01Hit(hit).unk4 == new B01Info(info).PartId_40.i))
+            if ((new B01Hit(hit).PartIndex == new B01Info(info).PartId_40.i))
             {
-                MathUtil.MtxPostRotateZ(mtx, (new B01Hit(hit).actor.unk20C - new B01Hit(hit).actor.Yaw));
+                MathUtil.MtxPostRotateZ(mtx, (new B01Hit(hit).ActorPtr.unk20C - new B01Hit(hit).ActorPtr.Yaw));
             }
         }
     }

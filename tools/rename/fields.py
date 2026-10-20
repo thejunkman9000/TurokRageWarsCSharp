@@ -111,8 +111,13 @@ def rename_struct_files(types, ren):
             if name not in per_type: continue
             body = s[a:b]
             mp = per_type[name]
-            pat = re.compile(r'\b(' + '|'.join(re.escape(m) for m in sorted(mp, key=len, reverse=True)) + r')(_Set)?\b')
-            body = pat.sub(lambda x: mp[x.group(1)] + (x.group(2) or ''), body)
+            plain = {m: n for m, n in mp.items() if m != 'value'}
+            if plain:
+                pat = re.compile(r'\b(' + '|'.join(re.escape(m) for m in sorted(plain, key=len, reverse=True)) + r')(_Set)?\b')
+                body = pat.sub(lambda x: plain[x.group(1)] + (x.group(2) or ''), body)
+            if 'value' in mp:      # a member named like the setter keyword: only its declaration and its _Set method, never `value` inside the setters
+                body = re.sub(r'(?<=\n    public )(\S+) value\b', lambda x: f'{x.group(1)} {mp["value"]}', body)
+                body = re.sub(r'\bvalue_Set\b', mp['value'] + '_Set', body)
             out.append(s[last:a]); out.append(body); last = b
         out.append(s[last:])
         changed += an.write_if_changed(p, ''.join(out))

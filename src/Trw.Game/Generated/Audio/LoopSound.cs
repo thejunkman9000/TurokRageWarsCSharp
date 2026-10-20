@@ -12,8 +12,8 @@ public static partial class LoopSound
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C8E0", (uint)p);
-            new Idpair(p).b_Set((-1));
-            new Idpair(p).a_Set((-1));
+            new Idpair(p).SoundId_Set((-1));
+            new Idpair(p).SoundHandle_Set((-1));
         }
     }
 
@@ -34,13 +34,13 @@ public static partial class LoopSound
             if (Dbg.On) Dbg.Enter("func_0025C8F8", (uint)l, (uint)src, (uint)n);
             int i = 0;
             ListUtil.Init(l, 0, 4);
-            ListUtil.Init(new P3List(l).list.P, 0, 4);
+            ListUtil.Init(new P3List(l).ActiveList.P, 0, 4);
             for (i = 0; (i < n); ++i)
             {
                 ListUtil.Append_00255CB4(l, src, default(uint), default(uint));
                 src = (uint)(src + (uint)(32 * 1));
             }
-            new P3List(l).f28_Set(0);
+            new P3List(l).IsPaused_Set(0);
         }
     }
 
@@ -54,14 +54,14 @@ public static partial class LoopSound
             if ((n != 0u))
             {
                 ListUtil.Remove(l, n, default(uint), default(uint));
-                ListUtil.Append_00255CB4(new P3SList(l).list2.P, n, default(uint), default(uint));
-                new P3SNode(n).id_Set((-1));
-                new P3SNode(n).handle_Set((-1));
-                new P3SNode(n).handle_Set(Audio.PlaySound((int)((short)(id)), pos, a, b));
-                Mem.Set(Gv.LoopSound_LastStartHandle, new P3SNode(n).handle);
-                new P3SNode(n).id_Set(id);
-                Mem.Copy(new P3SNode(n).pos.P, pos, 12);
-                new P3SNode(n).arg_Set(a);
+                ListUtil.Append_00255CB4(new P3SList(l).ActiveList.P, n, default(uint), default(uint));
+                new P3SNode(n).SoundId_Set((-1));
+                new P3SNode(n).SoundHandle_Set((-1));
+                new P3SNode(n).SoundHandle_Set(Audio.PlaySound((int)((short)(id)), pos, a, b));
+                Mem.Set(Gv.LoopSound_LastStartHandle, new P3SNode(n).SoundHandle);
+                new P3SNode(n).SoundId_Set(id);
+                Mem.Copy(new P3SNode(n).Position.P, pos, 12);
+                new P3SNode(n).PlayArg_Set(a);
             }
             return n;
         }
@@ -78,12 +78,12 @@ public static partial class LoopSound
             {
                 return 0;
             }
-            for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
+            for (n = new SndPlaylist(l).ActiveList; (n != 0u); n = new SndListNode(n).Next)
             {
                 if ((n == target))
                 {
-                    Audio.StopByHandle(new SndListNode(n).id);
-                    Mem.Set(Gv.LoopSound_LastStopId, new SndListNode(n).id);
+                    Audio.StopByHandle(new SndListNode(n).SoundHandle);
+                    Mem.Set(Gv.LoopSound_LastStopId, new SndListNode(n).SoundHandle);
                     ListUtil.Remove((l + 20u), n, default(uint), default(uint));
                     ListUtil.Append_00255CB4(l, n, default(uint), default(uint));
                     return 1;
@@ -100,12 +100,12 @@ public static partial class LoopSound
         {
             if (Dbg.On) Dbg.Enter("func_0025CAD0", (uint)l);
             uint n = 0u;
-            for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
+            for (n = new SndPlaylist(l).ActiveList; (n != 0u); n = new SndListNode(n).Next)
             {
-                Audio.StopByHandle(new SndListNode(n).id);
-                Mem.Set(Gv.LoopSound_LastPauseId, new SndListNode(n).id);
+                Audio.StopByHandle(new SndListNode(n).SoundHandle);
+                Mem.Set(Gv.LoopSound_LastPauseId, new SndListNode(n).SoundHandle);
             }
-            new SndPlaylist(l).unk28_Set(1);
+            new SndPlaylist(l).IsPaused_Set(1);
         }
     }
 
@@ -116,12 +116,12 @@ public static partial class LoopSound
         {
             if (Dbg.On) Dbg.Enter("func_0025CB2C", (uint)l);
             uint n = 0u;
-            for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode_v2(n).next_)
+            for (n = new SndPlaylist(l).ActiveList; (n != 0u); n = new SndListNode_v2(n).Next)
             {
-                new SndListNode_v2(n).id_Set(Audio.PlaySound((int)(new SndListNode_v2(n).sndId), new SndListNode_v2(n).pos.P, new SndListNode_v2(n).unk1C, (-1)));
-                Mem.Set(Gv.LoopSound_LastResumeId, new SndListNode_v2(n).id);
+                new SndListNode_v2(n).SoundHandle_Set(Audio.PlaySound((int)(new SndListNode_v2(n).sndId), new SndListNode_v2(n).Position.P, new SndListNode_v2(n).PlayArg, (-1)));
+                Mem.Set(Gv.LoopSound_LastResumeId, new SndListNode_v2(n).SoundHandle);
             }
-            new SndPlaylist(l).unk28_Set(0);
+            new SndPlaylist(l).IsPaused_Set(0);
         }
     }
 
@@ -132,14 +132,14 @@ public static partial class LoopSound
         {
             if (Dbg.On) Dbg.Enter("func_0025CBA8", (uint)l);
             uint n = 0u;
-            if ((new SndPlaylist(l).unk28 == 0))
+            if ((new SndPlaylist(l).IsPaused == 0))
             {
-                for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
+                for (n = new SndPlaylist(l).ActiveList; (n != 0u); n = new SndListNode(n).Next)
                 {
-                    if ((Audio.CountByHandle(new SndListNode(n).id) == 0))
+                    if ((Audio.CountByHandle(new SndListNode(n).SoundHandle) == 0))
                     {
-                        new SndListNode(n).unkC_Set((-1));
-                        new SndListNode(n).id_Set((-1));
+                        new SndListNode(n).SoundId_Set((-1));
+                        new SndListNode(n).SoundHandle_Set((-1));
                     }
                 }
             }
@@ -154,12 +154,12 @@ public static partial class LoopSound
             if (Dbg.On) Dbg.Enter("func_0025CC0C", (uint)l);
             uint n = 0u;
             uint next = 0u;
-            for (n = new SndPlaylist(l).head_; (n != 0u); n = next)
+            for (n = new SndPlaylist(l).ActiveList; (n != 0u); n = next)
             {
-                next = new SndListNode(n).next_;
-                Audio.StopByHandle(new SndListNode(n).id);
-                new SndListNode(n).unkC_Set((-1));
-                new SndListNode(n).id_Set((-1));
+                next = new SndListNode(n).Next;
+                Audio.StopByHandle(new SndListNode(n).SoundHandle);
+                new SndListNode(n).SoundId_Set((-1));
+                new SndListNode(n).SoundHandle_Set((-1));
                 ListUtil.Remove((l + 20u), n, default(uint), default(uint));
                 ListUtil.Append_00255CB4(l, n, default(uint), default(uint));
             }

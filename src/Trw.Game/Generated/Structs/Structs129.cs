@@ -3936,48 +3936,48 @@ public readonly struct func_802AB6C0_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_802AB6C0_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_802AB6C0_S1(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int IsActive
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int IsActive_Set(int v) => Mem.Set(P, v);
     // +0x4
-    public S8x4 pad0 { [MethodImpl(Inl)] get => new(P + 0x4u); }
+    public S8x4 ScriptPtr { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x8
-    public sbyte unk8
+    public sbyte State
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk8_Set(sbyte v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public sbyte State_Set(sbyte v) => Mem.Set(P + 0x8u, v);
     // +0x9
     public S8x7 pad8 { [MethodImpl(Inl)] get => new(P + 0x9u); }
     // +0x10
-    public float unk10
+    public float X
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public float unk10_Set(float v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public float X_Set(float v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public S8x0 pad10 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public S8x0 Y { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x14
-    public float unk14
+    public float Y_2
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public float unk14_Set(float v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public float Y_2_Set(float v) => Mem.Set(P + 0x14u, v);
     // +0x18
-    public S8x32 pad14 { [MethodImpl(Inl)] get => new(P + 0x18u); }
+    public S8x32 TargetX { [MethodImpl(Inl)] get => new(P + 0x18u); }
     // +0x38
-    public int unk38
+    public int DisplayedValue
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int unk38_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int DisplayedValue_Set(int v) => Mem.Set(P + 0x38u, v);
 }
 
 /// <summary>struct func_802AB78C_S1, 0x90 bytes, at a guest address.</summary>
@@ -3992,14 +3992,14 @@ public readonly struct func_802AB78C_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_802AB78C_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_802AB78C_S1(uint p) => new(p);
     // +0x0
-    public S8x140 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x140 IsActive { [MethodImpl(Inl)] get => new(P); }
     // +0x8C
-    public int unk8C
+    public int Bar2TargetPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Cu, value);
     }
-    [MethodImpl(Inl)] public int unk8C_Set(int v) => Mem.Set(P + 0x8Cu, v);
+    [MethodImpl(Inl)] public int Bar2TargetPercent_Set(int v) => Mem.Set(P + 0x8Cu, v);
 }
 
 /// <summary>struct func_802AB794_S1, 0x8C bytes, at a guest address.</summary>

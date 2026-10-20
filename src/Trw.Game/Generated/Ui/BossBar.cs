@@ -555,9 +555,9 @@ public static partial class BossBar
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AB720", (uint)c, (uint)a, (uint)b);
-            new ScriptCtx(c).unk40_Set(a);
-            new ScriptCtx(c).unk3C_Set(b);
-            new ScriptCtx(c).unk44_Set(100);
+            new ScriptCtx(c).IsEnabled_Set(a);
+            new ScriptCtx(c).LabelId_Set(b);
+            new ScriptCtx(c).TargetPercent_Set(100);
             ScreenMover.Start(c, Gv.BossBar_MoverPathBar1);
         }
     }
@@ -568,10 +568,10 @@ public static partial class BossBar
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AB750", (uint)h, (uint)a, (uint)b);
-            new ScriptHolder(h).s.unk40_Set(a);
-            new ScriptHolder(h).s.unk3C_Set(b);
-            new ScriptHolder(h).s.unk44_Set(100);
-            ScreenMover.Start(new ScriptHolder(h).s.P, Gv.BossBar_MoverPathBar2);
+            new ScriptHolder(h).Bar2.IsEnabled_Set(a);
+            new ScriptHolder(h).Bar2.LabelId_Set(b);
+            new ScriptHolder(h).Bar2.TargetPercent_Set(100);
+            ScreenMover.Start(new ScriptHolder(h).Bar2.P, Gv.BossBar_MoverPathBar2);
         }
     }
 
@@ -615,11 +615,11 @@ public static partial class BossBar
                 TextUtil.SetScale(0.7f, 0.7f);
                 TextUtil.SetColors(255, 255, 255, 200, 200, 200);
                 Gfx.BeginFlatColorPass((uint)((int)(Mem.U8(Gv.Settings_HudAlpha))), default(uint), default(uint), default(uint));
-                if ((new Scn(s).unk40 != 0))
+                if ((new Scn(s).IsEnabled != 0))
                 {
                     BossBar.Draw(s, (uint)(1), default(uint), default(uint));
                 }
-                if ((new Scn(s).unk88 != 0))
+                if ((new Scn(s).IsBar2Enabled != 0))
                 {
                     BossBar.Draw(s, (uint)(2), default(uint), default(uint));
                 }

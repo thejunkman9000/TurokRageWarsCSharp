@@ -2535,14 +2535,14 @@ public readonly struct func_8044AB34_S1
     [MethodImpl(Inl)] public static implicit operator uint(func_8044AB34_S1 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8044AB34_S1(uint p) => new(p);
     // +0x0
-    public S8x5848 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x5848 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x16D8
-    public short unk16D8
+    public short HitShake
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x16D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x16D8u, value);
     }
-    [MethodImpl(Inl)] public short unk16D8_Set(short v) => Mem.Set(P + 0x16D8u, v);
+    [MethodImpl(Inl)] public short HitShake_Set(short v) => Mem.Set(P + 0x16D8u, v);
 }
 
 /// <summary>struct func_8044AC70_S1, 0x459 bytes, at a guest address.</summary>
@@ -3574,7 +3574,7 @@ public readonly struct func_8044CBE0_S1_v2
     // +0x104
     public S8x111612 pad100 { [MethodImpl(Inl)] get => new(P + 0x104u); }
     // +0x1B500
-    public IntrusiveList unk1B500 { [MethodImpl(Inl)] get => new(P + 0x1B500u); }
+    public IntrusiveList NavSearchList { [MethodImpl(Inl)] get => new(P + 0x1B500u); }
 }
 
 /// <summary>struct func_8044CD58_S2, 0x1C bytes, at a guest address.</summary>

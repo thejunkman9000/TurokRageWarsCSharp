@@ -18,20 +18,20 @@ public static partial class Damage
             {
                 return 1;
             }
-            if (((int)(new B15Obj(t).unkE4) == (int)(new B15Obj(a).unkE4)))
+            if (((int)(new B15Obj(t).TypeId) == (int)(new B15Obj(a).TypeId)))
             {
                 return 0;
             }
-            f = new B15Obj(a).flags;
+            f = new B15Obj(a).Flags;
             if (!((f & (uint)(3211264)) != 0u))
             {
                 return 0;
             }
-            if ((((Mem.S32(Gv.Game_Flag_8013B290) != 0) && !((new B15Obj(t).flags & (uint)(3145728)) != 0u)) && !((f & (uint)(3145728)) != 0u)))
+            if ((((Mem.S32(Gv.Game_Flag_8013B290) != 0) && !((new B15Obj(t).Flags & (uint)(3145728)) != 0u)) && !((f & (uint)(3145728)) != 0u)))
             {
                 return 0;
             }
-            switch (new B15Obj(a).def.type)
+            switch (new B15Obj(a).DefPtr.type)
             {
             case 1:
             case 4:

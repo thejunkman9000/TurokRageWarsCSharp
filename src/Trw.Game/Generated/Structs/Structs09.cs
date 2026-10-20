@@ -21,12 +21,12 @@ public readonly struct Cfg697C
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public float unk4
+    public float FadeOutTime
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public float unk4_Set(float v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public float FadeOutTime_Set(float v) => Mem.Set(P + 0x4u, v);
 }
 
 /// <summary>struct Chan, 0x14 bytes, at a guest address.</summary>
@@ -2331,7 +2331,7 @@ public readonly struct CtlB
     [MethodImpl(Inl)] public static implicit operator uint(CtlB v) => v.P;
     [MethodImpl(Inl)] public static explicit operator CtlB(uint p) => new(p);
     // +0x0
-    public ActorB actor
+    public ActorB OwnerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2345,12 +2345,12 @@ public readonly struct CtlB
     // +0x4
     public U8x736 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x2E4
-    public int unk2E4
+    public int FireDelay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2E4u, value);
     }
-    [MethodImpl(Inl)] public int unk2E4_Set(int v) => Mem.Set(P + 0x2E4u, v);
+    [MethodImpl(Inl)] public int FireDelay_Set(int v) => Mem.Set(P + 0x2E4u, v);
 }
 
 /// <summary>struct Ctrl, 0x90 bytes, at a guest address.</summary>
@@ -2446,28 +2446,28 @@ public readonly struct Ctx256
     [MethodImpl(Inl)] public static implicit operator uint(Ctx256 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Ctx256(uint p) => new(p);
     // +0x0
-    public byte inited
+    public byte IsInitialized
     {
         [MethodImpl(Inl)] get => Mem.U8(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public byte inited_Set(byte v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public byte IsInitialized_Set(byte v) => Mem.Set(P, v);
     // +0x1
     public U8x3 pad_1 { [MethodImpl(Inl)] get => new(P + 0x1u); }
     // +0x4
-    public int f4
+    public int FirstUsedPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int f4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int FirstUsedPtr_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public uint f8
+    public uint FirstFreePtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public uint f8_Set(uint v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public uint FirstFreePtr_Set(uint v) => Mem.Set(P + 0x8u, v);
 }
 
 /// <summary>struct Ctx_func_8028F544_de, 0x304 bytes, at a guest address.</summary>

@@ -2616,12 +2616,12 @@ public readonly struct SharedPlayer_func_8044972C_de
     // +0x13DC
     public S8x12 pad13DC { [MethodImpl(Inl)] get => new(P + 0x13DCu); }
     // +0x13E8
-    public int messageIndex
+    public int MessageIndex_13E8
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13E8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13E8u, value);
     }
-    [MethodImpl(Inl)] public int messageIndex_Set(int v) => Mem.Set(P + 0x13E8u, v);
+    [MethodImpl(Inl)] public int MessageIndex_13E8_Set(int v) => Mem.Set(P + 0x13E8u, v);
     // +0x13EC
     public S8x100 EmbryoMessageText { [MethodImpl(Inl)] get => new(P + 0x13ECu); }
     // +0x1450

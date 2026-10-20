@@ -71,9 +71,9 @@ public static partial class TrialPauseMenu
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004237F8");
-            if ((new O04_S4514(Mem.U32(Gv.TrialPauseMenu_PagePtr)).unkC == 0))
+            if ((new O04_S4514(Mem.U32(Gv.TrialPauseMenu_PagePtr)).IsInputEnabled == 0))
             {
-                new O04_S4514(Mem.U32(Gv.TrialPauseMenu_PagePtr)).unkC_Set(1);
+                new O04_S4514(Mem.U32(Gv.TrialPauseMenu_PagePtr)).IsInputEnabled_Set(1);
                 Menu.EnableInput();
             }
             return 0;

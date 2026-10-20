@@ -5505,15 +5505,15 @@ public static partial class ResourcePool
             }
             new PoolView(Gv.Resource_NodePool).count_Set((int)((int)(new PoolView(Gv.Resource_NodePool).count) - 1));
             temp_s0 = Mem.U32((Mem.U32(Gv.Resource_FreeNodeStackPtr) + (uint)(new PoolView(Gv.Resource_NodePool).count * 4)));
-            new func_80251448_S1(temp_s0).unkC_Set(2048);
-            new func_80251448_S1(temp_s0).unk8_Set(0);
-            new func_80251448_S1(temp_s0).unk0_Set(0);
-            new func_80251448_S1(temp_s0).unk24_Set(0);
-            new func_80251448_S1(temp_s0).unk20_Set(0);
-            new func_80251448_S1(temp_s0).unk14_Set(0);
-            new func_80251448_S1(temp_s0).unk10_Set(new PoolView(Gv.Resource_NodePool).field44);
+            new func_80251448_S1(temp_s0).Flags_2_Set(2048);
+            new func_80251448_S1(temp_s0).RefCount_Set(0);
+            new func_80251448_S1(temp_s0).Key_Set(0);
+            new func_80251448_S1(temp_s0).Next_2_Set(0);
+            new func_80251448_S1(temp_s0).Prev_Set(0);
+            new func_80251448_S1(temp_s0).LinkPtr_14_2_Set(0);
+            new func_80251448_S1(temp_s0).FrameStamp_2_Set(new PoolView(Gv.Resource_NodePool).field44);
             ListUtil.Add((Gv.Resource_NodePool - (uint)3020), (uint)((int)(temp_s0)));
-            new func_80251448_S1(temp_s0).unkC_Set((int)((int)(new func_80251448_S1(temp_s0).unkC) | (arg1 & 12)));
+            new func_80251448_S1(temp_s0).Flags_2_Set((int)((int)(new func_80251448_S1(temp_s0).Flags_2) | (arg1 & 12)));
             return temp_s0;
         }
     }

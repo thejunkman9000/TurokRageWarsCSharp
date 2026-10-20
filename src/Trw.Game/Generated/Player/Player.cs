@@ -1063,7 +1063,7 @@ public static partial class Player
                 _f80: ;
                 new Vec3((_fp + 48u)).z_Set(((float)((temp_v1_8 - ((var_v0_3 >> (int)10) << (int)10))) - 512f));
                 Mem.Copy((_fp + 64u), C.Seq(Actor.GetFacingQuat(_fp, arg0), _fp), 16);
-                temp_s0_6 = new Shared_ActorView(arg0).frameValue;
+                temp_s0_6 = new Shared_ActorView(arg0).StateTargetPtr_1F0;
                 if (!((Actor.GetModelHeaderField6E_0024BE70(arg0) == 5))) goto _f81;
                 var_s1_3 = 3;
                 _f81: ;
@@ -1145,7 +1145,7 @@ public static partial class Player
             uint g = 0u;
             uint g1 = 0u;
             uint v = 0u;
-            if ((new B04O8(o).unk1214 != 0))
+            if ((new B04O8(o).WeaponStanceTimer_1214 != 0))
             {
                 g1 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g1).w0_Set(3661103107u);
@@ -1270,7 +1270,7 @@ public static partial class Player
                 g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set((uint)(83889672));
                 new DlCmd(g).w1_Set((uint)(0));
-                if ((new B04O8(o).unk147C != 0))
+                if ((new B04O8(o).HasAimHit != 0))
                 {
                     Decal.DrawLaserDot((o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 5504)));
                 }
@@ -3258,25 +3258,25 @@ public static partial class Player
                     }
                     if ((new B05Obj4(o).HitPoints != 0))
                     {
-                        new B05Obj4(o).Velocity_Set(((new B05Ply4(p).ForwardSpeed * sinf((new B05Src4(src).unk6C + 3.14159274f))) * 20.0f));
+                        new B05Obj4(o).Velocity_Set(((new B05Ply4(p).ForwardSpeed * sinf((new B05Src4(src).Yaw + 3.14159274f))) * 20.0f));
                         new B05Obj4(o).VelocityY_Set((new B05Ply4(p).ForwardSpeed * 30.0f));
-                        new B05Obj4(o).VelocityZ_Set(((new B05Ply4(p).ForwardSpeed * cosf((new B05Src4(src).unk6C + 3.14159274f))) * 20.0f));
+                        new B05Obj4(o).VelocityZ_Set(((new B05Ply4(p).ForwardSpeed * cosf((new B05Src4(src).Yaw + 3.14159274f))) * 20.0f));
                         if ((new B05Ply4(p).ViewPtr != 0u))
                         {
-                            Camera.StartShake(new B05Ply4(p).ViewPtr, 50.0f, 100.0f, 50.0f, 1.0f, s2, new B05Src4(src).pos.P);
+                            Camera.StartShake(new B05Ply4(p).ViewPtr, 50.0f, 100.0f, 50.0f, 1.0f, s2, new B05Src4(src).Position.P);
                         }
-                        if (((int)(new B05Obj4b(o2).unk1A4) == 46))
+                        if (((int)(new B05Obj4b(o2).ActorStateId) == 46))
                         {
                             new B05Obj4(o).StateBlock_Set((int)((int)(new B05Obj4(o).StateBlock) | 512));
                         }
-                        new B05Obj4(o).unk1A5_Set((sbyte)((-1)));
+                        new B05Obj4(o).ActorAnimStateId_Set((sbyte)((-1)));
                         Actor.DispatchEvent(o, (o + (uint)368), 52);
                     }
                     else
                     {
                         if ((new B05Ply4(p).ViewPtr != 0u))
                         {
-                            Camera.StartShake(new B05Ply4(p).ViewPtr, 30.0f, 60.0f, 30.0f, 1.0f, s2, new B05Src4(src).pos.P);
+                            Camera.StartShake(new B05Ply4(p).ViewPtr, 30.0f, 60.0f, 30.0f, 1.0f, s2, new B05Src4(src).Position.P);
                         }
                     }
                     return 1;
@@ -4776,7 +4776,7 @@ public static partial class Player
                 r = Level.GetRegion(Gv.LevelMgr, (uint)(new Plr(a).RegionPtr));
                 if ((r != 0u))
                 {
-                    flags = new RecB6(r).unk44;
+                    flags = new RecB6(r).Flags;
                 }
             }
             if ((Mem.S32(Gv.Game_Flag_8013B290) != 0))
@@ -4899,13 +4899,13 @@ public static partial class Player
                     }
                     new Plr(a).WeaponActorYaw_Set(Mem.F32((_fp + 12u)));
                     new Plr(a).Yaw_Set(Mem.F32((_fp + 12u)));
-                    n = (float)(((int)(new Plr(a).LaunchTargetPtr.unk5E) * 15));
+                    n = (float)(((int)(new Plr(a).LaunchTargetPtr.LaunchDuration) * 15));
                     if ((new Plr(a).LaunchTime < n))
                     {
                         r = (new Plr(a).LaunchTime / n);
-                        new Vec3f(_fp).x_Set((new Plr(a).LaunchStartX + ((new Plr(a).LaunchTargetPtr.unk34 - new Plr(a).LaunchStartX) * r)));
-                        new Vec3f(_fp).z_Set((new Plr(a).LaunchStartZ + ((new Plr(a).LaunchTargetPtr.unk3C - new Plr(a).LaunchStartZ) * r)));
-                        new Vec3f(_fp).y_Set(((new Plr(a).LaunchStartY + ((new Plr(a).LaunchTargetPtr.unk38 - new Plr(a).LaunchStartY) * r)) + (new Plr(a).LaunchTargetPtr.unk40 * ((r - (r * r)) * 4.0f))));
+                        new Vec3f(_fp).x_Set((new Plr(a).LaunchStartX + ((new Plr(a).LaunchTargetPtr.LaunchTargetX - new Plr(a).LaunchStartX) * r)));
+                        new Vec3f(_fp).z_Set((new Plr(a).LaunchStartZ + ((new Plr(a).LaunchTargetPtr.LaunchTargetZ - new Plr(a).LaunchStartZ) * r)));
+                        new Vec3f(_fp).y_Set(((new Plr(a).LaunchStartY + ((new Plr(a).LaunchTargetPtr.LaunchTargetY - new Plr(a).LaunchStartY) * r)) + (new Plr(a).LaunchTargetPtr.LaunchArcHeight * ((r - (r * r)) * 4.0f))));
                         Mem.Copy(new Plr(a).MoveVelocity.P, _fp, 12);
                         return;
                     }
@@ -5284,7 +5284,7 @@ public static partial class Player
             goto _f13;
             _f12: ;
             if (!((((Menu.IsFrontendActive() == 0) && (MenuPanel.CountOpen(Gv.MenuPanel_SharedList) == 0)) && (new Plr(a).Health != 0)))) goto _f14;
-            if (!(((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).unk564 == 0)))) goto _f15;
+            if (!(((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).IsInactive_564 == 0)))) goto _f15;
             h = (Gv.MenuPanel_SharedList + (uint)4740);
             if (!(((new HudSubB6(h).unk1C == 0) || ((int)(Mem.U8((Gv.MenuPanel_SharedList + (uint)3273))) == 0)))) goto _f16;
             Mem.Set((Gv.MenuPanel_SharedList + (uint)4728), 1);
@@ -5344,7 +5344,7 @@ public static partial class Player
                         }
                         else
                         {
-                            v = ((new Pawn(new Plr(a).ViewPtr).unk564 != 0) ? 1 : 0);
+                            v = ((new Pawn(new Plr(a).ViewPtr).IsInactive_564 != 0) ? 1 : 0);
                         }
                         if ((v == 0))
                         {
@@ -6243,7 +6243,7 @@ public static partial class Player
             {
                 for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).unk564 == 0)))
+                    if (((new Plr(a).ViewPtr != 0u) && (new Pawn(new Plr(a).ViewPtr).IsInactive_564 == 0)))
                     {
                         if (((uint)(cnt) == n))
                         {
@@ -7648,7 +7648,7 @@ public static partial class Player
             new S11Obj(p).PlayerEntryPtr.Deaths_Set((ushort)(0));
             new S11Obj(p).PlayerEntryPtr.Frags_Set((ushort)(0));
             new S11Obj(p).PlayerEntryPtr.Captures_6_Set((ushort)(0));
-            new S11Obj(p).PlayerEntryPtr.hA_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.MedalStat_A_Set((ushort)(0));
             new S11Obj(p).PlayerEntryPtr.Tags_Set((ushort)(0));
             new S11Obj(p).PlayerEntryPtr.b8D_Set((byte)(0));
             new S11Obj(p).PlayerEntryPtr.EndAck_8E_Set((byte)(0));
@@ -7661,7 +7661,7 @@ public static partial class Player
             Player.ResetForNewLife(p);
             if (((int)(new S11Game(Gv.Settings).IsMultiplayer) != 0))
             {
-                new S11Obj(p).unk13E8_Set(0);
+                new S11Obj(p).MessageIndex_13E8_Set(0);
             }
             if ((flag != 0))
             {
@@ -7865,8 +7865,8 @@ public static partial class Player
             }
             L_initialized: ;
             state = Gv.Settings_MatchRules;
-            new IntegerState88(state).unk_74_Set(1);
-            new IntegerState88(state).unk_84_Set(3);
+            new IntegerState88(state).MonkeyEvent_74_Set(1);
+            new IntegerState88(state).TokenState_84_Set(3);
         }
     }
 
@@ -7922,7 +7922,7 @@ public static partial class Player
             Mem.Set((new SharedPlayer_func_80449EE4_de(player).LifeForce.P + 3072u), 0);
             Player.ResetFields(player);
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).IsInfraRedOn.P, 0);
-            new func_8044AB34_S1(player).unk16D8_Set((short)(0));
+            new func_8044AB34_S1(player).HitShake_Set((short)(0));
             Inventory.Clear((player + (uint)3392), default(uint), default(uint), default(uint));
         }
     }

@@ -2738,8 +2738,8 @@ public static partial class Sprite
                     {
                         Sprite.GetFrame((uint)(h), idx, _fp, (_fp + 4u));
                         q = Mem.U32(_fp);
-                        Mem.Set(out1, (int)(new TabInfo(q).unk4));
-                        Mem.Set(out2, (int)(new TabInfo(q).unk6));
+                        Mem.Set(out1, (int)(new TabInfo(q).Width));
+                        Mem.Set(out2, (int)(new TabInfo(q).Height));
                         ResourcePool.Unref(0, (uint)(h));
                     }
                 }

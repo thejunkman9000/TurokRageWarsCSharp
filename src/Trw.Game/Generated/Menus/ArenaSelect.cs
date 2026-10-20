@@ -877,12 +877,12 @@ public static partial class ArenaSelect
                 }
                 break;
             case 3:
-                if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_460 == 0))
+                if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).IsInputEnabled == 0))
                 {
                     Menu.EnableInput();
                     var_a1 = 0;
                     var_a0_3 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_458_;
-                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_460_Set(1);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).IsInputEnabled_Set(1);
                     UiNode.SetVisible(var_a0_3, var_a1);
                 }
                 break;
@@ -1022,14 +1022,14 @@ public static partial class ArenaSelect
                     s2 = 0;
                     do
                     {
-                        if ((Mem.S32((tbl + (uint)(s3 * 4))) == new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).a.w))
+                        if ((Mem.S32((tbl + (uint)(s3 * 4))) == new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).ArenaKey.w))
                         {
-                            h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
+                            h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).ArenaKey.h.P + 2u)))), default(uint), default(uint));
                             UiNode.SetVisible(h, s7);
                             new O04Sub10(h).Alpha_Set((byte)(a));
-                            if ((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.w != (-1)))
+                            if ((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).AltNodeKey.w != (-1)))
                             {
-                                h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
+                                h = UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).AltNodeKey.h.P + 2u)))), default(uint), default(uint));
                                 UiNode.SetVisible(h, s7);
                                 new O04Sub10(h).Alpha_Set((byte)(a));
                             }
@@ -1144,10 +1144,10 @@ public static partial class ArenaSelect
             s3 = Arena.GetLevelForType(s2, new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).ArenaIndex);
             for (s1 = 0; (s1 < 40); ++s1)
             {
-                UiNode.SetVisible(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).unk2)), default(uint), default(uint)), 0);
-                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).u4.P) != (-1)))
+                UiNode.SetVisible(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).NodeId)), default(uint), default(uint)), 0);
+                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).AltNodeKey.P) != (-1)))
                 {
-                    UiNode.SetVisible(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
+                    UiNode.SetVisible(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).AltNodeKey.P + 2u)))), default(uint), default(uint)), 0);
                 }
             }
             Arena.Set(s2, s3);
@@ -1216,10 +1216,10 @@ public static partial class ArenaSelect
             int i = 0;
             for (i = 0; (i < 40); ++i)
             {
-                UiNode.SetVisible((uint)((int)(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).unk2)), default(uint), default(uint)))), 0);
-                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).u4.P) != (-1)))
+                UiNode.SetVisible((uint)((int)(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).NodeId)), default(uint), default(uint)))), 0);
+                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).AltNodeKey.P) != (-1)))
                 {
-                    UiNode.SetVisible((uint)((int)(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).u4.P + 2u)))), default(uint), default(uint)))), 0);
+                    UiNode.SetVisible((uint)((int)(UiTree.FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).RootNode, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).AltNodeKey.P + 2u)))), default(uint), default(uint)))), 0);
                 }
             }
         }

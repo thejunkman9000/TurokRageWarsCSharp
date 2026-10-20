@@ -1103,35 +1103,35 @@ public readonly struct State_func_80445EF4_de
     [MethodImpl(Inl)] public static implicit operator uint(State_func_80445EF4_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator State_func_80445EF4_de(uint p) => new(p);
     // +0x0
-    public S8x28 pad { [MethodImpl(Inl)] get => new(P); }
+    public S8x28 PlayTimeTicks { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
-    public int unk1C
+    public int IsMatchOver
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int IsMatchOver_Set(int v) => Mem.Set(P + 0x1Cu, v);
     // +0x20
-    public int unk20
+    public int IsEndAcknowledged
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x20u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
     }
-    [MethodImpl(Inl)] public int unk20_Set(int v) => Mem.Set(P + 0x20u, v);
+    [MethodImpl(Inl)] public int IsEndAcknowledged_Set(int v) => Mem.Set(P + 0x20u, v);
     // +0x24
-    public int unk24
+    public int IsTeamPlay
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsTeamPlay_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public int unk28
+    public int IsTeamEndStarted
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsTeamEndStarted_Set(int v) => Mem.Set(P + 0x28u, v);
 }
 
 /// <summary>struct State_func_8044A170_de, 0x54C bytes, at a guest address.</summary>
@@ -2302,12 +2302,12 @@ public readonly struct SurfNode
     // +0x0
     public U8x28 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
-    public int unk1C
+    public int RegionIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int unk1C_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int RegionIndex_Set(int v) => Mem.Set(P + 0x1Cu, v);
 }
 
 /// <summary>struct Sync, 0x78 bytes, at a guest address.</summary>
@@ -2642,19 +2642,19 @@ public readonly struct TabInfo
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public ushort unk4
+    public ushort Width
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public ushort unk4_Set(ushort v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public ushort Width_Set(ushort v) => Mem.Set(P + 0x4u, v);
     // +0x6
-    public ushort unk6
+    public ushort Height
     {
         [MethodImpl(Inl)] get => Mem.U16(P + 0x6u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6u, value);
     }
-    [MethodImpl(Inl)] public ushort unk6_Set(ushort v) => Mem.Set(P + 0x6u, v);
+    [MethodImpl(Inl)] public ushort Height_Set(ushort v) => Mem.Set(P + 0x6u, v);
 }
 
 /// <summary>struct TabOptionsCommitMenu, 0x5C bytes, at a guest address.</summary>

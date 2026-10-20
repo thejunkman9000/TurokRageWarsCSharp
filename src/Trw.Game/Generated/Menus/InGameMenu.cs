@@ -246,7 +246,7 @@ public static partial class InGameMenu
             if (Dbg.On) Dbg.Enter("func_004439B4", (uint)a, (uint)b);
             if ((new O06G_v3(Gv.Settings_MatchRules).IsMonkeyTagMode != 0))
             {
-                byte v = new O06C_v7(new O06B_v8(new O06A_v3(b).PlayerPtr).unk5D8_).unk8F;
+                byte v = new O06C_v7(new O06B_v8(new O06A_v3(b).PlayerPtr).PlayerEntryPtr).IsMonkey;
                 if (((int)(v) == 1))
                 {
                     new O06G_v3(Gv.Settings_MatchRules).MonkeyEvent_74_Set((int)(v));
@@ -258,7 +258,7 @@ public static partial class InGameMenu
             }
             else
             {
-                new O06B_v8(new O06A_v3(b).PlayerPtr).unk5D0_Set(0);
+                new O06B_v8(new O06A_v3(b).PlayerPtr).CameraMode_Set(0);
             }
             return 1;
         }
@@ -2063,7 +2063,7 @@ public static partial class InGameMenu
         {
             if (Dbg.On) Dbg.Enter("func_00445E28", (uint)a, (uint)b);
             int v = Mem.S32(Gv.InGameMenu_MusicTrack);
-            if (((new O06B_v17(new O06A_v42(b).unk20_).unkB0 & (uint)(131586)) != 0u))
+            if (((new O06B_v17(new O06A_v42(b).PadPtr).Buttons & (uint)(131586)) != 0u))
             {
                 --v;
                 if ((v < 0))
@@ -2078,7 +2078,7 @@ public static partial class InGameMenu
                     }
                 }
             }
-            if (((new O06B_v17(new O06A_v42(b).unk20_).unkB0 & (uint)(315649)) != 0u))
+            if (((new O06B_v17(new O06A_v42(b).PadPtr).Buttons & (uint)(315649)) != 0u))
             {
                 ++v;
                 if ((v >= 23))

@@ -96,7 +96,7 @@ public static partial class ScreenWipe
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043C4C0", (uint)a);
-            return ((new O06A_v14(a).unk18 == 2) ? 1 : 0);
+            return ((new O06A_v14(a).State == 2) ? 1 : 0);
         }
     }
 
@@ -128,7 +128,7 @@ public static partial class ScreenWipe
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043C4E8", (uint)a);
-            return new O06A_v14(a).unk18;
+            return new O06A_v14(a).State;
         }
     }
 }

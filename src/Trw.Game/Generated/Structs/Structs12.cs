@@ -86,12 +86,12 @@ public readonly struct Glob24b
     }
     [MethodImpl(Inl)] public int IsTokenHeld_80_Set(int v) => Mem.Set(P + 0x80u, v);
     // +0x84
-    public int unk84
+    public int TokenState_84
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x84u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x84u, value);
     }
-    [MethodImpl(Inl)] public int unk84_Set(int v) => Mem.Set(P + 0x84u, v);
+    [MethodImpl(Inl)] public int TokenState_84_Set(int v) => Mem.Set(P + 0x84u, v);
 }
 
 /// <summary>struct GlobalMode, 0x1296 bytes, at a guest address.</summary>
@@ -1784,22 +1784,22 @@ public readonly struct Idpair
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public int a
+    public int SoundHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int a_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int SoundHandle_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public int b
+    public int SoundId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int b_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int SoundId_Set(int v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct ImageView, 0x40 bytes, at a guest address.</summary>
+/// <summary>struct ImageView, 0x40 bytes, at SoundHandle guest address.</summary>
 public readonly struct ImageView
 {
     public readonly uint P;
@@ -3653,23 +3653,23 @@ public readonly struct IntegerState88
     [MethodImpl(Inl)] public static implicit operator uint(IntegerState88 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator IntegerState88(uint p) => new(p);
     // +0x0
-    public S8x116 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x116 PlayTimeTicks { [MethodImpl(Inl)] get => new(P); }
     // +0x74
-    public int unk_74
+    public int MonkeyEvent_74
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x74u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x74u, value);
     }
-    [MethodImpl(Inl)] public int unk_74_Set(int v) => Mem.Set(P + 0x74u, v);
+    [MethodImpl(Inl)] public int MonkeyEvent_74_Set(int v) => Mem.Set(P + 0x74u, v);
     // +0x78
-    public S8x12 pad74 { [MethodImpl(Inl)] get => new(P + 0x78u); }
+    public S8x12 TagObjectiveMode_78 { [MethodImpl(Inl)] get => new(P + 0x78u); }
     // +0x84
-    public int unk_84
+    public int TokenState_84
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x84u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x84u, value);
     }
-    [MethodImpl(Inl)] public int unk_84_Set(int v) => Mem.Set(P + 0x84u, v);
+    [MethodImpl(Inl)] public int TokenState_84_Set(int v) => Mem.Set(P + 0x84u, v);
 }
 
 /// <summary>struct IntegerState90, 0x90 bytes, at a guest address.</summary>

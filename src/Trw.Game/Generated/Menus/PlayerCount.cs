@@ -90,7 +90,7 @@ public static partial class PlayerCount
             new O04Sub2C(h).Alpha_Set((byte)(15));
             new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TextFlicker_Set((int)(Flicker.Create((uint)(923), (uint)(110), default(uint), default(uint))));
             new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).OpenDelay_Set(3);
-            new O04Sub2C(UiTree.FindNode((uint)(a), (uint)(925), default(uint), default(uint))).unk38_Set((int)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P));
+            new O04Sub2C(UiTree.FindNode((uint)(a), (uint)(925), default(uint), default(uint))).TextPtr_Set((int)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P));
             new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PlayerCount_Set(1);
             StrUtil.FormatInto(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).CountText.P, Gv.Str_D3, (uint)(1), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
@@ -132,7 +132,7 @@ public static partial class PlayerCount
                     new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Y_Set((ushort)(((int)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Y) - 1)));
                     if ((((int)((short)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Y)) + (int)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Height)) < 0))
                     {
-                        new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Y_Set((ushort)(new O04Obj44((uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PopupPanel)).unk44.Height));
+                        new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).TickerNode.Y_Set((ushort)(new O04Obj44((uint)(new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).PopupPanel)).TargetNodePtr.Height));
                     }
                     new O04ModeS5430(Mem.U32(Gv.PlayerCount_PagePtr)).OpenDelay_Set(3);
                 }

@@ -2688,16 +2688,16 @@ public static partial class Flyby
                     {
                         if ((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr != 0u))
                         {
-                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).pos.P, 12);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).f6C + 1.5707964f));
+                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).Position.P, 12);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set((new Q01Obj_v2(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorObjPtr).Yaw + 1.5707964f));
                         }
                     }
                     if (((new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).RecordFlags & 2) != 0))
                     {
                         if ((s3 != 0u))
                         {
-                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(s3).pos.P, 12);
-                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set(new Q01Obj_v2(s3).f6C);
+                            Mem.Copy(new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorPos.P, new Q01Obj_v2(s3).Position.P, 12);
+                            new Q01Anim_v2(Mem.U32(Gv.FlybyCtlPtr)).AnchorYaw_Set(new Q01Obj_v2(s3).Yaw);
                         }
                         else
                         {
@@ -2719,7 +2719,7 @@ public static partial class Flyby
                     if ((s3 != 0u))
                     {
                         Mem.Copy((_fp + 48u), s3, 80);
-                        Mem.Copy(new Q01Obj_v2(s3).pos.P, (_fp + 16u), 12);
+                        Mem.Copy(new Q01Obj_v2(s3).Position.P, (_fp + 16u), 12);
                         Level.StreamVisibleCells(Gv.LevelMgr);
                         r = Collision.MoveActor((int)(s3), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)(Gv.Collision_ProbeResult));
                         Level.ReleaseLoadedCells(Gv.LevelMgr);
@@ -3227,22 +3227,22 @@ public static partial class Flyby
         {
             if (Dbg.On) Dbg.Enter("func_00403458_O01KindOk", (uint)a);
             int r = 0;
-            switch ((int)(new O01Kind_v2(a).kind))
+            switch ((int)(new O01Kind_v2(a).SpawnMode_11))
             {
             case 1:
-                if (((int)(new O01Kind_v2(a).val) == 5))
+                if (((int)(new O01Kind_v2(a).SpawnVariant) == 5))
                 {
                     r = 1;
                 }
                 break;
             case 9:
-                if (((int)(new O01Kind_v2(a).val) == 4))
+                if (((int)(new O01Kind_v2(a).SpawnVariant) == 4))
                 {
                     r = 1;
                 }
                 break;
             case 10:
-                if (((int)(new O01Kind_v2(a).val) == 3))
+                if (((int)(new O01Kind_v2(a).SpawnVariant) == 3))
                 {
                     r = 1;
                 }
@@ -3313,7 +3313,7 @@ public static partial class Flyby
                                 Level.ActivateTriggerRecord(k);
                             }
                             new O01EntF(e).Time_Set((-20000f));
-                            new O01Kind_v2(k).unkE_Set((byte)((((int)(new O01Kind_v2(k).unkE) | 1) & 239)));
+                            new O01Kind_v2(k).Flags_Set((byte)((((int)(new O01Kind_v2(k).Flags) | 1) & 239)));
                             Level.SetTriggerSavedFlag(Gv.LevelMgr, k, 0);
                         }
                     }

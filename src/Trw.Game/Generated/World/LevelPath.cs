@@ -146,10 +146,10 @@ public static partial class LevelPath
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002193C8", (uint)e, (uint)a, _a2);
-            new B04Ev(e).unk0_Set((byte)(1));
-            new B04Ev(e).unk1_Set((byte)(a));
-            new B04Ev(e).unk2_Set((short)(LevelPath.FindNearestPoint(Gv.LevelMgr, (int)(uint)(a), (uint)(_a2))));
-            new B04Ev(e).unk4_Set((short)(0));
+            new B04Ev(e).IsActive_Set((byte)(1));
+            new B04Ev(e).PathIndex_Set((byte)(a));
+            new B04Ev(e).PointIndex_Set((short)(LevelPath.FindNearestPoint(Gv.LevelMgr, (int)(uint)(a), (uint)(_a2))));
+            new B04Ev(e).PrevPointIndex_Set((short)(0));
         }
     }
 

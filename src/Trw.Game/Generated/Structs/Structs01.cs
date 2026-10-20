@@ -4144,12 +4144,12 @@ public readonly struct ActorRow400
     [MethodImpl(Inl)] public static implicit operator uint(ActorRow400 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator ActorRow400(uint p) => new(p);
     // +0x0
-    public int unk0
+    public int HealthBonus
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int unk0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int HealthBonus_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x396 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
 }
@@ -4588,12 +4588,12 @@ public readonly struct ActorX
     }
     [MethodImpl(Inl)] public float CollisionProfilePtr_Set(float v) => Mem.Set(P + 0x1A0u, v);
     // +0x1A4
-    public float f1A4
+    public float ActorStateId
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x1A4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1A4u, value);
     }
-    [MethodImpl(Inl)] public float f1A4_Set(float v) => Mem.Set(P + 0x1A4u, v);
+    [MethodImpl(Inl)] public float ActorStateId_Set(float v) => Mem.Set(P + 0x1A4u, v);
     // +0x1A8
     public float f1A8
     {

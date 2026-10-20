@@ -84,10 +84,10 @@ public static partial class Arena
             i = 0;
             do
             {
-                if ((key == new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).k))
+                if ((key == new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).ArenaKey))
                 {
                     found = 1;
-                    r = new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).v;
+                    r = new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).LevelNumber;
                 }
                 ++i;
             }
@@ -266,10 +266,10 @@ public static partial class MatchSetup
             i = 0;
             do
             {
-                if ((key == new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).k))
+                if ((key == new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).ArenaKey))
                 {
                     found = 1;
-                    r = new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).v;
+                    r = new O04E16b((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).LevelNumber;
                 }
                 ++i;
             }
@@ -1114,7 +1114,7 @@ public static partial class Settings
             new O06B_v10(a).FriendlyFire_Set((byte)(1));
             new O06B_v10(a).unk29_Set((byte)(0));
             new O06B_v10(a).unk2A_Set((byte)(0));
-            new O06B_v10(a).unk2B_Set((byte)(1));
+            new O06B_v10(a).ShowCrosshair_Set((byte)(1));
             new O06B_v10(a).OpacityByte_Set((byte)(new O06B_v10(a).Opacity));
             new O06B_v10(a).GameSpeed_Set(1f);
             for (i = 0; (i < 10); ++i)
@@ -1130,7 +1130,7 @@ public static partial class Settings
                 Settings.Settings_InitPlayerRecordTwin(((a + (uint)208) + (uint)(i * 150)), (byte)(i));
             }
             Settings.Settings_InitPlayerRecordTwin((a + (uint)58), (byte)(0));
-            new O06B_v10(a).unkB2_Set((byte)(1));
+            new O06B_v10(a).IsDefaultRecordActive_Set((byte)(1));
             new O06B_v10(a).IsMultiplayer_Set((byte)(0));
             new O06B_v10(a).MaxPlayers_Set((byte)(1));
             new O06B_v10(a).GameMode_Set((byte)(0));

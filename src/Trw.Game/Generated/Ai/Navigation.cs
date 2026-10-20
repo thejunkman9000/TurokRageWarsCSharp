@@ -238,14 +238,14 @@ public static partial class AiNav
                                 a = Mem.U32((_fp + (uint)(k * 4)));
                                 st = new B2Obj(a).StateBlock.P;
                                 info = new B2Obj(a).DefPtr.Params.P;
-                                if (((int)(new B2Sub(st).unk34) == 4))
+                                if (((int)(new B2Sub(st).StateId) == 4))
                                 {
-                                    t = LevelPath.GetHeader(Gv.LevelMgr, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
+                                    t = LevelPath.GetHeader(Gv.LevelMgr, (uint)(new B2Sub(st).PathCursorPathIndex), default(uint), default(uint));
                                     if ((t != 0u))
                                     {
                                         for (j = 0; (j < (int)(Mem.S16((t + (uint)(1 * 2))))); ++j)
                                         {
-                                            p = LevelPath.GetPoint(Gv.LevelMgr, (int)(new B2Sub(st).unk95), j);
+                                            p = LevelPath.GetPoint(Gv.LevelMgr, (int)(new B2Sub(st).PathCursorPathIndex), j);
                                             d = Vec.Distance(r, p);
                                             if (((d < best) || (best == (-1f))))
                                             {
@@ -1960,7 +1960,7 @@ public static partial class AiNav
                     {
                         if (((int)(new EntRec(r).id) == Mem.S32((ids + (uint)(i * 4)))))
                         {
-                            if (((new EntNode(n).owner_ != 0u) && (new EntNode(n).owner.unk294 != 0)))
+                            if (((new EntNode(n).owner_ != 0u) && (new EntNode(n).owner.Pitch_294 != 0)))
                             {
                                 AiNav.AddGoal(L, new EntNode(n).key);
                                 ++count;
@@ -2005,7 +2005,7 @@ public static partial class AiNav
             for (n = new EntList(L).head_; (n != 0u); n = new EntNode(n).next_)
             {
                 r = AiNav.GetNode(L, new EntNode(n).key);
-                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.unk1A4) == 0)))
+                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.ActorStateId) == 0)))
                 {
                     AiNav.AddGoal(L, new EntNode(n).key);
                     ++count;

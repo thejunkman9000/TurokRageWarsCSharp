@@ -61,10 +61,10 @@ public static partial class CameraShake
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239CDC", (uint)n);
-            new Node4(n).unk4_Set(0);
-            new Node4(n).unk8_Set(0);
-            new Node4(n).unkC_Set(0);
-            new Node4(n).unk10_Set(0);
+            new Node4(n).InputAmplitude_Set(0);
+            new Node4(n).PeakAmplitude_Set(0);
+            new Node4(n).Amplitude_Set(0);
+            new Node4(n).Phase_Set(0);
         }
     }
 
@@ -74,8 +74,8 @@ public static partial class CameraShake
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239CF0", (uint)o, 0u, (uint)b);
-            new Obj4F(o).unk4_Set((a * 0.1f));
-            new Obj4F(o).unk0_Set(b);
+            new Obj4F(o).InputAmplitude_Set((a * 0.1f));
+            new Obj4F(o).Mode_Set(b);
         }
     }
 

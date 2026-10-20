@@ -19338,13 +19338,13 @@ public static partial class ActorSound
                 p = new B04Src(src).unkD0;
                 break;
             }
-            if ((new B04Dst(d).unkFC != 0u))
+            if ((new B04Dst(d).SoundLoopPtr != 0u))
             {
                 Audio.StopByOwner(p);
-                if ((new B04Dst(d).unkFC != 0u))
+                if ((new B04Dst(d).SoundLoopPtr != 0u))
                 {
-                    LoopSound.Stop((uint)((int)(LoopSound.GetPool())), new B04Dst(d).unkFC);
-                    new B04Dst(d).unkFC_Set(0u);
+                    LoopSound.Stop((uint)((int)(LoopSound.GetPool())), new B04Dst(d).SoundLoopPtr);
+                    new B04Dst(d).SoundLoopPtr_Set(0u);
                 }
             }
         }
@@ -21486,7 +21486,7 @@ public static partial class SndFx
                 int st = 0;
                 uint pl = 0u;
                 sum = 0;
-                ok = Sort.FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).SongIndexTablePtr)), new SndMgr(new M04FxB(f).owner_).SongIndexCount, (uint)((short)(id)), _fp, (_fp + 4u));
+                ok = Sort.FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).OwnerPtr).SongIndexTablePtr)), new SndMgr(new M04FxB(f).OwnerPtr).SongIndexCount, (uint)((short)(id)), _fp, (_fp + 4u));
                 if ((ok == 0))
                 {
                     idx = (-1);
@@ -21523,13 +21523,13 @@ public static partial class SndFx
                     return (-1);
                 }
                 sum = 0;
-                Sound.GetPlayer(new M04FxB(f).owner_);
-                Sound.Lock(new M04FxB(f).owner_);
-                new M04FxB(f).unkC_Set(id);
-                new M04FxB(f).idx_Set(idx);
-                new M04FxB(f).unk4_Set((new M04FxB(f).unk4 + 1));
-                ret = new M04FxB(f).unk4;
-                if ((Sort.FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).SongIndexTablePtr)), new SndMgr(new M04FxB(f).owner_).SongIndexCount, (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
+                Sound.GetPlayer(new M04FxB(f).OwnerPtr);
+                Sound.Lock(new M04FxB(f).OwnerPtr);
+                new M04FxB(f).SoundId_Set(id);
+                new M04FxB(f).VariantIndex_Set(idx);
+                new M04FxB(f).PlaySerial_Set((new M04FxB(f).PlaySerial + 1));
+                ret = new M04FxB(f).PlaySerial;
+                if ((Sort.FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).OwnerPtr).SongIndexTablePtr)), new SndMgr(new M04FxB(f).OwnerPtr).SongIndexCount, (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
                 {
                     if ((Mem.S32((_fp + 8u)) != Mem.S32((_fp + 12u))))
                     {
@@ -21549,24 +21549,24 @@ public static partial class SndFx
                         }
                     }
                 }
-                new M04FxB(f).unk18_Set(64);
-                new M04FxB(f).vol_Set((int)((v * 32767f)));
-                st = new M04FxB(f).state;
+                new M04FxB(f).Pan_18_Set(64);
+                new M04FxB(f).Volume_Set((int)((v * 32767f)));
+                st = new M04FxB(f).State;
                 if (((st == 3) || (st == 1)))
                 {
                     if (((st != 2) && (st != 0)))
                     {
-                        new M04FxB(f).state_Set(2);
-                        pl = Sound.GetPlayer(new M04FxB(f).owner_);
+                        new M04FxB(f).State_Set(2);
+                        pl = Sound.GetPlayer(new M04FxB(f).OwnerPtr);
                         alSndpSetSound(pl, new M04FxB(f).snd);
                         alSndpStop(pl);
                     }
                 }
                 else
                 {
-                    new M04FxB(f).state_Set(1);
+                    new M04FxB(f).State_Set(1);
                 }
-                Sound.Unlock(new M04FxB(f).owner_);
+                Sound.Unlock(new M04FxB(f).OwnerPtr);
                 return ret;
             }
         }
@@ -21580,10 +21580,10 @@ public static partial class SndFx
         {
             if (Dbg.On) Dbg.Enter("func_0025D178", (uint)fx, (uint)m);
             new SndFxView(fx).OwnerPtr_Set(m);
-            new SndFxView(fx).unk4_Set((-1));
-            new SndFxView(fx).unkC_Set((-1));
+            new SndFxView(fx).PlaySerial_Set((-1));
+            new SndFxView(fx).SoundId_Set((-1));
             new SndFxView(fx).State_Set(0);
-            new SndFxView(fx).unk14_Set(0);
+            new SndFxView(fx).Volume_Set(0);
             new SndFxView(fx).Pan_18_Set(64);
             new SndFxView(fx).SndpSoundId_Set((int)(alSndpAllocate(Sound.GetPlayer(new SndFxView(fx).OwnerPtr), Gv.SndFx_StreamSound)));
         }
@@ -22501,7 +22501,7 @@ public static partial class SndVoice
                         vf = (a + RandomGen.Float((b - a)));
                     }
                 }
-                p = new M04VP(vp).pos.P;
+                p = new M04VP(vp).Position.P;
                 q = (new M04Emitter(o).MgrPtr.tgt_ + 296u);
                 {
                     float d2 = ((((new M04Vec3(p).x - new M04Vec3(q).x) * (new M04Vec3(p).x - new M04Vec3(q).x)) + ((new M04Vec3(p).y - new M04Vec3(q).y) * (new M04Vec3(p).y - new M04Vec3(q).y))) + ((new M04Vec3(p).z - new M04Vec3(q).z) * (new M04Vec3(p).z - new M04Vec3(q).z)));
@@ -22514,10 +22514,10 @@ public static partial class SndVoice
                         f = (1f - (d2 / Mem.F32(Gv.Sound_MaxDistanceSq)));
                     }
                 }
-                switch ((int)(new M04VP(vp).mode))
+                switch ((int)(new M04VP(vp).FalloffMode))
                 {
                 case 2:
-                    new M04VP(vp).scale_Set(f);
+                    new M04VP(vp).DistanceGain_Set(f);
                     break;
                 case 0:
                     f = (f * f);
@@ -22525,24 +22525,24 @@ public static partial class SndVoice
                     goto case 1;
                 case 1:
                     f = (f * f);
-                    new M04VP(vp).scale_Set(f);
+                    new M04VP(vp).DistanceGain_Set(f);
                     break;
                 default:
                     f = 0.0f;
-                    new M04VP(vp).scale_Set(0.0f);
+                    new M04VP(vp).DistanceGain_Set(0.0f);
                     break;
                 }
-                new M04VP(vp).f20_Set(f);
+                new M04VP(vp).InitialGain_Set(f);
             }
             else
             {
                 vf = 1f;
-                new M04VP(vp).scale_Set(vf);
-                new M04VP(vp).f20_Set(vf);
+                new M04VP(vp).DistanceGain_Set(vf);
+                new M04VP(vp).InitialGain_Set(vf);
             }
             if ((((int)(new M04Info(rec).bits6) & 4) != 0))
             {
-                new M04VP(vp).vol_Set((int)(Trunc16ToF32(new M04Rec12(env).w0)));
+                new M04VP(vp).Volume_Set((int)(Trunc16ToF32(new M04Rec12(env).w0)));
                 fs = Trunc16ToF32(new M04Rec12(env).w1);
                 fs = (float)((float)(fs) - Trunc16ToF32(new M04Rec12(env).w2));
                 if (((int)(new M04Rec12(env).w3) == 0))
@@ -22563,7 +22563,7 @@ public static partial class SndVoice
                 {
                     t = (n * 2);
                 }
-                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * new M04Emitter(o).VolumeLevel))) * vf)));
+                new M04VP(vp).Volume_Set((int)(((float)((int)(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * new M04Emitter(o).VolumeLevel))) * vf)));
                 if (((float)(n) < 0.0f))
                 {
                     t = ((-n) * 2);
@@ -22573,7 +22573,7 @@ public static partial class SndVoice
                     t = (n * 2);
                 }
                 new M04Rec12(env).w0_Set(F32ToTrunc16(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * vf)));
-                new M04VP(vp).wC_Set((int)(Trunc16ToF32((ushort)(((int)(new M04Rec12(env).w0) & 65535)))));
+                new M04VP(vp).BaseVolume_Set((int)(Trunc16ToF32((ushort)(((int)(new M04Rec12(env).w0) & 65535)))));
                 return;
             }
             n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
@@ -22586,8 +22586,8 @@ public static partial class SndVoice
                 t = (n * 2);
             }
             t = (int)(((float)(Mem.S16((Gv.Sound_VolumeCurve + (uint)t))) * vf));
-            new M04VP(vp).vol_Set(t);
-            new M04VP(vp).wC_Set(t);
+            new M04VP(vp).Volume_Set(t);
+            new M04VP(vp).BaseVolume_Set(t);
         }
     }
 
@@ -22906,11 +22906,11 @@ public static partial class SndVoice
             _f8: ;
             _f7: ;
             _f3: ;
-            new M04VP(vp).pan_Set((short)((int)(new M04Emitter(o).PanLevel)));
+            new M04VP(vp).Pan_Set((short)((int)(new M04Emitter(o).PanLevel)));
             goto L_setpan;
             _f1: ;
             if (!((((new M04Emitter(o).Flags & (uint)(1024)) != 0u) && (new M04Emitter(o).IsNonPositional == 0)))) goto _f13;
-            new M04VP(vp).pan_Set((short)((int)(Sound.ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
+            new M04VP(vp).Pan_Set((short)((int)(Sound.ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
             L_setpan: ;
             pan = Mem.U8(((vp + 24u) + (uint)1));
             pl = new M04Emitter(o).MgrPtr.player.P;
@@ -22918,7 +22918,7 @@ public static partial class SndVoice
             alSndpSetPan(pl, (byte)((int)(pan)));
             return;
             _f13: ;
-            new M04VP(vp).pan_Set((short)(64));
+            new M04VP(vp).Pan_Set((short)(64));
         }
     }
 
@@ -23183,7 +23183,7 @@ public static partial class SndVoice
             short id = 0;
             SndVoice.InitPitch(o, a1, a2, default(uint));
             SndVoice.InitVolume(o, a1);
-            new M04Emitter(o).StartFrame.pan_Set((short)(64));
+            new M04Emitter(o).StartFrame.Pan_Set((short)(64));
             id = new M04EmArg(a1).id;
             if (((int)(id) != (-1)))
             {
@@ -23194,7 +23194,7 @@ public static partial class SndVoice
                 {
                     new M04Emitter(o).PanStep_Set(((f - Trunc16ToF32(new M04Emitter(o).PanEnvelope.w2)) / (float)(new M04Emitter(o).PanEnvelope.w3)));
                     new M04Emitter(o).PanLevel_Set(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1));
-                    new M04Emitter(o).StartFrame.pan_Set((short)((int)(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1))));
+                    new M04Emitter(o).StartFrame.Pan_Set((short)((int)(Trunc16ToF32(new M04Emitter(o).PanEnvelope.w1))));
                     new M04Emitter(o).HasPanEnvelope_Set(1);
                     return;
                 }
@@ -23205,14 +23205,14 @@ public static partial class SndVoice
             {
                 if (((new M04Emitter(o).IsNonPositional == 0) && (Sound.IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
-                    new M04Emitter(o).StartFrame.pan_Set((short)(new M04Emitter(o).MgrPtr.defaultPan));
+                    new M04Emitter(o).StartFrame.Pan_Set((short)(new M04Emitter(o).MgrPtr.defaultPan));
                 }
             }
             else
             {
                 if (((new M04Emitter(o).IsNonPositional == 0) && (Sound.IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
-                    new M04Emitter(o).StartFrame.pan_Set((short)((int)(Sound.ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
+                    new M04Emitter(o).StartFrame.Pan_Set((short)((int)(Sound.ComputePan((o + (uint)68), new M04Emitter(o).MgrPtr.tgt_, default(uint), default(uint)))));
                 }
             }
         }
@@ -23418,10 +23418,10 @@ public static partial class Sound
                 AudioMgr.Init(_fp, Mem.S32(Gv.Thread_AudioPri), (_fp + 40u));
                 Mem.Set(Gv.AudioMgr_SampleRomBase, Resource.ReadRomTableWord(8));
                 r = Resource.AllocVirtualRegion((uint)((Resource.ReadRomTableWord(4) - Resource.ReadRomTableWord(0))), 0, Resource.ReadRomTableWord(0));
-                new SndMgr(m).SeqPlayer.unk8__Set((uint)(new M04Res(r).f4));
-                bk = new M04Res(r).fC;
+                new SndMgr(m).SeqPlayer.unk8__Set((uint)(new M04Res(r).SeqTablePtr));
+                bk = new M04Res(r).BankFilePtr;
                 Mem.Set((m + (uint)128), bk);
-                new SndMgr(m).unk7C__Set((uint)(new M04Bank(bk).f4));
+                new SndMgr(m).unk7C__Set((uint)(new M04Bank(bk).FirstBankPtr));
                 Sound.LoadTables(m);
                 Seq.InitPlayer(new SndMgr(m).SeqPlayer.P, m);
                 t = new M04Bank(new SndMgr(m).unk7C_).tab_;

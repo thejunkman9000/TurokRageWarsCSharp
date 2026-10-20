@@ -25,16 +25,16 @@ public static partial class UiScreen
             {
                 Time.GetSecondsSinceStart();
                 new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p_Set(ResourcePool.Malloc((uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt)));
-                new S_G_v2(Gv.Image_ArchiveCtx).h_Set((int)(FileIo.Open(new S_G_v2(Gv.Image_ArchiveCtx).b4.P, Gv.Str_Rb, default(uint), default(uint))));
-                FileIo.Seek((uint)(new S_G_v2(Gv.Image_ArchiveCtx).h), (uint)((new S_G_v2(Gv.Image_ArchiveCtx).f240 + new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off)), (uint)(0), default(uint));
-                FileIo.Read(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(Gv.Image_ArchiveCtx).h));
+                new S_G_v2(Gv.Image_ArchiveCtx).FileHandle_Set((int)(FileIo.Open(new S_G_v2(Gv.Image_ArchiveCtx).FileName.P, Gv.Str_Rb, default(uint), default(uint))));
+                FileIo.Seek((uint)(new S_G_v2(Gv.Image_ArchiveCtx).FileHandle), (uint)((new S_G_v2(Gv.Image_ArchiveCtx).ScreensBase + new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off)), (uint)(0), default(uint));
+                FileIo.Read(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(Gv.Image_ArchiveCtx).FileHandle));
                 if ((Mem.S32(Gv.UiScreen_KeepPristineCopies) != 0))
                 {
                     Mem.Set(((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12)) + 8u), (int)(ResourcePool.Malloc((uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt))));
                     MemUtil.Copy(new S12_v2((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p, new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt));
                 }
-                FileIo.Close((uint)(new S_G_v2(Gv.Image_ArchiveCtx).h), default(uint), default(uint), default(uint));
-                new S_G_v2(Gv.Image_ArchiveCtx).h_Set(0);
+                FileIo.Close((uint)(new S_G_v2(Gv.Image_ArchiveCtx).FileHandle), default(uint), default(uint), default(uint));
+                new S_G_v2(Gv.Image_ArchiveCtx).FileHandle_Set(0);
                 UiTree.Relocate(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off - new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(0 * 12))).off));
                 Time.GetSecondsSinceStart();
             }

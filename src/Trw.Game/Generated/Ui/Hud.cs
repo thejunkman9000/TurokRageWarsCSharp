@@ -93,11 +93,11 @@ public static partial class Hud
             uint G = 0u;
             uint T = 0u;
             G = Gv.Settings;
-            if (!(((int)(new B04G2(G).unk1D) != 0))) goto _f0;
+            if (!(((int)(new B04G2(G).IsMultiplayer) != 0))) goto _f0;
             if (!((a != b))) goto _f1;
-            T = new B04G2(G).sub.P;
-            if (!(((int)(new B04St(new B04Pm(a).stats_).unk8F) != 0))) goto _f2;
-            if (!((new B04Gs(T).unk54 != 0))) goto _f3;
+            T = new B04G2(G).MatchRules.P;
+            if (!(((int)(new B04St(new B04Pm(a).stats_).IsMonkey) != 0))) goto _f2;
+            if (!((new B04Gs(T).IsMonkeyTagMode != 0))) goto _f3;
             StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_TaggedBy + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
             if (!((new B04Pm(a).cam != 0u))) goto _f4;
@@ -112,7 +112,7 @@ public static partial class Hud
             _f5: ;
             goto L_blk25;
             _f3: ;
-            if (!((new B04Gs(T).unk78 != 0))) goto _f6;
+            if (!((new B04Gs(T).TagObjectiveMode_78 != 0))) goto _f6;
             StrUtil.Copy((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((Gv.HudMsg_KilledBy + (uint)(0 * 4))));
             StrUtil.Copy((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
             if (!((new B04Pm(a).cam != 0u))) goto _f7;

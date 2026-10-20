@@ -13,7 +13,7 @@ public static partial class ActorPool
         {
             if (Dbg.On) Dbg.Enter("func_00262CA8", (uint)o);
             uint p = new B14Obj(o).f2F0_;
-            new B14Obj(o).f174_Set(0);
+            new B14Obj(o).HitPoints_Set(0);
             if ((p != 0u))
             {
                 Mem.Set(p, (int)((int)(Mem.S32(p)) - 1));
@@ -91,14 +91,14 @@ public static partial class ActorPool
             {
                 next = new B14Ent2(e).next_;
                 inside = 0;
-                if (((((((Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new B14Ent2(e).minx) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new B14Ent2(e).maxx)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new B14Ent2(e).minz)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new B14Ent2(e).maxz)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new B14Ent2(e).miny)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new B14Ent2(e).maxy)))
+                if (((((((Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new B14Ent2(e).Bounds) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new B14Ent2(e).BoundsMaxX)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new B14Ent2(e).BoundsMinZ)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new B14Ent2(e).BoundsMaxZ)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new B14Ent2(e).BoundsMinY)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new B14Ent2(e).BoundsMaxY)))
                 {
                     inside = 1;
                 }
                 if ((inside != 0))
                 {
                     Level.AddActiveActor(arg, e);
-                    if (((new B14Ent2(e).counter_ != 0u) && (new B14Ent2(e).f174 == 0)))
+                    if (((new B14Ent2(e).counter_ != 0u) && (new B14Ent2(e).HitPoints == 0)))
                     {
                         Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));
                         new B14Ent2(e).counter__Set(0u);
@@ -106,8 +106,8 @@ public static partial class ActorPool
                 }
                 else
                 {
-                    new B14Ent2(e).f174_Set(0);
-                    new B14Ent2(e).flags_Set((uint)((uint)(new B14Ent2(e).flags) & (uint)((~512))));
+                    new B14Ent2(e).HitPoints_Set(0);
+                    new B14Ent2(e).Flags_Set((uint)((uint)(new B14Ent2(e).Flags) & (uint)((~512))));
                     if ((new B14Ent2(e).counter_ != 0u))
                     {
                         Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));

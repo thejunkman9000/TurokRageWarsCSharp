@@ -202,7 +202,7 @@ public static partial class Results
                 UiNode.SetVisible(w, 1);
                 new Q03Wid(w).Alpha_Set((byte)(150));
                 p = w;
-                new Q03Wid(p).unk2C_Set(new Q03Row70((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId)) * 112))).f0);
+                new Q03Wid(p).Value_Set(new Q03Row70((Gv.Menu_CharacterPortraitTable + (uint)(CharSelect.FindRowByCharacter((int)(new Q03Ent(e).CharacterId)) * 112))).f0);
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id4)), default(uint), default(uint));
                 UiNode.SetVisible(w, 1);
                 new Q03Wid(w).Alpha_Set((byte)(25));
@@ -211,34 +211,34 @@ public static partial class Results
                 UiNode.SetVisible(w, 1);
                 if (((int)(new Q03Ent(e).IsBot) == 0))
                 {
-                    new Q03Wid(w).unk38_Set((Gv.ProfileTable + (uint)(sel * 400)));
+                    new Q03Wid(w).TextPtr_Set((Gv.ProfileTable + (uint)(sel * 400)));
                 }
                 else
                 {
                     LibC.StrCopy(new Q03Ent(e).Name.P, StrUtil.ToUpper(new Q03Ent(e).Name.P));
-                    new Q03Wid(w).unk38_Set(new Q03Ent(e).Name.P);
+                    new Q03Wid(w).TextPtr_Set(new Q03Ent(e).Name.P);
                 }
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).idC)), default(uint), default(uint));
                 new Q03Wid(w).Alpha_Set((byte)(115));
                 UiNode.SetVisible(w, 1);
                 if (((int)(new Q03Ent(e).IsBot) == 0))
                 {
-                    new Q03Wid(w).unk38_Set((uint)((int)(Profile.GetRankName(sel))));
+                    new Q03Wid(w).TextPtr_Set((uint)((int)(Profile.GetRankName(sel))));
                 }
                 else
                 {
-                    new Q03Wid(w).unk38_Set((uint)(Mem.S32(Mem.U32((Gv.BotSetup_SkillNameTable + (uint)(new Q03Ent(e).BotSkill * 4))))));
+                    new Q03Wid(w).TextPtr_Set((uint)(Mem.S32(Mem.U32((Gv.BotSetup_SkillNameTable + (uint)(new Q03Ent(e).BotSkill * 4))))));
                 }
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id10)), default(uint), default(uint));
                 new Q03Wid(w).Alpha_Set((byte)(175));
                 UiNode.SetVisible(w, 1);
                 StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).FragsText_150.P + (uint)(i * 25)), Gv.FmtStr_d, (uint)((int)(new Q03Ent(e).Frags)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).FragsText_150.P + (uint)(i * 25)));
+                new Q03Wid(w).TextPtr_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).FragsText_150.P + (uint)(i * 25)));
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id14)), default(uint), default(uint));
                 new Q03Wid(w).Alpha_Set((byte)(175));
                 UiNode.SetVisible(w, 1);
                 StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).DeathsText_1B4.P + (uint)(i * 25)), Gv.FmtStr_d, (uint)(((int)(new Q03Ent(e).Deaths) + (int)(new Q03Ent(e).SelfDeaths_0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).DeathsText_1B4.P + (uint)(i * 25)));
+                new Q03Wid(w).TextPtr_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).DeathsText_1B4.P + (uint)(i * 25)));
                 if ((Mem.S32((Gv.ArenaType + (uint)(0 * 4))) == 0))
                 {
                     UiNode.SetVisible(UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id18)), default(uint), default(uint)), 0);
@@ -256,7 +256,7 @@ public static partial class Results
                         v = ((Mem.S32((Gv.Stats_ShotsHitTable + (uint)(sel * 4))) * 100) / cnt);
                     }
                     StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)), Gv.Str_D2, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                    new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)));
+                    new Q03Wid(w).TextPtr_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).HitPercentText.P + (uint)(i * 25)));
                 }
                 if ((Mem.S32((Gv.ArenaType + (uint)(0 * 4))) == 3))
                 {
@@ -281,7 +281,7 @@ public static partial class Results
                         StrUtil.FormatInto((new Q03S53(Mem.U32(Gv.Results_PagePtr)).ObjectiveText.P + (uint)(i * 25)), Gv.FmtStr_d, (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     }
-                    new Q03Wid(p).unk38_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).ObjectiveText.P + (uint)(i * 25)));
+                    new Q03Wid(p).TextPtr_Set((new Q03S53(Mem.U32(Gv.Results_PagePtr)).ObjectiveText.P + (uint)(i * 25)));
                 }
                 w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id20)), default(uint), default(uint));
                 UiNode.SetVisible(w, 0);
@@ -295,13 +295,13 @@ public static partial class Results
                     {
                         w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id20)), default(uint), default(uint));
                         UiNode.SetVisible(w, 1);
-                        new Q03Wid(w).unk2C_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8))) * 4))));
+                        new Q03Wid(w).Value_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8))) * 4))));
                     }
                     if ((Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) != (-1)))
                     {
                         w = UiTree.FindNode((uint)(new Q03S53(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)((int)(new Q03Slot((Gv.Results_RowNodeTable_Ids + (uint)(i * 40))).id24)), default(uint), default(uint));
                         UiNode.SetVisible(w, 1);
-                        new Q03Wid(w).unk2C_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) * 4))));
+                        new Q03Wid(w).Value_Set(Mem.S32((Gv.Results_AwardTextIdTable + (uint)(Mem.S32(((new Q03S53(Mem.U32(Gv.Results_PagePtr)).Awards.P + (uint)(sel * 8)) + 4u)) * 4))));
                     }
                 }
             }
@@ -723,7 +723,7 @@ public static partial class Results
                     o = UiTree.FindNode((uint)(new O04ModeS53C0(Mem.U32(Gv.Results_PagePtr)).RootNode), (uint)(616), default(uint), default(uint));
                     UiNode.SetVisible(o, 1);
                     new O04Sub2C(o).Alpha_Set((byte)(175));
-                    new O04Sub2C(o).unk38_Set(Mem.S32(Gv.TrialReward_CoopTalisman));
+                    new O04Sub2C(o).TextPtr_Set(Mem.S32(Gv.TrialReward_CoopTalisman));
                     new O04V3(_fp).x_Set(0.3f);
                     new O04V3(_fp).y_Set(0.3f);
                     new O04V3(_fp).z_Set(0.3f);
@@ -907,7 +907,7 @@ public static partial class Results
                 v = 96;
                 break;
             }
-            new O04Sub2C(p).unk2C_Set(v);
+            new O04Sub2C(p).Value_Set(v);
         }
     }
 

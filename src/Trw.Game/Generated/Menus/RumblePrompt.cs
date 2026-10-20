@@ -108,7 +108,7 @@ public static partial class RumblePrompt
                 return 0;
             }
             Menu.EnableInput();
-            if ((new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).f20 != 1))
+            if ((new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).IsDismissed != 1))
             {
                 return 0;
             }
@@ -132,7 +132,7 @@ public static partial class RumblePrompt
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 11)))
             {
                 Menu.ConsumeEvent();
-                new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).f20_Set(1);
+                new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).IsDismissed_Set(1);
             }
             return 0;
         }
@@ -144,7 +144,7 @@ public static partial class RumblePrompt
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00422444");
-            new O3Y(Mem.U32(Gv.RumblePrompt_StatePtr)).f20_Set(1);
+            new O3Y(Mem.U32(Gv.RumblePrompt_StatePtr)).IsDismissed_Set(1);
             return 0;
         }
     }

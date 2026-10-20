@@ -1565,7 +1565,7 @@ public static partial class Gfx
                 uint pp_15 = Gv.DisplayListPtr;
                 uint q_15 = (Mem.Set(pp_15, (uint)(Mem.U32(pp_15) + 8u)) - 8u);
                 new M5Dl(q_15).w0_Set(((uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095)) | 4279238656u));
-                new M5Dl(q_15).w1_Set(new M5Gfx(Mem.U32(Gv.Gfx_FrameCtxPtr)).fb);
+                new M5Dl(q_15).w1_Set(new M5Gfx(Mem.U32(Gv.Gfx_FrameCtxPtr)).FramebufferPtr);
             }
             {
                 uint pp_16 = Gv.DisplayListPtr;

@@ -389,7 +389,7 @@ public static partial class Pvs
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00297578", (uint)o);
-            return ((new B21Obj10(o).unk10 == 2) ? ((BitStream.ReadBitsLsb(o, 1) != 0) ? 1 : 0) : ((new B21Obj10(o).unk10 == 1) ? 1 : 0));
+            return ((new B21Obj10(o).CellState == 2) ? ((BitStream.ReadBitsLsb(o, 1) != 0) ? 1 : 0) : ((new B21Obj10(o).CellState == 1) ? 1 : 0));
         }
     }
 }

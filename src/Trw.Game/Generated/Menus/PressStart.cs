@@ -31,8 +31,8 @@ public static partial class PressStart
                 Mem.Set((p + (uint)120), (byte)(0));
                 p = (uint)(p - (uint)(150 * 1));
             }
-            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f0_Set(UiTree.FindNode(cfg, (uint)(919), default(uint), default(uint)));
-            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f4_Set(0);
+            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).PromptNodePtr_Set(UiTree.FindNode(cfg, (uint)(919), default(uint), default(uint)));
+            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).PulseTimer_Set(0);
             new O05GX(Gv.Settings).TimeLimit_Set((byte)(10));
             new O05GX(Gv.Settings).FragLimit_Set((byte)(10));
             for (i = 0; (i < 4); ++i)

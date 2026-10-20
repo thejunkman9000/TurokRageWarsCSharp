@@ -127,11 +127,11 @@ public static partial class MenuPanel
                         do
                         {
                             uint d = new Q04Itm(it_2).def_;
-                            if (((new Q04ItemDef(d).flags & (uint)(67108864)) != 0u))
+                            if (((new Q04ItemDef(d).Flags & (uint)(67108864)) != 0u))
                             {
-                                if ((new Q04ItemDef(d).unk1C != (uint)((off = 0))))
+                                if ((new Q04ItemDef(d).InitCallback != (uint)((off = 0))))
                                 {
-                                    Funcs.CallReg(new Q04ItemDef(d).unk1C, it_2, p, a7, 0u);
+                                    Funcs.CallReg(new Q04ItemDef(d).InitCallback, it_2, p, a7, 0u);
                                 }
                             }
                             --i;
@@ -1052,10 +1052,10 @@ public static partial class MenuPanel
             uint n = 0u;
             uint next = 0u;
             uint p = 0u;
-            for (n = new O06H(a).unk0_; (n != 0u); n = next)
+            for (n = new O06H(a).Head; (n != 0u); n = next)
             {
                 next = new O06N(n).NextPanelPtr;
-                if (((((int)(new O06N(n).State) == 2) && (a != Gv.MenuPanel_SharedList)) && (new O06H(Gv.MenuPanel_SharedList).unk10 != 0)))
+                if (((((int)(new O06N(n).State) == 2) && (a != Gv.MenuPanel_SharedList)) && (new O06H(Gv.MenuPanel_SharedList).Count != 0)))
                 {
                     continue;
                 }
@@ -1084,9 +1084,9 @@ public static partial class MenuPanel
         {
             if (Dbg.On) Dbg.Enter("func_00442B44", (uint)a);
             uint n = 0u;
-            for (n = new O06A_v22(a).unk4_; (n != 0u); n = new O06N_v4(n).unk1D0_)
+            for (n = new O06A_v22(a).Tail; (n != 0u); n = new O06N_v4(n).PrevPanelPtr)
             {
-                Funcs.CallReg(new O06V_v4(new O06N_v4(n).unk14_).unk10, n, a, 0u, 0u);
+                Funcs.CallReg(new O06V_v4(new O06N_v4(n).TemplatePtr).DrawCallback, n, a, 0u, 0u);
             }
         }
     }
@@ -1099,9 +1099,9 @@ public static partial class MenuPanel
             if (Dbg.On) Dbg.Enter("func_00442B98", (uint)a);
             uint n = 0u;
             int c = 0;
-            for (n = new O06A_v23(a).unk0_; (n != 0u); n = new O06N_v3(n).unk1D4_)
+            for (n = new O06A_v23(a).Head; (n != 0u); n = new O06N_v3(n).NextPanelPtr)
             {
-                if (((int)(new O06N_v3(n).unk28) != 4))
+                if (((int)(new O06N_v3(n).State) != 4))
                 {
                     ++c;
                 }

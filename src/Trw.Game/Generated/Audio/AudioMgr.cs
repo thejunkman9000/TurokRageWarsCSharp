@@ -158,11 +158,11 @@ public static partial class AudioMgr
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00256E8C", (uint)@out);
-            if (((int)(new Ctx256(Gv.AudioMgr_DmaState).inited) == 0))
+            if (((int)(new Ctx256(Gv.AudioMgr_DmaState).IsInitialized) == 0))
             {
-                new Ctx256(Gv.AudioMgr_DmaState).f8_Set(Gv.AudioMgr_DmaBuffers);
-                new Ctx256(Gv.AudioMgr_DmaState).f4_Set(0);
-                new Ctx256(Gv.AudioMgr_DmaState).inited_Set((byte)(1));
+                new Ctx256(Gv.AudioMgr_DmaState).FirstFreePtr_Set(Gv.AudioMgr_DmaBuffers);
+                new Ctx256(Gv.AudioMgr_DmaState).FirstUsedPtr_Set(0);
+                new Ctx256(Gv.AudioMgr_DmaState).IsInitialized_Set((byte)(1));
             }
             Mem.Set(@out, Gv.AudioMgr_DmaState);
             return 0x00257210u;

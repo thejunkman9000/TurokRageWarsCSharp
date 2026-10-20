@@ -239,30 +239,30 @@ public readonly struct S_v5
     // +0x0
     public U8x156 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x9C
-    public int f9C
+    public int RewardEntries
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x9Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x9Cu, value);
     }
-    [MethodImpl(Inl)] public int f9C_Set(int v) => Mem.Set(P + 0x9Cu, v);
+    [MethodImpl(Inl)] public int RewardEntries_Set(int v) => Mem.Set(P + 0x9Cu, v);
     // +0xA0
     public U8x16 pad1 { [MethodImpl(Inl)] get => new(P + 0xA0u); }
     // +0xB0
-    public int fB0
+    public int SecondRewardValue
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB0u, value);
     }
-    [MethodImpl(Inl)] public int fB0_Set(int v) => Mem.Set(P + 0xB0u, v);
+    [MethodImpl(Inl)] public int SecondRewardValue_Set(int v) => Mem.Set(P + 0xB0u, v);
     // +0xB4
     public U8x212 pad2 { [MethodImpl(Inl)] get => new(P + 0xB4u); }
     // +0x188
-    public int f188
+    public int RewardIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x188u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x188u, value);
     }
-    [MethodImpl(Inl)] public int f188_Set(int v) => Mem.Set(P + 0x188u, v);
+    [MethodImpl(Inl)] public int RewardIndex_Set(int v) => Mem.Set(P + 0x188u, v);
 }
 
 /// <summary>struct S, 0x24 bytes, at a guest address.</summary>
@@ -306,21 +306,21 @@ public readonly struct S_v7
     [MethodImpl(Inl)] public static implicit operator uint(S_v7 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator S_v7(uint p) => new(p);
     // +0x0
-    public int f0
+    public int PopupPanelPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int f0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int PopupPanelPtr_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x16 pad { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x14
-    public int fv
+    public int NextScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int fv_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int NextScreenId_Set(int v) => Mem.Set(P + 0x14u, v);
 }
 
 /// <summary>struct S, 0x38 bytes, at a guest address.</summary>
@@ -335,21 +335,21 @@ public readonly struct S_v8
     [MethodImpl(Inl)] public static implicit operator uint(S_v8 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator S_v8(uint p) => new(p);
     // +0x0
-    public int f0
+    public int TypeId
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int f0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int TypeId_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x48 pad { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x34
-    public int f34
+    public int ModelId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public int f34_Set(int v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public int ModelId_Set(int v) => Mem.Set(P + 0x34u, v);
 }
 
 /// <summary>struct S, 0x18 bytes, at a guest address.</summary>
@@ -364,21 +364,21 @@ public readonly struct S_v9
     [MethodImpl(Inl)] public static implicit operator uint(S_v9 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator S_v9(uint p) => new(p);
     // +0x0
-    public int f0
+    public int PopupPanelPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int f0_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int PopupPanelPtr_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x16 pad { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x14
-    public int f14
+    public int NextScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
     }
-    [MethodImpl(Inl)] public int f14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int NextScreenId_Set(int v) => Mem.Set(P + 0x14u, v);
 }
 
 /// <summary>struct S_vars, 0x18 bytes, at a guest address.</summary>
@@ -746,21 +746,21 @@ public readonly struct Scn
     // +0x0
     public U8x64 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x40
-    public int unk40
+    public int IsEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public int unk40_Set(int v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public int IsEnabled_Set(int v) => Mem.Set(P + 0x40u, v);
     // +0x44
     public U8x68 pad44 { [MethodImpl(Inl)] get => new(P + 0x44u); }
     // +0x88
-    public int unk88
+    public int IsBar2Enabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int unk88_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int IsBar2Enabled_Set(int v) => Mem.Set(P + 0x88u, v);
 }
 
 /// <summary>struct Scores, 0x2C bytes, at a guest address.</summary>
@@ -2007,7 +2007,7 @@ public readonly struct ScriptCtx
     // +0x0
     public U8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public S32Ptr pc
+    public S32Ptr ScriptPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value.P);
@@ -2019,35 +2019,35 @@ public readonly struct ScriptCtx
     }
     [MethodImpl(Inl)] public uint pc__Set(uint v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public int state
+    public int State
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int state_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int State_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
     public U8x48 padC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x3C
-    public int unk3C
+    public int LabelId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public int unk3C_Set(int v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public int LabelId_Set(int v) => Mem.Set(P + 0x3Cu, v);
     // +0x40
-    public int unk40
+    public int IsEnabled
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x40u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x40u, value);
     }
-    [MethodImpl(Inl)] public int unk40_Set(int v) => Mem.Set(P + 0x40u, v);
+    [MethodImpl(Inl)] public int IsEnabled_Set(int v) => Mem.Set(P + 0x40u, v);
     // +0x44
-    public int unk44
+    public int TargetPercent
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public int unk44_Set(int v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public int TargetPercent_Set(int v) => Mem.Set(P + 0x44u, v);
 }
 
 /// <summary>struct ScriptHolder, 0x90 bytes, at a guest address.</summary>
@@ -2064,7 +2064,7 @@ public readonly struct ScriptHolder
     // +0x0
     public U8x72 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x48
-    public ScriptCtx s { [MethodImpl(Inl)] get => new(P + 0x48u); }
+    public ScriptCtx Bar2 { [MethodImpl(Inl)] get => new(P + 0x48u); }
 }
 
 /// <summary>struct Scroll, 0x54 bytes, at a guest address.</summary>

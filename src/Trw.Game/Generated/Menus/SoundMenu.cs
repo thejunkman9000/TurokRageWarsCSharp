@@ -172,8 +172,8 @@ public static partial class SoundMenu
             if ((Menu.GetMessage() == 115))
             {
                 p = Mem.U32(Gv.SoundMenu_StatePtr);
-                new S_v9(p).f14_Set((-1));
-                PopupPanel.SetState((uint)(new S_v9(p).f0), 2);
+                new S_v9(p).NextScreenId_Set((-1));
+                PopupPanel.SetState((uint)(new S_v9(p).PopupPanelPtr), 2);
             }
             return 0;
         }
@@ -188,8 +188,8 @@ public static partial class SoundMenu
             uint p = 0u;
             Menu.ConsumeEvent();
             p = Mem.U32(Gv.SoundMenu_StatePtr);
-            new S_v7(p).fv_Set((-1));
-            PopupPanel.SetState((uint)(new S_v7(p).f0), 2);
+            new S_v7(p).NextScreenId_Set((-1));
+            PopupPanel.SetState((uint)(new S_v7(p).PopupPanelPtr), 2);
             return 0;
         }
     }

@@ -205,8 +205,8 @@ public static partial class MenuItem
         {
             if (Dbg.On) Dbg.Enter("func_0043F290_func_00443030", (uint)a);
             uint d = new O06A_v8(a).Data;
-            uint p = Funcs.CallReg(new O06D_v2(d).unk18, a, 0u, 0u, 0u);
-            switch (new O06D_v2(d).unk4)
+            uint p = Funcs.CallReg(new O06D_v2(d).GetValuePtrCallback, a, 0u, 0u, 0u);
+            switch (new O06D_v2(d).ValueType)
             {
             default:
                 return 0.0f;
@@ -969,8 +969,8 @@ public static partial class MenuItem
                     break;
                 case 3:
                     sub = (uint)(new Q04Item(it).Data);
-                    new Q04Info(o).Width_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).ViewportWidth) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
-                    new Q04Info(o).Height_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).ViewportHeight) / (float)(Mem.S32(Gv.ScreenHeight)))));
+                    new Q04Info(o).Width_Set((int)((((float)(new Q04Sub(sub).Width) * new Q04Cam(cam).ViewportWidth) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
+                    new Q04Info(o).Height_Set((int)((((float)(new Q04Sub(sub).Height) * new Q04Cam(cam).ViewportHeight) / (float)(Mem.S32(Gv.ScreenHeight)))));
                     break;
                 default:
                     new Q04Info(o).Width_Set(1);
@@ -1315,7 +1315,7 @@ public static partial class MenuItem
                             uint pp = Gv.DisplayListPtr;
                             d = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                             new Q4Gfx(d).w0_Set(3661103111u);
-                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).cam.ProjMatrices_380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
+                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).ListViewPtr.ProjMatrices_380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                         }
                         c = new Q4Win(w).cam_;
                         k = (new Q4Cam(c).ViewportWidth / (float)(Mem.S32(Gv.ScreenWidth)));
@@ -1351,18 +1351,18 @@ public static partial class MenuItem
                         }
                         Mem.Copy((_fp + 16u), new Q4Part(p).Position.P, 12);
                         new Q4V3((_fp + 16u)).y_Set((new Q4V3((_fp + 16u)).y - ((new Q4X(x).HeightOffset_47C * new Q4V3((_fp + 48u)).y) * 0.800000011f)));
-                        MathUtil.MtxTransformPoint(new Q4Win(w).cam.ViewMatrix.P, (_fp + 16u), (_fp + 32u));
+                        MathUtil.MtxTransformPoint(new Q4Win(w).ListViewPtr.ViewMatrix.P, (_fp + 16u), (_fp + 32u));
                         if (((s3 != 0u) && !((new Q4O_v2(o).Flags & (uint)(33554432)) != 0u)))
                         {
-                            Actor.Init(fx, (-1), new Q4Part(p).ActorTypeId, Mem.S32(Gv.NoRegionId), s3, (-1), (uint)(0), (new Q4Win(w).cam.Yaw + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).Scale.P, _fp);
+                            Actor.Init(fx, (-1), new Q4Part(p).ActorTypeId, Mem.S32(Gv.NoRegionId), s3, (-1), (uint)(0), (new Q4Win(w).ListViewPtr.Yaw + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).Scale.P, _fp);
                             Actor.CallRestore(fx);
                             new Q4O_v2(o).Flags_Set((new Q4O_v2(o).Flags | (uint)(33554432)));
                         }
                         tt = sinf(((float)((uint)((Mem.S32(Gv.LevelFrameCount) * 10))) * 0.0174532942f));
-                        ta = new Q4Win(w).f30;
-                        tb = new Q4Win(w).f34;
+                        ta = new Q4Win(w).PanelFade;
+                        tb = new Q4Win(w).TextFade;
                         Mem.Set(Gv.Menu_HighlightAlpha, (int)(((ta * tb) * (((tt + 1.0f) * 50.0f) + 50.0f))));
-                        if (((int)(new Q4Win(w).id) == new Q4IdS(idp).id))
+                        if (((int)(new Q4Win(w).CursorIndex) == new Q4IdS(idp).id))
                         {
                             new Q4Fx(fx).DrawCallback_Set(0x00443298u);
                         }

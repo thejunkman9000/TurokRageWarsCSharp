@@ -406,11 +406,11 @@ public static partial class ScreenMover
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AB6C0", (uint)s, (uint)a, (uint)b);
-            new Sprt(s).unk38_Set((-1));
-            new Sprt(s).unk10_Set((float)(a));
-            new Sprt(s).unk0_Set(0);
-            new Sprt(s).unk8_Set(0);
-            new Sprt(s).unk14_Set((float)(b));
+            new Sprt(s).DisplayedValue_Set((-1));
+            new Sprt(s).X_Set((float)(a));
+            new Sprt(s).IsActive_Set(0);
+            new Sprt(s).State_Set(0);
+            new Sprt(s).Y_Set((float)(b));
         }
     }
 
@@ -421,7 +421,7 @@ public static partial class ScreenMover
         {
             if (Dbg.On) Dbg.Enter("func_002AB6FC", (uint)c, (uint)pc);
             new ScriptCtx(c).pc__Set(pc);
-            new ScriptCtx(c).state_Set(2);
+            new ScriptCtx(c).State_Set(2);
             ScreenMover.Step(c, default(uint), default(uint), default(uint));
         }
     }
@@ -769,9 +769,9 @@ public static partial class Ui
             int t = 0;
             uint s3 = 0u;
             s4 = 0;
-            if ((new Q04Pan2(p).TemplatePtr.f14 != 0u))
+            if ((new Q04Pan2(p).TemplatePtr.UpdateCallback != 0u))
             {
-                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).TemplatePtr.f14, p, a1, 0u, 0u));
+                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).TemplatePtr.UpdateCallback, p, a1, 0u, 0u));
             }
             i = new Q04Pan2(p).ItemCount;
             it = new Q04Pan2(p).items_;
@@ -1985,9 +1985,9 @@ public static partial class UiNode
         {
             if (Dbg.On) Dbg.Enter("func_0040E154", (uint)r0, (uint)r1, (uint)n, (uint)c);
             uint fl = (uint)(new S_node_v2(n).Flags);
-            uint cf = new S_ctx_v2(c).flags;
-            float sx = new S_ctx_v2(c).sx;
-            float sy = new S_ctx_v2(c).sy;
+            uint cf = new S_ctx_v2(c).Flags;
+            float sx = new S_ctx_v2(c).ScaleX;
+            float sy = new S_ctx_v2(c).ScaleY;
             int f800 = (int)((ushort)((fl & (uint)(2048))));
             int f400 = (int)((ushort)((fl & (uint)(1024))));
             int t6 = ((int)((short)(new S_node_v2(n).Width)) >> (int)1);
@@ -1998,18 +1998,18 @@ public static partial class UiNode
             int cy = 0;
             if (!((cf & (uint)(16384)) != 0u))
             {
-                new S_ctx_v2(c).flags_Set((cf | (fl & (uint)(320))));
+                new S_ctx_v2(c).Flags_Set((cf | (fl & (uint)(320))));
             }
-            new S_ctx_v2(c).flags_Set((new S_ctx_v2(c).flags | (uint)(((int)(new S_node_v2(n).Flags) & 1545))));
+            new S_ctx_v2(c).Flags_Set((new S_ctx_v2(c).Flags | (uint)(((int)(new S_node_v2(n).Flags) & 1545))));
             if (((int)(new S_node_v2(n).Alpha) < 255))
             {
-                new S_ctx_v2(c).alpha_Set((byte)((((int)(new S_ctx_v2(c).alpha) * (int)(new S_node_v2(n).Alpha)) / 255)));
+                new S_ctx_v2(c).Alpha_Set((byte)((((int)(new S_ctx_v2(c).Alpha) * (int)(new S_node_v2(n).Alpha)) / 255)));
             }
-            if (((new S_ctx_v2(c).flags & (uint)(1)) != 0u))
+            if (((new S_ctx_v2(c).Flags & (uint)(1)) != 0u))
             {
-                new S_ctx_v2(c).alpha_Set((byte)(((int)(new S_ctx_v2(c).alpha) >> (int)1)));
+                new S_ctx_v2(c).Alpha_Set((byte)(((int)(new S_ctx_v2(c).Alpha) >> (int)1)));
             }
-            if (((int)(new S_ctx_v2(c).alpha) == 0))
+            if (((int)(new S_ctx_v2(c).Alpha) == 0))
             {
                 return 0;
             }
@@ -2017,31 +2017,31 @@ public static partial class UiNode
             {
                 return 0;
             }
-            if (((((new S_ctx_v2(c).sx != 1.0f) || (new S_ctx_v2(c).sy != 1.0f)) || (new S_node_v2(n).ScaleX != 1.0f)) || (new S_node_v2(n).ScaleY != 1.0f)))
+            if (((((new S_ctx_v2(c).ScaleX != 1.0f) || (new S_ctx_v2(c).ScaleY != 1.0f)) || (new S_node_v2(n).ScaleX != 1.0f)) || (new S_node_v2(n).ScaleY != 1.0f)))
             {
                 float a = 0f;
                 float b = 0f;
                 float d = 0f;
                 a = ((float)(((int)(new S_node_v2(n).X) + (int)(new S_node_v2(n).OffsetX))) + ((float)((short)(new S_node_v2(n).Width)) * 0.5f));
-                a = (a * new S_ctx_v2(c).sx);
+                a = (a * new S_ctx_v2(c).ScaleX);
                 b = ((float)(((int)(new S_node_v2(n).Y) + (int)(new S_node_v2(n).OffsetY))) + ((float)((short)(new S_node_v2(n).Height)) * 0.5f));
-                b = (b * new S_ctx_v2(c).sy);
+                b = (b * new S_ctx_v2(c).ScaleY);
                 cx = (int)(a);
-                new S_ctx_v2(c).sx_Set((float)((float)(new S_ctx_v2(c).sx) * new S_node_v2(n).ScaleX));
-                new S_ctx_v2(c).sy_Set((float)((float)(new S_ctx_v2(c).sy) * new S_node_v2(n).ScaleY));
+                new S_ctx_v2(c).ScaleX_Set((float)((float)(new S_ctx_v2(c).ScaleX) * new S_node_v2(n).ScaleX));
+                new S_ctx_v2(c).ScaleY_Set((float)((float)(new S_ctx_v2(c).ScaleY) * new S_node_v2(n).ScaleY));
                 cy = (int)(b);
-                t2 = (int)((((float)((short)(new S_node_v2(n).Width)) * new S_ctx_v2(c).sx) * 0.5f));
-                d = (((float)((short)(new S_node_v2(n).Height)) * new S_ctx_v2(c).sy) * 0.5f);
+                t2 = (int)((((float)((short)(new S_node_v2(n).Width)) * new S_ctx_v2(c).ScaleX) * 0.5f));
+                d = (((float)((short)(new S_node_v2(n).Height)) * new S_ctx_v2(c).ScaleY) * 0.5f);
                 t3 = (int)(d);
-                new O02Rect(r0).w.Set((int)(0), ((cx - t2) + new S_ctx_v2(c).ox));
-                new O02Rect(r0).w.Set((int)(1), ((cx + t2) + new S_ctx_v2(c).ox));
-                new O02Rect(r0).w.Set((int)(2), ((cy - t3) + new S_ctx_v2(c).oy));
-                new O02Rect(r0).w.Set((int)(3), ((cy + t3) + new S_ctx_v2(c).oy));
+                new O02Rect(r0).w.Set((int)(0), ((cx - t2) + new S_ctx_v2(c).OriginX));
+                new O02Rect(r0).w.Set((int)(1), ((cx + t2) + new S_ctx_v2(c).OriginX));
+                new O02Rect(r0).w.Set((int)(2), ((cy - t3) + new S_ctx_v2(c).OriginY));
+                new O02Rect(r0).w.Set((int)(3), ((cy + t3) + new S_ctx_v2(c).OriginY));
             }
             else
             {
-                new O02Rect(r0).w.Set((int)(0), ((new S_ctx_v2(c).ox + (int)(new S_node_v2(n).X)) + (int)(new S_node_v2(n).OffsetX)));
-                new O02Rect(r0).w.Set((int)(2), ((new S_ctx_v2(c).oy + (int)(new S_node_v2(n).Y)) + (int)(new S_node_v2(n).OffsetY)));
+                new O02Rect(r0).w.Set((int)(0), ((new S_ctx_v2(c).OriginX + (int)(new S_node_v2(n).X)) + (int)(new S_node_v2(n).OffsetX)));
+                new O02Rect(r0).w.Set((int)(2), ((new S_ctx_v2(c).OriginY + (int)(new S_node_v2(n).Y)) + (int)(new S_node_v2(n).OffsetY)));
                 new O02Rect(r0).w.Set((int)(1), ((new O02Rect(r0).w[(int)(0)] + (int)((short)(new S_node_v2(n).Width))) - 1));
                 new O02Rect(r0).w.Set((int)(3), ((new O02Rect(r0).w[(int)(2)] + (int)((short)(new S_node_v2(n).Height))) - 1));
                 t2 = ((int)((short)(new S_node_v2(n).Width)) >> (int)1);
@@ -2059,20 +2059,20 @@ public static partial class UiNode
                 {
                     if ((sx != 1.0f))
                     {
-                        new O02Rect(r1).w.Set((int)(0), ((int)(((float)(new S_node_v2(n).X) * sx)) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(0), ((int)(((float)(new S_node_v2(n).X) * sx)) + new S_ctx_v2(c).OriginX));
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(0), ((int)(new S_node_v2(n).X) + new S_ctx_v2(c).ox));
+                        new O02Rect(r1).w.Set((int)(0), ((int)(new S_node_v2(n).X) + new S_ctx_v2(c).OriginX));
                     }
                     new O02Rect(r1).w.Set((int)(1), (new O02Rect(r1).w[(int)(0)] + (int)((short)(new S_node_v2(n).Width))));
                     if ((sy != 1.0f))
                     {
-                        new O02Rect(r1).w.Set((int)(2), ((int)(((float)(new S_node_v2(n).Y) * sy)) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(2), ((int)(((float)(new S_node_v2(n).Y) * sy)) + new S_ctx_v2(c).OriginY));
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(2), ((int)(new S_node_v2(n).Y) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(2), ((int)(new S_node_v2(n).Y) + new S_ctx_v2(c).OriginY));
                     }
                     new O02Rect(r1).w.Set((int)(3), (new O02Rect(r1).w[(int)(2)] + (int)((short)(new S_node_v2(n).Height))));
                 }
@@ -2080,17 +2080,17 @@ public static partial class UiNode
                 {
                     if ((f800 != 0))
                     {
-                        new O02Rect(r1).w.Set((int)(0), ((cx - t2) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(2), ((cy - t3) + new S_ctx_v2(c).oy));
-                        new O02Rect(r1).w.Set((int)(1), ((cx + t2) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(3), ((cy + t3) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(0), ((cx - t2) + new S_ctx_v2(c).OriginX));
+                        new O02Rect(r1).w.Set((int)(2), ((cy - t3) + new S_ctx_v2(c).OriginY));
+                        new O02Rect(r1).w.Set((int)(1), ((cx + t2) + new S_ctx_v2(c).OriginX));
+                        new O02Rect(r1).w.Set((int)(3), ((cy + t3) + new S_ctx_v2(c).OriginY));
                     }
                     else
                     {
-                        new O02Rect(r1).w.Set((int)(0), (((cx - t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(2), (((cy - t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).oy));
-                        new O02Rect(r1).w.Set((int)(1), (((cx + t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).ox));
-                        new O02Rect(r1).w.Set((int)(3), (((cy + t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).oy));
+                        new O02Rect(r1).w.Set((int)(0), (((cx - t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).OriginX));
+                        new O02Rect(r1).w.Set((int)(2), (((cy - t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).OriginY));
+                        new O02Rect(r1).w.Set((int)(1), (((cx + t6) + (int)(new S_node_v2(n).OffsetX)) + new S_ctx_v2(c).OriginX));
+                        new O02Rect(r1).w.Set((int)(3), (((cy + t7) + (int)(new S_node_v2(n).OffsetY)) + new S_ctx_v2(c).OriginY));
                     }
                 }
             }
@@ -2140,9 +2140,9 @@ public static partial class UiNode
             {
                 new O02Rect(r1).w.Set((int)(3), (new O02Rect(r1).w[(int)(2)] + 1));
             }
-            new S_ctx_v2(c).ox_Set(new O02Rect(r0).w[(int)(0)]);
-            new S_ctx_v2(c).oy_Set(new O02Rect(r0).w[(int)(2)]);
-            Mem.Copy(new S_ctx_v2(c).clip.P, r0, 16);
+            new S_ctx_v2(c).OriginX_Set(new O02Rect(r0).w[(int)(0)]);
+            new S_ctx_v2(c).OriginY_Set(new O02Rect(r0).w[(int)(2)]);
+            Mem.Copy(new S_ctx_v2(c).ClipRect.P, r0, 16);
             return 1;
         }
     }
@@ -2444,13 +2444,13 @@ public static partial class UiNode
                 uint s = 0u;
                 if ((UiNode.ComputeRect((_fp + 40u), (_fp + 56u), n, _fp) != 0))
                 {
-                    if (((new S_ctx(_fp).w2 & 256) != 0))
+                    if (((new S_ctx(_fp).Flags & 256) != 0))
                     {
                         s = new S_func_0040F2B0(n).f34_;
                     }
                     else
                     {
-                        if (((new S_ctx(_fp).w2 & 64) != 0))
+                        if (((new S_ctx(_fp).Flags & 64) != 0))
                         {
                             s = new S_func_0040F2B0(n).f30_;
                         }
@@ -2461,8 +2461,8 @@ public static partial class UiNode
                     }
                     if ((s != 0u))
                     {
-                        new S_ctx(_fp).w0_Set((int)((int)(new S_ctx(_fp).w0) - (int)(((float)((int)(new S_sub(s).X)) * new S_ctx(_fp).f3))));
-                        new S_ctx(_fp).w1_Set((int)((int)(new S_ctx(_fp).w1) - (int)(((float)((int)(new S_sub(s).Y)) * new S_ctx(_fp).f4))));
+                        new S_ctx(_fp).OriginX_Set((int)((int)(new S_ctx(_fp).OriginX) - (int)(((float)((int)(new S_sub(s).X)) * new S_ctx(_fp).ScaleX))));
+                        new S_ctx(_fp).OriginY_Set((int)((int)(new S_ctx(_fp).OriginY) - (int)(((float)((int)(new S_sub(s).Y)) * new S_ctx(_fp).ScaleY))));
                         UiNode.Draw(s, _fp);
                     }
                 }
@@ -3126,42 +3126,42 @@ public static partial class UiTree
             _f0: ;
             if (!((n != 0u))) goto _f1;
             if (!((((int)(new O02R(n).Flags) & 16) != 0))) goto _f2;
-            if (!((new O02R(n).f2C != 0))) goto _f3;
-            new O02R(n).f2C_Set(((new O02R(n).f2C + newb) - oldb));
+            if (!((new O02R(n).Value != 0))) goto _f3;
+            new O02R(n).Value_Set(((new O02R(n).Value + newb) - oldb));
             _f3: ;
-            if (!((new O02R(n).f30 != 0))) goto _f4;
-            new O02R(n).f30_Set(((new O02R(n).f30 + newb) - oldb));
+            if (!((new O02R(n).Value2_30 != 0))) goto _f4;
+            new O02R(n).Value2_30_Set(((new O02R(n).Value2_30 + newb) - oldb));
             _f4: ;
-            if (!((new O02R(n).f34 != 0))) goto _f5;
-            new O02R(n).f34_Set(((new O02R(n).f34 + newb) - oldb));
+            if (!((new O02R(n).Value3_34 != 0))) goto _f5;
+            new O02R(n).Value3_34_Set(((new O02R(n).Value3_34 + newb) - oldb));
             _f5: ;
-            if (!((new O02R(n).f38 != 0))) goto _f6;
-            new O02R(n).f38_Set(((new O02R(n).f38 + newb) - oldb));
+            if (!((new O02R(n).TextPtr != 0))) goto _f6;
+            new O02R(n).TextPtr_Set(((new O02R(n).TextPtr + newb) - oldb));
             _f6: ;
             _f2: ;
             switch ((int)(new O02R(n).Type)) { case 3: goto _f8; case 2: goto _f9; case 4: goto _f10; case 8: goto _f11; default: goto _f7; }
             _f8: ;
-            if (!((new O02R(n).f2C < 0))) goto _f12;
-            new O02R(n).f2C_Set(0);
+            if (!((new O02R(n).Value < 0))) goto _f12;
+            new O02R(n).Value_Set(0);
             goto _f13;
             _f12: ;
-            if (!((new O02R(n).f2C > ((int)(Mem.S16(Gv.Image_ArchiveCount)) - 1)))) goto _f14;
-            new O02R(n).f2C_Set(0);
+            if (!((new O02R(n).Value > ((int)(Mem.S16(Gv.Image_ArchiveCount)) - 1)))) goto _f14;
+            new O02R(n).Value_Set(0);
             _f14: ;
             _f13: ;
             goto _f7;
             _f9: ;
-            if (!((new O02R(n).f44 != 0))) goto _f15;
-            new O02R(n).f44_Set(((new O02R(n).f44 + newb) - oldb));
+            if (!((new O02R(n).ScreenDataPtr_44 != 0))) goto _f15;
+            new O02R(n).ScreenDataPtr_44_Set(((new O02R(n).ScreenDataPtr_44 + newb) - oldb));
             _f15: ;
             new O02R(n).Flags_Set((ushort)((int)(new O02R(n).Flags) | 2048));
             goto _f7;
             _f10: ;
-            new O02R(n).f38_Set(0);
+            new O02R(n).TextPtr_Set(0);
             goto _f7;
             _f11: ;
             q = n;
-            v = new O02R(q).f2C;
+            v = new O02R(q).Value;
             id = (int)((((uint)(v) & 4294901760u) >> (int)16));
             lo = (v & 65535);
             if (!(((id != 0) || (lo != 0)))) goto _f16;
@@ -3171,9 +3171,9 @@ public static partial class UiTree
             p = (int)(UiScreen.GetData(id));
             Mem.Set((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)), (ushort)((int)(Mem.U16((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)))) | 1));
             _f17: ;
-            new O02R(q).f2C_Set((p + lo));
+            new O02R(q).Value_Set((p + lo));
             _f16: ;
-            v = new O02R(q).f30;
+            v = new O02R(q).Value2_30;
             id = (int)((((uint)(v) & 4294901760u) >> (int)16));
             lo = (v & 65535);
             if (!(((id != 0) || (lo != 0)))) goto _f18;
@@ -3183,9 +3183,9 @@ public static partial class UiTree
             p = (int)(UiScreen.GetData(id));
             Mem.Set((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)), (ushort)((int)(Mem.U16((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)))) | 1));
             _f19: ;
-            new O02R(q).f30_Set((p + lo));
+            new O02R(q).Value2_30_Set((p + lo));
             _f18: ;
-            v = new O02R(q).f34;
+            v = new O02R(q).Value3_34;
             id = (int)((((uint)(v) & 4294901760u) >> (int)16));
             lo = (v & 65535);
             if (!(((id != 0) || (lo != 0)))) goto _f20;
@@ -3195,7 +3195,7 @@ public static partial class UiTree
             p = (int)(UiScreen.GetData(id));
             Mem.Set((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)), (ushort)((int)(Mem.U16((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(id * 2)))) | 1));
             _f21: ;
-            new O02R(q).f34_Set((p + lo));
+            new O02R(q).Value3_34_Set((p + lo));
             _f20: ;
             goto _f7;
             _f7: ;

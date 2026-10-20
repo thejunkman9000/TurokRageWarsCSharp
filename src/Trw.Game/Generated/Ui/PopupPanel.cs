@@ -16,18 +16,18 @@ public static partial class PopupPanel
             float t = 0f;
             uint g = 0u;
             uint p = o;
-            if ((new O3B60(o).flag == 1))
+            if ((new O3B60(o).IsEnabled == 1))
             {
-                if ((new O3B60(o).state != 2))
+                if ((new O3B60(o).State != 2))
                 {
-                    if (((new O3B60(o).state < 3) && (new O3B60(o).state == new O3B60(o).flag)))
+                    if (((new O3B60(o).State < 3) && (new O3B60(o).State == new O3B60(o).IsEnabled)))
                     {
                         g = new O3B60(o).g_;
                         if ((new O3B60G(g).fx != 1.0f))
                         {
                             if ((new O3B60G(g).fx < 1.0f))
                             {
-                                t = (new O3B60G(g).fx + new O3B60(o).sp1);
+                                t = (new O3B60G(g).fx + new O3B60(o).ScaleSpeedX);
                                 if ((t < 0.0f))
                                 {
                                     t = 0.0f;
@@ -52,16 +52,16 @@ public static partial class PopupPanel
                             {
                                 if ((new O3B60G(g).fy < 1.0f))
                                 {
-                                    new O3B60G(g).fy_Set((new O3B60G(g).fy + new O3B60(o).sp2));
-                                    if ((1.0f < new O3B60(o).g.fy))
+                                    new O3B60G(g).fy_Set((new O3B60G(g).fy + new O3B60(o).ScaleSpeedY));
+                                    if ((1.0f < new O3B60(o).TargetNodePtr.fy))
                                     {
-                                        new O3B60(o).g.fy_Set(1.20000005f);
+                                        new O3B60(o).TargetNodePtr.fy_Set(1.20000005f);
                                     }
                                 }
                                 else
                                 {
                                     new O3B60G(g).fy_Set(1.0f);
-                                    new O3B60(o).state_Set(3);
+                                    new O3B60(o).State_Set(3);
                                 }
                             }
                         }
@@ -74,7 +74,7 @@ public static partial class PopupPanel
                     {
                         if ((0.0500000007f < new O3B60G(g).fy))
                         {
-                            t = (new O3B60G(g).fy - new O3B60(o).sp2);
+                            t = (new O3B60G(g).fy - new O3B60(o).ScaleSpeedY);
                             if ((t < 0.0500000007f))
                             {
                                 t = 0.0500000007f;
@@ -103,7 +103,7 @@ public static partial class PopupPanel
                         {
                             if ((new O3B60G(g).fx > 0.0f))
                             {
-                                t = (new O3B60G(g).fx - new O3B60(o).sp1);
+                                t = (new O3B60G(g).fx - new O3B60(o).ScaleSpeedX);
                                 if ((t < 0.0f))
                                 {
                                     t = 0.0f;
@@ -126,7 +126,7 @@ public static partial class PopupPanel
                 }
                 goto L_done;
                 L_set4: ;
-                new O3B60(p).state_Set(4);
+                new O3B60(p).State_Set(4);
             }
             L_done: ;
             return 0;
@@ -277,16 +277,16 @@ public static partial class PopupPanel
             new O3B60(o).h.Id_Set((short)(2912));
             new O3B60(o).g__Set(g);
             new O3B60(o).g2__Set(UiTree.FindNode((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
-            new O3B60(o).sp1_Set(0.333333343f);
-            new O3B60(o).sp2_Set(0.333333343f);
-            new O3B60(o).g.fx_Set((float)(0));
-            new O3B60(o).g.fy_Set(0.0500000007f);
-            new O3B60(o).c.Set((int)(0), new O3B60(o).g2.col[(int)(0)].w);
-            new O3B60(o).c.Set((int)(1), new O3B60(o).g2.col[(int)(1)].w);
-            new O3B60(o).c.Set((int)(2), new O3B60(o).g2.col[(int)(2)].w);
-            new O3B60(o).c.Set((int)(3), new O3B60(o).g2.col[(int)(3)].w);
-            new O3B60(o).stepA_Set(((((new O3B60(o).g2.col[(int)(1)].w & (uint)(16711680)) >> (int)16) - ((new O3B60(o).g2.col[(int)(0)].w & (uint)(16711680)) >> (int)16)) / (uint)(75)));
-            new O3B60(o).stepB_Set(((uint)(((int)(Mem.U8(new O3B60(o).g2.col[(int)(0)].c.P)) - (int)(Mem.U8(new O3B60(o).g2.col[(int)(1)].c.P)))) / (uint)(75)));
+            new O3B60(o).ScaleSpeedX_Set(0.333333343f);
+            new O3B60(o).ScaleSpeedY_Set(0.333333343f);
+            new O3B60(o).TargetNodePtr.fx_Set((float)(0));
+            new O3B60(o).TargetNodePtr.fy_Set(0.0500000007f);
+            new O3B60(o).BaseColors.Set((int)(0), new O3B60(o).ColorNodePtr.col[(int)(0)].w);
+            new O3B60(o).BaseColors.Set((int)(1), new O3B60(o).ColorNodePtr.col[(int)(1)].w);
+            new O3B60(o).BaseColors.Set((int)(2), new O3B60(o).ColorNodePtr.col[(int)(2)].w);
+            new O3B60(o).BaseColors.Set((int)(3), new O3B60(o).ColorNodePtr.col[(int)(3)].w);
+            new O3B60(o).ColorStepA_70_Set(((((new O3B60(o).ColorNodePtr.col[(int)(1)].w & (uint)(16711680)) >> (int)16) - ((new O3B60(o).ColorNodePtr.col[(int)(0)].w & (uint)(16711680)) >> (int)16)) / (uint)(75)));
+            new O3B60(o).ColorStepB_74_Set(((uint)(((int)(Mem.U8(new O3B60(o).ColorNodePtr.col[(int)(0)].c.P)) - (int)(Mem.U8(new O3B60(o).ColorNodePtr.col[(int)(1)].c.P)))) / (uint)(75)));
             new O3B60(o).f78_Set(1);
             PopupPanel.Enable(o);
             PopupPanel.SetState(o, 1);
@@ -311,7 +311,7 @@ public static partial class PopupPanel
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A4B0", (uint)o, (uint)v);
-            new O3B60(o).state_Set(v);
+            new O3B60(o).State_Set(v);
             switch (v)
             {
             case 1:

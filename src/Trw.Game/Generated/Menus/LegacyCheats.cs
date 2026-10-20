@@ -2278,13 +2278,13 @@ public static partial class LegacyCheats
                 w = new Q4E(MenuItem.GetStyle(a0)).f4;
                 w = (w * (float)(Mem.S32(Gv.ScreenWidth)));
                 w = (w * 0.00352112669f);
-                t = (new Q4D(a3).f34 * 128.0f);
+                t = (new Q4D(a3).TextFade * 128.0f);
                 pa = (float)(new Q4T(Gv.LegacyCheats_CodeCursor).cur);
                 pa = (pa * w);
                 pb = (float)(new Q4B(a1).Left);
                 x = (pb + pa);
                 Mem.Set(Gv.Menu_CurrentDrawPass, (-1));
-                alpha = (new Q4D(a3).f30 * t);
+                alpha = (new Q4D(a3).PanelFade * t);
                 xi = (int)(x);
                 Gfx.BeginFillRectPass();
                 Gfx.DrawBevelRect(xi, new Q4B(a1).Bottom, (int)(((float)(xi) + w)), (new Q4B(a1).Bottom + 2), 0, 0, (byte)(255), (byte)(255), (byte)(255), (byte)((int)((Cpu.TruncU32(alpha) & (uint)(255)))));
@@ -2305,16 +2305,16 @@ public static partial class LegacyCheats
             {
                 new Q4T(Gv.LegacyCheats_CodeCursor).timer_Set((t - 15.0f));
             }
-            if (((int)(new Q4O9(o).id) == 2))
+            if (((int)(new Q4O9(o).CursorIndex) == 2))
             {
-                if (((Pad.IsLeft((uint)(new Q4O9(o).f20)) != 0) && (new Q4T(Gv.LegacyCheats_CodeCursor).cur > 0)))
+                if (((Pad.IsLeft((uint)(new Q4O9(o).PadPtr)) != 0) && (new Q4T(Gv.LegacyCheats_CodeCursor).cur > 0)))
                 {
                     new Q4T(Gv.LegacyCheats_CodeCursor).cur_Set((int)(new Q4T(Gv.LegacyCheats_CodeCursor).cur - 1));
                     Mem.Set((Gv.LegacyCheats_CodeCursor + 4u), 0);
                 }
                 else
                 {
-                    if ((Pad.IsRight((uint)(new Q4O9(o).f20)) != 0))
+                    if ((Pad.IsRight((uint)(new Q4O9(o).PadPtr)) != 0))
                     {
                         if ((new Q4T(Gv.LegacyCheats_CodeCursor).cur < new Q4T(Gv.LegacyCheats_CodeCursor).len))
                         {

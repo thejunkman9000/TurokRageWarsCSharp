@@ -2816,14 +2816,14 @@ public readonly struct Shared_ParticleView
     // +0xC
     public U32x6 unknownC { [MethodImpl(Inl)] get => new(P + 0xCu); }
     // +0x24
-    public int unk24
+    public int IsThirdPerson
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int unk24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int IsThirdPerson_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
-    public U32x62 unknown28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
+    public U32x62 Yaw { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x120
     public int grayscale
     {
@@ -2839,20 +2839,20 @@ public readonly struct Shared_ParticleView
     }
     [MethodImpl(Inl)] public uint unknown124_Set(uint v) => Mem.Set(P + 0x124u, v);
     // +0x128
-    public Vec3 unk128 { [MethodImpl(Inl)] get => new(P + 0x128u); }
+    public Vec3 EyePosition { [MethodImpl(Inl)] get => new(P + 0x128u); }
     // +0x134
     public U32x59 unknown134 { [MethodImpl(Inl)] get => new(P + 0x134u); }
     // +0x220
     public Matrix viewMtx { [MethodImpl(Inl)] get => new(P + 0x220u); }
     // +0x260
-    public U32x178 unknown260 { [MethodImpl(Inl)] get => new(P + 0x260u); }
+    public U32x178 FrustumPoints { [MethodImpl(Inl)] get => new(P + 0x260u); }
     // +0x528
-    public float fadeRange
+    public float FarDistance
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x528u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x528u, value);
     }
-    [MethodImpl(Inl)] public float fadeRange_Set(float v) => Mem.Set(P + 0x528u, v);
+    [MethodImpl(Inl)] public float FarDistance_Set(float v) => Mem.Set(P + 0x528u, v);
 }
 
 /// <summary>struct Shared_Pickup, 0x1C bytes, at a guest address.</summary>
@@ -3615,18 +3615,18 @@ public readonly struct Shared_PosePart
     // +0x10
     public S8x2 pad10 { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x12
-    public sbyte unk_12
+    public sbyte FlinchFrame
     {
         [MethodImpl(Inl)] get => Mem.S8(P + 0x12u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12u, value);
     }
-    [MethodImpl(Inl)] public sbyte unk_12_Set(sbyte v) => Mem.Set(P + 0x12u, v);
+    [MethodImpl(Inl)] public sbyte FlinchFrame_Set(sbyte v) => Mem.Set(P + 0x12u, v);
     // +0x13
     public S8x1 pad13 { [MethodImpl(Inl)] get => new(P + 0x13u); }
     // +0x14
-    public S8x4 unk_14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public S8x4 BoneIndex { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x18
-    public Vec3 unk_18 { [MethodImpl(Inl)] get => new(P + 0x18u); }
+    public Vec3 Axis { [MethodImpl(Inl)] get => new(P + 0x18u); }
     // +0x24
     public S8x68 pad24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
 }

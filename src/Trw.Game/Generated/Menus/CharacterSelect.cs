@@ -712,30 +712,30 @@ public static partial class CharSelect
                 uint d = 0u;
                 uint p = 0u;
                 float fv = 0f;
-                switch (new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state)
+                switch (new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State)
                 {
                 case 1:
-                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).a_).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).a_).X) + (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).ta)))));
-                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).b_).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).b_).X) - (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).tb)))));
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer - 1));
-                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer <= 0))
+                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelANodePtr).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelANodePtr).X) + (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelAStep)))));
+                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBNodePtr).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBNodePtr).X) - (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBStep)))));
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer - 1));
+                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer <= 0))
                     {
                         Audio.PlaySound2D(3705);
-                        UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w24, 1);
-                        Flicker.Trigger(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w20, 4);
-                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state_Set(4);
-                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set(4);
+                        UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).OverlayNodePtr, 1);
+                        Flicker.Trigger(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FlickerNodePtr, 4);
+                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State_Set(4);
+                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set(4);
                     }
                     break;
                 case 2:
-                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).a_).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).a_).X) - (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).ta)))));
-                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).b_).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).b_).X) + (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).tb)))));
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer - 1));
-                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer <= 0))
+                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelANodePtr).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelANodePtr).X) - (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelAStep)))));
+                    new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBNodePtr).X_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBNodePtr).X) + (int)((ushort)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).PanelBStep)))));
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer - 1));
+                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer <= 0))
                     {
-                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state_Set(3);
+                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State_Set(3);
                         Menu.ConsumeEvent();
-                        Menu.GotoScreen(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).f34);
+                        Menu.GotoScreen(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).NextScreenId);
                         return 0;
                     }
                     break;
@@ -744,7 +744,7 @@ public static partial class CharSelect
                     break;
                 case 4:
                     p = Mem.U32(Gv.CharSelect_PagePtr);
-                    y = new Q2Pg(p).timer;
+                    y = new Q2Pg(p).Timer;
                     x = (y - 1);
                     if ((x >= 0))
                     {
@@ -754,49 +754,49 @@ public static partial class CharSelect
                     {
                         t = 0;
                     }
-                    new Q2Pg(p).timer_Set(t);
-                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer <= 0))
+                    new Q2Pg(p).Timer_Set(t);
+                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer <= 0))
                     {
-                        if ((Flicker.IsSteady(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w20) != 0))
+                        if ((Flicker.IsSteady(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FlickerNodePtr) != 0))
                         {
-                            Flicker.Stop(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w20);
-                            new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state_Set(6);
-                            new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set(4);
+                            Flicker.Stop(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FlickerNodePtr);
+                            new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State_Set(6);
+                            new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set(4);
                             UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w28_, 1);
                         }
                     }
                     break;
                 case 5:
                     Audio.PlaySound2D(3704);
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state_Set(2);
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set(4);
-                    UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w24, 0);
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State_Set(2);
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set(4);
+                    UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).OverlayNodePtr, 0);
                     UiNode.SetVisible(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w28_, 0);
                     break;
                 case 6:
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w28.Alpha_Set((byte)(((int)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w28.Alpha) + (int)((byte)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).f2C)))));
-                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer - 1));
-                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).timer <= 0))
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FadeNodePtr.Alpha_Set((byte)(((int)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FadeNodePtr.Alpha) + (int)((byte)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FadeAlphaStep)))));
+                    new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer - 1));
+                    if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Timer <= 0))
                     {
-                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).w28.Alpha_Set((byte)(200));
-                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state_Set(3);
+                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).FadeNodePtr.Alpha_Set((byte)(200));
+                        new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State_Set(3);
                     }
                     break;
                 case 7:
                     break;
                 }
-                if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).state != 3))
+                if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).State != 3))
                 {
                     return 0;
                 }
-                new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).tick_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).tick + dt));
+                new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Tick_Set((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Tick + dt));
                 for (i = 0; (i < 4); ++i)
                 {
                     if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).rec[(int)(i)].State == 1))
                     {
                         if ((new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).rec[(int)(i)].w8_ != 0u))
                         {
-                            fv = ((cosf(((float)(i) + ((float)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).tick) * 0.00333333341f))) * 70.0f) + 170.0f);
+                            fv = ((cosf(((float)(i) + ((float)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).Tick) * 0.00333333341f))) * 70.0f) + 170.0f);
                             new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).rec[(int)(i)].CursorNodePtr.Alpha_Set((byte)(Cpu.TruncU32(fv)));
                         }
                         d = CursorGroup.GetItem((uint)(new Q2Pg(Mem.U32(Gv.CharSelect_PagePtr)).rec[(int)(0)].CursorGroupPtr), i);
@@ -850,7 +850,7 @@ public static partial class CharSelect
         {
             if (Dbg.On) Dbg.Enter("func_0041FCC0", (uint)a0, (uint)a1, (uint)a2);
             int i = 0;
-            if (((a2 == 1) && (new Q2Pj(Mem.U32(Gv.CharSelect_PagePtr)).f1338 == 3)))
+            if (((a2 == 1) && (new Q2Pj(Mem.U32(Gv.CharSelect_PagePtr)).State == 3)))
             {
                 Mem.Set(Gv.Model_ColorOverrideMode, 0);
                 Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), 255.0f);
@@ -2080,8 +2080,8 @@ public static partial class Loadout
                             {
                                 uint pp = Gv.DisplayListPtr;
                                 uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                                new Q4Gfx(q).w0_Set(((3976200192u | (uint)((((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).x0) * 4.0f)) & 4095) << (int)12))) | (uint)(((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).y0) * 4.0f)) & 4095))));
-                                new Q4Gfx(q).w1_Set((uint)(((((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).x1) * 4.0f)) & 4095) << (int)12) | ((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).y1) * 4.0f)) & 4095))));
+                                new Q4Gfx(q).w0_Set(((3976200192u | (uint)((((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).Left) * 4.0f)) & 4095) << (int)12))) | (uint)(((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).Top) * 4.0f)) & 4095))));
+                                new Q4Gfx(q).w1_Set((uint)(((((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).Right) * 4.0f)) & 4095) << (int)12) | ((int)(((float)(new Q4Scis((Gv.Menu_PlayerQuadrantRects + (uint)(i * 16))).Bottom) * 4.0f)) & 4095))));
                             }
                             MenuModel.Draw((new O05L2(Mem.U32(Gv.Loadout_PagePtr)).Columns.P + (uint)(i * 1232)));
                         }
@@ -2623,8 +2623,8 @@ public static partial class Loadout
                             continue;
                         }
                         t = (uint)(((uint)((Mem.S32(((Mem.U32(Gv.Loadout_PagePtr) + (uint)((i * 1232) + (j * 4))) + (uint)1208)) << (int)4)) + tab));
-                        new O06R_v4(row).WeaponOwnedFlags.Set((int)(new O06T_v2(t).unk8), (byte)(1));
-                        new O06R_v4(row).WeaponSlotIds.Set((int)(new O06T_v2(t).unk8), (byte)(val));
+                        new O06R_v4(row).WeaponOwnedFlags.Set((int)(new O06T_v2(t).WeaponIndex), (byte)(1));
+                        new O06R_v4(row).WeaponSlotIds.Set((int)(new O06T_v2(t).WeaponIndex), (byte)(val));
                     }
                     new O06R_v4(row).WeaponOwnedFlags.Set((int)(0), (byte)(1));
                     new O06R_v4(row).WeaponSlotIds.Set((int)(0), (byte)(0));
@@ -3006,7 +3006,7 @@ public static partial class MenuModel
                                 if ((w != 0u))
                                 {
                                     x = Level.GetDefinition(lv, (int)(Mem.U16((uint)(((int)(Chunk.Get((uint)(Mem.S32(w)), 0)) + 28)))));
-                                    if ((((int)(new O3Rc(x).fC) == type) && (new O3Rc(x).f0 == Mem.S32(a))))
+                                    if ((((int)(new O3Rc(x).VariantId_C) == type) && (new O3Rc(x).Kind == Mem.S32(a))))
                                     {
                                         Mem.Set((new_var + (uint)4), (short)(i));
                                         Mem.Set((b + (uint)228), (ushort)(id));
@@ -3089,7 +3089,7 @@ public static partial class MenuModel
                     Actor.ResetPoseMatrices(b);
                     Mem.Copy(new O3Act(a).BodyPosition.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Act(a).BodyVector_354.P, (_fp + 16u), 12);
-                    if (((new O3Act(a).IsAnimating_49C != 0) || ((int)(new O3Body(b).f10E) == 0)))
+                    if (((new O3Act(a).IsAnimating_49C != 0) || ((int)(new O3Body(b).AnimDone_10E) == 0)))
                     {
                         Actor.Advance(b, default(uint), default(uint), default(uint));
                         if ((new O3Act(a).Roll != 0))
@@ -3097,13 +3097,13 @@ public static partial class MenuModel
                             MathUtil.MtxRotateRowsC_00273860(new O3Act(a).BodyTransformMtx.P, ((float)(new O3Act(a).Roll) * 0.0174532942f));
                         }
                     }
-                    new O3Body(b).f6C_Set((new O3Act(a).Yaw * 0.0174532942f));
-                    Mem.Copy(new O3Body(b).pos.P, (_fp + 16u), 12);
+                    new O3Body(b).Yaw_Set((new O3Act(a).Yaw * 0.0174532942f));
+                    Mem.Copy(new O3Body(b).Position.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Body(b).p1C4.P, (_fp + 16u), 12);
                     Model.ClearBatchQueue();
                     Actor.Draw(b, @base, default(uint), default(uint));
-                    Mem.Copy(new O3Body(b).c140.P, Gv.CharSelect_ModelLights, 24);
-                    Mem.Copy(new O3Body(b).c158.P, Gv.CharSelect_ModelLights, 24);
+                    Mem.Copy(new O3Body(b).FrameLightSets.P, Gv.CharSelect_ModelLights, 24);
+                    Mem.Copy(new O3Body(b).FrameLightSet1.P, Gv.CharSelect_ModelLights, 24);
                     Model.FlushBatches();
                     Mem.Set(Gv.Render_FogEnabled, save);
                 }

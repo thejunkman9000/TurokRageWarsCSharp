@@ -164,7 +164,7 @@ public static partial class Collision
                     d = new B09Mover(m).def_;
                     if ((dt != 0.0f))
                     {
-                        c = new B09BodyDef(d).f14;
+                        c = new B09BodyDef(d).Drag;
                         c = (float)((float)(c) * 15f);
                         lim = (1f / dt);
                         if (!(c <= lim))
@@ -174,7 +174,7 @@ public static partial class Collision
                         up = 0.0f;
                         if ((new B09Mover(m).HasGravity != 0))
                         {
-                            up = new B09BodyDef(d).f8;
+                            up = new B09BodyDef(d).Gravity;
                         }
                         if ((c == 0.0f))
                         {
@@ -270,21 +270,21 @@ public static partial class Collision
             new B09Mover(m).SweepBoxXZ.maxx_Set(new B09Mover(m).SweepMaxX);
             new B09Mover(m).SweepBoxXZ.maxz_Set(new B09Mover(m).SweepMaxZ);
             new B09Mover(m).SweepBoxXZ.minz_Set(new B09Mover(m).SweepMinZ);
-            if (((new B09BodyDef(d).flags & (uint)(2097152)) != 0u))
+            if (((new B09BodyDef(d).Flags & (uint)(2097152)) != 0u))
             {
                 Collision.SweepVsActors(m);
             }
             if ((new B09Mover(m).MoveLength != 0.0f))
             {
-                if (((new B09BodyDef(d).flags & (uint)(65536)) != 0u))
+                if (((new B09BodyDef(d).Flags & (uint)(65536)) != 0u))
                 {
                     Collision.SweepVsObjects(m);
                 }
-                if (((new B09BodyDef(d).flags & (uint)(16384)) != 0u))
+                if (((new B09BodyDef(d).Flags & (uint)(16384)) != 0u))
                 {
                     Collision.GatherRayHits(m, default(uint), default(uint), default(uint));
                 }
-                if (((new B09BodyDef(d).flags & (uint)(524288)) != 0u))
+                if (((new B09BodyDef(d).Flags & (uint)(524288)) != 0u))
                 {
                     Collision.TestFloorSurface_00243910(m);
                 }
@@ -1999,15 +1999,15 @@ public static partial class Collision
                 new B09Obj2(Mem.U32(Gv.Collision_ContactPtr)).unkB0_Set(0);
                 new B09Obj2(Mem.U32(Gv.Collision_ContactPtr)).unkB4_Set(0);
                 new B09Obj2(Mem.U32(Gv.Collision_ContactPtr)).Type5Region_C4_Set(0);
-                new B09Out(o).w0_Set(new B09InRec(r).w4);
-                new B09Out(o).b4_Set(new B09InRec(r).bB);
-                new B09Out(o).b5_Set(new B09InRec(r).bF);
-                new B09Out(o).b6_Set(new B09InRec(r).b13);
-                new B09Out(o).f8_Set(new B09InRec(r).f14);
-                new B09Out(o).fC_Set(new B09InRec(r).f18);
-                new B09Out(o).f10_Set(new B09InRec(r).f1C);
-                new B09Out(o).f14_Set(new B09InRec(r).f20);
-                new B09Out(o).f18_Set(new B09InRec(r).f24);
+                new B09Out(o).w0_Set(new B09InRec(r).Flags);
+                new B09Out(o).b4_Set(new B09InRec(r).CollisionClass);
+                new B09Out(o).b5_Set(new B09InRec(r).ProfileByte5_F);
+                new B09Out(o).b6_Set(new B09InRec(r).ProfileByte6_13);
+                new B09Out(o).f8_Set(new B09InRec(r).Gravity);
+                new B09Out(o).fC_Set(new B09InRec(r).ProfileFloatC_18);
+                new B09Out(o).f10_Set(new B09InRec(r).ProfileFloat10_1C);
+                new B09Out(o).f14_Set(new B09InRec(r).Drag);
+                new B09Out(o).f18_Set(new B09InRec(r).ProfileFloat18_24);
                 r += 40u;
             }
         }
@@ -2471,7 +2471,7 @@ public static partial class Collision
             float m = 0f;
             uint fp = new B09Body(b).def_;
             new B09Bounds(o).Radius_Set(new B09Body(b).Radius);
-            new B09Bounds(o).HasVerticalCaps_Set((new B09BodyDef(fp).flags & (uint)(1024)));
+            new B09Bounds(o).HasVerticalCaps_Set((new B09BodyDef(fp).Flags & (uint)(1024)));
             new B09Bounds(o).BottomOffset_Set(new B09Body(b).BottomOffset);
             new B09Bounds(o).TopOffset_Set((new B09Bounds(o).BottomOffset + new B09Body(b).Height));
             new B09Bounds(o).StartBottomY_Set((new B09Body(b).StartPosY + new B09Bounds(o).BottomOffset));
@@ -2518,7 +2518,7 @@ public static partial class Collision
                 uint e = 0u;
                 int n = 0;
                 int i = 0;
-                if ((((int)(new B09BodyDef(d).b4) != 0) && (d != Gv.Collision_SweepSkipProfile_80104170)))
+                if ((((int)(new B09BodyDef(d).CollisionClass) != 0) && (d != Gv.Collision_SweepSkipProfile_80104170)))
                 {
                     self = Mem.U32(b);
                     n = new B09World(Gv.LevelMgr).AlwaysActiveActorCount;
@@ -2533,13 +2533,13 @@ public static partial class Collision
                         switch ((int)(new B09Ent(e).kind))
                         {
                         case 1:
-                            if ((((new B09BodyDef(d).flags & (uint)(1)) != 0u) && (new B09Ent(e).unk174 == 0)))
+                            if ((((new B09BodyDef(d).Flags & (uint)(1)) != 0u) && (new B09Ent(e).unk174 == 0)))
                             {
                                 continue;
                             }
                             break;
                         case 3:
-                            if (!((new B09BodyDef(d).flags & (uint)(32)) != 0u))
+                            if (!((new B09BodyDef(d).Flags & (uint)(32)) != 0u))
                             {
                                 continue;
                             }
@@ -2565,7 +2565,7 @@ public static partial class Collision
             float m = 0f;
             uint fp = new B09Body(b).def_;
             new B09Bounds(o).Radius_Set(new B09Body(b).Radius);
-            new B09Bounds(o).HasVerticalCaps_Set((new B09BodyDef(fp).flags & (uint)(1024)));
+            new B09Bounds(o).HasVerticalCaps_Set((new B09BodyDef(fp).Flags & (uint)(1024)));
             new B09Bounds(o).BottomOffset_Set(new B09Body(b).BottomOffset);
             new B09Bounds(o).TopOffset_Set((new B09Bounds(o).BottomOffset + new B09Body(b).Height));
             new B09Bounds(o).StartBottomY_Set((new B09Body(b).StartPosY + new B09Bounds(o).BottomOffset));
@@ -2678,7 +2678,7 @@ public static partial class Collision
                         continue;
                     }
                     tt = ((-dd) / den);
-                    if (!(tt < new R4Hm(m).q.t))
+                    if (!(tt < new R4Hm(m).q.HitTime))
                     {
                         continue;
                     }
@@ -2704,37 +2704,37 @@ public static partial class Collision
                     }
                     if ((Actor.IsPassiveDefType_0024E2B4(t) != 0))
                     {
-                        new R4Q((_fp + 96u)).f8_Set((int)(new R4Hm(m).def.b5));
+                        new R4Q((_fp + 96u)).SurfaceKind_8_Set((int)(new R4Hm(m).def.b5));
                     }
                     else
                     {
-                        new R4Q((_fp + 96u)).f8_Set((int)(new R4Hm(m).def.b4));
+                        new R4Q((_fp + 96u)).SurfaceKind_8_Set((int)(new R4Hm(m).def.b4));
                     }
-                    new R4Q((_fp + 96u)).type_Set(8);
-                    new R4Q((_fp + 96u)).f4_Set(new R4Hm(m).def.f10);
-                    new R4Q((_fp + 96u)).fC_Set(0);
-                    new R4Q((_fp + 96u)).f10_Set(0);
-                    Mem.Copy(new R4Q((_fp + 96u)).n.P, (_fp + 16u), 12);
-                    new R4Q((_fp + 96u)).kind_Set(1);
-                    Mem.Copy((new R4Q((_fp + 96u)).v.P + (uint)(0 * 12)), Mem.U32((_fp + (uint)(0 * 4))), 12);
+                    new R4Q((_fp + 96u)).HitType_Set(8);
+                    new R4Q((_fp + 96u)).SurfaceParam_4_Set(new R4Hm(m).def.f10);
+                    new R4Q((_fp + 96u)).ParamC_C_Set(0);
+                    new R4Q((_fp + 96u)).Param10_10_Set(0);
+                    Mem.Copy(new R4Q((_fp + 96u)).Normal.P, (_fp + 16u), 12);
+                    new R4Q((_fp + 96u)).VertexCount_Set(1);
+                    Mem.Copy((new R4Q((_fp + 96u)).Vertices.P + (uint)(0 * 12)), Mem.U32((_fp + (uint)(0 * 4))), 12);
                     if ((Collision.SweepVsFace(m, (_fp + 96u), 1) == 0))
                     {
                         continue;
                     }
                     new R4Hm(m).q.f54__Set(t);
-                    new R4Hm(m).q.f58_Set(arg7);
+                    new R4Hm(m).q.HitBoxIndex_Set(arg7);
                     if ((blk != 0u))
                     {
                         Mem.Copy(new R4Hm(m).q.blk.P, blk, 112);
                     }
                     ret = 1;
-                    if (((int)(new R4Hm(m).owner.kind) != 2))
+                    if (((int)(new R4Hm(m).owner.Type) != 2))
                     {
                         continue;
                     }
-                    if (((int)(new R4Hm(m).owner.id) != 1044))
+                    if (((int)(new R4Hm(m).owner.TypeId) != 1044))
                     {
-                        if (((int)(new R4Hm(m).owner.id) != 1069))
+                        if (((int)(new R4Hm(m).owner.TypeId) != 1069))
                         {
                             continue;
                         }
@@ -2742,7 +2742,7 @@ public static partial class Collision
                     if ((new R4Hm(m).owner.p12C_ == t))
                     {
                         ObjectUtil.ReleaseHandles_0044ACCC(new R4Tgt(t).p1D8);
-                        new R4Hm(m).owner.h14C_Set((ushort)(ret));
+                        new R4Hm(m).owner.LifeFrames_Set((ushort)(ret));
                         return 0;
                     }
                     if ((new R4Hm(m).owner.p13C_ == t))
@@ -2750,12 +2750,12 @@ public static partial class Collision
                         continue;
                     }
                     new R4Hm(m).owner.p13C__Set(t);
-                    new R4Hm(m).owner.w134_Set(0);
-                    Vec.Lerp((_fp + 320u), new R4Hm(m).q.t, new R4Hm(m).owner.pos.P, new R4Hm(m).v50.P);
+                    new R4Hm(m).owner.TargetPtr_Set(0);
+                    Vec.Lerp((_fp + 320u), new R4Hm(m).q.HitTime, new R4Hm(m).owner.Position.P, new R4Hm(m).v50.P);
                     new R4Rec8((_fp + 336u)).a_Set((short)(5));
                     new R4Rec8((_fp + 336u)).b_Set((ushort)(8960));
                     new R4Rec8((_fp + 336u)).c_Set((byte)(5));
-                    new R4Rec8((_fp + 336u)).d_Set((byte)((int)(new R4Hm(m).owner.f1C)));
+                    new R4Rec8((_fp + 336u)).d_Set((byte)((int)(new R4Hm(m).owner.Velocity)));
                     new R4Rec8((_fp + 336u)).e_Set((byte)((int)(new R4Hm(m).owner.f20)));
                     new R4Rec8((_fp + 336u)).f_Set((byte)((int)(new R4Hm(m).owner.f24)));
                     Event.Send(t, new R4Hm(m).owner_, 2, (-1), (_fp + 320u), (_fp + 336u));
@@ -2763,7 +2763,7 @@ public static partial class Collision
                     {
                         continue;
                     }
-                    if (((int)(new R4Hm(m).owner.id) != 1069))
+                    if (((int)(new R4Hm(m).owner.TypeId) != 1069))
                     {
                         continue;
                     }
@@ -2804,14 +2804,14 @@ public static partial class Collision
                 uint bone = 0u;
                 uint op = 0u;
                 flag = 0;
-                if ((((Mem.U32(new M03FCtx(c).flags_) & (uint)(131072)) != 0u) && ((C.Seq((object?)((type = new M03FObj(o).def.type)), ((type == 1) ? 1 : 0)) != 0) || (type == 4))))
+                if ((((Mem.U32(new M03FCtx(c).flags_) & (uint)(131072)) != 0u) && ((C.Seq((object?)((type = new M03FObj(o).DefPtr.type)), ((type == 1) ? 1 : 0)) != 0) || (type == 4))))
                 {
                     flag = 1;
                 }
                 big = 0;
                 if ((new M03FObj(o).mtbl_ != 0u))
                 {
-                    h = Actor.AcquireModel(o, (int)(new M03FObj(o).b1));
+                    h = Actor.AcquireModel(o, (int)(new M03FObj(o).ModelIndex));
                 }
                 else
                 {
@@ -2819,19 +2819,19 @@ public static partial class Collision
                 }
                 if ((h != 0u))
                 {
-                    mx = new M03FObj(o).f54;
-                    if (!(new M03FObj(o).f50 <= mx))
+                    mx = new M03FObj(o).ScaleY;
+                    if (!(new M03FObj(o).Scale <= mx))
                     {
                         if ((new M03FEnt(e).b65 != 0))
                         {
-                            mx = new M03FObj(o).f50;
+                            mx = new M03FObj(o).Scale;
                         }
                         else
                         {
-                            mx = new M03FObj(o).f50;
+                            mx = new M03FObj(o).Scale;
                         }
                     }
-                    sc = new M03FObj(o).f58;
+                    sc = new M03FObj(o).ScaleZ;
                     if (!(mx <= sc))
                     {
                         sc = mx;
@@ -2845,7 +2845,7 @@ public static partial class Collision
                         do
                         {
                             e = (t + (uint)((i * new M03FTbl(t).stride) + 8));
-                            if (((new M03FEnt(e).mask & new M03FObj(o).mask) != 0u))
+                            if (((new M03FEnt(e).mask & new M03FObj(o).PartMask) != 0u))
                             {
                                 if ((flag != 0))
                                 {
@@ -2889,7 +2889,7 @@ public static partial class Collision
                     ResourcePool.Unref(0, h);
                     return;
                 }
-                h2 = ResourceCache.Hash(0, (uint)(new M03FObj(o).wC4), new M03FObj(o).wC4, (uint)(new M03FObj(o).wD0), 4, (uint)(0), (uint)(0), Gv.Str_AnimObjectInfo, 1);
+                h2 = ResourceCache.Hash(0, (uint)(new M03FObj(o).AnimDataKey), new M03FObj(o).AnimDataKey, (uint)(new M03FObj(o).AnimDataSize), 4, (uint)(0), (uint)(0), Gv.Str_AnimObjectInfo, 1);
                 bb = (o + 232u);
                 if ((h2 != 0u))
                 {
@@ -2918,12 +2918,12 @@ public static partial class Collision
                     Mem.Set(((_fp + 96u) + (uint)(21 * 4)), Mem.F32((nb + (uint)(0 * 4))));
                     Mem.Set(((_fp + 96u) + (uint)(22 * 4)), Mem.F32((nb + (uint)(4 * 4))));
                     Mem.Set(((_fp + 96u) + (uint)(23 * 4)), Mem.F32((nb + (uint)(5 * 4))));
-                    MathUtil.MtxTransformPoints(new M03FObj(o).m74.P, (_fp + 96u), _fp, 8);
+                    MathUtil.MtxTransformPoints(new M03FObj(o).TransformMtx.P, (_fp + 96u), _fp, 8);
                     ResourcePool.Unref(0, h2);
                 }
                 else
                 {
-                    Mem.Set((_fp + (uint)(0 * 4)), new M03FObj(o).bb0);
+                    Mem.Set((_fp + (uint)(0 * 4)), new M03FObj(o).Bounds);
                     op = _fp;
                     Mem.Set((op + (uint)(1 * 4)), Mem.F32((bb + (uint)(1 * 4))));
                     Mem.Set((op + (uint)(2 * 4)), Mem.F32((bb + (uint)(2 * 4))));
@@ -2933,10 +2933,10 @@ public static partial class Collision
                     Mem.Set((op + (uint)(6 * 4)), Mem.F32((bb + (uint)(3 * 4))));
                     Mem.Set((op + (uint)(7 * 4)), Mem.F32((bb + (uint)(1 * 4))));
                     Mem.Set((op + (uint)(8 * 4)), Mem.F32((bb + (uint)(5 * 4))));
-                    Mem.Set((op + (uint)(9 * 4)), new M03FObj(o).bb0);
+                    Mem.Set((op + (uint)(9 * 4)), new M03FObj(o).Bounds);
                     Mem.Set((op + (uint)(10 * 4)), Mem.F32((bb + (uint)(1 * 4))));
                     Mem.Set((op + (uint)(11 * 4)), Mem.F32((bb + (uint)(5 * 4))));
-                    Mem.Set((op + (uint)(12 * 4)), new M03FObj(o).bb0);
+                    Mem.Set((op + (uint)(12 * 4)), new M03FObj(o).Bounds);
                     Mem.Set((op + (uint)(13 * 4)), Mem.F32((bb + (uint)(4 * 4))));
                     Mem.Set((op + (uint)(14 * 4)), Mem.F32((bb + (uint)(2 * 4))));
                     Mem.Set((op + (uint)(15 * 4)), Mem.F32((bb + (uint)(3 * 4))));
@@ -2945,7 +2945,7 @@ public static partial class Collision
                     Mem.Set((op + (uint)(18 * 4)), Mem.F32((bb + (uint)(3 * 4))));
                     Mem.Set((op + (uint)(19 * 4)), Mem.F32((bb + (uint)(4 * 4))));
                     Mem.Set((op + (uint)(20 * 4)), Mem.F32((bb + (uint)(5 * 4))));
-                    Mem.Set((op + (uint)(21 * 4)), new M03FObj(o).bb0);
+                    Mem.Set((op + (uint)(21 * 4)), new M03FObj(o).Bounds);
                     Mem.Set((op + (uint)(22 * 4)), Mem.F32((bb + (uint)(4 * 4))));
                     Mem.Set((op + (uint)(23 * 4)), Mem.F32((bb + (uint)(5 * 4))));
                 }
@@ -2975,7 +2975,7 @@ public static partial class Collision
                 int i = 0;
                 uint p = 0u;
                 d = new B09Mover(m).def_;
-                if ((((int)(new B09BodyDef(d).b4) != 0) && ((new B09BodyDef(d).flags & (uint)(65536)) != 0u)))
+                if ((((int)(new B09BodyDef(d).CollisionClass) != 0) && ((new B09BodyDef(d).Flags & (uint)(65536)) != 0u)))
                 {
                     p = (_fp + 48u);
                     k = 0;
@@ -2994,11 +2994,11 @@ public static partial class Collision
                         {
                             continue;
                         }
-                        if ((((int)(new B09BodyDef(d).b4) == 7) && (new B09Obj2(Mem.U32(Gv.Collision_ContactPtr)).HitObjectPtr == (int)(e))))
+                        if ((((int)(new B09BodyDef(d).CollisionClass) == 7) && (new B09Obj2(Mem.U32(Gv.Collision_ContactPtr)).HitObjectPtr == (int)(e))))
                         {
                             continue;
                         }
-                        if ((((new B09BodyDef(d).flags & (uint)(32768)) != 0u) && ((int)(new B09Ent2(e).uE4) == 1615)))
+                        if ((((new B09BodyDef(d).Flags & (uint)(32768)) != 0u) && ((int)(new B09Ent2(e).TypeId) == 1615)))
                         {
                             continue;
                         }
@@ -3018,27 +3018,27 @@ public static partial class Collision
                                 continue;
                             }
                         }
-                        if (!(new B09Mover(m).SweepMaxX > new B09Ent2(e).fE8))
+                        if (!(new B09Mover(m).SweepMaxX > new B09Ent2(e).Bounds))
                         {
                             continue;
                         }
-                        if (!(new B09Mover(m).SweepMinX < new B09Ent2(e).fF4))
+                        if (!(new B09Mover(m).SweepMinX < new B09Ent2(e).BoundsMaxX))
                         {
                             continue;
                         }
-                        if (!(new B09Mover(m).SweepMaxZ > new B09Ent2(e).fF0))
+                        if (!(new B09Mover(m).SweepMaxZ > new B09Ent2(e).BoundsMinZ))
                         {
                             continue;
                         }
-                        if (!(new B09Mover(m).SweepMinZ < new B09Ent2(e).fFC))
+                        if (!(new B09Mover(m).SweepMinZ < new B09Ent2(e).BoundsMaxZ))
                         {
                             continue;
                         }
-                        if (!(new B09Mover(m).SweepMaxY > new B09Ent2(e).fEC))
+                        if (!(new B09Mover(m).SweepMaxY > new B09Ent2(e).BoundsMinY))
                         {
                             continue;
                         }
-                        if (!(new B09Mover(m).SweepMinY < new B09Ent2(e).fF8))
+                        if (!(new B09Mover(m).SweepMinY < new B09Ent2(e).BoundsMaxY))
                         {
                             continue;
                         }
@@ -3061,7 +3061,7 @@ public static partial class Collision
                                 break;
                             }
                             e = new B09Hit2(p).e_;
-                            if ((((new B09Ent2(e).flags100 & (uint)(3145728)) != 0u) && ((int)(new B09Misc(Gv.Settings).IsMultiplayer) == 0)))
+                            if ((((new B09Ent2(e).Flags & (uint)(3145728)) != 0u) && ((int)(new B09Misc(Gv.Settings).IsMultiplayer) == 0)))
                             {
                                 Collision.ComputeSweepBounds(m, _fp);
                                 Collision.SweepVsActor(m, _fp, e);
@@ -8082,8 +8082,8 @@ public static partial class Collision
                 {
                     if ((t != Mem.U32(Gv.Collision_NormalCacheTri)))
                     {
-                        Vec.Sub(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
-                        Vec.Sub((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
+                        Vec.Sub(_fp, new Tri3(t).VertexPtrs[(int)(1)], new Tri3(t).VertexPtrs[(int)(0)]);
+                        Vec.Sub((_fp + 16u), new Tri3(t).VertexPtrs[(int)(2)], new Tri3(t).VertexPtrs[(int)(1)]);
                         Vec.Cross(Gv.Collision_FaceNormal, _fp, (_fp + 16u));
                     }
                 }
@@ -8226,8 +8226,8 @@ public static partial class Collision
                 {
                     if ((t != Mem.U32(Gv.Collision_NormalCacheTri)))
                     {
-                        Vec.Sub(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
-                        Vec.Sub((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
+                        Vec.Sub(_fp, new Tri3(t).VertexPtrs[(int)(1)], new Tri3(t).VertexPtrs[(int)(0)]);
+                        Vec.Sub((_fp + 16u), new Tri3(t).VertexPtrs[(int)(2)], new Tri3(t).VertexPtrs[(int)(1)]);
                         Vec.Cross(Gv.Collision_FaceNormal, _fp, (_fp + 16u));
                     }
                 }
@@ -8277,7 +8277,7 @@ public static partial class Collision
                 {
                     return 0;
                 }
-                if ((((int)(new Tri3(t).fl) & 8192) != 0))
+                if ((((int)(new Tri3(t).Flags) & 8192) != 0))
                 {
                     new Vec3f(_fp).x_Set((float)(0));
                     new Vec3f(_fp).z_Set((float)(0));
@@ -8291,7 +8291,7 @@ public static partial class Collision
                 }
                 else
                 {
-                    r = ((int)(new Tri3(t).fl) & 8);
+                    r = ((int)(new Tri3(t).Flags) & 8);
                 }
                 return r;
             }
@@ -8382,8 +8382,8 @@ public static partial class Collision
                 {
                     if ((t != Mem.U32(Gv.Collision_NormalCacheTri)))
                     {
-                        Vec.Sub(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
-                        Vec.Sub((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
+                        Vec.Sub(_fp, new Tri3(t).VertexPtrs[(int)(1)], new Tri3(t).VertexPtrs[(int)(0)]);
+                        Vec.Sub((_fp + 16u), new Tri3(t).VertexPtrs[(int)(2)], new Tri3(t).VertexPtrs[(int)(1)]);
                         Vec.Cross(Gv.Collision_FaceNormal, _fp, (_fp + 16u));
                     }
                 }
@@ -8414,8 +8414,8 @@ public static partial class Collision
                 {
                     if ((t != Mem.U32(Gv.Collision_NormalCacheTri)))
                     {
-                        Vec.Sub(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
-                        Vec.Sub((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
+                        Vec.Sub(_fp, new Tri3(t).VertexPtrs[(int)(1)], new Tri3(t).VertexPtrs[(int)(0)]);
+                        Vec.Sub((_fp + 16u), new Tri3(t).VertexPtrs[(int)(2)], new Tri3(t).VertexPtrs[(int)(1)]);
                         Vec.Cross(Gv.Collision_FaceNormal, _fp, (_fp + 16u));
                     }
                 }
@@ -8471,8 +8471,8 @@ public static partial class Collision
                 {
                     if ((t != Mem.U32(Gv.Collision_NormalCacheTri)))
                     {
-                        Vec.Sub(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
-                        Vec.Sub((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
+                        Vec.Sub(_fp, new Tri3(t).VertexPtrs[(int)(1)], new Tri3(t).VertexPtrs[(int)(0)]);
+                        Vec.Sub((_fp + 16u), new Tri3(t).VertexPtrs[(int)(2)], new Tri3(t).VertexPtrs[(int)(1)]);
                         Vec.Cross(Gv.Collision_FaceNormal, _fp, (_fp + 16u));
                     }
                 }
@@ -8500,12 +8500,12 @@ public static partial class Collision
                 func_00275E44_tri_normal(_fp, t);
                 if ((new Vec3f(_fp).y != 0.0f))
                 {
-                    Mem.Copy((_fp + 16u), new Tri3(t).v[(int)(0)], 12);
+                    Mem.Copy((_fp + 16u), new Tri3(t).VertexPtrs[(int)(0)], 12);
                     r = (((((new Vec3f((_fp + 16u)).z - z) * new Vec3f(_fp).z) + ((new Vec3f((_fp + 16u)).x - x) * new Vec3f(_fp).x)) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) / new Vec3f(_fp).y);
                 }
                 else
                 {
-                    r = (((new Vec3f(new Tri3(t).v[(int)(0)]).y + new Vec3f(new Tri3(t).v[(int)(1)]).y) + new Vec3f(new Tri3(t).v[(int)(2)]).y) * 0.33333334f);
+                    r = (((new Vec3f(new Tri3(t).VertexPtrs[(int)(0)]).y + new Vec3f(new Tri3(t).VertexPtrs[(int)(1)]).y) + new Vec3f(new Tri3(t).VertexPtrs[(int)(2)]).y) * 0.33333334f);
                 }
                 return r;
             }
@@ -8560,7 +8560,7 @@ public static partial class Collision
             {
                 return 0;
             }
-            return (int)(new Rec5A(r).b58);
+            return (int)(new Rec5A(r).FloorImpactType);
         }
     }
 
@@ -8575,7 +8575,7 @@ public static partial class Collision
             {
                 return 0;
             }
-            return (int)(new Rec5A(r).b59);
+            return (int)(new Rec5A(r).WallImpactType);
         }
     }
 

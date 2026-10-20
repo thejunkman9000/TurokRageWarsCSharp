@@ -604,7 +604,7 @@ public static partial class Light
                 float s = 0.0f;
                 if ((((((!(new M5Vec3(_fp).x >= 1f) && !(new M5Vec3(_fp).x <= (-1f))) && !(new M5Vec3(_fp).y >= 1f)) && !(new M5Vec3(_fp).y <= (-1f))) && !(new M5Vec3(_fp).z >= 1f)) && !(new M5Vec3(_fp).z <= (-1f))))
                 {
-                    switch ((int)(new M5Shape(o).mode))
+                    switch ((int)(new M5Shape(o).ShapeMode))
                     {
                     case 0:
                         s = (((new M5Vec3(_fp).x * new M5Vec3(_fp).x) + (new M5Vec3(_fp).y * new M5Vec3(_fp).y)) + (new M5Vec3(_fp).z * new M5Vec3(_fp).z));
@@ -664,15 +664,15 @@ public static partial class Light
                         break;
                     }
                     s = (1f - s);
-                    if ((s < new M5Shape(o).f0))
+                    if ((s < new M5Shape(o).EdgeFalloff))
                     {
-                        s = (s / new M5Shape(o).f0);
+                        s = (s / new M5Shape(o).EdgeFalloff);
                     }
                     else
                     {
                         s = 1f;
                     }
-                    if (((int)(new M5Shape(o).mode) == 1))
+                    if (((int)(new M5Shape(o).ShapeMode) == 1))
                     {
                         Mem.Copy(@out, new M5Shape(o).pos.P, 12);
                     }
@@ -708,7 +708,7 @@ public static partial class Light
                 if (Dbg.On) Dbg.Enter("func_00277444", (uint)o, (uint)pos_in);
                 float t = 0f;
                 float f4 = 0f;
-                if (((int)(new Probe(o).bB9) != 0))
+                if (((int)(new Probe(o).IsAxisAligned) != 0))
                 {
                     new Vec3f((_fp + 48u)).x_Set((new Vec3f(_fp).x * new Mat4F(m).m[(int)(0)]));
                     new Vec3f((_fp + 48u)).y_Set((new Vec3f(_fp).y * new Mat4F(m).m[(int)(5)]));
@@ -737,13 +737,13 @@ public static partial class Light
                     {
                         t = 0.0f;
                     }
-                    f4 = new Probe(o).f4;
+                    f4 = new Probe(o).AmbientFraction_4;
                     Mem.Set((_fp + 76u), (Mem.F32((_fp + 76u)) * (f4 + (t * (1f - f4)))));
                     if ((Mem.F32((_fp + 76u)) <= 0.0f))
                     {
                         Mem.Set((_fp + 76u), 0.0f);
                     }
-                    if (((int)(new Probe(o).bB8) != 0))
+                    if (((int)(new Probe(o).IsNegative) != 0))
                     {
                         Mem.Set((_fp + 76u), (-Mem.F32((_fp + 76u))));
                     }
@@ -751,7 +751,7 @@ public static partial class Light
                     {
                         Mem.Set(outDist, Mem.F32((_fp + 76u)));
                     }
-                    Vec.Scale(@out, new Probe(o).v8.P, Mem.F32((_fp + 76u)));
+                    Vec.Scale(@out, new Probe(o).Color.P, Mem.F32((_fp + 76u)));
                     return 1;
                 }
                 return 0;
@@ -2422,14 +2422,14 @@ public static partial class Scene
                 ResourcePool.Release((int)(0u), temp_a1_3);
             }
             Level.FreeStaticPropCache(arg0);
-            temp_s1 = new func_8044CBE0_S1_v2(arg0).unk1B500.head;
+            temp_s1 = new func_8044CBE0_S1_v2(arg0).NavSearchList.head;
             var_a1 = temp_s1;
             if ((temp_s1 != 0u))
             {
                 do
                 {
                     temp_s0 = new func_8020D0CC_S2(var_a1).unk10;
-                    ListUtil.Remove(new func_8044CBE0_S1_v2(arg0).unk1B500.P, (uint)((int)(var_a1)), default(uint), default(uint));
+                    ListUtil.Remove(new func_8044CBE0_S1_v2(arg0).NavSearchList.P, (uint)((int)(var_a1)), default(uint), default(uint));
                     var_a1 = temp_s0;
                 }
                 while ((var_a1 != 0u));

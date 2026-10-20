@@ -32,7 +32,7 @@ public static partial class TextUtil
                     uint pp_2 = Gv.DisplayListPtr;
                     uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
                     new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095)) | 4279238656u));
-                    new M5Dl(q_2).w1_Set(new M5Gfx(g).fb);
+                    new M5Dl(q_2).w1_Set(new M5Gfx(g).FramebufferPtr);
                 }
                 {
                     uint pp_3 = Gv.DisplayListPtr;

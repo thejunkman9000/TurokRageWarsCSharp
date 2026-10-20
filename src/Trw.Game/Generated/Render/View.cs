@@ -971,11 +971,11 @@ public static partial class Camera
             float z = 0f;
             Mem.Set(new ObjInit(o).EyeHeight.P, 0);
             z = Mem.F32(new ObjInit(o).EyeHeight.P);
-            new ObjInit(o).unk0_Set(1);
-            new ObjInit(o).unk4_Set(0);
-            new ObjInit(o).unk8_Set(0);
-            new ObjInit(o).unkC_Set(0);
-            new ObjInit(o).unk10_Set(0);
+            new ObjInit(o).IsThirdPerson_Set(1);
+            new ObjInit(o).Yaw_Set(0);
+            new ObjInit(o).Pitch_Set(0);
+            new ObjInit(o).YawOffset_Set(0);
+            new ObjInit(o).Roll_Set(0);
             new ObjInit(o).PosX_Set(0);
             new ObjInit(o).PosY_Set(0);
             new ObjInit(o).PosZ_Set(0);
@@ -984,7 +984,7 @@ public static partial class Camera
             new ObjInit(o).RotationW_Set(1f);
             new ObjInit(o).FloorTriPtr_Set(0);
             new ObjInit(o).Override_38_Set(z);
-            new ObjInit(o).unk3C_Set(0.17453295f);
+            new ObjInit(o).Angle_3C_Set(0.17453295f);
             new ObjInit(o).RegionId_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
         }
     }
@@ -1033,7 +1033,7 @@ public static partial class Camera
                     dist = (((y + w) - Collision.GetFloorHeightAt(node, x, z)) * 0.09765625f);
                     if (((dist < 11f) && (5f < dist)))
                     {
-                        new Tracker(t).RegionId_Set(new SurfNode(node).unk1C);
+                        new Tracker(t).RegionId_Set(new SurfNode(node).RegionIndex);
                     }
                 }
                 if ((Flyby.IsInWindow() != 0))
@@ -1339,7 +1339,7 @@ public static partial class Camera
                 new Vec3f(@out).z_Set(ty);
                 return;
             }
-            if (((new Row44(r).unk44 & (uint)(65536)) != 0u))
+            if (((new Row44(r).Flags & (uint)(65536)) != 0u))
             {
                 tx = 0.5f;
                 ty = 0.25f;
@@ -1398,7 +1398,7 @@ public static partial class Camera
                 d = (((y + w) - Collision.GetFloorHeightAt(n, x, z)) * 0.09765625f);
                 if (((d < 11f) && (5f < d)))
                 {
-                    new Tracker(t).RegionId_Set(new SurfNode(n).unk1C);
+                    new Tracker(t).RegionId_Set(new SurfNode(n).RegionIndex);
                 }
             }
             if ((Flyby.IsInWindow() != 0))
@@ -1824,11 +1824,11 @@ public static partial class CameraManager
             uint r = 0u;
             int buf = 0;
             size = (n * 3800);
-            new PoolRef(p).unk8_Set(n);
+            new PoolRef(p).ViewCount_Set(n);
             r = ResourcePool.Alloc(0, size, (uint)(35), (int)((Gv.Str_O2 + (uint)(1 * 4))));
             new PoolRef(p).unk0__Set(r);
             buf = Mem.S32((r + (uint)(0 * 4)));
-            new PoolRef(p).unk4_Set(buf);
+            new PoolRef(p).Views_Set(buf);
             memset((uint)(buf), 0, (uint)(size));
         }
     }
@@ -1857,12 +1857,12 @@ public static partial class CameraManager
             Mem.Set((o + (uint)4608), 1);
             Audio.SetListener_0025E410((int)((o + (uint)64)));
             ResourcePool.Purge();
-            if ((new ObjBuf(b).unk0 != 0))
+            if ((new ObjBuf(b).ViewsHandle != 0))
             {
-                ResourcePool.Release(0, (uint)(new ObjBuf(b).unk0));
-                new ObjBuf(b).unk0_Set(0);
-                new ObjBuf(b).unk4_Set(0);
-                new ObjBuf(b).unk8_Set(0);
+                ResourcePool.Release(0, (uint)(new ObjBuf(b).ViewsHandle));
+                new ObjBuf(b).ViewsHandle_Set(0);
+                new ObjBuf(b).Views_Set(0);
+                new ObjBuf(b).ViewCount_Set(0);
             }
         }
     }
@@ -3740,20 +3740,20 @@ public static partial class View
                         message = func_00236F0C_recycle(owner, pool);
                         if ((message != 0u))
                         {
-                            new Message(message).kind_Set(kind);
+                            new Message(message).FadeState_Set(kind);
                             new Message(message).text__Set(line);
-                            new Message(message).timer_Set(0);
-                            new Message(message).alpha_Set(1.0f);
-                            new Message(message).size_Set((size * 15.0f));
-                            new Message(message).target_Set(target);
+                            new Message(message).Alpha_Set(0);
+                            new Message(message).LineScale_10_Set(1.0f);
+                            new Message(message).FontSize_Set((size * 15.0f));
+                            new Message(message).MessageId_Set(target);
                             new Message(message).pad20_Set(0);
-                            new Message(message).pad28_Set(0);
+                            new Message(message).FadeProgress_Set(0);
                             new Message(message).pad2C_Set(0);
-                            new Message(message).scaleX_Set(1.0f);
-                            new Message(message).scaleY_Set(1.0f);
+                            new Message(message).Scale_38_Set(1.0f);
+                            new Message(message).Scale_3C_Set(1.0f);
                             height = Mem.S32((Gv.ScreenWidth + (uint)(1 * 4)));
-                            new Message(message).x_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
-                            new Message(message).y_Set((float)((height - 80)));
+                            new Message(message).X_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
+                            new Message(message).Y_Set((float)((height - 80)));
                         }
                         line = (p + (uint)1);
                     }
@@ -3783,7 +3783,7 @@ public static partial class View
                     kind = 1;
                     do
                     {
-                        new Message(pending).kind_Set(4);
+                        new Message(pending).FadeState_Set(4);
                         pending = new func_80237E70_S4(pending).unk4_;
                     }
                     while ((pending != 0u));

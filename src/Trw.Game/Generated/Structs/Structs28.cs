@@ -2982,7 +2982,7 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public int SpecialHitCount_13E4_Set(int v) => Mem.Set(P + 0x13E4u, v);
     // +0x13E8
-    public S8x104 pad13E8 { [MethodImpl(Inl)] get => new(P + 0x13E8u); }
+    public S8x104 MessageIndex_13E8 { [MethodImpl(Inl)] get => new(P + 0x13E8u); }
     // +0x1450
     public int IsComputer
     {
@@ -4126,12 +4126,12 @@ public readonly struct Row24
     [MethodImpl(Inl)] public static implicit operator uint(Row24 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Row24(uint p) => new(p);
     // +0x0
-    public short unk0
+    public short Kind
     {
         [MethodImpl(Inl)] get => Mem.S16(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public short unk0_Set(short v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public short Kind_Set(short v) => Mem.Set(P, v);
     // +0x2
     public U8x22 pad2 { [MethodImpl(Inl)] get => new(P + 0x2u); }
 }
@@ -4150,12 +4150,12 @@ public readonly struct Row44
     // +0x0
     public U8x68 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x44
-    public uint unk44
+    public uint Flags
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public uint unk44_Set(uint v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public uint Flags_Set(uint v) => Mem.Set(P + 0x44u, v);
 }
 
 /// <summary>struct Row_func_80420308_de, 0x24 bytes, at a guest address.</summary>

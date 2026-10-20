@@ -408,13 +408,13 @@ public static partial class PreviewModel
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00439E60", (uint)o, (uint)n);
-            new S_v8(o).f0_Set(n);
-            new S_v8(o).f34_Set((-1));
+            new S_v8(o).TypeId_Set(n);
+            new S_v8(o).ModelId_Set((-1));
             if ((n > 0))
             {
-                new S_v8(o).f34_Set(Level.FindTypeIndexById(Gv.LevelMgr, (int)(uint)(n)));
+                new S_v8(o).ModelId_Set(Level.FindTypeIndexById(Gv.LevelMgr, (int)(uint)(n)));
             }
-            return new S_v8(o).f34;
+            return new S_v8(o).ModelId;
         }
     }
 

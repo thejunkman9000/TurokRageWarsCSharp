@@ -2099,14 +2099,14 @@ public readonly struct P3List
     // +0x0
     public U8x20 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x14
-    public U8x20 list { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public U8x20 ActiveList { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x28
-    public int f28
+    public int IsPaused
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
     }
-    [MethodImpl(Inl)] public int f28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int IsPaused_Set(int v) => Mem.Set(P + 0x28u, v);
 }
 
 /// <summary>struct P3List2, 0xC bytes, at a guest address.</summary>
@@ -2406,7 +2406,7 @@ public readonly struct P3SList
     [MethodImpl(Inl)] public static implicit operator uint(P3SList v) => v.P;
     [MethodImpl(Inl)] public static explicit operator P3SList(uint p) => new(p);
     // +0x0
-    public P3SNode first
+    public P3SNode FreeList
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
         [MethodImpl(Inl)] set => Mem.Set(P, value.P);
@@ -2420,7 +2420,7 @@ public readonly struct P3SList
     // +0x4
     public U8x16 pad04 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x14
-    public U8x20 list2 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public U8x20 ActiveList { [MethodImpl(Inl)] get => new(P + 0x14u); }
 }
 
 /// <summary>struct P3SNode, 0x20 bytes, at a guest address.</summary>
@@ -2437,28 +2437,28 @@ public readonly struct P3SNode
     // +0x0
     public U8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public int handle
+    public int SoundHandle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int handle_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int SoundHandle_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public int id
+    public int SoundId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int id_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int SoundId_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public P3Vec3 pos { [MethodImpl(Inl)] get => new(P + 0x10u); }
+    public P3Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x1C
-    public int arg
+    public int PlayArg
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1Cu, value);
     }
-    [MethodImpl(Inl)] public int arg_Set(int v) => Mem.Set(P + 0x1Cu, v);
+    [MethodImpl(Inl)] public int PlayArg_Set(int v) => Mem.Set(P + 0x1Cu, v);
 }
 
 /// <summary>struct P3Seg, 0x3C bytes, at a guest address.</summary>

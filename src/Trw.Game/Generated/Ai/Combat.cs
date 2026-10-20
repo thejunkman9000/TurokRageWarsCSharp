@@ -2034,11 +2034,11 @@ public static partial class Ai
                 int w = 0;
                 int pick = 0;
                 int t = 0;
-                if ((new CtlB(c).actor.IsComputer == 0))
+                if ((new CtlB(c).OwnerPtr.IsComputer == 0))
                 {
                     return;
                 }
-                if ((new CtlB(c).actor.CharacterId == 14))
+                if ((new CtlB(c).OwnerPtr.CharacterId == 14))
                 {
                     Ai.PickRandomWeapon(c);
                     return;
@@ -2047,7 +2047,7 @@ public static partial class Ai
                 cur = 0;
                 for (i = (uint)(0); (i < (uint)(8)); ++i)
                 {
-                    w = Mem.S32(((new CtlB(c).actor.DefPtr + (uint)(i << (int)2)) + (uint)76));
+                    w = Mem.S32(((new CtlB(c).OwnerPtr.DefPtr + (uint)(i << (int)2)) + (uint)76));
                     w = (int)((int)(w) - 1219);
                     if ((w < 0))
                     {
@@ -2063,7 +2063,7 @@ public static partial class Ai
                     }
                     if (((uint)(w) >= (uint)(2)))
                     {
-                        t = (int)(new CtlB(c).actor.PlayerEntryPtr.BotSkill);
+                        t = (int)(new CtlB(c).OwnerPtr.PlayerEntryPtr.BotSkill);
                         if ((t == 1))
                         {
                             goto L_b17;
@@ -2082,7 +2082,7 @@ public static partial class Ai
                                 goto L_add;
                             }
                         }
-                        new CtlB(c).actor.PlayerEntryPtr.BotSkill_Set((byte)(0));
+                        new CtlB(c).OwnerPtr.PlayerEntryPtr.BotSkill_Set((byte)(0));
                         L_b14: ;
                         if (((int)(new WpnDesc(Mem.U32((Gv.WeaponDefTable + (uint)(w * 4)))).info.type) == 1))
                         {
@@ -2101,14 +2101,14 @@ public static partial class Ai
                     L_add: ;
                     Mem.Set((_fp + (uint)(n * 4)), w);
                     ++n;
-                    if ((w == (int)(new CtlB(c).actor.WeaponIndex)))
+                    if ((w == (int)(new CtlB(c).OwnerPtr.WeaponIndex)))
                     {
                         cur = 1;
                     }
                 }
                 if ((cur != 0))
                 {
-                    if ((((int)(new CtlB(c).actor.WeaponIndex) == 4) && (new CtlB(c).actor.FireMode == 2)))
+                    if ((((int)(new CtlB(c).OwnerPtr.WeaponIndex) == 4) && (new CtlB(c).OwnerPtr.FireMode == 2)))
                     {
                         return;
                     }
@@ -2124,10 +2124,10 @@ public static partial class Ai
                 if ((n != (uint)(0)))
                 {
                     pick = Mem.S32((_fp + (uint)(((uint)(RandomGen.Next()) % n) * 4)));
-                    new CtlB(c).actor.PendingWeaponIndex_Set((short)(pick));
-                    if ((pick != (int)(new CtlB(c).actor.WeaponIndex)))
+                    new CtlB(c).OwnerPtr.PendingWeaponIndex_Set((short)(pick));
+                    if ((pick != (int)(new CtlB(c).OwnerPtr.WeaponIndex)))
                     {
-                        new CtlB(c).unk2E4_Set(0);
+                        new CtlB(c).FireDelay_Set(0);
                     }
                 }
             }
@@ -2204,10 +2204,10 @@ public static partial class Ai
                     w = Player.PickRandomWeapon(new CtlB(c).actor_);
                 }
                 while ((w >= 16));
-                new CtlB(c).actor.PendingWeaponIndex_Set((short)(w));
-                if ((w != (int)(new CtlB(c).actor.WeaponIndex)))
+                new CtlB(c).OwnerPtr.PendingWeaponIndex_Set((short)(w));
+                if ((w != (int)(new CtlB(c).OwnerPtr.WeaponIndex)))
                 {
-                    new CtlB(c).unk2E4_Set(0);
+                    new CtlB(c).FireDelay_Set(0);
                 }
             }
         }

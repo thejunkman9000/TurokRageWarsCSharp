@@ -142,7 +142,7 @@ public static partial class AnimProp
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002067FC", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2067FC(msg).unkA), (int)(new Msg2067FC(msg).unk4), 1);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2067FC(msg).TargetMapIndex), (int)(new Msg2067FC(msg).TargetEntityIndex), 1);
         }
     }
 
@@ -168,7 +168,7 @@ public static partial class AnimProp
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206898", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg206898(msg).unkA), (int)(new Msg206898(msg).unk4), 0);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg206898(msg).TargetMapIndex), (int)(new Msg206898(msg).TargetEntityIndex), 0);
         }
     }
 

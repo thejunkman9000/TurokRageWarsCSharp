@@ -79,7 +79,7 @@ public static partial class Entity
             uint a1 = 0u;
             int v = 0;
             uint e = 0u;
-            tab = Mem.U32((Gv.Level_SpawnClassTable + (uint)(new Rec14(r).b11 * 4)));
+            tab = Mem.U32((Gv.Level_SpawnClassTable + (uint)(new Rec14(r).SpawnMode_11 * 4)));
             if ((tab != 0u))
             {
                 if ((((int)(new GBlk(Gv.ViewMgr).f125D) != 0) || ((a1 = new GBlk(Gv.ViewMgr).u20) == 0u)))
@@ -88,25 +88,25 @@ public static partial class Entity
                 }
                 if ((new SessMgr(Gv.LevelMgr).LoadState == 4))
                 {
-                    if (((int)(new Rec14(r).b10) != 0))
+                    if (((int)(new Rec14(r).HudMessageIndex) != 0))
                     {
-                        Hud.SpawnTextLineA(Gv.ViewMgr, a1, (uint)(Mem.S32(new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).b10 * 8))).p_)), Mem.S32(Gv.LevelFrameCount), 4f);
-                        v = new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).b10 * 8))).v;
+                        Hud.SpawnTextLineA(Gv.ViewMgr, a1, (uint)(Mem.S32(new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).HudMessageIndex * 8))).p_)), Mem.S32(Gv.LevelFrameCount), 4f);
+                        v = new PtrVal((Gv.Event_HudMessageTable + (uint)(new Rec14(r).HudMessageIndex * 8))).v;
                         if ((v != 0))
                         {
                             Audio.PlaySndFx(v);
                         }
                     }
-                    if (((int)(new Rec14(r).w8) >= 2))
+                    if (((int)(new Rec14(r).FlybyId) >= 2))
                     {
-                        Flyby.QueueById((int)(new Rec14(r).w8));
+                        Flyby.QueueById((int)(new Rec14(r).FlybyId));
                     }
                 }
-                tab = (uint)(tab + (uint)((int)(new Rec14(r).b12) * 8));
+                tab = (uint)(tab + (uint)((int)(new Rec14(r).SpawnVariant) * 8));
                 ent = tab;
-                if (((int)(new Rec14(r).wA) == Mem.S32(Gv.Level_CurrentId)))
+                if (((int)(new Rec14(r).MapId) == Mem.S32(Gv.Level_CurrentId)))
                 {
-                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).w4 * 744));
+                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).EntityIndex * 744));
                     if ((new FnEnt(ent).fn0 != 0u))
                     {
                         Funcs.CallReg(new FnEnt(ent).fn0, e, (e + 368u), r, 0u);
@@ -181,50 +181,50 @@ public static partial class Level
             {
                 do
                 {
-                    if ((new B14Mgr(m).b != 1))
+                    if ((new B14Mgr(m).RestartMode_4 != 1))
                     {
-                        if ((new B14Mgr(m).b >= 2))
+                        if ((new B14Mgr(m).RestartMode_4 >= 2))
                         {
-                            new B14Mgr(m).b_Set(0);
+                            new B14Mgr(m).RestartMode_4_Set(0);
                         }
                         else
                         {
-                            if ((new B14Mgr(m).b != 0))
+                            if ((new B14Mgr(m).RestartMode_4 != 0))
                             {
-                                new B14Mgr(m).b_Set(0);
+                                new B14Mgr(m).RestartMode_4_Set(0);
                             }
                             else
                             {
-                                new B14Mgr(m).b_Set(1);
+                                new B14Mgr(m).RestartMode_4_Set(1);
                             }
                         }
                     }
                     else
                     {
-                        new B14Mgr(m).b_Set(2);
+                        new B14Mgr(m).RestartMode_4_Set(2);
                     }
                 }
                 while ((0 != 0));
                 Level.SavePlayersForRestart();
-                new B14Mgr(m).d_Set(Mem.S32(Gv.Level_StartPointId));
+                new B14Mgr(m).RestartPointId_Set(Mem.S32(Gv.Level_StartPointId));
                 if (((int)(new B14G2(Gv.Settings).IsMultiplayer) == 0))
                 {
                     p = (uint)(Obj.GetField20_0022A404((Gv.Settings - (uint)4744)));
                     if ((p != 0u))
                     {
-                        if (((new B14Mgr(m).b == 1) && ((Mem.S32(Gv.Level_StartPointId) != new B14Pl_v2(p).SpawnPointId) || ((uint)(((int)(new B14Pl_v2(p).StateId) - 22)) < (uint)(12)))))
+                        if (((new B14Mgr(m).RestartMode_4 == 1) && ((Mem.S32(Gv.Level_StartPointId) != new B14Pl_v2(p).SpawnPointId) || ((uint)(((int)(new B14Pl_v2(p).StateId) - 22)) < (uint)(12)))))
                         {
-                            new B14Mgr(m).b_Set(2);
+                            new B14Mgr(m).RestartMode_4_Set(2);
                         }
-                        new B14Mgr(m).d_Set(new B14Pl_v2(p).SpawnPointId);
+                        new B14Mgr(m).RestartPointId_Set(new B14Pl_v2(p).SpawnPointId);
                     }
                 }
             }
             else
             {
-                new B14Mgr(m).b_Set(0);
+                new B14Mgr(m).RestartMode_4_Set(0);
             }
-            if ((new B14Mgr(m).b != 0))
+            if ((new B14Mgr(m).RestartMode_4 != 0))
             {
                 new B14Mgr(m).c_Set(240);
                 new B14Mgr(m).a_Set(1);
@@ -289,12 +289,12 @@ public static partial class Level
             for (i = 0; (i < new B14Game(Gv.PlayerPool).count); ++i)
             {
                 pl = (new B14Game(Gv.PlayerPool).players_ + (uint)(i * 5864));
-                Mem.Copy((pl + (uint)1504), (new B14Mgr(m).blk.P + (uint)(i * 112)), 112);
-                if ((new B14Mgr(m).b == 1))
+                Mem.Copy((pl + (uint)1504), (new B14Mgr(m).PlayerBlocks.P + (uint)(i * 112)), 112);
+                if ((new B14Mgr(m).RestartMode_4 == 1))
                 {
-                    Mem.Copy((pl + (uint)8), (new B14Mgr(m).w.P + (uint)(i * 12)), 12);
-                    Mem.Set((pl + (uint)108), new B14Mgr(m).f3F0[(int)(i)]);
-                    Mem.Set((pl + (uint)20), (int)(Level.GetFloorTriangle(Gv.LevelMgr, new B14Mgr(m).i410[(int)(i)])));
+                    Mem.Copy((pl + (uint)8), (new B14Mgr(m).Positions.P + (uint)(i * 12)), 12);
+                    Mem.Set((pl + (uint)108), new B14Mgr(m).Yaws[(int)(i)]);
+                    Mem.Set((pl + (uint)20), (int)(Level.GetFloorTriangle(Gv.LevelMgr, new B14Mgr(m).FloorTriangleIndices[(int)(i)])));
                 }
             }
         }
@@ -329,10 +329,10 @@ public static partial class Level
             for (i = 0; (i < new B14GameP(Gv.PlayerPool).count); ++i)
             {
                 pl = (new B14GameP(Gv.PlayerPool).players_ + (uint)(i * 5864));
-                Mem.Copy((new B14Mgr(m).blk.P + (uint)(i * 112)), new B14Pl(pl).CharacterId.P, 112);
-                Mem.Copy((new B14Mgr(m).w.P + (uint)(i * 12)), new B14Pl(pl).Position.P, 12);
-                new B14Mgr(m).f3F0.Set((int)(i), new B14Pl(pl).Yaw);
-                new B14Mgr(m).i410.Set((int)(i), (int)(Level.GetFloorTriangleIndex(Gv.LevelMgr, (uint)(new B14Pl(pl).RegionPtr))));
+                Mem.Copy((new B14Mgr(m).PlayerBlocks.P + (uint)(i * 112)), new B14Pl(pl).CharacterId.P, 112);
+                Mem.Copy((new B14Mgr(m).Positions.P + (uint)(i * 12)), new B14Pl(pl).Position.P, 12);
+                new B14Mgr(m).Yaws.Set((int)(i), new B14Pl(pl).Yaw);
+                new B14Mgr(m).FloorTriangleIndices.Set((int)(i), (int)(Level.GetFloorTriangleIndex(Gv.LevelMgr, (uint)(new B14Pl(pl).RegionPtr))));
             }
         }
     }
@@ -387,9 +387,9 @@ public static partial class Level
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00278EEC", (uint)r);
-            new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 16));
+            new Rec14(r).Flags_Set((byte)((int)(new Rec14(r).Flags) | 16));
             Level.SetTriggerSavedFlag(Gv.LevelMgr, r, 1);
-            if (((new SessMgr(Gv.LevelMgr).LoadState == 4) && (((int)(new Rec14(r).flagsE) & 2) != 0)))
+            if (((new SessMgr(Gv.LevelMgr).LoadState == 4) && (((int)(new Rec14(r).Flags) & 2) != 0)))
             {
                 Level.ScheduleDelayedSpawn(Gv.LevelMgr, r);
             }
@@ -409,12 +409,12 @@ public static partial class Level
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00278F70", (uint)r);
-                new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 32));
-                if (((int)(new Rec14(r).b11) == 1))
+                new Rec14(r).Flags_Set((byte)((int)(new Rec14(r).Flags) | 32));
+                if (((int)(new Rec14(r).SpawnMode_11) == 1))
                 {
                     Mem.Copy(_fp, r, 20);
-                    new Rec14(_fp).b12_Set((byte)(2));
-                    new Rec14(_fp).b10_Set((byte)(0));
+                    new Rec14(_fp).SpawnVariant_Set((byte)(2));
+                    new Rec14(_fp).HudMessageIndex_Set((byte)(0));
                     Entity.Spawn(_fp);
                 }
             }
@@ -445,15 +445,15 @@ public static partial class Level
                 if ((ok != 0))
                 {
                     hit = 1;
-                    fe = new Rec14(r).flagsE;
-                    if (((!(((int)(fe) & 32) != 0) && (m3 != (uint)(0))) && (((uint)(new Rec14(r).w0) & m3) != 0u)))
+                    fe = new Rec14(r).Flags;
+                    if (((!(((int)(fe) & 32) != 0) && (m3 != (uint)(0))) && (((uint)(new Rec14(r).TriggerMask) & m3) != 0u)))
                     {
-                        new Rec14(r).flagsE_Set((byte)(((int)(fe) | 64)));
-                        if (((int)(new Rec14(r).b0F) != 0))
+                        new Rec14(r).Flags_Set((byte)(((int)(fe) | 64)));
+                        if (((int)(new Rec14(r).FollowupKey) != 0))
                         {
-                            if ((Level.AreTriggerRecordsDone(Gv.LevelMgr, (int)(new Rec14(r).b0F)) != 0))
+                            if ((Level.AreTriggerRecordsDone(Gv.LevelMgr, (int)(new Rec14(r).FollowupKey)) != 0))
                             {
-                                Level.SpawnTriggerFollowupsByKey(Gv.LevelMgr, (int)(new Rec14(r).b0F));
+                                Level.SpawnTriggerFollowupsByKey(Gv.LevelMgr, (int)(new Rec14(r).FollowupKey));
                             }
                         }
                         else
@@ -464,17 +464,17 @@ public static partial class Level
                     }
                     if ((m2 != (uint)(0)))
                     {
-                        v = ((uint)(new Rec14(r).w0) & m2);
+                        v = ((uint)(new Rec14(r).TriggerMask) & m2);
                         hit = ((v != (uint)(0)) ? 1 : 0);
                     }
                     if ((m3 != (uint)(0)))
                     {
-                        if ((((uint)(new Rec14(r).w0) & m3) == (uint)(0)))
+                        if ((((uint)(new Rec14(r).TriggerMask) & m3) == (uint)(0)))
                         {
                             hit = 0;
                         }
                     }
-                    v = ((uint)(new Rec14(r).w0) & m5);
+                    v = ((uint)(new Rec14(r).TriggerMask) & m5);
                     if ((v != (uint)(0)))
                     {
                         if (((v & m4) == (uint)(0)))
@@ -492,16 +492,16 @@ public static partial class Level
                     }
                     if ((hit != 0))
                     {
-                        if (((int)(new Rec14(r).b0F) != 0))
+                        if (((int)(new Rec14(r).FollowupKey) != 0))
                         {
-                            if (!(((int)(new Rec14(r).flagsE) & 128) != 0))
+                            if (!(((int)(new Rec14(r).Flags) & 128) != 0))
                             {
                                 Level.SetTriggerSavedFlag(Gv.LevelMgr, r, 1);
-                                new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 128));
-                                Level.DecrementTriggerCounter(Gv.LevelMgr, (int)(new Rec14(r).b0F));
-                                if ((Level.IsTriggerCounterZero(Gv.LevelMgr, (int)(new Rec14(r).b0F)) != 0))
+                                new Rec14(r).Flags_Set((byte)((int)(new Rec14(r).Flags) | 128));
+                                Level.DecrementTriggerCounter(Gv.LevelMgr, (int)(new Rec14(r).FollowupKey));
+                                if ((Level.IsTriggerCounterZero(Gv.LevelMgr, (int)(new Rec14(r).FollowupKey)) != 0))
                                 {
-                                    Level.ActivateTriggerRecordsByKey(Gv.LevelMgr, (int)(new Rec14(r).b0F));
+                                    Level.ActivateTriggerRecordsByKey(Gv.LevelMgr, (int)(new Rec14(r).FollowupKey));
                                 }
                             }
                         }
@@ -522,14 +522,14 @@ public static partial class Level
         {
             if (Dbg.On) Dbg.Enter("func_00279490", (uint)r, (uint)flag);
             uint e = 0u;
-            if (((int)(new Rec14(r).wA) == Mem.S32(Gv.Level_CurrentId)))
+            if (((int)(new Rec14(r).MapId) == Mem.S32(Gv.Level_CurrentId)))
             {
                 if ((flag != 0))
                 {
-                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).w4 * 744));
-                    if (((int)(new Rec14(r).b11) == 10))
+                    e = (Mem.U32(Gv.Level_EntityArrayPtr) + (uint)(new Rec14(r).EntityIndex * 744));
+                    if (((int)(new Rec14(r).SpawnMode_11) == 10))
                     {
-                        if (((int)(new Rec14(r).b12) == 1))
+                        if (((int)(new Rec14(r).SpawnVariant) == 1))
                         {
                             return Objective.CheckLockedTouch_00204308(e, (e + 368u), (uint)(flag));
                         }
@@ -3789,10 +3789,10 @@ public static partial class Level
                     }
                     Level.Load(lv, (uint)(a1), (uint)(new LevelView(lv).HasWarpDest), default(uint));
                     g = Gv.Settings;
-                    if (((new LevelView(lv).KnownCheatMask != new G462(g).unk4) && (Game_IsInState13() != 0)))
+                    if (((new LevelView(lv).KnownCheatMask != new G462(g).UnlockedCheats) && (Game_IsInState13() != 0)))
                     {
                         Hud.SpawnTextLineC((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(Gv.HudMsg_NewCheatEnabled)), 4.0f);
-                        new LevelView(lv).KnownCheatMask_Set(new G462(g).unk4);
+                        new LevelView(lv).KnownCheatMask_Set(new G462(g).UnlockedCheats);
                         return;
                     }
                 }
@@ -4311,7 +4311,7 @@ public static partial class Level
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028BAF8", (uint)lv, (uint)s, (uint)set);
-            int bit = (int)(new Src(s).unk13);
+            int bit = (int)(new Src(s).SavedFlagBit);
             int idx = new LevelView(lv).LevelIndex;
             uint t = Chunk.Get(Chunk.Get(Chunk.Get(new LevelView(lv).unk80_, 0), idx), 2);
             uint bits = 0u;
@@ -4339,7 +4339,7 @@ public static partial class Level
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028BBE8", (uint)lv, (uint)s);
-            int bit = (int)(new Src(s).unk13);
+            int bit = (int)(new Src(s).SavedFlagBit);
             int idx = new LevelView(lv).LevelIndex;
             uint t = Chunk.Get(Chunk.Get(Chunk.Get(new LevelView(lv).unk80_, 0), idx), 2);
             uint bits = 0u;
@@ -4686,9 +4686,9 @@ public static partial class Level
                 Entity.Spawn(new Obj2(n).SpawnDescPtr);
                 new Obj2(n).SpawnDescPtr_Set(s);
             }
-            f = Trunc16ToF32(new SndDesc(s).unkC);
+            f = Trunc16ToF32(new SndDesc(s).SpawnDelay);
             new Obj2(n).Timer_Set(f);
-            if ((((int)(new SndDesc(s).unkE) & 2) != 0))
+            if ((((int)(new SndDesc(s).Flags) & 2) != 0))
             {
                 new Obj2(n).Timer_Set((f * 15.0f));
             }
@@ -6491,23 +6491,23 @@ public static partial class Level
                 {
                     do
                     {
-                        if ((new Piece((piece + (uint)(i * 60))).tag == (-1)))
+                        if ((new Piece((piece + (uint)(i * 60))).ModelSetKey == (-1)))
                         {
-                            new Piece((piece + (uint)(i * 60))).tag_Set(0);
+                            new Piece((piece + (uint)(i * 60))).ModelSetKey_Set(0);
                         }
                         else
                         {
-                            new Piece((piece + (uint)(i * 60))).tag_Set(Level.GetModelKey((uint)(arg0), new Piece((piece + (uint)(i * 60))).tag));
+                            new Piece((piece + (uint)(i * 60))).ModelSetKey_Set(Level.GetModelKey((uint)(arg0), new Piece((piece + (uint)(i * 60))).ModelSetKey));
                         }
-                        new Piece((piece + (uint)(i * 60))).unk18_Set((@base + new Piece((piece + (uint)(i * 60))).unk18));
+                        new Piece((piece + (uint)(i * 60))).ImpactTablePtr_Set((@base + new Piece((piece + (uint)(i * 60))).ImpactTablePtr));
                         new Piece((piece + (uint)(i * 60))).unk1C_Set((@base + new Piece((piece + (uint)(i * 60))).unk1C));
                         new Piece((piece + (uint)(i * 60))).unk20_Set((@base + new Piece((piece + (uint)(i * 60))).unk20));
-                        new Piece((piece + (uint)(i * 60))).unk24_Set((@base + new Piece((piece + (uint)(i * 60))).unk24));
+                        new Piece((piece + (uint)(i * 60))).DistanceScalePtr_24_Set((@base + new Piece((piece + (uint)(i * 60))).DistanceScalePtr_24));
                         new Piece((piece + (uint)(i * 60))).unk28_Set((@base + new Piece((piece + (uint)(i * 60))).unk28));
                         new Piece((piece + (uint)(i * 60))).unk2C_Set((@base + new Piece((piece + (uint)(i * 60))).unk2C));
-                        new Piece((piece + (uint)(i * 60))).unk30_Set((@base + new Piece((piece + (uint)(i * 60))).unk30));
+                        new Piece((piece + (uint)(i * 60))).SpeedLimitsPtr_Set((@base + new Piece((piece + (uint)(i * 60))).SpeedLimitsPtr));
                         new Piece((piece + (uint)(i * 60))).unk34_Set((@base + new Piece((piece + (uint)(i * 60))).unk34));
-                        new Piece((piece + (uint)(i * 60))).unk38_Set((@base + new Piece((piece + (uint)(i * 60))).unk38));
+                        new Piece((piece + (uint)(i * 60))).SlotInfoPtr_38_Set((@base + new Piece((piece + (uint)(i * 60))).SlotInfoPtr_38));
                         ++i;
                     }
                     while ((i < count));

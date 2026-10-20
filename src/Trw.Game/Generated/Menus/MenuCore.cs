@@ -1741,7 +1741,7 @@ public static partial class Menu
             x = (int)(UiScreen.GetData(Menu.GetCurrentScreenId()));
             for (i = 0; (i < new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount); ++i)
             {
-                if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).unk8 == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).id == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx.Id) == id)))
+                if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ScreenDataPtr == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).NodeId == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).NodePtr.Id) == id)))
                 {
                     return new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx_;
                 }
@@ -1755,9 +1755,9 @@ public static partial class Menu
             }
             if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount < 75))
             {
-                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).id_Set(id);
+                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).NodeId_Set(id);
                 new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).ctx__Set(ctx);
-                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).unk8_Set(x);
+                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).ScreenDataPtr_Set(x);
                 new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount + 1));
             }
             return ctx;
@@ -2275,17 +2275,17 @@ public static partial class Menu
                 int dt = 0;
                 int i = 0;
                 uint m = Mem.U32(Gv.MenuMgrPtr);
-                new B22Viewport(_fp).x_Set(new SndMgr_v2(m).DrawOffsetX);
-                new B22Viewport(_fp).y_Set(new SndMgr_v2(m).DrawOffsetY);
-                new B22Viewport(_fp).alpha_Set((byte)(255));
-                new B22Viewport(_fp).unk8_Set(0);
-                new B22Viewport(_fp).sx_Set(1.0f);
-                new B22Viewport(_fp).sy_Set(1.0f);
+                new B22Viewport(_fp).OriginX_Set(new SndMgr_v2(m).DrawOffsetX);
+                new B22Viewport(_fp).OriginY_Set(new SndMgr_v2(m).DrawOffsetY);
+                new B22Viewport(_fp).Alpha_Set((byte)(255));
+                new B22Viewport(_fp).Flags_Set(0);
+                new B22Viewport(_fp).ScaleX_Set(1.0f);
+                new B22Viewport(_fp).ScaleY_Set(1.0f);
                 Mem.Set(Gv.Menu_Word_8014D084, 0);
-                new B22Viewport(_fp).x2_Set(new SndMgr_v2(m).DrawOffsetX);
-                new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).DrawOffsetY);
-                new B22Viewport(_fp).w_Set((Mem.S32(Gv.Menu_ScreenWidth) - 1));
-                new B22Viewport(_fp).h_Set((Mem.S32(Gv.Menu_ScreenHeight) - 1));
+                new B22Viewport(_fp).ClipRect_Set(new SndMgr_v2(m).DrawOffsetX);
+                new B22Viewport(_fp).ClipTop_20_Set(new SndMgr_v2(m).DrawOffsetY);
+                new B22Viewport(_fp).ClipRight_1C_Set((Mem.S32(Gv.Menu_ScreenWidth) - 1));
+                new B22Viewport(_fp).ClipBottom_24_Set((Mem.S32(Gv.Menu_ScreenHeight) - 1));
                 now = (int)((Time.GetSecondsSinceStart() * 1000.0d));
                 if ((Mem.S32(Gv.Menu_LastDrawTimeMs) == 0))
                 {

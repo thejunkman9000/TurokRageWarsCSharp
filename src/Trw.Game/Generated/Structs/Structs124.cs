@@ -645,14 +645,14 @@ public readonly struct func_8020A028_S3
     [MethodImpl(Inl)] public static implicit operator uint(func_8020A028_S3 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8020A028_S3(uint p) => new(p);
     // +0x0
-    public S8x472 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x472 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x1D8
-    public uint unk1D8
+    public uint OwnerPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x1D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1D8u, value);
     }
-    [MethodImpl(Inl)] public uint unk1D8_Set(uint v) => Mem.Set(P + 0x1D8u, v);
+    [MethodImpl(Inl)] public uint OwnerPtr_Set(uint v) => Mem.Set(P + 0x1D8u, v);
 }
 
 /// <summary>struct func_8020A028_S4, 0x14 bytes, at a guest address.</summary>
@@ -3345,23 +3345,23 @@ public readonly struct func_8021C9B4_S2
     [MethodImpl(Inl)] public static implicit operator uint(func_8021C9B4_S2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator func_8021C9B4_S2(uint p) => new(p);
     // +0x0
-    public S8x129 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x129 SelfDeaths_0 { [MethodImpl(Inl)] get => new(P); }
     // +0x81
-    public byte unk81
+    public byte SkinIndex
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x81u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x81u, value);
     }
-    [MethodImpl(Inl)] public byte unk81_Set(byte v) => Mem.Set(P + 0x81u, v);
+    [MethodImpl(Inl)] public byte SkinIndex_Set(byte v) => Mem.Set(P + 0x81u, v);
     // +0x82
-    public S8x13 pad81 { [MethodImpl(Inl)] get => new(P + 0x82u); }
+    public S8x13 WeaponSelectMode { [MethodImpl(Inl)] get => new(P + 0x82u); }
     // +0x8F
-    public byte unk8F
+    public byte IsMonkey
     {
         [MethodImpl(Inl)] get => Mem.U8(P + 0x8Fu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8Fu, value);
     }
-    [MethodImpl(Inl)] public byte unk8F_Set(byte v) => Mem.Set(P + 0x8Fu, v);
+    [MethodImpl(Inl)] public byte IsMonkey_Set(byte v) => Mem.Set(P + 0x8Fu, v);
 }
 
 /// <summary>struct func_8021C9B4_S3, 0xE bytes, at a guest address.</summary>

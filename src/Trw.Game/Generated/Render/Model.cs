@@ -2759,7 +2759,7 @@ public static partial class Model
                         s6 = ((0 < new B15Dbg(Gv.Settings_MatchRules).BossShieldPercent) ? 1 : 0);
                     }
                 }
-                if (((new B15Pl(plp).unk122C & (uint)(32768)) != 0u))
+                if (((new B15Pl(plp).PowerupFlags & (uint)(32768)) != 0u))
                 {
                     s6 = 1;
                 }
@@ -2769,7 +2769,7 @@ public static partial class Model
                 }
                 if ((Mem.S32(Gv.Match_MonkeyTagMode) != 0))
                 {
-                    if (((int)(new B15Pl(plp).stats.IsMonkey) == 1))
+                    if (((int)(new B15Pl(plp).PlayerEntryPtr.IsMonkey) == 1))
                     {
                         s7 = 1;
                     }
@@ -3215,7 +3215,7 @@ public static partial class Model
                 {
                     part = Chunk.Get(arr, i);
                     info = Chunk.Get(part, 0);
-                    if (((((int)(new B15Info(info).flags) & 56) != 56) || ((new B15Pad_v2(pad).unk122C & (uint)(1024)) != 0u)))
+                    if (((((int)(new B15Info(info).flags) & 56) != 56) || ((new B15Pad_v2(pad).PowerupFlags & (uint)(1024)) != 0u)))
                     {
                         dl = Chunk.Get(part, 1);
                         g4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);

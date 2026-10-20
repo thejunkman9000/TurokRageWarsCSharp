@@ -25,35 +25,35 @@ public static partial class UiString
                 ResourcePool.MallocFree(new S_G_v3(Gv.Image_ArchiveCtx).buf0_);
             }
             new S_G_v3(Gv.Image_ArchiveCtx).buf0__Set(0u);
-            if ((new S_G_v3(Gv.Image_ArchiveCtx).buf1 != 0u))
+            if ((new S_G_v3(Gv.Image_ArchiveCtx).StringsTable != 0u))
             {
-                ResourcePool.MallocFree(new S_G_v3(Gv.Image_ArchiveCtx).buf1);
+                ResourcePool.MallocFree(new S_G_v3(Gv.Image_ArchiveCtx).StringsTable);
             }
-            new S_G_v3(Gv.Image_ArchiveCtx).buf1_Set(0u);
-            if ((idx < ((int)(new S_G_v3(Gv.Image_ArchiveCtx).n) - 1)))
+            new S_G_v3(Gv.Image_ArchiveCtx).StringsTable_Set(0u);
+            if ((idx < ((int)(new S_G_v3(Gv.Image_ArchiveCtx).StringsBankCount) - 1)))
             {
                 size = (new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)((idx + 1) * 8))).off - new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off);
             }
             else
             {
-                size = (new S_G_v3(Gv.Image_ArchiveCtx).f234 - new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off);
+                size = (new S_G_v3(Gv.Image_ArchiveCtx).StringsBankEnd - new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off);
             }
             new S_G_v3(Gv.Image_ArchiveCtx).buf0__Set(ResourcePool.Malloc((uint)(size)));
-            FileIo.Seek((uint)(new S_G_v3(Gv.Image_ArchiveCtx).h), (uint)((new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off + new S_G_v3(Gv.Image_ArchiveCtx).f230)), (uint)(0), default(uint));
-            FileIo.Read((uint)((int)(new S_G_v3(Gv.Image_ArchiveCtx).buf0_)), (uint)(size), (uint)(1), (uint)(new S_G_v3(Gv.Image_ArchiveCtx).h));
+            FileIo.Seek((uint)(new S_G_v3(Gv.Image_ArchiveCtx).FileHandle), (uint)((new S_ent_v2((Mem.U32(Gv.UiStrings_BankTablePtr) + (uint)(idx * 8))).off + new S_G_v3(Gv.Image_ArchiveCtx).StringsBankBase)), (uint)(0), default(uint));
+            FileIo.Read((uint)((int)(new S_G_v3(Gv.Image_ArchiveCtx).buf0_)), (uint)(size), (uint)(1), (uint)(new S_G_v3(Gv.Image_ArchiveCtx).FileHandle));
             if ((flag != 0))
             {
-                FileIo.Close((uint)(new S_G_v3(Gv.Image_ArchiveCtx).h), default(uint), default(uint), default(uint));
-                new S_G_v3(Gv.Image_ArchiveCtx).h_Set(0);
+                FileIo.Close((uint)(new S_G_v3(Gv.Image_ArchiveCtx).FileHandle), default(uint), default(uint), default(uint));
+                new S_G_v3(Gv.Image_ArchiveCtx).FileHandle_Set(0);
             }
-            new S_G_v3(Gv.Image_ArchiveCtx).buf1_Set(ResourcePool.Malloc((uint)((cnt << (int)2))));
-            Mem.Set((new S_G_v3(Gv.Image_ArchiveCtx).buf1 + (uint)(0 * 4)), new S_G_v3(Gv.Image_ArchiveCtx).buf0_);
+            new S_G_v3(Gv.Image_ArchiveCtx).StringsTable_Set(ResourcePool.Malloc((uint)((cnt << (int)2))));
+            Mem.Set((new S_G_v3(Gv.Image_ArchiveCtx).StringsTable + (uint)(0 * 4)), new S_G_v3(Gv.Image_ArchiveCtx).buf0_);
             j = 1;
             for (p = (new S_G_v3(Gv.Image_ArchiveCtx).buf0_ + (uint)1); (((uint)(p) < ((uint)(new S_G_v3(Gv.Image_ArchiveCtx).buf0_) + (uint)(size))) && (j < cnt)); p += 1u)
             {
                 if (((int)(Mem.U8(p)) == 0))
                 {
-                    Mem.Set((new S_G_v3(Gv.Image_ArchiveCtx).buf1 + (uint)((j++) * 4)), (p + (uint)1));
+                    Mem.Set((new S_G_v3(Gv.Image_ArchiveCtx).StringsTable + (uint)((j++) * 4)), (p + (uint)1));
                 }
             }
         }

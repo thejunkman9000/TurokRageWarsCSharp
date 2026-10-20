@@ -458,7 +458,7 @@ public static partial class ItemSpawner
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206258", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg206258(msg).unkA), (int)(new Msg206258(msg).unk4), 1);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg206258(msg).TargetMapIndex), (int)(new Msg206258(msg).TargetEntityIndex), 1);
         }
     }
 
@@ -478,7 +478,7 @@ public static partial class ItemSpawner
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002062B0", (uint)msg);
-            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2062B0(msg).unkA), (int)(new Msg2062B0(msg).unk4), 0);
+            Level.SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2062B0(msg).TargetMapIndex), (int)(new Msg2062B0(msg).TargetEntityIndex), 0);
         }
     }
 

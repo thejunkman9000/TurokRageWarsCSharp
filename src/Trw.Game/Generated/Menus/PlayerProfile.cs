@@ -591,7 +591,7 @@ public static partial class NameEntry
             uint s = Gv.Settings_MatchRules;
             int ret = 0;
             ret = 0;
-            if ((((new State_func_80445EF4_de(s).unk28 != 0) || (new State_func_80445EF4_de(s).unk1C != 0)) || (new State_func_80445EF4_de(s).unk20 != 0)))
+            if ((((new State_func_80445EF4_de(s).IsTeamEndStarted != 0) || (new State_func_80445EF4_de(s).IsMatchOver != 0)) || (new State_func_80445EF4_de(s).IsEndAcknowledged != 0)))
             {
                 ret = 1;
             }
@@ -9354,8 +9354,8 @@ public static partial class ProfileStats
         {
             if (Dbg.On) Dbg.Enter("func_0041DECC");
             Menu.ConsumeEvent();
-            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).fD8_Set(5);
-            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).fDC_Set(4);
+            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).State_Set(5);
+            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).Timer_Set(4);
             return 0;
         }
     }

@@ -2178,12 +2178,12 @@ public readonly struct Shared_ActorView
     // +0xE6
     public S8x266 AnimCount { [MethodImpl(Inl)] get => new(P + 0xE6u); }
     // +0x1F0
-    public int frameValue
+    public int StateTargetPtr_1F0
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1F0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1F0u, value);
     }
-    [MethodImpl(Inl)] public int frameValue_Set(int v) => Mem.Set(P + 0x1F0u, v);
+    [MethodImpl(Inl)] public int StateTargetPtr_1F0_Set(int v) => Mem.Set(P + 0x1F0u, v);
     // +0x1F4
     public S8x244 PrevRegionPtr { [MethodImpl(Inl)] get => new(P + 0x1F4u); }
     // +0x2E8

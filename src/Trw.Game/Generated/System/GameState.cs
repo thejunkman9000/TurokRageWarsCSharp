@@ -1143,7 +1143,7 @@ public static partial class Game
                 Mem.Set((_fp + 4u), 0);
                 dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095))));
-                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).unk110));
+                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).FramebufferPtr));
                 Sprite.GetFrameSize(905, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
@@ -1944,9 +1944,9 @@ public static partial class State
             Audio.PlayCue(0);
             new B21GameBlk(b).IsDemoActive_Set(0);
             new B21GameBlk(b).IsFlybyHoldStarted_Set(0);
-            new B21Sub1288(s).unkB2_Set((byte)(1));
-            new B21Sub1288(s).unk1D_Set((byte)(0));
-            new B21Sub1288(s).unk1E_Set((byte)(1));
+            new B21Sub1288(s).IsDefaultRecordActive_Set((byte)(1));
+            new B21Sub1288(s).IsMultiplayer_Set((byte)(0));
+            new B21Sub1288(s).MaxPlayers_Set((byte)(1));
             Game_InitCameras(g, 0, 0);
             Level.Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
             CameraManager.Init(q, 1);
@@ -2006,7 +2006,7 @@ public static partial class State
                 Mem.Set((_fp + 4u), 0);
                 dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095))));
-                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).unk110));
+                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).FramebufferPtr));
                 Sprite.GetFrameSize(904, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
@@ -2093,8 +2093,8 @@ public static partial class State
             new B21GameBlk(b).IsEndAcknowledged_Set(0);
             new B21GameBlk(b).PlayInitValue_64_Set(3);
             s = new B21World(Gv.PlayerPool).sub1288.P;
-            new B21Sub1288(s).unk1D_Set((byte)(1));
-            new B21Sub1288(s).unk1E_Set((byte)(8));
+            new B21Sub1288(s).IsMultiplayer_Set((byte)(1));
+            new B21Sub1288(s).MaxPlayers_Set((byte)(8));
             Game_InitCameras(g, (int)(new B21Game(g).MaxPlayers), 0);
             if ((Level.IsRestartPending() != 0))
             {
@@ -2182,7 +2182,7 @@ public static partial class State
         {
             if (Dbg.On) Dbg.Enter("func_00294980", (uint)g);
             uint s = new B21World(Gv.PlayerPool).sub1288.P;
-            new B21Sub1288(s).unk1D_Set((byte)(0));
+            new B21Sub1288(s).IsMultiplayer_Set((byte)(0));
             Mem.Set(Gv.Credits_ReturnToTitle, 0);
             Mem.Set(Gv.Credits_LineIndex, 0);
             Mem.Set(Gv.Credits_ScrollY, (float)(Mem.S32(Gv.ScreenHeight)));

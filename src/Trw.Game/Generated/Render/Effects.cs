@@ -103,7 +103,7 @@ public static partial class Actor
                 }
                 else
                 {
-                    sp108 = (int)(new CcObj(o).unk1B8);
+                    sp108 = (int)(new CcObj(o).ActorHitMode_1B8);
                 }
                 if ((new CcObj(o).unk14 == 0))
                 {
@@ -173,10 +173,10 @@ public static partial class Actor
                 {
                     st = 6;
                 }
-                v70 = (int)(new CcCfg(cfg).tab.a70[(int)(st)]);
-                v8C = (int)(new CcCfg(cfg).tab.a8C[(int)(st)]);
-                Mem.Copy(_fp, (new CcCfg(cfg).tab.vec.P + (uint)(st * 8)), 8);
-                vA8 = (int)(new CcCfg(cfg).tab.aA8[(int)(st)]);
+                v70 = (int)(new CcCfg(cfg).ImpactTablePtr.a70[(int)(st)]);
+                v8C = (int)(new CcCfg(cfg).ImpactTablePtr.a8C[(int)(st)]);
+                Mem.Copy(_fp, (new CcCfg(cfg).ImpactTablePtr.vec.P + (uint)(st * 8)), 8);
+                vA8 = (int)(new CcCfg(cfg).ImpactTablePtr.aA8[(int)(st)]);
                 if (((int)(new CcPar(P).Type) == 1))
                 {
                     par = P;
@@ -196,15 +196,15 @@ public static partial class Actor
                 if ((v8C != 65535))
                 {
                     uint a0 = 0u;
-                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(4)) != 0u))
+                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).Flags & (uint)(4)) != 0u))
                     {
                         if (((int)(new CcObj(o).TypeId) == 86))
                         {
-                            new CcPr(_fp).b_Set((short)((int)(((float)(new CcPr(_fp).b) * new CcObj(o).unk1E0))));
+                            new CcPr(_fp).b_Set((short)((int)(((float)(new CcPr(_fp).b) * new CcObj(o).DamageScale_1E0))));
                         }
                     }
                     a0 = P;
-                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(2)) != 0u))
+                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).Flags & (uint)(2)) != 0u))
                     {
                         a0 = o;
                     }
@@ -227,7 +227,7 @@ public static partial class Actor
                         int a2 = (int)(Mem.U16((tb + (uint)148)));
                         if ((a2 != 65535))
                         {
-                            int fl = (int)(new B18T8((Gv.Anim_EventDefTable + (uint)(a2 * 8))).w0);
+                            int fl = (int)(new B18T8((Gv.Anim_EventDefTable + (uint)(a2 * 8))).Flags);
                             Mem.Copy((_fp + 8u), (tb + (uint)32), 8);
                             if (((fl & 4) != 0))
                             {
@@ -278,7 +278,7 @@ public static partial class Actor
                             }
                         }
                     }
-                    if (((sp108 == 1) || ((v8C != 65535) && ((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(1)) != 0u))))
+                    if (((sp108 == 1) || ((v8C != 65535) && ((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).Flags & (uint)(1)) != 0u))))
                     {
                         Particle.Free(Gv.EffectMgr, o, default(uint), default(uint));
                         Particle.StopLoopSound(o);
@@ -510,7 +510,7 @@ public static partial class Effects
                 int mode = 1;
                 int extra = 0;
                 Collision.LocatePoint_0024E78C(o, _fp, (_fp + 16u), (_fp + 64u));
-                switch ((int)(new B04Ent_v3(o).type))
+                switch ((int)(new B04Ent_v3(o).Type))
                 {
                 case 2:
                 case 0:
@@ -520,28 +520,28 @@ public static partial class Effects
                     break;
                 case 1:
                     e = o;
-                    Mem.Copy((_fp + 32u), new B04Ent_v3(e).pos.P, 12);
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(e).Velocity.P, 12);
                     Actor.GetFacingQuat((_fp + 48u), e);
-                    extra = new B04Ent_v3(e).unk1F0;
+                    extra = new B04Ent_v3(e).StateTargetPtr_1F0;
                     if ((Actor.GetModelHeaderField6E_0024BE70(e) == 5))
                     {
                         mode = 3;
                     }
                     break;
                 case 3:
-                    Mem.Copy((_fp + 32u), new B04Ent_v3(o).pos.P, 12);
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(o).Velocity.P, 12);
                     Player.GetBodyLeanRet_0024F468((_fp + 48u), o);
                     break;
                 }
                 Effects.SpawnFromTemplates(Gv.EffectMgr, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
-                if ((((int)(new B04Ent_v3(o).type) == 1) && ((int)(new B04Ent_v3(e).unkE4) == 1036)))
+                if ((((int)(new B04Ent_v3(o).Type) == 1) && ((int)(new B04Ent_v3(e).TypeId) == 1036)))
                 {
-                    int v = (new B04Ent_v3(e).unk29C - 1);
+                    int v = (new B04Ent_v3(e).StateClassVar_29C - 1);
                     if ((v < 0))
                     {
                         v = 0;
                     }
-                    new B04Ent_v3(e).unk29C_Set(v);
+                    new B04Ent_v3(e).StateClassVar_29C_Set(v);
                 }
             }
         }
@@ -4901,7 +4901,7 @@ public static partial class Particle
                     new Vec3f(_fp).y_Set(1f);
                     Vec.Cross((_fp + 16u), _fp, (_fp + 32u));
                     Vec.Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).ActorStateTablePtr) * new ActorX(a).HitFlags_1AC) * f));
-                    new ActorX(a).ActorStateTablePtr_Set((float)((float)(new ActorX(a).ActorStateTablePtr) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
+                    new ActorX(a).ActorStateTablePtr_Set((float)((float)(new ActorX(a).ActorStateTablePtr) + ((new ActorX(a).ActorStateId * f) * Mem.F32(Gv.FrameTime))));
                     tmp = new ActorX(a).ActorStateTablePtr;
                     Vec.Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).HitFlags_1AC) * f));
                     Vec.Sub(new ActorX(a).Velocity.P, new ActorX(a).Velocity.P, (_fp + 48u));
@@ -4909,7 +4909,7 @@ public static partial class Particle
                 }
                 else
                 {
-                    new ActorX(a).ActorStateTablePtr_Set((new ActorX(a).ActorStateTablePtr + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
+                    new ActorX(a).ActorStateTablePtr_Set((new ActorX(a).ActorStateTablePtr + ((new ActorX(a).ActorStateId * f) * Mem.F32(Gv.FrameTime))));
                 }
                 if ((new ActorX(a).f1B0 > 0.0f))
                 {
@@ -4951,7 +4951,7 @@ public static partial class Particle
                     Vec.Scale(_fp, (_fp + 16u), a);
                     Vec.Add(new M5Obj(o).Velocity.P, new M5Obj(o).Velocity.P, _fp);
                     len = sqrtf((((new M5Obj(o).Velocity.x * new M5Obj(o).Velocity.x) + (new M5Obj(o).Velocity.y * new M5Obj(o).Velocity.y)) + (new M5Obj(o).Velocity.z * new M5Obj(o).Velocity.z)));
-                    lim = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.lim.b);
+                    lim = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.SpeedLimitsPtr.b);
                     if ((a > 0.0f))
                     {
                         if ((lim < len))
@@ -5054,7 +5054,7 @@ public static partial class Particle
                 MathUtil.MtxTransformPoint((_fp + 96u), (_fp + 32u), new M5Obj(o).Direction.P);
                 Vec.Scale(new M5Obj(o).Velocity.P, new M5Obj(o).Direction.P, speed);
                 _f6: ;
-                a = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.lim.a);
+                a = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.SpeedLimitsPtr.a);
                 func_0027A0F4_Steer(o, a);
                 Particle.ApplyWobble(o, 1.0f);
                 _f2: ;
@@ -5080,7 +5080,7 @@ public static partial class Particle
                     Vec.Scale(_fp, (_fp + 16u), a);
                     Vec.Add(new M5Obj(o).Velocity.P, new M5Obj(o).Velocity.P, _fp);
                     len = sqrtf((((new M5Obj(o).Velocity.x * new M5Obj(o).Velocity.x) + (new M5Obj(o).Velocity.y * new M5Obj(o).Velocity.y)) + (new M5Obj(o).Velocity.z * new M5Obj(o).Velocity.z)));
-                    lim = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.lim.b);
+                    lim = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.SpeedLimitsPtr.b);
                     if ((a > 0.0f))
                     {
                         if ((lim < len))
@@ -5190,7 +5190,7 @@ public static partial class Particle
                 new M5Obj(o).WallHitMode_1B9_Set((byte)(0));
                 new M5Obj(o).FloorHitMode_1BA_Set((byte)(0));
                 _f12: ;
-                a = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.lim.a);
+                a = Trunc16ToF32(new M5Obj(o).ParticleDefPtr.SpeedLimitsPtr.a);
                 func_0027A540_Steer(o, a);
                 Particle.ApplyWobble(o, 1.0f);
             }
@@ -5362,7 +5362,7 @@ public static partial class Particle
                     Vec.Scale(_fp, (_fp + 16u), a);
                     Vec.Add(new R06Obj(o).Velocity.P, new R06Obj(o).Velocity.P, _fp);
                     len = sqrtf((((new R06Obj(o).Velocity.x * new R06Obj(o).Velocity.x) + (new R06Obj(o).Velocity.y * new R06Obj(o).Velocity.y)) + (new R06Obj(o).Velocity.z * new R06Obj(o).Velocity.z)));
-                    lim = Trunc16ToF32(new R06Obj(o).ParticleDefPtr.lim.b);
+                    lim = Trunc16ToF32(new R06Obj(o).ParticleDefPtr.SpeedLimitsPtr.b);
                     if ((a > 0.0f))
                     {
                         if ((lim < len))
@@ -6583,7 +6583,7 @@ public static partial class Particle
                 uint c = 0u;
                 if (((new B18Fx(o).Flags & (uint)(1024)) != 0u))
                 {
-                    if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(2048)) != 0u))
+                    if (((new B18Fx(o).ParticleDefPtr.Flags & (uint)(2048)) != 0u))
                     {
                         goto L_tail;
                     }
@@ -6594,17 +6594,17 @@ public static partial class Particle
                     idx = 0;
                 }
                 c = new B18Fx(o).cfg_;
-                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                Mem.Copy(_fp, (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                Mem.Copy(_fp, (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
                     Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_WallHitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                    if (((new B18Fx(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                     {
                         Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
@@ -6669,17 +6669,17 @@ public static partial class Particle
                     idx = 7;
                 }
                 c = new B18Fx(o).cfg_;
-                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                Mem.Copy(_fp, (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                Mem.Copy(_fp, (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
                     Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_LiquidHitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                    if (((new B18Fx(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                     {
                         Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
@@ -6695,7 +6695,7 @@ public static partial class Particle
                     Audio.PlaySound((int)((short)(s3)), Gv.Particle_LiquidHitResult, 0, (-1));
                 }
                 new B18Fx(o).Flags_Set((uint)((uint)(new B18Fx(o).Flags) | (uint)(512)));
-                if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(131072)) != 0u))
+                if (((new B18Fx(o).ParticleDefPtr.Flags & (uint)(131072)) != 0u))
                 {
                     Particle.Free(Gv.EffectMgr, o, default(uint), default(uint));
                     Particle.StopLoopSound(o);
@@ -6732,17 +6732,17 @@ public static partial class Particle
                     idx = 0;
                 }
                 c = new B18Fx(o).cfg_;
-                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                Mem.Copy(_fp, (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                Mem.Copy(_fp, (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
                     Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_HitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    if (((new B18Fx(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                    if (((new B18Fx(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                     {
                         Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
@@ -6789,17 +6789,17 @@ public static partial class Particle
                     idx = 0;
                 }
                 c = new B18Obj(o).cfg_;
-                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                Mem.Copy(_fp, (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                Mem.Copy(_fp, (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
                     Event.Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_HitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    if (((new B18Obj(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                    if (((new B18Obj(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                     {
                         Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
@@ -6863,10 +6863,10 @@ public static partial class Particle
                 _f2: ;
                 idx = 10;
                 _f3: ;
-                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                Mem.Copy((_fp + 24u), (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                Mem.Copy((_fp + 24u), (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                 if (!((v1 != 65535))) goto _f4;
                 Event.Send(o, o, (int)((ushort)(v1)), (-1), new B18Fy(o).Position.P, (_fp + 24u));
                 _f4: ;
@@ -6882,7 +6882,7 @@ public static partial class Particle
                 _f8: ;
                 _f9: ;
                 _f10: ;
-                if (!(((new B18Cfg(cfg).flags & (uint)(8388608)) != 0u))) goto _f11;
+                if (!(((new B18Cfg(cfg).Flags & (uint)(8388608)) != 0u))) goto _f11;
                 Decal.Spawn(Gv.Fx_TrailMgr, new B18GPos(Gv.Collision_HitInfo).pos.P, new B18GPos(Gv.Collision_HitInfo).vF0.P, st, 0);
                 _f11: ;
                 goto _f7;
@@ -6921,13 +6921,13 @@ public static partial class Particle
                 Vec.Normalize((_fp + 8u));
                 Vec.Scale((_fp + 8u), (_fp + 8u), 1.02400005f);
                 Vec.Add(new B18Fy(o).Position.P, new B18Fy(o).Position.P, (_fp + 8u));
-                s2_2 = (int)(new B18Cfg(cfg).tab.a70[(int)(st)]);
-                v1_2 = (int)(new B18Cfg(cfg).tab.a8C[(int)(st)]);
-                Mem.Copy(_fp, (new B18Cfg(cfg).tab.vec.P + (uint)(st * 8)), 8);
-                s3_2 = (int)(new B18Cfg(cfg).tab.aA8[(int)(st)]);
+                s2_2 = (int)(new B18Cfg(cfg).ImpactTablePtr.a70[(int)(st)]);
+                v1_2 = (int)(new B18Cfg(cfg).ImpactTablePtr.a8C[(int)(st)]);
+                Mem.Copy(_fp, (new B18Cfg(cfg).ImpactTablePtr.vec.P + (uint)(st * 8)), 8);
+                s3_2 = (int)(new B18Cfg(cfg).ImpactTablePtr.aA8[(int)(st)]);
                 if (!((v1_2 != 65535))) goto _f20;
                 a0 = cam;
-                if (!(((new B18T8((Gv.Anim_EventDefTable + (uint)(v1_2 * 8))).w0 & (uint)(2)) != 0u))) goto _f21;
+                if (!(((new B18T8((Gv.Anim_EventDefTable + (uint)(v1_2 * 8))).Flags & (uint)(2)) != 0u))) goto _f21;
                 a0 = o;
                 _f21: ;
                 Event.Send(a0, o, (int)((ushort)(v1_2)), (-1), new B18GPos(Gv.Collision_HitInfo).pos.P, _fp);
@@ -8180,17 +8180,17 @@ public static partial class Particle
                 uint inst = 0u;
                 int hit = 0;
                 inst = Player.FindByPawn(view);
-                if (((inst != 0u) && (new Shared_ParticleView(view).unk24 == 0)))
+                if (((inst != 0u) && (new Shared_ParticleView(view).IsThirdPerson == 0)))
                 {
                     Mem.Copy(_fp, inst, 80);
-                    Mem.Copy(new Shared_ParticleInstance(inst).pos.P, new Shared_ParticleView(view).unk128.P, 12);
+                    Mem.Copy(new Shared_ParticleInstance(inst).pos.P, new Shared_ParticleView(view).EyePosition.P, 12);
                     hit = Collision.MoveActor((int)(inst), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(Gv.Collision_ProbeResult));
                     Mem.Copy(inst, _fp, 80);
                 }
                 else
                 {
                     Mem.Copy((_fp + 80u), new Shared_Particle(particle).inst.P, 80);
-                    Mem.Copy(new Shared_ParticleInstance((_fp + 80u)).pos.P, new Shared_ParticleView(view).unk128.P, 12);
+                    Mem.Copy(new Shared_ParticleInstance((_fp + 80u)).pos.P, new Shared_ParticleView(view).EyePosition.P, 12);
                     hit = Collision.MoveActor((int)((_fp + 80u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(Gv.Collision_ProbeResult));
                 }
                 return hit;
@@ -10538,10 +10538,10 @@ public static partial class Particle
                                         {
                                             idx = 10;
                                         }
-                                        s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
-                                        v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
-                                        Mem.Copy((_fp + 1024u), (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
-                                        s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
+                                        s2 = (int)(new B18Cfg(c).ImpactTablePtr.a70[(int)(idx)]);
+                                        v1 = (int)(new B18Cfg(c).ImpactTablePtr.a8C[(int)(idx)]);
+                                        Mem.Copy((_fp + 1024u), (new B18Cfg(c).ImpactTablePtr.vec.P + (uint)(idx * 8)), 8);
+                                        s3 = (int)(new B18Cfg(c).ImpactTablePtr.aA8[(int)(idx)]);
                                         if ((v1 != 65535))
                                         {
                                             Event.Send(o_2, o_2, (int)((ushort)(v1)), (-1), new B18Ob(o_2).Position.P, (_fp + 1024u));
@@ -10947,10 +10947,10 @@ public static partial class Particle
                         new B19Obj(o).Flags_Set((uint)((uint)(new B19Obj(o).Flags) & (uint)((~256))));
                         par = new B19Obj(o).parent_;
                         k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
-                        s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                        a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                        Mem.Copy(_fp, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                        s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                        s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                        a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                        Mem.Copy(_fp, (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                        s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                         if ((a2 != 65535))
                         {
                             Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, _fp);
@@ -11018,10 +11018,10 @@ public static partial class Particle
                 if (Dbg.On) Dbg.Enter("func_00282A18_func_00283D24", (uint)o);
                 uint par = new B19Obj(o).parent_;
                 int k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
-                int s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                int a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                Mem.Copy(_fp + 0u, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                int s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                int s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                int a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                Mem.Copy(_fp + 0u, (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                int s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
                     Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, _fp);
@@ -11121,10 +11121,10 @@ public static partial class Particle
                 }
                 par = new B19Obj(o).parent_;
                 k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
-                s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                Mem.Copy((_fp + 16u), (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                Mem.Copy((_fp + 16u), (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
                     Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, (_fp + 16u));
@@ -11443,7 +11443,7 @@ public static partial class Particle
         {
             if (Dbg.On) Dbg.Enter("func_002833B0", (uint)o);
             int r = 0;
-            if (((new B19Obj(o).ParticleDefPtr.flags & (uint)(33554432)) != 0u))
+            if (((new B19Obj(o).ParticleDefPtr.Flags & (uint)(33554432)) != 0u))
             {
                 if (((new B19Obj(o).Flags & (uint)(2)) != 0u))
                 {
@@ -11495,7 +11495,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00283454", (uint)o, (uint)arg);
-                if (((new B19Obj(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                if (((new B19Obj(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
@@ -11519,7 +11519,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0028357C", (uint)o, (uint)arg);
-                if (((new B19Obj(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                if (((new B19Obj(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
@@ -11543,7 +11543,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002836A4", (uint)o, (uint)arg);
-                if (((new B19Obj(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                if (((new B19Obj(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
@@ -11567,7 +11567,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002837CC", (uint)o, (uint)arg);
-                if (((new B19Obj(o).ParticleDefPtr.flags & (uint)(16)) != 0u))
+                if (((new B19Obj(o).ParticleDefPtr.Flags & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
@@ -11791,10 +11791,10 @@ public static partial class Particle
                 if (Dbg.On) Dbg.Enter("func_00283D24", (uint)o);
                 uint par = new B19Obj(o).parent_;
                 int k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
-                int s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                int a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                Mem.Copy(_fp + 0u, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                int s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                int s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                int a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                Mem.Copy(_fp + 0u, (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                int s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
                     Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, _fp);
@@ -11823,10 +11823,10 @@ public static partial class Particle
                 if (Dbg.On) Dbg.Enter("func_00283E2C", (uint)o);
                 uint par = new B19Obj(o).parent_;
                 int k = ((Particle.IsUnderwater(o) != 0) ? 13 : 11);
-                int s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                int a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                Mem.Copy(_fp + 0u, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                int s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                int s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                int a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                Mem.Copy(_fp + 0u, (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                int s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
                     Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, _fp);
@@ -11855,10 +11855,10 @@ public static partial class Particle
                 if (Dbg.On) Dbg.Enter("func_00283F34", (uint)o);
                 uint par = new B19Obj(o).parent_;
                 int k = ((Particle.IsUnderwater(o) != 0) ? 12 : 10);
-                int s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
-                int a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
-                Mem.Copy(_fp + 0u, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
-                int s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
+                int s2 = (int)(new B19Parent(par).ImpactTablePtr.w70[(int)(k)]);
+                int a2 = (int)(new B19Parent(par).ImpactTablePtr.w8C[(int)(k)]);
+                Mem.Copy(_fp + 0u, (new B19Parent(par).ImpactTablePtr.rec.P + (uint)(k * 8)), 8);
+                int s3 = (int)(new B19Parent(par).ImpactTablePtr.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
                     Event.Send(o, o, a2, (-1), new B19Obj(o).Position.P, _fp);
@@ -11918,8 +11918,8 @@ public static partial class Particle
             d = (x - 16f);
             k = (!(d < 0.0f) ? (!(1f < (d * 0.000492126f)) ? (!(d < 0.0f) ? (d * 0.000492126f) : 0.0f) : 1f) : 0.0f);
             {
-                float fb = new B19Parent(par).pf.b;
-                float fa = new B19Parent(par).pf.a;
+                float fb = new B19Parent(par).DistanceScalePtr_24.b;
+                float fa = new B19Parent(par).DistanceScalePtr_24.a;
                 x = ((x * (fa + ((fb - fa) * k))) * 0.001f);
             }
             return x;
@@ -11934,7 +11934,7 @@ public static partial class Particle
             uint par = new B19Obj(o).parent_;
             float x = px;
             float t = 0f;
-            if (((new B19Parent(par).flags & (uint)(4)) != 0u))
+            if (((new B19Parent(par).Flags & (uint)(4)) != 0u))
             {
                 t = func_00284064_Ramp2(par, x);
             }
@@ -11992,7 +11992,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00284200", (uint)o);
-                int n = (int)(new B19Obj(o).ParticleDefPtr.info38.n);
+                int n = (int)(new B19Obj(o).ParticleDefPtr.SlotInfoPtr_38.n);
                 uint idv = 0u;
                 int i = 0;
                 float k = 0f;
@@ -12193,7 +12193,7 @@ public static partial class Particle
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028469C", (uint)owner, (uint)key, (uint)par);
-            uint o = new B19List((new B19Owner(owner).slot.P + (uint)((int)(new B19Parent(par).info38.idx) * 20))).head_;
+            uint o = new B19List((new B19Owner(owner).slot.P + (uint)((int)(new B19Parent(par).SlotInfoPtr_38.idx) * 20))).head_;
             if ((par != 0u))
             {
                 for (; (o != 0u); o = new B19Obj(o).next_)
@@ -12241,7 +12241,7 @@ public static partial class Particle
             }
             else
             {
-                if (((new B19Obj(obj).ParticleDefPtr.flags & (uint)(8192)) != 0u))
+                if (((new B19Obj(obj).ParticleDefPtr.Flags & (uint)(8192)) != 0u))
                 {
                     ListUtil.Add(new B19Owner(owner).lb.P, obj);
                 }
@@ -12261,7 +12261,7 @@ public static partial class Particle
         {
             if (Dbg.On) Dbg.Enter("func_00284870", (uint)o);
             float r = 0.0f;
-            if ((new B19Obj(o).ParticleDefPtr.unk14 == 0))
+            if ((new B19Obj(o).ParticleDefPtr.ModelSetKey == 0))
             {
                 r = new B19Obj(o).SpriteOffsetX_180;
             }
@@ -12276,7 +12276,7 @@ public static partial class Particle
         {
             if (Dbg.On) Dbg.Enter("func_00284890", (uint)o);
             float r = 0.0f;
-            if ((new B19Obj(o).ParticleDefPtr.unk14 == 0))
+            if ((new B19Obj(o).ParticleDefPtr.ModelSetKey == 0))
             {
                 r = new B19Obj(o).SpriteOffsetY_184;
             }
@@ -12357,7 +12357,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002849C4_func_00283A54", (uint)o);
-                float a = Trunc16ToF32(new B19Obj(o).ParticleDefPtr.lim.a);
+                float a = Trunc16ToF32(new B19Obj(o).ParticleDefPtr.SpeedLimitsPtr.a);
                 uint p = 0u;
                 float len = 0f;
                 float lim = 0f;
@@ -12368,7 +12368,7 @@ public static partial class Particle
                     p = new B19Obj(o).Velocity.P;
                     Vec.Add(p, p, _fp);
                     len = sqrtf((((new B19Obj(o).Velocity.x * new B19Obj(o).Velocity.x) + (new B19Obj(o).Velocity.y * new B19Obj(o).Velocity.y)) + (new B19Obj(o).Velocity.z * new B19Obj(o).Velocity.z)));
-                    lim = Trunc16ToF32(new B19Obj(o).ParticleDefPtr.lim.b);
+                    lim = Trunc16ToF32(new B19Obj(o).ParticleDefPtr.SpeedLimitsPtr.b);
                     if ((a > 0.0f))
                     {
                         if ((lim < len))
@@ -12409,7 +12409,7 @@ public static partial class Particle
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00284AF4", (uint)o);
-                float r = (float)(new B19Obj(o).ParticleDefPtr.s10);
+                float r = (float)(new B19Obj(o).ParticleDefPtr.AffectRadius);
                 uint p = 0u;
                 int done = 0;
                 if (!(r <= 0.0f))

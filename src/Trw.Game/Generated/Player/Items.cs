@@ -1622,7 +1622,7 @@ public static partial class Pickup
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024F608", (uint)a);
-            new ObjView(a).unk1A4_Set((Mem.F32(Gv.FrameTime) * new ObjDef(new ObjView(a).DefPtr).ShapeParam_20));
+            new ObjView(a).ActorStateId_Set((Mem.F32(Gv.FrameTime) * new ObjDef(new ObjView(a).DefPtr).ShapeParam_20));
         }
     }
 
@@ -2463,7 +2463,7 @@ public static partial class Pickup
                     }
                     break;
                 case 3031:
-                    new Glob24b(Gv.Settings_MatchRules).unk84_Set(0);
+                    new Glob24b(Gv.Settings_MatchRules).TokenState_84_Set(0);
                     new Glob24b(Gv.Settings_MatchRules).IsTokenHeld_80_Set(1);
                     new Plr24d(o).PlayerEntryPtr.IsMonkey_Set((byte)(1));
                     q = Mem.U32((Gv.Settings_MatchRules - (uint)6208));
@@ -2677,7 +2677,7 @@ public static partial class Pickup
                 case 5016:
                     ok = 1;
                     Mem.Set((Gv.ProfileTable_AmmoCapBonus2 + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_AmmoCapBonus2 + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 10));
-                    new Plr24d(o).unk5F8_Set((ushort)((int)(new Plr24d(o).unk5F8) + 10));
+                    new Plr24d(o).Ammo2_Set((ushort)((int)(new Plr24d(o).Ammo2) + 10));
                     Flyby.QueueById(501);
                     break;
                 case 5024:
@@ -2689,7 +2689,7 @@ public static partial class Pickup
                 case 5023:
                     ok = 1;
                     Mem.Set((Gv.ProfileTable_AmmoCapBonus1 + (uint)(new Plr24d(o).PlayerIndex * 400)), (byte)((int)(Mem.U8((Gv.ProfileTable_AmmoCapBonus1 + (uint)(new Plr24d(o).PlayerIndex * 400)))) + 50));
-                    new Plr24d(o).unk5F6_Set((ushort)((int)(new Plr24d(o).unk5F6) + 50));
+                    new Plr24d(o).Ammo1_Set((ushort)((int)(new Plr24d(o).Ammo1) + 50));
                     Flyby.QueueById(502);
                     break;
                 case 5057:
@@ -3429,7 +3429,7 @@ public static partial class Pickup
             uint q = 0u;
             uint v = 0u;
             q = new Plr24b(p).unk5DC_;
-            new Plr24b(p).unk16D4_Set(((new Plr24b(p).unk16D4 == 0) ? 1 : 0));
+            new Plr24b(p).IsInfraRedOn_Set(((new Plr24b(p).IsInfraRedOn == 0) ? 1 : 0));
             if ((q != 0u))
             {
                 new Sub24(q).unk124_Set((short)(0));
@@ -3605,7 +3605,7 @@ public static partial class Player
             if (!(((int)(w) == 18))) goto _f0;
             if (!(((new B04Act(t).Flags & (uint)(3145728)) != 0u))) goto _f1;
             if (!(((new ActorDef(new B04Act(t).DefPtr).Params.Flags & (uint)(32)) != 0u))) goto _f2;
-            v = new B04Act(t).unk1A4;
+            v = new B04Act(t).ActorStateId;
             if (!(((int)(v) == 38))) goto _f3;
             return 0;
             _f3: ;
@@ -3631,7 +3631,7 @@ public static partial class Player
             _f1: ;
             if (!((new ActorDef(new B04Act(t).DefPtr).Kind == 1))) goto _f9;
             if (!(((new ActorDef(new B04Act(t).DefPtr).Params.Flags & (uint)(9216)) != 0u))) goto _f10;
-            v = new B04Act(t).unk1A4;
+            v = new B04Act(t).ActorStateId;
             if (!(((((int)(v) == 33) || ((int)(v) == 52)) || ((int)(v) == 60)))) goto _f11;
             goto L_end0;
             _f11: ;
@@ -3671,7 +3671,7 @@ public static partial class Player
             _f21: ;
             L_c11: ;
             a0 = 0;
-            v = new B04Act(t).unk1A4;
+            v = new B04Act(t).ActorStateId;
             if (!(((int)(v) != 38))) goto _f23;
             if (!(((int)(v) != 18))) goto _f24;
             if (!((new B04Act(t).HitPoints != 0))) goto _f25;
@@ -3864,15 +3864,15 @@ public static partial class Player
                 fs2 = 0.52f;
                 if ((pw != 0u))
                 {
-                    if ((new B05Pawn(pw).unk24 == 1))
+                    if ((new B05Pawn(pw).IsThirdPerson == 1))
                     {
                         Actor.BuildModelMatrix(p, (_fp + 64u));
                         Player.GetModelPosition(p, (int)((_fp + 128u)));
                     }
                     else
                     {
-                        MathUtil.MtxCopy((_fp + 64u), new B05Pawn(pw).m160.P);
-                        Mem.Copy((_fp + 128u), new B05Pawn(pw).v128.P, 12);
+                        MathUtil.MtxCopy((_fp + 64u), new B05Pawn(pw).ViewMatrix.P);
+                        Mem.Copy((_fp + 128u), new B05Pawn(pw).EyePosition.P, 12);
                     }
                 }
                 else
@@ -3901,9 +3901,9 @@ public static partial class Player
                 MathUtil.MtxTransformPoint((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((new B05P19(p).IsInWeaponStance != 0))
                 {
-                    if (((((Collision.RayCast(p, (_fp + 128u), (_fp + 48u), Gv.Collision_PushCtx_801040F0) != 0) && ((h = new B05Hit(Mem.U32(Gv.Collision_ContactPtr)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
+                    if (((((Collision.RayCast(p, (_fp + 128u), (_fp + 48u), Gv.Collision_PushCtx_801040F0) != 0) && ((h = new B05Hit(Mem.U32(Gv.Collision_ContactPtr)).tgt_) != 0u)) && ((int)(new B05Tgt(h).Type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
-                        Vec.Sub((_fp + 144u), new B05Tgt(h).pos.P, new B05P19(p).Position.P);
+                        Vec.Sub((_fp + 144u), new B05Tgt(h).Position.P, new B05P19(p).Position.P);
                         len = sqrtf((((new B05Quat((_fp + 144u)).x * new B05Quat((_fp + 144u)).x) + (new B05Quat((_fp + 144u)).y * new B05Quat((_fp + 144u)).y)) + (new B05Quat((_fp + 144u)).z * new B05Quat((_fp + 144u)).z)));
                         Mem.Copy((_fp + 192u), (_fp + 16u), 12);
                         Vec.Normalize((_fp + 192u));
@@ -4074,8 +4074,8 @@ public static partial class Player
                         }
                         else
                         {
-                            Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).pos.P, 12);
-                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B05Tgt(Mem.U32((_fp + 204u))).f70));
+                            Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).Position.P, 12);
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B05Tgt(Mem.U32((_fp + 204u))).BottomOffset));
                             new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor.GetHeight(Mem.U32((_fp + 204u))) * 0.75f)));
                         }
                         if ((((int)(new B05P19(p).WeaponIndex) == 1) && (new B05P19(p).FireMode == 2)))
@@ -5340,7 +5340,7 @@ public static partial class Weapon
                 {
                     new M2St(s).AltFireCooldown_Set((new M2St(s).AltFireCooldown - Mem.F32(Gv.FrameTime)));
                 }
-                new M2Act(a).unk1_Set((byte)(0));
+                new M2Act(a).ModelIndex_Set((byte)(0));
                 if ((new M2St(s).RefireTime > 0.0f))
                 {
                     new M2St(s).RefireTime_Set((new M2St(s).RefireTime - Mem.F32(Gv.FrameTime)));
@@ -5534,14 +5534,14 @@ public static partial class Weapon
                         return 0;
                     }
                 }
-                if (((int)(new M2Own(o).unk5F6) < 50))
+                if (((int)(new M2Own(o).Ammo1) < 50))
                 {
                     if ((new M2St(s).FireMode == 2))
                     {
                         return 0;
                     }
                 }
-                if (((int)(new M2Own(o).unk5F6) < 10))
+                if (((int)(new M2Own(o).Ammo1) < 10))
                 {
                     if ((new M2St(s).FireMode == 1))
                     {
@@ -5584,7 +5584,7 @@ public static partial class Weapon
             {
                 return 0;
             }
-            if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
+            if ((((new M2Act(a).Flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
             {
                 v = new M2Own(o).BrainPtr.IsFireRequested;
                 new M2Own(o).BrainPtr.IsFireRequested_Set(0);
@@ -5755,7 +5755,7 @@ public static partial class Weapon
                     }
                 }
             }
-            if (((Weapon.TryFire(a, s) == 0) && !((new M2Act(a).flags & (uint)(1024)) != 0u)))
+            if (((Weapon.TryFire(a, s) == 0) && !((new M2Act(a).Flags & (uint)(1024)) != 0u)))
             {
                 Actor.DispatchEvent(a, s, kind);
             }
@@ -5875,7 +5875,7 @@ public static partial class Weapon
                     st = new M2St(s).FireMode;
                     if ((st == 1))
                     {
-                        if (((int)(new M2Own(o).unk5F6) >= 50))
+                        if (((int)(new M2Own(o).Ammo1) >= 50))
                         {
                             Actor.DispatchEvent(a, s, 5);
                             new M2St(s).FireMode_Set(2);
@@ -5895,7 +5895,7 @@ public static partial class Weapon
             }
             if ((Weapon.TryFire(a, s) == 0))
             {
-                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                if (!((new M2Act(a).Flags & (uint)(1024)) != 0u))
                 {
                     Actor.DispatchEvent(a, s, kind);
                 }
@@ -6014,7 +6014,7 @@ public static partial class Weapon
             }
             else
             {
-                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
+                if ((((new M2Act(a).Flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
                 {
                     t = new M2Own(o).BrainPtr.IsFireRequested;
                     new M2Own(o).BrainPtr.IsFireRequested_Set(0);
@@ -6145,7 +6145,7 @@ public static partial class Weapon
                         }
                     }
                 }
-                if (((ok != 0) && ((int)(new M2Own(o).unk5F6) > 0)))
+                if (((ok != 0) && ((int)(new M2Own(o).Ammo1) > 0)))
                 {
                     if (!((new M2Own(o).PowerupFlags & (uint)(99328)) != 0u))
                     {
@@ -6286,7 +6286,7 @@ public static partial class Weapon
             L_b6c: ;
             if ((Weapon.TryFire(a, s) == 0))
             {
-                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                if (!((new M2Act(a).Flags & (uint)(1024)) != 0u))
                 {
                     Actor.DispatchEvent(a, s, kind);
                 }
@@ -6314,7 +6314,7 @@ public static partial class Weapon
             }
             else
             {
-                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
+                if ((((new M2Act(a).Flags & (uint)(3145728)) != 0u) && (new M2Own(o).IsComputer != 0)))
                 {
                     t = new M2Own(o).BrainPtr.IsFireRequested;
                     new M2Own(o).BrainPtr.IsFireRequested_Set(0);
@@ -6563,7 +6563,7 @@ public static partial class Weapon
             new M2Own(o).WeaponSpinFrame_Set(((new M2Own(o).WeaponSpinFrame + (int)(new M2Own(o).WeaponSpinSpeed)) % 8));
             if ((Weapon.TryFire(a, s) == 0))
             {
-                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                if (!((new M2Act(a).Flags & (uint)(1024)) != 0u))
                 {
                     Actor.DispatchEvent(a, s, kind);
                 }
@@ -6579,7 +6579,7 @@ public static partial class Weapon
             if (Dbg.On) Dbg.Enter("func_0023195C", (uint)actor, (uint)state);
             int xx = 0;
             uint owner = new ActorView(actor).OwnerPtr;
-            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).Kind);
             int ok = 0;
             int res = 0;
             int v = 0;
@@ -6713,7 +6713,7 @@ public static partial class Weapon
                     return;
                 }
             }
-            if (((Weapon.TryFire(a, s) == 0) && !((new M2Act(a).flags & (uint)(1024)) != 0u)))
+            if (((Weapon.TryFire(a, s) == 0) && !((new M2Act(a).Flags & (uint)(1024)) != 0u)))
             {
                 Actor.DispatchEvent(a, s, kind);
             }
@@ -6727,7 +6727,7 @@ public static partial class Weapon
         {
             if (Dbg.On) Dbg.Enter("func_00231D38", (uint)actor, (uint)state);
             uint owner = new ActorView(actor).OwnerPtr;
-            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).Kind);
             int ok = 0;
             int res = 0;
             int v = 0;
@@ -6883,7 +6883,7 @@ public static partial class Weapon
                     if ((st == 1))
                     {
                         new M2St(s).FireMode_Set(2);
-                        if (((int)(new M2Own(o).unk5F6) >= 50))
+                        if (((int)(new M2Own(o).Ammo1) >= 50))
                         {
                             Audio.PlaySound(2851, pv, (int)(pv), (int)(o));
                             Actor.DispatchEvent(a, s, 5);
@@ -6903,7 +6903,7 @@ public static partial class Weapon
             }
             if ((Weapon.TryFire(a, s) == 0))
             {
-                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                if (!((new M2Act(a).Flags & (uint)(1024)) != 0u))
                 {
                     Actor.DispatchEvent(a, s, kind);
                 }
@@ -6924,7 +6924,7 @@ public static partial class Weapon
             if (Dbg.On) Dbg.Enter("func_002321B8", (uint)actor, (uint)state);
             uint st = state;
             uint owner = new ActorView(actor).OwnerPtr;
-            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).Kind);
             int ok = 0;
             int v = 0;
             int res = 0;
@@ -7579,7 +7579,7 @@ public static partial class Weapon
         {
             if (Dbg.On) Dbg.Enter("func_00232FE8", (uint)actor, (uint)state);
             uint owner = new ActorView(actor).OwnerPtr;
-            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int kind = (int)(new B07Row24((Gv.Weapon_InfoTable + (uint)(Mem.S16((owner + (uint)1616)) * 24))).Kind);
             if (((int)(Weapon.HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
             {
                 Mem.Set((owner + (uint)1904), (short)(Player.PickFallbackWeapon(owner)));
@@ -7768,7 +7768,7 @@ public static partial class Weapon
             uint p = 0u;
             int id = 0;
             p = new ActorView(actor).OwnerPtr;
-            id = (int)(new Row24((Gv.Weapon_InfoTable + (uint)(new Player_v2(p).StateId * 24))).unk0);
+            id = (int)(new Row24((Gv.Weapon_InfoTable + (uint)(new Player_v2(p).StateId * 24))).Kind);
             if ((((new Player_v2(p).StunTime <= 0.0f) && (((int)(new Player_v2(p).PlayerEntryPtr.IsMonkey) == 0) || (Mem.S32(Gv.Settings_MonkeyTagMode) == 0))) && ((new Player_v2(p).ButtonsHeld & (uint)(16384)) != 0u)))
             {
                 Player.FireWeapon12Special_0022B180((int)(p));
