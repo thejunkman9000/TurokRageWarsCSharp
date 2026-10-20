@@ -159,6 +159,7 @@ public sealed class GfxRenderer : IDisposable
     private void Draw(DrawCommand d)
     {
         var st = d.State;
+        lastSw = st.ScreenWidth; lastSh = st.ScreenHeight;
         int scx, scy, scw, sch;
         if (lastLocal)
         {   // the scissor moved into the region (region pixels -> target); a draw scissored to another player's view ends up empty
@@ -364,6 +365,32 @@ public sealed class GfxRenderer : IDisposable
 
     /// <summary>Port-drawn overlays (the scoreboard), drawn over the presented picture and into screenshots: (where the picture is, target width, target height).</summary>
     public Action<Rectangle, int, int>? Overlay { get; set; }
+
+    private float lastSw = 320, lastSh = 240;                         // the game's framebuffer size in the last frame's draws
+
+    /// <summary>Overlays drawn over the 3D world (Window/DebugOverlay.cs): a point in the game's framebuffer pixels (where the game's projection puts it,
+    /// in the view rectangle vx, vy, vw, vh, framebuffer pixels) to window pixels, through the same presentation the frame's perspective draws got: the
+    /// widescreen rescale about the view's centre (<see cref="WidenView"/>) and the local-view region remap. False when it falls outside the picture.</summary>
+    public bool MapPerspectivePoint(float fx, float fy, float vx, float vy, float vw, float vh, Rectangle dest, out Vector2 win)
+    {
+        float sw = lastSw, sh = lastSh;
+        float x = fx / sw * 2f - 1f, y = 1f - fy / sh * 2f;
+        if ((lastWide || lastLocal) && vw >= 8 && vh >= 8)
+        {
+            float ap = vw / vh;
+            float shown = lastLocal ? targetW / (float)targetH : ap * (targetW / (float)targetH) / (sw / sh);
+            float sx = shown > ap ? ap / shown : 1f, sy = shown < ap ? shown / ap : 1f;
+            float cx = (2 * vx + vw) / sw - 1f, cy = 1f - (2 * vy + vh) / sh;
+            x = cx + (x - cx) * sx; y = cy + (y - cy) * sy;
+        }
+        if (lastLocal)
+        {
+            float nx0 = region.X0 / sw * 2f - 1f, nx1 = region.X1 / sw * 2f - 1f, nyTop = 1f - region.Y0 / sh * 2f, nyBot = 1f - region.Y1 / sh * 2f;
+            x = 2f * (x - nx0) / (nx1 - nx0) - 1f; y = 2f * (y - nyBot) / (nyTop - nyBot) - 1f;
+        }
+        win = new Vector2(dest.X + (x + 1f) * 0.5f * dest.Width, dest.Y + (1f - y) * 0.5f * dest.Height);
+        return x >= -1.02f && x <= 1.02f && y >= -1.02f && y <= 1.02f;
+    }
 
     /// <summary>Where the last Present put the picture in the window (overlays align to it).</summary>
     public Rectangle LastDest { get; private set; }

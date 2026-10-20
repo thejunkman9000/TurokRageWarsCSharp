@@ -17,6 +17,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private readonly DisplayListInterpreter interpreter = new();
     private volatile IReadOnlyList<GfxCommand>? pendingFrame;
     private GfxRenderer? renderer;
+    private DebugOverlay? inspector;
     private Scoreboard? scoreboard;      // Tab scoreboard + F2 split / local view (Scoreboard.cs, LocalView.cs, ViewLayout.cs)
     private int frame, drawnFrames, shotsTaken;
     private bool fullscreenKeyDown;
@@ -49,7 +50,9 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     protected override void LoadContent()
     {
         renderer = new GfxRenderer(GraphicsDevice, Content.Load<Microsoft.Xna.Framework.Graphics.Effect>("Combiner"));
-        scoreboard = new Scoreboard(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), Content.Load<SpriteFont>("ScoreboardTitle")); renderer.Overlay = scoreboard.Draw;
+        scoreboard = new Scoreboard(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), Content.Load<SpriteFont>("ScoreboardTitle"));
+        inspector = new DebugOverlay(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), renderer);       // F3: the level inspector (Window/DebugOverlay.cs)
+        renderer.Overlay = (dest, w, h) => { inspector.Draw(dest, w, h); scoreboard.Draw(dest, w, h); };
         base.LoadContent();
     }
 
@@ -311,7 +314,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                 connected = true;
                 lock (deviceLock)
                 {
-                    var ks = keyboard; sample.KeyDown = name => Enum.TryParse<Keys>(name, out var key) && ks.IsKeyDown(key) && !TextEntry.Swallows(key);   // keys typing a name are not bindings
+                    var ks = keyboard; sample.KeyDown = name => Enum.TryParse<Keys>(name, out var key) && ks.IsKeyDown(key) && !TextEntry.Swallows(key) && !DebugOverlay.Swallows(key);   // keys typing a name are not bindings
                     Array.Copy(mouseButtons, sample.MouseButtons, 5);
                     sample.MouseDx = mouseDx; sample.MouseDy = mouseDy; sample.MouseValid = mouseCaptured;
                     if (mouseCaptured && NativeRouteLocked(mouseDx, mouseDy)) sample.MouseValid = false;     // native look: the motion turns the view, not the stick
@@ -419,6 +422,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         var ks = Keyboard.GetState();
         SampleDevices(ks);
         scoreboard?.Update(ks, IsActive);
+        inspector?.Update(ks, IsActive);
         TextEntry.Sample(ks, gameTime.TotalGameTime.TotalSeconds);      // Backspace / Enter on the name entry screen
         bool esc = ks.IsKeyDown(Keys.Escape);
         if (esc && !escapeDown && !TextEntry.Active) { if (mouseCaptured) { captureSuspended = true; } else Exit(); }      // Esc releases a captured mouse, otherwise it quits
@@ -453,7 +457,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     protected override void UnloadContent()
     {
         audio.Dispose();
-        renderer?.Dispose(); scoreboard?.Dispose();
+        renderer?.Dispose(); scoreboard?.Dispose(); inspector?.Dispose();
         base.UnloadContent();
     }
 

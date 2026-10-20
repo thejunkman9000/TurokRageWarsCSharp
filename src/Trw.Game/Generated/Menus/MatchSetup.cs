@@ -491,6 +491,7 @@ public static partial class MatchSetup
                 { bool c_ = r2 != 0; r19 = r19 + 150u; if (c_) goto L_L0042E294; }
                 r4 = 2148794368u;
                 r4 = r4 + 25288u;
+                trw_match_bots();
                 r3 = Mem.U8((r4 + 1408u));
                 r2 = (uint)2;
                 { bool c_ = r3 != r2; r2 = (uint)((int)r22 < (int)r2 ? 1 : 0); if (c_) goto L_L0042E35C; }

@@ -2,3 +2,5 @@
 # Widescreen (src/Trw.Game/Runtime/Widescreen.cs): the camera's culling extents widened by a fixed factor, the same on every machine (the projection
 # stays the game's; each machine's renderer widens its own picture). After the +0x74 store; +0x78 is stored from $f0 in the next call's delay slot.
 func_00234FDC|00235610|Widescreen.WidenCulling(r19);
+# Practice bots (src/Trw.Game/Os/TestHooks.cs, TRW_BOTS / the level inspector menu): after StartMatch set the player records and the rules.
+func_0042E080|0042E338|trw_match_bots();

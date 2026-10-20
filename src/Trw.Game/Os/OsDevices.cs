@@ -314,6 +314,7 @@ public static partial class Game
         tickCount++; CurrentTick = tickCount; Mem.WTick = tickCount; if (tickCount > 0 && Environment.GetEnvironmentVariable("TRW_WLOG") != null) Mem.WLogFlush();
         if (Oracle.Deterministic) Host.DetAdvance(tickCount);
         if (tickCount == dumpAt) Console.Error.WriteLine($"[dump] tick {tickCount}\n{DumpThreads()}");      // TRW_DUMP_AT=<tick>: scheduler state of every game thread
+        if (tickCount == DebugOverlay.ProbeAt) DebugOverlay.Probe();       // TRW_INSPECT_AT=<tick>: what the level inspector sees
         Trw.Game.Debug.HeapCheck.Tick(tickCount);
         TrackScreen();
         if (statusLog)
