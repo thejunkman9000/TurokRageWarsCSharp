@@ -58,7 +58,8 @@ public sealed class GfxRenderer : IDisposable
         public VertexDeclaration VertexDeclaration => Decl;
     }
 
-    private readonly PortHud.HudLayer hud;               // the port-drawn HUD (TRW_HUD=port|game, docs/HUD.md)
+    private readonly PortHud.HudLayer hud;
+    private readonly Glyphs.ButtonPrompts prompts = new();               // the port-drawn HUD (TRW_HUD=port|game, docs/HUD.md)
 
     public GfxRenderer(GraphicsDevice device, Effect combiner)
     {
@@ -139,6 +140,8 @@ public sealed class GfxRenderer : IDisposable
         device.Viewport = new Viewport(0, 0, targetW, targetH);
         if (!anyFrame) { device.Clear(Environment.GetEnvironmentVariable("TRW_GFX_BG") != null ? new Color(0, 0, 90) : Color.Black); anyFrame = true; }
         // port HUD (Hud/HudLayer.cs, docs/HUD.md): the game's 2D HUD draws it replaces are left out, its own draws follow each HUD section
+        // button glyphs (Glyphs/ButtonPrompts.cs, docs/BUTTON_GLYPHS.md): the game's N64 buttons become the buttons of the device in use
+        commands = prompts.Apply(commands, targetH);
         bool portHud = hud.Begin(commands);
         for (int i = 0; i < commands.Count; i++)
         {

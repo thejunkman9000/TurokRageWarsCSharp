@@ -308,6 +308,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         if (buttons == 0 && x == 0 && y == 0)
         {
             var gp = GamePad.GetState(pad, GamePadDeadZone.None);
+            DeviceReport.Pad(pad, gp);                         // the button glyphs follow the device in use (Window/DeviceReport.cs)
             var sample = new InputSample { Gameplay = GameplayContext() };
             if (pad == 0)
             {
@@ -378,6 +379,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         public static void RelativeMotion(out int x, out int y) { x = y = 0; if (!broken) try { SDL_GetRelativeMouseState(out x, out y); } catch (Exception) { broken = true; } }
     }
     private int lastWheel;
+    private int lastPointerX, lastPointerY, lastWheelSeen;
 
     /// <summary>Samples keyboard, mouse and wheel; the mouse is captured (hidden, centred, relative motion) while a level runs in the active window (mouse_capture = auto).</summary>
     private void SampleDevices(KeyboardState ks)
@@ -414,6 +416,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); if (relMouse) { Sdl.SetRelative(false); relMouse = false; Mouse.SetPosition(cx, cy); } }
             if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; if (!capture) Console.Error.WriteLine($"[mouse] tick {(global::Trw.Game.Game.CurrentTick)}: released"); }
         }
+        if (IsActive)
+        {   // the button glyphs follow the device in use (Window/DeviceReport.cs): keys, mouse buttons, the wheel, or the pointer moving
+            float moved = mouseCaptured ? MathF.Abs(mouseDx) + MathF.Abs(mouseDy) : MathF.Abs(ms.X - lastPointerX) + MathF.Abs(ms.Y - lastPointerY);
+            DeviceReport.KeyboardMouse(ks, mouseButtons.Any(b => b), ms.ScrollWheelValue != lastWheelSeen, moved);
+        }
+        lastPointerX = ms.X; lastPointerY = ms.Y; lastWheelSeen = ms.ScrollWheelValue;
     }
 
     protected override void Update(GameTime gameTime)
