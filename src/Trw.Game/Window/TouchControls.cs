@@ -317,7 +317,7 @@ public sealed class TouchControls : IDisposable
     {
         if (fade <= 0.01f || w < 64 || h < 64) return;
         Layout(w, h);
-        float a = fade * Config.Opacity;
+        float aAll = fade * Config.Opacity, a = aAll;
         batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone);
         int ctx = TrwWindow.GameplayContext();
         // move stick: the base at home (or where the thumb put it) and the knob
@@ -340,18 +340,20 @@ public sealed class TouchControls : IDisposable
         {
             var bc = buttons[i];
             bool on = pressed[i] || frame < heldUntil[i];
-            Sprite(disc, bc.C, bc.R, (on ? Edge : Fill) * ((on ? 0.6f : 0.3f) * a));
-            Sprite(i == (int)Btn.Start ? ringThin : ring, bc.C, bc.R, (on ? Gold : Edge) * ((on ? 0.85f : 0.55f) * a));
+            // menus: A / B / START / the stick do the work; FIRE, JUMP and L stay usable but step back (they cover menu text on the 4:3 screens)
+            float ba = menuLabels && !on && i is (int)Btn.Fire or (int)Btn.Jump or (int)Btn.L ? aAll * 0.45f : aAll;
+            Sprite(disc, bc.C, bc.R, (on ? Edge : Fill) * ((on ? 0.6f : 0.3f) * ba));
+            Sprite(i == (int)Btn.Start ? ringThin : ring, bc.C, bc.R, (on ? Gold : Edge) * ((on ? 0.85f : 0.55f) * ba));
             string name = menuLabels ? BtnMenuName[i] : BtnName[i];
             if (i == (int)Btn.Start)
             {
-                Label("START", bc.C + new Vector2(0, bc.R + 2.2f * unit), 2.2f * unit, Text * (0.75f * a), font);
-                PauseIcon(bc.C, bc.R, Gold * (0.85f * a));
+                if (!menuLabels) Label("START", bc.C + new Vector2(0, bc.R + 2.2f * unit), 2.2f * unit, Text * (0.75f * ba), font);      // (menus: the icon only, the label would cover menu titles)
+                PauseIcon(bc.C, bc.R, Gold * (0.85f * ba));
                 continue;
             }
             float letterH = bc.R * (name.Length > 0 ? 0.95f : 1.15f);
-            Label(BtnLetter[i], bc.C + new Vector2(0, name.Length > 0 ? -bc.R * 0.16f : 0), letterH, (on ? Color.White : Gold) * ((on ? 0.95f : 0.7f) * a), font);
-            if (name.Length > 0) Label(name, bc.C + new Vector2(0, bc.R * 0.5f), Math.Min(bc.R * 0.36f, 2.6f * unit) * Math.Min(1f, 6f / Math.Max(4, name.Length)), Text * (0.7f * a), italic);
+            Label(BtnLetter[i], bc.C + new Vector2(0, name.Length > 0 ? -bc.R * 0.16f : 0), letterH, (on ? Color.White : Gold) * ((on ? 0.95f : 0.7f) * ba), font);
+            if (name.Length > 0) Label(name, bc.C + new Vector2(0, bc.R * 0.5f), Math.Min(bc.R * 0.36f, 2.6f * unit) * Math.Min(1f, 6f / Math.Max(4, name.Length)), Text * (0.7f * ba), italic);
         }
         batch.End();
     }
