@@ -21,6 +21,16 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
 
+  <!-- Release: the translated code is compiled ahead of time to native code (all methods, not a startup profile: the game's hot code is everywhere),
+       so nothing is JIT-compiled while a level loads or plays. Trimming touches only the framework (SdkOnly); the game assemblies are kept whole. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <TrimMode>partial</TrimMode>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- the game: every source of the desktop head except its console entry point (and the struct views, which are their own assembly) -->
     <Compile Include="..\Trw.Game\**\*.cs" Exclude="..\Trw.Game\Program.cs;..\Trw.Game\Generated\Structs\**;..\Trw.Game\bin\**;..\Trw.Game\obj\**" LinkBase="Game" />

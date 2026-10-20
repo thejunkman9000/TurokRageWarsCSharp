@@ -44,7 +44,7 @@ public sealed class AudioOut : IDisposable
         ring.Push(bigEndian.AsSpan(0, count));
         if (statusLog)
         {
-            for (int i = 0; i < count; i += 2) { int v = Math.Abs((short)((bigEndian[i] << 8) | bigEndian[i + 1])); if (v > peak) peak = v; }
+            for (int i = 0; i < count; i += 2) { int v = Math.Abs((int)(short)((bigEndian[i] << 8) | bigEndian[i + 1])); if (v > peak) peak = v; }      // (as int: Math.Abs(short.MinValue) throws)
             if (++pushes % 64 == 0) { Console.Error.WriteLine($"[audio] {pushes} buffers, {ring.Pushed} bytes, peak {peak} over the last 64 buffers, queued {ring.Queued * 1000L / (ring.Frequency * 4)} ms, underruns {ring.Underruns}, drift skips {ring.Drifted}, device blocks {blocksSent} ({silenceBlocks} silent), longest feeder gap {maxGapTicks * 1000 / System.Diagnostics.Stopwatch.Frequency} ms"); peak = 0; maxGapTicks = 0; }
         }
     }

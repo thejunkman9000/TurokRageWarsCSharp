@@ -56,7 +56,8 @@ public class MainActivity : AndroidGameActivity
         ExtractAsset("Content/Hud/hud.json", Path.Combine(files, "Content", "Hud", "hud.json"));
 
         var rom = FindRom();
-        if (rom != null) Boot(rom);
+        if (rom != null && int.TryParse(Environment.GetEnvironmentVariable("TRW_BENCH"), out var benchTicks)) Bench(rom, benchTicks);
+        else if (rom != null) Boot(rom);
         else ShowRomPrompt(null);
     }
 
@@ -177,6 +178,39 @@ public class MainActivity : AndroidGameActivity
         view.RequestFocus();
         Immersive();
         game.Run();
+    }
+
+    /// <summary>
+    /// TRW_BENCH=&lt;ticks&gt; (with TRW_DETERMINISTIC=1): the desktop's headless oracle loop (Program.cs) instead of the window: display lists interpreted
+    /// on the CPU, the retrace in lockstep with the game threads as fast as the device allows; logs ticks per second (the CPU speed of the translated code).
+    /// </summary>
+    private void Bench(byte[] rom, int ticks)
+    {
+        var text = new TextView(this) { Text = $"benchmark: {ticks} ticks...", TextSize = 24 };
+        SetContentView(text);
+        Host.Rom = rom;
+        GameBoot.MapMemory();
+        GameBoot.LoadGuestData();
+        GameBoot.Start();
+        new Thread(() =>
+        {
+            var interp = new Trw.Platform.Gfx.DisplayListInterpreter();
+            Host.GraphicsTask = task => { var cmds = interp.Run(task); Oracle.Frame(cmds); TrwWindow.RecordSignature(cmds); };
+            Host.ReadPad = TrwWindow.ReadPadHeadless;
+            Host.ReadMouse = TrwWindow.ReadMouse;
+            if (Oracle.Deterministic) Trw.Game.Game.WaitQuiescent();
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            for (int t = 0; t < ticks; t++)
+            {
+                if (Oracle.Deterministic) Trw.Game.Game.LockstepTick(); else { Thread.Sleep(16); Trw.Game.Game.ViTick(); Oracle.Tick(t + 1); }
+                TrwWindow.scriptTick = t + 1;
+                if (t % 600 == 0) Console.Error.WriteLine($"[bench] tick {t}, state {Trw.Game.Game.StateId}, {t / Math.Max(0.001, sw.Elapsed.TotalSeconds):F1} ticks/s");
+            }
+            var msg = $"[bench] {ticks} ticks in {sw.Elapsed.TotalSeconds:F1} s ({ticks / sw.Elapsed.TotalSeconds:F1} ticks/s)";
+            Console.Error.WriteLine(msg);
+            Oracle.Close();
+            RunOnUiThread(() => text.Text = msg);
+        }, 16 << 20) { IsBackground = true, Name = "bench" }.Start();
     }
 
     private Vibrator? vibrator;

@@ -174,7 +174,7 @@ public sealed class TouchControls : IDisposable
         unit = Math.Min(h, w * 0.62f) / 100f * Config.Size;
         float u = unit, m = 3f * u;          // margin from the screen edges
         stickR = 14f * u; knobR = 6.5f * u;
-        stickHome = new Vector2(m + stickR + 2 * u, h - m - stickR - 2 * u);
+        stickHome = new Vector2(m + stickR + 4 * u, h - m - stickR - 17 * u);     // above the HUD's health counter (bottom left)
         Vector2 br = new(w - m, h - m);
         buttons[(int)Btn.Jump] = new Circle { C = br + new Vector2(-8.5f * u, -8.5f * u), R = 8.5f * u };
         buttons[(int)Btn.Fire] = new Circle { C = br + new Vector2(-29f * u, -14f * u), R = 10.5f * u };
@@ -324,14 +324,14 @@ public sealed class TouchControls : IDisposable
         var c = stickActive ? stickCentre : stickHome;
         var k = stickActive ? stickKnob : stickHome;
         Sprite(disc, c, stickR, Fill * (0.30f * a));
-        Sprite(ring, c, stickR, Edge * (0.55f * a));
+        Sprite(ring, c, stickR, Edge * (0.45f * a));
         for (int i = 0; i < 4; i++)
         {   // direction marks
             var dir = new Vector2(MathF.Cos(i * MathF.PI / 2), MathF.Sin(i * MathF.PI / 2));
             Sprite(disc, c + dir * stickR * 0.78f, unit * 0.9f, Edge * (0.45f * a));
         }
         Sprite(disc, k, knobR, (stickActive ? Edge : Fill) * ((stickActive ? 0.55f : 0.45f) * a));
-        Sprite(ring, k, knobR, Gold * (0.7f * a));
+        Sprite(ring, k, knobR, Gold * ((stickActive ? 0.8f : 0.55f) * a));
         Label(stickActive ? "" : "MOVE", c +new Vector2(0, stickR + 2.8f * unit), 2.4f * unit, Text * (0.6f * a), italic);
 
         bool[] pressed = new bool[buttons.Length];
@@ -340,8 +340,8 @@ public sealed class TouchControls : IDisposable
         {
             var bc = buttons[i];
             bool on = pressed[i] || frame < heldUntil[i];
-            Sprite(disc, bc.C, bc.R, (on ? Edge : Fill) * ((on ? 0.6f : 0.34f) * a));
-            Sprite(i == (int)Btn.Start ? ringThin : ring, bc.C, bc.R, (on ? Gold : Edge) * (0.75f * a));
+            Sprite(disc, bc.C, bc.R, (on ? Edge : Fill) * ((on ? 0.6f : 0.3f) * a));
+            Sprite(i == (int)Btn.Start ? ringThin : ring, bc.C, bc.R, (on ? Gold : Edge) * ((on ? 0.85f : 0.55f) * a));
             string name = menuLabels ? BtnMenuName[i] : BtnName[i];
             if (i == (int)Btn.Start)
             {
@@ -350,8 +350,8 @@ public sealed class TouchControls : IDisposable
                 continue;
             }
             float letterH = bc.R * (name.Length > 0 ? 0.95f : 1.15f);
-            Label(BtnLetter[i], bc.C + new Vector2(0, name.Length > 0 ? -bc.R * 0.16f : 0), letterH, (on ? Color.White : Gold) * (0.9f * a), font);
-            if (name.Length > 0) Label(name, bc.C + new Vector2(0, bc.R * 0.5f), Math.Min(bc.R * 0.36f, 3.0f * unit), Text * (0.8f * a), italic);
+            Label(BtnLetter[i], bc.C + new Vector2(0, name.Length > 0 ? -bc.R * 0.16f : 0), letterH, (on ? Color.White : Gold) * ((on ? 0.95f : 0.7f) * a), font);
+            if (name.Length > 0) Label(name, bc.C + new Vector2(0, bc.R * 0.5f), Math.Min(bc.R * 0.36f, 2.6f * unit) * Math.Min(1f, 6f / Math.Max(4, name.Length)), Text * (0.7f * a), italic);
         }
         batch.End();
     }

@@ -463,6 +463,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         if (autoExitSeconds > 0 && gameTime.TotalGameTime.TotalSeconds > autoExitSeconds) Exit();
         if (Net.NetPlay.Enabled) Net.NetPlay.WindowTick(); else if (Oracle.Deterministic) Game.LockstepTick(); else Game.ViTick();      // netplay: the session's next tick(s)
         audio.Pump();
+        if (perfLog) PerfTick();
         frame++;
         scriptTick = frame;
         base.Update(gameTime);
@@ -470,6 +471,20 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
 
     /// <summary>The app went to the background (Android) or came back: the sound stops while it is away.</summary>
     public void Suspend(bool suspended) => audio.Suspend(suspended);
+
+    // TRW_PERF=1: every 5 s the window's update / draw rates, the game's display lists per second and the time spent in Update and Draw
+    private static readonly bool perfLog = Environment.GetEnvironmentVariable("TRW_PERF") == "1";
+    private readonly System.Diagnostics.Stopwatch perfClock = System.Diagnostics.Stopwatch.StartNew();
+    private int perfUpdates, perfDraws, perfLists;
+    private double perfDrawMs;
+    private void PerfTick()
+    {
+        perfUpdates++;
+        double s = perfClock.Elapsed.TotalSeconds;
+        if (s < 5) return;
+        Console.Error.WriteLine($"[perf] {perfUpdates / s:F1} updates/s, {perfDraws / s:F1} draws/s, {(drawnFrames - perfLists) / s:F1} game frames/s, draw {perfDrawMs / Math.Max(1, perfDraws):F2} ms, state {(global::Trw.Game.Game.StateId)}, screen {(global::Trw.Game.Game.ScreenId)}, GC heap {GC.GetTotalMemory(false) >> 20} MB");
+        perfUpdates = perfDraws = 0; perfLists = drawnFrames; perfDrawMs = 0; perfClock.Restart();
+    }
 
     protected override void UnloadContent()
     {
@@ -481,6 +496,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         if (Net.NetPlay.LobbyDraw(GraphicsDevice)) { base.Draw(gameTime); return; }
+        long drawStart = perfLog ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
         var cmds = Interlocked.Exchange(ref pendingFrame, null);
         if (cmds != null)
         {
@@ -510,6 +526,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         }
         renderer!.Present(Window.ClientBounds.Width, Window.ClientBounds.Height);
         Net.NetPlay.OverlayDraw(GraphicsDevice);       // netplay status line (waiting, desync, a player left)
+        if (perfLog) { perfDraws++; perfDrawMs += (System.Diagnostics.Stopwatch.GetTimestamp() - drawStart) * 1000.0 / System.Diagnostics.Stopwatch.Frequency; }
         base.Draw(gameTime);
     }
 }
