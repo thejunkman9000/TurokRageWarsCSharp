@@ -3,6 +3,8 @@ using Trw.Platform;
 
 // usage: Trw.Game [--rom baserom.us.v11.z64] [--headless --seconds N] [--netplay ...]
 Trw.Game.Net.NetPlay.Configure(args);       // --netplay: before anything reads the environment (deterministic scheduler, no paks)
+// TRW_GLYPHS_SHEET=<file.png>: draws every button glyph (docs/BUTTON_GLYPHS.md) onto one sheet and exits (no ROM needed)
+if (Environment.GetEnvironmentVariable("TRW_GLYPHS_SHEET") is { Length: > 0 } sheet) { Trw.Game.Glyphs.GlyphRaster.WriteSheet(sheet); return 0; }
 string romPath = "baserom.us.v11.z64";
 double seconds = 10;
 bool headless = false;

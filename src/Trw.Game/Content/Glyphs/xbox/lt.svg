@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<defs><linearGradient id="face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E5246"/><stop offset="1" stop-color="#352D26"/></linearGradient><radialGradient id="ball" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.35"/><stop offset="1" stop-color="#000000" stop-opacity="0.25"/></radialGradient></defs>
+<path d="M4,60 L4,26 Q4,4 32.0,4 Q60,4 60,26 L60,60 Z" fill="#0E0B09" transform="translate(0,1.5)"/><path d="M4,60 L4,26 Q4,4 32.0,4 Q60,4 60,26 L60,60 Z" fill="#3A332C" stroke="#E0A040" stroke-width="3"/><text x="32.0" y="46" font-family="'Peaceful Wars'" font-size="22" fill="#F6EAD0" text-anchor="middle" >LT</text>
+</svg>

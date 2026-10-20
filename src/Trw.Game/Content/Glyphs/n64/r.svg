@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="64" viewBox="0 0 88 64">
+<defs><linearGradient id="face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E5246"/><stop offset="1" stop-color="#352D26"/></linearGradient><radialGradient id="ball" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.35"/><stop offset="1" stop-color="#000000" stop-opacity="0.25"/></radialGradient></defs>
+<rect x="2" y="13" width="84" height="40" rx="17" fill="#0E0B09"/><rect x="2" y="11" width="84" height="40" rx="17" fill="#5A5A5A" stroke="#E0A040" stroke-width="3"/><text x="44.0" y="40" font-family="'Peaceful Wars'" font-size="26" fill="#F6EAD0" text-anchor="middle" >R</text>
+</svg>

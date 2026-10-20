@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Svg.Skia" Version="5.2.3" />
     <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" />
     <ProjectReference Include="..\Trw.Structs\Trw.Structs.csproj" />
     <!-- typed struct views live in their own assembly (Trw.Structs) -->
@@ -9,6 +10,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <!-- the port HUD's default layout (docs/HUD.md), editable next to the executable -->
     <None Include="Content\Hud\hud.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- the button glyphs (docs/BUTTON_GLYPHS.md): SVG sources rasterized at runtime, and the font their labels use -->
+    <None Include="Content\Glyphs\**\*.svg" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Content\Fonts\Peaceful Wars.ttf" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <PropertyGroup>
