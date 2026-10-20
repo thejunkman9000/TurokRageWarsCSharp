@@ -31,8 +31,9 @@ public static class Bindings
         { "A", "B", "X", "Y", "LB", "RB", "LT", "RT", "Start", "Back", "DUp", "DDown", "DLeft", "DRight", "LSUp", "LSDown", "LSLeft", "LSRight", "RSUp", "RSDown", "RSLeft", "RSRight" };
     private static readonly string[] mouseButtons = { "Left", "Right", "Middle", "X1", "X2" };
 
-    // keys a prompt prefers when several bind the same button (the first found wins otherwise): the usual letters / Space / Enter before the numeric pad
-    private static int KeyRank(string k) => k.StartsWith("NumPad") ? 3 : k.StartsWith("Left") || k.StartsWith("Right") ? (k is "Left" or "Right" ? 1 : 2) : k.Length == 1 ? 0 : 1;
+    // keys a prompt prefers when several bind the same button: the main keys of the layout (E use, Space, Enter), then single letters, then the rest,
+    // the numeric pad last
+    private static int KeyRank(string k) => k is "E" or "Space" or "Enter" ? 0 : k.Length == 1 ? 1 : k.StartsWith("NumPad") ? 3 : 2;
 
     private sealed class Table { public readonly Dictionary<N64Button, List<PhysicalInput>> Map = new(); }
     private static Table? menuTable, gameTable;
@@ -54,7 +55,6 @@ public static class Bindings
         foreach (var ctx in new[] { gameplay, !gameplay })
             foreach (var p in For(b, ctx))
                 if (kind == InputDeviceKind.KeyboardMouse ? p.Source != InputSource.Pad : p.Source == InputSource.Pad) return p;
-        if (b is N64Button.StickLeft or N64Button.StickRight or N64Button.StickUp or N64Button.StickDown) return null;
         return null;
     }
 

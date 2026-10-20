@@ -3,6 +3,8 @@ using Trw.Platform;
 
 namespace Trw.Game.Tests;
 
+using HudView = Trw.Game.PortHud.HudView;      // Trw.Structs has a struct view of the same name in the enclosing namespace Trw.Game
+
 /// <summary>The HUD's read-only RAM side on a hand-built guest memory: section tags from the camera list, the sprite lookup through the resource
 /// cache, the sprite decode and its quarter-pixel placement. (One class: the tests share the guest memory.)</summary>
 public class HudRamTests

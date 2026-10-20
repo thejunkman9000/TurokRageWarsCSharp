@@ -2,6 +2,8 @@ using Trw.Game.PortHud;
 
 namespace Trw.Game.Tests;
 
+using HudView = Trw.Game.PortHud.HudView;      // Trw.Structs has a struct view of the same name in the enclosing namespace Trw.Game
+
 /// <summary>The port HUD's layout format: expressions, text formats, parsing, element placement (docs/HUD.md). No ROM, RAM or GPU needed.</summary>
 public class HudLayoutTests
 {

@@ -26,6 +26,7 @@ public sealed class ButtonPrompts
     public static readonly bool Off = string.Equals(Environment.GetEnvironmentVariable("TRW_GLYPHS"), "off", StringComparison.OrdinalIgnoreCase);
     private static readonly bool log = Environment.GetEnvironmentVariable("TRW_GLYPHS_LOG") == "1";
     private readonly HashSet<string> logged = new();
+    private int lastScreen = int.MinValue;
 
     /// <summary>The frontend archive images that are N64 button pictures.</summary>
     private static readonly (int Image, N64Button Button)[] iconImages = { (100, N64Button.CUp), (101, N64Button.CUp), (183, N64Button.A) };
@@ -112,6 +113,7 @@ public sealed class ButtonPrompts
             for (int i = 0; i < bytes && same; i++) same = Mem.U8(t.Src + (uint)i) == Host.Rom[rom + i];
             if (same) { found = button; break; }
         }
+        if (iconByKey.Count > 20000) iconByKey.Clear();
         iconByKey[t.Key] = found;
         return found;
     }
@@ -121,6 +123,7 @@ public sealed class ButtonPrompts
     public IReadOnlyList<GfxCommand> Apply(IReadOnlyList<GfxCommand> cmds, int targetHeight)
     {
         if (Off) return cmds;
+        if (log && Game.ScreenId != lastScreen) { lastScreen = Game.ScreenId; Console.Error.WriteLine($"[glyphs] tick {Game.CurrentTick}: screen {lastScreen}, state {Mem.S32(Gv.GameState)}"); }
         float pxPerUnit = 1;
         ReadFonts();
         var quads = new List<Quad>();
@@ -165,10 +168,11 @@ public sealed class ButtonPrompts
         }
 
         // the text: rows of characters (same top and height), split where the gap is wider than a few characters
-        foreach (var row in quads.Where(q => q.Icon == null).GroupBy(q => (MathF.Round(q.Y0 * 2), MathF.Round((q.Y1 - q.Y0) * 2))))
+        // (grouped by the top only: punctuation such as the quotes is shorter than the letters but starts at the same top)
+        foreach (var row in quads.Where(q => q.Icon == null).GroupBy(q => MathF.Round(q.Y0 * 2)))
         {
             var sorted = row.OrderBy(q => q.X0).ToList();
-            float lh = sorted[0].Y1 - sorted[0].Y0;
+            float lh = sorted.GroupBy(q => MathF.Round((q.Y1 - q.Y0) * 2)).OrderByDescending(g => g.Count()).ThenByDescending(g => g.Key).First().First() is var m ? m.Y1 - m.Y0 : 0;
             // word gaps: a drawn space between two characters, else a gap clearly wider than the row's usual letter gap
             var gaps = sorted.Zip(sorted.Skip(1), (p, n) => n.X0 - p.X1).OrderBy(g => g).ToList();
             float usual = gaps.Count > 0 ? gaps[gaps.Count / 2] : 0;
@@ -190,11 +194,12 @@ public sealed class ButtonPrompts
         }
         if (removed.Count == 0 && inserts.Count == 0) return cmds;
 
+        var shifted = new HashSet<int>(shift.Keys.Select(k => k.Item1));
         var outList = new List<GfxCommand>(cmds.Count + 8);
         for (int i = 0; i < cmds.Count; i++)
         {
             var c = cmds[i];
-            if (c is DrawCommand d && (removed.ContainsKey(i) || shift.Keys.Any(k => k.Item1 == i)))
+            if (c is DrawCommand d && (removed.ContainsKey(i) || shifted.Contains(i)))
             {
                 removed.TryGetValue(i, out var gone);
                 float sw = d.State.ScreenWidth;
@@ -253,7 +258,7 @@ public sealed class ButtonPrompts
             float s = offsets[k] - total / 2;
             if (s != 0) shift[(run[k].Cmd, run[k].Index)] = s;
         }
-        float cy = (run[0].Y0 + run[0].Y1) * 0.5f;
+        float cy = run[0].Y0 + lh * 0.55f;
         foreach (var (x, w, b, alpha, d) in placed)
             Place(d, b, device, gameplay, x - total / 2 + w / 2, cy, lh * 1.75f, pxPerUnit, alpha, last, inserts);
     }
