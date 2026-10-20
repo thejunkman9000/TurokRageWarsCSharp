@@ -21,11 +21,13 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
 
-  <!-- Release: the translated code is compiled ahead of time to native code (all methods, not a startup profile: the game's hot code is everywhere),
+  <!-- Release: the translated code is compiled ahead of time to native code through LLVM (all methods, not a startup profile: the game's hot code is everywhere),
        so nothing is JIT-compiled while a level loads or plays. Trimming touches only the framework (SdkOnly); the game assemblies are kept whole. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <RunAOTCompilation>true</RunAOTCompilation>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <!-- LLVM code generation: about 1.7x the speed of Mono's own AOT code for the translated code (docs/ANDROID.md), at a few minutes of build time -->
+    <EnableLLVM>true</EnableLLVM>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <TrimMode>partial</TrimMode>
     <DebugType>none</DebugType>

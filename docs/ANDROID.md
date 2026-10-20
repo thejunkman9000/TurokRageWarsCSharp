@@ -21,9 +21,9 @@ set ANDROID_HOME=D:\Android\sdk
 dotnet publish src/Trw.Android -c Release
 ```
 
-gives `src/Trw.Android/bin/Release/net9.0-android/publish/io.github.thejunkman9000.turokragewars-Signed.apk` (arm64 + x86_64, about 38 MB,
-signed with the SDK's debug key). Release builds compile all the translated code ahead of time (Mono AOT, `RunAOTCompilation`, no startup
-profile); trimming only touches the framework (`AndroidLinkMode=SdkOnly`), the game assemblies stay whole. A Debug build (`-c Debug`) runs on the
+gives `src/Trw.Android/bin/Release/net9.0-android/publish/io.github.thejunkman9000.turokragewars-Signed.apk` (arm64 + x86_64, about 40 MB,
+signed with the SDK's debug key; about 9 minutes). Release builds compile all the translated code ahead of time with LLVM (Mono AOT,
+`RunAOTCompilation` + `EnableLLVM`, no startup profile; `-p:EnableLLVM=false` builds in ~2 minutes with ~60 % of the speed); trimming only touches the framework (`AndroidLinkMode=SdkOnly`), the game assemblies stay whole. A Debug build (`-c Debug`) runs on the
 JIT: fine for menus, but far too slow in a level.
 
 For a faster emulator-only build: `dotnet build src/Trw.Android -c Release -p:RuntimeIdentifiers=android-x64 -p:EmbedAssembliesIntoApk=true`.
@@ -94,11 +94,12 @@ window (ticks per second of the translated code on the device's CPU; with `TRW_O
 
 * Release (AOT): 60 window updates / 60 draws per second, the game at its own 30 frames per second in menus, the attract demo and a 1-player trial;
   level loads take about 1 s. Debug (JIT): about 15 game frames per second in a level, level loads of ~25 s.
-* `TRW_BENCH=6000` (the desktop's deterministic check: arena 10, 400 ops per tick, 6000 ticks): 317 ticks/s overall, ~240 ticks/s in the
-  level (4x real time). Desktop CoreCLR Release on the same machine: 626 ticks/s. The oracle output of the Android run is byte-identical to the
-  desktop's reference (`base2_a.txt`): Mono AOT computes exactly what CoreCLR computes.
-* A modern ARM64 tablet core is roughly half to two thirds of this desktop core, so the expected margin there is ~2x real time; measure with
-  `TRW_BENCH` on the device.
+* `TRW_BENCH=6000` (the desktop's deterministic check: arena 10, 400 ops per tick, 6000 ticks): LLVM AOT 538 ticks/s overall, ~400 ticks/s in
+  the level (6-7x real time); Mono AOT without LLVM 317 / ~240 ticks/s. Desktop CoreCLR Release on the same machine: 626 ticks/s. The oracle
+  output of the Android runs (both AOT flavours) is byte-identical to the desktop's reference (`base2_a.txt`): Mono computes exactly what
+  CoreCLR computes.
+* A modern ARM64 tablet core is roughly half to two thirds of this desktop core, so the expected margin there is ~3x real time; measure with
+  `TRW_BENCH` on the device (not measured on real hardware yet).
 
 ## Known limits
 
