@@ -239,6 +239,7 @@ public static partial class Game
         var self = SelfThread()!;
         MaybeYield(self);     // a polling thread must not starve a higher-priority thread that became ready
         DeliverAudioCompletion(mq);
+        SiRecvGuard(mq, flags);      // Os/OsDevices.cs: a pad poll waiting for a transfer nobody started
         lock (kernelLock)
         {
             while (Mem.S32(mq + MQ_VALID) == 0)

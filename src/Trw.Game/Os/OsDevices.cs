@@ -185,6 +185,18 @@ public static partial class Game
         if (mq != 0 && mq == siInflightMq) { Console.Error.WriteLine($"[si] queue {mq:X8} re-created with a read in flight: completion re-posted"); PostFromHost(mq, 0); }
     }
 
+    // The pad code keeps "which transfer is pending" in a byte (Pad_SiPendingOp: 0 read, 1 query, 2 pak busy / none) that is written outside the pad lock
+    // too: the menus' idle kick (MenuCore) sets it to 1 without starting a query, and after Pad.ResetSession set 2 ("nothing pending") the scheduler's
+    // next poll then waits for a query result that nobody started: the scheduler blocks, no retrace runs, the picture stays black. On hardware the
+    // registered SI event queue (osSetEventMesg 5) also gets the interrupt message of every serial transfer, so such a wait ends with the next one.
+    // So a blocking receive on the SI event queue while it is empty and no read / query is in flight gets a completion, as the next SI interrupt would.
+    internal static void SiRecvGuard(uint mq, int flags)
+    {
+        if (flags == OS_MESG_NOBLOCK || mq == 0 || mq != evMq[5] || siInflightMq != 0 || Mem.S32(mq + MQ_VALID) != 0) return;
+        Console.Error.WriteLine($"[si] wait on the SI queue {mq:X8} with no transfer in flight (pending op {Mem.U8(Gv.Pad_SiPendingOp)}): completion supplied");
+        PostFromHost(mq, evMsg[5]);
+    }
+
     public static int osContStartReadData(uint mq) { siInflightMq = mq; PostFromHost(mq, 0); return 0; }
 
     public static void osContGetReadData(uint pad)
