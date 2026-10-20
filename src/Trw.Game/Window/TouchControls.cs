@@ -11,11 +11,11 @@ namespace Trw.Game;
 /// The on-screen controller for touch screens (the Android head; <c>TRW_TOUCH=1</c> turns it on on the desktop, where the mouse acts as one finger).
 /// Landscape layout, multi-touch, semi-transparent, sized from the screen height:
 /// <list type="bullet">
-/// <item>two floating sticks (each appears where its thumb lands, like the touch layouts of Minecraft and other mobile shooters), the N64 controller's
-///   two movement controls: the left stick is the C buttons in free play (walk, strafe: the game's default move), the right stick the analogue stick
-///   (aim / turn). In menus the left stick moves the cursor (D-pad) and the right stick gives the C buttons (the menus' "SKINS = C-up" and friends);</item>
-/// <item><c>"LookStick": false</c> in touch.json: the right thumb drags anywhere on the right part of the screen to look instead (the native FPS look,
-///   <see cref="Host.ReadMouse"/>, like the mouse);</item>
+/// <item>Minecraft style: a floating move stick for the left thumb (it appears where the thumb lands) = the C buttons in free play (walk, strafe: the
+///   game's default move), and the right thumb drags anywhere on the right part of the screen to look (the native FPS look, <see cref="Host.ReadMouse"/>,
+///   like the mouse). In menus the left stick moves the cursor (D-pad) and a second floating stick on the right gives the C buttons (the menus'
+///   "SKINS = C-up" and friends; its knob shows a C);</item>
+/// <item><c>"LookStick": true</c> in touch.json: the right stick stays in free play too, as the analogue stick (aim / turn, N64 style) instead of the drag look;</item>
 /// <item>buttons FIRE (Z; dragging from it keeps aiming), JUMP (R), ALT (B, secondary fire / back in menus), WEAPON (A: tap = next weapon, hold + the right
 ///   stick or a drag = the weapon wheel; OK in menus), L; START at the top;</item>
 /// <item>the system back key: START in free play (pause), B in menus.</item>
@@ -36,7 +36,7 @@ public sealed class TouchControls : IDisposable
         public float Size { get; set; } = 1f;                // control size factor (0.6 .. 1.6)
         public float Opacity { get; set; } = 1f;             // 0.2 .. 1.5 x the default transparency
         public bool Haptics { get; set; } = true;            // short vibration on a button press (Android)
-        public bool LookStick { get; set; } = true;          // the right thumb: a stick = the N64 analogue stick (true), or drag-to-look (false)
+        public bool LookStick { get; set; }                  // free play, right thumb: drag-to-look (false, Minecraft style) or a stick = the N64 analogue stick (true)
 
         public static string FilePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TurokRageWars", "touch.json");
 
@@ -222,7 +222,7 @@ public sealed class TouchControls : IDisposable
                     stickCentre = new Vector2(Math.Clamp(p.X, stickR + unit, w - stickR), Math.Clamp(p.Y, stickR + unit, h - stickR - unit));
                     stickKnob = p;
                 }
-                else if (Config.LookStick && p.X > AimZoneLeft && p.Y > h * 0.22f && !aimActive)
+                else if ((Config.LookStick || ctx != 1) && p.X > AimZoneLeft && p.Y > h * 0.22f && !aimActive)      // the right stick: always in menus (C buttons), in free play only with LookStick
                 {
                     f.Kind = Kind.AimStick; aimActive = true;
                     aimCentre = new Vector2(Math.Clamp(p.X, stickR + unit, w - stickR - unit), Math.Clamp(p.Y, stickR + unit, h - stickR - unit));
@@ -360,7 +360,7 @@ public sealed class TouchControls : IDisposable
         Sprite(disc, k, knobR, (stickActive ? Edge : Fill) * ((stickActive ? 0.55f : 0.45f) * a));
         Sprite(ring, k, knobR, Gold * ((stickActive ? 0.8f : 0.55f) * a));
         Label(stickActive ? "" : "MOVE", c +new Vector2(0, stickR + 2.8f * unit), 2.4f * unit, Text * (0.6f * a), italic);
-        if (Config.LookStick) DrawStick(aimActive ? aimCentre : aimHome, aimActive ? aimKnob : aimHome, aimActive, menuLabels ? "C" : "AIM", menuLabels, menuLabels && !aimActive ? a * 0.45f : a);      // menus: steps back like FIRE / JUMP (it covers the 4:3 menus; few screens use the C buttons)
+        if (Config.LookStick || menuLabels || aimActive) DrawStick(aimActive ? aimCentre : aimHome, aimActive ? aimKnob : aimHome, aimActive, menuLabels ? "C" : "AIM", menuLabels, menuLabels && !aimActive ? a * 0.45f : a);      // menus: steps back like FIRE / JUMP (it covers the 4:3 menus; few screens use the C buttons)
 
         bool[] pressed = new bool[buttons.Length];
         foreach (var f in fingers.Values) if (f.Kind == Kind.Button) pressed[(int)f.Button] = true;

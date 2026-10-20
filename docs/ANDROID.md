@@ -57,12 +57,13 @@ Touch (multi-touch, semi-transparent, they fade out while a gamepad or keyboard 
 | control | where | N64 | what |
 |---|---|---|---|
 | MOVE stick | left third; appears under the thumb | C buttons (free play), D-pad (menus) | walk, strafe; menu cursor |
-| AIM stick | right half, left of the buttons; appears under the thumb | analogue stick (free play), C buttons (menus: the knob shows a C) | aim / turn (the N64 stick, with the game's own turn speed); in menus the C buttons ("SKINS = C-up" ...) |
-| look (option) | `"LookStick": false` in touch.json: drag anywhere on the right part of the screen instead of the AIM stick | native look (like the desktop's mouse) | turn and tilt the view 1:1 |
+| look | drag anywhere on the right part of the screen (free play; Minecraft style) | native look (like the desktop's mouse) | turn and tilt the view 1:1 |
+| C stick | right half, left of the buttons, in menus; appears under the thumb, its knob shows a C | C buttons | the menus' C-button actions ("SKINS = C-up", "OPTIONS = C-up" ...) |
+| AIM stick (option) | `"LookStick": true` in touch.json: the right stick stays in free play as the analogue stick instead of the drag look | analogue stick | aim / turn, N64 style |
 | FIRE | bottom right, big | Z | fire; dragging from the button keeps aiming |
 | JUMP | bottom right corner | R | jump |
 | ALT / BACK | above JUMP | B | secondary fire; back in menus |
-| WEAPON / OK | above FIRE | A | tap = next weapon, hold + the AIM stick (or a drag) = weapon wheel; confirm in menus |
+| WEAPON / OK | above FIRE | A | tap = next weapon, hold + drag on the right side = weapon wheel; confirm in menus |
 | L | top of the right column | L | |
 | START (pause icon) | top centre | Start | pause, title screen |
 | system back | | Start in play, B in menus | |
