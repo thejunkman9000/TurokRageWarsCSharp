@@ -19,6 +19,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private GfxRenderer? renderer;
     private DebugOverlay? inspector;
     private Scoreboard? scoreboard;      // Tab scoreboard + F2 split / local view (Scoreboard.cs, LocalView.cs, ViewLayout.cs)
+    private TouchControls? touch;        // the on-screen controller (Android; TRW_TOUCH=1 on the desktop), TouchControls.cs
     private int frame, drawnFrames, shotsTaken;
     private bool fullscreenKeyDown;
     // previews: TRW_SHOT_DIR=<dir> [TRW_SHOT_EVERY=<display lists>] [TRW_SHOT_MAX=<files>] saves PNGs of the rendered frames
@@ -43,6 +44,13 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         Window.Title = "Turok: Rage Wars";
         Content.RootDirectory = "Content";
         Window.AllowUserResizing = true;
+        if (OperatingSystem.IsAndroid())
+        {   // a tablet: full screen, landscape, the back buffer at the screen's own size (MonoGame would scale a 960 x 720 buffer to the screen)
+            graphics.IsFullScreen = true;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            var dm = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
+            graphics.PreferredBackBufferWidth = Math.Max(dm.Width, dm.Height); graphics.PreferredBackBufferHeight = Math.Min(dm.Width, dm.Height);
+        }
         // the display list is interpreted the moment the game starts the task (its memory is consistent then); the window thread draws the result
         Host.GraphicsTask = task => { var cmds = interpreter.Run(task); Oracle.Frame(cmds); RecordSignature(cmds); pendingFrame = cmds; };
     }
@@ -52,7 +60,8 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         renderer = new GfxRenderer(GraphicsDevice, Content.Load<Microsoft.Xna.Framework.Graphics.Effect>("Combiner"));
         scoreboard = new Scoreboard(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), Content.Load<SpriteFont>("ScoreboardTitle"));
         inspector = new DebugOverlay(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), renderer);       // F3: the level inspector (Window/DebugOverlay.cs)
-        renderer.Overlay = (dest, w, h) => { inspector.Draw(dest, w, h); scoreboard.Draw(dest, w, h); };
+        if (TouchControls.Enabled) touch = new TouchControls(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), Content.Load<SpriteFont>("ScoreboardTitle"));
+        renderer.Overlay = (dest, w, h) => { inspector.Draw(dest, w, h); scoreboard.Draw(dest, w, h); touch?.Draw(w, h); };
         base.LoadContent();
     }
 
@@ -61,7 +70,9 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         Host.ReadPad = ReadPad;
         Host.ReadMouse = ReadMouse;
         ApplyMouseSettings();
+#if !ANDROID     // (MonoGame's Android window has no TextInput event)
         Window.TextInput += (_, e) => TextEntry.OnTextInput(e.Character, e.Key);     // typed characters (shift and layout applied) for the name entry
+#endif
         audio.Hook();
         base.Initialize();
     }
@@ -186,7 +197,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private static long lastPoll;
 
     /// <summary>1 free play (state 13 with only the HUD layer on the UI stack), 0 menus, -1 before the game state is known: the two binding layers (game: / menu:) of the mapping.</summary>
-    private static int GameplayContext()
+    internal static int GameplayContext()
     {
         int st = global::Trw.Game.Game.StateId, scr = global::Trw.Game.Game.ScreenId;
         // state 13 with the HUD layer = free play (1); state 13 with any other screen id is not known to be a menu (pause screens differ per mode): -1 keeps BOTH binding layers live, so WASD still moves
@@ -281,6 +292,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         // played with the mouse: captured in free play (the window), or a test script that moves the mouse
         active = (mouseCaptured || kbmSteps.Any(s => s.Dx != 0 || s.Dy != 0)) && GameplayContext() == 1;
         lock (deviceLock) { yawDeg = nativeYaw; pitchDeg = nativePitch; nativeYaw = nativePitch = 0; }
+        if (TouchControls.Enabled) TouchControls.TakeLook(ref yawDeg, ref pitchDeg, ref active);      // the touch look pad
     }
 
     internal static bool ReadPadHeadless(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
@@ -345,6 +357,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             }
         }
         if (pad == 0) buttons |= TextEntry.Poll();         // typed name: the letter-cycler presses (TextEntry.cs)
+        if (pad == 0 && TouchControls.Enabled) TouchControls.Apply(ref buttons, ref x, ref y);      // the on-screen controller
         stickX = (sbyte)Math.Clamp(x, -80, 80);
         stickY = (sbyte)Math.Clamp(y, -80, 80);
         if (pad == 0 && padLog && (buttons != lastLoggedButtons || stickY != lastLoggedStickY))
@@ -387,7 +400,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         if (captureSuspended && IsActive && GameplayContext() == 1 && ms.LeftButton == ButtonState.Pressed && Window.ClientBounds.Contains(Window.ClientBounds.X + ms.X, Window.ClientBounds.Y + ms.Y))
         { captureSuspended = false; clickResume = true; }
         if (clickResume && ms.LeftButton == ButtonState.Released) clickResume = false;
-        bool capture = IsActive && !captureSuspended && GameplayContext() == 1;
+        bool capture = IsActive && !captureSuspended && GameplayContext() == 1 && !TouchControls.Enabled;     // (touch: no mouse capture; Android reports no usable mouse)
         int cx = Window.ClientBounds.Width / 2, cy = Window.ClientBounds.Height / 2;
         lock (deviceLock)
         {
@@ -422,6 +435,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         var ks = Keyboard.GetState();
         SampleDevices(ks);
         scoreboard?.Update(ks, IsActive);
+        touch?.Update(Window.ClientBounds.Width, Window.ClientBounds.Height, IsActive);
         inspector?.Update(ks, IsActive);
         TextEntry.Sample(ks, gameTime.TotalGameTime.TotalSeconds);      // Backspace / Enter on the name entry screen
         bool esc = ks.IsKeyDown(Keys.Escape);
@@ -454,10 +468,13 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         base.Update(gameTime);
     }
 
+    /// <summary>The app went to the background (Android) or came back: the sound stops while it is away.</summary>
+    public void Suspend(bool suspended) => audio.Suspend(suspended);
+
     protected override void UnloadContent()
     {
         audio.Dispose();
-        renderer?.Dispose(); scoreboard?.Dispose(); inspector?.Dispose();
+        renderer?.Dispose(); scoreboard?.Dispose(); inspector?.Dispose(); touch?.Dispose();
         base.UnloadContent();
     }
 

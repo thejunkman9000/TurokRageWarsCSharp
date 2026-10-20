@@ -5,6 +5,7 @@
     <ProjectReference Include="..\Trw.Structs\Trw.Structs.csproj" />
     <!-- typed struct views live in their own assembly (Trw.Structs) -->
     <Compile Remove="Generated\Structs\**" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <!-- the port HUD's default layout (docs/HUD.md), editable next to the executable -->

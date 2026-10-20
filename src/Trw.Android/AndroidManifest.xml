@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto">
+  <!-- OpenGL ES 3 (the renderer: render targets with depth, the Combiner effect) -->
+  <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <!-- netplay: direct connections (docs/NETPLAY.md) -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <application android:label="Turok: Rage Wars" android:icon="@drawable/icon" android:isGame="true" android:appCategory="game"
+               android:allowBackup="false" android:largeHeap="true" android:hardwareAccelerated="true" />
+</manifest>

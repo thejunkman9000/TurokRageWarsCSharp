@@ -100,6 +100,16 @@ public sealed class AudioOut : IDisposable
     }
     private readonly object feedGate = new();
 
+    /// <summary>Pauses / resumes the device (the app in the background); the feeder keeps the queue topped up, nothing is lost but the time away.</summary>
+    public void Suspend(bool suspended)
+    {
+        lock (feedGate)
+        {
+            try { if (suspended) sound?.Pause(); else sound?.Resume(); }
+            catch (Exception e) when (e is ObjectDisposedException or InvalidOperationException) { }
+        }
+    }
+
     public void Dispose()
     {
         stop = true;
