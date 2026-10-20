@@ -11,11 +11,13 @@ namespace Trw.Game;
 /// The on-screen controller for touch screens (the Android head; <c>TRW_TOUCH=1</c> turns it on on the desktop, where the mouse acts as one finger).
 /// Landscape layout, multi-touch, semi-transparent, sized from the screen height:
 /// <list type="bullet">
-/// <item>left thumb: a floating move stick (it appears where the thumb lands in the left part of the screen) = the C buttons in free play (walk, strafe),
-///   the D-pad in menus;</item>
-/// <item>right thumb: drag anywhere on the right part of the screen to look (the native FPS look, <see cref="Host.ReadMouse"/>, like the mouse), and the
-///   buttons FIRE (Z; dragging from it keeps aiming), JUMP (R), ALT (B, secondary fire / back in menus), WEAPON (A: tap = next weapon, hold + drag = the
-///   weapon wheel; OK in menus), L; START at the top. A drag while WEAPON is held moves the analogue stick (the wheel), as the mouse does on the desktop;</item>
+/// <item>two floating sticks (each appears where its thumb lands, like the touch layouts of Minecraft and other mobile shooters), the N64 controller's
+///   two movement controls: the left stick is the C buttons in free play (walk, strafe: the game's default move), the right stick the analogue stick
+///   (aim / turn). In menus the left stick moves the cursor (D-pad) and the right stick gives the C buttons (the menus' "SKINS = C-up" and friends);</item>
+/// <item><c>"LookStick": false</c> in touch.json: the right thumb drags anywhere on the right part of the screen to look instead (the native FPS look,
+///   <see cref="Host.ReadMouse"/>, like the mouse);</item>
+/// <item>buttons FIRE (Z; dragging from it keeps aiming), JUMP (R), ALT (B, secondary fire / back in menus), WEAPON (A: tap = next weapon, hold + the right
+///   stick or a drag = the weapon wheel; OK in menus), L; START at the top;</item>
 /// <item>the system back key: START in free play (pause), B in menus.</item>
 /// </list>
 /// The pad bits go into pad 0 next to the keyboard / gamepad mapping (<see cref="Apply"/>, called from <see cref="TrwWindow.ReadPad"/>), the look into the
@@ -34,6 +36,7 @@ public sealed class TouchControls : IDisposable
         public float Size { get; set; } = 1f;                // control size factor (0.6 .. 1.6)
         public float Opacity { get; set; } = 1f;             // 0.2 .. 1.5 x the default transparency
         public bool Haptics { get; set; } = true;            // short vibration on a button press (Android)
+        public bool LookStick { get; set; } = true;          // the right thumb: a stick = the N64 analogue stick (true), or drag-to-look (false)
 
         public static string FilePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TurokRageWars", "touch.json");
 
@@ -106,7 +109,7 @@ public sealed class TouchControls : IDisposable
     }
 
     // ---- layout ----
-    private enum Kind { Stick, Look, Button }
+    private enum Kind { Stick, Look, Button, AimStick }
     private enum Btn { Fire, Jump, Alt, Weapon, L, Start, Count }
     private static readonly ushort[] BtnBits = { N64.Z, N64.R, N64.B, N64.A, N64.L, N64.Start };
     private static readonly string[] BtnLetter = { "Z", "R", "B", "A", "L", "START" };
@@ -115,16 +118,18 @@ public sealed class TouchControls : IDisposable
 
     private struct Circle { public Vector2 C; public float R; public bool Contains(Vector2 p, float slack = 1.15f) => Vector2.DistanceSquared(p, C) <= R * R * slack * slack; }
     private readonly Circle[] buttons = new Circle[(int)Btn.Count];
-    private Vector2 stickHome; private float stickR, knobR;
+    private Vector2 stickHome, aimHome; private float stickR, knobR;
     private float unit;
     private int layoutW, layoutH;
     private float StickZoneRight => layoutW * 0.40f;
+    private float AimZoneLeft => layoutW * 0.55f;
 
     private sealed class Finger { public Kind Kind; public Btn Button; public Vector2 Start, Last, Pos, Origin; public bool Moved; }
     private readonly Dictionary<int, Finger> fingers = new();
     private readonly int[] heldUntil = new int[(int)Btn.Count];
     private int frame;
     private Vector2 stickCentre, stickKnob; private bool stickActive;
+    private Vector2 aimCentre, aimKnob; private bool aimActive;
     private float fade;            // 0 hidden .. 1 shown
 
     private readonly GraphicsDevice device;
@@ -175,6 +180,7 @@ public sealed class TouchControls : IDisposable
         float u = unit, m = 3f * u;          // margin from the screen edges
         stickR = 14f * u; knobR = 6.5f * u;
         stickHome = new Vector2(m + stickR + 4 * u, h - m - stickR - 17 * u);     // above the HUD's health counter (bottom left)
+        aimHome = new Vector2(w - m - 62f * u, h - m - stickR - 17 * u);          // left of the button cluster, mirroring the move stick
         Vector2 br = new(w - m, h - m);
         buttons[(int)Btn.Jump] = new Circle { C = br + new Vector2(-8.5f * u, -8.5f * u), R = 8.5f * u };
         buttons[(int)Btn.Fire] = new Circle { C = br + new Vector2(-29f * u, -14f * u), R = 10.5f * u };
@@ -216,6 +222,12 @@ public sealed class TouchControls : IDisposable
                     stickCentre = new Vector2(Math.Clamp(p.X, stickR + unit, w - stickR), Math.Clamp(p.Y, stickR + unit, h - stickR - unit));
                     stickKnob = p;
                 }
+                else if (Config.LookStick && p.X > AimZoneLeft && p.Y > h * 0.22f && !aimActive)
+                {
+                    f.Kind = Kind.AimStick; aimActive = true;
+                    aimCentre = new Vector2(Math.Clamp(p.X, stickR + unit, w - stickR - unit), Math.Clamp(p.Y, stickR + unit, h - stickR - unit));
+                    aimKnob = p;
+                }
                 else f.Kind = Kind.Look;
                 fingers[t.Id] = f;
             }
@@ -256,6 +268,20 @@ public sealed class TouchControls : IDisposable
                     if (menu) { if (v.Y < -0.5f) b |= N64.DUp; if (v.Y > 0.5f) b |= N64.DDown; if (v.X < -0.5f) b |= N64.DLeft; if (v.X > 0.5f) b |= N64.DRight; }
                     break;
                 }
+                case Kind.AimStick:
+                {
+                    var v = (f.Pos - aimCentre) / stickR;
+                    if (v.LengthSquared() > 1) v.Normalize();
+                    aimKnob = aimCentre + v * stickR;
+                    if (ctx == 1)
+                    {   // free play: the analogue stick (aim / turn; the weapon wheel while WEAPON is held); a small dead zone so a resting thumb does not drift
+                        float len = v.Length(), dz = 0.12f;
+                        var av = len > dz ? v * ((len - dz) / (1 - dz) / len) : Vector2.Zero;
+                        sx += (int)(av.X * N64.StickMax); sy -= (int)((Config.InvertY ? -av.Y : av.Y) * N64.StickMax);
+                    }
+                    else { const float th = 0.5f; if (v.Y < -th) b |= N64.CUp; if (v.Y > th) b |= N64.CDown; if (v.X < -th) b |= N64.CLeft; if (v.X > th) b |= N64.CRight; }
+                    break;
+                }
                 case Kind.Look:
                     if (weaponHeld && game)
                     {   // the weapon wheel: the drag from where the finger landed is the stick
@@ -282,6 +308,7 @@ public sealed class TouchControls : IDisposable
     private void Release(int id, Finger f)
     {
         if (f.Kind == Kind.Stick) stickActive = false;
+        if (f.Kind == Kind.AimStick) aimActive = false;
         fingers.Remove(id);
     }
 
@@ -333,6 +360,7 @@ public sealed class TouchControls : IDisposable
         Sprite(disc, k, knobR, (stickActive ? Edge : Fill) * ((stickActive ? 0.55f : 0.45f) * a));
         Sprite(ring, k, knobR, Gold * ((stickActive ? 0.8f : 0.55f) * a));
         Label(stickActive ? "" : "MOVE", c +new Vector2(0, stickR + 2.8f * unit), 2.4f * unit, Text * (0.6f * a), italic);
+        if (Config.LookStick) DrawStick(aimActive ? aimCentre : aimHome, aimActive ? aimKnob : aimHome, aimActive, menuLabels ? "C" : "AIM", menuLabels, menuLabels && !aimActive ? a * 0.45f : a);      // menus: steps back like FIRE / JUMP (it covers the 4:3 menus; few screens use the C buttons)
 
         bool[] pressed = new bool[buttons.Length];
         foreach (var f in fingers.Values) if (f.Kind == Kind.Button) pressed[(int)f.Button] = true;
@@ -356,6 +384,22 @@ public sealed class TouchControls : IDisposable
             if (name.Length > 0) Label(name, bc.C + new Vector2(0, bc.R * 0.5f), Math.Min(bc.R * 0.36f, 2.6f * unit) * Math.Min(1f, 6f / Math.Max(4, name.Length)), Text * (0.7f * ba), italic);
         }
         batch.End();
+    }
+
+    /// <summary>The right stick: base, direction marks, knob; in menus the knob carries a C (it gives the C buttons there).</summary>
+    private void DrawStick(Vector2 c, Vector2 k, bool active, string label, bool cKnob, float a)
+    {
+        Sprite(disc, c, stickR, Fill * (0.30f * a));
+        Sprite(ring, c, stickR, Edge * (0.45f * a));
+        for (int i = 0; i < 4; i++)
+        {
+            var dir = new Vector2(MathF.Cos(i * MathF.PI / 2), MathF.Sin(i * MathF.PI / 2));
+            Sprite(disc, c + dir * stickR * 0.78f, unit * 0.9f, (cKnob ? Gold : Edge) * (0.45f * a));
+        }
+        Sprite(disc, k, knobR, (active ? Edge : Fill) * ((active ? 0.55f : 0.45f) * a));
+        Sprite(ring, k, knobR, Gold * ((active ? 0.8f : 0.55f) * a));
+        if (cKnob) Label("C", k, knobR * 1.1f, Gold * (0.8f * a), font);
+        if (!active) Label(label, c + new Vector2(0, stickR + 2.8f * unit), 2.4f * unit, Text * (0.6f * a), italic);
     }
 
     private void PauseIcon(Vector2 c, float r, Color col)

@@ -57,11 +57,12 @@ Touch (multi-touch, semi-transparent, they fade out while a gamepad or keyboard 
 | control | where | N64 | what |
 |---|---|---|---|
 | MOVE stick | left third; appears under the thumb | C buttons (free play), D-pad (menus) | walk, strafe; menu cursor |
-| look | drag anywhere on the right part of the screen | native look (like the desktop's mouse) | turn and tilt the view 1:1 |
+| AIM stick | right half, left of the buttons; appears under the thumb | analogue stick (free play), C buttons (menus: the knob shows a C) | aim / turn (the N64 stick, with the game's own turn speed); in menus the C buttons ("SKINS = C-up" ...) |
+| look (option) | `"LookStick": false` in touch.json: drag anywhere on the right part of the screen instead of the AIM stick | native look (like the desktop's mouse) | turn and tilt the view 1:1 |
 | FIRE | bottom right, big | Z | fire; dragging from the button keeps aiming |
 | JUMP | bottom right corner | R | jump |
 | ALT / BACK | above JUMP | B | secondary fire; back in menus |
-| WEAPON / OK | above FIRE | A | tap = next weapon, hold + drag on the right side = weapon wheel; confirm in menus |
+| WEAPON / OK | above FIRE | A | tap = next weapon, hold + the AIM stick (or a drag) = weapon wheel; confirm in menus |
 | L | top of the right column | L | |
 | START (pause icon) | top centre | Start | pause, title screen |
 | system back | | Start in play, B in menus | |

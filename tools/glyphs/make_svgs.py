@@ -222,18 +222,21 @@ def touch():
         write(f'touch/{k}.svg', svg(64, ring(text(32, 44, k.upper(), 32, '#FFFFFF'))))
     write('touch/start.svg', svg(64, ring(text(32, 37, 'START', 13, '#FFFFFF'))))
     for d in ('up', 'down', 'left', 'right'):
-        write(f'touch/c_{d}.svg', svg(64, ring(arrow(32, 32, 11, d, '#F0C020'))))
+        write(f'touch/c_{d}.svg', svg(64, touch_stick(d, c_knob=True)))     # the C buttons: the right on-screen stick in menus, its knob marked C
         write(f'touch/dpad_{d}.svg', svg(64, ring(arrow(32, 32, 11, d, '#FFFFFF'))))
         write(f'touch/stick_{d}.svg', svg(64, touch_stick(d)))
     write('touch/stick.svg', svg(64, touch_stick(None)))
 
 
-def touch_stick(direction):
-    b = ('<circle cx="32" cy="32" r="29" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="3"/>'
-         '<circle cx="32" cy="32" r="13" fill="#FFFFFF" fill-opacity="0.55"/>')
+def touch_stick(direction, c_knob=False):
+    b = '<circle cx="32" cy="32" r="29" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="3"/>'
     if direction:
         pos = {'up': (32, 10), 'down': (32, 54), 'left': (10, 32), 'right': (54, 32)}[direction]
-        b += arrow(pos[0], pos[1], 6, direction, '#FFFFFF')
+        b += arrow(pos[0], pos[1], 6, direction, '#F0C020' if c_knob else '#FFFFFF')
+    if c_knob:
+        b += '<circle cx="32" cy="32" r="13" fill="#F0C020" fill-opacity="0.85"/>' + text(32, 38, 'C', 16, '#3A2A00')
+    else:
+        b += '<circle cx="32" cy="32" r="13" fill="#FFFFFF" fill-opacity="0.55"/>'
     return b
 
 
