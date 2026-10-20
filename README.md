@@ -28,6 +28,10 @@ Escape = back where the game allows it); the keys turn into the game's own lette
 The in-game HUD is drawn by the port from a layout file (`Content/Hud/hud.json`, or your own `hud.json` next to the executable / `TRW_HUD_LAYOUT`): the default reproduces the original HUD with the game's own sprites, and elements can be moved, recoloured, removed or added by editing the file (it reloads when saved; F6 reloads, F7 switches to the game's own HUD draws, `TRW_HUD=game` starts with them). See `docs/HUD.md`.
 Status: boots to the menus and plays the 1-player trials and multiplayer matches with 3D graphics and audio (see `docs/TRANSPILER.md`).
 
+## Android
+`src/Trw.Android` builds the same game for Android tablets with on-screen touch controls (gamepads and keyboards work too); the ROM is picked
+on the first start. See `docs/ANDROID.md`.
+
 ## Playing online
 ```
 dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64 --netplay

@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The Android head (docs/ANDROID.md): the same game as the desktop head (src/Trw.Game), compiled from the same sources for MonoGame's Android
+       platform, plus the activity (ROM pick, lifecycle, logcat) and the touch controls, which live in the shared Window/ code. -->
+  <PropertyGroup>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>io.github.thejunkman9000.turokragewars</ApplicationId>
+    <ApplicationTitle>Turok: Rage Wars</ApplicationTitle>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <RootNamespace>Trw.Android</RootNamespace>
+    <AssemblyName>Trw.Android</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS0162;CS0164;CS0168;CS0219;CS0169;CS0649;CS8981;CS8669;CA1416;CA1422;XA0101</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <MonoGamePlatform>Android</MonoGamePlatform>
+    <RuntimeIdentifiers>android-arm64;android-x64</RuntimeIdentifiers>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+  </PropertyGroup>
+
+  <!-- Release: the translated code is compiled ahead of time to native code through LLVM (all methods, not a startup profile: the game's hot code is everywhere),
+       so nothing is JIT-compiled while a level loads or plays. Trimming touches only the framework (SdkOnly); the game assemblies are kept whole. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <!-- LLVM code generation: about 1.7x the speed of Mono's own AOT code for the translated code (docs/ANDROID.md), at a few minutes of build time -->
+    <EnableLLVM>true</EnableLLVM>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <TrimMode>partial</TrimMode>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- the game: every source of the desktop head except its console entry point (and the struct views, which are their own assembly) -->
+    <Compile Include="..\Trw.Game\**\*.cs" Exclude="..\Trw.Game\Program.cs;..\Trw.Game\Generated\Structs\**;..\Trw.Game\bin\**;..\Trw.Game\obj\**" LinkBase="Game" />
+    <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" GlobalPropertiesToRemove="RuntimeIdentifier;SelfContained" />
+    <ProjectReference Include="..\Trw.Structs\Trw.Structs.csproj" GlobalPropertiesToRemove="RuntimeIdentifier;SelfContained" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <!-- the content (Combiner effect as GLSL ES, the Peaceful Wars sprite fonts) built for MonoGame's Android platform; only in the outer build: the per-ABI inner
+         builds would run the content builder on the same folders at the same time (the APK is packaged by the outer build) -->
+    <MonoGameContentReference Include="..\Trw.Game\Content\Content.mgcb" Link="Content\Content.mgcb" Condition="'$(RuntimeIdentifier)' == ''" />
+    <!-- the port HUD's default layout: copied out of the APK into the app's files at start (Hud/HudLayer.cs reads it as a file) -->
+    <AndroidAsset Include="..\Trw.Game\Content\Hud\hud.json" Link="Assets\Content\Hud\hud.json" />
+  </ItemGroup>
+
+</Project>

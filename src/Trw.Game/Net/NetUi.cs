@@ -37,10 +37,12 @@ public sealed class NetUi
     public NetUi(TrwWindow window)
     {
         win = window;
+#if !ANDROID     // (MonoGame's Android window has no TextInput event)
         win.Window.TextInput += (_, e) =>
         {
             if (e.Character == '\b' || (e.Character >= 32 && e.Character < 127)) lock (typed) typed.Enqueue(e.Character);
         };
+#endif
     }
 
     private void Ensure(GraphicsDevice device)

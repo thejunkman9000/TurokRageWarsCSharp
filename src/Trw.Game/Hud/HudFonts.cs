@@ -27,7 +27,8 @@ public sealed class HudFonts : IDisposable
         if (device == null) return;
         var services = new GameServiceContainer();
         services.AddService(typeof(IGraphicsDeviceService), new DeviceService(device));
-        content = new ContentManager(services, Path.Combine(AppContext.BaseDirectory, "Content"));
+        // Android: the content is in the APK's assets, which MonoGame opens only by a relative path
+        content = new ContentManager(services, OperatingSystem.IsAndroid() ? "Content" : Path.Combine(AppContext.BaseDirectory, "Content"));
     }
 
     /// <summary>The font of that name (a .spritefont in Content), or null when it does not exist.</summary>
