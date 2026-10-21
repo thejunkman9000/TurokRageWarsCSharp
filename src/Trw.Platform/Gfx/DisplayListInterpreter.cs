@@ -37,6 +37,7 @@ public sealed class DisplayListInterpreter
 
     private readonly List<GfxVertex> batch = new();
     private readonly List<GfxCommand> commands = new();
+    private int firstCimgAt;           // commands (incl. a pending batch) before the list's first SETCIMG: see Run
     private DrawState cur = new(); private bool curValid; private int curTexW = 1, curTexH = 1;
     private readonly Dictionary<ulong, DecodedTexture> texCache = new();
 
@@ -363,6 +364,7 @@ public sealed class DisplayListInterpreter
         ushort c16 = (ushort)(col >> 16);
         float r = ((c16 >> 11) & 31) / 31f, g = ((c16 >> 6) & 31) / 31f, b = ((c16 >> 1) & 31) / 31f;
         bool full = x0 <= 0 && y0 <= 0 && x1 >= screenW - 1 && y1 >= screenH - 1;
+        if (traceDl) Console.Error.WriteLine($"[gfx]   FILLRECT ({x0},{y0})-({x1},{y1}) cimg {S.Cimg:X8} fill {col:X8} cycle {(S.OmH >> 20) & 3}{(full ? " full" : "")}");
         float fx0 = x0 / screenW * 2 - 1, fx1 = (x1 + 1) / screenW * 2 - 1, fy0 = 1 - y0 / screenH * 2, fy1 = 1 - (y1 + 1) / screenH * 2;
         if (S.Cimg == S.Zimg)
         {
@@ -596,7 +598,9 @@ public sealed class DisplayListInterpreter
                 {
                     float nw = (w0 & 0xFFF) + 1;
                     if (nw != screenW && nw >= 64) { Flush(); screenW = nw; screenH = MathF.Floor(nw * 0.75f + 0.5f); }
+                    if (firstCimgAt < 0) firstCimgAt = commands.Count + (batch.Count > 0 ? 1 : 0);
                     S.Cimg = (w1 & 0x80000000u) != 0 ? w1 : (0x80000000u | (segbase[(w1 >> 24) & 15] + (w1 & 0xFFFFFF)));
+                    if (traceDl) Console.Error.WriteLine($"[gfx]   SETCIMG {S.Cimg:X8} width {nw} (zimg {S.Zimg:X8})");
                     break;
                 }
                 case 0xFE: S.Zimg = (w1 & 0x80000000u) != 0 ? w1 : (0x80000000u | (segbase[(w1 >> 24) & 15] + (w1 & 0xFFFFFF))); break;
@@ -640,7 +644,7 @@ public sealed class DisplayListInterpreter
         for (int i = 0; i < 4; i++) S.Vsc[i] = i == 0 ? 640f : i == 1 ? 480f : i == 2 ? 511f : 0f;
         S.Vtr[0] = 640f; S.Vtr[1] = 480f; S.Vtr[2] = 511f;
         MatIdent(S.Proj); foreach (var m in S.Mv) MatIdent(m); S.MvpDirty = true;
-        curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState(); hudTag = 0; hudData = null;
+        curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState(); hudTag = 0; hudData = null; firstCimgAt = -1;
         if (LogEnabled) { Array.Clear(opHist); triTotal = triNear = triFace = triOut = 0; vtxLogged = 0; vtxLoadsLogged = 0; }
         eyeDepth = UseEyeDepth?.Invoke() ?? false;
         bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
@@ -648,6 +652,19 @@ public sealed class DisplayListInterpreter
         traceDl = LogEnabled && (dumpNow || runs + 1 == DumpRun) && Environment.GetEnvironmentVariable("TRW_GFX_DL") != null;      // TRW_GFX_DL=1: print every command of the dumped list
         RunDL(dl, 0);
         Flush();
+        // draws ahead of the list's first SETCIMG go to the colour image the RDP still has from the previous list: the frame on screen (double
+        // buffering), so they show over the picture until the swap, while this list renders the next frame. The match intro's goal text ("acquire 10
+        // frags in 5 minutes or less", Flyby.DrawText from Flyby.UpdateCamera) is drawn that way; the port draws each list into one picture, where
+        // the list's own clear erased it. Such draws go last instead, over the new frame.
+        if (firstCimgAt > 0 && firstCimgAt <= commands.Count)
+        {
+            var early = commands.GetRange(0, firstCimgAt);
+            if (early.Any(c => c is DrawCommand) && early.All(c => c is DrawCommand))
+            {
+                commands.RemoveRange(0, firstCimgAt);
+                commands.AddRange(early);
+            }
+        }
         if (LogEnabled && (++runs <= 5 || runs % 60 == 0 || runs == DumpRun || dumpNow))
         {
             try
