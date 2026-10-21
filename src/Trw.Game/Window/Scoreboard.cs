@@ -80,12 +80,22 @@ public sealed class Scoreboard : IDisposable
             Frags = p.Frags, Deaths = p.Deaths, Port = p.Port, Index = p.Index, Team = p.Team, Bot = p.Port < 0,
         }).OrderByDescending(r => r.Frags).ThenBy(r => r.Deaths).ThenBy(r => r.Index).ToList();
         bool net = LocalView.NetActive;
+        // team matches (Gv.TeamPlayEnabled, the team byte of each player record): the players grouped under their team, teams by total frags
+        bool teams = TeamPlay(players.Select(p => p.Team));
+        var lines = new List<(int team, Row? row)>();
+        if (teams)
+            foreach (var g in rows.GroupBy(r => r.Team).OrderByDescending(g => g.Sum(r => r.Frags)).ThenBy(g => g.Key))
+            {
+                lines.Add((g.Key, null));
+                foreach (var r in g) lines.Add((g.Key, r));
+            }
+        else foreach (var r in rows) lines.Add((-1, r));
 
         float s = Math.Min(w / 960f, h / 720f);                 // 1.0 at the default 960x720 window
         float fs = 0.75f * s;                                   // font scale (the sprite font is 28 px)
         float lineH = font.LineSpacing * fs * 1.25f;
         float panelW = Math.Min(w - 32 * s, (net ? 760 : 600) * s);
-        float panelH = lineH * (rows.Count + 2) + 40 * s;
+        float panelH = lineH * (lines.Count + 2) + 40 * s;
         float px = (w - panelW) / 2, py = Math.Max(16 * s, (h - panelH) / 2.6f);
         // columns: name | frags | deaths [| ping | status]
         float cName = px + 28 * s, cFrags = px + panelW * (net ? 0.48f : 0.62f), cDeaths = px + panelW * (net ? 0.62f : 0.82f), cPing = px + panelW * 0.76f, cStat = px + panelW * 0.88f;
@@ -105,10 +115,22 @@ public sealed class Scoreboard : IDisposable
         y += lineH * 0.9f;
         Fill(px + 20 * s, y, panelW - 40 * s, Math.Max(1, s), new Color(214, 140, 36, 160));
         y += 8 * s;
-        foreach (var r in rows)
+        foreach (var (team, row) in lines)
         {
+            if (row is not { } r)
+            {   // team header: colour chip, name, the team's frags and deaths
+                var tc = TeamColour(team);
+                var members = rows.Where(x => x.Team == team).ToList();
+                Fill(px + 14 * s, y - 1 * s, Math.Max(2, 5 * s), lineH * 0.85f, tc);
+                Str(TeamName(team), cName, y, tc, fs * 0.95f, titleFont);
+                Num(members.Sum(x => x.Frags), cFrags, y, tc, fs);
+                Num(members.Sum(x => x.Deaths), cDeaths, y, tc, fs);
+                y += lineH;
+                continue;
+            }
             bool me = r.Port == LocalView.Pad && !r.Bot;
             if (me) Fill(px + 14 * s, y - 3 * s, panelW - 28 * s, lineH, LocalRow);
+            if (team >= 0) Fill(px + 14 * s, y - 1 * s, Math.Max(2, 5 * s), lineH * 0.85f, TeamColour(team) * 0.7f);      // the team's stripe
             Str(Clip(r.Name.ToUpperInvariant() + (r.Bot ? "  (BOT)" : ""), cFrags - cName - 16 * s, fs), cName, y, me ? Gold : Text, fs);
             Num(r.Frags, cFrags, y, Gold, fs);
             Num(r.Deaths, cDeaths, y, Text, fs);
@@ -135,6 +157,20 @@ public sealed class Scoreboard : IDisposable
         Str(c, pic.X + (pic.Width - m.X) / 2, pic.Bottom - m.Y - 6 * fs, new Color(220, 220, 220, 230), fs);
         batch.End();
     }
+
+    /// <summary>A team match: team play on (the rules' flag) and at least one player on a team (team byte 0..3; 0xFF = none).</summary>
+    private static bool TeamPlay(IEnumerable<int> teams)
+    {
+        try { return Mem.S32(Gv.TeamPlayEnabled) != 0 && teams.Any(t => t is >= 0 and < 4); }
+        catch (Mem.GuestFault) { return false; }
+    }
+
+    // the game's four teams ("Joined Team Coyote / Bear / Cougar / Viper", HudMsg_JoinedTeam*, team ids 0..3); the colours are the port's (the game has none per team)
+    private static string TeamName(int t) => t switch { 0 => "TEAM COYOTE", 1 => "TEAM BEAR", 2 => "TEAM COUGAR", 3 => "TEAM VIPER", _ => "NO TEAM" };
+    private static Color TeamColour(int t) => t switch
+    {
+        0 => new Color(235, 150, 60), 1 => new Color(200, 90, 70), 2 => new Color(240, 210, 90), 3 => new Color(110, 200, 110), _ => new Color(150, 136, 112),
+    };
 
     private void Header(string s, float x, float y, float fs) => Str(s, x, y, Orange, fs * 0.8f, titleFont);
     private void Num(int v, float x, float y, Color c, float fs) => Str(v.ToString(), x, y, c, fs);

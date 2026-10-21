@@ -14,6 +14,8 @@ public class ButtonGlyphTests
         Assert.Equal(new PhysicalInput(InputSource.Key, "X"), Bindings.Best(N64Button.B, InputDeviceKind.KeyboardMouse, gameplay: false));
         Assert.Equal(new PhysicalInput(InputSource.Key, "Space"), Bindings.Best(N64Button.R, InputDeviceKind.KeyboardMouse, gameplay: true));
         Assert.Equal(new PhysicalInput(InputSource.Key, "W"), Bindings.Best(N64Button.CUp, InputDeviceKind.KeyboardMouse, gameplay: true));
+        // in the menus W moves the cursor; the C buttons are I J K L there
+        Assert.Equal(new PhysicalInput(InputSource.Key, "I"), Bindings.Best(N64Button.CUp, InputDeviceKind.KeyboardMouse, gameplay: false));
         Assert.Equal(new PhysicalInput(InputSource.Key, "Right"), Bindings.Best(N64Button.StickRight, InputDeviceKind.KeyboardMouse, gameplay: false));
         // Z in play: the left mouse button is bound too, the key wins
         Assert.Equal(InputSource.Key, Bindings.Best(N64Button.Z, InputDeviceKind.KeyboardMouse, gameplay: true)!.Value.Source);

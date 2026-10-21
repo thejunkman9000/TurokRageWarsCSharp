@@ -293,6 +293,21 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         active = (mouseCaptured || kbmSteps.Any(s => s.Dx != 0 || s.Dy != 0)) && GameplayContext() == 1;
         lock (deviceLock) { yawDeg = nativeYaw; pitchDeg = nativePitch; nativeYaw = nativePitch = 0; }
         if (TouchControls.Enabled) TouchControls.TakeLook(ref yawDeg, ref pitchDeg, ref active);      // the touch look pad
+        if ((yawDeg != 0 || pitchDeg != 0) && LocalPlayerScoped()) { yawDeg *= ScopeSensitivity; pitchDeg *= ScopeSensitivity; }
+    }
+
+    /// <summary>Mouse / touch look through a scope (a zoomed weapon): the look moves at this fraction of the normal rate. TRW_SCOPE_SENS (default 1/3).</summary>
+    private static readonly float ScopeSensitivity = float.TryParse(Environment.GetEnvironmentVariable("TRW_SCOPE_SENS"), System.Globalization.NumberStyles.Float,
+        System.Globalization.CultureInfo.InvariantCulture, out var ss) && ss > 0 ? ss : 1f / 3f;
+
+    /// <summary>The local player looks through a scope: Player +0x7E8 ZoomMode (set by Player.UpdateZoom while a zooming weapon is zoomed in). Read on the
+    /// game thread (the controller read), from guest RAM, which every netplay peer has the same.</summary>
+    private static bool LocalPlayerScoped()
+    {
+        int port = global::Trw.Game.Net.NetSession.Active ? global::Trw.Game.Net.NetSession.LocalPad : 0;
+        foreach (var p in MatchInfo.Players())
+            if (p.Port == port) { try { return Mem.S32(p.Actor + 0x7E8) != 0; } catch (Mem.GuestFault) { return false; } }
+        return false;
     }
 
     internal static bool ReadPadHeadless(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)

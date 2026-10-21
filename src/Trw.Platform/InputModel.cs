@@ -6,7 +6,7 @@ public static class N64
     public const ushort A = 0x8000, B = 0x4000, Z = 0x2000, Start = 0x1000, DUp = 0x0800, DDown = 0x0400, DLeft = 0x0200, DRight = 0x0100,
         L = 0x0020, R = 0x0010, CUp = 0x0008, CDown = 0x0004, CLeft = 0x0002, CRight = 0x0001;
     public const int StickMax = 80;            // a real stick reports about +-80 at the gate; the game clamps to it
-    public const int GameStickDeadzone = 3;    // the game's own dead zone (func_00263E1C): |v| <= 3 reads as 0, otherwise 3 is subtracted
+    public const int GameStickDeadzone = 3;    // the game's own dead zone (Pad.ApplyStickDeadzone): |v| <= 3 reads as 0, otherwise 3 is subtracted
 }
 
 /// <summary>Gamepad state in the XInput layout (stick Y up is positive, triggers 0..1).</summary>
@@ -129,6 +129,16 @@ public sealed class InputMapper
         if (pc && game)
         {
             if (Ax(ly)) b |= N64.CUp; if (Ax(-ly)) b |= N64.CDown; if (Ax(-lx)) b |= N64.CLeft; if (Ax(lx)) b |= N64.CRight;
+        }
+        // the C buttons in the menus, where W A S D / the left stick move the cursor (the menus' "SKINS = C-up", "OPTIONS = C-up" ...): I J K L on the
+        // keyboard, the right stick on a gamepad (where the C buttons sit on the N64 pad; in free play it is the look stick)
+        if (menu && K("I")) b |= N64.CUp;
+        if (menu && K("J")) b |= N64.CLeft;
+        if (menu && K("K")) b |= N64.CDown;
+        if (menu && K("L")) b |= N64.CRight;
+        if (pc && menu && !game)
+        {
+            if (Ax(ry)) b |= N64.CUp; if (Ax(-ry)) b |= N64.CDown; if (Ax(-rx)) b |= N64.CLeft; if (Ax(rx)) b |= N64.CRight;
         }
         if ((menu && (K("W") || wheelOn[0])) || K("NumPad8")) b |= N64.DUp;
         if ((menu && (K("S") || wheelOn[1])) || K("NumPad2")) b |= N64.DDown;
